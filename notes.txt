@@ -6,3 +6,6 @@ https://en.wikipedia.org/wiki/RE/flex
 https://www.genivia.com/doc/reflex/html/
 https://github.com/Genivia/RE-flex
 
+required packages on ubuntu:
+build-essential
+automake
