@@ -1,0 +1,8 @@
+best URL reference for the actual language:
+https://www3.rocketsoftware.com/rocketd3/support/documentation/mvb/32/refman/mvbasic/introduction_to_mvbasic.htm
+
+best URL references for unicode capable flex tool:
+https://en.wikipedia.org/wiki/RE/flex
+https://www.genivia.com/doc/reflex/html/
+https://github.com/Genivia/RE-flex
+
