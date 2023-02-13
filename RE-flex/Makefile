@@ -1,11 +1,20 @@
-all: source
+.PHONY: all
+all: source configure build
 
-source: RE-flex RE-flex-configure
+.PHONY: source
+source: RE-flex
 
 RE-flex:
 	git clone https://github.com/Genivia/RE-flex.git
 
-RE-flex-configure: RE-flex/Makefile
+.PHONY: configure
+configure: RE-flex/Makefile
 
 RE-flex/Makefile:
 	(cd RE-flex ; ./configure)
+
+.PHONY: build
+build: RE-flex/src/reflex
+
+RE-flex/src/reflex:
+	(cd RE-flex ; make)
