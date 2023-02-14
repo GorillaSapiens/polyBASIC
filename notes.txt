@@ -1,6 +1,9 @@
 best URL reference for the actual language:
 https://www.ecma-international.org/wp-content/uploads/ECMA-55_1st_edition_january_1978.pdf
 
+we are going to make one small change; labels will be optional, and do
+not need to be numeric, and do not need to be in order.
+
 best URL references for unicode capable flex tool:
 https://en.wikipedia.org/wiki/RE/flex
 https://www.genivia.com/doc/reflex/html/

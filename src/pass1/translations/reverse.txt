@@ -1,0 +1,28 @@
+####
+# translations for a fictional "reverse" language
+#
+# this file should be utf8
+# entries on the left are the actual BASIC keywords
+# entries on the right are the native versions of those keywords
+# blank lines are allowed
+
+ABS <= SBA
+ATN <= NTA
+COS <= SOC
+EXP <= PXE
+INT <= TNI
+LOG <= GOL
+RND <= DNR
+SGN <= NGS
+SIN <= NIS
+SQR <= RQS
+TAN <= NAT
+IF <= FI
+THEN <= NEHT
+ELSE <= ESLE
+FOR <= ROF
+LOOP <= POOL
+GO TO <= OT OG
+GO SUB <= BUS OG
+STOP <= POTS
+END <= DNE
