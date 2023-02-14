@@ -123,7 +123,30 @@ int main(int argc, char **argv) {
    }
    load_translations(language);
 
+   FILE *in = NULL;
+
+   if (argc > 1) {
+      in = fopen(argv[1], "r");
+
+      if (in == NULL) {
+         fprintf(stderr,
+            "unable to open file %s\n", argv[1]);
+         exit(-1);
+      }
+   }
+
+   // this is the part we've all been waiting for...
+
    yyFlexLexer foo;
-   foo.yylex();
+   if (in) {
+      foo.yylex(in);
+   }
+   else {
+      foo.yylex();
+   }
+
+   if (in) {
+      fclose(in);
+   }
 }
 
