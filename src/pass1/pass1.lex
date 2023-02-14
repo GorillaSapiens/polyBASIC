@@ -5,6 +5,22 @@
 #include <dirent.h>
 #include <errno.h>
 
+#include "reflex/flexlexer.h"
+
+%}
+
+%o flex
+
+STRING   \"(\\.|[^"\\])*\"
+NUMBER   [+-]?[0-9]+([.]([0-9]+))?(E[+-]?[0-9]+)?
+
+%%
+
+STRING   { printf("string: ==%s==\n", yytext); }
+NUMBER   { printf("number: ==%s==\n", yytext); }
+
+%%
+
 // a simple linked list of tuples
 // because i'm lazy,
 // efficiency is not required,
@@ -105,10 +121,8 @@ int main(int argc, char **argv) {
       language = argv[1];
    }
    load_translations(language);
+
+   yyFlexLexer foo;
+   foo.yylex();
 }
 
-%}
-
-%%
-
-%%
