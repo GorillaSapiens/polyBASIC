@@ -1,5 +1,5 @@
 best URL reference for the actual language:
-https://www3.rocketsoftware.com/rocketd3/support/documentation/mvb/32/refman/mvbasic/introduction_to_mvbasic.htm
+https://www.ecma-international.org/wp-content/uploads/ECMA-55_1st_edition_january_1978.pdf
 
 best URL references for unicode capable flex tool:
 https://en.wikipedia.org/wiki/RE/flex
@@ -9,3 +9,9 @@ https://github.com/Genivia/RE-flex
 required packages on ubuntu:
 build-essential
 automake
+
+
+THEORY OF OPERATION:
+one pass through a simple tokenizer
+one pass through a translator
+one pass through the real tokenizer and parser
