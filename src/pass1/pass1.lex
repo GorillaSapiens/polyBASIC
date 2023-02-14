@@ -16,8 +16,9 @@ NUMBER   [+-]?[0-9]+([.]([0-9]+))?(E[+-]?[0-9]+)?
 
 %%
 
-STRING   { printf("string: ==%s==\n", yytext); }
-NUMBER   { printf("number: ==%s==\n", yytext); }
+{STRING}   { printf("string: ==%s==\n", yytext); }
+{NUMBER}   { printf("number: ==%s==\n", yytext); }
+.          { printf("ummm %s\n", yytext); }
 
 %%
 
