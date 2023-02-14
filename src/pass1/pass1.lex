@@ -5,6 +5,28 @@
 #include <dirent.h>
 #include <errno.h>
 
+// a simple linked list of tuples
+// because i'm lazy,
+// efficiency is not required,
+// and the OS will free them at the end
+
+struct Tuple;
+typedef struct Tuple {
+   const char *a;
+   const char *b;
+   struct Tuple *next;
+} Tuple;
+
+Tuple *tuple_head = NULL;
+
+void add_tuple(const char *a, const char *b) {
+   Tuple *tuple = (struct Tuple *) malloc(sizeof(struct Tuple));
+   tuple->a = strdup(a);
+   tuple->b = strdup(b);
+   tuple->next = tuple_head;
+   tuple_head = tuple;
+}
+
 int directory_exists(const char *path) {
    DIR* dir = opendir(path);
    if (dir) {
@@ -12,6 +34,33 @@ int directory_exists(const char *path) {
       return 1;
    }
    return 0;
+}
+
+char *trim(char *in) {
+   while (*in && isspace(*in)) {
+      in++;
+   }
+   if (*in) {
+      char *end = in + strlen(in) - 1;
+      while (end > in && isspace(*end)) {
+         *end = 0;
+         end--;
+      }
+   }
+   return in;
+}
+
+void read_translations(FILE *f) {
+   char buf[16384];
+   while (fgets(buf, sizeof(buf), f) == buf) {
+      char *s;
+      if (buf[0] != '#' && (s = /*assignment*/ strstr(buf, "<="))) {
+         *s = 0;
+         char *a = trim(buf);
+         char *b = trim(s+2);
+         add_tuple(a,b);
+      }
+   }
 }
 
 void load_translations(const char *language) {
@@ -32,6 +81,8 @@ void load_translations(const char *language) {
 
    FILE *f = fopen(full_path, "r");
    if (f) {
+      read_translations(f);
+      fclose(f);
    }
    else {
       fprintf(stderr,
