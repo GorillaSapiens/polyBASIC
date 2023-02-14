@@ -11,5 +11,5 @@
 "1E10"
 
 "this is a test"
-"als a test, with an escaped \" quotation mark"
+"also a test, with an escaped \" quotation mark and backslash \\"
 

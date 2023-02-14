@@ -8,6 +8,10 @@ pass1: lex.yy.cpp
 lex.yy.cpp: pass1.lex
 	$(reflex) pass1.lex
 
+.PHONY: test
+test:
+	./do_tests.sh
+
 .PHONY: clean
 clean:
 	rm -f lex.yy.cpp pass1

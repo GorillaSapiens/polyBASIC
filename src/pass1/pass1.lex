@@ -11,6 +11,7 @@
 
 %o flex
 
+/* definition of "constant" from page 7 of the ECMA-55 document */
 STRING   \"(\\.|[^"\\])*\"
 NUMBER   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 
