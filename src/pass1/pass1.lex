@@ -18,7 +18,7 @@ void load_translations(const char *language) {
    const char *path = getenv("POLYECMA55PATH");
    if (path == NULL) {
       fprintf(stderr,
-         "please check POLYECMA55PATH setting.\n");
+         "POLYECMA55PATH environment variable not set.\n");
       exit(-1);
    }
    if (!directory_exists(path)) {
