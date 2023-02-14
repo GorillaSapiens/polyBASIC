@@ -15,11 +15,14 @@
 STRING   \"(\\.|[^"\\])*\"
 NUMBER   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 
+CRLF     [\n\r]{1,2}
+
 %%
 
 {STRING}   { printf("string: ==%s==\n", yytext); }
 {NUMBER}   { printf("number: ==%s==\n", yytext); }
-.          { printf("ummm %s\n", yytext); }
+{CRLF}     { /* ignore */ }
+.          { printf("ummm ==%s==\n", yytext); }
 
 %%
 

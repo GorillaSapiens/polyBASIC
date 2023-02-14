@@ -13,3 +13,7 @@
 "this is a test"
 "also a test, with an escaped \" quotation mark and backslash \\"
 
+*
++
+/
+=
