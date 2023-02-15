@@ -7,9 +7,12 @@
 
 #include "reflex/flexlexer.h"
 
+int mylineno = 0;
+
 // required fwd decls
 const char *has_tuple(const char *a);
 int is_reserved_label(const char *a);
+int is_reserved_word(const char *a);
 
 %}
 
@@ -34,9 +37,8 @@ RELATION (==|<>|<|>|>=|<=)
 
 ASSIGNMENT (:=)
 
-PLUSMINUS [+-]
-
-DIVMULT [/*]
+/* any single character passed straight up to bison */
+OKSINGLE [-+*/()]
 
 /* any single character appearing by iteslf */
 RUNE     [!#$%&',:;?^_.]
@@ -67,25 +69,26 @@ EOL      [\r\n]{1,2}
                 }
              }
 
-{WORD}       {
-                const char *alias = has_tuple(yytext);
-                if (alias) {
-                   printf("word    : ❮%s➜%s❯\n", yytext, alias);
-                }
-                else {
-                   printf("word    : ❮%s❯\n", yytext);
-                }
-             }
+{WORD}      {
+               const char *alias = has_tuple(yytext);
+               int reserved = is_reserved_word(yytext);
+               if (alias) {
+                  printf("word    : ❮%s➜%s❯ %d\n", yytext, alias, reserved);
+               }
+               else {
+                  printf("word    : ❮%s❯ %d\n", yytext, reserved);
+               }
+            }
 
-{PLUSMINUS} { printf("plusmin: ❮%s❯\n", yytext); }
+{OKSINGLE}  {
+               printf("oksingle: ❮%s❯\n", yytext);
+               // just remember to return the character here!
+            }
 
-{DIVMULT}   { printf("divmult: ❮%s❯\n", yytext); }
-
-"("        { printf("leftpar : ❮%s❯\n", yytext); }
-
-")"        { printf("rightpar: ❮%s❯\n", yytext); }
-
-{EOL}      { printf("❮EOL❯\n"); }
+{EOL}       {
+               mylineno++;
+               printf("❮EOL❯\n");
+            }
 
 .          { printf("ummm ❮%s❯\n", yytext); }
 
@@ -139,11 +142,36 @@ const char *has_tuple(const char *token) {
    return NULL;
 }
 
+int is_reserved_word(const char *a) {
+   const char *proper = NULL;
+
+   // find the tuple that matches this word.
+   for (Tuple *p = tuple_head; p; p = p->next) {
+      if (!strcmp(p->translation, a)) {
+         proper = p->english;
+         break;
+      }
+      if (!strcmp(p->english, a)) {
+         proper = p->translation;
+         break;
+      }
+   }
+
+   // now see if there are any matches
+   for (int i = 0; reserved[i]; i++) {
+      if (!strcmp(reserved[i], proper ? proper : a)) {
+         return 1;
+      }
+   }
+   return 0;
+}
+
 int is_reserved_label(const char *a) {
    // we trust the parser if there is no colon
    if (!strchr(a, ':')) {
       return 0;
    }
+
    // now we need to check tuples.
 
    // save some time, copy the token, minus the colon
@@ -152,19 +180,7 @@ int is_reserved_label(const char *a) {
    strcpy(copy, a);
    copy[len - 1] = 0;
 
-   // TODO FIX
-   // this is O(n^2), probably possible to speed
-   // it up later...
-   int i = 0;
-   while (reserved[i] != NULL) {
-      for (Tuple *p = tuple_head; p; p = p->next) {
-         if (!strcmp(copy, p->translation)) {
-            return 1;
-         }
-      }
-      i++;
-   }
-   return 0;
+   return is_reserved_word(copy);
 }
 
 int directory_exists(const char *path) {
