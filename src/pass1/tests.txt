@@ -13,7 +13,7 @@
 TEL: a := 5 + 1
 LET: a := 5 + 1
 10: a := 5 + 1
-10 a := 5 + 1
+10 a := ((5 + 1) * 6) / 7
 
 RANDOMIZE
 EZIMODNAR

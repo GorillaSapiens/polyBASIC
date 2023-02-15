@@ -34,8 +34,12 @@ RELATION (==|<>|<|>|>=|<=)
 
 ASSIGNMENT (:=)
 
+PLUSMINUS [+-]
+
+DIVMULT [/*]
+
 /* any single character appearing by iteslf */
-RUNE     [!#$%&'()*,/:;<=>?^_+-.]
+RUNE     [!#$%&',:;?^_.]
 
 /* any valid multicharacter thing */
 WORD     [\p{Letter}]([\p{Letter}\p{Number}_])*
@@ -53,8 +57,6 @@ EOL      [\r\n]{1,2}
 {RELATION}   { printf("relation: ❮%s❯\n", yytext); }
 
 {ASSIGNMENT} { printf("assign  : ❮%s❯\n", yytext); }
-
-{RUNE}       { printf("rune    : ❮%s❯\n", yytext); }
 
 {LABEL}      {
                 if (!is_reserved_label(yytext)) {
@@ -74,6 +76,14 @@ EOL      [\r\n]{1,2}
                    printf("word    : ❮%s❯\n", yytext);
                 }
              }
+
+{PLUSMINUS} { printf("plusmin: ❮%s❯\n", yytext); }
+
+{DIVMULT}   { printf("divmult: ❮%s❯\n", yytext); }
+
+"("        { printf("leftpar : ❮%s❯\n", yytext); }
+
+")"        { printf("rightpar: ❮%s❯\n", yytext); }
 
 {EOL}      { printf("❮EOL❯\n"); }
 
