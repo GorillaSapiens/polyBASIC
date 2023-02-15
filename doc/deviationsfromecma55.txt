@@ -2,7 +2,10 @@ addition of unicode, obviously
 
 support for multiple translations
 
-:= for assignment, == for comparison. "=" is no longer valid
+backslashes are now allowed as escape characters inside string constants,
+so you can include " inside a string.
+
+:= for assignment, == for comparison. "=" is no longer valid............
 
 line labels are optional, and need not be numeric, or even in numeric
 order.  nonnumeric labels must end in a ":", and cannot match (translated)
