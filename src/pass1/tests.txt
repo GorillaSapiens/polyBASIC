@@ -12,6 +12,7 @@
 
 "this is a test"
 "also a test, with an escaped \" quotation mark and backslash \\"
+"이것은 한국어로 된 문장입니다."
 
 *
 +
