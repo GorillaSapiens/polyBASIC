@@ -5,8 +5,8 @@ reflexlib = ../RE-flex/RE-flex/lib
 pass1: lex.yy.cpp
 	g++ -I $(reflexinc) lex.yy.cpp -L $(reflexlib) -lreflex -o pass1
 
-lex.yy.cpp: pass1.lex
-	$(reflex) --unicode pass1.lex
+lex.yy.cpp: pass1.l
+	$(reflex) --unicode pass1.l
 
 .PHONY: test
 test:
