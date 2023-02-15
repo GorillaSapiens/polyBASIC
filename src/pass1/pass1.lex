@@ -36,15 +36,15 @@ CRLF     [\r\n]{1,2}
 
 %%
 
-{CONSTANT}   { printf("constant: ==%s==\n", yytext); }
-{RUNE}       { printf("rune    : ==%s==\n", yytext); }
+{CONSTANT}   { printf("constant: ❮%s❯\n", yytext); }
+{RUNE}       { printf("rune    : ❮%s❯\n", yytext); }
 {WORD}       {
                 const char *alias = has_tuple(yytext);
                 if (alias) {
-                   printf("word    : ==%s->%s==\n", yytext, alias);
+                   printf("word    : ❮%s➜%s❯\n", yytext, alias);
                 }
                 else {
-                   printf("word    : ==%s==\n", yytext);
+                   printf("word    : ❮%s❯\n", yytext);
                 }
              }
 
