@@ -9,10 +9,13 @@
 
 // required fwd decls
 const char *has_tuple(const char *a);
+int is_reserved_label(const char *a);
 
 %}
 
 %o flex
+
+WHITESPACE  [ \t]
 
 /* ECMA-55 §6 */
 /* definition of "constant" from page 7 of the ECMA-55 document */
@@ -26,18 +29,42 @@ CONSTANT {STRING}|{NUMBER}
 /* this gets a little odd, because we've had to eliminate the notion */
 /* of an "unquoted string" to allow, well, everything unicode */
 
+/* relations given by ECMA-55 §12.2, modified */
+RELATION (==|<>|<|>|>=|<=)
+
+ASSIGNMENT (:=)
+
 /* any single character appearing by iteslf */
 RUNE     [!#$%&'()*,/:;<=>?^_+-.]
 
 /* any valid multicharacter thing */
 WORD     [\p{Letter}]([\p{Letter}\p{Number}_])*
 
-CRLF     [\r\n]{1,2}
+LABEL    (^[\p{Letter}]([\p{Letter}\p{Number}_])*:)|(^[0-9]+[: \t])
+
+EOL      [\r\n]{1,2}
 
 %%
 
+{WHITESPACE} { /* ignore */ }
+
 {CONSTANT}   { printf("constant: ❮%s❯\n", yytext); }
+
+{RELATION}   { printf("relation: ❮%s❯\n", yytext); }
+
+{ASSIGNMENT} { printf("assign  : ❮%s❯\n", yytext); }
+
 {RUNE}       { printf("rune    : ❮%s❯\n", yytext); }
+
+{LABEL}      {
+                if (!is_reserved_label(yytext)) {
+                   printf("label   : ❮%s❯\n", yytext);
+                }
+                else {
+                   printf("ERROR   : ❮%s❯\n", yytext);
+                }
+             }
+
 {WORD}       {
                 const char *alias = has_tuple(yytext);
                 if (alias) {
@@ -48,11 +75,25 @@ CRLF     [\r\n]{1,2}
                 }
              }
 
-{CRLF}     { /* ignore */ }
+{EOL}      { printf("❮EOL❯\n"); }
 
-.          { printf("ummm ==%s==\n", yytext); }
+.          { printf("ummm ❮%s❯\n", yytext); }
 
 %%
+
+// some reserved words
+static const char *reserved[] = {
+// The keywords in Minimal BASIC are:
+   "BASE", "DATA", "DEF", "DIM", "END", "FOR", "GO", "GOSUB",
+   "GOTO", "IF", "INPUT", "LET", "NEXT", "ON", "OPTION", "PRINT",
+   "RANDOMIZE", "READ", "REM", "RESTORE", "RETURN", "STEP", "STOP",
+   "SUB", "THEN", "TO",
+// The functions are:
+   "ABS", "ATN", "COS", "EXP", "INT", "LOG", "RND", "SGN",
+   "SIN", "SQR", "TAN",
+// NULL terminator
+NULL
+};
 
 // a simple linked list of tuples
 // because i'm lazy,
@@ -61,31 +102,59 @@ CRLF     [\r\n]{1,2}
 
 struct Tuple;
 typedef struct Tuple {
-   const char *a;
-   const char *b;
+   const char *english;
+   const char *translation;
    struct Tuple *next;
 } Tuple;
 
 Tuple *tuple_head = NULL;
 
-void add_tuple(const char *a, const char *b) {
+void add_tuple(const char *english, const char *translation) {
    Tuple *tuple = (struct Tuple *) malloc(sizeof(struct Tuple));
-   tuple->a = strdup(a);
-   tuple->b = strdup(b);
+   tuple->english = strdup(english);
+   tuple->translation = strdup(translation);
    tuple->next = tuple_head;
    tuple_head = tuple;
 }
 
-const char *has_tuple(const char *a) {
+const char *has_tuple(const char *token) {
    for (Tuple *p = tuple_head; p; p = p->next) {
-      if (!strcmp(a, p->a)) {
-         return p->b;
+      if (!strcmp(token, p->english)) {
+         return p->translation;
       }
-      if (!strcmp(a, p->b)) {
-         return p->a;
+      if (!strcmp(token, p->translation)) {
+         return p->english;
       }
    }
    return NULL;
+}
+
+int is_reserved_label(const char *a) {
+   // we trust the parser if there is no colon
+   if (!strchr(a, ':')) {
+      return 0;
+   }
+   // now we need to check tuples.
+
+   // save some time, copy the token, minus the colon
+   int len = strlen(a);
+   char *copy = (char *) alloca(len + 1);
+   strcpy(copy, a);
+   copy[len - 1] = 0;
+
+   // TODO FIX
+   // this is O(n^2), probably possible to speed
+   // it up later...
+   int i = 0;
+   while (reserved[i] != NULL) {
+      for (Tuple *p = tuple_head; p; p = p->next) {
+         if (!strcmp(copy, p->translation)) {
+            return 1;
+         }
+      }
+      i++;
+   }
+   return 0;
 }
 
 int directory_exists(const char *path) {
@@ -120,10 +189,10 @@ void read_translations(FILE *f) {
       }
       if ((s = /*assignment*/ strstr(buf, "<="))) {
          *s = 0;
-         char *a = trim(buf);
-         char *b = trim(s+2);
+         char *english = trim(buf);
+         char *translation = trim(s+2);
          //printf("TUPLE |%s|%s|\n", a, b);
-         add_tuple(a,b);
+         add_tuple(english,translation);
       }
    }
 }

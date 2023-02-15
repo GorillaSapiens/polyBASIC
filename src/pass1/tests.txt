@@ -1,23 +1,19 @@
-1
-500
--21.
-.255
-1E10
-5E-1
-.4E+1
+1 500 -21.  .255 1E10 5E-1 .4E+1
 
-"XYZ"
-"X - 3B2"
-"1E10"
+"XYZ" "X - 3B2" "1E10"
 
 "this is a test"
 "also a test, with an escaped \" quotation mark and backslash \\"
 "이것은 한국어로 된 문장입니다."
 
-*
-+
-/
-=
++ - * /
+
+:= == = <> >= <= > <
+
+TEL: a := 5 + 1
+LET: a := 5 + 1
+10: a := 5 + 1
+10 a := 5 + 1
 
 RANDOMIZE
 EZIMODNAR
