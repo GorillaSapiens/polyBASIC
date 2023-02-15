@@ -19,5 +19,7 @@
 /
 =
 
+RANDOMIZE
+EZIMODNAR
 이것은
 이

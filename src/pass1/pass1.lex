@@ -7,6 +7,9 @@
 
 #include "reflex/flexlexer.h"
 
+// required fwd decls
+const char *has_tuple(const char *a);
+
 %}
 
 %o flex
@@ -27,7 +30,7 @@ CONSTANT {STRING}|{NUMBER}
 RUNE     [!#$%&'()*,/:;<=>?^_+-.]
 
 /* any valid multicharacter thing */
-WORD     [\p{Letter}]([\p{Letter}\p{Number}_])?
+WORD     [\p{Letter}]([\p{Letter}\p{Number}_])*
 
 CRLF     [\r\n]{1,2}
 
@@ -35,7 +38,15 @@ CRLF     [\r\n]{1,2}
 
 {CONSTANT}   { printf("constant: ==%s==\n", yytext); }
 {RUNE}       { printf("rune    : ==%s==\n", yytext); }
-{WORD}       { printf("word    : ==%s==\n", yytext); }
+{WORD}       {
+                const char *alias = has_tuple(yytext);
+                if (alias) {
+                   printf("word    : ==%s->%s==\n", yytext, alias);
+                }
+                else {
+                   printf("word    : ==%s==\n", yytext);
+                }
+             }
 
 {CRLF}     { /* ignore */ }
 
@@ -63,6 +74,18 @@ void add_tuple(const char *a, const char *b) {
    tuple->b = strdup(b);
    tuple->next = tuple_head;
    tuple_head = tuple;
+}
+
+const char *has_tuple(const char *a) {
+   for (Tuple *p = tuple_head; p; p = p->next) {
+      if (!strcmp(a, p->a)) {
+         return p->b;
+      }
+      if (!strcmp(a, p->b)) {
+         return p->a;
+      }
+   }
+   return NULL;
 }
 
 int directory_exists(const char *path) {
