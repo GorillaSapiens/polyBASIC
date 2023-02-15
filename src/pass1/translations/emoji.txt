@@ -24,10 +24,10 @@ END <= 👻👻           # the end of program instruction
 
 # from ECMA-55 §9
 
-ABS <= 👻👽       # the absolute value function
+ABS <= 👻👽         # the absolute value function
 ATN <= 👻👾         # the trigonomic arctangent function
-COS <= 👻🤖       # the trigonomic cosine function
-EXP <= 👻😺       # the exponential / power function
+COS <= 👻🤖         # the trigonomic cosine function
+EXP <= 👻😺         # the exponential / power function
 INT <= 👻🦓         # the integer / floor function
 LOG <= 👽👻         # the natural log function
 RND <= 👽👽         # generate random number
@@ -38,11 +38,11 @@ TAN <= 👽🦓         # the trigonomic tangent function
 
 # from ECMA-55 §10
 
-DEF <= 👾👻       # for user defined functions
+DEF <= 👾👻         # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= 👾👽     # for variable assignment
+LET <= 👾👽         # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
@@ -50,16 +50,16 @@ LET <= 👾👽     # for variable assignment
 GO <= 👾👾          # used in both "go to" and "go sub"
 TO <= 👾🤖          # part of for/to/step/next constructs
 IF <= 👾😺          # part of if/then constructs
-THEN <= 👾🦓          # part of if/then constructs
+THEN <= 👾🦓        # part of if/then constructs
 SUB <= 🤖👻         # beware, used as part of "go sub"
 ON <= 🤖👽          # a sort of a switch statement
-RETURN <= 🤖👾  # used to exit a subroutine
-STOP <= 🤖🤖      # command to stop execution
+RETURN <= 🤖👾      # used to exit a subroutine
+STOP <= 🤖🤖        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= 🤖😺           # part of for/to/step/next constructs
+FOR <= 🤖😺         # part of for/to/step/next constructs
 STEP <= 🤖🦓        # part of for/to/step/next constructs
 NEXT <= 😺👻        # part of for/to/step/next constructs
 
@@ -78,17 +78,17 @@ RESTORE <= 😺😺 # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= 😺🦓      # to embed data in the program
+DATA <= 😺🦓        # to embed data in the program
 
 # from ECMA-55 §18
 
 DIM <= 🦓👻         # dimension arrays
 OPTION <= 🦓👽      # see ECMA-55 §18.1
-BASE <= 🦓👾      # see ECMA-55 §18.1
+BASE <= 🦓👾        # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= 🦓🤖          # see ECMA-55 §18.1
+REM <= 🦓🤖         # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
