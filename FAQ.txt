@@ -1,0 +1,37 @@
+(*) What is polyECMA55?
+
+polyECMA55 is an attempt to implement a BASIC compiler / interpreter
+that can be easily reconfigured with keywords in any human language,
+allowing anyone to write in a BASIC-like computer language, but in their
+native tongue.
+
+(*) Why would you want to do that?
+
+Most computer programming languages are based on English.  While many
+people in the world speak English, it is only natively spoken as a first
+language by about half a billion people, and only about 1.1 billion speak
+it as a second language.  This leaves, roughly, 6.5 billion people who
+speak no English at all.
+
+(*) What is ECMA-55?
+
+ECMA-55 is European Computer Manufacturers Association Standard #55.
+It was published in 1978, and specifies a minimal version of the BASIC
+programming language.
+
+(*) Why choose something so simple?  Aren't there better languages?
+
+In the late 70s and early 80s, many students with no computer knowledge at
+all learned to program on machines like the Apple ][ or the Commodore-64,
+both of which ran very simple versions of the BASIC programming language.
+
+This project is a proof of concept.  We're not sure if this can even be
+done at all, and we want to explore some of the concepts, technologies,
+and difficulties behind implementing a reconfigurable multilingual
+programming language.
+
+There is little question in the computer industry that there are better
+computer languages than BASIC.  The issue is to get young people
+interested in the concepts behind computers and computer languages,
+even before they start learning English, if indeed they ever do.
+
