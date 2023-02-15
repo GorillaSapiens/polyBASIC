@@ -1,0 +1,7 @@
+addition of unicode, obviously
+
+multiple translations
+
+:= for assignment, == for comparison. "=" is no longer valid
+
+line labels are optional, and need not be numeric
