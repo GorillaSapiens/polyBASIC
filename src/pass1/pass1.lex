@@ -18,11 +18,24 @@ STRING   \"(\\.|[^"\\])*\"
 NUMBER   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 CONSTANT {STRING}|{NUMBER}
 
+/* ECMA-55 §4.2 */
+
+/* this gets a little odd, because we've had to eliminate the notion */
+/* of an "unquoted string" to allow, well, everything unicode */
+
+/* any single character appearing by iteslf */
+RUNE     [!#$%&'()*,/:;<=>?^_+-.]
+
+/* any valid multicharacter thing */
+WORD     [\p{Letter}]([\p{Letter}\p{Number}_])?
+
 CRLF     [\r\n]{1,2}
 
 %%
 
 {CONSTANT}   { printf("constant: ==%s==\n", yytext); }
+{RUNE}       { printf("rune    : ==%s==\n", yytext); }
+{WORD}       { printf("word    : ==%s==\n", yytext); }
 
 {CRLF}     { /* ignore */ }
 

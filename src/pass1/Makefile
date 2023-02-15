@@ -6,7 +6,7 @@ pass1: lex.yy.cpp
 	g++ -I $(reflexinc) lex.yy.cpp -L $(reflexlib) -lreflex -o pass1
 
 lex.yy.cpp: pass1.lex
-	$(reflex) pass1.lex
+	$(reflex) --unicode pass1.lex
 
 .PHONY: test
 test:
