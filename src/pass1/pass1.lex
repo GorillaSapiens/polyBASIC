@@ -11,18 +11,21 @@
 
 %o flex
 
+/* ECMA-55 §6 */
 /* definition of "constant" from page 7 of the ECMA-55 document */
 /* NB: we have deviated by allowing escaped characters in strings */
 STRING   \"(\\.|[^"\\])*\"
 NUMBER   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
+CONSTANT {STRING}|{NUMBER}
 
 CRLF     [\r\n]{1,2}
 
 %%
 
-{STRING}   { printf("string: ==%s==\n", yytext); }
-{NUMBER}   { printf("number: ==%s==\n", yytext); }
+{CONSTANT}   { printf("constant: ==%s==\n", yytext); }
+
 {CRLF}     { /* ignore */ }
+
 .          { printf("ummm ==%s==\n", yytext); }
 
 %%

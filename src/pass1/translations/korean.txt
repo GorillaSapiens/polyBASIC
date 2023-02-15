@@ -25,6 +25,17 @@
 # entries on the right are the native versions of those keywords
 # blank lines are allowed
 
+# from ECMA-55 §3.8
+
+# The keywords in Minimal BASIC are: BASE, DATA, DEF, DIM, END,
+# FOR, GO, GOSUB, GOTO, IF, INPUT, LET, NEXT, ON, OPTION, PRINT,
+# RANDOMIZE, READ, REM, RESTORE, RETURN, STEP, STOP, SUB, THEN
+# and TO.
+
+# from ECMA-55 §5
+
+END <= 끝           # the end of program instruction
+
 # from ECMA-55 §9
 
 ABS <= 절대값       # the absolute value function
@@ -72,7 +83,7 @@ PRINT <= 인쇄       # to print things out
 
 # from ECMA-55 §15
 
-INTPUT <= 입력      # the input statement
+INPUT <= 입력       # the input statement
 
 # from ECMA-55 §16
 
@@ -104,5 +115,4 @@ RANDOMIZE <= 무작위화하다
 # do NOT appear in ECMA-55:
 #
 # LOOP
-# END
 #
