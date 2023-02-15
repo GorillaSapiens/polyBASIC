@@ -12,10 +12,11 @@
 %o flex
 
 /* definition of "constant" from page 7 of the ECMA-55 document */
+/* NB: we have deviated by allowing escaped characters in strings */
 STRING   \"(\\.|[^"\\])*\"
 NUMBER   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 
-CRLF     [\n\r]{1,2}
+CRLF     [\r\n]{1,2}
 
 %%
 
@@ -75,10 +76,14 @@ void read_translations(FILE *f) {
    char buf[16384];
    while (fgets(buf, sizeof(buf), f) == buf) {
       char *s;
-      if (buf[0] != '#' && (s = /*assignment*/ strstr(buf, "<="))) {
+      if ((s = /*assignment*/ strchr(buf, '#'))) {
+         *s = 0;
+      }
+      if ((s = /*assignment*/ strstr(buf, "<="))) {
          *s = 0;
          char *a = trim(buf);
          char *b = trim(s+2);
+         //printf("TUPLE |%s|%s|\n", a, b);
          add_tuple(a,b);
       }
    }
