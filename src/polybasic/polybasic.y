@@ -4,7 +4,6 @@
 
 
 /* reserved words */
-
 %token yyBASE
 %token yyDATA
 %token yyDEF
@@ -31,7 +30,6 @@
 %token yySUB
 %token yyTHEN
 %token yyTO
-
 /* function names, not many, so make 'em tokens */
 %token yyABS
 %token yyATN
@@ -44,6 +42,8 @@
 %token yySIN
 %token yySQR
 %token yyTAN
+/* and other stuff */
+%token yyIDENTIFIER
 
 %%
 

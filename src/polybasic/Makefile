@@ -9,7 +9,7 @@ polybasic: polybasic.tab.c polybasic.tab.h lex.yy.cpp
 polybasic.tab.h: polybasic.tab.c
 
 polybasic.tab.c: polybasic.y
-	$(bison) polybasic.y
+	$(bison) -H polybasic.y
 
 lex.yy.cpp: polybasic.l
 	$(reflex) --unicode polybasic.l

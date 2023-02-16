@@ -2,3 +2,25 @@ ECMA :: EUROPEAN COMPUTER MANUFACTURERS ASSOCIATION
 
 ECMA-55 :: Standard 55, Minimal Basic, 1978
 
+ECMA-116 :: Standard 116, , 1986
+
+===
+
+the originals are what you might expect as a product of the times... a
+set of pictures of some printed document. *ugh*
+
+the *ocr.pdf is an attempt at running it through an Optical Character
+Recognition program, so at least we can search it.
+
+the *ocr.txt is an attempt to format it as a text file.
+
+the last two are automated, and unedited by humans, so they will have
+the expected problems.  maybe at some point someone will get around to
+actually cleaning them up.
+
+===
+
+General procedure for converting these old PDFs to something useful:
+% ocrmypdf ECMA-NNN_whatever.pdf ECMA-NNN_ocr.pdf % pdftotext -layout
+ECMA-NNN_ocr.pdf
+

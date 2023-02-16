@@ -5,6 +5,7 @@
 #include <dirent.h>
 #include <errno.h>
 
+#include "polybasic.tab.h"
 #include "reflex/flexlexer.h"
 
 int mylineno = 0;
@@ -12,7 +13,7 @@ int mylineno = 0;
 // required fwd decls
 const char *has_tuple(const char *a);
 int is_reserved_label(const char *a);
-int is_reserved_word(const char *a);
+enum yytokentype is_reserved_word(const char *a);
 
 %}
 
@@ -94,18 +95,48 @@ EOL      [\r\n]{1,2}
 
 %%
 
-// some reserved words
-static const char *reserved[] = {
-// The keywords in Minimal BASIC are:
-   "BASE", "DATA", "DEF", "DIM", "END", "FOR", "GO", "GOSUB",
-   "GOTO", "IF", "INPUT", "LET", "NEXT", "ON", "OPTION", "PRINT",
-   "RANDOMIZE", "READ", "REM", "RESTORE", "RETURN", "STEP", "STOP",
-   "SUB", "THEN", "TO",
-// The functions are:
-   "ABS", "ATN", "COS", "EXP", "INT", "LOG", "RND", "SGN",
-   "SIN", "SQR", "TAN",
-// NULL terminator
-NULL
+// some reserved words and their tokens
+static const struct {
+   const char *name;
+   enum yytokentype token;
+} reserved[] = {
+   { "BASE", yyBASE },
+   { "DATA", yyDATA },
+   { "DEF", yyDEF },
+   { "DIM", yyDIM },
+   { "END", yyEND },
+   { "FOR", yyFOR },
+   { "GO", yyGO },
+   { "GOSUB", yyGOSUB },
+   { "GOTO", yyGOTO },
+   { "IF", yyIF },
+   { "INPUT", yyINPUT },
+   { "LET", yyLET },
+   { "NEXT", yyNEXT },
+   { "ON", yyON },
+   { "OPTION", yyOPTION },
+   { "PRINT", yyPRINT },
+   { "RANDOMIZE", yyRANDOMIZE },
+   { "READ", yyREAD },
+   { "REM", yyREM },
+   { "RESTORE", yyRESTORE },
+   { "RETURN", yyRETURN },
+   { "STEP", yySTEP },
+   { "STOP", yySTOP },
+   { "SUB", yySUB },
+   { "THEN", yyTHEN },
+   { "TO", yyTO },
+   { "ABS", yyABS },
+   { "ATN", yyATN },
+   { "COS", yyCOS },
+   { "EXP", yyEXP },
+   { "INT", yyINT },
+   { "LOG", yyLOG },
+   { "RND", yyRND },
+   { "SGN", yySGN },
+   { "SIN", yySIN },
+   { "SQR", yySQR },
+   { "TAN", yyTAN }
 };
 
 // a simple linked list of tuples
@@ -142,7 +173,7 @@ const char *has_tuple(const char *token) {
    return NULL;
 }
 
-int is_reserved_word(const char *a) {
+enum yytokentype is_reserved_word(const char *a) {
    const char *proper = NULL;
 
    // find the tuple that matches this word.
@@ -158,12 +189,12 @@ int is_reserved_word(const char *a) {
    }
 
    // now see if there are any matches
-   for (int i = 0; reserved[i]; i++) {
-      if (!strcmp(reserved[i], proper ? proper : a)) {
-         return 1;
+   for (int i = 0; i < (sizeof(reserved)/sizeof(reserved[0])); i++) {
+      if (!strcmp(reserved[i].name, proper ? proper : a)) {
+         return reserved[i].token;
       }
    }
-   return 0;
+   return (enum yytokentype) 0;
 }
 
 int is_reserved_label(const char *a) {
