@@ -1,9 +1,15 @@
 reflex = ../RE-flex/RE-flex/src/reflex
 reflexinc = ../RE-flex/RE-flex/include
 reflexlib = ../RE-flex/RE-flex/lib
+bison = bison
 
-polybasic: lex.yy.cpp
+polybasic: polybasic.tab.c polybasic.tab.h lex.yy.cpp
 	g++ -I $(reflexinc) lex.yy.cpp -L $(reflexlib) -lreflex -o polybasic
+
+polybasic.tab.h: polybasic.tab.c
+
+polybasic.tab.c: polybasic.y
+	$(bison) polybasic.y
 
 lex.yy.cpp: polybasic.l
 	$(reflex) --unicode polybasic.l
@@ -14,4 +20,4 @@ test:
 
 .PHONY: clean
 clean:
-	rm -f lex.yy.cpp polybasic
+	rm -f lex.yy.cpp polybasic.tab.h polybasic.tab.c polybasic
