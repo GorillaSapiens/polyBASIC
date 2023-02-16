@@ -3,7 +3,7 @@ all: reflex polybasic
 
 .PHONY: reflex
 reflex:
-	(cd RE-flex && make)
+	(cd reflex && make)
 
 .PHONY: polybasic
 polybasic:

@@ -1,6 +1,6 @@
-reflex = ../RE-flex/RE-flex/src/reflex
-reflexinc = ../RE-flex/RE-flex/include
-reflexlib = ../RE-flex/RE-flex/lib
+reflex = ../reflex/RE-flex/src/reflex
+reflexinc = ../reflex/RE-flex/include
+reflexlib = ../reflex/RE-flex/lib
 bison = bison
 
 polybasic: polybasic.tab.c polybasic.tab.h lex.yy.cpp
