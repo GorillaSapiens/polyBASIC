@@ -1,3 +1,5 @@
+[TODO FIX: this document needs updating]
+
 (*) What is polyECMA55?
 
 polyECMA55 is an attempt to implement a BASIC compiler / interpreter
