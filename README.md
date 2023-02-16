@@ -1,5 +1,5 @@
-# polyECMA55
+# polyBASIC
 
-An attempt at a multilingual unicode capable ECMA-55 (ish) BASIC programming language.
+An attempt at a multilingual unicode capable BASIC programming language.
 
 You know, for kids.
