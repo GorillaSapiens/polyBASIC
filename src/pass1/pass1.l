@@ -224,10 +224,10 @@ void read_translations(FILE *f) {
 }
 
 void load_translations(const char *language) {
-   const char *path = getenv("POLYECMA55PATH");
+   const char *path = getenv("POLYBASICPATH");
    if (path == NULL) {
       fprintf(stderr,
-         "POLYECMA55PATH environment variable not set.\n");
+         "POLYBASICPATH environment variable not set.\n");
       exit(-1);
    }
    if (!directory_exists(path)) {
@@ -247,18 +247,18 @@ void load_translations(const char *language) {
    else {
       fprintf(stderr,
          "unable to open %s for reading. "
-         "please check POLYECMA55 and/or language settings.\n",
+         "please check POLYBASICPATH and/or language settings.\n",
          full_path);
       exit(-1);
    }
 }
 
 int main(int argc, char **argv) {
-   char *language = getenv("POLYECMA55");
+   char *language = getenv("POLYBASICLANG");
    if (language == NULL) {
       if (argc != 3) {
          fprintf(stderr,
-            "POLYECMA55 not set, and no language "
+            "POLYBASICLANG not set, and no language "
             "given on command line.  exiting.\n");
          exit(-1);
       }
