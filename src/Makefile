@@ -8,3 +8,11 @@ reflex:
 .PHONY: polybasic
 polybasic:
 	(cd polybasic && make)
+
+.PHONY: clean
+clean:
+	(cd polybasic && make clean)
+
+.PHONY: squeaky
+squeaky: clean
+	(cd RE-flex && make clean)
