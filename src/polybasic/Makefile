@@ -14,10 +14,6 @@ polybasic.tab.c: polybasic.y
 lex.yy.cpp: polybasic.l
 	$(reflex) --unicode polybasic.l
 
-.PHONY: test
-test:
-	./do_tests.sh
-
 .PHONY: clean
 clean:
 	rm -f lex.yy.cpp polybasic.tab.h polybasic.tab.c polybasic
