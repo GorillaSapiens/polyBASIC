@@ -311,13 +311,11 @@ int main(int argc, char **argv) {
 
    // this is the part we've all been waiting for...
 
-   yyFlexLexer foo;
-   if (in) {
-      foo.yylex(in);
+   if (in != NULL) {
+      yyin = in;
    }
-   else {
-      foo.yylex();
-   }
+
+   yylex();
 
    if (in) {
       fclose(in);
