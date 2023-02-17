@@ -23,35 +23,49 @@ typedef union Value {
 } Value;
 
 void add_error(const char *tag, const char *types, const char *format) {
+   char failmessage[16384];
+   static const char *allowed_types = "ifsc";
 
    // not too spicy, please...
    if (strlen(types) > 10) {
-      fprintf(stderr, "TOO MANY TYPES IN ERROR:\n");
-      fprintf(stderr, "   ❮%s❯\n", tag);
-      fprintf(stderr, "   ❮%s❯\n", types);
-      fprintf(stderr, "   ❮%s❯\n", format);
-      exit(-1);
+      sprintf(failmessage, "TOO MANY SUBSTITUTIONS SPECIFIED");
+      goto fail;
    }
 
-   // verify the types...
-
-   for (const char *p = types; *p; p++) {
-      switch(*p) {
-         case 'i':
-         case 'f':
-         case 's':
-         case 'c':
-            // we cool, do nothing
-            break;
-         default:
-            fprintf(stderr, "INVALID TYPE ❮%c❯ IN ERROR:\n", *p);
-            fprintf(stderr, "   ❮%s❯\n", tag);
-            fprintf(stderr, "   ❮%s❯\n", types);
-            fprintf(stderr, "   ❮%s❯\n", format);
-            exit(-1);
-            break;
+   // scan the format, to make sure types match, and we're not missing any
+   int bitmask = 0;
+   for (const char *p = format; *p; p++) {
+      if (*p == '\\') {
+         p++;
+         continue;
+      }
+      if (*p == '{' && strlen(p) > 4) { // {Nt}
+         int n = p[1] - '0';
+         if (n < 0 || n > 9 || n > strlen(types) - 1) {
+            sprintf(failmessage, "SUBSTITUTION '%c' OUT OF RANGE", p[1]);
+            goto fail;
+         }
+         if (!strchr(allowed_types, p[2])) {
+            sprintf(failmessage, "SUBSTITUTION %d TYPE '%c' NOT ALLOWED", n, p[2]);
+            goto fail;
+         }
+         if (p[2] != types[n]) {
+            sprintf(failmessage, "SUBSTITUTION %d WRONG TYPE '%c' EXPECTED '%c'", n, p[2], types[n]);
+            goto fail;
+         }
+         bitmask |= (1 << n);
       }
    }
+
+   // did we get everybody?
+   for (int n = 0; n < strlen(types); n++) {
+      if (!(bitmask & (1 << n))) {
+         sprintf(failmessage, "SUBSTITUTION %d MISSING.", n);
+         goto fail;
+      }
+   }
+
+   // if we got this far, everything is good!
 
    // these will all be freed on program termination
    Error *error = (Error *) malloc(sizeof(Error));
@@ -61,6 +75,13 @@ void add_error(const char *tag, const char *types, const char *format) {
    error->next = head;
    head = error;
    return;
+
+   fail:
+      fprintf(stderr, "%s:\n", failmessage);
+      fprintf(stderr, "   ❮%s❯\n", tag);
+      fprintf(stderr, "   ❮%s❯\n", types);
+      fprintf(stderr, "   ❮%s❯\n", format);
+      //exit(-1);
 }
 
 void eprintf(const char *tag, ...) {
@@ -94,34 +115,38 @@ void eprintf(const char *tag, ...) {
          char buf[16384];
          int spot = 0;
          for (const char *str = p->format; *str; str++) {
-            if (*str != '@') {
-               buf[spot++] = *str;
+            if (*str == '\\') {
+               buf[spot++] = str[1];
+               if (str[1] != 0) {
+                  str++;
+               }
             }
-            else if (str[1] == '@') {
+            else if (*str != '{') {
                buf[spot++] = *str;
-               str++;
             }
             else {
-               int n = str[1] - '0';
-               if (n >= 0 && n < strlen(p->types)) {
-                  switch(p->types[n]) {
-                     case 'i':
-                        spot += sprintf(buf + spot, "%i", values[n].i);
-                        str++;
-                        break;
-                     case 'f':
-                        spot += sprintf(buf + spot, "%lf", values[n].f);
-                        str++;
-                        break;
-                     case 's':
-                        spot += sprintf(buf + spot, "%s", values[n].s);
-                        str++;
-                        break;
-                     case 'c':
-                        // TODO FIX this could be utf8 ?!?!?
-                        spot += sprintf(buf + spot, "%c", values[n].c);
-                        str++;
-                        break;
+               if (strlen(str) >= 4) {
+                  int n = str[1] - '0';
+                  if (n >= 0 && n < strlen(p->types)) {
+                     switch(p->types[n]) {
+                        case 'i':
+                           spot += sprintf(buf + spot, "%i", values[n].i);
+                           str += 3;
+                           break;
+                        case 'f':
+                           spot += sprintf(buf + spot, "%lf", values[n].f);
+                           str += 3;
+                           break;
+                        case 's':
+                           spot += sprintf(buf + spot, "%s", values[n].s);
+                           str += 3;
+                           break;
+                        case 'c':
+                           // TODO FIX this could be utf8 ?!?!?
+                           spot += sprintf(buf + spot, "%c", values[n].c);
+                           str += 3;
+                           break;
+                     }
                   }
                }
                else {
@@ -142,9 +167,9 @@ void eprintf(const char *tag, ...) {
 
 #ifdef STANDALONE_TEST
 int main(int argc, char **argv) {
-   add_error("tag3", "i", "some @1 @2 @3");
-   add_error("tag2", "ifcs", "@@ @f some s=@3 c=@2 f=@1 i=@0 and why not @@ and @@@");
-   add_error("tag1", "i", "some %1 %2 %3");
-   eprintf("tag2", 1, 3.14, 'x', "today");
+   add_error("err_003", "i", "some {1i} {2c} {3q}");
+   add_error("err_002", "ifcs", "\\{} \\{f some s={3s} c={2c} f={1f} i={0i} and why not \\{\\{ and \\{\\{\\{");
+   add_error("err_001", "i", "some {1} {2c} {3}");
+   eprintf("err_002", 1, 3.14, 'x', "today");
 }
 #endif
