@@ -32,6 +32,8 @@
 # RANDOMIZE, READ, REM, RESTORE, RETURN, STEP, STOP, SUB, THEN
 # and TO.
 
+[keywords]
+
 # from ECMA-55 §5
 
 END <= 끝           # the end of program instruction
@@ -61,7 +63,7 @@ LET <= 허용하다     # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= 가다          # used in both "go to" and "go sub"
+GO <= 가다          # possibly used in both "go to" and "go sub"
 TO <= 에게          # part of for/to/step/next constructs
 IF <= 만약          # part of if/then constructs
 THEN <= 그          # part of if/then constructs
@@ -69,6 +71,8 @@ SUB <= 보결         # beware, used as part of "go sub"
 ON <= 언제          # a sort of a switch statement
 RETURN <= 돌아가다  # used to exit a subroutine
 STOP <= 멈추다      # command to stop execution
+GOTO <= 가다에게    # the GOTO statement
+GOSUB <= 가다보결   # the GOSUB statement
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
@@ -115,4 +119,10 @@ RANDOMIZE <= 무작위화하다
 # do NOT appear in ECMA-55:
 #
 # LOOP
-#
+
+[errors]
+
+# error messages
+
+err0|오류: m파일 {0s} 선 {1i} 기둥 {2i}
+

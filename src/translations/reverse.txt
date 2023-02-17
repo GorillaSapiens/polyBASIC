@@ -8,6 +8,10 @@
 
 [keywords]
 
+# from ECMA-55 §5.2
+
+END <= DNE          # the end statement
+
 # from ECMA-55 §9
 
 ABS <= SBA          # the absolute value function
@@ -57,7 +61,7 @@ PRINT <= TNIRP      # to print things out
 
 # from ECMA-55 §15
 
-INTPUT <= TUPTNI    # the input statement
+INPUT <= TUPNI      # the input statement
 
 # from ECMA-55 §16
 

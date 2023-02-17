@@ -18,6 +18,8 @@
 # RANDOMIZE, READ, REM, RESTORE, RETURN, STEP, STOP, SUB, THEN
 # and TO.
 
+[keywords]
+
 # from ECMA-55 §5
 
 END <= 👻👻           # the end of program instruction
@@ -47,7 +49,10 @@ LET <= 👾👽         # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= 👾👾          # used in both "go to" and "go sub"
+GOTO <= 👾👾👾🤖
+GOSUB <= 👾👾🤖👻
+
+GO <= 👾👾          # possibly used in both "go to" and "go sub"
 TO <= 👾🤖          # part of for/to/step/next constructs
 IF <= 👾😺          # part of if/then constructs
 THEN <= 👾🦓        # part of if/then constructs
@@ -102,3 +107,10 @@ RANDOMIZE <= 🦓😺
 #
 # LOOP
 #
+
+[errors]
+
+# error messages
+
+err0|⚠️ 😠 ━ 📁 {0s} ┕ {1i} ━ {2i} ❗
+

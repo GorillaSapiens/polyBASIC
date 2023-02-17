@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 
 use utf8;
+binmode STDOUT, ':utf8';
 
 $problems = 0;
 
