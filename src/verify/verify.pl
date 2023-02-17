@@ -63,6 +63,7 @@ foreach $line (@template) {
          if (length($tmp)) {
             if (defined($template_keyword_line{$tmp})) {
                print "$template_file DEFINES KEYWORD '$tmp' MULTIPLE TIMES (lines $template_keyword_line{$tmp} and $lineno)\n";
+               print"\n";
                $problems++;
             }
             $template_keyword_line{$tmp} = $lineno;
@@ -130,6 +131,7 @@ foreach $line (@translation) {
                if (length($tmp)) {
                   if (defined($translation_keyword_line{$word})) {
                      print "$translation_file DEFINES KEYWORD '$word' MULTIPLE TIMES (lines $translation_keyword_line{$word} and $lineno)\n";
+                     print"\n";
                      $problems++;
                   }
                   $translation_keyword{$word} = $translation;
@@ -165,6 +167,7 @@ foreach $line (@translation) {
 foreach $key (keys(%template_keyword_line)) {
    if (!defined($translation_keyword_line{$key})) {
       print "KEYWORD '$key' MISSING FROM $translation_file ($template_file:$template_keyword_line{$key})\n";
+      print"\n";
       $problems++;
    }
 }
@@ -172,6 +175,7 @@ foreach $key (keys(%template_keyword_line)) {
 foreach $key (keys(%translation_keyword_line)) {
    if (!defined($template_keyword_line{$key})) {
       print "UNEXPECTED KEYWORD '$key' IN $translation_file:$translation_keyword_line{$key}\n";
+      print"\n";
       $problems++;
    }
 }
@@ -179,6 +183,7 @@ foreach $key (keys(%translation_keyword_line)) {
 foreach $key (keys(%template_error_line)) {
    if (!defined($translation_error_line{$key})) {
       print "ERROR '$key' MISSING FROM $translation_file ($template_file:$template_error_line{$key})\n";
+      print"\n";
       $problems++;
    }
 }
@@ -186,27 +191,78 @@ foreach $key (keys(%template_error_line)) {
 foreach $key (keys(%translation_error_line)) {
    if (!defined($template_error_line{$key})) {
       print "UNEXPECTED ERROR '$key' IN $translation_file:$translation_error_line{$key}\n";
+      print"\n";
       $problems++;
+   }
+}
+
+@keys = keys(%translation_keyword);
+for ($i = 0; $i <= $#keys; $i++) {
+   for ($j = $i + 1; $j <= $#keys; $j++) {
+      if ($translation_keyword{$keys[$i]} eq $translation_keyword{$keys[$j]}) {
+         print "TRANSLATION COLLISION\n";
+         print "   $keys[$i] <= $translation_keyword{$keys[$i]} # $translation_file:$translation_keyword_line{$keys[$i]}\n";
+         print "   $keys[$j] <= $translation_keyword{$keys[$j]} # $translation_file:$translation_keyword_line{$keys[$j]}\n";
+         print "\n";
+         $problems++;
+      }
+   }
+}
+
+sub errorcomparisonprint($$) {
+   my ($key, $match) = @_;
+
+   $te = "$template_file:$template_error_line{$key}";
+   $tr = "$translation_file:$translation_error_line{$key}";
+
+   while (length($te) < length($tr)) {
+      $te .= " ";
+   }
+   while (length($tr) < length($te)) {
+      $te .= " ";
+   }
+
+   $l1 = "   $te $key|$template_error{$key}\n";
+   print $l1;
+   if ($l1 =~ /$match/) {
+      for ($i = 0; $i < length($l1); $i++) {
+         if (substr($l1, $i, length($match)) ne $match) {
+            print " ";
+         }
+         else {
+            for ($j = 0; $j < length($match); $j++) {
+               print "^";
+            }
+            print "\n";
+            $i = length($l1);
+         }
+      }
+   }
+   $l2 = "   $tr $key|$translation_error{$key}\n";
+   print $l2;
+   if ($l2 =~ /$match/) {
+      for ($i = 0; $i < length($l2); $i++) {
+         if (substr($l2, $i, length($match)) ne $match) {
+            print " ";
+         }
+         else {
+            for ($j = 0; $j < length($match); $j++) {
+               print "^";
+            }
+            print "\n";
+            $i = length($l2);
+         }
+      }
    }
 }
 
 sub verifyintranslation($$) {
    my ($match, $key) = @_;
 
-   if (!($translation_error{$key} =~ /"$match"/)) {
+   if (!($translation_error{$key} =~ /$match/)) {
       print "ERROR MISMATCH '$match' NOT FOUND IN $translation_file:$translation_error_line{$key}\n";
-
-      $te = "$template_file:$template_error_line{$key}";
-      $tel = length($te);
-      $tr = "$translation_file:$translation_error_line{$key}";
-      $trl = length($tr);
-      $max = $tel;
-      if ($ter > $max) { $max = $ter; }
-      $max++;
-
-      printf("%*s : %s|%s\n", $max, $te, $key, $template_error{$key});
-      printf("%*s : %s|%s\n", $max, $tr, $key, $translation_error{$key});
-
+      errorcomparisonprint($key, $match);
+      print("\n");
       $problems++;
    }
 }
@@ -214,20 +270,10 @@ sub verifyintranslation($$) {
 sub verifyintemplate($$) {
    my ($match, $key) = @_;
 
-   if (!($template_error{$key} =~ /"$match"/)) {
+   if (!($template_error{$key} =~ /$match/)) {
       print "ERROR MISMATCH '$match' NOT FOUND IN $template_file:$template_error_line{$key}\n";
-
-      $te = "$template_file:$template_error_line{$key}";
-      $tel = length($te);
-      $tr = "$translation_file:$translation_error_line{$key}";
-      $trl = length($tr);
-      $max = $tel;
-      if ($ter > $max) { $max = $ter; }
-      $max++;
-
-      printf("%*s : %s|%s\n", $max, $te, $key, $template_error{$key});
-      printf("%*s : %s|%s\n", $max, $tr, $key, $translation_error{$key});
-
+      errorcomparisonprint($key, $match);
+      print("\n");
       $problems++;
    }
 }
@@ -237,13 +283,21 @@ foreach $key (keys(%template_error_line)) {
       $template_error = $template_error{$key};
       $translation_error = $translation_error{$key};
 
-      $tmp = $template_error;
-      $tmp =~ s/(\{[0-9][ifcs]\})/verifyintranslation($1,$key)/ge;
+# the template is always correct
+#      $tmp = $template_error;
+#      $tmp =~ s/(\{[0-9][ifcs]\})/verifyintranslation($1,$key)/ge;
 
       $tmp = $translation_error;
       $tmp =~ s/(\{[0-9][ifcs]\})/verifyintemplate($1,$key)/ge;
    }
 }
 
-print "==========\n";
-print "$problems PROBLEMS FOUND.\n";
+if ($problems) {
+   print "==========\n";
+   $pedanticplural = "";
+   if ($problems > 1) { $pedanticplural = "S"; }
+   print "$problems PROBLEM$pedanticplural FOUND.\n";
+}
+else {
+   print "DONE, NO PROBLEMS FOUND.\n";
+}

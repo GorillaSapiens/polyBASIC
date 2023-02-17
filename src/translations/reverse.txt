@@ -33,7 +33,9 @@ LET <= TEL          # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= OG            # beware, used in both "go to" and "go sub"
+GO <= OG
+GOSUB <= BUSOG
+GOTO <= OTOG
 TO <= OT            # part of for/to/step/next constructs
 IF <= FI            # part of if/then constructs
 THEN <= NEHT        # part of if/then constructs
@@ -90,15 +92,12 @@ RANDOMIZE <= EZIMODNAR
 # END
 #
 
-LOOP <= POOL  # designed to evoke an error for testing
-END <= DNE    # designed to evoke an error for testing
+# LOOP <= POOL  # designed to evoke an error for testing
+# END <= DNE    # designed to evoke an error for testing
 
 [errors]
 
 # error messages
 
-# designed to evoke an error
 err0|RORRE: mnuloc {2i}, enil {1i}, elif {0s}
 
-# designed to evoke an error
-err1|RORRE: mnuloc {2i}, enil {1i}, elif {0i}
