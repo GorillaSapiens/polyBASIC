@@ -2,25 +2,56 @@
 
 use utf8;
 
-open TEMPLATE, "template.txt";
+$problems = 0;
+
+$translation_file = $ARGV[0];
+$template_file = "template.txt";
+
+my %template_keyword_line;
+my %template_error;
+my %template_error_line;
+
+my %translation_keyword;
+my %translation_keyword_line;
+my %translation_error;
+my %translation_error_line;
+
+# for debugging
+sub dump_template_debug() {
+   foreach $key(keys(%template_keyword_line)) {
+      print "keyword $key line $template_keyword_line{$key}\n";
+   }
+   foreach $key(keys(%template_error)) {
+      print "error $key|$template_error{$key} line $template_error_line{$key}\n";
+   }
+}
+
+sub dump_translation_debug() {
+   foreach $key(keys(%translation_keyword)) {
+      print "keyword $key <= $translation_keyword{$key} line $translation_keyword_line{$key}\n";
+   }
+   foreach $key(keys(%translation_error)) {
+      print "error $key|$translation_error{$key} line $translation_error_line{$key}\n";
+   }
+}
+
+# gather all the keywords and errors from the template file
+
+open TEMPLATE, "$template_file";
 binmode TEMPLATE, ':utf8';
 @template = <TEMPLATE>;
 close TEMPLATE;
 
-open TRANSLATION, "$ARGV[0]";
-binmode TRANSLATION, ':utf8';
-@translation = <TRANSLATION>;
-close TRANSLATION;
-
 $mode = 0;
+$lineno = 1;
 foreach $line (@template) {
    if ($mode == 0) {
-      if ($line =~ /\[keywords\]/) {
+      if ($line =~ /^\[keywords\]/) {
          $mode = 1;
       }
    }
    elsif ($mode == 1) {
-      if ($line =~ /\[errors\]/) {
+      if ($line =~ /^\[errors\]/) {
          $mode = 2;
       }
       else {
@@ -30,15 +61,11 @@ foreach $line (@template) {
          $tmp =~ s/[ \t]+$//g;
 
          if (length($tmp)) {
-            $flag = 0;
-            foreach $translation (@translation) {
-               if ($translation =~ /^$tmp <= /) {
-                  $flag = 1;
-               }
+            if (defined($template_keyword_line{$tmp})) {
+               print "$template_file DEFINES KEYWORD '$tmp' MULTIPLE TIMES (lines $template_keyword_line{$tmp} and $lineno)\n";
+               $problems++;
             }
-            if (!$flag) {
-               print "WARNING, no translation for $tmp\n";
-            }
+            $template_keyword_line{$tmp} = $lineno;
          }
       }
    }
@@ -49,16 +76,174 @@ foreach $line (@template) {
       $tmp =~ s/[ \t]+$//g;
 
       if (length($tmp)) {
-         $flag = 0;
-         foreach $translation (@translation) {
-            if ($translation =~ /^$tmp <= /) {
-               $flag = 1;
-# TODO FIX check number and type of arguments
+         @parts = split /\|/, $tmp;
+         $tag = shift @parts;
+         $err = join("|", @parts);
+
+         $template_error{$tag} = $err;
+         $template_error_line{$tag} = $lineno;
+      }
+   }
+   $lineno++;
+}
+
+# dump_template_debug();
+
+# gather all the keywords and errors from the ttranslation file
+
+open TRANSLATION, "$translation_file";
+binmode TRANSLATION, ':utf8';
+@translation = <TRANSLATION>;
+close TRANSLATION;
+
+$mode = 0;
+$lineno = 1;
+foreach $line (@translation) {
+   if ($mode == 0) {
+      if ($line =~ /^\[keywords\]/) {
+         $mode = 1;
+      }
+   }
+   elsif ($mode == 1) {
+      if ($line =~ /^\[errors\]/) {
+         $mode = 2;
+      }
+      else {
+         $tmp = $line;
+         $tmp =~ s/[\x0a\x0d]//g;
+         $tmp =~ s/#.*//g;
+         $tmp =~ s/^[ \t]+//g;
+         $tmp =~ s/[ \t]+$//g;
+
+         if (length($tmp)) {
+            if (!($tmp =~ / <= /)) {
+               print "ODDLY FORMATTED LINE $lineno:\n";
+               print "$line\n";
             }
-         }
-         if (!$flag) {
-            print "WARNING, no translation for $tmp\n";
+            else {
+               ($word, $translation) = split / <= /, $tmp;
+               $word =~ s/^[ \t]+//g;
+               $word =~ s/[ \t]+$//g;
+               $translation =~ s/^[ \t]+//g;
+               $translation =~ s/[ \t]+$//g;
+
+               if (length($tmp)) {
+                  if (defined($translation_keyword_line{$word})) {
+                     print "$translation_file DEFINES KEYWORD '$word' MULTIPLE TIMES (lines $translation_keyword_line{$word} and $lineno)\n";
+                     $problems++;
+                  }
+                  $translation_keyword{$word} = $translation;
+                  $translation_keyword_line{$word} = $lineno;
+               }
+            }
          }
       }
    }
+   elsif ($mode == 2) {
+      $tmp = $line;
+      $tmp =~ s/[\x0a\x0d]//g;
+      $tmp =~ s/^#.*//g;
+      $tmp =~ s/^[ \t]+//g;
+      $tmp =~ s/[ \t]+$//g;
+
+      if (length($tmp)) {
+         @parts = split /\|/, $tmp;
+         $tag = shift @parts;
+         $err = join("|", @parts);
+
+         $translation_error{$tag} = $err;
+         $translation_error_line{$tag} = $lineno;
+      }
+   }
+   $lineno++;
 }
+
+#dump_translation_debug();
+
+# now we cross check EVERYTHING!
+
+foreach $key (keys(%template_keyword_line)) {
+   if (!defined($translation_keyword_line{$key})) {
+      print "KEYWORD '$key' MISSING FROM $translation_file ($template_file:$template_keyword_line{$key})\n";
+      $problems++;
+   }
+}
+
+foreach $key (keys(%translation_keyword_line)) {
+   if (!defined($template_keyword_line{$key})) {
+      print "UNEXPECTED KEYWORD '$key' IN $translation_file:$translation_keyword_line{$key}\n";
+      $problems++;
+   }
+}
+
+foreach $key (keys(%template_error_line)) {
+   if (!defined($translation_error_line{$key})) {
+      print "ERROR '$key' MISSING FROM $translation_file ($template_file:$template_error_line{$key})\n";
+      $problems++;
+   }
+}
+
+foreach $key (keys(%translation_error_line)) {
+   if (!defined($template_error_line{$key})) {
+      print "UNEXPECTED ERROR '$key' IN $translation_file:$translation_error_line{$key}\n";
+      $problems++;
+   }
+}
+
+sub verifyintranslation($$) {
+   my ($match, $key) = @_;
+
+   if (!($translation_error{$key} =~ /"$match"/)) {
+      print "ERROR MISMATCH '$match' NOT FOUND IN $translation_file:$translation_error_line{$key}\n";
+
+      $te = "$template_file:$template_error_line{$key}";
+      $tel = length($te);
+      $tr = "$translation_file:$translation_error_line{$key}";
+      $trl = length($tr);
+      $max = $tel;
+      if ($ter > $max) { $max = $ter; }
+      $max++;
+
+      printf("%*s : %s|%s\n", $max, $te, $key, $template_error{$key});
+      printf("%*s : %s|%s\n", $max, $tr, $key, $translation_error{$key});
+
+      $problems++;
+   }
+}
+
+sub verifyintemplate($$) {
+   my ($match, $key) = @_;
+
+   if (!($template_error{$key} =~ /"$match"/)) {
+      print "ERROR MISMATCH '$match' NOT FOUND IN $template_file:$template_error_line{$key}\n";
+
+      $te = "$template_file:$template_error_line{$key}";
+      $tel = length($te);
+      $tr = "$translation_file:$translation_error_line{$key}";
+      $trl = length($tr);
+      $max = $tel;
+      if ($ter > $max) { $max = $ter; }
+      $max++;
+
+      printf("%*s : %s|%s\n", $max, $te, $key, $template_error{$key});
+      printf("%*s : %s|%s\n", $max, $tr, $key, $translation_error{$key});
+
+      $problems++;
+   }
+}
+
+foreach $key (keys(%template_error_line)) {
+   if (defined($translation_error_line{$key})) {
+      $template_error = $template_error{$key};
+      $translation_error = $translation_error{$key};
+
+      $tmp = $template_error;
+      $tmp =~ s/(\{[0-9][ifcs]\})/verifyintranslation($1,$key)/ge;
+
+      $tmp = $translation_error;
+      $tmp =~ s/(\{[0-9][ifcs]\})/verifyintemplate($1,$key)/ge;
+   }
+}
+
+print "==========\n";
+print "$problems PROBLEMS FOUND.\n";

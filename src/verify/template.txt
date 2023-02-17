@@ -4,6 +4,9 @@
 # this file should be utf8
 # this file should hold all reserved words and errors that need translating
 
+# the [keywords] section contains required keywords that need translation
+# the [errors] section contains required error messages that need translation
+
 [keywords]
 
 ABS

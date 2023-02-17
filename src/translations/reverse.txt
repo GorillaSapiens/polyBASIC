@@ -6,6 +6,8 @@
 # entries on the right are the native versions of those keywords
 # blank lines are allowed
 
+[keywords]
+
 # from ECMA-55 §9
 
 ABS <= SBA          # the absolute value function
@@ -88,4 +90,15 @@ RANDOMIZE <= EZIMODNAR
 # END
 #
 
+LOOP <= POOL  # designed to evoke an error for testing
+END <= DNE    # designed to evoke an error for testing
+
+[errors]
+
+# error messages
+
+# designed to evoke an error
 err0|RORRE: mnuloc {2i}, enil {1i}, elif {0s}
+
+# designed to evoke an error
+err1|RORRE: mnuloc {2i}, enil {1i}, elif {0i}
