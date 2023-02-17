@@ -3,8 +3,13 @@ reflexinc = ../reflex/RE-flex/include
 reflexlib = ../reflex/RE-flex/lib
 bison = bison
 
-polybasic: polybasic.tab.c polybasic.tab.h lex.yy.cpp
-	g++ -I $(reflexinc) lex.yy.cpp -L $(reflexlib) -lreflex -o polybasic
+OBJECTS= \
+   lex.yy.o \
+   eprintf.o
+#   polybasic.tab.o 
+
+polybasic: polybasic.tab.h $(OBJECTS)
+	g++ -I $(reflexinc) $(OBJECTS) -L $(reflexlib) -lreflex -o polybasic
 
 polybasic.tab.h: polybasic.tab.c
 
@@ -17,3 +22,10 @@ lex.yy.cpp: polybasic.l
 .PHONY: clean
 clean:
 	rm -f lex.yy.cpp polybasic.tab.h polybasic.tab.c polybasic
+	rm -f $(OBJECTS)
+
+%.o : %.cpp
+	g++ -c -I $(reflexinc) $<
+
+%.o : %.c
+	gcc -c -I $(reflexinc) $<
