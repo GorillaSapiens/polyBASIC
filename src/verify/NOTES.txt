@@ -1,0 +1,5 @@
+With so many moving parts, it is important to know if a translation
+file is "up to snuff", and contains all the pieces it needs.
+
+The verify.pl script attempts to identify problems and/or missing pieces
+in a translation file.
