@@ -2,6 +2,7 @@
    // C decls go here
 %}
 
+%locations
 
 /* reserved words */
 %token yyBASE

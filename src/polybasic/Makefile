@@ -17,7 +17,7 @@ polybasic.tab.c: polybasic.y
 	$(bison) -H polybasic.y
 
 lex.yy.cpp: polybasic.l
-	$(reflex) --flex --bison --unicode --noyywrap polybasic.l
+	$(reflex) polybasic.l
 
 .PHONY: clean
 clean:

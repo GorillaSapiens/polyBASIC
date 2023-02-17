@@ -8,8 +8,6 @@
 #include "polybasic.tab.h"
 #include "reflex/flexlexer.h"
 
-int mylineno = 0;
-
 // required fwd decls
 const char *has_tuple(const char *a);
 int is_reserved_label(const char *a);
@@ -17,7 +15,11 @@ enum yytokentype is_reserved_word(const char *a);
 
 %}
 
-%o flex
+%option flex
+%option bison
+%option unicode
+%option noyywrap
+%option yylineno
 
 WHITESPACE  [ \t]
 
@@ -55,18 +57,18 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{CONSTANT}   { printf("constant: ❮%s❯\n", yytext); }
+{CONSTANT}   { printf("constant: %d ❮%s❯\n", yylineno, yytext); }
 
-{RELATION}   { printf("relation: ❮%s❯\n", yytext); }
+{RELATION}   { printf("relation: %d ❮%s❯\n", yylineno, yytext); }
 
-{ASSIGNMENT} { printf("assign  : ❮%s❯\n", yytext); }
+{ASSIGNMENT} { printf("assign  : %d ❮%s❯\n", yylineno, yytext); }
 
 {LABEL}      {
                 if (!is_reserved_label(yytext)) {
-                   printf("label   : ❮%s❯\n", yytext);
+                   printf("label   : %d ❮%s❯\n", yylineno, yytext);
                 }
                 else {
-                   printf("ERROR   : ❮%s❯\n", yytext);
+                   printf("ERROR   : %d ❮%s❯\n", yylineno, yytext);
                 }
              }
 
@@ -74,24 +76,23 @@ EOL      [\r\n]{1,2}
                const char *alias = has_tuple(yytext);
                int reserved = is_reserved_word(yytext);
                if (alias) {
-                  printf("word    : ❮%s➜%s❯ %d\n", yytext, alias, reserved);
+                  printf("word    : %d ❮%s➜%s❯ %d\n", yylineno, yytext, alias, reserved);
                }
                else {
-                  printf("word    : ❮%s❯ %d\n", yytext, reserved);
+                  printf("word    : %d ❮%s❯ %d\n", yylineno, yytext, reserved);
                }
             }
 
 {OKSINGLE}  {
-               printf("oksingle: ❮%s❯\n", yytext);
+               printf("oksingle: %d ❮%s❯\n", yylineno, yytext);
                // just remember to return the character here!
             }
 
 {EOL}       {
-               mylineno++;
-               printf("❮EOL❯\n");
+               printf("%d ❮EOL❯\n", yylineno);
             }
 
-.          { printf("ummm ❮%s❯\n", yytext); }
+.          { printf("ummm %d ❮%s❯\n", yylineno, yytext); }
 
 %%
 
