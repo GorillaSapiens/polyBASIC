@@ -87,3 +87,5 @@ RANDOMIZE <= EZIMODNAR
 # LOOP
 # END
 #
+
+err0|RORRE: mnuloc {2i}, enil {1i}, elif {0s}
