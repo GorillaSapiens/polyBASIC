@@ -1,8 +1,6 @@
-[TODO FIX: this document needs updating]
+(*) What is polyBASIC?
 
-(*) What is polyECMA55?
-
-polyECMA55 is an attempt to implement a BASIC compiler / interpreter
+polyBASIC is an attempt to implement a BASIC compiler / interpreter
 that can be easily reconfigured with keywords in any human language,
 allowing anyone to write in a BASIC-like computer language, but in their
 native tongue.

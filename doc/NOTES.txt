@@ -1,20 +1,14 @@
-best URL reference for the actual language:
-https://www.ecma-international.org/wp-content/uploads/ECMA-55_1st_edition_january_1978.pdf
-
-we are going to make one small change; labels will be optional, and do
-not need to be numeric, and do not need to be in order.
+Remedial course in lex/yacc:
+https://klasses.cs.uchicago.edu/archive/2003/spring/22600-1/docs/lexyacc.pdf
 
 best URL references for unicode capable flex tool:
 https://en.wikipedia.org/wiki/RE/flex
 https://www.genivia.com/doc/reflex/html/
 https://github.com/Genivia/RE-flex
+also reflex/RE-flex/doc/html/index.html
 
 required packages on ubuntu:
 build-essential
 automake
+bison
 
-
-THEORY OF OPERATION:
-one pass through a simple tokenizer
-one pass through a translator
-one pass through the real tokenizer and parser
