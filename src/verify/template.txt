@@ -1,0 +1,49 @@
+####
+# template to confirm conforming translations
+####
+# this file should be utf8
+# this file should hold all reserved words and errors that need translating
+
+[keywords]
+
+ABS
+ATN
+BASE
+COS
+DATA
+DEF
+DIM
+EXP
+FOR
+GO
+GOTO
+GOSUB
+IF
+INT
+INTPUT
+LET
+LOG
+NEXT
+ON
+OPTION
+PRINT
+RANDOMIZE
+READ
+REM
+RESTORE
+RETURN
+RND
+SGN
+SIN
+SQR
+STEP
+STOP
+SUB
+TAN
+THEN
+TO
+
+[errors]
+
+err0|ERROR: file {0s}, line {1i}, column {2i}
+
