@@ -3,13 +3,27 @@ reflexinc = ../reflex/RE-flex/include
 reflexlib = ../reflex/RE-flex/lib
 bison = bison
 
+CC=gcc
+
+CPP=g++
+
 OBJECTS= \
    lex.yy.o \
    eprintf.o
 #   polybasic.tab.o 
 
+INCDIRS= \
+   -I $(reflexinc)
+
+LIBDIRS= \
+   -L $(reflexlib)
+
+LIBS= \
+   -l reflex \
+   -l quadmath
+
 polybasic: polybasic.tab.h $(OBJECTS)
-	g++ -I $(reflexinc) $(OBJECTS) -L $(reflexlib) -lreflex -o polybasic
+	$(CPP) $(OBJECTS) $(LIBDIRS) $(LIBS) -o polybasic
 
 polybasic.tab.h: polybasic.tab.c
 
@@ -25,7 +39,7 @@ clean:
 	rm -f $(OBJECTS)
 
 %.o : %.cpp
-	g++ -c -I $(reflexinc) $<
+	$(CPP) -c $(INCDIRS) $<
 
 %.o : %.c
-	gcc -c -I $(reflexinc) $<
+	$(CC) -c $(INCDIRS) $<
