@@ -294,11 +294,13 @@ foreach $key (keys(%template_error_line)) {
 }
 
 if ($problems) {
-   print "==========\n";
+   print "----------\n";
    $pedanticplural = "";
    if ($problems > 1) { $pedanticplural = "S"; }
    print "$problems PROBLEM$pedanticplural FOUND.\n";
+   exit -1;
 }
 else {
    print "DONE, NO PROBLEMS FOUND.\n";
+   exit 0;
 }
