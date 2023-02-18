@@ -18,7 +18,6 @@ enum yytokentype is_reserved_word(const char *a);
 %option flex
 %option bison
 %option unicode
-%option noyywrap
 %option yylineno
 
 WHITESPACE  [ \t]
@@ -323,3 +322,6 @@ int main(int argc, char **argv) {
    }
 }
 
+int yywrap(void) {
+   return 1;
+}
