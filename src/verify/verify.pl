@@ -213,6 +213,9 @@ for ($i = 0; $i <= $#keys; $i++) {
 sub errorcomparisonprint($$) {
    my ($key, $match) = @_;
 
+   my $bold = "[31;1m";
+   my $unbold = "[0m";
+
    $te = "$template_file:$template_error_line{$key}";
    $tr = "$translation_file:$translation_error_line{$key}";
 
@@ -223,49 +226,10 @@ sub errorcomparisonprint($$) {
       $te .= " ";
    }
 
-   $l1 = "   $te $key|$template_error{$key}\n";
-   print $l1;
-   if ($l1 =~ /$match/) {
-      for ($i = 0; $i < length($l1); $i++) {
-         if (substr($l1, $i, length($match)) ne $match) {
-            print " ";
-         }
-         else {
-            for ($j = 0; $j < length($match); $j++) {
-               print "^";
-            }
-            print "\n";
-            $i = length($l1);
-         }
-      }
-   }
+   print "   $te $key|$template_error{$key}\n";
    $l2 = "   $tr $key|$translation_error{$key}\n";
+   $l2 =~ s/$match/$bold$match$unbold/g;
    print $l2;
-   if ($l2 =~ /$match/) {
-      for ($i = 0; $i < length($l2); $i++) {
-         if (substr($l2, $i, length($match)) ne $match) {
-            print " ";
-         }
-         else {
-            for ($j = 0; $j < length($match); $j++) {
-               print "^";
-            }
-            print "\n";
-            $i = length($l2);
-         }
-      }
-   }
-}
-
-sub verifyintranslation($$) {
-   my ($match, $key) = @_;
-
-   if (!($translation_error{$key} =~ /$match/)) {
-      print "ERROR MISMATCH '$match' NOT FOUND IN $translation_file:$translation_error_line{$key}\n";
-      errorcomparisonprint($key, $match);
-      print("\n");
-      $problems++;
-   }
 }
 
 sub verifyintemplate($$) {
@@ -283,10 +247,6 @@ foreach $key (keys(%template_error_line)) {
    if (defined($translation_error_line{$key})) {
       $template_error = $template_error{$key};
       $translation_error = $translation_error{$key};
-
-# the template is always correct
-#      $tmp = $template_error;
-#      $tmp =~ s/(\{[0-9][ifcs]\})/verifyintranslation($1,$key)/ge;
 
       $tmp = $translation_error;
       $tmp =~ s/(\{[0-9][ifcs]\})/verifyintemplate($1,$key)/ge;
