@@ -21,6 +21,6 @@ actually cleaning them up.
 ===
 
 General procedure for converting these old PDFs to something useful:
-% ocrmypdf ECMA-NNN_whatever.pdf ECMA-NNN_ocr.pdf % pdftotext -layout
-ECMA-NNN_ocr.pdf
+% ocrmypdf ECMA-NNN_whatever.pdf ECMA-NNN_ocr.pdf
+% pdftotext -layout ECMA-NNN_ocr.pdf
 
