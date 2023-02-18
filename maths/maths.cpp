@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <assert.h>
 
@@ -10,10 +11,10 @@ static int64_t gcd(int64_t x, int64_t y) {
    // euclid
    int64_t a = x;
    int64_t b = y;
-   if (y > x) {
-      a = y;
-      b = x;
-   }
+//   if (y > x) {
+//      a = y;
+//      b = x;
+//   }
    int64_t c = a % b;
    while (c != 0) {
       a = b;
@@ -56,13 +57,104 @@ class Rational {
 
          // TODO FIX can probably be done in a way that avoids overflow
          int64_t n =
-            whl * den * obj.den * sign+
+            whl * den * obj.den * sign +
             obj.whl * den * obj.den * obj.sign +
             num * obj.den * sign +
             obj.num * den * obj.sign;
          int64_t d = den * obj.den;
 
-printf("%ld/%ld\n",n,d);
+         int8_t s;
+         if (n * d >= 0) {
+            s = 1;
+         }
+         else {
+            s = -1;
+         }
+
+         int64_t g = gcd(n,d);
+         n /= g;
+         d /= g;
+
+         res.sign = s;
+         res.whl = n / d;
+         res.num = n % d;
+         res.den = d;
+
+         return res;
+      }
+
+      Rational operator - (Rational const & obj) {
+         Rational res;
+
+         // TODO FIX can probably be done in a way that avoids overflow
+         int64_t n =
+            whl * den * obj.den * sign -
+            obj.whl * den * obj.den * obj.sign +
+            num * obj.den * sign -
+            obj.num * den * obj.sign;
+         int64_t d = den * obj.den;
+
+         int8_t s;
+         if (n * d >= 0) {
+            s = 1;
+         }
+         else {
+            s = -1;
+         }
+
+         int64_t g = gcd(n,d);
+         n /= g;
+         d /= g;
+
+         res.sign = s;
+         res.whl = n / d;
+         res.num = n % d;
+         res.den = d;
+
+         return res;
+      }
+
+      Rational operator * (Rational const & obj) {
+         Rational res;
+
+         // TODO FIX can probably be done in a way that avoids overflow
+         int64_t n =
+            whl * obj.whl * den * obj.den +
+            whl * obj.num * den  +
+            obj.whl * num * obj.den  +
+            num * obj.num;
+         n *= sign * obj.sign;
+         int64_t d = den * obj.den;
+
+         int8_t s;
+         if (n * d >= 0) {
+            s = 1;
+         }
+         else {
+            s = -1;
+         }
+
+         int64_t g = gcd(n,d);
+         n /= g;
+         d /= g;
+
+         res.sign = s;
+         res.whl = n / d;
+         res.num = n % d;
+         res.den = d;
+
+         return res;
+      }
+
+      Rational operator / (Rational const & obj) {
+         Rational res;
+
+         // TODO FIX can probably be done in a way that avoids overflow
+         int64_t n =
+            obj.den * sign * (whl * den + num);
+         int64_t d =
+            den * obj.sign * (obj.whl * obj.den + obj.num);
+
          int8_t s;
          if (n * d >= 0) {
             s = 1;
@@ -84,7 +176,7 @@ printf("%ld/%ld\n",n,d);
       }
 
       void print(void) {
-         printf("%c%ld:%ld/%ld", sign > 0 ? '+' : '-', whl, num, den);
+         printf("%c%ld:%ld/%ld", sign > 0 ? '+' : '-', whl, labs(num), den);
       }
 };
 
@@ -101,9 +193,16 @@ int main(int argc, char **argv) {
 
          l.print(); printf(" %c ", x); r.print(); printf("\n");
          if (x == '+') {
-            Rational x = l + r;
-            x.print();
-            printf("\n");
+            Rational x = l + r; x.print(); printf("\n");
+         }
+         if (x == '-') {
+            Rational x = l - r; x.print(); printf("\n");
+         }
+         if (x == '*') {
+            Rational x = l * r; x.print(); printf("\n");
+         }
+         if (x == '/') {
+            Rational x = l / r; x.print(); printf("\n");
          }
 
       }
