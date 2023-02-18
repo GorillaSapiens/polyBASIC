@@ -5,8 +5,10 @@ support for multiple translations
 backslashes are now allowed as escape characters inside string constants,
 so you can include " inside a string.
 
-:= for assignment, == for comparison. "=" is no longer valid............
+:= for assignment, == for comparison. "=" is no longer valid.  this was done
+to eliminate a class of errors where people got "=" and "==" confused.
 
 line labels are optional, and need not be numeric, or even in numeric
-order.  nonnumeric labels must end in a ":", and cannot match (translated)
-keywords.
+order.  lines are executed in order, and labels are used solely as targets
+for GOTO, GOSUB, and ON statements.  nonnumeric labels must end in a ":",
+and cannot match (translated) keywords.
