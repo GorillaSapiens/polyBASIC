@@ -6,7 +6,9 @@ set -e
 for each in `ls ../translations`
 do
 
-echo ======= $each
+echo ======= VERIFY $each
 ./verify.pl ../translations/$each
 
 done
+
+echo ======= TRANSLATION TABLES VERIFIED FOR CONSISTENCY

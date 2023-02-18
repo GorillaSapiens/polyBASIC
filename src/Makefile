@@ -1,5 +1,5 @@
 .PHONY: all
-all: reflex polybasic tests
+all: reflex polybasic verify tests
 
 .PHONY: reflex
 reflex:
@@ -8,6 +8,10 @@ reflex:
 .PHONY: polybasic
 polybasic:
 	(cd polybasic && make)
+
+.PHONY: verify
+verify:
+	(cd verify && make)
 
 .PHONY: tests
 tests:
