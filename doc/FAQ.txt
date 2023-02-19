@@ -13,11 +13,13 @@ language by about half a billion people, and only about 1.1 billion speak
 it as a second language.  This leaves, roughly, 6.5 billion people who
 speak no English at all.
 
-(*) What is ECMA-55?
+(*) What is ECMA-55? ECMA-116? OASIS?  Dartmouth?
 
-ECMA-55 is European Computer Manufacturers Association Standard #55.
-It was published in 1978, and specifies a minimal version of the BASIC
-programming language.
+Various flavors of BASIC have been created over the years.  ECMA-55 is
+European Computer Manufacturers Association Standard #55.  It was
+published in 1978, and specifies a Minimal version of the BASIC
+programming language. Documentation for various other flavors of BASIC
+appear in the /refs directory.
 
 (*) Why choose something so simple?  Aren't there better languages?
 

@@ -12,3 +12,6 @@ line labels are optional, and need not be numeric, or even in numeric
 order.  lines are executed in order, and labels are used solely as targets
 for GOTO, GOSUB, and ON statements.  nonnumeric labels must end in a ":",
 and cannot match (translated) keywords.
+
+introduction of the "rational" type, in addition to integers and strings.
+thetail sigil for a rational type is '#'
