@@ -26,8 +26,16 @@ WHITESPACE  [ \t]
 /* definition of "constant" from page 7 of the ECMA-55 document */
 /* NB: we have deviated by allowing escaped characters in strings */
 STRING   \"(\\.|[^"\\])*\"
+
+R_ZERO      [#][0]
+R_INT       [#][+-]?[1-9][0-9]*
+R_ZFRAC     [#][0][/][1-9][0-9]*
+R_FRAC      [#][+-]?[1-9][0-9]*[/][1-9][0-9]*
+R_FULL      [#][+-]?[0-9]+[:][0-9]+[/][1-9][0-9]*
+RATIONAL    {R_ZERO}|{R_INT}|{R_ZFRAC}|{R_FRAC}|{R_FULL}
+
+INTEGER  ([+-]?[0-9]+)
 NUMBER   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
-CONSTANT {STRING}|{NUMBER}
 
 /* ECMA-55 §4.2 */
 
@@ -43,7 +51,7 @@ ASSIGNMENT (:=)
 OKSINGLE [-+*/()]
 
 /* any single character appearing by iteslf */
-RUNE     [!#$%&',:;?^_.]
+RUNE     [!#$%&',;?^_.]
 
 /* any valid multicharacter thing */
 WORD     [\p{Letter}]([\p{Letter}\p{Number}_])*
@@ -56,7 +64,10 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{CONSTANT}   { printf("constant: %d ❮%s❯\n", yylineno, yytext); }
+{RATIONAL}   { printf("rational: %d ❮%s❯\n", yylineno, yytext); }
+{STRING}     { printf("string  : %d ❮%s❯\n", yylineno, yytext); }
+{INTEGER}    { printf("integer : %d ❮%s❯\n", yylineno, yytext); }
+{NUMBER}     { printf("number  : %d ❮%s❯\n", yylineno, yytext); }
 
 {RELATION}   { printf("relation: %d ❮%s❯\n", yylineno, yytext); }
 
