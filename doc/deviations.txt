@@ -16,3 +16,5 @@ and cannot match (translated) keywords.
 
 introduction of the "rational" type, in addition to integers, numbers, and strings.
 the tail sigil for a rational type is '#'
+
+introduction of "ON <equality> GOSUB" because it seemed easy to do

@@ -96,6 +96,12 @@ controlstmt   : yyGO yyTO yyLABEL
               | yyIF rvalexpr yyRELATION rvalexpr yyTHEN yyLABEL
               | yyIF svalexpr yyRELATION svalexpr yyTHEN yyLABEL
               | yyON ivalexpr yyGO yyTO labellist
+              | yyON ivalexpr yyGOTO labellist
+              | yyON ivalexpr yyGO yySUB labellist
+              | yyON ivalexpr yyGOSUB labellist
+              | yyRETURN
+              | yySTOP
+              | yyEND
               ;
 
 labellist     : yyLABEL
