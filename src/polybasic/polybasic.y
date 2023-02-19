@@ -67,18 +67,45 @@
 
 %left yyMULTDIV
 %left yyPLUSMINUS
+%left '+'
 
 %%
 
-program       : stmtlist
+program       : linelist
               ;
 
-stmtlist      : stmt
-              | stmtlist stmt
+linelist      : line
+              | linelist line
               ;
 
-stmt          : yyLABEL assignexpr yyEOL
-              | assignexpr yyEOL
+line          : yyLABEL stmt yyEOL
+              | stmt yyEOL
+              ;
+
+stmt          : assignexpr
+              | letexpr
+              | controlstmt
+              ;
+
+controlstmt   : yyGO yyTO yyLABEL
+              | yyGOTO yyLABEL
+              | yyGO yySUB yyLABEL
+              | yyGOSUB yyLABEL
+              | yyIF ivalexpr yyRELATION ivalexpr yyTHEN yyLABEL
+              | yyIF dvalexpr yyRELATION dvalexpr yyTHEN yyLABEL
+              | yyIF rvalexpr yyRELATION rvalexpr yyTHEN yyLABEL
+              | yyIF svalexpr yyRELATION svalexpr yyTHEN yyLABEL
+              | yyON ivalexpr yyGO yyTO labellist
+              ;
+
+labellist     : yyLABEL
+              | labellist yyLABEL
+              ;
+
+letexpr       : yyLET yyDVAR yyASSIGN dvalexpr
+              | yyLET yyRVAR yyASSIGN rvalexpr
+              | yyLET yySVAR yyASSIGN svalexpr
+              | yyLET yyIVAR yyASSIGN ivalexpr
               ;
 
 assignexpr    : yyDVAR yyASSIGN dvalexpr
@@ -102,12 +129,14 @@ dvalexpr      : yyABS '(' dvalexpr ')'
               | dvalexpr yyPLUSMINUS dvalexpr
               | dvalexpr yyMULTDIV dvalexpr
               | '(' dvalexpr ')'
+              | yyDVAR
               ;
 
 rvalexpr      : yyABS '(' rvalexpr ')'
               | rvalexpr yyPLUSMINUS rvalexpr
               | rvalexpr yyMULTDIV rvalexpr
               | '(' rvalexpr ')'
+              | yyRVAR
               ;
 
 ivalexpr      : yyABS '(' ivalexpr ')'
@@ -120,10 +149,12 @@ ivalexpr      : yyABS '(' ivalexpr ')'
               | ivalexpr yyPLUSMINUS ivalexpr
               | ivalexpr yyMULTDIV ivalexpr
               | '(' ivalexpr ')'
+              | yyIVAR
               ;
 
 svalexpr      : svalexpr '+' svalexpr
               | '(' svalexpr ')'
+              | yySVAR
               ;
 
 %%
