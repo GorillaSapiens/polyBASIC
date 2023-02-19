@@ -37,6 +37,7 @@ SGN <= 👽👾         # determine the sign
 SIN <= 👽🤖         # the trigonomic sine function
 SQR <= 👽😺         # the square root function
 TAN <= 👽🦓         # the trigonomic tangent function
+DBL <= 🦓🦓         # to convert a type to double
 
 # from ECMA-55 §10
 

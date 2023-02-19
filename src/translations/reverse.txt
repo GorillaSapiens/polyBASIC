@@ -25,6 +25,7 @@ SGN <= NGS          # determine the sign
 SIN <= NIS          # the trigonomic sine function
 SQR <= RQS          # the square root function
 TAN <= NAT          # the trigonomic tangent function
+DBL <= LBD          # convert to double
 
 # from ECMA-55 §10
 
