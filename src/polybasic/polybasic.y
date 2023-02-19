@@ -44,14 +44,22 @@
 %token yySQR
 %token yyTAN
 /* and other stuff */
+
 %token yyDOUBLEVARIABLE
 %token yySTRINGVARIABLE
 %token yyINTEGERVARIABLE
 %token yyRATIONALVARIABLE
-%token yyDOUBLECONSTANT
-%token yySTRINGCONSTANT
-%token yyINTEGERCONSTANT
-%token yyRATIONALCONSTANT
+
+%token yyDOUBLE
+%token yySTRING
+%token yyINTEGER
+%token yyRATIONAL
+
+%token yyRELATION
+%token yyASSIGNMENT
+
+%token yyLABEL
+%token yyEOL
 
 %%
 

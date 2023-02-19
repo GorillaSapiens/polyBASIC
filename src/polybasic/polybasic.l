@@ -11,6 +11,7 @@
 // required fwd decls
 const char *has_tuple(const char *a);
 int is_reserved_label(const char *a);
+enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype retval);
 enum yytokentype is_reserved_word(const char *a);
 
 %}
@@ -35,7 +36,7 @@ R_FULL      [#][+-]?[0-9]+[:][0-9]+[/][1-9][0-9]*
 RATIONAL    {R_ZERO}|{R_INT}|{R_ZFRAC}|{R_FRAC}|{R_FULL}
 
 INTEGER  ([+-]?[0-9]+)
-NUMBER   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
+DOUBLE   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 
 /* ECMA-55 §4.2 */
 
@@ -54,7 +55,10 @@ OKSINGLE [-+*/()]
 RUNE     [!#$%&',;?^_.]
 
 /* any valid multicharacter thing */
-WORD     [\p{Letter}]([\p{Letter}\p{Number}_])*
+DVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*
+IVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[%]
+RVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[#]
+SVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[\$]
 
 LABEL    (^[\p{Letter}]([\p{Letter}\p{Number}_])*:)|(^[0-9]+[: \t])
 
@@ -64,45 +68,34 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{RATIONAL}   { printf("rational: %d ❮%s❯\n", yylineno, yytext); }
-{STRING}     { printf("string  : %d ❮%s❯\n", yylineno, yytext); }
-{INTEGER}    { printf("integer : %d ❮%s❯\n", yylineno, yytext); }
-{NUMBER}     { printf("number  : %d ❮%s❯\n", yylineno, yytext); }
+{RVAR}       { return is_reserved_varname('#',  yytext, yyRATIONAL); }
+{SVAR}       { return is_reserved_varname('$',  yytext, yySTRING); }
+{IVAR}       { return is_reserved_varname('%',  yytext, yyINTEGER); }
+{DVAR}       { return is_reserved_varname('\0', yytext, yyDOUBLE); }
 
-{RELATION}   { printf("relation: %d ❮%s❯\n", yylineno, yytext); }
+{RELATION}   { return yyRELATION; }
 
-{ASSIGNMENT} { printf("assign  : %d ❮%s❯\n", yylineno, yytext); }
+{ASSIGNMENT} { return yyASSIGNMENT; }
+
+{RATIONAL}   { return yyRATIONAL; }
+{STRING}     { return yySTRING; }
+{INTEGER}    { return yyINTEGER; }
+{DOUBLE}     { return yyDOUBLE; }
 
 {LABEL}      {
                 if (!is_reserved_label(yytext)) {
-                   printf("label   : %d ❮%s❯\n", yylineno, yytext);
+                   return yyLABEL;
                 }
                 else {
-                   printf("ERROR   : %d ❮%s❯\n", yylineno, yytext);
+                   return YYerror;
                 }
              }
 
-{WORD}      {
-               const char *alias = has_tuple(yytext);
-               int reserved = is_reserved_word(yytext);
-               if (alias) {
-                  printf("word    : %d ❮%s➜%s❯ %d\n", yylineno, yytext, alias, reserved);
-               }
-               else {
-                  printf("word    : %d ❮%s❯ %d\n", yylineno, yytext, reserved);
-               }
-            }
+{OKSINGLE}  { return yytext[0]; }
 
-{OKSINGLE}  {
-               printf("oksingle: %d ❮%s❯\n", yylineno, yytext);
-               // just remember to return the character here!
-            }
+{EOL}       { return yyEOL; }
 
-{EOL}       {
-               printf("%d ❮EOL❯\n", yylineno);
-            }
-
-.          { printf("ummm %d ❮%s❯\n", yylineno, yytext); }
+.          { printf("ummm %d ❮%s❯\n", yylineno, yytext); return YYerror; }
 
 %%
 
@@ -206,6 +199,29 @@ enum yytokentype is_reserved_word(const char *a) {
       }
    }
    return (enum yytokentype) 0;
+}
+
+enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype retval) {
+   char copy[128];
+   strcpy(copy, a);
+   if (sigil) {
+      char *s = strchr(copy, sigil);
+      if (s) {
+         *s = 0;
+      }
+   }
+   enum yytokentype token = is_reserved_word(copy);
+   if (token) {
+      if (!sigil) {
+         return token;
+      }
+      else {
+         return YYerror;
+      }
+   }
+   else {
+      return retval;
+   }
 }
 
 int is_reserved_label(const char *a) {
