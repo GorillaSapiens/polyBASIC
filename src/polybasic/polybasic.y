@@ -35,6 +35,7 @@
 %token yyABS
 %token yyATN
 %token yyCOS
+%token yyDBL
 %token yyEXP
 %token yyINT
 %token yyLOG
@@ -56,15 +57,74 @@
 %token yyRATIONAL
 
 %token yyRELATION
-%token yyASSIGNMENT
+%token yyASSIGN
+
+%token yyPLUSMINUS
+%token yyMULTDIV
 
 %token yyLABEL
 %token yyEOL
 
+%left yyMULTDIV
+%left yyPLUSMINUS
+
 %%
 
-program: /* empty */
-;
+program       : stmtlist
+              ;
+
+stmtlist      : stmt
+              | stmtlist stmt
+              ;
+
+stmt          : yyLABEL assignexpr yyEOL
+              | assignexpr yyEOL
+              ;
+
+assignexpr    : yyDVAR yyASSIGN dvalexpr
+              | yyRVAR yyASSIGN rvalexpr
+              | yySVAR yyASSIGN svalexpr
+              | yyIVAR yyASSIGN ivalexpr
+              ;
+
+dvalexpr      : yyABS '(' dvalexpr ')'
+              | yyRND '(' ')'
+              | yyATN '(' dvalexpr ')'
+              | yyCOS '(' dvalexpr ')'
+              | yyEXP '(' dvalexpr ')'
+              | yyLOG '(' dvalexpr ')'
+              | yySIN '(' dvalexpr ')'
+              | yySQR '(' dvalexpr ')'
+              | yyTAN '(' dvalexpr ')'
+              | yyDBL '(' ivalexpr ')'
+              | yyDBL '(' rvalexpr ')'
+              | yyDBL '(' svalexpr ')'
+              | dvalexpr yyPLUSMINUS dvalexpr
+              | dvalexpr yyMULTDIV dvalexpr
+              | '(' dvalexpr ')'
+              ;
+
+rvalexpr      : yyABS '(' rvalexpr ')'
+              | rvalexpr yyPLUSMINUS rvalexpr
+              | rvalexpr yyMULTDIV rvalexpr
+              | '(' rvalexpr ')'
+              ;
+
+ivalexpr      : yyABS '(' ivalexpr ')'
+              | yyINT '(' dvalexpr ')'
+              | yyINT '(' rvalexpr ')'
+              | yyINT '(' svalexpr ')'
+              | yySGN '(' ivalexpr ')'
+              | yySGN '(' dvalexpr ')'
+              | yySGN '(' rvalexpr ')'
+              | ivalexpr yyPLUSMINUS ivalexpr
+              | ivalexpr yyMULTDIV ivalexpr
+              | '(' ivalexpr ')'
+              ;
+
+svalexpr      : svalexpr '+' svalexpr
+              | '(' svalexpr ')'
+              ;
 
 %%
 

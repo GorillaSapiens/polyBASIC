@@ -28,7 +28,7 @@ polybasic: polybasic.tab.h $(OBJECTS)
 polybasic.tab.h: polybasic.tab.c
 
 polybasic.tab.c: polybasic.y
-	$(bison) -H polybasic.y
+	$(bison) -Wcounterexamples -H polybasic.y
 
 lex.yy.cpp: polybasic.l polybasic.tab.h
 	$(reflex) polybasic.l

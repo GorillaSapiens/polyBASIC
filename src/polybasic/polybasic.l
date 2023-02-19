@@ -46,10 +46,15 @@ DOUBLE   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 /* relations given by ECMA-55 §12.2, modified */
 RELATION (==|<>|<|>|>=|<=)
 
-ASSIGNMENT (:=)
+ASSIGN (:=)
 
 /* any single character passed straight up to bison */
-OKSINGLE [-+*/()]
+PAREN [()]
+
+PLUSMINUS [-+]
+
+MULTDIV [*/]
+
 
 /* any single character appearing by iteslf */
 RUNE     [!#$%&',;?^_.]
@@ -68,34 +73,38 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{RVAR}       { return is_reserved_varname('#',  yytext, yyRVAR); }
-{SVAR}       { return is_reserved_varname('$',  yytext, yySVAR); }
-{IVAR}       { return is_reserved_varname('%',  yytext, yyIVAR); }
-{DVAR}       { return is_reserved_varname('\0', yytext, yyDVAR); }
+{RVAR}      { return is_reserved_varname('#',  yytext, yyRVAR); }
+{SVAR}      { return is_reserved_varname('$',  yytext, yySVAR); }
+{IVAR}      { return is_reserved_varname('%',  yytext, yyIVAR); }
+{DVAR}      { return is_reserved_varname('\0', yytext, yyDVAR); }
 
-{RELATION}   { return yyRELATION; }
+{RATIONAL}  { return yyRATIONAL; }
+{STRING}    { return yySTRING; }
+{INTEGER}   { return yyINTEGER; }
+{DOUBLE}    { return yyDOUBLE; }
 
-{ASSIGNMENT} { return yyASSIGNMENT; }
+{ASSIGN}    { return yyASSIGN; }
+{RELATION}  { return yyRELATION; }
 
-{RATIONAL}   { return yyRATIONAL; }
-{STRING}     { return yySTRING; }
-{INTEGER}    { return yyINTEGER; }
-{DOUBLE}     { return yyDOUBLE; }
 
-{LABEL}      {
-                if (!is_reserved_label(yytext)) {
-                   return yyLABEL;
-                }
-                else {
-                   return YYerror;
-                }
-             }
+{LABEL}     {
+               if (!is_reserved_label(yytext)) {
+                  return yyLABEL;
+               }
+               else {
+                  return YYerror;
+               }
+            }
 
-{OKSINGLE}  { return yytext[0]; }
+{PAREN}     { return yytext[0]; }
+
+{PLUSMINUS} { return yyPLUSMINUS; }
+
+{MULTDIV}   { return yyMULTDIV; }
 
 {EOL}       { return yyEOL; }
 
-.          { printf("ummm %d ❮%s❯\n", yylineno, yytext); return YYerror; }
+.           { printf("ummm %d ❮%s❯\n", yylineno, yytext); return YYerror; }
 
 %%
 
