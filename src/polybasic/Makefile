@@ -30,7 +30,7 @@ polybasic.tab.h: polybasic.tab.c
 polybasic.tab.c: polybasic.y
 	$(bison) -H polybasic.y
 
-lex.yy.cpp: polybasic.l
+lex.yy.cpp: polybasic.l polybasic.tab.h
 	$(reflex) polybasic.l
 
 .PHONY: clean
