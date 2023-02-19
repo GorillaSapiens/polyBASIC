@@ -1,0 +1,595 @@
+COWW ri   ORATT   YB   App ra'tor   RAPP RZ!
+
+
+                  FIRST
+
+     BASIC
+INSTRUCTION                     MANUAL
+          First Issued in May   1964
+                                               Fa
+                                                                                                                 Dartmouth          College        Computation     Center
+
+
+
+
+                                                                                                                                 AST C
+                                                                                                     Beginners’           Ali-purpose            Symbolic      Instf¢uction   Code
+
+
+
+
+Recently, when going through some of my early BASIC files, I came
+across this first edition of our original Instruction Manual which
+was used at Dartmouth College in 1964.
+
+ I was stuck by the simplicity of our first efforts, but also, just how
+ much of the original implementation is still used as it was those very
+first months of BASIC"s existence.
+I hope you enjoy this facsimile of that early document.                                                                             Instruction         Manu al
+                                                                                                                                               May,    1964
+                                                                          A                                                                  First     Draft
+                                          a
+                                  Thomas E. Kurtz — August 2000
+
+
+
+
+                                                                              Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                         PREFACE
+
+                                                                                                                                                                       TABLE   OF   CONTENTS
+                           When      plans        were       made      for     the        Dartmovtth      College        time-
+                  sharing system,                 which will enable 20 or                         more people           to use
+                  the computer at                 the same time, the need                         arose for a           language   Preface
+                  to    meet     several              requirements:                                                                TABLE OF CONTENTS
+                                                                                                                                   I.   For, beginners.
+                  1./      It    should       be        very     easy     to    learn.           ‘This    will     enable               The instruction            format
+                           faculty and students to obtain useful information                                                            Formulas
+                           from the computer without an undue investment in.                                                            LET and: PRINT
+                           learning machine languages.                                                                                  FOR and NEXT
+                                                                                                                                       GO TO       and    IF    THEN
+                           It    should       be       possible         to     change        programs                                  DEF
+                                                                                                            from       this
+                 nN
+                   ‘N
+
+
+
+
+                           language          to       the    language          cf    the machine           ("compile")                 READ    and       DATA
+                           quickly.           This          is   a necessity              when    twenty     people                    Use    of    the    teletypes
+                           share       the    time          of   the    computer.                                                      Errors
+                                                                                                                                       Examples
+                 3-/       It    should       be       a    stepping-stone                 for   students        who    may
+                           later wish to learn one of                               the     standard       languages,
+                           such as FORTRAN or AL GOL.
+
+                 4./       It    should       be       a    general      purpose            language;       that       is,
+                          every       kind of              machine      computation              should     be    program-
+                          mable       in it.
+
+                      BASIC was constructed to meet these needs.  And it has
+                 endeavored to stay as close to ordinary English as possible.
+                 As evidence for this we present, without any explanation,
+                 a program written entirely in BASIC;
+
+                                    LET X = (748)/3
+                                    PRINT         X
+                                    END
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                                The   instruction            format.
+
+                                                                                     An instruction                in    BASIC consists              of   three parts, an
+                                                                                instruction number,                an    operation,  and             an   operand.   ‘The
+                                                                                instruction          number       may be        any integer          from     1 to99999,,
+                                                                                chosen     by      the     programmer.           It    is   used     purely     for    convenient
+                                                                                reference.           Numbers should originally be chosen with wide
+                                                                                gaps (e.g.          multiples of 10), so that further instructions
+                                                                                may   be   inserted          if   the    need        arises.
+
+                                                                                       The        last     instruction          in    any   BASIC     program     is    ‘END'.
+                                                                                There are only 13 other operations.   Nine of these will be
+                                                                                discussed on the following pages.   Four more operations,
+                                                                                available for the more experienced programmer, are discussed
+                                                                                in Part II.
+
+                                                                                       The      operand       varies      in     form,      depending
+                                                                                                                                                    .on          the   operation.
+                                                                                These will be discussed as we discuss the roles of the
+                                                                    PART   I    various operations.    For the convenience of the programmer,
+                                                                                BASIC programming-forms are available.    ‘The sample program
+                                                            For    beginners.   shown on page 1, written in full, on a programming sheet,
+                                                                                would appear as: follows:
+
+                                                                                       Instr.        no.           Operation                ~Operand
+                                                                                             10                     LET                         X = (7+8)/
+                                                                                             20                         PRINT                  > 4
+                                                                                             30                         END                                                      4
+                                                                                                                                                                             a
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                Formulas,
+                                                                                                                                                               ABS(X)         stands       for absolute               value
+                      A formula in mathematics   is made                                                     up of numbers,                                    RND     and    INT    are     more    specialized               functions.            See    Part    II    for
+                variables,   operations, and functions.                                                        ‘The same is true                               phese.
+                in    BASIC,
+
+                           A       number            may        contain      up       to        9    digits         (the        limit         of               Additional           functions        may        be    introduced        by    definition           (see
+                accuracy                 of     the        computer),            with           or without               a decimal             point,          p.13).
+               and possibly with a minus    sign.                                                   ‘Thus    the        following             are
+               numbers  acceptable in. BASIC:                                                                                                                           Observing          the    few notational               conventions            indicated
+                                                                                                                                                               above,        mathematical           formulas           can    be    written     in     almost       the
+                               5                    2.35                 123456789                           - 123456789                      ~12.456          usual     manner.           For    example        ;
+
+               To extend the range of                                    numbers,  a factor of                                a Power of                ten    x     + 5x?     ~2                would     be        written       as        XeX*X         + 5exfo-2
+               may be attached,  using                                   the shorthan@d'E'  for                                *"exponent               of
+               ten''.   ‘Thus                                                                                                                                  e2in(x/2)                                   1‘
+                                                                                                                                                                                                                                             EXP(SIN(x/2))
+                           5. BS                                stands       for          5 x        lo?         or 5090                                       Arctan        (cos    (x.y))                "                                 ATN(COS(X*Y) )
+                           2.39           E 52                       "           “        2.39        x 10°°
+                           1.345 Eel?                                "           “1.545                   x 1071@
+                                                                                                                                                               1n(   |x1/2     ny!     | )                 a
+                                                                                                                                                                                                                                             LOG(ABS (Xf (1/3)-¥t (1/3) ))
+                     A variable                           in BASIC is any single letter,   or                                             a   letter
+               followed by one                            digit.  E.g.:  A, X, N5, XO, KQ.
+
+                           There              are also variables  for vectors                                           and    matrices,                but
+               these        will              be discussed only in Part II.
+
+                           There              are        five     arithmetical                      operations            available                in
+              BASIC.   The symbols +,+, *, / stand for addition,     subtrac-
+              tion,  multiplication,  and division.   Raising a quantity to
+              a power is indicated by an upwards arrow.      Since on a tele~
+              type typewriter it is impossible    to print superscripts,
+              austead               of    x?        we     write     xXf2.           However,               if     we     want       to       compute
+              x?     and       X     may        be        negative,         we       must           use     X*X*X.             The    reason              is
+              that     ATB           is        actually            interpreted                  as        [a[2-
+                       There              are        10     special         functions                  available               in BASHC:
+              SIN(X),              COS(X),               AND      TAN(X)     are          the        usual         trigonometric
+              functions,                  with           arguments          measured                 in     radians.
+             ATN(X)            is        the        inverse         tangent            function.
+              EXP(A)           stands               for     e”.
+             LOG(A)            is        the        natural         logarithm.
+             SOR(A)            stands               for (A,         where        the       square-root                    is    always         taken
+                               of        the        absolute         value           of    A.
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                 LET    and        PRINT.
+                                                                                                                                                                Trigonometric                     functions have arguments                           measured in °
+                            'LET'        is        used     to     compute              the       value     of    a formula               and,           radians..   Thus,  to                    compute the sine of 30°,                           60° and 90°,
+                 'PRINT'           is    a     command           to     type        out       the       answer.        Their        use        is        we     must    ask         for    1/6,     1/3    and        1/2     times yradians.                 ‘This        can
+                 illustrated                  in    the     short          program            given        previously.                                   be     achieved            as    follows:
+
+                            The        general        form         of      a LET         instruction              is:                                                         lo            LET P = 3.14159265
+                                                                                                                                                                              20            PRINT SIN({P/6), SIN(P/3),                               SIN(P/2)
+                                        LET               Ver.
+                Where        V may           be     any variable,                   and       F    any     formula.                                                           39            END
+                 For    example,                                                                                                                         We may also use the PRINT instruction                                        to type          a    label,     for
+                                                                                                                                                         future reference.   Labels are put in                                        quotes.              Thus we     could
+                                        LET               X=       2.39                                                                                  place ahead of the last program:
+                                        LET               X = (¥ + Z22)*EXxP(-3)
+                                        LET           A8       = AG        + AT                                                                                               5            PRINT     "SINE       OF     30,    60,        90 DEGREES."
+                                        LET               X=X           +2                                                                               The    program            consisting         of    instructions                  5,   10,     20,    and     30     will
+                 The     last          example        requires                an    explanation:                  In     general,              the       result        in     the        following        typed       answers:
+                 LET     instruction                 computes              the      value          of     the    formula           F,     and
+                 calles the               answer V.               Thus in the last example’ the present                                                  SINE     OF    30,        60,     90   DEGREES.
+                 value of X               is taken,              2 is added, and this is the new value
+                 of    X.         In    other        words,           it      simply          increases           X by 2.                                5                                 866025                                    1.
+
+                          The commonest use of PRINT is to type  the                                                      value of                             If there are several lines of answers to be typed, it
+                 one    or more variables  on a line.  For example,                                                       the following                  may be convenient to leave    some blank lines between typed
+                 pair       of     instructions                                                                                                          answers.   The instruction PRINT, with no operand, will skip
+                                                                                                                                                         a line.
+                                        PRINT                x
+                                        PRINT                Al,        A2,        A3
+                Will result in having the value of X typed on the first                                                                          line,
+                and the values of Al and A2   and A%3 on the next line.                                                                          As
+                an illustration, consider the following short program:
+                                        lo            LET                  H = -.123
+                                        20            LET                  Y = SIN(X)
+                                        30            PRINT                X,Y
+                                        4o            END
+                            The        PRINT        instruction                 can      be       used     not    only        to        type     the
+                 value of a variable,  But                                 of      a formula.               Thus        the    above
+                 program can be shortened                                  to      read:
+
+                                        lo                PRINT                 -.123,                    SIN(-. 123)
+                                        20            END
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                                                                                                                                                                                                                                                                       10
+               FOR       and         NEXT.
+                                                                                                                                                                                    The           uscal        form           of        a FOR           statement               is
+                     The real power of computers is that on a single command
+               of the programmer the computer will execute hundreds,   thousands,                                                                                                  FOR
+                                                                                                                                                                                        O                Yoo
+                                                                                                                                                                                                          v          F
+                                                                                                                                                                                                                    Fy         a
+                                                                                                                                                                                                                                   TO         Fo.
+                                                                                                                                                                                                                                              Po                                                                            ”
+               or even millions of computations.   The key to achieving this
+               goal is the l@op, in which the computer goes through the same                                                                                           Where            VY must          be     a single                      letter              variable,           and    while         F,     and
+               set of instructions a svecified number of times.    Let us
+                                                                                                                                                                       E,     are           commonly            numbers,                      they          may     be     formulas           as    will.             For
+               suppose               that       we     wish      to       compute         the        sum        2°    +     2?         +    3°     +    oes            example,                   if    in     the       program                    for      adding         up       fifth     powers            we
+               +1007.            We         might       describe                the     computational                     method             as        follows-start   had     written
+               with       0.          Then        add    to      it        v.         Then      add       2,          and         so        on,        until                       5O                   POR                   N=         1        TO    X+v+zZ
+
+               you       have         added          100”.         The          BASIC     program              will         look            as     follows:            then        we would                   obtain           the            sum       of        the     fifth       powers        of     numbers
+                                                                                                                                                                       up     to         (xtyt2)°.                  We    woald,                   of       course         have       to     specify            what
+                                          10            PRINT         "Sum        of     100        fifth        powers."
+                                          20            LET           S=0                                                                                              x,y,        and        2        are.
+                                          30            FOR           N=1   TO 100
+                                          40            LET           S= S + NT5
+                                          50            NEXT          N                                                                                                            We        can        alse        use        the           FOR        statement               for    fractional
+                                          60            PRINT         S                                                                                                computations.                           Suppose                  that           we    desired            a    table     of       natural
+                                          99            END                                                                                                            logarithms                      from     1    ta        2,        in        intervals               of       1/100.         We    would
+               The       loop         consists           of      instructions                  30,        40,        and         50.         At                        write:
+               first       N         is     set      equal       to        1.     Then        40     is    carried                out,            adding
+                                                                                                                                                                                   16                   PRINT        "X"            ,                  "IN(X)"
+               1° to our                  sum.         Then    N is             set     equal        to    2,        and         40        is again                                20                   FOR              N=             © TO 100
+               carried               out,        now    adding            2 ° to        the     sum.            This        will            be                                     3G                   LET              X=             1 +N/100
+               repeated                   100     times.           When          N has        been        set        equal             to    199.           and                    Ao                   PRINT            X,         LOG(X)
+               100°
+                     B
+
+                          has         been        added       to      S,        the     loop        is    complete,                    and        the                              50                   NEXT             N
+               computer               proceeds           to      instruction                  60,        printing                the        sun.                                   60                   END
+                                                                                                                                                                                   And        sometimes                  we        wish            to       step        through        the     loop        in
+                          The         loop        is    ideally             designed            for       printing                a numerical
+                                                                                                                                                                       larger               steps.            Then        we            simply              add     the     size       of    the        step
+               table.                If one          desired a table                      of         values           of     eX            for     X    =    o,
+               1,  ...,              20, we          could write:                                                                                                      to     the           FOR        statement.                       For        examples
+                                                                                                                                                                                   10                    PRINT                                "sum of fifth                     powers       of     even         numbers
+                                          10            PRINT                    "x",                "EXP(X)"                                                                                                                                  to 100”
+                                          20            FOR                       x=0     TO               20
+                                          30            PRINT                     X, EXP(X)                                                                                        20                    LET                                 S06
+                                          4o           NEXT                       x                                                                                                36                    FOR                                 N=         2    TO     100     STEP       2
+                                          50            END                                                                                                                         Oo                   LET                                 S=s+nf5
+               The       first            line will           then          contain           the        labels            'X'             and     'EXP(X)'.                       50                    NEXT                                N
+               Under           'X'        on    each      line        will        appear            the    value            of X,            and        under                      60                    PRINT                               Ss
+               ‘EXP(X)'               the corresponding value of eX.
+                                                                                                                                                                                   99                    END
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                                                                                                                               11                                                                                                                                                                       12
+
+
+                                  GO    TO    and        IF       THEN                                                                                                                       where        Fy        and     Fy        may    be         any          formulas,                         WN        is     an     instruction
+        /                                    The       computer            normally             takes           the          instructions                    in                              number        somewhere                   is     our           program,                   and                   may        be     any        one      of
+                                  order,       proceeding                   from       one      instruction                       to       the       next       in                           six     relations:
+                                  the     order          in which            they        are        numbered,                 until             it    hits                                                           =                (equal)                                          >=          (greater                    or       equal)
+        i                          ‘END'.           We    have        already            noted           one        exception                   to    this        rule,                  ]                           >           .    (greater)                                        <=          (less                or     equal)
+                                  namely        a      loop.          ‘There       are         many        other             instances                where          a                   i                           <                (less)                                           OR          (less                or     greater,
+
+                                  programmer              desires            to    overrule                the       normal                sequence             of                                                                                                                           :              i.e.        not        equal),
+    |                             instructions.                     The      simplest               method           is       the          GO    TO                                                   Suppose               that        we        wish              to    find,                  by.tr#el.and                       error,
+                                  operation.                  This        operation             must        be       followed                   by    an     ins-                            where        the        sine            function               has          its maximum                             (largest               value)
+                                  truction           number.               For     example,                if                                                                                between                O and             3% radians.                        We will                  search                in     steps          of
+    |                                                  100         40 TO                 50                                                                                                  1/100 radians.
+    |                             occurs        in       the       program,            the      computer                 will          go back             to                                         10                   LET                xO        = 0
+    |                             instruction                 number         50     instead              of going                 on       to     the      next                                       20                   LEP              _M = SIN(0)
+                                  instruction.                                                                                                                                                        30                  FOR                Nel                     TO           300
+    |                                        This        simple           device         is     usually              not          sufficient.                     We                                  ho                   LET               x     =        N/100
+                                  often       need        to       know      what        has        happened                 so       far       in    the                                             50                   ay                 SIN(x)                 $=       M    THEN            100
+                                  computation                 to    know      whether               to     go       on       or       to    change           our                                      60                   Lew               XH         =       x
+
+                                  procedure.                  A    simple         example             is    the          following:                                                                   70                   LET                M     =       SIN(X)
+
+                                                                         eo ees noe eaeonenen                   ooeeecees                                                                            100                   NEX'T              N
+
+                                                                      50      IF          xX    <0          THEN             200                                                                     110                   PRINT            . XO,           M
+                                                                      60     (normal            procedure)                                                                                           999                   END
+                                                                         won eeaee sean scence eeenes                                                                                        We: stert by                 choosing             the          value “<0,                            and            M = SIN(®)                  is    the
+                                                                      200        (special            procedure)                                                                              largest            value            so    far.             Within                 the          loop             30-100,               we     examine
+                                                                         wseee Ce                                                                                                            the     succesive                  values            of        SIN(X).                     If        the            value         is       no      larger
+                                  If,     when       we       hit     50,        the     variable               X    has          a    positive             value,                           than     the           biggest            so      far,             M,       then          we         ignore                it-~by            going         on
+
+                                  we    proceed               normally,            but         if     it    has          a    negative                value,             we                  to     the    next            value            (see        instruction                              50).              But        if     it      is
+
+                                  switch        to       the       special         procedure.                                                                                        )       bigger,            we note               the      current                   X,       and            the         current               value          of
+                                             This        instruction                is very              important,                    since          by     this                   fot      SIN(X)            as     the best               so     far.                 When           the        loop                is     completed,                M
+                                  means       we       allow         the     previous               computations                       to        influence               the                 will     be        the        maximum             value,                 and         XO        ‘the             location               where          it
+                                  future        course.               The     most         general              form          of       the        IF...         THEN                         occurred.                    Notes         'X0'        is          'X'           followed                      by        a zero,           not       by    the
+|                                 instruction                 is                                                                                                                              letter           'o’.
+|                                                                    IF            F 1         *F,          THEN              N
+
+
+
+
+            Reprint of first Dartmouth College BASIC      Instruction Manual - May 1964
+                                                                                                                             13                                                                                                                                                                                       14
+
+                   DEF
+                                                                                                                                                                  A     constant               may      be       introduced                  by     a        LET     instruction,                     as     in
+                               In     addition            to    the        10     functions            provided             by     BASIC,         the
+                                                                                                                                                                                                 LEP       P =3.14159065
+                   peogrammer                   may    introduce            his       own     functions,               by     definition.
+                                                                                                                                                        However,            this        is       inconvenient                     if     there               are    many           constants,                or     if
+                   fhe      functions                 will     be     called          FNA,     ENB,        FNC,        etc.         The         form
+                                                                                                                                                        the     values           are      to      be       changed               from         one        problem              to        the     next.            Instead ,
+                   of     the        instruction               is     illustrated              by
+                                                                                                                                                        a     list.    of     numbers             may          be        placed         into        a        DATA       statement.                    This         state-
+                                                             DEF                 FNC(Z)        = 23         + 2.7%2
+                                                                                                                                                        ment      may       cccur         anywhere                   in    the         program,               and       usually               occurs         just
+                   where        2 is            used    just         for    the       purpose         of    definition,                   and
+                                                                                                                                                        before          ‘END’.
+                   should           not.    be        used     elsewhere              in     the    program            .      The        right
+                                                                                                                                                                  A. DATA           statement                  may        contain             aSpeny           numbers                  as    can     fit     on
+                   side        of    the         definition            may       be    any     formula            containing               Z.
+                                                                                                                                                        a     type     writer           line.              Numbers               are     separated                  by        commas.                If    more       space
+                     Once       the        ahove        definition               has been           introduced,                   FNC(X)
+                                                                                                                                                        is     needed,           additional                    DATA        statements                    may       be        used.            Up     to    200
+                   will        result            in    the     value         Ix |?     + 2.7%        within            any        formula.
+                                                                                                                                                        numbers         may       be      entered               by        DATA         statements.
+                               The     reader           may     have       been        disturbed            by        the     fact        that
+                                                                                                                                                                  The       DATA        statement                   enters             the     numbers              into           the        program.              ‘To
+                   the     only        logarithms               previded              were     natural            logarithms,               and.
+                                                                                                                                                        use     these         numbers,                 appropriate                     READ        instructions                        must         occur.          The
+                   that        trigonometric                   functions              had     radians           as     arguments.                 But
+                                                                                                                                                        operand         of       this          statement                  consists
+                                                                                                                                                                                                                                 of                      a    list           of    variables,                separa-
+                   these        shortcomings                   are     easily          overcome            by    the        REF     operation.
+                                                                                                                                                        ted     by     commas.               Numbers                are         taken        one         at    a    time           from        the        DATA      list
+                  Far example,                    if    a program               starts        . with
+                                                                                                                                                        and     assigned             to        these           variables.
+                                           lo            LET                P = 3,14159265
+                                                                                                                                                                  For       example,              in       the        program
+                                           20            DEP               FNS(Z)           = SIN(Z*P/180)
+                                                                                                                                                                  10        READ          A,      B,       ¢
+                                           30            DEF               PNE(Z)           = LOG(Z)/LOG(10)
+                                                                                                                                                                  20        READ          Di,        Le,        D3,        D4.
+                   then     FNS        is        a sine        function           measured           in     degrees,               and     FNL
+                                                                                                                                                                  80        DATA          1,      2, 3,             4,     5,     &
+                  is     the        function            log-to-the-base-10.                         The         DEF        instruction
+                                                                                                                                                                  90        DATA          7,      8,       9,       10
+                  may     occur            anywhere            within           the    problem.
+                                                                                                                                                        A will         be     set      equal            tol,              B=      2,     C=         %,        Dl    = 4,           D2        = 5,     D3     = 6,
+                                                                                                                                                        and     D4     = 7.
+                                                                                                                                                                  These          conventiona                    are        so     designed                   that       it        is     easy        to    change
+                                                                                                                                                        some      of    the       constants                    and        rerun         the       problem.                        For        example,         we
+                                                                                                                                                        may     wish        to    fix        A    and          BR once            and        for         all butvary                     C    and     D.      We
+                                                                                                                                                        writes
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                                                                                                                     15                                                                                                                                                              16
+                                   10        READ            A,B                                                                                                                Use    of    the teletypes.
+                                   20        READ             ¢,D                                                                                                                        Teletype            typewriters                    are        like       ordinary            typewriters,                      only
+                                                                                                                                                                                they     =re      suitable                for        transmitting                 the     typed          messages              over       tele-
+                                   120            GO    TO     20                                                                                                               phone       lines.           With          minor           differences              they           are     operated                like    ordi-~
+                                   130        DATA            1,    2,           1,    2, 3,              3,        4,    =2                                                    nary     typewriters.
+
+                                  999         END                                                                                                                                        Perhaps            the      most        notable              difference               is     the       fact          that       all
+           Then     A=            i and       B = 2            throughout.                              On      the        first          pass    C =     1 and                 letters        appear         as          capitals.                  Hence        there         is    no    difference                   ina
+           D   =   2,    and        the           instructions                        between                  20    and       120        are    carried       out.             program        between              ‘t'        and     'T'.           A    number         of       special           symbols             appear
+           Then     we       go     back           to    20,        and           let          C    =     3,        and    D    =    3,     and    carry       out        the   on    the    key       board,         many            of    which          are     used        in     typing             BASIC.           There
+           same     program.                  Next           ¢C =       4        and       D       ==2.             When       we    return        to     20   once             are    also       three       special-purpose                             keys:
+           more,        we    find           that        there              is        no       data          left,          and      the computer              stops.           "RETURN"           at       the      end        of     the       second           row     of       keys     is       the       ordinary
+                    For       example,                  let        us       compute                 the         value          of    x°
+                                                                                                                                          3 + x     ~-x                                            carriage                return.               But       it     plays        a. crucial                role       in-our.
+                                                                                                                                                           for
+           five     different                 values               of       x.                                                                                                                     system.                 The        oomputer             completely                ignores             a    typed       line
+                    1O       READ        X                                                                                                                                                         until          this          key        is    pushed.            It        is     important                to    remember
+                    20 LET ¥Y =.xf3                          + xto           =x                                                                                                                    te       push          it    after           each       Line     of        the program                    and    after        each
+                    30 PRINT x, ¥                                                                                                                                                                  command.
+
+                    40 GO To                 10
+                                                                                                                                                                                "     €*           on       top      of        the     letter             °G'     erases           the     last          character             typed.
+                    50 DATA              1.23,           =—.2345,                 12.3,             1E=17,               123456815                                                                 This        is     very.          convenient                 when      the        programmer.                   notices
+                    99 END
+                                                                                                                                                                                                   immediately                   that           he    mistyped            a    letter           @        a    symbol.            Pushing
+                                                                                                                                                                                                   the       backwards                 arrow          more        than        once       will        delete             several
+                                                                                                                                                                                                   characters.                       For        example,           the        line
+
+                                                                                                                                                                                                                      ABCWE
+                                                                                                                                                                                                                        &~ <—DE
+                                                                                                                                                                                                   will       appear             to        the       computer            as
+
+                                                                                                                                                                                                                      ABCDE
+
+
+                                                                                                                                                                                “ALT     MODE"         at    the’ beginning                      of       the     second           line     of       keys          is    used     to
+                                                                                                                                                                                                       delete             an    entire           typed           line.         It must              be       pushed       in-
+                                                                                                                                                                                                       stead         of        the     carriage                 return.
+                                                                                                                                                                                         When      a    new       programmer                    sits       down     at        the     teletype                (or       when    he
+                                                                                                                                                                                wishes       to    start          a new          problem),                 he     must        start        by       typing          the    word
+
+                                                                                                                                                                                HELLO.
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                                                                                                                                             vy                                                                                                                                           48
+
+            At    this         command              the        machine            will           ask         for        certain                   information,                                    After         making            a    number               of    alterations                      in     one's        program,            there              may
+            First        it       asks         for        the        user's            number.                For        undergraduates                                this                       be     some         doubt           as     to    exactly how                      the        present            version           of     the       program
+            should           be        the    6-digit                number            on       the     college                   I.        D.     cards:              A                          reads.              A    copy        of        the        up~to-date               version               is     oktAined           by        typing
+            special           number              will      be        assigned               by        the        Computation                          Center              for     |                       List
+            others.               Next         is    asks            for        the       problem             number.                       This            is    up       to     the                          The        greatest advantage                             of        the        time-sharing               system            is       that
+            programmer,                     for     his     future               reference.                       Any     combination                             of       letters,               most     users            can        complete                  their        work            in    one         sitting.            But        if    this
+            numbers,              and        symbols            mp_to            6 characters                      is     allowed.                           Next          the                    does     not            prove        feasible,                  the        user        may        type
+            computer              asks        for        the     name            of       the        system         to be                   used.                For                                           SAVE
+           programmers                      using BASIC                this           system            is,        of     course,                      "BASIC".                                   and     have            his     program              placed            in        the        storage            area    of        the Disk~memory.
+           Finally,               it        asks     whether               the        program            will            be        typed,                  or     whether              it         It will             then be available                                to him        for           a reasonable               period            (currently
+            is    an     old program.                      When            first            entering               a program,                          the        correct                         one month),                   by     typing           the HELLO                   sequence.                   For     example,               the        program
+           response               is        ‘TYPE’.             We     show           a     typical               sequence                   of        responses.                      The        on     the     previous                  page,        if        saved,            may be               obtained        next        time           by        typing:
+           underlined
+
+           each        line        ?!):
+                                           statements            were            typed          by     the         user            (with               a     return             after
+                                                                                                                                                                                                           HELLO
+                                                                                                                                                                                                           USER            NO.--4u6h05
+                                   BELLO
+                                                                                                                                                                                                           PROBLEM NO.--M36-2
+                                   USER NO. ~-Li46425                                                                                                                                                      TYPE OR OLD--QLD
+                                   PROBLEM NO.~-M36—2                                                                                                                                             There will be a waiting                                        period            till the problem                      is found               on the
+                                   SYSTEM--BASIC                                                                                                                                                  disk,         and        the        machine           types            'READY:'                   It     is     then     advisable                 to
+                                   TYPE OR OLD~~TYPE                                                                                                                                              type         'LIST'           before            running              the     program.
+                                   READY.                                                                                                                                                                  Since            the        space           on        the    disks            is        limited,           users        are         asked
+          At     this         point           the     user           types            his       program             as        indicated                          previously                       not     to     save           a program               unless               they        really            expect        to    use        it        again.
+           in    the     manual.                                                                                              -                                                                          . If        anything               goes        wrong,               the     programmer                  should        type
+
+
+           types
+                       After:the
+                        the        command
+                                                  last     line            of     the        program              has         been               typed,            the          user                      STOP                                                           .
+                                                                                                                                                                                                  This     command               takes            effect           even        while               the     teletype           is     typing              at
+                       RUN
+                                                                                                                                                                                                  full     speed!                Thus        it may               be    used         to        stop       a long         output           that           is
+          and     the         computation                  begins.                    All       answers            will            be            preceded              by                         not    what             the programmer                         wanted.             Just           type        STOP,     and       push            the       return
+          typing         the           user's        number                and the           ‘name           of    his ‘problen.                                 The       typing                 key.         The         letters           will           not        show        until            after        the     typing           has        been
+          ends         with       an         indication               of        how       long         the        computation                              took        (waiting                   terminated,                   but        the     command              is     still               effective.
+          time         does       not         count).                Since            this        is    computed                       to        the        nearest
+          second,            the           user     should            not        be       shocked             by        the            statement
+                       TIME:           O    SECS.
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                                                                                                                            19                                                                                                                                                              20
+                 Errors.                                                                                                                                                             (3)         Xf a statement                                with        a new        statement              number       is    typed,            this   will
+                             While            compiling                      a program               written            in    BASIC,        the        machine                                   be     inserted                         in    its        proper        place       in       the      program.
+                 checks            for        varicus                  ways           that         the     rules        of    BASIC        may        have        been                           Por     example,                            the     above        errors       may        be    removed          by        typing
+                 vioiated.                    Therefore,                        instead             of     answers,            the     programmer                 may    find                    30 LET @ = X*Y
+                 a variety                   of    error               messages.                    These        are     illustrated                  in    the                                  a 5 PRINT  "LESS                                  THAN     5°
+                 following                   example                  of    a    very             poorly     written               program:                                                      50 GO tO 60
+                             10         LET        X        =    2                                                                                                                               70 GO TO 20
+                             20         READ            ¥                                                                                                                                        80 DATA 2,3
+                             30         LET        Z = XY                                                                                                                                        L1LO
+                             40         IF        2 > 5 THEN                     50                                                                                                 A     request            for              a     LIST           now     results           in:
+                             45         PRINT                “LESS          THAN         5                                                                                                       10     LET           X       =     2
+                          60 . PRINT                        "OK"                                                                                                                                 20     REAL              ¥
+                             100        END                                                                                                                                                   30        TET           Zs            Key
+
+                             110        GoTo            20                                                                                                                                    40        IF        2       > 5 THEN                  50
+                 This     results                  in           the        following                error     messages:                                                                       45         PRINT                     "LESS           THAN     5"
+                             ILLEGAL FORMULA                                           IN 30                                                                                                     50     GO TO 60
+                          INCORRECT                         FORMAT                     In’ 45                                                                                                 60        FRINT                  "OK"
+                        _END            IS        Not           IAs?                                                                                                                          TO        GO        TO          22
+                         UNDEFINED                          NUMBER                                                                                                                            80 DATA                     2,3
+                         NO        DATA                                                                                                                                                       loc        END
+                Hopefully,                   these               messages               are         self-explanatory.                       The       reader            should      This-is             stil]                 not            a brilliant            program,             but       it will       be        accepted
+                test     himself                   by           finding            the        errors        in     30        and     45.      “Endis              not     last”     by     the        machine.
+——
+
+
+
+
+                due     to        statement                      number            110.            The     undefined               number        (statement                                  With            a        little                  practice            the   programmer                 will    find        that
+                number)            is        50.                And a           READ         instruction               must        always        be        followed        by a     frequent            short’                     test-runs,               followed           by    one or            two-line            corrections
+                DATA         statement..                                                                                                                                            will get             the              bugs           out        of     any     program.              A     very    useful          trick        is
+                         It        is        very               simple           to    make          corrections               by     means       of        the     teletypes.      the     following:                              Insert           some        extra        PRINT          statements           (particularly
+                Changes            must            obsérve                  three            rules:                                                                                 in     loops)            during                     debugging.                 This      will        usually          show        up    errors.
+                (1)      If        a statement                             typed       has         the     same        number         as   one        previously            used,   These         can        be           removed                  when     the     program          is        debugged.              It    is    important
+                         it        replaces                      the        statement.                                                                                              to     note        that                   we        do    not        type      "HELLO"           while          correcting              a    program,
+                (2)      TI£ a statement                                   number            is    immediately                followed           by        a carriage               Type     "HELIO"                      only           when        you     wish       to     start           a new      problem.
+                         return,                   the           statement                   of    that     number            is     deleted.
+
+
+
+
+     Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+                                                                                21       |
+           EXAMPLES .
+                                                                                             Program     2 cont.
+             Program       number           1:                                                     200    PRINT    A,   B,    C,   "COMPLEX    ROOTS"
+                      10 PRINT "AVERAGE OF 100 LOGS"                                               210 PRINT "REAL PART="S,                   “IMAGINARY PART="      1
+                      20 LET S = 0                   ,                                             300 PRINT
+                      30 FOR N= 1 to 100
+                                                                                                   310 GOTO 10
+                        40 LET S = S+                     FNL (N)                    .             400 DATA 1, -2, -3, 1, =-4, 4, 1, 0, 2
+                        50 NEXT     N                               a                .            999     END
+                      60 LETS           m S/100
+                                                                                             Result:
+                      70 PRINT          S
+                                                                                                  QUADRATIC        EQUATION
+                      80 DEF FNL                 (Z) = LOG(Z)/LOG(10)                             1..                    -2,                     3.             TWO REAL ROOTS
+                      99 END                     i                      ,                         ROOTS = 3.                                    a1.
+            Results:
+                     AVERAGE        OF 100 LOGS                                                    1.                        ah,                  4,            ONE ROOT
+                      1.5797
+                                                                                                  ROOT      = 2,                                       .
+                     TIME:        3 SECS.
+
+                                                                                                  1.                          0.                  2.            COMPLEX        ROOTS
+            Program        number           2:                                                    READ     PART     = 0.                          IMAGINARY   PART       = 1.41404".
+                      5 PRINT "QUADRATIC EQUATION"
+                     6 PRINT
+                                                                                                  TIME:            1 SECS.
+                    10 READ A,              B, C
+                    20. LET De              BY*¥     Bat         *# ARC
+                   30    LET    S =         ~B/(2*A )
+                    4O LETT = SQR(D) / (2 * A)
+                   50 IF D « O THEN                        100
+                   60 IF D < O THEN                        200
+                   70 PRINT..A, B, C,-"fWO REAL ROOTS".
+                   80 PRINT "ROOTS ="S+T, S- T
+                   90 GOTO 300
+                 100 PRINT A, B,                     C,     "ONE ROOT"
+                 110 PRINT “ROOT =" §                                       "
+                  120 Goto 400
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual ~ May 1964
+                        Program           number       3:3
+
+                                    10    PRINT        "ROOT           OF FUNCTION.”
+                                    20. PRINT          "FUNCTION                  IS     - AT       O AND   + AT   1"
+                                 30 DEF          FNF(Z)               = 2{5            +243    -1
+                                 4O       LET X = O
+                                 50 LET          D =         .5
+                                 60 LET ¥ =                FNF(X)
+                                 70       IF ¥ = 0 THEN                      200
+                                 80       IF Y > O. THEN                         150
+                                 90       LET X = X *D
+                                 100 GoTo 160                     |
+                                 150       LEY X =X                   - D
+                                 160 IF D ¢ .0001 THEN 200
+                                 170       LET       D = D/2
+                                 180       Go    TO    60
+                                 200 PRINT                 "ROOT            =" X
+                                 999       END
+                        result:
+                                 ROOT       OF FUNCTION.
+                                 FUNCTION             IS - AT                O AND’+ AT             1
+                                 ROOT       =     .837585
+                                 TIME:           2 SECS.
+                       We     can        find    the       root             of    a different           function    by   changing
+                        a single           instruction.                          For     example:
+                                 30 DEF FNF(Z)                        = EXP(X)            -2
+                        New    result:
+                                 ROOT       OF       FUNCTION.
+
+                                 FUNCTION             IS      -       AT     O    AND     +    AT   1
+
+                                 ROOT       =    .693176
+                                 TIME:           1    SECS.
+
+
+
+
+Reprint of first Dartmouth College BASIC Instruction Manual - May 1964
+
