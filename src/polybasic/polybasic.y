@@ -45,10 +45,10 @@
 %token yyTAN
 /* and other stuff */
 
-%token yyDOUBLEVARIABLE
-%token yySTRINGVARIABLE
-%token yyINTEGERVARIABLE
-%token yyRATIONALVARIABLE
+%token yyDVAR
+%token yySVAR
+%token yyIVAR
+%token yyRVAR
 
 %token yyDOUBLE
 %token yySTRING

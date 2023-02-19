@@ -32,7 +32,7 @@ R_ZERO      [#][0]
 R_INT       [#][+-]?[1-9][0-9]*
 R_ZFRAC     [#][0][/][1-9][0-9]*
 R_FRAC      [#][+-]?[1-9][0-9]*[/][1-9][0-9]*
-R_FULL      [#][+-]?[0-9]+[:][0-9]+[/][1-9][0-9]*
+R_FULL      [#][+-]?[0-9]+['][0-9]+[/][1-9][0-9]*
 RATIONAL    {R_ZERO}|{R_INT}|{R_ZFRAC}|{R_FRAC}|{R_FULL}
 
 INTEGER  ([+-]?[0-9]+)
@@ -68,10 +68,10 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{RVAR}       { return is_reserved_varname('#',  yytext, yyRATIONAL); }
-{SVAR}       { return is_reserved_varname('$',  yytext, yySTRING); }
-{IVAR}       { return is_reserved_varname('%',  yytext, yyINTEGER); }
-{DVAR}       { return is_reserved_varname('\0', yytext, yyDOUBLE); }
+{RVAR}       { return is_reserved_varname('#',  yytext, yyRVAR); }
+{SVAR}       { return is_reserved_varname('$',  yytext, yySVAR); }
+{IVAR}       { return is_reserved_varname('%',  yytext, yyIVAR); }
+{DVAR}       { return is_reserved_varname('\0', yytext, yyDVAR); }
 
 {RELATION}   { return yyRELATION; }
 
