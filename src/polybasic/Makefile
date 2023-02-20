@@ -37,8 +37,7 @@ lex.yy.cpp: polybasic.l polybasic.tab.hpp
 .PHONY: clean
 clean:
 	rm -f lex.yy.cpp lex.yy.hpp
-	rm -f polybasic.tab.h polybasic.tab.c # why??
-	rm -f polybasic.tab.cpp polybasic.tab.hpp # why???
+	rm -f polybasic.tab.cpp polybasic.tab.hpp
 	rm -f polybasic
 	rm -f $(OBJECTS)
 
