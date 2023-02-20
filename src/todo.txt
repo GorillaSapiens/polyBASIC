@@ -1,0 +1,9 @@
+figure out how to return struct from yylex.
+should include text, column, line.
+
+investigate other variable constructs, including multidimensional
+
+how much precision?  it's 2023, after all, shouldn't we go big?
+why not fixed point 128 bit numbers?  we do have C++ on our side...
+
+TODO: implement dimensioned arrays

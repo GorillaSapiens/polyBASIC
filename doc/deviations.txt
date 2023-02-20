@@ -18,3 +18,5 @@ introduction of the "rational" type, in addition to integers, numbers, and strin
 the tail sigil for a rational type is '#'
 
 introduction of "ON <equality> GOSUB" because it seemed easy to do
+
+dimensioned variables have been dropped.  they may be implemented later.

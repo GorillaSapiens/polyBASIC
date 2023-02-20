@@ -62,6 +62,8 @@
 %token yyPLUSMINUS
 %token yyMULTDIV
 
+%token yyIPSEP
+
 %token yyLABEL
 %token yyEOL
 
@@ -85,6 +87,59 @@ line          : yyLABEL stmt yyEOL
 stmt          : assignexpr
               | letexpr
               | controlstmt
+              | repeatstmt
+              | printstmt
+              | inputstmt
+              | rrdata
+              | randomize
+              | rem
+              ;
+
+rem           : yyREM
+              ;
+
+randomize     : yyRANDOMIZE
+              ;
+
+rrdata        : yyREAD inputlist
+              | yyRESTORE
+              | yyDATA vallist
+              ;
+
+vallist       : yyINTEGER
+              | yyDOUBLE
+              | yyRATIONAL
+              | yySTRING
+              | vallist yyIPSEP yyINTEGER
+              | vallist yyIPSEP yyDOUBLE
+              | vallist yyIPSEP yyRATIONAL
+              | vallist yyIPSEP yySTRING
+              ;
+
+printstmt     : yyPRINT printlist
+              ;
+
+printlist     : ivalexpr
+              | dvalexpr
+              | rvalexpr
+              | svalexpr
+              | printlist yyIPSEP ivalexpr
+              | printlist yyIPSEP dvalexpr
+              | printlist yyIPSEP rvalexpr
+              | printlist yyIPSEP svalexpr
+              ;
+
+inputstmt     : yyINPUT inputlist
+              ;
+
+inputlist     : yyIVAR
+              | yyDVAR
+              | yyRVAR
+              | yySVAR
+              | inputlist yyIPSEP yyIVAR
+              | inputlist yyIPSEP yyDVAR
+              | inputlist yyIPSEP yyRVAR
+              | inputlist yyIPSEP yySVAR
               ;
 
 controlstmt   : yyGO yyTO yyLABEL
@@ -102,6 +157,11 @@ controlstmt   : yyGO yyTO yyLABEL
               | yyRETURN
               | yySTOP
               | yyEND
+              ;
+
+repeatstmt    : yyFOR yyIVAR yyASSIGN ivalexpr yyTO ivalexpr
+              | yyFOR yyIVAR yyASSIGN ivalexpr yyTO ivalexpr yySTEP ivalexpr
+              | yyNEXT yyIVAR
               ;
 
 labellist     : yyLABEL

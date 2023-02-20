@@ -55,6 +55,7 @@ PLUSMINUS [-+]
 
 MULTDIV [*/]
 
+IPSEP [,;]
 
 /* any single character appearing by iteslf */
 RUNE     [!#$%&',;?^_.]
@@ -101,6 +102,8 @@ EOL      [\r\n]{1,2}
 {PLUSMINUS} { return yyPLUSMINUS; }
 
 {MULTDIV}   { return yyMULTDIV; }
+
+{IPSEP}     { return yyIPSEP; }
 
 {EOL}       { return yyEOL; }
 
