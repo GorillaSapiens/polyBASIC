@@ -4,8 +4,8 @@ reflexlib = ../reflex/RE-flex/lib
 bison = bison
 
 CC=gcc
-
 CPP=g++
+CFLAGS=-g
 
 OBJECTS= \
    lex.yy.o \
@@ -43,7 +43,7 @@ clean:
 	rm -f $(OBJECTS)
 
 %.o : %.cpp
-	$(CPP) -c $(INCDIRS) $<
+	$(CPP) $(CFLAGS) -c $(INCDIRS) $<
 
 %.o : %.c
-	$(CC) -c $(INCDIRS) $<
+	$(CC) $(CFLAGS) -c $(INCDIRS) $<

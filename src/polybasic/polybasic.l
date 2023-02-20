@@ -32,6 +32,7 @@ int is_reserved_label(const char *a);
 enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype retval);
 enum yytokentype is_reserved_word(const char *a);
 
+#define DEBUG printf
 %}
 
 WHITESPACE  [ \t]
@@ -59,7 +60,7 @@ DOUBLE   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 /* relations given by ECMA-55 §12.2, modified */
 RELATION (==|<>|<|>|>=|<=)
 
-ASSIGN (:=)
+ASSIGN ":="
 
 /* any single character passed straight up to bison */
 PAREN [()]
@@ -70,16 +71,16 @@ MULTDIV [*/]
 
 IPSEP [,;]
 
-/* any single character appearing by iteslf */
-RUNE     [!#$%&',;?^_.]
-
 /* any valid multicharacter thing */
 DVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*
 IVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[%]
 RVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[#]
 SVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[\$]
 
-LABEL    (^[\p{Letter}]([\p{Letter}\p{Number}_])*:)|(^[0-9]+[: \t])
+LABEL    ((^[\p{Letter}]([\p{Letter}\p{Number}_])*:)|(^[0-9]+[: \t]))
+
+/* any single character appearing by iteslf */
+RUNE     [!#$%&',;?^_.]
 
 EOL      [\r\n]{1,2}
 
@@ -87,40 +88,101 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{RVAR}      { return is_reserved_varname('#',  yytext, YYRVAR); }
-{SVAR}      { return is_reserved_varname('$',  yytext, YYSVAR); }
-{IVAR}      { return is_reserved_varname('%',  yytext, YYIVAR); }
-{DVAR}      { return is_reserved_varname('\0', yytext, YYDVAR); }
+{RVAR}      {
+               enum yytokentype ret = is_reserved_varname('#',  yytext, YYRVAR);
+               DEBUG("RVAR='%s' %d\n", yytext, ret);
+               return ret;
+            }
 
-{RATIONAL}  { return YYRATIONAL; }
-{STRING}    { return YYSTRING; }
-{INTEGER}   { return YYINTEGER; }
-{DOUBLE}    { return YYDOUBLE; }
+{SVAR}      {
+               enum yytokentype ret = is_reserved_varname('$',  yytext, YYSVAR);
+               DEBUG("SVAR='%s' %d\n", yytext, ret);
+               return ret;
+            }
 
-{ASSIGN}    { return YYASSIGN; }
-{RELATION}  { return YYRELATION; }
+{IVAR}      {
+               enum yytokentype ret = is_reserved_varname('%',  yytext, YYIVAR);
+               DEBUG("IVAR='%s' %d\n", yytext, ret);
+               return ret;
+            }
+
+{DVAR}      {
+               enum yytokentype ret = is_reserved_varname('\0', yytext, YYDVAR);
+               DEBUG("DVAR='%s' %d\n", yytext, ret);
+               return ret;
+            }
+
+{RATIONAL}  {
+               DEBUG("RATIONAL=%s\n", yytext);
+               return YYRATIONAL;
+            }
+
+{STRING}    {
+               DEBUG("STRING=%s\n", yytext);
+               return YYSTRING;
+            }
+
+{INTEGER}   {
+               DEBUG("INTEGER=%s\n", yytext);
+               return YYINTEGER;
+            }
+
+{DOUBLE}    {
+               DEBUG("DOUBLE=%s\n", yytext);
+               return YYDOUBLE;
+            }
+
+{ASSIGN}    {
+               DEBUG("token = '%s' %d\n", yytext, YYASSIGN);
+               return YYASSIGN;
+            }
+
+{RELATION}  {
+               DEBUG("token = '%s' %d\n", yytext, YYRELATION);
+               return YYRELATION;
+            }
 
 
 {LABEL}     {
+               enum yytokentype ret;
                if (!is_reserved_label(yytext)) {
-                  return YYLABEL;
+                  ret = YYLABEL;
                }
                else {
-                  return YYerror;
+                  ret = YYerror;
                }
+               DEBUG("LABEL = '%s' %d\n", yytext, ret);
             }
 
-{PAREN}     { return yytext[0]; }
+{PAREN}     {
+               DEBUG("token = '%s' %d\n", yytext, yytext[0]);
+               return yytext[0];
+            }
 
-{PLUSMINUS} { return YYPLUSMINUS; }
+{PLUSMINUS} {
+               DEBUG("token = '%s' %d\n", yytext, YYPLUSMINUS);
+               return YYPLUSMINUS;
+            }
 
-{MULTDIV}   { return YYMULTDIV; }
+{MULTDIV}   {
+               DEBUG("token = '%s' %d\n", yytext, YYMULTDIV);
+               return YYMULTDIV;
+            }
 
-{IPSEP}     { return YYIPSEP; }
+{IPSEP}     {
+               DEBUG("token = '%s' %d\n", yytext, YYIPSEP);
+               return YYIPSEP;
+            }
 
-{EOL}       { return YYEOL; }
+{EOL}       {
+               DEBUG("token = '%s' %d\n", yytext, YYEOL);
+               return YYEOL;
+             }
 
-.           { printf("ummm %d ❮%s❯\n", yylineno, yytext); return YYerror; }
+.           {
+               printf("YYerrror %d ❮%s❯\n", yylineno, yytext);
+               return YYerror;
+            }
 
 %%
 
