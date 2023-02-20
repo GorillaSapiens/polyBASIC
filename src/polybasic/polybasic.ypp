@@ -23,19 +23,24 @@ void yyerror(const char *s){}
 %type <u> rconst
 %type <u> sconst
 
-%type <u> dval
-%type <u> ival
-%type <u> rval
-%type <u> sval
+%type <u> dexpr
+%type <u> iexpr
+%type <u> rexpr
+%type <u> sexpr
 
 %type <u> varlist
 %type <u> anyvar
-%type <u> vallist
-%type <u> anyval
+
+%type <u> constlist
+%type <u> anyconst
+
+%type <u> exprlist
+%type <u> anyexpr
 
 %type <u> inputstmt
 %type <u> readstmt
 %type <u> datastmt
+%type <u> printstmt
 
 %type <u> assign
 %type <u> YYDVAR
@@ -196,7 +201,7 @@ randomize     : YYRANDOMIZE
                   }
               ;
 
-datastmt    : YYDATA vallist
+datastmt    : YYDATA constlist
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
@@ -220,45 +225,17 @@ readstmt    : YYREAD varlist
                }
             ;
 
-printstmt     : YYPRINT printlist
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              ;
+printstmt   : YYPRINT exprlist
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
 
-printlist     : ival
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | dval
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | rval
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | sval
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | printlist YYIPSEP ival
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | printlist YYIPSEP dval
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | printlist YYIPSEP rval
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | printlist YYIPSEP sval
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              ;
+                  $$.typ = 'l';
+                  $$.op = YYPRINT;
+
+                  $$.left = &$2;
+               }
+            ;
 
 controlstmt   : YYGO YYTO YYLABEL
                   {
@@ -276,35 +253,35 @@ controlstmt   : YYGO YYTO YYLABEL
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF ival YYRELATION ival YYTHEN YYLABEL
+              | YYIF iexpr YYRELATION iexpr YYTHEN YYLABEL
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF dval YYRELATION dval YYTHEN YYLABEL
+              | YYIF dexpr YYRELATION dexpr YYTHEN YYLABEL
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF rval YYRELATION rval YYTHEN YYLABEL
+              | YYIF rexpr YYRELATION rexpr YYTHEN YYLABEL
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF sval YYRELATION sval YYTHEN YYLABEL
+              | YYIF sexpr YYRELATION sexpr YYTHEN YYLABEL
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ival YYGO YYTO labellist
+              | YYON iexpr YYGO YYTO labellist
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ival YYGOTO labellist
+              | YYON iexpr YYGOTO labellist
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ival YYGO YYSUB labellist
+              | YYON iexpr YYGO YYSUB labellist
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ival YYGOSUB labellist
+              | YYON iexpr YYGOSUB labellist
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
@@ -322,11 +299,11 @@ controlstmt   : YYGO YYTO YYLABEL
                   }
               ;
 
-repeatstmt    : YYFOR YYIVAR YYASSIGN ival YYTO ival
+repeatstmt    : YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYFOR YYIVAR YYASSIGN ival YYTO ival YYSTEP ival
+              | YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr YYSTEP iexpr
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
@@ -367,7 +344,7 @@ anyvar         : YYDVAR
 varlist        : anyvar YYIPSEP varlist
                   {
                      $$ = $1;
-                     $$.left = &$3;
+                     $$.next = &$3;
                   }
                | anyvar
                   {
@@ -375,7 +352,7 @@ varlist        : anyvar YYIPSEP varlist
                   }
                ;
 
-anyval         : dconst
+anyconst       : dconst
                   {
                      $$ = $1;
                   }
@@ -393,12 +370,41 @@ anyval         : dconst
                   }
                ;
 
-vallist        : anyval YYIPSEP vallist
+constlist      : anyconst YYIPSEP constlist
                   {
                      $$ = $1;
-                     $$.left = &$3;
+                     $$.next = &$3;
                   }
-               | anyval
+               | anyconst
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+anyexpr        : dexpr
+                  {
+                     $$ = $1;
+                  }
+               | iexpr
+                  {
+                     $$ = $1;
+                  }
+               | rexpr
+                  {
+                     $$ = $1;
+                  }
+               | sexpr
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+exprlist       : anyexpr YYIPSEP exprlist
+                  {
+                     $$ = $1;
+                     $$.next = &$3;
+                  }
+               | anyexpr
                   {
                      $$ = $1;
                   }
@@ -416,7 +422,7 @@ inputstmt   : YYINPUT varlist
                }
             ;
 
-let          : YYLET YYDVAR YYASSIGN dval
+let          : YYLET YYDVAR YYASSIGN dexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -427,7 +433,7 @@ let          : YYLET YYDVAR YYASSIGN dval
                      $$.left = &$2;
                      $$.right = &$4;
                   }
-              | YYLET YYRVAR YYASSIGN rval
+              | YYLET YYRVAR YYASSIGN rexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -438,7 +444,7 @@ let          : YYLET YYDVAR YYASSIGN dval
                      $$.left = &$2;
                      $$.right = &$4;
                   }
-              | YYLET YYSVAR YYASSIGN sval
+              | YYLET YYSVAR YYASSIGN sexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -449,7 +455,7 @@ let          : YYLET YYDVAR YYASSIGN dval
                      $$.left = &$2;
                      $$.right = &$4;
                   }
-              | YYLET YYIVAR YYASSIGN ival
+              | YYLET YYIVAR YYASSIGN iexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -462,7 +468,7 @@ let          : YYLET YYDVAR YYASSIGN dval
                   }
               ;
 
-assign        : YYDVAR YYASSIGN dval
+assign        : YYDVAR YYASSIGN dexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -473,7 +479,7 @@ assign        : YYDVAR YYASSIGN dval
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | YYRVAR YYASSIGN rval
+              | YYRVAR YYASSIGN rexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -484,7 +490,7 @@ assign        : YYDVAR YYASSIGN dval
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | YYSVAR YYASSIGN sval
+              | YYSVAR YYASSIGN sexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -495,7 +501,7 @@ assign        : YYDVAR YYASSIGN dval
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | YYIVAR YYASSIGN ival
+              | YYIVAR YYASSIGN iexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -508,7 +514,7 @@ assign        : YYDVAR YYASSIGN dval
                   }
               ;
 
-dval          : YYABS '(' dval ')'
+dexpr         : YYABS '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -526,7 +532,7 @@ dval          : YYABS '(' dval ')'
                      $$.typ = 'd';
                      $$.op = YYRND;
                   }
-              | YYATN '(' dval ')'
+              | YYATN '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -536,7 +542,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYCOS '(' dval ')'
+              | YYCOS '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -546,7 +552,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYEXP '(' dval ')'
+              | YYEXP '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -556,7 +562,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYLOG '(' dval ')'
+              | YYLOG '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -566,7 +572,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYSIN '(' dval ')'
+              | YYSIN '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -576,7 +582,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYSQR '(' dval ')'
+              | YYSQR '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -586,7 +592,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYTAN '(' dval ')'
+              | YYTAN '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -596,7 +602,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYDBL '(' ival ')'
+              | YYDBL '(' iexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -606,7 +612,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYDBL '(' rval ')'
+              | YYDBL '(' rexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -616,7 +622,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | YYDBL '(' sval ')'
+              | YYDBL '(' sexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -626,7 +632,7 @@ dval          : YYABS '(' dval ')'
 
                      $$.left = &$3;
                   }
-              | dval YYPLUSMINUS dval
+              | dexpr YYPLUSMINUS dexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -637,7 +643,7 @@ dval          : YYABS '(' dval ')'
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | dval YYMULTDIV dval
+              | dexpr YYMULTDIV dexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -648,7 +654,7 @@ dval          : YYABS '(' dval ')'
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | '(' dval ')'
+              | '(' dexpr ')'
                   {
                      $$ = $2;
                   }
@@ -680,7 +686,7 @@ dconst        : YYDOUBLE
                   }
 
 
-rval          : YYABS '(' rval ')'
+rexpr         : YYABS '(' rexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -690,7 +696,7 @@ rval          : YYABS '(' rval ')'
 
                      $$.left = &$3;
                   }
-              | rval YYPLUSMINUS rval
+              | rexpr YYPLUSMINUS rexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -701,7 +707,7 @@ rval          : YYABS '(' rval ')'
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | rval YYMULTDIV rval
+              | rexpr YYMULTDIV rexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -712,7 +718,7 @@ rval          : YYABS '(' rval ')'
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | '(' rval ')'
+              | '(' rexpr ')'
                   {
                      $$ = $2;
                   }
@@ -743,7 +749,7 @@ rconst        : YYRATIONAL
                      $$.rval = new Rational(yytext);
                   }
 
-ival          : YYABS '(' ival ')'
+iexpr         : YYABS '(' iexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -753,7 +759,7 @@ ival          : YYABS '(' ival ')'
 
                      $$.left = &$3;
                   }
-              | YYINT '(' dval ')'
+              | YYINT '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -763,7 +769,7 @@ ival          : YYABS '(' ival ')'
 
                      $$.left = &$3;
                   }
-              | YYINT '(' rval ')'
+              | YYINT '(' rexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -773,7 +779,7 @@ ival          : YYABS '(' ival ')'
 
                      $$.left = &$3;
                   }
-              | YYINT '(' sval ')'
+              | YYINT '(' sexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -783,7 +789,7 @@ ival          : YYABS '(' ival ')'
 
                      $$.left = &$3;
                   }
-              | YYSGN '(' ival ')'
+              | YYSGN '(' iexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -793,7 +799,7 @@ ival          : YYABS '(' ival ')'
 
                      $$.left = &$3;
                   }
-              | YYSGN '(' dval ')'
+              | YYSGN '(' dexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -803,7 +809,7 @@ ival          : YYABS '(' ival ')'
 
                      $$.left = &$3;
                   }
-              | YYSGN '(' rval ')'
+              | YYSGN '(' rexpr ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -813,7 +819,7 @@ ival          : YYABS '(' ival ')'
 
                      $$.left = &$3;
                   }
-              | ival YYPLUSMINUS ival
+              | iexpr YYPLUSMINUS iexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -824,7 +830,7 @@ ival          : YYABS '(' ival ')'
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | ival YYMULTDIV ival
+              | iexpr YYMULTDIV iexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -835,7 +841,7 @@ ival          : YYABS '(' ival ')'
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | '(' ival ')'
+              | '(' iexpr ')'
                   {
                      $$ = $2;
                   }
@@ -866,7 +872,7 @@ iconst        : YYINTEGER
                      $$.ival = atoll(yytext);
                   }
 
-sval          : sval '+' sval
+sexpr         : sexpr '+' sexpr
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -877,7 +883,7 @@ sval          : sval '+' sval
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | '(' sval ')'
+              | '(' sexpr ')'
                   {
                      $$ = $2;
                   }

@@ -20,6 +20,7 @@ typedef struct Tree {
 
    struct Tree *left;
    struct Tree *right;
+   struct Tree *next;
 } Tree;
 
 #endif
