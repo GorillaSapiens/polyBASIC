@@ -37,6 +37,9 @@ void yyerror(const char *s){}
 %type <u> exprlist
 %type <u> anyexpr
 
+%type <u> labellist
+%type <u> YYLABEL
+
 %type <u> inputstmt
 %type <u> readstmt
 %type <u> datastmt
@@ -315,11 +318,18 @@ repeatstmt    : YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr
 
 labellist     : YYLABEL
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYLABEL;
+
+                     $$.sval = strdup(yytext);
                   }
               | labellist YYLABEL
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
+                     $$.next = &$2;
                   }
               ;
 
