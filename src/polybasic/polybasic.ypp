@@ -3,12 +3,40 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "rational.h"
+#include "tree.h"
 #include "lex.yy.hpp"
 
 // TODO FIX why do we neeed this, shouldn't this be in a skeleton somewhere?
 void yyerror(const char *s){}
 
+#define DEBUG
+
 %}
+
+%union {
+   Tree u;
+}
+
+%type <u> dconst
+%type <u> iconst
+%type <u> rconst
+%type <u> sconst
+%type <u> dval
+%type <u> ival
+%type <u> rval
+%type <u> sval
+%type <u> inputstmt
+%type <u> varlist
+%type <u> anyvar
+%type <u> assign
+%type <u> YYDVAR
+%type <u> YYIVAR
+%type <u> YYRVAR
+%type <u> YYSVAR
+%type <u> read
+%type <u> let
+
 
 %locations
 
@@ -83,493 +111,811 @@ void yyerror(const char *s){}
 
 program       : linelist
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 linelist      : line
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | line linelist
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 line          : YYLABEL stmt YYEOL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | stmt YYEOL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
-stmt          : assignexpr
+stmt          : assign
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | letexpr
+              | let
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | controlstmt
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | repeatstmt
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | printstmt
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | inputstmt
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | rrdata
+              | read
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | randomize
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | rem
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 rem           : YYREM
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 randomize     : YYRANDOMIZE
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
-rrdata        : YYREAD inputlist
+read          : YYREAD YYIVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYRESTORE
+              | YYREAD YYDVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYDATA vallist
+              | YYREAD YYRVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYREAD YYSVAR
+                  {
+                     $$->typ = SVAL_TYP;
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->op = '=';
+                     $$->name = strdup(yytext);
+                  }
+              | read YYIPSEP YYIVAR
+                  {
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | read YYIPSEP YYDVAR
+                  {
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | read YYIPSEP YYRVAR
+                  {
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | read YYIPSEP YYSVAR
+                  {
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 vallist       : YYINTEGER
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYDOUBLE
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYRATIONAL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYSTRING
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | vallist YYIPSEP YYINTEGER
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | vallist YYIPSEP YYDOUBLE
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | vallist YYIPSEP YYRATIONAL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | vallist YYIPSEP YYSTRING
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 printstmt     : YYPRINT printlist
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
-printlist     : ivalexpr
+printlist     : ival
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | dvalexpr
+              | dval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | rvalexpr
+              | rval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | svalexpr
+              | sval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | printlist YYIPSEP ivalexpr
+              | printlist YYIPSEP ival
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | printlist YYIPSEP dvalexpr
+              | printlist YYIPSEP dval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | printlist YYIPSEP rvalexpr
+              | printlist YYIPSEP rval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | printlist YYIPSEP svalexpr
+              | printlist YYIPSEP sval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              ;
-
-inputstmt     : YYINPUT inputlist
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              ;
-
-inputlist     : YYIVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYDVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYRVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYSVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | inputlist YYIPSEP YYIVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | inputlist YYIPSEP YYDVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | inputlist YYIPSEP YYRVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | inputlist YYIPSEP YYSVAR
-                  {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 controlstmt   : YYGO YYTO YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYGOTO YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYGO YYSUB YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYGOSUB YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF ivalexpr YYRELATION ivalexpr YYTHEN YYLABEL
+              | YYIF ival YYRELATION ival YYTHEN YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF dvalexpr YYRELATION dvalexpr YYTHEN YYLABEL
+              | YYIF dval YYRELATION dval YYTHEN YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF rvalexpr YYRELATION rvalexpr YYTHEN YYLABEL
+              | YYIF rval YYRELATION rval YYTHEN YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF svalexpr YYRELATION svalexpr YYTHEN YYLABEL
+              | YYIF sval YYRELATION sval YYTHEN YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ivalexpr YYGO YYTO labellist
+              | YYON ival YYGO YYTO labellist
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ivalexpr YYGOTO labellist
+              | YYON ival YYGOTO labellist
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ivalexpr YYGO YYSUB labellist
+              | YYON ival YYGO YYSUB labellist
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYON ivalexpr YYGOSUB labellist
+              | YYON ival YYGOSUB labellist
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYRETURN
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYSTOP
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYEND
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
-repeatstmt    : YYFOR YYIVAR YYASSIGN ivalexpr YYTO ivalexpr
+repeatstmt    : YYFOR YYIVAR YYASSIGN ival YYTO ival
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYFOR YYIVAR YYASSIGN ivalexpr YYTO ivalexpr YYSTEP ivalexpr
+              | YYFOR YYIVAR YYASSIGN ival YYTO ival YYSTEP ival
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYNEXT YYIVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
 labellist     : YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               | labellist YYLABEL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
               ;
 
-letexpr       : YYLET YYDVAR YYASSIGN dvalexpr
+anyvar         : YYDVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
-              | YYLET YYRVAR YYASSIGN rvalexpr
+               | YYIVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
-              | YYLET YYSVAR YYASSIGN svalexpr
+               | YYRVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
-              | YYLET YYIVAR YYASSIGN ivalexpr
+               | YYSVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
+                  }
+               ;
+
+varlist        : anyvar YYIPSEP varlist
+                  {
+                     $$ = $1;
+                     $$.left = $3;
+                  }
+               | anyvar
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+inputstmt   : YYINPUT varlist
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+
+                  $$.typ = 'l';
+                  $$.op = YYINPUT;
+
+                  $$.left = $2;
+               }
+            ;
+
+let          : YYLET YYDVAR YYASSIGN dval
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = ';';
+
+                     $$.left = &$2;
+                     $$.right = &$4;
+                  }
+              | YYLET YYRVAR YYASSIGN rval
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'r';
+                     $$.op = ';';
+
+                     $$.left = &$2;
+                     $$.right = &$4;
+                  }
+              | YYLET YYSVAR YYASSIGN sval
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 's';
+                     $$.op = ';';
+
+                     $$.left = &$2;
+                     $$.right = &$4;
+                  }
+              | YYLET YYIVAR YYASSIGN ival
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = ';';
+
+                     $$.left = &$2;
+                     $$.right = &$4;
                   }
               ;
 
-assignexpr    : YYDVAR YYASSIGN dvalexpr
+assign        : YYDVAR YYASSIGN dval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = ':';
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
-              | YYRVAR YYASSIGN rvalexpr
+              | YYRVAR YYASSIGN rval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'r';
+                     $$.op = ':';
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
-              | YYSVAR YYASSIGN svalexpr
+              | YYSVAR YYASSIGN sval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 's';
+                     $$.op = ':';
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
-              | YYIVAR YYASSIGN ivalexpr
+              | YYIVAR YYASSIGN ival
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = ':';
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
               ;
 
-dvalexpr      : YYABS '(' dvalexpr ')'
+dval          : YYABS '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYABS;
+
+                     $$.left = &$3;
                   }
               | YYRND '(' ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYRND;
                   }
-              | YYATN '(' dvalexpr ')'
+              | YYATN '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYATN;
+
+                     $$.left = &$3;
                   }
-              | YYCOS '(' dvalexpr ')'
+              | YYCOS '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYCOS;
+
+                     $$.left = &$3;
                   }
-              | YYEXP '(' dvalexpr ')'
+              | YYEXP '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYEXP;
+
+                     $$.left = &$3;
                   }
-              | YYLOG '(' dvalexpr ')'
+              | YYLOG '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYLOG;
+
+                     $$.left = &$3;
                   }
-              | YYSIN '(' dvalexpr ')'
+              | YYSIN '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYSIN;
+
+                     $$.left = &$3;
                   }
-              | YYSQR '(' dvalexpr ')'
+              | YYSQR '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYSQR;
+
+                     $$.left = &$3;
                   }
-              | YYTAN '(' dvalexpr ')'
+              | YYTAN '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYTAN;
+
+                     $$.left = &$3;
                   }
-              | YYDBL '(' ivalexpr ')'
+              | YYDBL '(' ival ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYDBL;
+
+                     $$.left = &$3;
                   }
-              | YYDBL '(' rvalexpr ')'
+              | YYDBL '(' rval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYDBL;
+
+                     $$.left = &$3;
                   }
-              | YYDBL '(' svalexpr ')'
+              | YYDBL '(' sval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = YYDBL;
+
+                     $$.left = &$3;
                   }
-              | dvalexpr YYPLUSMINUS dvalexpr
+              | dval YYPLUSMINUS dval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = yytext[0];
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
-              | dvalexpr YYMULTDIV dvalexpr
+              | dval YYMULTDIV dval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = yytext[0];
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
-              | '(' dvalexpr ')'
+              | '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $2;
                   }
               | YYDVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = '!';
+                     $$.op = '=';
+
+                     $$.sval = strdup(yytext);
                   }
-              | YYDOUBLE
+              | dconst
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               ;
 
-rvalexpr      : YYABS '(' rvalexpr ')'
+dconst        : YYDOUBLE
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'd';
+                     $$.op = '!';
+
+                     $$.dval = atof(yytext);
                   }
-              | rvalexpr YYPLUSMINUS rvalexpr
+
+
+rval          : YYABS '(' rval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'r';
+                     $$.op = YYABS;
+
+                     $$.left = &$3;
                   }
-              | rvalexpr YYMULTDIV rvalexpr
+              | rval YYPLUSMINUS rval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'r';
+                     $$.op = yytext[0];
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
-              | '(' rvalexpr ')'
+              | rval YYMULTDIV rval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'r';
+                     $$.op = yytext[0];
+
+                     $$.left = &$1;
+                     $$.right = &$3;
+                  }
+              | '(' rval ')'
+                  {
+                     $$ = $2;
                   }
               | YYRVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'r';
+                     $$.op = '=';
+
+                     $$.sval = strdup(yytext);
                   }
-              | YYRATIONAL
+              | rconst
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               ;
 
-ivalexpr      : YYABS '(' ivalexpr ')'
+rconst        : YYRATIONAL
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'r';
+                     $$.op = '!';
+
+                     $$.rval = new Rational(yytext);
                   }
-              | YYINT '(' dvalexpr ')'
+
+ival          : YYABS '(' ival ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = YYABS;
+
+                     $$.left = &$3;
                   }
-              | YYINT '(' rvalexpr ')'
+              | YYINT '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = YYINT;
+
+                     $$.left = &$3;
                   }
-              | YYINT '(' svalexpr ')'
+              | YYINT '(' rval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = YYINT;
+
+                     $$.left = &$3;
                   }
-              | YYSGN '(' ivalexpr ')'
+              | YYINT '(' sval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = YYINT;
+
+                     $$.left = &$3;
                   }
-              | YYSGN '(' dvalexpr ')'
+              | YYSGN '(' ival ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = YYSGN;
+
+                     $$.left = &$3;
                   }
-              | YYSGN '(' rvalexpr ')'
+              | YYSGN '(' dval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = YYSGN;
+
+                     $$.left = &$3;
                   }
-              | ivalexpr YYPLUSMINUS ivalexpr
+              | YYSGN '(' rval ')'
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = YYSGN;
+
+                     $$.left = &$3;
                   }
-              | ivalexpr YYMULTDIV ivalexpr
+              | ival YYPLUSMINUS ival
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = yytext[0];
+
+                     $$.left = &$1;
+                     $$.right = &$3;
                   }
-              | '(' ivalexpr ')'
+              | ival YYMULTDIV ival
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = yytext[0];
+
+                     $$.left = &$1;
+                     $$.right = &$3;
+                  }
+              | '(' ival ')'
+                  {
+                     $$ = $2;
                   }
               | YYIVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = '=';
+
+                     $$.sval = strdup(yytext);
                   }
-              | YYINTEGER
+              | iconst
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               ;
 
-svalexpr      : svalexpr '+' svalexpr
+iconst        : YYINTEGER
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'i';
+                     $$.op = '!';
+
+                     $$.ival = atoll(yytext);
                   }
-              | '(' svalexpr ')'
+
+sval          : sval '+' sval
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 's';
+                     $$.op = '+';
+
+                     $$.left = &$1;
+                     $$.right = &$3;
+                  }
+              | '(' sval ')'
+                  {
+                     $$ = $2;
                   }
               | YYSVAR
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 's';
+                     $$.op = '=';
+
+                     $$.sval = strdup(yytext);
                   }
-              | YYSTRING
+              | sconst
                   {
-                     printf("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               ;
+
+sconst        : YYSTRING
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 's';
+                     $$.op = '!';
+
+                     $$.sval = strdup(yytext);
+                  }
+
 
 %%
 

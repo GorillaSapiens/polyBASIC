@@ -11,6 +11,7 @@ OBJECTS= \
    lex.yy.o \
    eprintf.o \
    main.o \
+   rational.o \
    polybasic.tab.o
 
 INCDIRS= \
@@ -20,8 +21,7 @@ LIBDIRS= \
    -L $(reflexlib)
 
 LIBS= \
-   -l reflex \
-   -l quadmath
+   -l reflex
 
 polybasic: polybasic.tab.hpp $(OBJECTS)
 	$(CPP) $(OBJECTS) $(LIBDIRS) $(LIBS) -o polybasic

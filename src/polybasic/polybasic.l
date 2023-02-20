@@ -10,6 +10,8 @@
 #include <dirent.h>
 #include <errno.h>
 
+#include "tree.h"
+
 #undef YY_USER_ACTION
 #define YY_USER_ACTION                                       \
   yylloc.first_line = yylloc.last_line;                      \

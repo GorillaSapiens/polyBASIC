@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <errno.h>
 
+#include "tree.h"
 #include "polybasic.tab.hpp"
 
 FILE *yyin = NULL;
