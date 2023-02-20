@@ -9,8 +9,8 @@ CPP=g++
 
 OBJECTS= \
    lex.yy.o \
-   eprintf.o
-#   polybasic.tab.o 
+   eprintf.o \
+   polybasic.tab.o
 
 INCDIRS= \
    -I $(reflexinc)
@@ -22,20 +22,23 @@ LIBS= \
    -l reflex \
    -l quadmath
 
-polybasic: polybasic.tab.h $(OBJECTS)
+polybasic: polybasic.tab.hpp $(OBJECTS)
 	$(CPP) $(OBJECTS) $(LIBDIRS) $(LIBS) -o polybasic
 
-polybasic.tab.h: polybasic.tab.c
+polybasic.tab.hpp: polybasic.tab.cpp
 
-polybasic.tab.c: polybasic.y
-	$(bison) -Wcounterexamples -H polybasic.y
+polybasic.tab.cpp: polybasic.ypp
+	$(bison) -Wcounterexamples -H polybasic.ypp
 
-lex.yy.cpp: polybasic.l polybasic.tab.h
-	$(reflex) polybasic.l
+lex.yy.cpp: polybasic.l polybasic.tab.hpp
+	$(reflex) --flex --bison --header-file=lex.yy.hpp polybasic.l
 
 .PHONY: clean
 clean:
-	rm -f lex.yy.cpp polybasic.tab.h polybasic.tab.c polybasic
+	rm -f lex.yy.cpp lex.yy.hpp
+	rm -f polybasic.tab.h polybasic.tab.c # why??
+	rm -f polybasic.tab.cpp polybasic.tab.hpp # why???
+	rm -f polybasic
 	rm -f $(OBJECTS)
 
 %.o : %.cpp

@@ -1,3 +1,8 @@
+%option flex
+%option bison
+%option unicode
+%option yylineno
+
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,7 +10,20 @@
 #include <dirent.h>
 #include <errno.h>
 
-#include "polybasic.tab.h"
+#undef YY_USER_ACTION
+#define YY_USER_ACTION                                       \
+  yylloc.first_line = yylloc.last_line;                      \
+  yylloc.first_column = yylloc.last_column;                  \
+  if (yylloc.first_line == yylineno)                         \
+     yylloc.last_column += yyleng;                           \
+  else {                                                     \
+     int col;                                                \
+     for (col = 1; yytext[yyleng - col] != '\n'; ++col) {}   \
+     yylloc.last_column = col;                               \
+     yylloc.last_line = yylineno;                            \
+  }
+
+#include "polybasic.tab.hpp"
 #include "reflex/flexlexer.h"
 
 // required fwd decls
@@ -15,11 +33,6 @@ enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype
 enum yytokentype is_reserved_word(const char *a);
 
 %}
-
-%option flex
-%option bison
-%option unicode
-%option yylineno
 
 WHITESPACE  [ \t]
 
@@ -74,23 +87,23 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{RVAR}      { return is_reserved_varname('#',  yytext, yyRVAR); }
-{SVAR}      { return is_reserved_varname('$',  yytext, yySVAR); }
-{IVAR}      { return is_reserved_varname('%',  yytext, yyIVAR); }
-{DVAR}      { return is_reserved_varname('\0', yytext, yyDVAR); }
+{RVAR}      { return is_reserved_varname('#',  yytext, YYRVAR); }
+{SVAR}      { return is_reserved_varname('$',  yytext, YYSVAR); }
+{IVAR}      { return is_reserved_varname('%',  yytext, YYIVAR); }
+{DVAR}      { return is_reserved_varname('\0', yytext, YYDVAR); }
 
-{RATIONAL}  { return yyRATIONAL; }
-{STRING}    { return yySTRING; }
-{INTEGER}   { return yyINTEGER; }
-{DOUBLE}    { return yyDOUBLE; }
+{RATIONAL}  { return YYRATIONAL; }
+{STRING}    { return YYSTRING; }
+{INTEGER}   { return YYINTEGER; }
+{DOUBLE}    { return YYDOUBLE; }
 
-{ASSIGN}    { return yyASSIGN; }
-{RELATION}  { return yyRELATION; }
+{ASSIGN}    { return YYASSIGN; }
+{RELATION}  { return YYRELATION; }
 
 
 {LABEL}     {
                if (!is_reserved_label(yytext)) {
-                  return yyLABEL;
+                  return YYLABEL;
                }
                else {
                   return YYerror;
@@ -99,13 +112,13 @@ EOL      [\r\n]{1,2}
 
 {PAREN}     { return yytext[0]; }
 
-{PLUSMINUS} { return yyPLUSMINUS; }
+{PLUSMINUS} { return YYPLUSMINUS; }
 
-{MULTDIV}   { return yyMULTDIV; }
+{MULTDIV}   { return YYMULTDIV; }
 
-{IPSEP}     { return yyIPSEP; }
+{IPSEP}     { return YYIPSEP; }
 
-{EOL}       { return yyEOL; }
+{EOL}       { return YYEOL; }
 
 .           { printf("ummm %d ❮%s❯\n", yylineno, yytext); return YYerror; }
 
@@ -116,43 +129,43 @@ static const struct {
    const char *name;
    enum yytokentype token;
 } reserved[] = {
-   { "BASE", yyBASE },
-   { "DATA", yyDATA },
-   { "DEF", yyDEF },
-   { "DIM", yyDIM },
-   { "END", yyEND },
-   { "FOR", yyFOR },
-   { "GO", yyGO },
-   { "GOSUB", yyGOSUB },
-   { "GOTO", yyGOTO },
-   { "IF", yyIF },
-   { "INPUT", yyINPUT },
-   { "LET", yyLET },
-   { "NEXT", yyNEXT },
-   { "ON", yyON },
-   { "OPTION", yyOPTION },
-   { "PRINT", yyPRINT },
-   { "RANDOMIZE", yyRANDOMIZE },
-   { "READ", yyREAD },
-   { "REM", yyREM },
-   { "RESTORE", yyRESTORE },
-   { "RETURN", yyRETURN },
-   { "STEP", yySTEP },
-   { "STOP", yySTOP },
-   { "SUB", yySUB },
-   { "THEN", yyTHEN },
-   { "TO", yyTO },
-   { "ABS", yyABS },
-   { "ATN", yyATN },
-   { "COS", yyCOS },
-   { "EXP", yyEXP },
-   { "INT", yyINT },
-   { "LOG", yyLOG },
-   { "RND", yyRND },
-   { "SGN", yySGN },
-   { "SIN", yySIN },
-   { "SQR", yySQR },
-   { "TAN", yyTAN }
+   { "BASE", YYBASE },
+   { "DATA", YYDATA },
+   { "DEF", YYDEF },
+   { "DIM", YYDIM },
+   { "END", YYEND },
+   { "FOR", YYFOR },
+   { "GO", YYGO },
+   { "GOSUB", YYGOSUB },
+   { "GOTO", YYGOTO },
+   { "IF", YYIF },
+   { "INPUT", YYINPUT },
+   { "LET", YYLET },
+   { "NEXT", YYNEXT },
+   { "ON", YYON },
+   { "OPTION", YYOPTION },
+   { "PRINT", YYPRINT },
+   { "RANDOMIZE", YYRANDOMIZE },
+   { "READ", YYREAD },
+   { "REM", YYREM },
+   { "RESTORE", YYRESTORE },
+   { "RETURN", YYRETURN },
+   { "STEP", YYSTEP },
+   { "STOP", YYSTOP },
+   { "SUB", YYSUB },
+   { "THEN", YYTHEN },
+   { "TO", YYTO },
+   { "ABS", YYABS },
+   { "ATN", YYATN },
+   { "COS", YYCOS },
+   { "EXP", YYEXP },
+   { "INT", YYINT },
+   { "LOG", YYLOG },
+   { "RND", YYRND },
+   { "SGN", YYSGN },
+   { "SIN", YYSIN },
+   { "SQR", YYSQR },
+   { "TAN", YYTAN }
 };
 
 // a simple linked list of tuples
@@ -354,7 +367,7 @@ int main(int argc, char **argv) {
       yyin = in;
    }
 
-   yylex();
+   yyparse();
 
    if (in) {
       fclose(in);

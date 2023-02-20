@@ -1,0 +1,560 @@
+%{
+   // C decls go here
+#include <stdio.h>
+#include <string.h>
+
+#include "lex.yy.hpp"
+#include "polybasicdata.h"
+
+// TODO FIX why do we neeed this, shouldn't this be in a skeleton somewhere?
+void yyerror(const char *s){}
+
+%}
+
+%locations
+
+/* reserved words */
+%token YYBASE
+%token YYDATA
+%token YYDEF
+%token YYDIM
+%token YYEND
+%token YYFOR
+%token YYGO
+%token YYGOSUB
+%token YYGOTO
+%token YYIF
+%token YYINPUT
+%token YYLET
+%token YYNEXT
+%token YYON
+%token YYOPTION
+%token YYPRINT
+%token YYRANDOMIZE
+%token YYREAD
+%token YYREM
+%token YYRESTORE
+%token YYRETURN
+%token YYSTEP
+%token YYSTOP
+%token YYSUB
+%token YYTHEN
+%token YYTO
+/* function names, not many, so make 'em tokens */
+%token YYABS
+%token YYATN
+%token YYCOS
+%token YYDBL
+%token YYEXP
+%token YYINT
+%token YYLOG
+%token YYRND
+%token YYSGN
+%token YYSIN
+%token YYSQR
+%token YYTAN
+/* and other stuff */
+
+%token YYDVAR
+%token YYSVAR
+%token YYIVAR
+%token YYRVAR
+
+%token YYDOUBLE
+%token YYSTRING
+%token YYINTEGER
+%token YYRATIONAL
+
+%token YYRELATION
+%token YYASSIGN
+
+%token YYPLUSMINUS
+%token YYMULTDIV
+
+%token YYIPSEP
+
+%token YYLABEL
+%token YYEOL
+
+%left YYMULTDIV
+%left YYPLUSMINUS
+%left '+'
+
+%%
+
+program       : linelist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+linelist      : line
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | line linelist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+line          : YYLABEL stmt YYEOL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | stmt YYEOL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+stmt          : assignexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | letexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | controlstmt
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | repeatstmt
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | printstmt
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | inputstmt
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | rrdata
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | randomize
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | rem
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+rem           : YYREM
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+randomize     : YYRANDOMIZE
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+rrdata        : YYREAD inputlist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRESTORE
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYDATA vallist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+vallist       : YYINTEGER
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYDOUBLE
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRATIONAL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSTRING
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | vallist YYIPSEP YYINTEGER
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | vallist YYIPSEP YYDOUBLE
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | vallist YYIPSEP YYRATIONAL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | vallist YYIPSEP YYSTRING
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+printstmt     : YYPRINT printlist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+printlist     : ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | dvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | rvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | svalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | printlist YYIPSEP ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | printlist YYIPSEP dvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | printlist YYIPSEP rvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | printlist YYIPSEP svalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+inputstmt     : YYINPUT inputlist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+inputlist     : YYIVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYDVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | inputlist YYIPSEP YYIVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | inputlist YYIPSEP YYDVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | inputlist YYIPSEP YYRVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | inputlist YYIPSEP YYSVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+controlstmt   : YYGO YYTO YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYGOTO YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYGO YYSUB YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYGOSUB YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYIF ivalexpr YYRELATION ivalexpr YYTHEN YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYIF dvalexpr YYRELATION dvalexpr YYTHEN YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYIF rvalexpr YYRELATION rvalexpr YYTHEN YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYIF svalexpr YYRELATION svalexpr YYTHEN YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYON ivalexpr YYGO YYTO labellist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYON ivalexpr YYGOTO labellist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYON ivalexpr YYGO YYSUB labellist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYON ivalexpr YYGOSUB labellist
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRETURN
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSTOP
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYEND
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+repeatstmt    : YYFOR YYIVAR YYASSIGN ivalexpr YYTO ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYFOR YYIVAR YYASSIGN ivalexpr YYTO ivalexpr YYSTEP ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYNEXT YYIVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+labellist     : YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | labellist YYLABEL
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+letexpr       : YYLET YYDVAR YYASSIGN dvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYLET YYRVAR YYASSIGN rvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYLET YYSVAR YYASSIGN svalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYLET YYIVAR YYASSIGN ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+assignexpr    : YYDVAR YYASSIGN dvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRVAR YYASSIGN rvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSVAR YYASSIGN svalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYIVAR YYASSIGN ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+dvalexpr      : YYABS '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRND '(' ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYATN '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYCOS '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYEXP '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYLOG '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSIN '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSQR '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYTAN '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYDBL '(' ivalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYDBL '(' rvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYDBL '(' svalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | dvalexpr YYPLUSMINUS dvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | dvalexpr YYMULTDIV dvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYDVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+rvalexpr      : YYABS '(' rvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | rvalexpr YYPLUSMINUS rvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | rvalexpr YYMULTDIV rvalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | '(' rvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+ivalexpr      : YYABS '(' ivalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYINT '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYINT '(' rvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYINT '(' svalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSGN '(' ivalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSGN '(' dvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSGN '(' rvalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | ivalexpr YYPLUSMINUS ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | ivalexpr YYMULTDIV ivalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | '(' ivalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYIVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+svalexpr      : svalexpr '+' svalexpr
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | '(' svalexpr ')'
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              ;
+
+%%
+

@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "eprintf.h"
-
 #include <stdarg.h>
+
+#include "eprintf.hpp"
 
 struct Error;
 typedef struct Error {
@@ -33,47 +33,51 @@ void add_error(const char *tag, const char *types, const char *format) {
    }
 
    // scan the format, to make sure types match, and we're not missing any
-   int bitmask = 0;
-   for (const char *p = format; *p; p++) {
-      if (*p == '\\') {
-         p++;
-         continue;
+   {
+      int bitmask = 0;
+      for (const char *p = format; *p; p++) {
+         if (*p == '\\') {
+            p++;
+            continue;
+         }
+         if (*p == '{' && strlen(p) > 4) { // {Nt}
+            int n = p[1] - '0';
+            if (n < 0 || n > 9 || n > strlen(types) - 1) {
+               sprintf(failmessage, "SUBSTITUTION '%c' OUT OF RANGE", p[1]);
+               goto fail;
+            }
+            if (!strchr(allowed_types, p[2])) {
+               sprintf(failmessage, "SUBSTITUTION %d TYPE '%c' NOT ALLOWED", n, p[2]);
+               goto fail;
+            }
+            if (p[2] != types[n]) {
+               sprintf(failmessage, "SUBSTITUTION %d WRONG TYPE '%c' EXPECTED '%c'", n, p[2], types[n]);
+               goto fail;
+            }
+            bitmask |= (1 << n);
+         }
       }
-      if (*p == '{' && strlen(p) > 4) { // {Nt}
-         int n = p[1] - '0';
-         if (n < 0 || n > 9 || n > strlen(types) - 1) {
-            sprintf(failmessage, "SUBSTITUTION '%c' OUT OF RANGE", p[1]);
-            goto fail;
-         }
-         if (!strchr(allowed_types, p[2])) {
-            sprintf(failmessage, "SUBSTITUTION %d TYPE '%c' NOT ALLOWED", n, p[2]);
-            goto fail;
-         }
-         if (p[2] != types[n]) {
-            sprintf(failmessage, "SUBSTITUTION %d WRONG TYPE '%c' EXPECTED '%c'", n, p[2], types[n]);
-            goto fail;
-         }
-         bitmask |= (1 << n);
-      }
-   }
 
-   // did we get everybody?
-   for (int n = 0; n < strlen(types); n++) {
-      if (!(bitmask & (1 << n))) {
-         sprintf(failmessage, "SUBSTITUTION %d MISSING.", n);
-         goto fail;
+      // did we get everybody?
+      for (int n = 0; n < strlen(types); n++) {
+         if (!(bitmask & (1 << n))) {
+            sprintf(failmessage, "SUBSTITUTION %d MISSING.", n);
+            goto fail;
+         }
       }
    }
 
    // if we got this far, everything is good!
 
    // these will all be freed on program termination
-   Error *error = (Error *) malloc(sizeof(Error));
-   error->tag = strdup(tag);
-   error->types = strdup(types);
-   error->format = strdup(format);
-   error->next = head;
-   head = error;
+   {
+      Error *error = (Error *) malloc(sizeof(Error));
+      error->tag = strdup(tag);
+      error->types = strdup(types);
+      error->format = strdup(format);
+      error->next = head;
+      head = error;
+   }
    return;
 
    fail:
