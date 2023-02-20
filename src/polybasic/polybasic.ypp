@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "lex.yy.hpp"
-#include "polybasicdata.h"
 
 // TODO FIX why do we neeed this, shouldn't this be in a skeleton somewhere?
 void yyerror(const char *s){}

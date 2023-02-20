@@ -10,6 +10,7 @@ CPP=g++
 OBJECTS= \
    lex.yy.o \
    eprintf.o \
+   main.o \
    polybasic.tab.o
 
 INCDIRS= \
