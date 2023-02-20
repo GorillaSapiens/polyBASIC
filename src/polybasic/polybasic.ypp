@@ -75,8 +75,8 @@ void yyerror(const char *s){}
 %token YYLABEL
 %token YYEOL
 
-%left YYMULTDIV
 %left YYPLUSMINUS
+%left YYMULTDIV
 %left '+'
 
 %%
@@ -471,6 +471,10 @@ dvalexpr      : YYABS '(' dvalexpr ')'
                   {
                      printf("%s:%d\n", __FILE__, __LINE__);
                   }
+              | YYDOUBLE
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
               ;
 
 rvalexpr      : YYABS '(' rvalexpr ')'
@@ -490,6 +494,10 @@ rvalexpr      : YYABS '(' rvalexpr ')'
                      printf("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYRVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYRATIONAL
                   {
                      printf("%s:%d\n", __FILE__, __LINE__);
                   }
@@ -539,6 +547,10 @@ ivalexpr      : YYABS '(' ivalexpr ')'
                   {
                      printf("%s:%d\n", __FILE__, __LINE__);
                   }
+              | YYINTEGER
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
               ;
 
 svalexpr      : svalexpr '+' svalexpr
@@ -550,6 +562,10 @@ svalexpr      : svalexpr '+' svalexpr
                      printf("%s:%d\n", __FILE__, __LINE__);
                   }
               | YYSVAR
+                  {
+                     printf("%s:%d\n", __FILE__, __LINE__);
+                  }
+              | YYSTRING
                   {
                      printf("%s:%d\n", __FILE__, __LINE__);
                   }
