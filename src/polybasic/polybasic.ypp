@@ -44,6 +44,7 @@ void yyerror(const char *s){}
 %type <u> readstmt
 %type <u> datastmt
 %type <u> printstmt
+%type <u> repeatstmt
 
 %type <u> assign
 %type <u> YYDVAR
@@ -304,15 +305,39 @@ controlstmt   : YYGO YYTO YYLABEL
 
 repeatstmt    : YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYFOR;
+
+                     $$.sval = strdup($2.sval);
+                     $$.left = &$4;
+                     $$.right = &$6;
+                     $$.next = NULL;
                   }
               | YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr YYSTEP iexpr
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYFOR;
+
+                     $$.sval = strdup($2.sval);
+                     $$.left = &$4;
+                     $$.right = &$6;
+                     $$.next = &$8;
                   }
               | YYNEXT YYIVAR
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYNEXT;
+
+                     $$.sval = strdup($2.sval);
                   }
               ;
 
