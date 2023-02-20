@@ -22,19 +22,26 @@ void yyerror(const char *s){}
 %type <u> iconst
 %type <u> rconst
 %type <u> sconst
+
 %type <u> dval
 %type <u> ival
 %type <u> rval
 %type <u> sval
-%type <u> inputstmt
+
 %type <u> varlist
 %type <u> anyvar
+%type <u> vallist
+%type <u> anyval
+
+%type <u> inputstmt
+%type <u> readstmt
+%type <u> datastmt
+
 %type <u> assign
 %type <u> YYDVAR
 %type <u> YYIVAR
 %type <u> YYRVAR
 %type <u> YYSVAR
-%type <u> read
 %type <u> let
 
 
@@ -147,6 +154,10 @@ stmt          : assign
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
+              | datastmt
+                  {
+                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                  }
               | repeatstmt
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
@@ -159,7 +170,7 @@ stmt          : assign
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | read
+              | readstmt
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
@@ -185,77 +196,29 @@ randomize     : YYRANDOMIZE
                   }
               ;
 
-read          : YYREAD YYIVAR
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYREAD YYDVAR
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYREAD YYRVAR
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYREAD YYSVAR
-                  {
-                     $$->typ = SVAL_TYP;
-                     $$->line = yylineno;
-                     $$->col = yyloc.first_column;
-                     $$->op = '=';
-                     $$->name = strdup(yytext);
-                  }
-              | read YYIPSEP YYIVAR
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | read YYIPSEP YYDVAR
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | read YYIPSEP YYRVAR
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | read YYIPSEP YYSVAR
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              ;
+datastmt    : YYDATA vallist
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
 
-vallist       : YYINTEGER
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYDOUBLE
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYRATIONAL
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | YYSTRING
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | vallist YYIPSEP YYINTEGER
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | vallist YYIPSEP YYDOUBLE
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | vallist YYIPSEP YYRATIONAL
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              | vallist YYIPSEP YYSTRING
-                  {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
-                  }
-              ;
+                  $$.typ = 'l';
+                  $$.op = YYDATA;
+
+                  $$.left = &$2;
+               }
+            ;
+
+readstmt    : YYREAD varlist
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+
+                  $$.typ = 'l';
+                  $$.op = YYREAD;
+
+                  $$.left = &$2;
+               }
+            ;
 
 printstmt     : YYPRINT printlist
                   {
@@ -404,9 +367,38 @@ anyvar         : YYDVAR
 varlist        : anyvar YYIPSEP varlist
                   {
                      $$ = $1;
-                     $$.left = $3;
+                     $$.left = &$3;
                   }
                | anyvar
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+anyval         : dconst
+                  {
+                     $$ = $1;
+                  }
+               | iconst
+                  {
+                     $$ = $1;
+                  }
+               | rconst
+                  {
+                     $$ = $1;
+                  }
+               | sconst
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+vallist        : anyval YYIPSEP vallist
+                  {
+                     $$ = $1;
+                     $$.left = &$3;
+                  }
+               | anyval
                   {
                      $$ = $1;
                   }
@@ -420,7 +412,7 @@ inputstmt   : YYINPUT varlist
                   $$.typ = 'l';
                   $$.op = YYINPUT;
 
-                  $$.left = $2;
+                  $$.left = &$2;
                }
             ;
 
