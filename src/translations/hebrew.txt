@@ -37,7 +37,7 @@ COS <= קוסינוס          # the trigonomic cosine function
 EXP <= מעריכי          # the exponential / power function
 INT <= מספרשלם          # the integer / floor function
 LOG <= לוגריתם          # the natural log function
-RND <= אקראי          # generate random number
+RND <= גליל          # generate random number
 SGN <= סימן          # determine the sign
 SIN <= סינוס          # the trigonomic sine function
 SQR <= שורשריבועי          # the square root function
@@ -62,14 +62,14 @@ TO <= ל            # part of for/to/step/next constructs
 IF <= אם            # part of if/then constructs
 THEN <= לאחרמכן        # part of if/then constructs
 SUB <= תת          # beware, used as part of "go sub"
-ON <= על            # a sort of a switch statement
+ON <= החלף            # a sort of a switch statement
 RETURN <= לחזור    # used to exit a subroutine
-STOP <= תפסיק        # command to stop execution
+STOP <= גמור        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= ל          # part of for/to/step/next constructs
+FOR <= מ          # part of for/to/step/next constructs
 STEP <= שלב        # part of for/to/step/next constructs
 NEXT <= הבא        # part of for/to/step/next constructs
 

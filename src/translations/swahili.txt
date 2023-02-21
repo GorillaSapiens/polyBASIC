@@ -37,7 +37,7 @@ COS <= COSINE          # the trigonomic cosine function
 EXP <= EXPONENTIAL          # the exponential / power function
 INT <= NAMBARI          # the integer / floor function
 LOG <= LOGARITHM          # the natural log function
-RND <= BILAMPANGILIO          # generate random number
+RND <= ROLL          # generate random number
 SGN <= ISHARA          # determine the sign
 SIN <= SINE          # the trigonomic sine function
 SQR <= KIPEO          # the square root function
@@ -62,14 +62,14 @@ TO <= KWA            # part of for/to/step/next constructs
 IF <= KAMA            # part of if/then constructs
 THEN <= BASI        # part of if/then constructs
 SUB <= SUB          # beware, used as part of "go sub"
-ON <= ON            # a sort of a switch statement
+ON <= BADILI            # a sort of a switch statement
 RETURN <= KURUDI    # used to exit a subroutine
-STOP <= ACHA        # command to stop execution
+STOP <= KUMALIZA        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= KWA          # part of for/to/step/next constructs
+FOR <= KUTOKA          # part of for/to/step/next constructs
 STEP <= HATUA        # part of for/to/step/next constructs
 NEXT <= IFUATAYO        # part of for/to/step/next constructs
 

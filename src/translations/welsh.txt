@@ -37,7 +37,7 @@ COS <= NGHOSIN          # the trigonomic cosine function
 EXP <= ESBONYDDOL          # the exponential / power function
 INT <= GYFANRIF          # the integer / floor function
 LOG <= LOGARITHM          # the natural log function
-RND <= HAP          # generate random number
+RND <= TROLIA          # generate random number
 SGN <= ARWYDDEM          # determine the sign
 SIN <= SEIN          # the trigonomic sine function
 SQR <= AILISRADD          # the square root function
@@ -62,14 +62,14 @@ TO <= ATO            # part of for/to/step/next constructs
 IF <= OS            # part of if/then constructs
 THEN <= YNA        # part of if/then constructs
 SUB <= HWB          # beware, used as part of "go sub"
-ON <= YMLAEN            # a sort of a switch statement
+ON <= SWITSITH            # a sort of a switch statement
 RETURN <= DDYCHWELO    # used to exit a subroutine
-STOP <= ARHOSWCH        # command to stop execution
+STOP <= GORFFENEDIG        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DROS          # part of for/to/step/next constructs
+FOR <= ODDIWRTH          # part of for/to/step/next constructs
 STEP <= CAMOCH        # part of for/to/step/next constructs
 NEXT <= NESAF        # part of for/to/step/next constructs
 

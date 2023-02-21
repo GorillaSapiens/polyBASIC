@@ -37,7 +37,7 @@ COS <= KOSINUS          # the trigonomic cosine function
 EXP <= EKSPONENSIAL          # the exponential / power function
 INT <= BILANGANBULAT          # the integer / floor function
 LOG <= LOGARITMA          # the natural log function
-RND <= ACAK          # generate random number
+RND <= GULUNGAN          # generate random number
 SGN <= TANDA          # determine the sign
 SIN <= SINUS          # the trigonomic sine function
 SQR <= AKARPANGKATDUA          # the square root function
@@ -62,14 +62,14 @@ TO <= KE            # part of for/to/step/next constructs
 IF <= JIKA            # part of if/then constructs
 THEN <= KEMUDIAN        # part of if/then constructs
 SUB <= SUB          # beware, used as part of "go sub"
-ON <= PADA            # a sort of a switch statement
+ON <= MENGALIHKAN            # a sort of a switch statement
 RETURN <= KEMBALI    # used to exit a subroutine
-STOP <= BERHENTI        # command to stop execution
+STOP <= SELESAI        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= UNTUK          # part of for/to/step/next constructs
+FOR <= DARI          # part of for/to/step/next constructs
 STEP <= MELANGKAH        # part of for/to/step/next constructs
 NEXT <= BERIKUTNYA        # part of for/to/step/next constructs
 

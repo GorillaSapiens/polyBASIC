@@ -37,7 +37,7 @@ COS <= ICOSI          # the trigonomic cosine function
 EXP <= UKUVEZA          # the exponential / power function
 INT <= PHETHE          # the integer / floor function
 LOG <= ISILINGANISOSOGAZIDUZEMI          # the natural log function
-RND <= NGOKUNGALANDELANI          # generate random number
+RND <= QOQA          # generate random number
 SGN <= BHALA          # determine the sign
 SIN <= SINE          # the trigonomic sine function
 SQR <= ISQUAREROOT          # the square root function
@@ -62,14 +62,14 @@ TO <= KWA            # part of for/to/step/next constructs
 IF <= NXA            # part of if/then constructs
 THEN <= KHONA        # part of if/then constructs
 SUB <= INDAWO          # beware, used as part of "go sub"
-ON <= PHEZUKWA            # a sort of a switch statement
+ON <= SHINTSHA            # a sort of a switch statement
 RETURN <= BUYISELAEMUVA    # used to exit a subroutine
-STOP <= IMA        # command to stop execution
+STOP <= KUQEDIWE        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= INGOMANE          # part of for/to/step/next constructs
+FOR <= UKUSUKA          # part of for/to/step/next constructs
 STEP <= GXATHA        # part of for/to/step/next constructs
 NEXT <= OLANDELAYO        # part of for/to/step/next constructs
 

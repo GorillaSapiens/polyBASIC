@@ -37,7 +37,7 @@ COS <= কসইন          # the trigonomic cosine function
 EXP <= কষতকরক          # the exponential / power function
 INT <= পরণসখয          # the integer / floor function
 LOG <= লগরদম          # the natural log function
-RND <= এলমল          # generate random number
+RND <= রল          # generate random number
 SGN <= চহন          # determine the sign
 SIN <= সইন          # the trigonomic sine function
 SQR <= বরগমল          # the square root function
@@ -62,14 +62,14 @@ TO <= পরত            # part of for/to/step/next constructs
 IF <= যদ            # part of if/then constructs
 THEN <= তরপর        # part of if/then constructs
 SUB <= সব          # beware, used as part of "go sub"
-ON <= চল            # a sort of a switch statement
+ON <= সযইচ            # a sort of a switch statement
 RETURN <= পরতযবরতন    # used to exit a subroutine
-STOP <= থমন        # command to stop execution
+STOP <= সমপত        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= জনয          # part of for/to/step/next constructs
+FOR <= থক          # part of for/to/step/next constructs
 STEP <= পদকষপ        # part of for/to/step/next constructs
 NEXT <= পরবরত        # part of for/to/step/next constructs
 

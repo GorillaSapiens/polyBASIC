@@ -37,7 +37,7 @@ COS <= COSINUS          # the trigonomic cosine function
 EXP <= EXPONENTIEL          # the exponential / power function
 INT <= ENTIER          # the integer / floor function
 LOG <= LOGARITHME          # the natural log function
-RND <= ALÉATOIRE          # generate random number
+RND <= ROULEAU          # generate random number
 SGN <= SIGNE          # determine the sign
 SIN <= SINUS          # the trigonomic sine function
 SQR <= RACINECARRÉE          # the square root function
@@ -62,14 +62,14 @@ TO <= POUR            # part of for/to/step/next constructs
 IF <= SI            # part of if/then constructs
 THEN <= ALORS        # part of if/then constructs
 SUB <= SOUS          # beware, used as part of "go sub"
-ON <= SUR            # a sort of a switch statement
+ON <= CHANGER            # a sort of a switch statement
 RETURN <= RETOUR    # used to exit a subroutine
-STOP <= ARRÊT        # command to stop execution
+STOP <= FINI        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= POUR          # part of for/to/step/next constructs
+FOR <= DEPUIS          # part of for/to/step/next constructs
 STEP <= MARCHER        # part of for/to/step/next constructs
 NEXT <= SUIVANT        # part of for/to/step/next constructs
 

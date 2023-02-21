@@ -37,7 +37,7 @@ COS <= COSSENO          # the trigonomic cosine function
 EXP <= EXPONENCIAL          # the exponential / power function
 INT <= INTEIRO          # the integer / floor function
 LOG <= LOGARITMO          # the natural log function
-RND <= ALEATÓRIO          # generate random number
+RND <= ROLAR          # generate random number
 SGN <= SINAL          # determine the sign
 SIN <= SENO          # the trigonomic sine function
 SQR <= RAIZQUADRADA          # the square root function
@@ -62,14 +62,14 @@ TO <= PARA            # part of for/to/step/next constructs
 IF <= SE            # part of if/then constructs
 THEN <= ENTÃO        # part of if/then constructs
 SUB <= SUB          # beware, used as part of "go sub"
-ON <= SOBRE            # a sort of a switch statement
+ON <= TROCAR            # a sort of a switch statement
 RETURN <= RETORNAR    # used to exit a subroutine
-STOP <= PARAR        # command to stop execution
+STOP <= FINALIZADO        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= PARA          # part of for/to/step/next constructs
+FOR <= DE          # part of for/to/step/next constructs
 STEP <= ETAPA        # part of for/to/step/next constructs
 NEXT <= PRÓXIMO        # part of for/to/step/next constructs
 

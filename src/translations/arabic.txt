@@ -37,7 +37,7 @@ COS <= جيبالتمام          # the trigonomic cosine function
 EXP <= متسارع          # the exponential / power function
 INT <= عددصحيح          # the integer / floor function
 LOG <= لوغاريتم          # the natural log function
-RND <= عشوائي          # generate random number
+RND <= لفافة          # generate random number
 SGN <= لافتة          # determine the sign
 SIN <= جيب          # the trigonomic sine function
 SQR <= الجذرالتربيعي          # the square root function
@@ -62,14 +62,14 @@ TO <= ل            # part of for/to/step/next constructs
 IF <= لو            # part of if/then constructs
 THEN <= ثم        # part of if/then constructs
 SUB <= الفرعية          # beware, used as part of "go sub"
-ON <= على            # a sort of a switch statement
+ON <= يحول            # a sort of a switch statement
 RETURN <= يعود    # used to exit a subroutine
-STOP <= قف        # command to stop execution
+STOP <= تمالانتهاءمن        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= ل          # part of for/to/step/next constructs
+FOR <= من          # part of for/to/step/next constructs
 STEP <= خطوة        # part of for/to/step/next constructs
 NEXT <= التالي        # part of for/to/step/next constructs
 

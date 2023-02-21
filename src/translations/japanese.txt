@@ -37,7 +37,7 @@ COS <= 余弦          # the trigonomic cosine function
 EXP <= 指数          # the exponential / power function
 INT <= 整数          # the integer / floor function
 LOG <= 対数          # the natural log function
-RND <= ランダム          # generate random number
+RND <= ロール          # generate random number
 SGN <= サイン          # determine the sign
 SIN <= 正弦          # the trigonomic sine function
 SQR <= 平方根          # the square root function
@@ -62,14 +62,14 @@ TO <= に            # part of for/to/step/next constructs
 IF <= もしも            # part of if/then constructs
 THEN <= それから        # part of if/then constructs
 SUB <= サブ          # beware, used as part of "go sub"
-ON <= の上            # a sort of a switch statement
+ON <= スイッチ            # a sort of a switch statement
 RETURN <= 戻る    # used to exit a subroutine
-STOP <= ストップ        # command to stop execution
+STOP <= 終了した        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= ために          # part of for/to/step/next constructs
+FOR <= から          # part of for/to/step/next constructs
 STEP <= ステップ        # part of for/to/step/next constructs
 NEXT <= 次        # part of for/to/step/next constructs
 
