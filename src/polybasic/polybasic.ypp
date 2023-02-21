@@ -142,6 +142,7 @@ linelist      : line
                   {
                      $$ = $1;
                      $$.next = &$2;
+                     $2.prev = &$$;
                   }
               ;
 
