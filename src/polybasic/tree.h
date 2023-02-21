@@ -8,7 +8,6 @@ typedef struct Tree {
    int line;
    int col;
 
-   int typ;
    int op;
 
    union {
@@ -16,6 +15,7 @@ typedef struct Tree {
       int64_t ival;
       Rational *rval;
       const char *sval;
+      char cval;
    };
 
    struct Tree *left;

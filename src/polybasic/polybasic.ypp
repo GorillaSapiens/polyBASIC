@@ -25,29 +25,25 @@ void yyerror(const char *s) {
 %type <u> line
 %type <u> linelist
 
+%type <u> varname
+%type <u> varlist
+
+%type <u> constant
+%type <u> constlist
+
 %type <u> dconst
 %type <u> iconst
 %type <u> rconst
 %type <u> sconst
 
-%type <u> dexpr
-%type <u> iexpr
-%type <u> rexpr
-%type <u> sexpr
-
-%type <u> varlist
-%type <u> anyvar
-
-%type <u> constlist
-%type <u> anyconst
-
+%type <u> expression
 %type <u> exprlist
-%type <u> anyexpr
 
 %type <u> singlelabel
 %type <u> labellist
 
-%type <u> stmt
+%type <u> statement
+
 %type <u> inputstmt
 %type <u> readstmt
 %type <u> datastmt
@@ -58,11 +54,9 @@ void yyerror(const char *s) {
 %type <u> rem
 
 %type <u> assign
-%type <u> YYDVAR
-%type <u> YYIVAR
-%type <u> YYRVAR
-%type <u> YYSVAR
 %type <u> let
+
+%type <u> relation
 
 
 %locations
@@ -85,12 +79,14 @@ void yyerror(const char *s) {
 %token YYOPTION
 %token YYPRINT
 %token YYRANDOMIZE
+%token YYRAT
 %token YYREAD
 %token YYREM
 %token YYRESTORE
 %token YYRETURN
 %token YYSTEP
 %token YYSTOP
+%token YYSTR
 %token YYSUB
 %token YYTHEN
 %token YYTO
@@ -109,10 +105,7 @@ void yyerror(const char *s) {
 %token YYTAN
 /* and other stuff */
 
-%token YYDVAR
-%token YYSVAR
-%token YYIVAR
-%token YYRVAR
+%token YYVARNAME
 
 %token YYDOUBLE
 %token YYSTRING
@@ -122,17 +115,15 @@ void yyerror(const char *s) {
 %token YYRELATION
 %token YYASSIGN
 
-%token YYPLUSMINUS
-%token YYMULTDIV
-
 %token YYIPSEP
 
 %token YYLABEL
 %token YYEOL
 
-%left YYPLUSMINUS
-%left YYMULTDIV
 %left '+'
+%left '-'
+%left '*'
+%left '/'
 
 %%
 
@@ -154,23 +145,21 @@ linelist      : line
                   }
               ;
 
-line          : singlelabel stmt YYEOL
+line          : singlelabel statement YYEOL
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'l';
                      $$.op = YYEOL;
 
                      $$.sval = strdup($1.sval);
                      $$.left = &$2;
                   }
-              | stmt YYEOL
+              | statement YYEOL
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'l';
                      $$.op = YYEOL;
 
                      $$.sval = NULL;
@@ -178,7 +167,7 @@ line          : singlelabel stmt YYEOL
                   }
               ;
 
-stmt          : assign
+statement     : assign
                   {
                      $$ = $1;
                   }
@@ -226,7 +215,6 @@ rem           : YYREM YYerror
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'l';
                      $$.op = YYREM;
                   }
               ;
@@ -236,7 +224,6 @@ randomize     : YYRANDOMIZE
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'l';
                      $$.op = YYRANDOMIZE;
                   }
               ;
@@ -246,7 +233,6 @@ datastmt    : YYDATA constlist
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
 
-                  $$.typ = 'l';
                   $$.op = YYDATA;
 
                   $$.left = &$2;
@@ -258,7 +244,6 @@ readstmt    : YYREAD varlist
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
 
-                  $$.typ = 'l';
                   $$.op = YYREAD;
 
                   $$.left = &$2;
@@ -270,7 +255,6 @@ printstmt   : YYPRINT exprlist
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
 
-                  $$.typ = 'l';
                   $$.op = YYPRINT;
 
                   $$.left = &$2;
@@ -282,7 +266,6 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYGOTO;
 
                      $$.next = &$3;
@@ -292,7 +275,6 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYGOTO;
 
                      $$.next = &$2;
@@ -302,7 +284,6 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYGOSUB;
 
                      $$.next = &$3;
@@ -312,102 +293,55 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYGOSUB;
 
                      $$.next = &$2;
                   }
-              | YYIF iexpr rexpr iexpr YYTHEN singlelabel
+              | YYIF expression relation expression YYTHEN singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
                      $$.op = YYIF;
-
                      $$.sval = strdup($3.sval);
                      $$.left = &$2;
                      $$.right = &$4;
                      $$.next = &$6;
                   }
-              | YYIF dexpr rexpr dexpr YYTHEN singlelabel
+              | YYON expression YYGO YYTO labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
-                     $$.op = YYIF;
-
-                     $$.sval = strdup($3.sval);
-                     $$.left = &$2;
-                     $$.right = &$4;
-                     $$.next = &$6;
-                  }
-              | YYIF rexpr rexpr rexpr YYTHEN singlelabel
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
-                     $$.op = YYIF;
-
-                     $$.sval = strdup($3.sval);
-                     $$.left = &$2;
-                     $$.right = &$4;
-                     $$.next = &$6;
-                  }
-              | YYIF sexpr rexpr sexpr YYTHEN singlelabel
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
-                     $$.op = YYIF;
-
-                     $$.sval = strdup($3.sval);
-                     $$.left = &$2;
-                     $$.right = &$4;
-                     $$.next = &$6;
-                  }
-              | YYON iexpr YYGO YYTO labellist
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
                      $$.op = YYGOTO;
 
                      $$.left = &$2;
                      $$.right = &$5;
                   }
-              | YYON iexpr YYGOTO labellist
+              | YYON expression YYGOTO labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYGOTO;
 
                      $$.left = &$2;
                      $$.right = &$4;
                   }
-              | YYON iexpr YYGO YYSUB labellist
+              | YYON expression YYGO YYSUB labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYGOSUB;
 
                      $$.left = &$2;
                      $$.right = &$5;
                   }
-              | YYON iexpr YYGOSUB labellist
+              | YYON expression YYGOSUB labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYGOSUB;
 
                      $$.left = &$2;
@@ -418,7 +352,6 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYRETURN;
                   }
               | YYSTOP
@@ -426,7 +359,6 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYSTOP;
                   }
               | YYEND
@@ -434,42 +366,34 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYEND;
                   }
               ;
 
-rexpr         : YYRELATION
+relation      : YYRELATION
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
                      $$.op = YYRELATION;
-
                      $$.sval = strdup(yytext);
                   }
               ;
 
-repeatstmt    : YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr
+repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
                      $$.op = YYFOR;
-
                      $$.sval = strdup($2.sval);
                      $$.left = &$4;
                      $$.right = &$6;
                      $$.next = NULL;
                   }
-              | YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr YYSTEP iexpr
+              | YYFOR varname YYASSIGN expression YYTO expression YYSTEP expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
 
-                     $$.typ = 'L';
                      $$.op = YYFOR;
 
                      $$.sval = strdup($2.sval);
@@ -477,14 +401,11 @@ repeatstmt    : YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr
                      $$.right = &$6;
                      $$.next = &$8;
                   }
-              | YYNEXT YYIVAR
+              | YYNEXT varname
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
                      $$.op = YYNEXT;
-
                      $$.sval = strdup($2.sval);
                   }
               ;
@@ -493,10 +414,7 @@ singlelabel   : YYLABEL
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'L';
                      $$.op = YYLABEL;
-
                      $$.sval = strdup(yytext);
                   }
               ;
@@ -512,36 +430,29 @@ labellist     : singlelabel
                   }
               ;
 
-anyvar         : YYDVAR
-                  {
-                     $$ = $1;
-                  }
-               | YYIVAR
-                  {
-                     $$ = $1;
-                  }
-               | YYRVAR
-                  {
-                     $$ = $1;
-                  }
-               | YYSVAR
-                  {
-                     $$ = $1;
-                  }
-               ;
+varname       : YYVARNAME
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
 
-varlist        : anyvar YYIPSEP varlist
+                  $$.op = YYVARNAME;
+
+                  $$.sval = strdup(yytext);
+               }
+              ;
+
+varlist        : varname YYIPSEP varlist
                   {
                      $$ = $1;
                      $$.next = &$3;
                   }
-               | anyvar
+               | varname
                   {
                      $$ = $1;
                   }
                ;
 
-anyconst       : dconst
+constant       : dconst
                   {
                      $$ = $1;
                   }
@@ -559,550 +470,230 @@ anyconst       : dconst
                   }
                ;
 
-constlist      : anyconst YYIPSEP constlist
+constlist      : constant YYIPSEP constlist
                   {
                      $$ = $1;
                      $$.next = &$3;
                   }
-               | anyconst
+               | constant
                   {
                      $$ = $1;
                   }
                ;
 
-anyexpr        : dexpr
-                  {
-                     $$ = $1;
-                  }
-               | iexpr
-                  {
-                     $$ = $1;
-                  }
-               | rexpr
-                  {
-                     $$ = $1;
-                  }
-               | sexpr
-                  {
-                     $$ = $1;
-                  }
-               ;
-
-exprlist       : anyexpr YYIPSEP exprlist
-                  {
-                     $$ = $1;
-                     $$.next = &$3;
-                  }
-               | anyexpr
-                  {
-                     $$ = $1;
-                  }
-               ;
-
-inputstmt   : YYINPUT varlist
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-
-                  $$.typ = 'l';
-                  $$.op = YYINPUT;
-
-                  $$.left = &$2;
-               }
-            ;
-
-let          : YYLET YYDVAR YYASSIGN dexpr
+expression    : expression '+' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = ';';
-
-                     $$.left = &$2;
-                     $$.right = &$4;
-                  }
-              | YYLET YYRVAR YYASSIGN rexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'r';
-                     $$.op = ';';
-
-                     $$.left = &$2;
-                     $$.right = &$4;
-                  }
-              | YYLET YYSVAR YYASSIGN sexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 's';
-                     $$.op = ';';
-
-                     $$.left = &$2;
-                     $$.right = &$4;
-                  }
-              | YYLET YYIVAR YYASSIGN iexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = ';';
-
-                     $$.left = &$2;
-                     $$.right = &$4;
-                  }
-              ;
-
-assign        : YYDVAR YYASSIGN dexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = ':';
-
+                     $$.op = '+';
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | YYRVAR YYASSIGN rexpr
+              | expression '-' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'r';
-                     $$.op = ':';
-
+                     $$.op = '-';
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | YYSVAR YYASSIGN sexpr
+              | expression '*' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 's';
-                     $$.op = ':';
-
+                     $$.op = '*';
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              | YYIVAR YYASSIGN iexpr
+              | expression '/' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = ':';
-
+                     $$.op = '/';
                      $$.left = &$1;
                      $$.right = &$3;
                   }
-              ;
-
-dexpr         : YYABS '(' dexpr ')'
+              | '(' expression ')'
+                  {
+                     $$ = $2;
+                  }
+              | YYABS '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
                      $$.op = YYABS;
-
+                     $$.left = &$3;
+                  }
+              | YYATN '(' expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYATN;
+                     $$.left = &$3;
+                  }
+              | YYCOS '(' expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYCOS;
+                     $$.left = &$3;
+                  }
+              | YYEXP '(' expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYEXP;
+                     $$.left = &$3;
+                  }
+              | YYLOG '(' expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYLOG;
                      $$.left = &$3;
                   }
               | YYRND '(' ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
                      $$.op = YYRND;
                   }
-              | YYATN '(' dexpr ')'
+              | YYSGN '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = YYATN;
-
+                     $$.op = YYSGN;
                      $$.left = &$3;
                   }
-              | YYCOS '(' dexpr ')'
+              | YYSIN '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = YYCOS;
-
-                     $$.left = &$3;
-                  }
-              | YYEXP '(' dexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = YYEXP;
-
-                     $$.left = &$3;
-                  }
-              | YYLOG '(' dexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = YYLOG;
-
-                     $$.left = &$3;
-                  }
-              | YYSIN '(' dexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
                      $$.op = YYSIN;
-
                      $$.left = &$3;
                   }
-              | YYSQR '(' dexpr ')'
+              | YYSQR '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
                      $$.op = YYSQR;
-
                      $$.left = &$3;
                   }
-              | YYTAN '(' dexpr ')'
+              | YYTAN '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
                      $$.op = YYTAN;
-
                      $$.left = &$3;
                   }
-              | YYDBL '(' iexpr ')'
+              | YYDBL '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
                      $$.op = YYDBL;
-
                      $$.left = &$3;
                   }
-              | YYDBL '(' rexpr ')'
+              | YYINT '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = YYDBL;
-
-                     $$.left = &$3;
-                  }
-              | YYDBL '(' sexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = YYDBL;
-
-                     $$.left = &$3;
-                  }
-              | dexpr YYPLUSMINUS dexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = yytext[0];
-
-                     $$.left = &$1;
-                     $$.right = &$3;
-                  }
-              | dexpr YYMULTDIV dexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = yytext[0];
-
-                     $$.left = &$1;
-                     $$.right = &$3;
-                  }
-              | '(' dexpr ')'
-                  {
-                     $$ = $2;
-                  }
-              | YYDVAR
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = '!';
-                     $$.op = '=';
-
-                     $$.sval = strdup(yytext);
-                  }
-              | dconst
-                  {
-                     $$ = $1;
-                  }
-              ;
-
-dconst        : YYDOUBLE
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'd';
-                     $$.op = '!';
-
-                     $$.dval = atof(yytext);
-                  }
-
-
-rexpr         : YYABS '(' rexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'r';
-                     $$.op = YYABS;
-
-                     $$.left = &$3;
-                  }
-              | rexpr YYPLUSMINUS rexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'r';
-                     $$.op = yytext[0];
-
-                     $$.left = &$1;
-                     $$.right = &$3;
-                  }
-              | rexpr YYMULTDIV rexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'r';
-                     $$.op = yytext[0];
-
-                     $$.left = &$1;
-                     $$.right = &$3;
-                  }
-              | '(' rexpr ')'
-                  {
-                     $$ = $2;
-                  }
-              | YYRVAR
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'r';
-                     $$.op = '=';
-
-                     $$.sval = strdup(yytext);
-                  }
-              | rconst
-                  {
-                     $$ = $1;
-                  }
-              ;
-
-rconst        : YYRATIONAL
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'r';
-                     $$.op = '!';
-
-                     $$.rval = new Rational(yytext);
-                  }
-
-iexpr         : YYABS '(' iexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = YYABS;
-
-                     $$.left = &$3;
-                  }
-              | YYINT '(' dexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
                      $$.op = YYINT;
-
                      $$.left = &$3;
                   }
-              | YYINT '(' rexpr ')'
+              | YYRAT '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = YYINT;
-
+                     $$.op = YYRAT;
                      $$.left = &$3;
                   }
-              | YYINT '(' sexpr ')'
+              | YYSTR '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = YYINT;
-
+                     $$.op = YYSTR;
                      $$.left = &$3;
                   }
-              | YYSGN '(' iexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = YYSGN;
-
-                     $$.left = &$3;
-                  }
-              | YYSGN '(' dexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = YYSGN;
-
-                     $$.left = &$3;
-                  }
-              | YYSGN '(' rexpr ')'
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = YYSGN;
-
-                     $$.left = &$3;
-                  }
-              | iexpr YYPLUSMINUS iexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = yytext[0];
-
-                     $$.left = &$1;
-                     $$.right = &$3;
-                  }
-              | iexpr YYMULTDIV iexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = yytext[0];
-
-                     $$.left = &$1;
-                     $$.right = &$3;
-                  }
-              | '(' iexpr ')'
-                  {
-                     $$ = $2;
-                  }
-              | YYIVAR
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = '=';
-
-                     $$.sval = strdup(yytext);
-                  }
-              | iconst
+              | constant
                   {
                      $$ = $1;
                   }
               ;
 
-iconst        : YYINTEGER
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 'i';
-                     $$.op = '!';
-
-                     $$.ival = atoll(yytext);
-                  }
-
-sexpr         : sexpr '+' sexpr
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 's';
-                     $$.op = '+';
-
-                     $$.left = &$1;
-                     $$.right = &$3;
-                  }
-              | '(' sexpr ')'
-                  {
-                     $$ = $2;
-                  }
-              | YYSVAR
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-
-                     $$.typ = 's';
-                     $$.op = '=';
-
-                     $$.sval = strdup(yytext);
-                  }
-              | sconst
-                  {
-                     $$ = $1;
-                  }
+exprlist      : expression YYIPSEP exprlist
+                 {
+                    $$ = $1;
+                    $$.next = &$3;
+                 }
+              | expression
+                 {
+                    $$ = $1;
+                 }
               ;
 
-sconst        : YYSTRING
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
+inputstmt     : YYINPUT varlist
+                 {
+                    $$.line = yylineno;
+                    $$.col = yyloc.first_column;
+                    $$.op = YYINPUT;
+                    $$.left = &$2;
+               }
+            ;
 
-                     $$.typ = 's';
-                     $$.op = '!';
+let         : YYLET varname YYASSIGN expression
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYLET;
+                  $$.left = &$2;
+                  $$.right = &$4;
+               }
+            ;
 
-                     $$.sval = strdup(yytext);
-                  }
+assign      : varname YYASSIGN expression
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYASSIGN;
+                  $$.left = &$1;
+                  $$.right = &$3;
+               }
+            ;
 
+dconst      : YYDOUBLE
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYDOUBLE;
+                  $$.dval = atof(yytext);
+               }
+            ;
 
+iconst      : YYINTEGER
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYINTEGER;
+                  $$.ival = atoll(yytext);
+               }
+            ;
+
+rconst      : YYRATIONAL
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYRATIONAL;
+                  $$.rval = new Rational(yytext);
+               }
+            ;
+
+sconst      : YYSTRING
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYSTRING;
+                  $$.sval = strdup(yytext);
+               }
+            ;
 %%
 

@@ -54,6 +54,7 @@ R_FULL      [#][+-]?[0-9]+['][0-9]+[/][1-9][0-9]*
 RATIONAL    {R_ZERO}|{R_INT}|{R_ZFRAC}|{R_FRAC}|{R_FULL}
 
 INTEGER  ([+-]?[0-9]+)
+
 DOUBLE   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 
 /* ECMA-55 §4.2 */
@@ -67,24 +68,18 @@ RELATION (==|<>|<|>|>=|<=)
 ASSIGN ":="
 
 /* any single character passed straight up to bison */
-PAREN [()]
-
-PLUSMINUS [-+]
-
-MULTDIV [*/]
+SINGLE [-+*/()]
 
 IPSEP [,;]
 
 /* any valid multicharacter thing */
-DVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*
-IVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[%]
-RVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[#]
-SVAR     [\p{Letter}]([\p{Letter}\p{Number}_])*[\$]
+VARNAME  [\p{Letter}]([\p{Letter}\p{Number}_])*
 
 LABEL    ((^[\p{Letter}]([\p{Letter}\p{Number}_])*:)|(^[0-9]+[: \t]))
 
-/* any single character appearing by iteslf */
-RUNE     [!#$%&',;?^_.]
+// unused
+// /* any single character appearing by iteslf */
+// RUNE     [!#$%&',;?^_.]
 
 EOL      [\r\n]{1,2}
 
@@ -92,27 +87,9 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{RVAR}      {
-               enum yytokentype ret = is_reserved_varname('#',  yytext, YYRVAR);
-               DEBUG("RVAR='%s' %d\n", yytext, ret);
-               return ret;
-            }
-
-{SVAR}      {
-               enum yytokentype ret = is_reserved_varname('$',  yytext, YYSVAR);
-               DEBUG("SVAR='%s' %d\n", yytext, ret);
-               return ret;
-            }
-
-{IVAR}      {
-               enum yytokentype ret = is_reserved_varname('%',  yytext, YYIVAR);
-               DEBUG("IVAR='%s' %d\n", yytext, ret);
-               return ret;
-            }
-
-{DVAR}      {
-               enum yytokentype ret = is_reserved_varname('\0', yytext, YYDVAR);
-               DEBUG("DVAR='%s' %d\n", yytext, ret);
+{VARNAME}   {
+               enum yytokentype ret = is_reserved_varname('\0', yytext, YYVARNAME);
+               DEBUG("VARNAME='%s' %d\n", yytext, ret);
                return ret;
             }
 
@@ -158,19 +135,9 @@ EOL      [\r\n]{1,2}
                DEBUG("LABEL = '%s' %d\n", yytext, ret);
             }
 
-{PAREN}     {
+{SINGLE}     {
                DEBUG("token = '%s' %d\n", yytext, yytext[0]);
                return yytext[0];
-            }
-
-{PLUSMINUS} {
-               DEBUG("token = '%s' %d\n", yytext, YYPLUSMINUS);
-               return YYPLUSMINUS;
-            }
-
-{MULTDIV}   {
-               DEBUG("token = '%s' %d\n", yytext, YYMULTDIV);
-               return YYMULTDIV;
             }
 
 {IPSEP}     {
