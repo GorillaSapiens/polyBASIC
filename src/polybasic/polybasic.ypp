@@ -18,6 +18,10 @@ void yyerror(const char *s){}
    Tree u;
 }
 
+%type <u> program
+%type <u> line
+%type <u> linelist
+
 %type <u> dconst
 %type <u> iconst
 %type <u> rconst
@@ -48,6 +52,7 @@ void yyerror(const char *s){}
 %type <u> repeatstmt
 %type <u> controlstmt
 %type <u> randomize
+%type <u> rem
 
 %type <u> assign
 %type <u> YYDVAR
@@ -130,27 +135,43 @@ void yyerror(const char *s){}
 
 program       : linelist
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     // mischief managed!
+                     $$ = $1;
                   }
               ;
 
 linelist      : line
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | line linelist
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
+                     $$.next = &$2;
                   }
               ;
 
-line          : YYLABEL stmt YYEOL
+line          : singlelabel stmt YYEOL
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'l';
+                     $$.op = YYEOL;
+
+                     $$.sval = strdup($1.sval);
+                     $$.left = &$2;
                   }
               | stmt YYEOL
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'l';
+                     $$.op = YYEOL;
+
+                     $$.sval = NULL;
+                     $$.left = &$1;
                   }
               ;
 
@@ -192,13 +213,18 @@ stmt          : assign
                   }
               | rem
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               ;
 
-rem           : YYREM
+// TODO FIX
+rem           : YYREM YYerror
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'l';
+                     $$.op = YYREM;
                   }
               ;
 
