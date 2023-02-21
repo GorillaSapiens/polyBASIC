@@ -32,7 +32,7 @@ polybasic.tab.cpp: polybasic.ypp
 	$(bison) -Wcounterexamples -H polybasic.ypp
 
 lex.yy.cpp: polybasic.l polybasic.tab.hpp
-	$(reflex) --flex --bison --header-file=lex.yy.hpp polybasic.l
+	$(reflex) --yy --header-file=lex.yy.hpp polybasic.l
 
 .PHONY: clean
 clean:

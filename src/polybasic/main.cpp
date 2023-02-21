@@ -8,7 +8,7 @@
 #include "tree.h"
 #include "polybasic.tab.hpp"
 
-FILE *yyin = NULL;
+extern FILE *yyin;
 
 // some reserved words and their tokens
 static const struct {

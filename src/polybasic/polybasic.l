@@ -1,8 +1,3 @@
-%option flex
-%option bison
-%option unicode
-%option yylineno
-
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +32,14 @@ enum yytokentype is_reserved_word(const char *a);
 #define DEBUG printf
 %}
 
-WHITESPACE  [ \t]
+%option flex
+%option bison
+%option unicode
+%option yylineno
+
+
+
+WHITESPACE  [ \t]+
 
 /* ECMA-55 §6 */
 /* definition of "constant" from page 7 of the ECMA-55 document */
@@ -177,7 +179,7 @@ EOL      [\r\n]{1,2}
             }
 
 {EOL}       {
-               DEBUG("token = '%s' %d\n", yytext, YYEOL);
+               DEBUG("token = 'EOL' %d\n", YYEOL);
                return YYEOL;
              }
 

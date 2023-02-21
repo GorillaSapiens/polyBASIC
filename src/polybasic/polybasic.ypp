@@ -8,7 +8,9 @@
 #include "lex.yy.hpp"
 
 // TODO FIX why do we neeed this, shouldn't this be in a skeleton somewhere?
-void yyerror(const char *s){}
+void yyerror(const char *s) {
+   printf("yyerror: %s %d %s\n", s, yylineno, yytext);
+}
 
 #define DEBUG
 
