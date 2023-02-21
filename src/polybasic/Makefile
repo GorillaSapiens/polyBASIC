@@ -53,6 +53,7 @@ clean:
 	rm -f lex.yy.cpp lex.yy.hpp
 	rm -f polybasic.tab.cpp polybasic.tab.hpp
 	rm -f polybasic
+	rm -f mapping.h mapping2.h mapping3.h
 	rm -f $(OBJECTS)
 
 %.o : %.cpp
