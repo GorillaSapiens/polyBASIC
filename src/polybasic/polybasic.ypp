@@ -158,7 +158,7 @@ linelist      : line
               | line linelist
                   {
                      $$ = $1;
-                     $$.right = copytree(&$2);
+                     $$.next = copytree(&$2);
                   }
               ;
 
