@@ -42,7 +42,7 @@ mapping2.h: mapping.h
 	sed "s/enum yytokentype/int/g" mapping.h > mapping2.h
 
 mapping3.h: mapping3.pl polybasic.ypp
-	./mapping3.pl < polybasic.ypp > mapping3.h
+	./mapping3.pl < polybasic.ypp | uniq > mapping3.h
 
 main.o: mapping.h
 

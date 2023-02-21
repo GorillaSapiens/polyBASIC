@@ -40,6 +40,7 @@ void yyerror(const char *s) {
 %type <u> expression
 %type <u> exprlist
 
+%type <u> blabel
 %type <u> singlelabel
 %type <u> labellist
 
@@ -119,6 +120,7 @@ void yyerror(const char *s) {
 %token YYIPSEP
 
 %token YYLABEL
+%token YYBLABEL
 %token YYEOL
 
 %left '+'
@@ -144,25 +146,18 @@ linelist      : line
                   {
                      $$ = $1;
                      $$.next = &$2;
-                     //$2.prev = &$$;
                   }
               ;
 
-line          : singlelabel statement YYEOL
+line          : statement YYEOL
                   {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYEOL;
-                     $$.sval = strdup($1.sval);
-                     //$$.left = &$2;
+                     $$ = $1;
+                     $$.label = NULL;
                   }
-              | statement YYEOL
+              | blabel statement YYEOL
                   {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYEOL;
-                     $$.sval = NULL;
-                     //$$.left = &$1;
+                     $$ = $2;
+                     $$.label = strdup($1.label);
                   }
               ;
 
@@ -369,7 +364,7 @@ repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
                      $$.sval = strdup($2.sval);
                      $$.left = &$4;
                      $$.right = &$6;
-                     $$.next = &$8;
+                     $$.middle = &$8;
                   }
               | YYNEXT varname
                   {
@@ -386,6 +381,16 @@ singlelabel   : YYLABEL
                      $$.col = yyloc.first_column;
                      $$.op = YYLABEL;
                      $$.sval = strdup(yytext);
+                     $$.label = strdup(yytext);
+                  }
+              ;
+
+blabel        : YYBLABEL
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYBLABEL;
+                     $$.label = strdup(yytext);
                   }
               ;
 

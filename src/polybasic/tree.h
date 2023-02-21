@@ -9,6 +9,7 @@ typedef struct Tree {
    int col;
 
    int op;
+   const char *label;
 
    union {
       double dval;
@@ -19,7 +20,9 @@ typedef struct Tree {
    };
 
    struct Tree *left;
+   struct Tree *middle;
    struct Tree *right;
+
    struct Tree *next;
 } Tree;
 

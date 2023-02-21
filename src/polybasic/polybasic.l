@@ -29,8 +29,8 @@ int is_reserved_label(const char *a);
 enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype retval);
 enum yytokentype is_reserved_word(const char *a);
 
-//#define DEBUG printf
-#define DEBUG
+#define DEBUG printf
+//#define DEBUG
 %}
 
 %option flex
@@ -76,7 +76,9 @@ IPSEP [,;]
 /* any valid multicharacter thing */
 VARNAME  [\p{Letter}]([\p{Letter}\p{Number}_])*
 
-LABEL    ((^[\p{Letter}]([\p{Letter}\p{Number}_])*:)|(^[0-9]+[: \t]))
+LABEL    (([\p{Letter}]([\p{Letter}\p{Number}_])*[:])|([0-9]+[:]?))
+
+BLABEL   (^([\p{Letter}]([\p{Letter}\p{Number}_])*[:])|^([0-9]+[:]?))
 
 // unused
 // /* any single character appearing by iteslf */
@@ -85,6 +87,18 @@ LABEL    ((^[\p{Letter}]([\p{Letter}\p{Number}_])*:)|(^[0-9]+[: \t]))
 EOL      [\r\n]{1,2}
 
 %%
+
+{BLABEL}    {
+               enum yytokentype ret;
+               if (!is_reserved_label(yytext)) {
+                  ret = YYBLABEL;
+               }
+               else {
+                  ret = YYerror;
+               }
+               DEBUG("BLABEL = '%s' %d\n", yytext, ret);
+               return ret;
+            }
 
 {WHITESPACE} { /* ignore */ }
 
@@ -134,6 +148,7 @@ EOL      [\r\n]{1,2}
                   ret = YYerror;
                }
                DEBUG("LABEL = '%s' %d\n", yytext, ret);
+               return ret;
             }
 
 {SINGLE}     {
