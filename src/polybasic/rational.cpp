@@ -305,30 +305,30 @@ bool Rational::operator >= (const Rational &other) {
    return (l >= r);
 }
 
-void Rational::print(void) {
-   printf("#%c%ld'%ld/%ld", sign > 0 ? '+' : '-', whl, labs(num), labs(den));
+void Rational::print(char *buf) {
+   sprintf(buf, "#%c%ld'%ld/%ld", sign > 0 ? '+' : '-', whl, labs(num), labs(den));
 }
 
-void Rational::prettyprint(void) {
+void Rational::prettyprint(char *buf) {
    if (whl == 0 && num == 0) {
-      printf("#0");
+      sprintf(buf, "#0");
       return;
    }
    if (sign < 0) {
-      printf("#-");
+      sprintf(buf, "#-");
    }
    else {
-      printf("#");
+      sprintf(buf, "#");
    }
    if (num == 0) {
-      printf("%ld", whl);
+      sprintf(buf + strlen(buf), "%ld", whl);
       return;
    }
    if (whl == 0) {
-      printf("%ld/%ld", num, den);
+      sprintf(buf + strlen(buf), "%ld/%ld", num, den);
       return;
    }
-   printf("%ld'%ld/%ld", whl, num, den);
+   sprintf(buf + strlen(buf), "%ld'%ld/%ld", whl, num, den);
 }
 
 Rational::operator double() const {

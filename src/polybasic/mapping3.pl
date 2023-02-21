@@ -24,7 +24,10 @@ while (<>) {
          printf("if (!strcmp(opname, \"$op\")) { printf(\"dval=%%f\\n\", root->dval); }\n");
       }
       if ($_ eq "rval") {
-         printf("if (!strcmp(opname, \"$op\")) { printf(\"rval=\"); root->rval->print(); printf(\"\\n\");}\n");
+         printf("if (!strcmp(opname, \"$op\")) {\n");
+         printf("   char buf[1024];\n");
+         printf("   root->rval->print(buf);\n");
+         printf("   printf(\"rval=\\\"%%s\\\"\\n\", buf); }\n");
       }
    }
 }

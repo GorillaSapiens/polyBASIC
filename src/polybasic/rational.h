@@ -51,8 +51,8 @@ class Rational {
       bool operator > (const Rational &other);
       bool operator <= (const Rational &other);
       bool operator >= (const Rational &other);
-      void print(void);
-      void prettyprint(void);
+      void print(char *buf);
+      void prettyprint(char *buf);
       operator double() const;
 };
 
