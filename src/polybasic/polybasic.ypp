@@ -46,6 +46,7 @@ void yyerror(const char *s){}
 %type <u> printstmt
 %type <u> repeatstmt
 %type <u> controlstmt
+%type <u> randomize
 
 %type <u> assign
 %type <u> YYDVAR
@@ -202,7 +203,11 @@ rem           : YYREM
 
 randomize     : YYRANDOMIZE
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'l';
+                     $$.op = YYRANDOMIZE;
                   }
               ;
 
