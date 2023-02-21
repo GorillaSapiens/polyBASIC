@@ -40,6 +40,7 @@ void yyerror(const char *s){}
 %type <u> singlelabel
 %type <u> labellist
 
+%type <u> stmt
 %type <u> inputstmt
 %type <u> readstmt
 %type <u> datastmt
@@ -155,39 +156,39 @@ line          : YYLABEL stmt YYEOL
 
 stmt          : assign
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | let
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | controlstmt
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | datastmt
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | repeatstmt
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | printstmt
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | inputstmt
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | readstmt
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | randomize
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$ = $1;
                   }
               | rem
                   {
