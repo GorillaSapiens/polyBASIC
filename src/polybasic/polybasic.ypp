@@ -37,14 +37,15 @@ void yyerror(const char *s){}
 %type <u> exprlist
 %type <u> anyexpr
 
+%type <u> singlelabel
 %type <u> labellist
-%type <u> YYLABEL
 
 %type <u> inputstmt
 %type <u> readstmt
 %type <u> datastmt
 %type <u> printstmt
 %type <u> repeatstmt
+%type <u> controlstmt
 
 %type <u> assign
 %type <u> YYDVAR
@@ -241,35 +242,59 @@ printstmt   : YYPRINT exprlist
                }
             ;
 
-controlstmt   : YYGO YYTO YYLABEL
+controlstmt   : YYGO YYTO singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOTO;
+
+                     $$.next = &$3;
                   }
-              | YYGOTO YYLABEL
+              | YYGOTO singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOTO;
+
+                     $$.next = &$2;
                   }
-              | YYGO YYSUB YYLABEL
+              | YYGO YYSUB singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOSUB;
+
+                     $$.next = &$3;
                   }
-              | YYGOSUB YYLABEL
+              | YYGOSUB singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOSUB;
+
+                     $$.next = &$2;
                   }
               | YYIF iexpr YYRELATION iexpr YYTHEN YYLABEL
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF dexpr YYRELATION dexpr YYTHEN YYLABEL
+              | YYIF dexpr YYRELATION dexpr YYTHEN singlelabel
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF rexpr YYRELATION rexpr YYTHEN YYLABEL
+              | YYIF rexpr YYRELATION rexpr YYTHEN singlelabel
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
-              | YYIF sexpr YYRELATION sexpr YYTHEN YYLABEL
+              | YYIF sexpr YYRELATION sexpr YYTHEN singlelabel
                   {
                      DEBUG("%s:%d\n", __FILE__, __LINE__);
                   }
@@ -291,15 +316,27 @@ controlstmt   : YYGO YYTO YYLABEL
                   }
               | YYRETURN
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYRETURN;
                   }
               | YYSTOP
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYSTOP;
                   }
               | YYEND
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYEND;
                   }
               ;
 
@@ -341,7 +378,7 @@ repeatstmt    : YYFOR YYIVAR YYASSIGN iexpr YYTO iexpr
                   }
               ;
 
-labellist     : YYLABEL
+singlelabel   : YYLABEL
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -351,7 +388,13 @@ labellist     : YYLABEL
 
                      $$.sval = strdup(yytext);
                   }
-              | labellist YYLABEL
+              ;
+
+labellist     : singlelabel
+                  {
+                     $$ = $1;
+                  }
+              | labellist singlelabel
                   {
                      $$ = $1;
                      $$.next = &$2;
