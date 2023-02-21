@@ -13,6 +13,7 @@ OBJECTS= \
    main.o \
    rational.o \
    dumptree.o \
+   runtime_vars.o \
    polybasic.tab.o
 
 INCDIRS= \
