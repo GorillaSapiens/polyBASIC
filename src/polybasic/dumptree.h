@@ -3,6 +3,6 @@
 
 #include "tree.h"
 
-void dump_tree(Tree *root);
+void dumptree(Tree *root);
 
 #endif

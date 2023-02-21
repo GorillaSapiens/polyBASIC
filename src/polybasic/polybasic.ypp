@@ -29,6 +29,7 @@ Tree *emptytree(void) {
 
 #define DEBUG
 
+Tree *programtree;
 %}
 
 %union {
@@ -147,7 +148,7 @@ program       : linelist
                   {
                      // mischief managed!
                      $$ = $1;
-                     dump_tree(&$$);
+                     programtree = copytree(&$$);
                   }
               ;
 

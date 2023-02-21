@@ -6,6 +6,7 @@
 #include <errno.h>
 
 #include "tree.h"
+#include "dumptree.h"
 #include "polybasic.tab.hpp"
 #include "mapping.h"
 
@@ -210,10 +211,18 @@ int main(int argc, char **argv) {
       yyin = in;
    }
 
-   yyparse();
+   int parser_result = yyparse();
 
    if (in) {
       fclose(in);
+   }
+
+   if (parser_result) {
+      printf("failure\n");
+   }
+   else {
+      extern Tree *programtree;
+      dumptree(programtree);
    }
 }
 

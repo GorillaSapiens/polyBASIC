@@ -4,15 +4,20 @@
 
 #include "mapping2.h"
 
-void dump_tree(Tree *root) {
+void dumptree(Tree *root) {
    const char *opname = NULL;
 
-    for (int i = 0; reserved[i].name; i++) {
-       if (reserved[i].token == root->op) {
-          opname = reserved[i].name;
-          break;
-       }
-    }
+   if (!root) {
+      printf("root=<nil>\n");
+      return;
+   }
+
+   for (int i = 0; reserved[i].name; i++) {
+      if (reserved[i].token == root->op) {
+         opname = reserved[i].name;
+         break;
+      }
+   }
 
    if (opname) {
       printf("%p :: line %d col %d, op=%s(%d)\n", root, root->line, root->col, opname ? opname : "<nil>", root->op);
@@ -33,9 +38,9 @@ if (opname) {
    printf("   next =%p\n", root->next);
    printf("=====\n");
 
-   if (root->left) { dump_tree(root->left); }
-   if (root->middle) { dump_tree(root->middle); }
-   if (root->right) { dump_tree(root->right); }
-   if (root->next) { dump_tree(root->next); }
-   //if (root->prev) { dump_tree(root->prev); }
+   if (root->left) { dumptree(root->left); }
+   if (root->middle) { dumptree(root->middle); }
+   if (root->right) { dumptree(root->right); }
+   if (root->next) { dumptree(root->next); }
+   //if (root->prev) { dumptree(root->prev); }
 }
