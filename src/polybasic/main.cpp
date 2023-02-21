@@ -7,52 +7,9 @@
 
 #include "tree.h"
 #include "polybasic.tab.hpp"
+#include "mapping.h"
 
 extern FILE *yyin;
-
-// some reserved words and their tokens
-static const struct {
-   const char *name;
-   enum yytokentype token;
-} reserved[] = {
-   { "BASE", YYBASE },
-   { "DATA", YYDATA },
-   { "DEF", YYDEF },
-   { "DIM", YYDIM },
-   { "END", YYEND },
-   { "FOR", YYFOR },
-   { "GO", YYGO },
-   { "GOSUB", YYGOSUB },
-   { "GOTO", YYGOTO },
-   { "IF", YYIF },
-   { "INPUT", YYINPUT },
-   { "LET", YYLET },
-   { "NEXT", YYNEXT },
-   { "ON", YYON },
-   { "OPTION", YYOPTION },
-   { "PRINT", YYPRINT },
-   { "RANDOMIZE", YYRANDOMIZE },
-   { "READ", YYREAD },
-   { "REM", YYREM },
-   { "RESTORE", YYRESTORE },
-   { "RETURN", YYRETURN },
-   { "STEP", YYSTEP },
-   { "STOP", YYSTOP },
-   { "SUB", YYSUB },
-   { "THEN", YYTHEN },
-   { "TO", YYTO },
-   { "ABS", YYABS },
-   { "ATN", YYATN },
-   { "COS", YYCOS },
-   { "EXP", YYEXP },
-   { "INT", YYINT },
-   { "LOG", YYLOG },
-   { "RND", YYRND },
-   { "SGN", YYSGN },
-   { "SIN", YYSIN },
-   { "SQR", YYSQR },
-   { "TAN", YYTAN }
-};
 
 // a simple linked list of tuples
 // because i'm lazy,
@@ -105,7 +62,7 @@ enum yytokentype is_reserved_word(const char *a) {
 
    // now see if there are any matches
    for (int i = 0; i < (sizeof(reserved)/sizeof(reserved[0])); i++) {
-      if (!strcmp(reserved[i].name, proper ? proper : a)) {
+      if (reserved[i].name && !strcmp(reserved[i].name, proper ? proper : a)) {
          return reserved[i].token;
       }
    }

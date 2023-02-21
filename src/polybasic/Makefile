@@ -12,6 +12,7 @@ OBJECTS= \
    eprintf.o \
    main.o \
    rational.o \
+   dumptree.o \
    polybasic.tab.o
 
 INCDIRS= \
@@ -33,6 +34,19 @@ polybasic.tab.cpp: polybasic.ypp
 
 lex.yy.cpp: polybasic.l polybasic.tab.hpp
 	$(reflex) --yy --header-file=lex.yy.hpp polybasic.l
+
+mapping.h: mapping.pl polybasic.tab.hpp
+	./mapping.pl < polybasic.tab.hpp > mapping.h
+
+mapping2.h: mapping.h
+	sed "s/enum yytokentype/int/g" mapping.h > mapping2.h
+
+mapping3.h: mapping3.pl polybasic.ypp
+	./mapping3.pl < polybasic.ypp > mapping3.h
+
+main.o: mapping.h
+
+dumptree.o: mapping2.h mapping3.h
 
 .PHONY: clean
 clean:

@@ -5,6 +5,7 @@
 
 #include "rational.h"
 #include "tree.h"
+#include "dumptree.h"
 #include "lex.yy.hpp"
 #include "safe_strdup.h"
 
@@ -131,6 +132,7 @@ program       : linelist
                   {
                      // mischief managed!
                      $$ = $1;
+                     dump_tree(&$$);
                   }
               ;
 
@@ -142,7 +144,7 @@ linelist      : line
                   {
                      $$ = $1;
                      $$.next = &$2;
-                     $2.prev = &$$;
+                     //$2.prev = &$$;
                   }
               ;
 
@@ -150,21 +152,17 @@ line          : singlelabel statement YYEOL
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYEOL;
-
                      $$.sval = strdup($1.sval);
-                     $$.left = &$2;
+                     //$$.left = &$2;
                   }
               | statement YYEOL
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYEOL;
-
                      $$.sval = NULL;
-                     $$.left = &$1;
+                     //$$.left = &$1;
                   }
               ;
 
@@ -215,7 +213,6 @@ rem           : YYREM YYerror
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYREM;
                   }
               ;
@@ -224,7 +221,6 @@ randomize     : YYRANDOMIZE
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYRANDOMIZE;
                   }
               ;
@@ -233,9 +229,7 @@ datastmt    : YYDATA constlist
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
-
                   $$.op = YYDATA;
-
                   $$.left = &$2;
                }
             ;
@@ -244,9 +238,7 @@ readstmt    : YYREAD varlist
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
-
                   $$.op = YYREAD;
-
                   $$.left = &$2;
                }
             ;
@@ -255,9 +247,7 @@ printstmt   : YYPRINT exprlist
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
-
                   $$.op = YYPRINT;
-
                   $$.left = &$2;
                }
             ;
@@ -266,36 +256,28 @@ controlstmt   : YYGO YYTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOTO;
-
                      $$.next = &$3;
                   }
               | YYGOTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOTO;
-
                      $$.next = &$2;
                   }
               | YYGO YYSUB singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOSUB;
-
                      $$.next = &$3;
                   }
               | YYGOSUB singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOSUB;
-
                      $$.next = &$2;
                   }
               | YYIF expression relation expression YYTHEN singlelabel
@@ -312,9 +294,7 @@ controlstmt   : YYGO YYTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOTO;
-
                      $$.left = &$2;
                      $$.right = &$5;
                   }
@@ -322,9 +302,7 @@ controlstmt   : YYGO YYTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOTO;
-
                      $$.left = &$2;
                      $$.right = &$4;
                   }
@@ -332,9 +310,7 @@ controlstmt   : YYGO YYTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOSUB;
-
                      $$.left = &$2;
                      $$.right = &$5;
                   }
@@ -342,9 +318,7 @@ controlstmt   : YYGO YYTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYGOSUB;
-
                      $$.left = &$2;
                      $$.right = &$4;
                   }
@@ -352,21 +326,18 @@ controlstmt   : YYGO YYTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYRETURN;
                   }
               | YYSTOP
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYSTOP;
                   }
               | YYEND
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYEND;
                   }
               ;
@@ -394,9 +365,7 @@ repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-
                      $$.op = YYFOR;
-
                      $$.sval = strdup($2.sval);
                      $$.left = &$4;
                      $$.right = &$6;
@@ -435,9 +404,7 @@ varname       : YYVARNAME
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
-
                   $$.op = YYVARNAME;
-
                   $$.sval = strdup(yytext);
                }
               ;
