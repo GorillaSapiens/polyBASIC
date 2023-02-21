@@ -6,6 +6,7 @@
 #include "rational.h"
 #include "tree.h"
 #include "lex.yy.hpp"
+#include "safe_strdup.h"
 
 // TODO FIX why do we neeed this, shouldn't this be in a skeleton somewhere?
 void yyerror(const char *s) {
