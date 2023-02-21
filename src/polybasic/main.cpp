@@ -93,8 +93,8 @@ enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype
 }
 
 int is_reserved_label(const char *a) {
-   // we trust the parser if there is no colon
-   if (!strchr(a, ':')) {
+   // we trust the parser if there is no pipe
+   if (!strchr(a, '|')) {
       return 0;
    }
 

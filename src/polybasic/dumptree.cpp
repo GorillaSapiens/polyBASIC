@@ -20,7 +20,7 @@ void dump_tree(Tree *root) {
    else {
       printf("%p :: line %d col %d, op=%c(%d)\n", root, root->line, root->col, root->op, root->op);
    }
-   printf("   label:%s\n", root->label ? root->label : "<nil>");
+   printf("   label:'%s'\n", root->label ? root->label : "<nil>");
 
 if (opname) {
 #include "mapping3.h"

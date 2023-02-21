@@ -76,13 +76,13 @@ IPSEP [,;]
 /* any valid multicharacter thing */
 VARNAME  [\p{Letter}]([\p{Letter}\p{Number}_])*
 
-LABEL    (([\p{Letter}]([\p{Letter}\p{Number}_])*[:])|([0-9]+[:]?))
+LABEL    (([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|([0-9]+[!]?))
 
-BLABEL   (^([\p{Letter}]([\p{Letter}\p{Number}_])*[:])|^([0-9]+[:]?))
+BLABEL   (^([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|^([0-9]+[!]?))
 
 // unused
 // /* any single character appearing by iteslf */
-// RUNE     [!#$%&',;?^_.]
+// RUNE     [$%|&'?^_.]
 
 EOL      [\r\n]{1,2}
 
@@ -96,6 +96,8 @@ EOL      [\r\n]{1,2}
                else {
                   ret = YYerror;
                }
+               char *s = strchr(yytext, '!');
+               if (s) { *s = 0; }
                DEBUG("BLABEL = '%s' %d\n", yytext, ret);
                return ret;
             }
@@ -147,6 +149,8 @@ EOL      [\r\n]{1,2}
                else {
                   ret = YYerror;
                }
+               char *s = strchr(yytext, '!');
+               if (s) { *s = 0; }
                DEBUG("LABEL = '%s' %d\n", yytext, ret);
                return ret;
             }
