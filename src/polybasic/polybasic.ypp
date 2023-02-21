@@ -287,37 +287,101 @@ controlstmt   : YYGO YYTO singlelabel
 
                      $$.next = &$2;
                   }
-              | YYIF iexpr YYRELATION iexpr YYTHEN YYLABEL
+              | YYIF iexpr rexpr iexpr YYTHEN singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYIF;
+
+                     $$.sval = strdup($3.sval);
+                     $$.left = &$2;
+                     $$.right = &$4;
+                     $$.next = &$6;
                   }
-              | YYIF dexpr YYRELATION dexpr YYTHEN singlelabel
+              | YYIF dexpr rexpr dexpr YYTHEN singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYIF;
+
+                     $$.sval = strdup($3.sval);
+                     $$.left = &$2;
+                     $$.right = &$4;
+                     $$.next = &$6;
                   }
-              | YYIF rexpr YYRELATION rexpr YYTHEN singlelabel
+              | YYIF rexpr rexpr rexpr YYTHEN singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYIF;
+
+                     $$.sval = strdup($3.sval);
+                     $$.left = &$2;
+                     $$.right = &$4;
+                     $$.next = &$6;
                   }
-              | YYIF sexpr YYRELATION sexpr YYTHEN singlelabel
+              | YYIF sexpr rexpr sexpr YYTHEN singlelabel
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYIF;
+
+                     $$.sval = strdup($3.sval);
+                     $$.left = &$2;
+                     $$.right = &$4;
+                     $$.next = &$6;
                   }
               | YYON iexpr YYGO YYTO labellist
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOTO;
+
+                     $$.left = &$2;
+                     $$.right = &$5;
                   }
               | YYON iexpr YYGOTO labellist
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOTO;
+
+                     $$.left = &$2;
+                     $$.right = &$4;
                   }
               | YYON iexpr YYGO YYSUB labellist
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOSUB;
+
+                     $$.left = &$2;
+                     $$.right = &$5;
                   }
               | YYON iexpr YYGOSUB labellist
                   {
-                     DEBUG("%s:%d\n", __FILE__, __LINE__);
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYGOSUB;
+
+                     $$.left = &$2;
+                     $$.right = &$4;
                   }
               | YYRETURN
                   {
@@ -342,6 +406,18 @@ controlstmt   : YYGO YYTO singlelabel
 
                      $$.typ = 'L';
                      $$.op = YYEND;
+                  }
+              ;
+
+rexpr         : YYRELATION
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+
+                     $$.typ = 'L';
+                     $$.op = YYRELATION;
+
+                     $$.sval = strdup(yytext);
                   }
               ;
 
