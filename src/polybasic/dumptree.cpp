@@ -7,17 +7,24 @@
 void dump_tree(Tree *root) {
    const char *opname = NULL;
 
-   for (int i = 0; reserved[i].name; i++) {
-      if (reserved[i].token == root->op) {
-         opname = reserved[i].name;
-         break;
-      }
-   }
+    for (int i = 0; reserved[i].name; i++) {
+       if (reserved[i].token == root->op) {
+          opname = reserved[i].name;
+          break;
+       }
+    }
 
-   printf("%p :: line %d col %d, op=%s(%d)\n", root, root->line, root->col, opname ? opname : "<nil>", root->op);
+   if (opname) {
+      printf("%p :: line %d col %d, op=%s(%d)\n", root, root->line, root->col, opname ? opname : "<nil>", root->op);
+   }
+   else {
+      printf("%p :: line %d col %d, op=%c(%d)\n", root, root->line, root->col, root->op, root->op);
+   }
    printf("   label:%s\n", root->label ? root->label : "<nil>");
 
+if (opname) {
 #include "mapping3.h"
+}
 
    printf("   left =%p\n", root->left);
    printf(" middle =%p\n", root->middle);

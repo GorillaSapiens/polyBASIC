@@ -20,6 +20,13 @@ Tree *copytree(Tree *tree) {
    return ret;
 }
 
+/*
+Tree *emptytree(void) {
+   Tree *ret = (Tree *)calloc(1, sizeof(Tree));
+   return ret;
+}
+*/
+
 #define DEBUG
 
 %}
@@ -151,7 +158,7 @@ linelist      : line
               | line linelist
                   {
                      $$ = $1;
-                     $$.next = copytree(&$2);
+                     $$.right = copytree(&$2);
                   }
               ;
 
@@ -258,28 +265,28 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
-                     $$.next = copytree(&$3);
+                     $$.left = copytree(&$3);
                   }
               | YYGOTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
-                     $$.next = copytree(&$2);
+                     $$.left = copytree(&$2);
                   }
               | YYGO YYSUB singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
-                     $$.next = copytree(&$3);
+                     $$.left = copytree(&$3);
                   }
               | YYGOSUB singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
-                     $$.next = copytree(&$2);
+                     $$.left = copytree(&$2);
                   }
               | YYIF expression relation expression YYTHEN singlelabel
                   {
@@ -289,7 +296,7 @@ controlstmt   : YYGO YYTO singlelabel
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
-                     $$.next = copytree(&$6);
+                     $$.middle = copytree(&$6);
                   }
               | YYON expression YYGO YYTO labellist
                   {
@@ -360,7 +367,7 @@ repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
                      $$.sval = strdup($2.sval);
                      $$.left = copytree(&$4);
                      $$.right = copytree(&$6);
-                     $$.next = NULL;
+                     $$.middle = NULL;
                   }
               | YYFOR varname YYASSIGN expression YYTO expression YYSTEP expression
                   {
@@ -407,7 +414,7 @@ labellist     : singlelabel
               | labellist singlelabel
                   {
                      $$ = $1;
-                     $$.next = copytree(&$2);
+                     $$.right = copytree(&$2);
                   }
               ;
 
@@ -423,7 +430,7 @@ varname       : YYVARNAME
 varlist        : varname YYIPSEP varlist
                   {
                      $$ = $1;
-                     $$.next = copytree(&$3);
+                     $$.right = copytree(&$3);
                   }
                | varname
                   {
@@ -452,7 +459,7 @@ constant       : dconst
 constlist      : constant YYIPSEP constlist
                   {
                      $$ = $1;
-                     $$.next = copytree(&$3);
+                     $$.right = copytree(&$3);
                   }
                | constant
                   {
@@ -602,7 +609,7 @@ expression    : expression '+' expression
 exprlist      : expression YYIPSEP exprlist
                  {
                     $$ = $1;
-                    $$.next = copytree(&$3);
+                    $$.right = copytree(&$3);
                  }
               | expression
                  {
