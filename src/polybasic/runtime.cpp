@@ -140,6 +140,59 @@ Tree *deep_copy(Tree *subtree) {
    return copy;
 }
 
+void upgrade_to_number(Tree *p) {
+   if (p->op == YYSTRING) {
+      const char *s = p->sval;
+      if (strchr((char *)s, '#') == s) {
+         p->op = YYRATIONAL;
+         p->rval = new Rational(s);
+      }
+      else if (strchr((char *)s, '.') || strchr((char *)s, 'E')) {
+         p->op = YYDOUBLE;
+         // TODO FIX does this work????
+         p->dval = atof(s);
+      }
+      else {
+         p->op = YYINTEGER;
+         p->ival = atoll(s);
+      }
+      free((void *)s);
+   }
+}
+
+void upgrade_to_rational(Tree *p) {
+   if (p->op == YYINTEGER) {
+      int64_t ival = p->ival;
+      int8_t sign = 1;
+      if (ival < 0) {
+         sign = -1;
+         ival = -ival;
+      }
+      p->op = YYRATIONAL;
+      p->rval = new Rational(sign, ival, 0, 1);
+   }
+}
+
+void upgrade_to_double(Tree *p) {
+   if (p->op == YYINTEGER) {
+      int64_t ival = p->ival;
+      p->op = YYDOUBLE;
+      p->dval = (double) ival;
+   }
+   else if (p->op == YYRATIONAL) {
+      Rational *deleteme = p->rval;
+      double dval = (double)(*(p->rval));
+      p->op = YYDOUBLE;
+      p->dval = dval;
+      delete deleteme;
+   }
+}
+
+int levenshtein(const char *l, const char *r) {
+   // TODO FIX
+   return -1;
+}
+
 Tree *evaluate(Tree *p) {
    if (p->op == YYDOUBLE) {
       return p;
@@ -166,6 +219,9 @@ Tree *evaluate(Tree *p) {
 
    if (p->op == YYABS) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = fabs(p->left->dval);
       }
@@ -180,6 +236,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYATN) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = atan(p->left->dval);
       }
@@ -198,6 +257,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYCOS) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = cos(p->left->dval);
       }
@@ -216,6 +278,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYEXP) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = pow(M_E,(p->left->dval));
       }
@@ -234,6 +299,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYINT) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = floor(p->left->dval);
       }
@@ -248,6 +316,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYLOG) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = log(p->left->dval);
       }
@@ -266,11 +337,14 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYRND) {
       p->op = YYDOUBLE;
-      p->left->dval = (double)rand() / (double)RAND_MAX;
+      p->dval = (double)rand() / (double)RAND_MAX;
    }
    else if (p->op == YYSGN) {
       Tree *freeme = p->left;
       int sign = 0;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          if (p->left->dval > 0) { sign = 1; }
          if (p->left->dval < 0) { sign = -1; }
@@ -293,6 +367,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYSIN) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = sin(p->left->dval);
       }
@@ -311,6 +388,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYSQR) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = sqrt(p->left->dval);
       }
@@ -329,6 +409,9 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYTAN) {
       Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
       if (p->left->op == YYDOUBLE) {
          p->left->dval = tan(p->left->dval);
       }
@@ -348,353 +431,153 @@ Tree *evaluate(Tree *p) {
 
    if (p->left && p->right ) {
       if (p->op == '+' ||
-          p->op == '-' ||
-          p->op == '*' ||
-          p->op == '/') {
+            p->op == '-' ||
+            p->op == '*' ||
+            p->op == '/') {
 
          if (p->left->op != p->right->op) {
+            // in a mismatch, try to make strings into numbers
+            if (p->left->op == YYSTRING) {
+               upgrade_to_number(p->left);
+            }
+            if (p->right->op == YYSTRING) {
+               upgrade_to_number(p->right);
+            }
+
+            if (p->left->op == YYRATIONAL && p->right->op == YYINTEGER) {
+               upgrade_to_rational(p->right);
+            }
+            else if (p->left->op == YYINTEGER && p->right->op == YYRATIONAL) {
+               upgrade_to_rational(p->left);
+            }
+
+            if (p->left->op == YYRATIONAL && p->right->op == YYDOUBLE) {
+               upgrade_to_double(p->left);
+            }
+            else if (p->left->op == YYDOUBLE && p->right->op == YYRATIONAL) {
+               upgrade_to_double(p->right);
+            }
+
+            if (p->left->op == YYINTEGER && p->right->op == YYDOUBLE) {
+               upgrade_to_double(p->left);
+            }
+            else if (p->left->op == YYDOUBLE && p->right->op == YYINTEGER) {
+               upgrade_to_double(p->right);
+            }
+         }
+
+         if (p->left && p->right && p->left->op == p->right->op) {
+            switch(p->left->op) {
+               case YYDOUBLE:
+                  switch(p->op) {
+                     case '+':
+                        p->dval = p->left->dval + p->right->dval;
+                        break;
+                     case '-':
+                        p->dval = p->left->dval - p->right->dval;
+                        break;
+                     case '*':
+                        p->dval = p->left->dval * p->right->dval;
+                        break;
+                     case '/':
+                        p->dval = p->left->dval / p->right->dval;
+                        break;
+                     default:
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        exit(-1);
+                        break;
+                  }
+                  p->op = YYDOUBLE;
+                  free(p->left);
+                  p->left = NULL;
+                  free(p->right);
+                  p->right = NULL;
+                  break;
+               case YYINTEGER:
+                  switch(p->op) {
+                     case '+':
+                        p->ival = p->left->ival + p->right->ival;
+                        break;
+                     case '-':
+                        p->ival = p->left->ival - p->right->ival;
+                        break;
+                     case '*':
+                        p->ival = p->left->ival * p->right->ival;
+                        break;
+                     case '/':
+                        p->ival = p->left->ival / p->right->ival;
+                        break;
+                     default:
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        exit(-1);
+                        break;
+                  }
+                  p->op = YYINTEGER;
+                  free(p->left);
+                  p->left = NULL;
+                  free(p->right);
+                  p->right = NULL;
+                  break;
+               case YYRATIONAL:
+                  switch(p->op) {
+                     case '+':
+                        p->rval = new Rational (*(p->left->rval) + *(p->right->rval));
+                        break;
+                     case '-':
+                        p->rval = new Rational (*(p->left->rval) - *(p->right->rval));
+                        break;
+                     case '*':
+                        p->rval = new Rational (*(p->left->rval) * *(p->right->rval));
+                        break;
+                     case '/':
+                        p->rval = new Rational (*(p->left->rval) / *(p->right->rval));
+                        break;
+                     default:
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        exit(-1);
+                        break;
+                  }
+                  p->op = YYRATIONAL;
+                  delete p->left->rval;
+                  free(p->left);
+                  p->left = NULL;
+                  delete p->right->rval;
+                  free(p->right);
+                  p->right = NULL;
+                  break;
+               case YYSTRING:
+                  switch(p->op) {
+                     case '+':
+                        p->sval = (char *) malloc(strlen(p->left->sval) + strlen(p->right->sval) + 1);
+                        sprintf((char *) p->sval, "%s%s", p->left->sval, p->right->sval);
+                        p->op = YYSTRING;
+                        break;
+                     case '-':
+                        p->ival = levenshtein (p->left->sval, p->right->sval);
+                        p->op = YYINTEGER;
+                        break;
+                     default:
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        exit(-1);
+                        break;
+                  }
+                  free((void *)p->left->sval);
+                  free((void *)p->left);
+                  p->left = NULL;
+                  free((void *)p->right->sval);
+                  free((void *)p->right);
+                  p->right = NULL;
+                  break;
+            }
+         }
+         else {
+            fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+            exit(-1);
          }
       }
    }
 
    return p;
-}
-
-Tree evaluate(Tree p) {
-   Tree ret, left, right;
-   memset((void *)&ret, 0, sizeof(ret));
-   ret.op = '?'; // the unknown mystery type
-
-   if (p.left->op != YYDOUBLE ||
-       p.left->op != YYINTEGER ||
-       p.left->op != YYRATIONAL ||
-       p.left->op != YYSTRING) {
-      left = *(p.left);
-      left = evaluate(left);
-      p.left = &left;
-   }
-
-   if (p.right->op != YYDOUBLE ||
-       p.right->op != YYINTEGER ||
-       p.right->op != YYRATIONAL ||
-       p.right->op != YYSTRING) {
-      right = *(p.right);
-      right = evaluate(right);
-      p.right =&right;
-   }
-
-   switch(p.op) {
-      case YYDOUBLE:
-      case YYINTEGER:
-      case YYRATIONAL:
-      case YYSTRING:
-         return p;
-         break;
-      case '+':
-         {
-            Tree left = *p.left;
-            Tree right = *p.right;
-
-            if (left.op != right.op) {
-               // in a mismatch, try to make strings into numbers
-               if (left.op == YYSTRING && right.op != YYSTRING) {
-                  if(strchr(left.sval, '#') == left.sval) {
-                     left = s2r(left);
-                  }
-                  else if (strchr(left.sval, '.') || strchr(left.sval, 'E')) {
-                     left = s2d(left);
-                  }
-                  else {
-                     left = s2i(left);
-                  }
-               }
-               else if (left.op != YYSTRING && right.op == YYSTRING) {
-                  if(strchr(right.sval, '#') == right.sval) {
-                     right = s2r(right);
-                  }
-                  else if (strchr(right.sval, '.') || strchr(right.sval, 'E')) {
-                     right = s2d(right);
-                  }
-                  else {
-                     right = s2i(right);
-                  }
-               }
-
-               if (left.op == YYRATIONAL && right.op == YYINTEGER) {
-                  right = i2r(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYRATIONAL) {
-                  left = i2r(left);
-               }
-               else if (left.op == YYRATIONAL && right.op == YYDOUBLE) {
-                  left = r2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYRATIONAL) {
-                  right = r2d(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYDOUBLE) {
-                  left = i2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYINTEGER) {
-                  right = i2d(right);
-               }
-            }
-
-            if (left.op == right.op) {
-               switch(left.op) {
-                  case YYDOUBLE:
-                     ret.op = YYDOUBLE;
-                     ret.dval = left.dval + right.dval;
-                     break;
-                  case YYINTEGER:
-                     ret.op = YYINTEGER;
-                     ret.ival = left.ival + right.ival;
-                     break;
-                  case YYRATIONAL:
-                     ret.op = YYRATIONAL;
-                     ret.rval = new Rational (*(left.rval) + *(right.rval));
-                     break;
-                  case YYSTRING:
-                     ret.op = YYSTRING;
-                     ret.sval = (char *) malloc(strlen(left.sval) + strlen(right.sval) + 1);
-                     sprintf((char *) ret.sval, "%s%s", left.sval, right.sval);
-                     break;
-               }
-            }
-            return ret;
-         }
-         break;
-      case '-':
-         {
-            Tree left = *p.left;
-            Tree right = *p.right;
-
-            if (left.op != right.op) {
-               // in a mismatch, try to make strings into numbers
-               if (left.op == YYSTRING && right.op != YYSTRING) {
-                  if(strchr(left.sval, '#') == left.sval) {
-                     left = s2r(left);
-                  }
-                  else if (strchr(left.sval, '.') || strchr(left.sval, 'E')) {
-                     left = s2d(left);
-                  }
-                  else {
-                     left = s2i(left);
-                  }
-               }
-               else if (left.op != YYSTRING && right.op == YYSTRING) {
-                  if(strchr(right.sval, '#') == right.sval) {
-                     right = s2r(right);
-                  }
-                  else if (strchr(right.sval, '.') || strchr(right.sval, 'E')) {
-                     right = s2d(right);
-                  }
-                  else {
-                     right = s2i(right);
-                  }
-               }
-
-               if (left.op == YYRATIONAL && right.op == YYINTEGER) {
-                  right = i2r(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYRATIONAL) {
-                  left = i2r(left);
-               }
-               else if (left.op == YYRATIONAL && right.op == YYDOUBLE) {
-                  left = r2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYRATIONAL) {
-                  right = r2d(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYDOUBLE) {
-                  left = i2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYINTEGER) {
-                  right = i2d(right);
-               }
-            }
-
-            if (left.op == right.op) {
-               switch(left.op) {
-                  case YYDOUBLE:
-                     ret.op = YYDOUBLE;
-                     ret.dval = left.dval - right.dval;
-                     break;
-                  case YYINTEGER:
-                     ret.op = YYINTEGER;
-                     ret.ival = left.ival - right.ival;
-                     break;
-                  case YYRATIONAL:
-                     ret.op = YYRATIONAL;
-                     ret.rval = new Rational (*(left.rval) - *(right.rval));
-                     break;
-                  case YYSTRING:
-                     fprintf(stderr, "WARNING: string subtraction line %d col %d\n", left.line, left.col);
-                     ret.op = YYSTRING;
-                     ret.sval = (char *) malloc(strlen(left.sval) + strlen(right.sval) + 2);
-                     sprintf((char *) ret.sval, "%s-%s", left.sval, right.sval);
-                     break;
-               }
-            }
-            return ret;
-         }
-         break;
-      case '*':
-         {
-            Tree left = *p.left;
-            Tree right = *p.right;
-
-            if (left.op != right.op) {
-               // in a mismatch, try to make strings into numbers
-               if (left.op == YYSTRING && right.op != YYSTRING) {
-                  if(strchr(left.sval, '#') == left.sval) {
-                     left = s2r(left);
-                  }
-                  else if (strchr(left.sval, '.') || strchr(left.sval, 'E')) {
-                     left = s2d(left);
-                  }
-                  else {
-                     left = s2i(left);
-                  }
-               }
-               else if (left.op != YYSTRING && right.op == YYSTRING) {
-                  if(strchr(right.sval, '#') == right.sval) {
-                     right = s2r(right);
-                  }
-                  else if (strchr(right.sval, '.') || strchr(right.sval, 'E')) {
-                     right = s2d(right);
-                  }
-                  else {
-                     right = s2i(right);
-                  }
-               }
-
-               if (left.op == YYRATIONAL && right.op == YYINTEGER) {
-                  right = i2r(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYRATIONAL) {
-                  left = i2r(left);
-               }
-               else if (left.op == YYRATIONAL && right.op == YYDOUBLE) {
-                  left = r2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYRATIONAL) {
-                  right = r2d(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYDOUBLE) {
-                  left = i2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYINTEGER) {
-                  right = i2d(right);
-               }
-            }
-
-            if (left.op == right.op) {
-               switch(left.op) {
-                  case YYDOUBLE:
-                     ret.op = YYDOUBLE;
-                     ret.dval = left.dval * right.dval;
-                     break;
-                  case YYINTEGER:
-                     ret.op = YYINTEGER;
-                     ret.ival = left.ival * right.ival;
-                     break;
-                  case YYRATIONAL:
-                     ret.op = YYRATIONAL;
-                     ret.rval = new Rational (*(left.rval) * *(right.rval));
-                     break;
-                  case YYSTRING:
-                     fprintf(stderr, "WARNING: string multiplication line %d col %d\n", left.line, left.col);
-                     ret.op = YYSTRING;
-                     ret.sval = (char *) malloc(strlen(left.sval) + strlen(right.sval) + 2);
-                     sprintf((char *) ret.sval, "%s*%s", left.sval, right.sval);
-                     break;
-               }
-            }
-            return ret;
-         }
-         break;
-      case '/':
-         {
-            Tree left = *p.left;
-            Tree right = *p.right;
-
-            if (left.op != right.op) {
-               // in a mismatch, try to make strings into numbers
-               if (left.op == YYSTRING && right.op != YYSTRING) {
-                  if(strchr(left.sval, '#') == left.sval) {
-                     left = s2r(left);
-                  }
-                  else if (strchr(left.sval, '.') || strchr(left.sval, 'E')) {
-                     left = s2d(left);
-                  }
-                  else {
-                     left = s2i(left);
-                  }
-               }
-               else if (left.op != YYSTRING && right.op == YYSTRING) {
-                  if(strchr(right.sval, '#') == right.sval) {
-                     right = s2r(right);
-                  }
-                  else if (strchr(right.sval, '.') || strchr(right.sval, 'E')) {
-                     right = s2d(right);
-                  }
-                  else {
-                     right = s2i(right);
-                  }
-               }
-
-               if (left.op == YYRATIONAL && right.op == YYINTEGER) {
-                  right = i2r(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYRATIONAL) {
-                  left = i2r(left);
-               }
-               else if (left.op == YYRATIONAL && right.op == YYDOUBLE) {
-                  left = r2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYRATIONAL) {
-                  right = r2d(right);
-               }
-               else if (left.op == YYINTEGER && right.op == YYDOUBLE) {
-                  left = i2d(left);
-               }
-               else if (left.op == YYDOUBLE && right.op == YYINTEGER) {
-                  right = i2d(right);
-               }
-            }
-
-            if (left.op == right.op) {
-               switch(left.op) {
-                  case YYDOUBLE:
-                     ret.op = YYDOUBLE;
-                     ret.dval = left.dval / right.dval;
-                     break;
-                  case YYINTEGER:
-                     ret.op = YYINTEGER;
-                     ret.ival = left.ival / right.ival;
-                     break;
-                  case YYRATIONAL:
-                     ret.op = YYRATIONAL;
-                     ret.rval = new Rational (*(left.rval) / *(right.rval));
-                     break;
-                  case YYSTRING:
-                     fprintf(stderr, "WARNING: string division line %d col %d\n", left.line, left.col);
-                     ret.op = YYSTRING;
-                     ret.sval = (char *) malloc(strlen(left.sval) + strlen(right.sval) + 2);
-                     sprintf((char *) ret.sval, "%s/%s", left.sval, right.sval);
-                     break;
-               }
-            }
-            return ret;
-         }
-         break;
-      default:
-         printf("DEFAULT %d %s\n", p.op, p.sval ? p.sval : "<nil>");
-         break;
-   }
-
-   return ret;
 }
 
 void run(Tree *p) {
