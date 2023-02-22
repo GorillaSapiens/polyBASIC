@@ -334,3 +334,17 @@ void Rational::prettyprint(char *buf) {
 Rational::operator double() const {
    return ((double)sign * ((double)whl + ((double)num / (double)den)));
 }
+
+void Rational::abs(void) {
+   sign = 1;
+}
+
+void Rational::floor(void) {
+   if (sign > 0) { num = 0; den = 1; }
+   if (sign < 0 && num > 0) { whl++; num = 0; den = 1; }
+}
+
+int Rational::sgn(void) {
+   if(num == 0 && whl == 0) { return 0; }
+   return sign;
+}

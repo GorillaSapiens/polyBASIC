@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include "tree.h"
 #include "polybasic.tab.hpp"
 #include "dumptree.h"
@@ -87,10 +89,299 @@ Tree s2r(Tree t) {
    return t;
 }
 
+// make a deep copy, substituting variables along the way
+Tree *deep_copy(Tree *subtree) {
+   Tree *copy = (Tree *) malloc(sizeof(Tree));
+   memcpy(copy, subtree, sizeof(Tree));
+
+// don't copy labels, we'd just have to free them later
+//   if (subtree->label) {
+//      copy->label = strdup(subtree->label);
+//   }
+
+   if (copy->op == YYSTRING) {
+      copy->sval = strdup(subtree->sval);
+   }
+   else if (copy->op == YYRATIONAL) {
+      copy->rval = new Rational(*(subtree->rval));
+   }
+   else if (copy->op == YYVARNAME) {
+      const Val *val = get_value(subtree->sval);
+      if (!val) {
+         fprintf(stderr, "WARNING: line %d col %d, '%s' has no value\n",
+            copy->line, copy->col, copy->sval);
+         exit(-1);
+      }
+      else {
+         if (val->typ == 'd') {
+            copy->op = YYDOUBLE;
+            copy->dval = val->dval;
+         }
+         else if (val->typ == 'i') {
+            copy->op = YYINTEGER;
+            copy->ival = val->ival;
+         }
+         else if (val->typ == 'r') {
+            copy->op = YYRATIONAL;
+            copy->rval = new Rational(*(val->rval));
+         }
+         else if (val->typ == 's') {
+            copy->op = YYSTRING;
+            copy->sval = strdup(val->sval);
+         }
+      }
+   }
+
+   if (subtree->left) { copy->left = deep_copy(subtree->left); }
+   if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
+   if (subtree->right) { copy->right = deep_copy(subtree->right); }
+   subtree->next = NULL;
+
+   return copy;
+}
+
+Tree *evaluate(Tree *p) {
+   if (p->op == YYDOUBLE) {
+      return p;
+   }
+   if (p->op == YYINTEGER) {
+      return p;
+   }
+   if (p->op == YYRATIONAL) {
+      return p;
+   }
+   if (p->op == YYSTRING) {
+      return p;
+   }
+
+   if (p->left) {
+      p->left = evaluate(p->left);
+   }
+   if (p->middle) {
+      p->middle = evaluate(p->middle);
+   }
+   if (p->right) {
+      p->right = evaluate(p->right);
+   }
+
+   if (p->op == YYABS) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = fabs(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->ival = llabs(p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->rval->abs();
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYATN) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = atan(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = atan((double)p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = atan((double)*(p->left->rval));
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYCOS) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = cos(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = cos((double)p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = cos((double)*(p->left->rval));
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYEXP) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = pow(M_E,(p->left->dval));
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = pow(M_E,((double)p->left->ival));
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = pow(M_E,((double)*(p->left->rval)));
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYINT) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = floor(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->ival = (int)floor((double)p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->rval->floor();
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYLOG) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = log(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = log((double)p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = log((double)*(p->left->rval));
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYRND) {
+      p->op = YYDOUBLE;
+      p->left->dval = (double)rand() / (double)RAND_MAX;
+   }
+   else if (p->op == YYSGN) {
+      Tree *freeme = p->left;
+      int sign = 0;
+      if (p->left->op == YYDOUBLE) {
+         if (p->left->dval > 0) { sign = 1; }
+         if (p->left->dval < 0) { sign = -1; }
+         p->left->op = YYINTEGER;
+         p->left->ival = sign;
+      }
+      else if (p->left->op == YYINTEGER) {
+         if (p->left->ival > 0) { sign = 1; }
+         if (p->left->ival < 0) { sign = -1; }
+         p->left->ival = sign;
+      }
+      else if (p->left->op == YYRATIONAL) {
+         Rational *deleteme = p->left->rval;
+         p->left->op = YYINTEGER;
+         p->left->ival = p->left->rval->sgn();
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYSIN) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = sin(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = sin((double)p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = sin((double)*(p->left->rval));
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYSQR) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = sqrt(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = sqrt((double)p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = sqrt((double)*(p->left->rval));
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYTAN) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYDOUBLE) {
+         p->left->dval = tan(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = tan((double)p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = tan((double)*(p->left->rval));
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+
+   if (p->left && p->right ) {
+      if (p->op == '+' ||
+          p->op == '-' ||
+          p->op == '*' ||
+          p->op == '/') {
+
+         if (p->left->op != p->right->op) {
+         }
+      }
+   }
+
+   return p;
+}
+
 Tree evaluate(Tree p) {
-   Tree ret;
+   Tree ret, left, right;
    memset((void *)&ret, 0, sizeof(ret));
    ret.op = '?'; // the unknown mystery type
+
+   if (p.left->op != YYDOUBLE ||
+       p.left->op != YYINTEGER ||
+       p.left->op != YYRATIONAL ||
+       p.left->op != YYSTRING) {
+      left = *(p.left);
+      left = evaluate(left);
+      p.left = &left;
+   }
+
+   if (p.right->op != YYDOUBLE ||
+       p.right->op != YYINTEGER ||
+       p.right->op != YYRATIONAL ||
+       p.right->op != YYSTRING) {
+      right = *(p.right);
+      right = evaluate(right);
+      p.right =&right;
+   }
 
    switch(p.op) {
       case YYDOUBLE:
@@ -436,27 +727,8 @@ void run(Tree *p) {
                   fprintf(stderr, "WARNING: variable '%s' not in use line %d col %d, consider using LET\n",
                      p->left->sval, p->left->line, p->left->col);
                }
-               Tree res = evaluate(*(p->right));
-               Val val;
-               switch(res.op) {
-                  case YYDOUBLE:
-                     val.typ = 'd';
-                     val.dval = res.dval;
-                     break;
-                  case YYINTEGER:
-                     val.typ = 'i';
-                     val.ival = res.ival;
-                     break;
-                  case YYRATIONAL:
-                     val.typ = 'r';
-                     val.rval = res.rval;
-                     break;
-                  case YYSTRING:
-                     val.typ = 's';
-                     val.sval = res.sval;
-                     break;
-               }
-               set_value(p->left->sval, val);
+               Tree *result = evaluate(deep_copy(p->right));
+assert(0);
             }
             break;
          case YYATN:

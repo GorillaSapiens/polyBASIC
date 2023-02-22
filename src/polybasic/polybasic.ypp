@@ -536,7 +536,7 @@ expression    : expression '+' expression
                      $$.op = YYLOG;
                      $$.left = copytree(&$3);
                   }
-              | YYRND '(' ')'
+              | YYRND
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;

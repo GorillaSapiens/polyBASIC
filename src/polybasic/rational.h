@@ -54,6 +54,9 @@ class Rational {
       void print(char *buf);
       void prettyprint(char *buf);
       operator double() const;
+      void abs(void);
+      void floor(void);
+      int sgn(void);
 };
 
 #endif // _INCLUDE_RATIONAL_H_
