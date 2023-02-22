@@ -30,7 +30,7 @@ next,NEXT,다음,SUIVANT,NÄCHSTE,下一个,PRÓXIMO,التالي,СЛЕДУЮЩ
 print,PRINT,인쇄,IMPRIMER,DRUCKEN,打印,IMPRIMIR,مطبعة,РАСПЕЧАТАТЬ,प्रिंट,ছাপা,IMPRIMIR,MENCETAK,印刷,הדפס,Presi,Chapisha,I -print,پرنٹ کریں,Print,Printiwyd,Cindezela,פאַרקויפט
 input,INPUT,입력,SAISIR,EINGANG,输入,APORTE,مدخل,ВХОД,इनपुट,ইনপুট,ENTRADA,MEMASUKKAN,入力,קֶלֶט,ENIGO,Pembejeo,Input,ان پٹ,Input,Fewnbynnem,Faka,אַרייַנשרייַב
 read,READ,읽다,LIRE,LESEN,读,LEER,يقرأ,ЧИТАТЬ,पढ़ना,পড়ুন,LER,MEMBACA,読む,לקרוא,Legu,Soma,Basahin,پڑھیں,LEGERE,Darllenasit,Funda,לייענען
-restore,RESTORE,복원하다,RESTAURER,WIEDERHERSTELLEN,恢复,RESTAURAR,يعيد,ВОССТАНОВИТЬ,पुनर्स्थापित करना,পুনরুদ্ধার,RESTAURAR,MEMULIHKAN,戻す,לשחזר,RESTAŬRI,Rejesha,Ibalik,بحال کریں,Restituo,Hatgyweiriff,Khuza,ומקערן
+restore,REREAD,다시 읽었습니다,Relier,Neu lesen,重读,RELEER,إعادة القراءة,Перечитывать,को फिर से पढ़ें,পুনরায় পড়ুন,RELER,MEMBACA KEMBALI,読み直します,לקרוא מחדש,Relegi,Kusoma tena,Basahin muli,دوبارہ پڑھیں,RELIGIO,Ailddarllenwch,Xwayisa,Readead
 data,DATA,데이터,DONNÉES,DATEN,数据,DATOS,بيانات,ДАННЫЕ,आंकड़े,ডেটা,DADOS,DATA,データ,נתונים,Datumoj,Takwimu,Data,ڈیٹا,Notitia,Data,Umbhalo,דאַטע
 dim,DIMENSION,치수,DIMENSION,ABMESSUNGEN,方面,DIMENSIÓN,البعد,ИЗМЕРЕНИЕ,आयाम,মাত্রা,DIMENSÃO,DIMENSI,寸法,מֵמַד,Dimensio,Mwelekeo,Sukat,طول و عرض,Dimensio,Dimensiwn,Ubukhulu,ויסמעסטונג
 option,OPTION,옵션,OPTION,MÖGLICHKEIT,选项,OPCIÓN,خيار,ВАРИАНТ,विकल्प,বিকল্প,OPÇÃO,PILIHAN,オプション,אוֹפְּצִיָה,Opcio,Chaguo,Pagpipilian,آپشن,Optio,Opsiwn,Ukukhetha,בריירע
