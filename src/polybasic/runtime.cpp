@@ -591,31 +591,17 @@ Tree *evaluate(Tree *p) {
 void run(Tree *p) {
    while (p) {
       switch (p->op) {
-         case '*':
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case '+':
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case '-':
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case '/':
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYABS:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
+
          case YYASSIGN:
+         case YYLET:
             {
                int inuse = is_var_defined(p->left->sval);
-               if (!inuse) {
+               if (p->op == YYASSIGN && !inuse) {
                   fprintf(stderr, "WARNING: variable '%s' not in use line %d col %d, consider using LET\n",
+                     p->left->sval, p->left->line, p->left->col);
+               }
+               else if (p->op == YYLET && inuse) {
+                  fprintf(stderr, "WARNING: variable '%s' already in use line %d col %d\n",
                      p->left->sval, p->left->line, p->left->col);
                }
                Tree *result = evaluate(deep_copy(p->right));
@@ -645,35 +631,12 @@ void run(Tree *p) {
                free((void *)result);
             }
             break;
-         case YYATN:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYBLABEL:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYCOS:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
+
          case YYDATA:
             fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
             dumpline(p);
             break;
-         case YYDBL:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYDOUBLE:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
          case YYEND:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYEXP:
             fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
             dumpline(p);
             break;
@@ -698,18 +661,6 @@ void run(Tree *p) {
             dumpline(p);
             break;
          case YYINT:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYINTEGER:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYLABEL:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYLET:
             fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
             dumpline(p);
             break;

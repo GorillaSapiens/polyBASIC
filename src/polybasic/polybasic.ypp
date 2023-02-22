@@ -637,6 +637,7 @@ let         : YYLET varname YYASSIGN expression
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYLET;
+                  $$.sval = $2.sval;
                   $$.left = copytree(&$2);
                   $$.right = copytree(&$4);
                }
