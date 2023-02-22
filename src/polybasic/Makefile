@@ -14,6 +14,7 @@ OBJECTS= \
    rational.o \
    dumptree.o \
    runtime_vars.o \
+   runtime_lbls.o \
    polybasic.tab.o
 
 INCDIRS= \

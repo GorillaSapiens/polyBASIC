@@ -16,11 +16,12 @@ static unsigned long hash(const char *sstr) {
    return hash;
 }
 
-int is_defined(const char *p) {
+int is_var_defined(const char *p) {
    unsigned long h = hash(p);
 
-   for (int i = 0; i < HASH_SIZE; i++) {
-      if (vars[i+h] != NULL && !strcmp(p, vars[i+h]->name)) {
+   for (unsigned long i = 0; i < HASH_SIZE; i++) {
+      unsigned long j = (i + h) % HASH_SIZE;
+      if (vars[j] != NULL && !strcmp(p, vars[j]->name)) {
          return 1;
       }
    }
@@ -30,22 +31,23 @@ int is_defined(const char *p) {
 int set_value(const char *p, double d) {
    unsigned long h = hash(p);
 
-   for (int i = 0; i < HASH_SIZE; i++) {
-      if (vars[i+h] != NULL && !strcmp(p, vars[i+h]->name)) {
-         if (vars[i+h]->typ == 'r') {
-            delete vars[i+h]->rval;
+   for (unsigned long i = 0; i < HASH_SIZE; i++) {
+      unsigned long j = (i + h) % HASH_SIZE;
+      if (vars[j] != NULL && !strcmp(p, vars[j]->name)) {
+         if (vars[j]->typ == 'r') {
+            delete vars[j]->rval;
          }
-         else if (vars[i+h]->typ == 's') {
-            free((void *)(vars[i+h]->sval));
+         else if (vars[j]->typ == 's') {
+            free((void *)(vars[j]->sval));
          }
-         free(vars[i+h]);
-         vars[i+h] = NULL;
+         free(vars[j]);
+         vars[j] = NULL;
       }
-      if (vars[i+h] == NULL) {
-         vars[i+h] = (Var *)malloc(sizeof(Var));
-         vars[i+h]->name = strdup(p);
-         vars[i+h]->typ = 'd';
-         vars[i+h]->dval = d;
+      if (vars[j] == NULL) {
+         vars[j] = (Var *)malloc(sizeof(Var));
+         vars[j]->name = strdup(p);
+         vars[j]->typ = 'd';
+         vars[j]->dval = d;
          return 1;
       }
    }
@@ -55,22 +57,23 @@ int set_value(const char *p, double d) {
 int set_value(const char *p, int64_t i) {
    unsigned long h = hash(p);
 
-   for (int i = 0; i < HASH_SIZE; i++) {
-      if (vars[i+h] != NULL && !strcmp(p, vars[i+h]->name)) {
-         if (vars[i+h]->typ == 'r') {
-            delete vars[i+h]->rval;
+   for (unsigned long i = 0; i < HASH_SIZE; i++) {
+      unsigned long j = (i + h) % HASH_SIZE;
+      if (vars[j] != NULL && !strcmp(p, vars[j]->name)) {
+         if (vars[j]->typ == 'r') {
+            delete vars[j]->rval;
          }
-         else if (vars[i+h]->typ == 's') {
-            free((void *)(vars[i+h]->sval));
+         else if (vars[j]->typ == 's') {
+            free((void *)(vars[j]->sval));
          }
-         free(vars[i+h]);
-         vars[i+h] = NULL;
+         free(vars[j]);
+         vars[j] = NULL;
       }
-      if (vars[i+h] == NULL) {
-         vars[i+h] = (Var *)malloc(sizeof(Var));
-         vars[i+h]->name = strdup(p);
-         vars[i+h]->typ = 'i';
-         vars[i+h]->ival = i;
+      if (vars[j] == NULL) {
+         vars[j] = (Var *)malloc(sizeof(Var));
+         vars[j]->name = strdup(p);
+         vars[j]->typ = 'i';
+         vars[j]->ival = i;
          return 1;
       }
    }
@@ -80,22 +83,23 @@ int set_value(const char *p, int64_t i) {
 int set_value(const char *p, Rational *r) {
    unsigned long h = hash(p);
 
-   for (int i = 0; i < HASH_SIZE; i++) {
-      if (vars[i+h] != NULL && !strcmp(p, vars[i+h]->name)) {
-         if (vars[i+h]->typ == 'r') {
-            delete vars[i+h]->rval;
+   for (unsigned long i = 0; i < HASH_SIZE; i++) {
+      unsigned long j = (i + h) % HASH_SIZE;
+      if (vars[j] != NULL && !strcmp(p, vars[j]->name)) {
+         if (vars[j]->typ == 'r') {
+            delete vars[j]->rval;
          }
-         else if (vars[i+h]->typ == 's') {
-            free((void *)(vars[i+h]->sval));
+         else if (vars[j]->typ == 's') {
+            free((void *)(vars[j]->sval));
          }
-         free(vars[i+h]);
-         vars[i+h] = NULL;
+         free(vars[j]);
+         vars[j] = NULL;
       }
-      if (vars[i+h] == NULL) {
-         vars[i+h] = (Var *)malloc(sizeof(Var));
-         vars[i+h]->name = strdup(p);
-         vars[i+h]->typ = 'r';
-         vars[i+h]->rval = new Rational(*r);
+      if (vars[j] == NULL) {
+         vars[j] = (Var *)malloc(sizeof(Var));
+         vars[j]->name = strdup(p);
+         vars[j]->typ = 'r';
+         vars[j]->rval = new Rational(*r);
          return 1;
       }
    }
@@ -105,22 +109,23 @@ int set_value(const char *p, Rational *r) {
 int set_value(const char *p, const char *s) {
    unsigned long h = hash(p);
 
-   for (int i = 0; i < HASH_SIZE; i++) {
-      if (vars[i+h] != NULL && !strcmp(p, vars[i+h]->name)) {
-         if (vars[i+h]->typ == 'r') {
-            delete vars[i+h]->rval;
+   for (unsigned long i = 0; i < HASH_SIZE; i++) {
+      unsigned long j = (i + h) % HASH_SIZE;
+      if (vars[j] != NULL && !strcmp(p, vars[j]->name)) {
+         if (vars[j]->typ == 'r') {
+            delete vars[j]->rval;
          }
-         else if (vars[i+h]->typ == 's') {
-            free((void *)(vars[i+h]->sval));
+         else if (vars[j]->typ == 's') {
+            free((void *)(vars[j]->sval));
          }
-         free(vars[i+h]);
-         vars[i+h] = NULL;
+         free(vars[j]);
+         vars[j] = NULL;
       }
-      if (vars[i+h] == NULL) {
-         vars[i+h] = (Var *)malloc(sizeof(Var));
-         vars[i+h]->name = strdup(p);
-         vars[i+h]->typ = 's';
-         vars[i+h]->sval = strdup(s);
+      if (vars[j] == NULL) {
+         vars[j] = (Var *)malloc(sizeof(Var));
+         vars[j]->name = strdup(p);
+         vars[j]->typ = 's';
+         vars[j]->sval = strdup(s);
          return 1;
       }
    }
@@ -130,9 +135,10 @@ int set_value(const char *p, const char *s) {
 Var *get_value(const char *p) {
    unsigned long h = hash(p);
 
-   for (int i = 0; i < HASH_SIZE; i++) {
-      if (vars[i+h] != NULL && !strcmp(p, vars[i+h]->name)) {
-         return vars[i+h];
+   for (unsigned long i = 0; i < HASH_SIZE; i++) {
+      unsigned long j = (i + h) % HASH_SIZE;
+      if (vars[j] != NULL && !strcmp(p, vars[j]->name)) {
+         return vars[j];
       }
    }
    return NULL;

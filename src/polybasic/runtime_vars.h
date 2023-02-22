@@ -15,7 +15,7 @@ typedef struct Var {
    };
 } Var;
 
-int is_defined(const char *p);
+int is_var_defined(const char *p);
 
 int set_value(const char *p, double d);
 
