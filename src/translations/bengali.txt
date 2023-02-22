@@ -84,7 +84,7 @@ INPUT <= ইনপট      # the input statement
 # from ECMA-55 §16
 
 READ <= পডন        # part of read / restore
-RESTORE <= পনরদধর  # part of read / restore
+RESTORE <= পনরযপডন  # part of read / restore
 
 # from ECMA-55 §17
 

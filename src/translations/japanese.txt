@@ -84,7 +84,7 @@ INPUT <= 入力      # the input statement
 # from ECMA-55 §16
 
 READ <= 読む        # part of read / restore
-RESTORE <= 戻す  # part of read / restore
+RESTORE <= 読み直します  # part of read / restore
 
 # from ECMA-55 §17
 

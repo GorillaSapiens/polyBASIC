@@ -84,7 +84,7 @@ INPUT <= ENIGO      # the input statement
 # from ECMA-55 §16
 
 READ <= LEGU        # part of read / restore
-RESTORE <= RESTAŬRI  # part of read / restore
+RESTORE <= RELEGI  # part of read / restore
 
 # from ECMA-55 §17
 

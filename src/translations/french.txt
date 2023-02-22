@@ -84,7 +84,7 @@ INPUT <= SAISIR      # the input statement
 # from ECMA-55 §16
 
 READ <= LIRE        # part of read / restore
-RESTORE <= RESTAURER  # part of read / restore
+RESTORE <= RELIER  # part of read / restore
 
 # from ECMA-55 §17
 

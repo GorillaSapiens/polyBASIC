@@ -84,7 +84,7 @@ INPUT <= MEMASUKKAN      # the input statement
 # from ECMA-55 §16
 
 READ <= MEMBACA        # part of read / restore
-RESTORE <= MEMULIHKAN  # part of read / restore
+RESTORE <= MEMBACAKEMBALI  # part of read / restore
 
 # from ECMA-55 §17
 

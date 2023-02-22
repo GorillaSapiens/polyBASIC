@@ -84,7 +84,7 @@ INPUT <= انپٹ      # the input statement
 # from ECMA-55 §16
 
 READ <= پڑھیں        # part of read / restore
-RESTORE <= بحالکریں  # part of read / restore
+RESTORE <= دوبارہپڑھیں  # part of read / restore
 
 # from ECMA-55 §17
 

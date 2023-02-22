@@ -84,7 +84,7 @@ INPUT <= EINGANG      # the input statement
 # from ECMA-55 §16
 
 READ <= LESEN        # part of read / restore
-RESTORE <= WIEDERHERSTELLEN  # part of read / restore
+RESTORE <= NEULESEN  # part of read / restore
 
 # from ECMA-55 §17
 

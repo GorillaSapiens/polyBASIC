@@ -84,7 +84,7 @@ INPUT <= 输入      # the input statement
 # from ECMA-55 §16
 
 READ <= 读        # part of read / restore
-RESTORE <= 恢复  # part of read / restore
+RESTORE <= 重读  # part of read / restore
 
 # from ECMA-55 §17
 

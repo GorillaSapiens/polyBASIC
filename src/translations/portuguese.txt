@@ -84,7 +84,7 @@ INPUT <= ENTRADA      # the input statement
 # from ECMA-55 §16
 
 READ <= LER        # part of read / restore
-RESTORE <= RESTAURAR  # part of read / restore
+RESTORE <= RELER  # part of read / restore
 
 # from ECMA-55 §17
 

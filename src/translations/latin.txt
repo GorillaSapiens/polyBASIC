@@ -84,7 +84,7 @@ INPUT <= INPUT      # the input statement
 # from ECMA-55 §16
 
 READ <= LEGERE        # part of read / restore
-RESTORE <= RESTITUO  # part of read / restore
+RESTORE <= RELIGIO  # part of read / restore
 
 # from ECMA-55 §17
 

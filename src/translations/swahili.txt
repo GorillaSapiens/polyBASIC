@@ -84,7 +84,7 @@ INPUT <= PEMBEJEO      # the input statement
 # from ECMA-55 §16
 
 READ <= SOMA        # part of read / restore
-RESTORE <= REJESHA  # part of read / restore
+RESTORE <= KUSOMATENA  # part of read / restore
 
 # from ECMA-55 §17
 

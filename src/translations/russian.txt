@@ -84,7 +84,7 @@ INPUT <= ВХОД      # the input statement
 # from ECMA-55 §16
 
 READ <= ЧИТАТЬ        # part of read / restore
-RESTORE <= ВОССТАНОВИТЬ  # part of read / restore
+RESTORE <= ПЕРЕЧИТЫВАТЬ  # part of read / restore
 
 # from ECMA-55 §17
 

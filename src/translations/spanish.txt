@@ -84,7 +84,7 @@ INPUT <= APORTE      # the input statement
 # from ECMA-55 §16
 
 READ <= LEER        # part of read / restore
-RESTORE <= RESTAURAR  # part of read / restore
+RESTORE <= RELEER  # part of read / restore
 
 # from ECMA-55 §17
 

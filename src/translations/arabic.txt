@@ -84,7 +84,7 @@ INPUT <= مدخل      # the input statement
 # from ECMA-55 §16
 
 READ <= يقرأ        # part of read / restore
-RESTORE <= يعيد  # part of read / restore
+RESTORE <= إعادةالقراءة  # part of read / restore
 
 # from ECMA-55 §17
 

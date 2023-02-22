@@ -84,7 +84,7 @@ INPUT <= FEWNBYNNEM      # the input statement
 # from ECMA-55 §16
 
 READ <= DARLLENASIT        # part of read / restore
-RESTORE <= HATGYWEIRIFF  # part of read / restore
+RESTORE <= AILDDARLLENWCH  # part of read / restore
 
 # from ECMA-55 §17
 

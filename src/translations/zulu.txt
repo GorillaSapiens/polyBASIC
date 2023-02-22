@@ -84,7 +84,7 @@ INPUT <= FAKA      # the input statement
 # from ECMA-55 §16
 
 READ <= FUNDA        # part of read / restore
-RESTORE <= KHUZA  # part of read / restore
+RESTORE <= XWAYISA  # part of read / restore
 
 # from ECMA-55 §17
 

@@ -84,7 +84,7 @@ INPUT <= קלט      # the input statement
 # from ECMA-55 §16
 
 READ <= לקרוא        # part of read / restore
-RESTORE <= לשחזר  # part of read / restore
+RESTORE <= לקרואמחדש  # part of read / restore
 
 # from ECMA-55 §17
 
