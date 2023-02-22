@@ -29,8 +29,8 @@ int is_reserved_label(const char *a);
 enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype retval);
 enum yytokentype is_reserved_word(const char *a);
 
-//#define DEBUG printf
-#define DEBUG
+#define DEBUG printf
+//#define DEBUG
 %}
 
 %option flex

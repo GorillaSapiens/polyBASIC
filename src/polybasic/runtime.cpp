@@ -641,6 +641,7 @@ void run(Tree *p) {
                      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
                      break;
                }
+               set_value(p->sval, value);
                free((void *)result);
             }
             break;

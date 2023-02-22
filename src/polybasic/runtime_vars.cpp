@@ -19,6 +19,24 @@ int is_var_defined(const char *p) {
 }
 
 int set_value(const char *p, Val value) {
+printf ("set_value %s = ", p);
+switch(value.typ) {
+   case 'd':
+      printf("%f\n", value.dval);
+      break;
+   case 'i':
+      printf("%ld\n", value.ival);
+      break;
+   case 'r':
+      char buffer[1024];
+      value.rval->print(buffer);
+      printf("%s\n", buffer);
+      break;
+   case 's':
+      printf("%s\n", value.sval);
+      break;
+}
+
    unsigned long h = hash(p);
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {

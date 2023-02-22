@@ -459,6 +459,10 @@ constlist      : constant YYIPSEP constlist
                      $$ = $1;
                      $$.right = copytree(&$3);
                   }
+               | varname
+                  {
+                     $$ = $1;
+                  }
                | constant
                   {
                      $$ = $1;
@@ -597,6 +601,10 @@ expression    : expression '+' expression
                      $$.col = yyloc.first_column;
                      $$.op = YYSTR;
                      $$.left = copytree(&$3);
+                  }
+              | varname
+                  {
+                     $$ = $1;
                   }
               | constant
                   {
