@@ -236,7 +236,7 @@ datastmt    : YYDATA constlist
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYDATA;
-                  $$.left = copytree(&$2);
+                  $$.middle = copytree(&$2);
                }
             ;
 
@@ -245,7 +245,7 @@ readstmt    : YYREAD varlist
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYREAD;
-                  $$.left = copytree(&$2);
+                  $$.middle = copytree(&$2);
                }
             ;
 
@@ -412,7 +412,7 @@ labellist     : singlelabel
               | labellist singlelabel
                   {
                      $$ = $1;
-                     $$.right = copytree(&$2);
+                     $$.middle = copytree(&$2);
                   }
               ;
 
@@ -428,7 +428,7 @@ varname       : YYVARNAME
 varlist        : varname YYIPSEP varlist
                   {
                      $$ = $1;
-                     $$.right = copytree(&$3);
+                     $$.middle = copytree(&$3);
                   }
                | varname
                   {
@@ -457,7 +457,7 @@ constant       : dconst
 constlist      : constant YYIPSEP constlist
                   {
                      $$ = $1;
-                     $$.right = copytree(&$3);
+                     $$.middle = copytree(&$3);
                   }
                | varname
                   {
@@ -628,7 +628,7 @@ inputstmt     : YYINPUT varlist
                     $$.line = yylineno;
                     $$.col = yyloc.first_column;
                     $$.op = YYINPUT;
-                    $$.left = copytree(&$2);
+                    $$.middle = copytree(&$2);
                }
             ;
 
