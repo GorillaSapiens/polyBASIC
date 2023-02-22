@@ -676,7 +676,10 @@ sconst      : YYSTRING
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYSTRING;
-                  $$.sval = strdup(yytext);
+                  char *buffer = (char *)alloca(strlen(yytext + 1));
+                  strcpy(buffer, yytext + 1);
+                  buffer[strlen(buffer) - 1] = 0;
+                  $$.sval = strdup(buffer);
                }
             ;
 %%

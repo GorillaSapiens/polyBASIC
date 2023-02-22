@@ -3,6 +3,7 @@
 #include "dumptree.h"
 #include "runtime_lbls.h"
 #include "runtime_for.h"
+#include "runtime_vars.h"
 #include "runtime.h"
 
 static void register_labels(Tree *root) {
@@ -43,6 +44,59 @@ static void register_for(Tree *root) {
    }
 }
 
+Tree evaluate(Tree p) {
+   Tree ret;
+   memset((void *)&ret, 0, sizeof(ret));
+   ret.op = '?'; // the unknown mystery type
+
+   switch(p.op) {
+      case YYDOUBLE:
+      case YYINTEGER:
+      case YYRATIONAL:
+      case YYSTRING:
+         return p;
+         break;
+      case '+':
+         {
+printf("------------\n");
+                     dumpline(p.left);
+                     dumpline(p.right);
+printf("------------\n");
+            if (p.left->op == p.right->op) {
+               switch(p.left->op) {
+                  case YYDOUBLE:
+                     ret.op = YYDOUBLE;
+                     ret.dval = p.left->dval + p.right->dval;
+                     break;
+                  case YYINTEGER:
+                     ret.op = YYINTEGER;
+                     ret.ival = p.left->ival + p.right->ival;
+                     break;
+                  case YYRATIONAL:
+                     ret.op = YYRATIONAL;
+                     ret.rval = new Rational (*(p.left->rval) + *(p.right->rval));
+                     break;
+                  case YYSTRING:
+                     ret.op = YYSTRING;
+                     ret.sval = (char *) malloc(strlen(p.left->sval) + strlen(p.right->sval) + 1);
+                     sprintf((char *) ret.sval, "%s%s", p.left->sval, p.right->sval);
+                     break;
+               }
+printf("------------\n");
+                     dumpline(&ret);
+printf("------------\n");
+               exit(0);
+            }
+         }
+         break;
+      default:
+         printf("DEFAULT %d %s\n", p.op, p.sval ? p.sval : "<nil>");
+         break;
+   }
+
+   return ret;
+}
+
 void run(Tree *p) {
    while (p) {
       switch (p->op) {
@@ -67,8 +121,34 @@ void run(Tree *p) {
             dumpline(p);
             break;
          case YYASSIGN:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
+            {
+               int inuse = is_var_defined(p->left->sval);
+               if (!inuse) {
+                  fprintf(stderr, "WARNING: variable '%s' not in use line %d col %d, consider using LET\n",
+                     p->left->sval, p->left->line, p->left->col);
+               }
+               Tree res = evaluate(*(p->right));
+               Val val;
+               switch(res.op) {
+                  case YYDOUBLE:
+                     val.typ = 'd';
+                     val.dval = res.dval;
+                     break;
+                  case YYINTEGER:
+                     val.typ = 'i';
+                     val.ival = res.ival;
+                     break;
+                  case YYRATIONAL:
+                     val.typ = 'r';
+                     val.rval = res.rval;
+                     break;
+                  case YYSTRING:
+                     val.typ = 's';
+                     val.sval = res.sval;
+                     break;
+               }
+               set_value(p->left->sval, val);
+            }
             break;
          case YYATN:
             fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
