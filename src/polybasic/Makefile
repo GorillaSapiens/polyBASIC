@@ -15,6 +15,9 @@ OBJECTS= \
    dumptree.o \
    runtime_vars.o \
    runtime_lbls.o \
+   runtime_for.o \
+   runtime.o \
+   hash.o \
    polybasic.tab.o
 
 INCDIRS= \

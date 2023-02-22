@@ -1,4 +1,6 @@
-static unsigned long hash(const char *sstr) {
+#include "hash.h"
+
+unsigned long hash(const char *sstr) {
    const unsigned char *str = (const unsigned char *)sstr;
    unsigned long hash = 5381;
    int c;

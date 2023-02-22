@@ -7,18 +7,18 @@
 
 #include "tree.h"
 
-#undef YY_USER_ACTION
-#define YY_USER_ACTION                                       \
-  yylloc.first_line = yylloc.last_line;                      \
-  yylloc.first_column = yylloc.last_column;                  \
-  if (yylloc.first_line == yylineno)                         \
-     yylloc.last_column += yyleng;                           \
-  else {                                                     \
-     int col;                                                \
-     for (col = 1; yytext[yyleng - col] != '\n'; ++col) {}   \
-     yylloc.last_column = col;                               \
-     yylloc.last_line = yylineno;                            \
-  }
+//#undef YY_USER_ACTION
+//#define YY_USER_ACTION                                       \
+//  yylloc.first_line = yylloc.last_line;                      \
+//  yylloc.first_column = yylloc.last_column;                  \
+//  if (yylloc.first_line == yylineno)                         \
+//     yylloc.last_column += yyleng;                           \
+//  else {                                                     \
+//     int col;                                                \
+//     for (col = 1; yytext[yyleng - col] != '\n'; ++col) {}   \
+//     yylloc.last_column = col;                               \
+//     yylloc.last_line = yylineno;                            \
+//  }
 
 #include "polybasic.tab.hpp"
 #include "reflex/flexlexer.h"

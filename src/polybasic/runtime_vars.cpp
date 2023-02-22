@@ -1,20 +1,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include "runtime_vars.h"
+#include "hash.h"
 
 #define HASH_SIZE 65536
-Var *vars[HASH_SIZE];
-
-static unsigned long hash(const char *sstr) {
-   const unsigned char *str = (const unsigned char *)sstr;
-   unsigned long hash = 5381;
-   int c;
-
-   while (c = *str++)
-      hash = ((hash << 5) + hash) ^ c; // hash(i - 1) * 33 ^ str[i]
-
-   return hash;
-}
+static Var *vars[HASH_SIZE];
 
 int is_var_defined(const char *p) {
    unsigned long h = hash(p);

@@ -9,6 +9,7 @@
 #include "dumptree.h"
 #include "polybasic.tab.hpp"
 #include "mapping.h"
+#include "runtime.h"
 
 extern FILE *yyin;
 
@@ -222,7 +223,8 @@ int main(int argc, char **argv) {
    }
    else {
       extern Tree *programtree;
-      dumptree(programtree);
+      //dumptree(programtree);
+      runtree(programtree);
    }
 }
 

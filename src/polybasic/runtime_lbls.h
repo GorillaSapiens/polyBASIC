@@ -2,14 +2,10 @@
 #define _INCLUDE_RUNTIME_LBLS_H_
 
 #include "tree.h"
-typedef struct Lbl {
-   char *name;
-   Tree *tree;
-} Lbl;
 
 int is_lbl_defined(const char *p);
 
-int set_label(const char *p, Tree *n);
+int set_label(Tree *n);
 
 Tree *get_label(const char *p);
 
