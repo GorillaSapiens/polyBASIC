@@ -4,8 +4,7 @@
 #include <stdint.h>
 #include "rational.h"
 
-typedef struct Var {
-   const char *name;
+typedef struct Val {
    char typ;
    union {
       double dval;
@@ -13,19 +12,18 @@ typedef struct Var {
       Rational *rval;
       const char *sval;
    };
+} Val;
+
+typedef struct Var {
+   const char *name;
+   Val value;
 } Var;
 
 int is_var_defined(const char *p);
 
-int set_value(const char *p, double d);
+int set_value(const char *p, Val value);
 
-int set_value(const char *p, int64_t i);
-
-int set_value(const char *p, Rational *r);
-
-int set_value(const char *p, const char *s);
-
-Var *get_value(const char *p);
+const Val *get_value(const char *p);
 
 #endif
 

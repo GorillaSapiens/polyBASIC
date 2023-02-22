@@ -4,5 +4,6 @@
 #include "tree.h"
 
 void dumptree(Tree *root);
+void dumpline(Tree *root);
 
 #endif
