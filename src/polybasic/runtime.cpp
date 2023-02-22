@@ -553,8 +553,16 @@ Tree *evaluate(Tree *p) {
                         p->op = YYSTRING;
                         break;
                      case '-':
-                        p->ival = levenshtein (p->left->sval, p->right->sval);
+                        p->ival = levenshtein (p->left->sval, p->right->sval); // TODO FIX
                         p->op = YYINTEGER;
+                        break;
+                     case '*':
+                        p->sval = strdup(p->left->sval); // TODO FIX
+                        p->op = YYSTRING;
+                        break;
+                     case '/':
+                        p->sval = strdup(p->right->sval); // TODO FIX
+                        p->op = YYSTRING;
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
@@ -611,7 +619,29 @@ void run(Tree *p) {
                      p->left->sval, p->left->line, p->left->col);
                }
                Tree *result = evaluate(deep_copy(p->right));
-assert(0);
+               Val value;
+               switch (result->op) {
+                  case YYDOUBLE:
+                     value.typ = 'd';
+                     value.dval = result->dval;
+                     break;
+                  case YYINTEGER:
+                     value.typ = 'i';
+                     value.ival = result->ival;
+                     break;
+                  case YYRATIONAL:
+                     value.typ = 'r';
+                     value.rval = result->rval;
+                     break;
+                  case YYSTRING:
+                     value.typ = 's';
+                     value.sval = result->sval;
+                     break;
+                  default:
+                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     break;
+               }
+               free((void *)result);
             }
             break;
          case YYATN:
