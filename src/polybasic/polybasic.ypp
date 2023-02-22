@@ -254,7 +254,7 @@ printstmt   : YYPRINT exprlist
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYPRINT;
-                  $$.left = copytree(&$2);
+                  $$.middle = copytree(&$2);
                }
             ;
 
@@ -615,7 +615,7 @@ expression    : expression '+' expression
 exprlist      : expression YYIPSEP exprlist
                  {
                     $$ = $1;
-                    $$.right = copytree(&$3);
+                    $$.middle = copytree(&$3);
                  }
               | expression
                  {

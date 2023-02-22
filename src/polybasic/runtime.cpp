@@ -133,9 +133,9 @@ Tree *deep_copy(Tree *subtree) {
    }
 
    if (subtree->left) { copy->left = deep_copy(subtree->left); }
-   if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
+   subtree->middle = NULL; // if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
    if (subtree->right) { copy->right = deep_copy(subtree->right); }
-   subtree->next = NULL;
+   subtree->next = NULL; // if (subtree->next) { copy->next = deep_copy(subtree->next); }
 
    return copy;
 }
@@ -631,6 +631,36 @@ void run(Tree *p) {
                free((void *)result);
             }
             break;
+         case YYPRINT:
+            {
+               Tree *result = evaluate(deep_copy(p));
+               for (Tree *mid = result->middle; mid; mid = mid->middle) {
+                  switch (mid->op) {
+                     case YYDOUBLE:
+                        printf("%f ", mid->dval);
+                        break;
+                     case YYINTEGER:
+                        printf("%li ", mid->ival);
+                        break;
+                     case YYRATIONAL:
+                        {
+                           char buf[1024];
+                           mid->rval->print(buf);
+                           printf("%s ", buf);
+                        }
+                        break;
+                     case YYSTRING:
+                        printf("%s ", mid->sval);
+                        break;
+                     default:
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        break;
+                  }
+               }
+               printf("\n");
+            }
+            break;
+
 
          case YYDATA:
             fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
@@ -669,10 +699,6 @@ void run(Tree *p) {
             dumpline(p);
             break;
          case YYNEXT:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYPRINT:
             fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
             dumpline(p);
             break;
