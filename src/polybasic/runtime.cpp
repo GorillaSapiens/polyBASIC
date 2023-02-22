@@ -46,49 +46,6 @@ static void register_for(Tree *root) {
    }
 }
 
-Tree i2r(Tree t) {
-   int i = t.ival;
-   char sign = 1;
-   if (i < 0) {
-      i = -i;
-      sign = -1;
-   }
-   Tree ret;
-   ret.op = YYRATIONAL;
-   ret.rval = new Rational(sign, i, 0, 1);
-   return ret;
-}
-
-Tree i2d(Tree t) {
-   t.op = YYDOUBLE;
-   t.dval = (double) t.ival;
-   return t;
-}
-
-Tree r2d(Tree t) {
-   t.op = YYDOUBLE;
-   t.dval = (double) (*t.rval);
-   return t;
-}
-
-Tree s2d(Tree t) {
-   t.op = YYDOUBLE;
-   t.dval = atof(t.sval);
-   return t;
-}
-
-Tree s2i(Tree t) {
-   t.op = YYINTEGER;
-   t.ival = atoll(t.sval);
-   return t;
-}
-
-Tree s2r(Tree t) {
-   t.op = YYRATIONAL;
-   t.rval = new Rational(t.sval);
-   return t;
-}
-
 // make a deep copy, substituting variables along the way
 Tree *deep_copy(Tree *subtree) {
    Tree *copy = (Tree *) malloc(sizeof(Tree));
@@ -133,9 +90,9 @@ Tree *deep_copy(Tree *subtree) {
    }
 
    if (subtree->left) { copy->left = deep_copy(subtree->left); }
-   subtree->middle = NULL; // if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
+   if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
    if (subtree->right) { copy->right = deep_copy(subtree->right); }
-   subtree->next = NULL; // if (subtree->next) { copy->next = deep_copy(subtree->next); }
+   copy->next = NULL; // if (subtree->next) { copy->next = deep_copy(subtree->next); }
 
    return copy;
 }
@@ -590,8 +547,8 @@ Tree *evaluate(Tree *p) {
 
 void run(Tree *p) {
    while (p) {
+      Tree *np = p->next;
       switch (p->op) {
-
          case YYASSIGN:
          case YYLET:
             {
@@ -605,29 +562,7 @@ void run(Tree *p) {
                      p->left->sval, p->left->line, p->left->col);
                }
                Tree *result = evaluate(deep_copy(p->right));
-               Val value;
-               switch (result->op) {
-                  case YYDOUBLE:
-                     value.typ = 'd';
-                     value.dval = result->dval;
-                     break;
-                  case YYINTEGER:
-                     value.typ = 'i';
-                     value.ival = result->ival;
-                     break;
-                  case YYRATIONAL:
-                     value.typ = 'r';
-                     value.rval = result->rval;
-                     break;
-                  case YYSTRING:
-                     value.typ = 's';
-                     value.sval = result->sval;
-                     break;
-                  default:
-                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
-                     break;
-               }
-               set_value(p->sval, value);
+               set_value(p->sval, result);
                free((void *)result);
             }
             break;
@@ -660,119 +595,102 @@ void run(Tree *p) {
                printf("\n");
             }
             break;
-
-
-         case YYDATA:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYEND:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
          case YYFOR:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYGOSUB:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYGOTO:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYIF:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYINPUT:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYINT:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYLOG:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
+            {
+               Tree *result = evaluate(deep_copy(p->left));
+               set_value(p->sval, result);
+            }
             break;
          case YYNEXT:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
+            {
+               Tree *fore = get_for(p->sval);
+               if (!fore) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  exit(-1);
+               }
+               Tree *start = evaluate(deep_copy(fore->left));
+               Tree *fini = evaluate(deep_copy(fore->right));
+               const Val *valuep = get_value(fore->sval);
+               Val value = *valuep;
+               switch(value.typ) {
+                  case 'd':
+                     {
+                        double step = 1.0;
+                        if (fini->dval < start->dval) {
+                           step = -1.0;
+                        }
+                        if (fore->middle) {
+                           Tree *middle = evaluate(deep_copy(fore->middle));
+                           step = middle->dval;
+                        }
+                        value.dval += step;
+                        set_value(fore->sval, value);
+                        if (step > 0.0 && value.dval <= fini->dval) {
+                           np = fore->next;
+                        }
+                        else if (step < 0.0 && value.dval >= fini->dval) {
+                           np = fore->next;
+                        }
+                     }
+                     break;
+                  case 'i':
+                     {
+                        int64_t step = 1;
+                        if (fini->ival < start->ival) {
+                           step = -1.0;
+                        }
+                        if (fore->middle) {
+                           Tree *middle = evaluate(deep_copy(fore->middle));
+                           step = middle->ival;
+                        }
+                        value.ival += step;
+                        set_value(fore->sval, value);
+                        if (step > 0 && value.ival <= fini->ival) {
+                           np = fore->next;
+                        }
+                        else if (step < 0 && value.ival >= fini->ival) {
+                           np = fore->next;
+                        }
+                     }
+                     break;
+                  case 'r':
+                     {
+                        Rational value_rval = *(value.rval);
+                        Rational step = Rational(1,1,0,1);
+                        if (fini->rval < start->rval) {
+                           step = Rational(-1,1,0,1);
+                        }
+                        if (fore->middle) {
+                           Tree *middle = evaluate(deep_copy(fore->middle));
+                           step = *(middle->rval);
+                        }
+                        value_rval = value_rval + step;
+                        value.rval = new Rational(value_rval);
+                        set_value(fore->sval, value);
+                        if (step.sgn() > 0 && value_rval <= *(fini->rval)) {
+                           np = fore->next;
+                        }
+                        else if (step.sgn() < 0 && value_rval >= *(fini->rval)) {
+                           np = fore->next;
+                        }
+                     }
+                     break;
+                  case 's':
+                     // punt, this is just stupid
+                     break;
+               }
+            }
             break;
-         case YYRANDOMIZE:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
+         case YYEND:
+            exit(0);
             break;
-         case YYRAT:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYRATIONAL:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYREAD:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYRELATION:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYREM:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYRETURN:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYRND:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYSGN:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYSIN:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYSQR:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYSTOP:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYSTR:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYSTRING:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYTAN:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
-         case YYVARNAME:
-            fprintf(stderr, "src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            dumpline(p);
-            break;
+
          default:
-            fprintf(stderr, "unrecognized op %d line %d col %d\n", p->op, p->line, p->col);
-            dumpline(p);
+            fprintf(stderr, "!!!! src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
             exit(-1);
             break;
       }
-      p = p->next;
+      p = np;
    }
 }
 

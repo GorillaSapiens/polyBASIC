@@ -69,6 +69,32 @@ int set_value(const char *p, Val value) {
    return 0;
 }
 
+int set_value(const char *p, Tree *result) {
+   Val value;
+   switch (result->op) {
+      case YYDOUBLE:
+         value.typ = 'd';
+         value.dval = result->dval;
+         break;
+      case YYINTEGER:
+         value.typ = 'i';
+         value.ival = result->ival;
+         break;
+      case YYRATIONAL:
+         value.typ = 'r';
+         value.rval = result->rval;
+         break;
+      case YYSTRING:
+         value.typ = 's';
+         value.sval = result->sval;
+         break;
+      default:
+         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+         break;
+   }
+   return set_value(p, value);
+}
+
 const Val *get_value(const char *p) {
    unsigned long h = hash(p);
 
