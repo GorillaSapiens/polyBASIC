@@ -76,10 +76,6 @@ IPSEP [,;]
 /* any valid multicharacter thing */
 VARNAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*
 
-//VARNAME  [\p{Letter}]([\p{Letter}\p{Number}_])*
-//LABEL    (([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|([0-9]+[!]?))
-//BLABEL   (^([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|^([0-9]+[!]?))
-
 // unused
 // /* any single character appearing by iteslf */
 // RUNE     [$%|&'?^_.]
