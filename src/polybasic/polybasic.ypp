@@ -51,8 +51,7 @@ Tree *programtree;
 %type <u> expression
 %type <u> exprlist
 
-%type <u> blabel
-%type <u> singlelabel
+%type <u> label
 %type <u> labellist
 
 %type <u> statement
@@ -131,7 +130,6 @@ Tree *programtree;
 %token YYIPSEP
 
 %token YYLABEL
-%token YYBLABEL
 %token YYEOL
 
 %left '+'
@@ -165,10 +163,10 @@ line          : statement YYEOL
                      $$ = $1;
                      $$.label = NULL;
                   }
-              | blabel statement YYEOL
+              | label statement YYEOL
                   {
                      $$ = $2;
-                     $$.label = strdup($1.label);
+                     $$.label = strdup($1.sval);
                   }
               ;
 
@@ -258,49 +256,49 @@ printstmt   : YYPRINT exprlist
                }
             ;
 
-controlstmt   : YYGO YYTO singlelabel
+controlstmt   : YYGO YYTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
-                     $$.left = copytree(&$3);
+                     $$.sval = strdup($3.label);
                   }
-              | YYGOTO singlelabel
+              | YYGOTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
-                     $$.left = copytree(&$2);
+                     $$.sval = strdup($2.label);
                   }
-              | YYGO YYSUB singlelabel
+              | YYGO YYSUB label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
-                     $$.left = copytree(&$3);
+                     $$.sval = strdup($3.label);
                   }
-              | YYGOSUB singlelabel
+              | YYGOSUB label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
-                     $$.left = copytree(&$2);
+                     $$.sval = strdup($2.label);
                   }
-              | YYIF expression relation expression YYTHEN singlelabel
+              | YYIF expression relation expression YYTHEN label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYIF;
+                     $$.label = strdup($6.label);
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
-                     $$.middle = copytree(&$6);
                   }
               | YYON expression YYGO YYTO labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYGOTO;
+                     $$.op = YYON;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$5);
                   }
@@ -308,7 +306,7 @@ controlstmt   : YYGO YYTO singlelabel
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYGOTO;
+                     $$.op = YYON;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
                   }
@@ -386,33 +384,30 @@ repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
                   }
               ;
 
-singlelabel   : YYLABEL
+label          : varname
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYLABEL;
-                     $$.sval = strdup(yytext);
-                     $$.label = strdup(yytext);
+                     $$.label = strdup($1.sval);
                   }
-              ;
-
-blabel        : YYBLABEL
+               | YYINTEGER
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYBLABEL;
+                     $$.op = YYLABEL;
                      $$.label = strdup(yytext);
                   }
-              ;
+               ;
 
-labellist     : singlelabel
+labellist     : label
                   {
                      $$ = $1;
                   }
-              | labellist singlelabel
+              | labellist label
                   {
                      $$ = $1;
-                     $$.middle = copytree(&$2);
+                     $$.next = copytree(&$2);
                   }
               ;
 

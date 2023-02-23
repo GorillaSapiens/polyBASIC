@@ -545,7 +545,11 @@ Tree *evaluate(Tree *p) {
    return p;
 }
 
+#define GOSUB_STACKSIZE 1024
 void run(Tree *p) {
+   Tree *gosub_stack[GOSUB_STACKSIZE];
+   int gosub_spot = 0;
+
    while (p) {
       Tree *np = p->next;
       switch (p->op) {
@@ -681,8 +685,46 @@ void run(Tree *p) {
                }
             }
             break;
-         case YYEND:
+         case YYSTOP: // why are there two of these???
+         case YYEND:  // when they both do the same things???
             exit(0);
+            break;
+         case YYGOTO:
+            {
+               Tree *t = get_label(p->sval);
+               if (!t) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d '%s'\n", __FILE__, __LINE__, p->sval);
+                  exit(-1);
+               }
+               np = t;
+            }
+            break;
+         case YYGOSUB:
+            {
+               Tree *t = get_label(p->sval);
+               if (!t) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  exit(-1);
+               }
+
+               gosub_stack[gosub_spot++] = np;
+               if (gosub_spot == GOSUB_STACKSIZE) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  exit(-1);
+               }
+
+               np = t;
+            }
+            break;
+         case YYRETURN:
+            {
+               gosub_spot--;
+               if (gosub_spot < 0) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  exit(-1);
+               }
+               np = gosub_stack[gosub_spot];
+            }
             break;
 
          default:

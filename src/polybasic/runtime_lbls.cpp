@@ -18,6 +18,7 @@ int is_lbl_defined(const char *p) {
 }
 
 int set_label(Tree *n) {
+printf("set label %s\n", n->label);
    unsigned long h = hash(n->label);
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {

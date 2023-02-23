@@ -75,8 +75,6 @@ IPSEP [,;]
 
 /* any valid multicharacter thing */
 VARNAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*
-LABEL    (([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*[!])|([0-9]+[!]?))
-BLABEL   (^([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*[!])|^([0-9]+[!]?))
 
 //VARNAME  [\p{Letter}]([\p{Letter}\p{Number}_])*
 //LABEL    (([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|([0-9]+[!]?))
@@ -89,20 +87,6 @@ BLABEL   (^([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneou
 EOL      [\r\n]{1,2}
 
 %%
-
-{BLABEL}    {
-               enum yytokentype ret;
-               if (!is_reserved_label(yytext)) {
-                  ret = YYBLABEL;
-               }
-               else {
-                  ret = YYerror;
-               }
-               char *s = strchr(yytext, '!');
-               if (s) { *s = 0; }
-               DEBUG("BLABEL = '%s' %d\n", yytext, ret);
-               return ret;
-            }
 
 {WHITESPACE} { /* ignore */ }
 
@@ -142,22 +126,7 @@ EOL      [\r\n]{1,2}
                return YYRELATION;
             }
 
-
-{LABEL}     {
-               enum yytokentype ret;
-               if (!is_reserved_label(yytext)) {
-                  ret = YYLABEL;
-               }
-               else {
-                  ret = YYerror;
-               }
-               char *s = strchr(yytext, '!');
-               if (s) { *s = 0; }
-               DEBUG("LABEL = '%s' %d\n", yytext, ret);
-               return ret;
-            }
-
-{SINGLE}     {
+{SINGLE}    {
                DEBUG("token = '%s' %d\n", yytext, yytext[0]);
                return yytext[0];
             }
@@ -170,7 +139,7 @@ EOL      [\r\n]{1,2}
 {EOL}       {
                DEBUG("token = 'EOL' %d\n", YYEOL);
                return YYEOL;
-             }
+            }
 
 .           {
                printf("YYerrror %d ❮%s❯\n", yylineno, yytext);
