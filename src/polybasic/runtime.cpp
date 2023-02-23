@@ -233,6 +233,25 @@ Tree *evaluate(Tree *p) {
       memcpy(p, p->left, sizeof(Tree));
       free(freeme);
    }
+   else if (p->op == YYDBL) {
+      Tree *freeme = p->left;
+      p->op = YYDOUBLE;
+      if (p->left->op == YYSTRING) {
+         p->dval = atof(p->left->sval);
+      }
+      if (p->left->op == YYDOUBLE) {
+         p->dval = p->left->dval;
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->dval = (double) p->left->ival;
+      }
+      else if (p->left->op == YYRATIONAL) {
+         Rational *deleteme = p->left->rval;
+         p->dval = (double) (*(p->left->rval));
+         delete deleteme;
+      }
+      free(freeme);
+   }
    else if (p->op == YYEXP) {
       Tree *freeme = p->left;
       if (p->left->op == YYSTRING) {
