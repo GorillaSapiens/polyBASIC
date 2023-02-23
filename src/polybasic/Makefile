@@ -38,7 +38,7 @@ polybasic.tab.cpp: polybasic.ypp
 	$(bison) -Wcounterexamples -H polybasic.ypp
 
 lex.yy.cpp: polybasic.l polybasic.tab.hpp
-	$(reflex) --yy --header-file=lex.yy.hpp polybasic.l
+	$(reflex) -yy --unicode --header-file=lex.yy.hpp polybasic.l
 
 mapping.h: mapping.pl polybasic.tab.hpp
 	./mapping.pl < polybasic.tab.hpp > mapping.h

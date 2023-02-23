@@ -33,10 +33,10 @@ enum yytokentype is_reserved_word(const char *a);
 #define DEBUG
 %}
 
-%option flex
-%option bison
-%option unicode
-%option yylineno
+%option flex bison unicode yylineno
+//%option bison
+//%option unicode
+//%option yylineno
 
 
 
@@ -74,11 +74,13 @@ SINGLE [-+*/()]
 IPSEP [,;]
 
 /* any valid multicharacter thing */
-VARNAME  [\p{Letter}]([\p{Letter}\p{Number}_])*
+VARNAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*
+LABEL    (([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*[!])|([0-9]+[!]?))
+BLABEL   (^([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*[!])|^([0-9]+[!]?))
 
-LABEL    (([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|([0-9]+[!]?))
-
-BLABEL   (^([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|^([0-9]+[!]?))
+//VARNAME  [\p{Letter}]([\p{Letter}\p{Number}_])*
+//LABEL    (([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|([0-9]+[!]?))
+//BLABEL   (^([\p{Letter}]([\p{Letter}\p{Number}_])*[!])|^([0-9]+[!]?))
 
 // unused
 // /* any single character appearing by iteslf */
