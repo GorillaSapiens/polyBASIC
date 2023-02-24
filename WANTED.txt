@@ -1,0 +1,7 @@
+Here's some things i think this project needs:
+
+(*) individual test cases for each and every language feature.
+
+(*) a native speaking owner for each translation.
+
+(*) more languages.
