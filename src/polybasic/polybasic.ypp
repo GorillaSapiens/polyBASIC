@@ -261,37 +261,37 @@ controlstmt   : YYGO YYTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
-                     $$.sval = strdup($3.label);
+                     $$.sval = strdup($3.sval);
                   }
               | YYGOTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
-                     $$.sval = strdup($2.label);
+                     $$.sval = strdup($2.sval);
                   }
               | YYGO YYSUB label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
-                     $$.sval = strdup($3.label);
+                     $$.sval = strdup($3.sval);
                   }
               | YYGOSUB label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
-                     $$.sval = strdup($2.label);
+                     $$.sval = strdup($2.sval);
                   }
               | YYIF expression relation expression YYTHEN label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYIF;
-                     $$.label = strdup($6.label);
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
+                     $$.middle = copytree(&$6);
                      $$.right = copytree(&$4);
                   }
               | YYON expression YYGO YYTO labellist
@@ -389,14 +389,14 @@ label          : varname
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYLABEL;
-                     $$.label = strdup($1.sval);
+                     $$.sval = strdup($1.sval);
                   }
                | YYINTEGER
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYLABEL;
-                     $$.label = strdup(yytext);
+                     $$.sval = strdup(yytext);
                   }
                ;
 

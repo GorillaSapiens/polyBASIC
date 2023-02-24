@@ -64,7 +64,7 @@ DOUBLE   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))(E[+-]?[0-9]+)?
 /* of an "unquoted string" to allow, well, everything unicode */
 
 /* relations given by ECMA-55 §12.2, modified */
-RELATION (==|<>|<|>|>=|<=)
+RELATION (==|!=|<>|<|>|>=|<=)
 
 ASSIGN ":="
 

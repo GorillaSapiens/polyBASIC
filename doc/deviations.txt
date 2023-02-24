@@ -10,6 +10,11 @@ as character delimeters, and "" is not a valid " escape.
 done to eliminate a class of errors where people got "=" and "=="
 confused.
 
+both <> and != are accepted for "not equal" comparisons.  they are
+completely equivalent.
+
+relational comparisons between string values follow C strcmp semantics.
+
 line labels are optional, and need not be numeric, or even in numeric
 order.  lines are executed in order, and labels are used solely as targets
 for GOTO, GOSUB, and ON statements.  nonnumeric labels must end in a

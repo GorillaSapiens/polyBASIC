@@ -564,6 +564,128 @@ Tree *evaluate(Tree *p) {
    return p;
 }
 
+#define OP2NUM(x) ((((x)[0]) << 8) | ((x)[1]))
+
+bool is_double_relation_true(Tree *left, const char *op, Tree *right) {
+   switch(OP2NUM(op)) {
+      case OP2NUM("=="):
+         return left->dval == right->dval;
+         break;
+      case OP2NUM("<>"):
+      case OP2NUM("!="): // let's be kind to C programmers...
+         return left->dval != right->dval;
+         break;
+      case OP2NUM(">="):
+         return left->dval >= right->dval;
+         break;
+      case OP2NUM("<="):
+         return left->dval <= right->dval;
+         break;
+      case OP2NUM(">"):
+         return left->dval > right->dval;
+         break;
+      case OP2NUM("<"):
+         return left->dval < right->dval;
+         break;
+   }
+   return false;
+}
+
+bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
+   switch(OP2NUM(op)) {
+      case OP2NUM("=="):
+         return left->ival == right->ival;
+         break;
+      case OP2NUM("<>"):
+      case OP2NUM("!="): // let's be kind to C programmers...
+         return left->ival != right->ival;
+         break;
+      case OP2NUM(">="):
+         return left->ival >= right->ival;
+         break;
+      case OP2NUM("<="):
+         return left->ival <= right->ival;
+         break;
+      case OP2NUM(">"):
+         return left->ival > right->ival;
+         break;
+      case OP2NUM("<"):
+         return left->ival < right->ival;
+         break;
+   }
+   return false;
+}
+
+bool is_rational_relation_true(Tree *left, const char *op, Tree *right) {
+   switch(OP2NUM(op)) {
+      case OP2NUM("=="):
+         return *(left->rval) == *(right->rval);
+         break;
+      case OP2NUM("<>"):
+      case OP2NUM("!="): // let's be kind to C programmers...
+         return *(left->rval) != *(right->rval);
+         break;
+      case OP2NUM(">="):
+         return *(left->rval) >= *(right->rval);
+         break;
+      case OP2NUM("<="):
+         return *(left->rval) <= *(right->rval);
+         break;
+      case OP2NUM(">"):
+         return *(left->rval) > *(right->rval);
+         break;
+      case OP2NUM("<"):
+         return *(left->rval) < *(right->rval);
+         break;
+   }
+   return false;
+}
+
+bool is_string_relation_true(Tree *left, const char *op, Tree *right) {
+   int result = strcmp(left->sval, right->sval);
+   switch(OP2NUM(op)) {
+      case OP2NUM("=="):
+         return result == 0;
+         break;
+      case OP2NUM("<>"):
+      case OP2NUM("!="): // let's be kind to C programmers...
+         return result != 0;
+         break;
+      case OP2NUM(">="):
+         return result >= 0;
+         break;
+      case OP2NUM("<="):
+         return result <= 0;
+         break;
+      case OP2NUM(">"):
+         return result > 0;
+         break;
+      case OP2NUM("<"):
+         return result < 0;
+         break;
+   }
+   return false;
+}
+
+bool is_relation_true(Tree *left, const char *op, Tree *right) {
+   // assumes left and right are the same type!
+   switch (left->op) {
+      case YYDOUBLE:
+         return is_double_relation_true(left, op, right);
+         break;
+      case YYINTEGER:
+         return is_integer_relation_true(left, op, right);
+         break;
+      case YYRATIONAL:
+         return is_rational_relation_true(left, op, right);
+         break;
+      case YYSTRING:
+         return is_string_relation_true(left, op, right);
+         break;
+   }
+   return false;
+}
+
 #define GOSUB_STACKSIZE 1024
 void run(Tree *p) {
    Tree *gosub_stack[GOSUB_STACKSIZE];
@@ -743,6 +865,57 @@ void run(Tree *p) {
                   exit(-1);
                }
                np = gosub_stack[gosub_spot];
+            }
+            break;
+         case YYIF:
+            {
+               Tree *left = evaluate(deep_copy(p->left));
+               Tree *right = evaluate(deep_copy(p->right));
+               Tree *target = get_label(p->middle->sval);
+               if (!target) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d '%s'\n", __FILE__, __LINE__, p->sval);
+                  exit(-1);
+               }
+               if (left->op != right->op) {
+                  // in a mismatch, try to make strings into numbers
+                  if (p->left->op == YYSTRING) {
+                     upgrade_to_number(p->left);
+                  }
+                  if (p->right->op == YYSTRING) {
+                     upgrade_to_number(p->right);
+                  }
+
+                  if (p->left->op == YYRATIONAL && p->right->op == YYINTEGER) {
+                     upgrade_to_rational(p->right);
+                  }
+                  else if (p->left->op == YYINTEGER && p->right->op == YYRATIONAL) {
+                     upgrade_to_rational(p->left);
+                  }
+
+                  if (p->left->op == YYRATIONAL && p->right->op == YYDOUBLE) {
+                     upgrade_to_double(p->left);
+                  }
+                  else if (p->left->op == YYDOUBLE && p->right->op == YYRATIONAL) {
+                     upgrade_to_double(p->right);
+                  }
+
+                  if (p->left->op == YYINTEGER && p->right->op == YYDOUBLE) {
+                     upgrade_to_double(p->left);
+                  }
+                  else if (p->left->op == YYDOUBLE && p->right->op == YYINTEGER) {
+                     upgrade_to_double(p->right);
+                  }
+               }
+
+               if (left->op == right->op) {
+                  if (is_relation_true(left, p->sval, right)) {
+                     np = target;
+                  }
+               }
+               else {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  exit(-1);
+               }
             }
             break;
 
