@@ -911,7 +911,13 @@ void run(Tree *p) {
                      }
                      break;
                   case 's':
-                     // punt, this is just stupid
+                     {
+                        // punt, this is just stupid
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, NEXT ON FOR LOOP WITH STRING VARIABLE\n",
+                           p->line, p->col);
+                        exit(-1);
+                     }
                      break;
                }
             }
