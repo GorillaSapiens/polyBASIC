@@ -54,6 +54,10 @@ main.o: mapping.h
 
 dumptree.o: mapping2.h mapping3.h
 
+.PHONY: todo
+todo:
+	./missing.pl | grep yes
+
 .PHONY: clean
 clean:
 	rm -f lex.yy.cpp lex.yy.hpp
