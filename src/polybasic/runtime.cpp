@@ -810,7 +810,7 @@ void run(Tree *p) {
                      case YYRATIONAL:
                         {
                            char buf[1024];
-                           mid->rval->print(buf);
+                           mid->rval->prettyprint(buf);
                            printf("%s ", buf);
                         }
                         break;
