@@ -1002,8 +1002,9 @@ void run(Tree *p) {
             break;
 
          default:
-            fprintf(stderr, "!!!! src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            exit(-1);
+            // all REM statements are syntax errors!
+            //fprintf(stderr, "!!!! src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
+            //exit(-1);
             break;
       }
       p = np;

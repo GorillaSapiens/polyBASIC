@@ -9,6 +9,7 @@
 #include "lex.yy.hpp"
 #include "safe_strdup.h"
 
+int remsleep = 0;
 void yyerror(const char *s);
 
 Tree *copytree(Tree *tree) {
@@ -63,7 +64,7 @@ Tree *programtree;
 %type <u> repeatstmt
 %type <u> controlstmt
 %type <u> randomize
-%type <u> rem
+%type <u> remstatement
 
 %type <u> assign
 %type <u> let
@@ -168,6 +169,28 @@ line          : statement YYEOL
                      $$ = $2;
                      $$.label = strdup($1.sval);
                   }
+              | remstatement error YYEOL
+                  {
+                     $$ = $1;
+                     yyerrok;
+                     remsleep = 0;
+                  }
+              | label remstatement error YYEOL
+                  {
+                     $$ = $2;
+                     $$.label = strdup($1.sval);
+                     yyerrok;
+                     remsleep = 0;
+                  }
+              ;
+
+remstatement  : YYREM
+                  {
+                     remsleep = 1;
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYREM;
+                  }
               ;
 
 statement     : assign
@@ -205,19 +228,6 @@ statement     : assign
               | randomize
                   {
                      $$ = $1;
-                  }
-              | rem
-                  {
-                     $$ = $1;
-                  }
-              ;
-
-// TODO FIX
-rem           : YYREM YYerror
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYREM;
                   }
               ;
 
@@ -694,6 +704,8 @@ sconst      : YYSTRING
 
 // TODO FIX why do we neeed this, shouldn't this be in a skeleton somewhere?
 void yyerror(const char *s) {
-   printf("yyerror: %s line %d col %d '%s'\n", s, yylineno, yylloc.first_column, yytext);
+   if (!remsleep) {
+      printf("yyerror: %s line %d col %d '%s'\n", s, yylineno, yylloc.first_column, yytext);
+   }
 }
 

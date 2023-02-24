@@ -138,10 +138,5 @@ EOL      [\r\n]{1,2}
                return YYEOL;
             }
 
-.           {
-               DEBUGPRINTF("YYerrror %d ❮%s❯\n", yylineno, yytext);
-               return YYerror;
-            }
-
 %%
 
