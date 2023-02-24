@@ -407,7 +407,7 @@ labellist     : label
               | labellist label
                   {
                      $$ = $1;
-                     $$.next = copytree(&$2);
+                     $$.middle = copytree(&$2);
                   }
               ;
 

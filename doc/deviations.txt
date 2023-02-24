@@ -4,7 +4,8 @@ support for multiple translations
 
 backslashes are now allowed as escape characters inside string constants,
 so you can include " inside a string. apostrophies are no longer allowed
-as character delimeters, and "" is not a valid " escape.
+as string delimeters, and "" is not a valid " escape.  use backslashes
+for escapes.
 
 := for assignment, == for comparison. "=" is no longer valid.  this was
 done to eliminate a class of errors where people got "=" and "=="
@@ -16,12 +17,14 @@ completely equivalent.
 relational comparisons between string values follow C strcmp semantics.
 
 line labels are optional, and need not be numeric, or even in numeric
-order.  lines are executed in order, and labels are used solely as targets
-for GOTO, GOSUB, and ON statements.  nonnumeric labels must end in a
-"!", and cannot match (translated) keywords.
+order.  lines are executed in order, and labels are used solely as
+targets for GOTO, GOSUB, and ON statements.  nonnumeric labels cannot
+match (translated) keywords.
 
 introduction of the "rational" type, in addition to integers, numbers,
-and strings.  the begin sigil for a rational type is '#'
+and strings.  the begin sigil for a rational type is '#'.  the rational
+number "negative 4 and 2/3" would be written "#-4'2/3".  rational maths
+result in the lowest necessary denominator.
 
 introduction of "ON <equality> GOSUB" because it seemed easy to do
 
