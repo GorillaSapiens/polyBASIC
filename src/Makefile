@@ -41,4 +41,4 @@ squeaky: clean
 	@echo =========================
 	@echo ===== MAKE $@
 	@echo =========================
-	(cd RE-flex && make clean)
+	(cd reflex && make clean)
