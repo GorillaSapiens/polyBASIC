@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <math.h>
 #include <time.h>
 
@@ -729,6 +730,47 @@ bool is_relation_true(Tree *left, const char *op, Tree *right) {
    return false;
 }
 
+Val convert_to_value(const char *s) {
+   Val value;
+   int has_noninteger = 0;
+   int has_nonrational = 0;
+   int has_nondouble = 0;
+
+   for (const char *p = s; *p; p++) {
+      if (*p != '+' && *p != '-' && (*p < '0' || *p > '9')) {
+         has_noninteger++;
+      }
+      if (*p != '#' && *p != '\'' && *p != '/' && *p != '+' && *p != '-' && (*p < '0' || *p > '9')) {
+         has_nonrational++;
+      }
+      if (*p != '.' && *p != 'E' && *p != '+' && *p != '-' && (*p < '0' || *p > '9')) {
+         has_nondouble++;
+      }
+   }
+   if (has_noninteger && has_nonrational && has_nondouble) {
+      value.typ = 's';
+      value.sval = strdup(s);
+   }
+   else if (!has_noninteger) {
+      value.typ = 'i';
+      value.ival = atol(s);
+   }
+   else if (!has_nondouble) {
+      value.typ = 'd';
+      value.dval = atof(s);
+   }
+   else if (!has_nonrational) {
+      value.typ = 'r';
+      value.rval = new Rational(s);
+   }
+   else {
+      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+      fprintf(stderr, "UNRECOGNIZED INPUT '%s'\n", s);
+      exit(-1);
+   }
+   return value;
+}
+
 #define GOSUB_STACKSIZE 1024
 void run(Tree *p) {
    Tree *gosub_stack[GOSUB_STACKSIZE];
@@ -779,6 +821,7 @@ void run(Tree *p) {
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
                         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MID OP %d\n",
                            p->line, p->col, mid->op);
+                        exit(-1);
                         break;
                   }
                }
@@ -1070,9 +1113,35 @@ void run(Tree *p) {
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
-                        fprintf(stderr, "SOURCE %d:%d, DATA READ OVERFLOW\n", p->line, p->col);
+                        fprintf(stderr, "SOURCE %d:%d, DATA READ UNDERFLOW\n", p->line, p->col);
                         exit(-1);
                         break;
+                  }
+               }
+            }
+            break;
+         case YYINPUT:
+            {
+               for (Tree *varname = p->right; varname; varname = varname->middle) {
+                  char buf[1024];
+                  printf("%s? ",varname->sval);
+                  fflush(stdout);
+                  char *s = fgets(buf, sizeof(buf), stdin); // TODO FIX is this unicode/utf8 safe?
+                  if (s) {
+                     // trim newlines or anything else goofy
+                     for (char *p = s; *p; p++) {
+                        if (*p < ' ') {
+                           *p = 0;
+                        }
+                     }
+                     // now do the conversion
+                     Val value = convert_to_value(s);
+                     set_value(varname->sval, value);
+                  }
+                  else {
+                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     fprintf(stderr, "SOURCE %d:%d, DATA INPUT UNDERFLOW\n", p->line, p->col);
+                     exit(-1);
                   }
                }
             }

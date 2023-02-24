@@ -671,7 +671,7 @@ inputstmt     : YYINPUT varlist
                     $$.line = yylineno;
                     $$.col = yyloc.first_column;
                     $$.op = YYINPUT;
-                    $$.middle = copytree(&$2);
+                    $$.right = copytree(&$2);
                }
             ;
 
