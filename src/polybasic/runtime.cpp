@@ -9,6 +9,7 @@
 #include "runtime_vars.h"
 #include "runtime_data.h"
 #include "runtime.h"
+#include "levenshtein.h"
 
 static void register_labels(Tree *root) {
    while (root) {
@@ -169,11 +170,6 @@ void upgrade_to_double(Tree *p) {
       p->dval = dval;
       delete deleteme;
    }
-}
-
-int levenshtein(const char *l, const char *r) {
-   // TODO FIX
-   return -1;
 }
 
 Tree *evaluate(Tree *p) {
