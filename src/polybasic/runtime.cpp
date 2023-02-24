@@ -702,7 +702,6 @@ bool is_relation_true(Tree *left, const char *op, Tree *right) {
 
 #define GOSUB_STACKSIZE 1024
 void run(Tree *p) {
-dumptree(p);
    Tree *gosub_stack[GOSUB_STACKSIZE];
    int gosub_spot = 0;
 
