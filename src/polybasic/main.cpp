@@ -183,6 +183,34 @@ void load_translations(const char *language) {
    }
 }
 
+const char *shortname(const char *arg0) {
+   const char *s = strrchr(arg0, '/');
+   if (s) {
+      s++;
+   }
+   else {
+      s = arg0;
+   }
+
+   return s;
+}
+
+[[ noreturn ]] void usage(const char *arg0) {
+   printf("Usage: %s [-f] [-t] [-l <language>] [<input.bas>]\n", shortname(arg0));
+   printf("      -f : debug flex parser output, and then run program\n");
+   printf("      -t : dump parse tree, do not run program\n");
+   printf("      -l : specify language, overriding POLYBASICLANG env variable\n");
+   printf("      if <input.bas> is omitted, read program from STDIN.\n");
+   printf("         this is not recommended, and may not play well with INPUT statements.\n");
+   exit(0);
+}
+
+[[ noreturn ]] void version(const char *arg0) {
+   #include "version.h"
+   printf("%s version %s\n", shortname(arg0), VERSION);
+   exit(0);
+}
+
 int main(int argc, char **argv) {
    int treedebug = 0;
    char *language = getenv("POLYBASICLANG");
@@ -192,32 +220,38 @@ int main(int argc, char **argv) {
    // skip program name
    argc--; argv++;
 
-   if (!(language && argc <= 1)) {
-      while(argv[0][0] == '-') {
-         switch (argv[0][1]) {
-            case 'f':
-               flexdebug = 1;
-               break;
-            case 't':
-               treedebug = 1;
-               break;
-            case 'l':
-               language = argv[1];
-               if (language == NULL) {
-                  fprintf(stderr, "-l requires a language.\n");
-               }
-               argc--; argv++;
-               break;
-         }
-
-         argc--; argv++;
+   while(argc && argv[0][0] == '-') {
+      switch (argv[0][1]) {
+         case 'f':
+            flexdebug = 1;
+            break;
+         case 't':
+            treedebug = 1;
+            break;
+         case 'l':
+            language = argv[1];
+            if (language == NULL) {
+               fprintf(stderr, "-l requires a language.\n");
+            }
+            argc--; argv++;
+            break;
+         case 'v':
+            version(arg0); // calls exit, never returns
+            break;
+         case 'h':
+         case '?':
+         default:
+            usage(arg0); // calls exit, never returns
+            break;
       }
+
+      argc--; argv++;
    }
 
    if (language == NULL) {
       fprintf(stderr,
-         "POLYBASICLANG not set, and no language "
-         "given on command line.  exiting.\n");
+            "POLYBASICLANG not set, and no language "
+            "given on command line.  exiting.\n");
       exit(-1);
    }
    load_translations(language);
@@ -229,7 +263,7 @@ int main(int argc, char **argv) {
 
       if (in == NULL) {
          fprintf(stderr,
-            "unable to open file %s\n", argv[0]);
+               "unable to open file %s\n", argv[0]);
          exit(-1);
       }
    }

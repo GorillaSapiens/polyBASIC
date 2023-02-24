@@ -162,7 +162,13 @@ linelist      : line
                   }
               ;
 
-line          : statement YYEOL
+line          : YYEOL
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYREM;
+                  }
+              | statement YYEOL
                   {
                      $$ = $1;
                      $$.label = NULL;
