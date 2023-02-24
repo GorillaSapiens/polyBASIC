@@ -26,6 +26,6 @@ and strings.  the begin sigil for a rational type is '#'.  the rational
 number "negative 4 and 2/3" would be written "#-4'2/3".  rational maths
 result in the lowest necessary denominator.
 
-introduction of "ON <equality> GOSUB" because it seemed easy to do
+introduction of "ON <expresssion> GOSUB" because it seemed easy to do
 
 dimensioned variables have been dropped.  they may be implemented later.
