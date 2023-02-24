@@ -440,7 +440,8 @@ Tree *evaluate(Tree *p) {
       if (p->op == '+' ||
             p->op == '-' ||
             p->op == '*' ||
-            p->op == '/') {
+            p->op == '/' ||
+            p->op == '^') {
 
          if (p->left->op != p->right->op) {
             // in a mismatch, try to make strings into numbers
@@ -489,6 +490,9 @@ Tree *evaluate(Tree *p) {
                      case '/':
                         p->dval = p->left->dval / p->right->dval;
                         break;
+                     case '^':
+                        p->dval = pow(p->left->dval,p->right->dval);
+                        break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
                         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
@@ -515,6 +519,9 @@ Tree *evaluate(Tree *p) {
                      case '/':
                         p->ival = p->left->ival / p->right->ival;
                         break;
+                     case '^':
+                        p->ival = (int64_t) pow(p->left->ival,p->right->ival);
+                        break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
                         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
@@ -531,15 +538,23 @@ Tree *evaluate(Tree *p) {
                   switch(p->op) {
                      case '+':
                         p->rval = new Rational (*(p->left->rval) + *(p->right->rval));
+                        p->op = YYRATIONAL;
                         break;
                      case '-':
                         p->rval = new Rational (*(p->left->rval) - *(p->right->rval));
+                        p->op = YYRATIONAL;
                         break;
                      case '*':
                         p->rval = new Rational (*(p->left->rval) * *(p->right->rval));
+                        p->op = YYRATIONAL;
                         break;
                      case '/':
                         p->rval = new Rational (*(p->left->rval) / *(p->right->rval));
+                        p->op = YYRATIONAL;
+                        break;
+                     case '^':
+                        p->dval = pow((double)(*(p->left->rval)), (double) (*(p->right->rval)));
+                        p->op = YYDOUBLE;
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
@@ -547,7 +562,6 @@ Tree *evaluate(Tree *p) {
                         exit(-1);
                         break;
                   }
-                  p->op = YYRATIONAL;
                   delete p->left->rval;
                   free(p->left);
                   p->left = NULL;
@@ -567,10 +581,17 @@ Tree *evaluate(Tree *p) {
                         p->op = YYINTEGER;
                         break;
                      case '*':
+#warning "what a mess"
                         p->sval = strdup(p->left->sval); // TODO FIX
                         p->op = YYSTRING;
                         break;
                      case '/':
+#warning "what a mess"
+                        p->sval = strdup(p->right->sval); // TODO FIX
+                        p->op = YYSTRING;
+                        break;
+                     case '^':
+#warning "what a mess"
                         p->sval = strdup(p->right->sval); // TODO FIX
                         p->op = YYSTRING;
                         break;

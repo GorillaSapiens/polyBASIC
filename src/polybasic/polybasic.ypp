@@ -138,6 +138,7 @@ Tree *programtree;
 %left '-'
 %left '*'
 %left '/'
+%left '^'
 
 %%
 
@@ -523,6 +524,14 @@ expression    : expression '+' expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = '/';
+                     $$.left = copytree(&$1);
+                     $$.right = copytree(&$3);
+                  }
+              | expression '^' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = '^';
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }

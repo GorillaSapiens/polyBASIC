@@ -70,7 +70,7 @@ RELATION (==|!=|<>|<|>|>=|<=)
 ASSIGN ":="
 
 /* any single character passed straight up to bison */
-SINGLE [-+*/()]
+SINGLE [-+*/^()]
 
 IPSEP [,;]
 
@@ -124,7 +124,7 @@ EOL      [\r\n]{1,2}
             }
 
 {SINGLE}    {
-               DEBUGPRINTF("SINGLE='%s'\n", yytext);
+               DEBUGPRINTF("SINGLE='%s' %c\n", yytext, yytext[0]);
                return yytext[0];
             }
 
