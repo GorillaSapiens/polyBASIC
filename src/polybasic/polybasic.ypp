@@ -299,6 +299,7 @@ controlstmt   : YYGO YYTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYON;
+                     $$.ival = 0;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$5);
                   }
@@ -307,6 +308,7 @@ controlstmt   : YYGO YYTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYON;
+                     $$.ival = 0;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
                   }
@@ -314,7 +316,8 @@ controlstmt   : YYGO YYTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYGOSUB;
+                     $$.op = YYON;
+                     $$.ival = 1;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$5);
                   }
@@ -322,7 +325,8 @@ controlstmt   : YYGO YYTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYGOSUB;
+                     $$.op = YYON;
+                     $$.ival = 1;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
                   }
@@ -404,10 +408,10 @@ labellist     : label
                   {
                      $$ = $1;
                   }
-              | labellist label
+              | label YYIPSEP labellist
                   {
                      $$ = $1;
-                     $$.middle = copytree(&$2);
+                     $$.middle = copytree(&$3);
                   }
               ;
 

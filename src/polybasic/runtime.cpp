@@ -702,6 +702,7 @@ bool is_relation_true(Tree *left, const char *op, Tree *right) {
 
 #define GOSUB_STACKSIZE 1024
 void run(Tree *p) {
+dumptree(p);
    Tree *gosub_stack[GOSUB_STACKSIZE];
    int gosub_spot = 0;
 
@@ -942,6 +943,62 @@ void run(Tree *p) {
                   fprintf(stderr, "SOURCE %d:%d, LEFT/RIGHT OP MISMATCH %d %d\n", p->line, p->col, left->op, right->op);
                   exit(-1);
                }
+            }
+            break;
+         case YYON:
+            {
+               Tree *result = evaluate(deep_copy(p->left));
+               int i = -1;
+               switch (result->op) {
+                  case YYDOUBLE:
+                     i = (int) result->dval;
+                     break;
+                  case YYINTEGER:
+                     i = (int) result->ival;
+                     break;
+                  case YYRATIONAL:
+                     i = (int) ((double)(*result->rval));
+                     break;
+                  case YYSTRING:
+                     i = atoi(result->sval);
+                     break;
+                  default:
+                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     fprintf(stderr, "SOURCE %d:%d, UNHANDLED OP %d\n", p->line, p->left->col, result->op);
+                     exit(-1);
+                     break;
+               }
+               if (i < 0) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, NEGATIVED INDEX %d\n", p->line, p->left->col, i);
+                  exit(-1);
+               }
+               int oi = i;
+               Tree *label = p->right;
+               while (i && label) {
+                  i--;
+                  label = label->middle;
+               }
+               if (i || label == NULL) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, INDEX %d OUT OF RANGE\n", p->line, p->left->col, oi);
+                  exit(-1);
+               }
+               Tree *target = get_label(label->sval);
+               if (!target) {
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, UNDEFINED TARGET '%s'\n", p->line, label->col, label->sval);
+                  exit(-1);
+               }
+               if (p->ival) { // GOSUB
+                  gosub_stack[gosub_spot++] = np;
+                  if (gosub_spot == GOSUB_STACKSIZE) {
+                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     fprintf(stderr, "SOURCE %d:%d, GOSUB STACK OVERFLOW\n", p->line, p->col);
+                     exit(-1);
+                  }
+               }
+               np = target;
             }
             break;
 
