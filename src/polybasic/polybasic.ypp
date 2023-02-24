@@ -277,6 +277,13 @@ printstmt   : YYPRINT exprlist
                   $$.op = YYPRINT;
                   $$.middle = copytree(&$2);
                }
+            | YYPRINT
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYPRINT;
+                  $$.middle = NULL;
+               }
             ;
 
 controlstmt   : YYGO YYTO label
