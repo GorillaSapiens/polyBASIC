@@ -1,4 +1,5 @@
 #include <math.h>
+#include <time.h>
 
 #include "tree.h"
 #include "polybasic.tab.hpp"
@@ -314,6 +315,11 @@ Tree *evaluate(Tree *p) {
    else if (p->op == YYRND) {
       p->op = YYDOUBLE;
       p->dval = (double)rand() / (double)RAND_MAX;
+   }
+   else if (p->op == YYRANDOMIZE) {
+      time_t t = time(NULL);
+      p->op = YYINTEGER;
+      p->ival = t;
    }
    else if (p->op == YYSGN) {
       Tree *freeme = p->left;
