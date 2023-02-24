@@ -59,6 +59,7 @@ Tree *programtree;
 
 %type <u> inputstmt
 %type <u> readstmt
+%type <u> restorestmt
 %type <u> datastmt
 %type <u> printstmt
 %type <u> repeatstmt
@@ -225,6 +226,10 @@ statement     : assign
                   {
                      $$ = $1;
                   }
+              | restorestmt
+                  {
+                     $$ = $1;
+                  }
               | randomize
                   {
                      $$ = $1;
@@ -248,12 +253,20 @@ datastmt    : YYDATA constlist
                }
             ;
 
+restorestmt : YYRESTORE
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYRESTORE;
+               }
+            ;
+
 readstmt    : YYREAD varlist
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYREAD;
-                  $$.middle = copytree(&$2);
+                  $$.right = copytree(&$2);
                }
             ;
 
@@ -701,7 +714,6 @@ sconst      : YYSTRING
                   }
                   q[-1] = 0;
                   $$.sval = strdup(buffer);
-printf("=== '%s'\n", $$.sval);
                }
             ;
 %%

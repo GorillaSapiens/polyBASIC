@@ -1037,6 +1037,42 @@ void run(Tree *p) {
                // as above, for REM
             }
             break;
+         case YYRESTORE:
+            {
+               rewind_data();
+            }
+            break;
+         case YYREAD:
+            {
+               for (Tree *varname = p->right; varname; varname = varname->middle) {
+                  Val value;
+                  value.typ = next_data_type();
+                  switch(value.typ) {
+                     case 'd':
+                        get_data(value.dval);
+                        set_value(varname->sval, value);
+                        break;
+                     case 'i':
+                        get_data(value.ival);
+                        set_value(varname->sval, value);
+                        break;
+                     case 'r':
+                        get_data(value.rval);
+                        set_value(varname->sval, value);
+                        break;
+                     case 's':
+                        get_data(value.sval);
+                        set_value(varname->sval, value);
+                        break;
+                     default:
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, DATA READ OVERFLOW\n", p->line, p->col);
+                        exit(-1);
+                        break;
+                  }
+               }
+            }
+            break;
          default:
             fprintf(stderr, "!!!! src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
             exit(-1);
