@@ -460,6 +460,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
                         exit(-1);
                         break;
                   }
@@ -485,6 +486,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
                         exit(-1);
                         break;
                   }
@@ -510,6 +512,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
                         exit(-1);
                         break;
                   }
@@ -542,6 +545,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
                         exit(-1);
                         break;
                   }
@@ -556,6 +560,10 @@ Tree *evaluate(Tree *p) {
          }
          else {
             fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+            fprintf(stderr, "SOURCE %d:%d, OPERAND MISMATCH '%p:%d' '%p:%d'\n",
+               p->line, p->col,
+               p->left, p->left ? p->left->op : -1,
+               p->right, p->right ? p->right->op : -1);
             exit(-1);
          }
       }
@@ -734,6 +742,8 @@ void run(Tree *p) {
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MID OP %d\n",
+                           p->line, p->col, mid->op);
                         break;
                   }
                }
@@ -751,6 +761,8 @@ void run(Tree *p) {
                Tree *fore = get_for(p->sval);
                if (!fore) {
                   fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED NEXT TARGET %s\n",
+                     p->line, p->col, p->sval);
                   exit(-1);
                }
                Tree *start = evaluate(deep_copy(fore->left));
@@ -834,7 +846,9 @@ void run(Tree *p) {
             {
                Tree *t = get_label(p->sval);
                if (!t) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d '%s'\n", __FILE__, __LINE__, p->sval);
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED GOTO TARGET '%s'\n",
+                     p->line, p->col, p->sval);
                   exit(-1);
                }
                np = t;
@@ -845,12 +859,15 @@ void run(Tree *p) {
                Tree *t = get_label(p->sval);
                if (!t) {
                   fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED GOSUB TARGET %s\n",
+                     p->line, p->col, p->sval);
                   exit(-1);
                }
 
                gosub_stack[gosub_spot++] = np;
                if (gosub_spot == GOSUB_STACKSIZE) {
                   fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, GOSUB STACK OVERFLOW\n", p->line, p->col);
                   exit(-1);
                }
 
@@ -862,6 +879,7 @@ void run(Tree *p) {
                gosub_spot--;
                if (gosub_spot < 0) {
                   fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, GOSUB STACK UNDERFLOW\n", p->line, p->col);
                   exit(-1);
                }
                np = gosub_stack[gosub_spot];
@@ -873,7 +891,8 @@ void run(Tree *p) {
                Tree *right = evaluate(deep_copy(p->right));
                Tree *target = get_label(p->middle->sval);
                if (!target) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d '%s'\n", __FILE__, __LINE__, p->sval);
+                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, UNKNOWN IF TARGET '%s'\n", p->line, p->col, p->sval);
                   exit(-1);
                }
                if (left->op != right->op) {
@@ -914,6 +933,7 @@ void run(Tree *p) {
                }
                else {
                   fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  fprintf(stderr, "SOURCE %d:%d, LEFT/RIGHT OP MISMATCH %d %d\n", p->line, p->col, left->op, right->op);
                   exit(-1);
                }
             }
