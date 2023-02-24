@@ -13,7 +13,7 @@ typedef struct Error {
    struct Error *next;
 } Error;
 
-Error *head = NULL;
+static Error *head = NULL;
 
 typedef union Value {
    int i;

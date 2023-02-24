@@ -192,24 +192,26 @@ int main(int argc, char **argv) {
    // skip program name
    argc--; argv++;
 
-   while(argv[0][0] == '-') {
-      switch (argv[0][1]) {
-         case 'f':
-            flexdebug = 1;
-            break;
-         case 't':
-            treedebug = 1;
-            break;
-         case 'l':
-            language = argv[1];
-            if (language == NULL) {
-               fprintf(stderr, "-l requires a language.\n");
-            }
-            argc--; argv++;
-            break;
-      }
+   if (!(language && argc <= 1)) {
+      while(argv[0][0] == '-') {
+         switch (argv[0][1]) {
+            case 'f':
+               flexdebug = 1;
+               break;
+            case 't':
+               treedebug = 1;
+               break;
+            case 'l':
+               language = argv[1];
+               if (language == NULL) {
+                  fprintf(stderr, "-l requires a language.\n");
+               }
+               argc--; argv++;
+               break;
+         }
 
-      argc--; argv++;
+         argc--; argv++;
+      }
    }
 
    if (language == NULL) {

@@ -16,6 +16,7 @@ OBJECTS= \
    runtime_vars.o \
    runtime_lbls.o \
    runtime_for.o \
+   runtime_data.o \
    runtime.o \
    hash.o \
    polybasic.tab.o

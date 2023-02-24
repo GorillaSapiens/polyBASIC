@@ -244,7 +244,7 @@ datastmt    : YYDATA constlist
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYDATA;
-                  $$.middle = copytree(&$2);
+                  $$.right = copytree(&$2);
                }
             ;
 
@@ -467,10 +467,6 @@ constlist      : constant YYIPSEP constlist
                   {
                      $$ = $1;
                      $$.middle = copytree(&$3);
-                  }
-               | varname
-                  {
-                     $$ = $1;
                   }
                | constant
                   {
@@ -695,9 +691,17 @@ sconst      : YYSTRING
                   $$.col = yyloc.first_column;
                   $$.op = YYSTRING;
                   char *buffer = (char *)alloca(strlen(yytext + 1));
-                  strcpy(buffer, yytext + 1);
-                  buffer[strlen(buffer) - 1] = 0;
+                  char *q = buffer;
+                  char *s = yytext + 1;
+                  while(*s) {
+                     if (*s == '\\') {
+                        s++;
+                     }
+                     *q++ = *s++;
+                  }
+                  q[-1] = 0;
                   $$.sval = strdup(buffer);
+printf("=== '%s'\n", $$.sval);
                }
             ;
 %%

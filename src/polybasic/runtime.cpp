@@ -7,6 +7,7 @@
 #include "runtime_lbls.h"
 #include "runtime_for.h"
 #include "runtime_vars.h"
+#include "runtime_data.h"
 #include "runtime.h"
 
 static void register_labels(Tree *root) {
@@ -41,6 +42,30 @@ static void register_for(Tree *root) {
          }
          else {
             set_for(root);
+         }
+      }
+      root = root->next;
+   }
+}
+
+static void register_data(Tree *root) {
+   while (root) {
+      if (root->op == YYDATA) {
+         for (Tree *data = root->right; data; data = data->middle) {
+            switch (data->op) {
+               case YYDOUBLE:
+                  add_data(data->dval);
+                  break;
+               case YYINTEGER:
+                  add_data(data->ival);
+                  break;
+               case YYRATIONAL:
+                  add_data(data->rval);
+                  break;
+               case YYSTRING:
+                  add_data(data->sval);
+                  break;
+            }
          }
       }
       root = root->next;
@@ -1000,11 +1025,21 @@ void run(Tree *p) {
                np = target;
             }
             break;
-
+         case YYREM:
+            {
+               // do... nothing...
+               // this is here so the default case doesn't howl at REM statements
+               // go figure.
+            }
+            break;
+         case YYDATA:
+            {
+               // as above, for REM
+            }
+            break;
          default:
-            // all REM statements are syntax errors!
-            //fprintf(stderr, "!!!! src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
-            //exit(-1);
+            fprintf(stderr, "!!!! src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
+            exit(-1);
             break;
       }
       p = np;
@@ -1014,6 +1049,7 @@ void run(Tree *p) {
 void runtree(Tree *root) {
    register_labels(root);
    register_for(root);
+   register_data(root);
    run(root);
 }
 
