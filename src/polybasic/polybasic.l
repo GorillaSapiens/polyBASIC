@@ -70,7 +70,8 @@ RELATION (==|!=|<>|<|>|>=|<=)
 ASSIGN ":="
 
 /* any single character passed straight up to bison */
-SINGLE [-+*/^()]
+/* ECMA-116 uses & for string concatenation */
+SINGLE [&-+*/^()]
 
 IPSEP [,;]
 

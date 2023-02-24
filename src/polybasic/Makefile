@@ -19,7 +19,6 @@ OBJECTS= \
    runtime_data.o \
    runtime.o \
    hash.o \
-   levenshtein.o \
    polybasic.tab.o
 
 INCDIRS= \

@@ -9,7 +9,6 @@
 #include "runtime_vars.h"
 #include "runtime_data.h"
 #include "runtime.h"
-#include "levenshtein.h"
 
 static void register_labels(Tree *root) {
    while (root) {
@@ -437,9 +436,13 @@ Tree *evaluate(Tree *p) {
             p->op == '-' ||
             p->op == '*' ||
             p->op == '/' ||
-            p->op == '^') {
+            p->op == '^' ||
+            p->op == '&') {
 
-         if (p->left->op != p->right->op) {
+         // ECMA-116 uses '&' ; for other types we'll just treat it like a '+'
+
+         if ((p->left->op != p->right->op) || 
+             (p->left->op == YYSTRING && p->op != '&')) {
             // in a mismatch, try to make strings into numbers
             if (p->left->op == YYSTRING) {
                upgrade_to_number(p->left);
@@ -475,6 +478,7 @@ Tree *evaluate(Tree *p) {
                case YYDOUBLE:
                   switch(p->op) {
                      case '+':
+                     case '&':
                         p->dval = p->left->dval + p->right->dval;
                         break;
                      case '-':
@@ -504,6 +508,7 @@ Tree *evaluate(Tree *p) {
                case YYINTEGER:
                   switch(p->op) {
                      case '+':
+                     case '&':
                         p->ival = p->left->ival + p->right->ival;
                         break;
                      case '-':
@@ -533,6 +538,7 @@ Tree *evaluate(Tree *p) {
                case YYRATIONAL:
                   switch(p->op) {
                      case '+':
+                     case '&':
                         p->rval = new Rational (*(p->left->rval) + *(p->right->rval));
                         p->op = YYRATIONAL;
                         break;
@@ -567,33 +573,14 @@ Tree *evaluate(Tree *p) {
                   break;
                case YYSTRING:
                   switch(p->op) {
-                     case '+':
+                     case '&':
                         p->sval = (char *) malloc(strlen(p->left->sval) + strlen(p->right->sval) + 1);
                         sprintf((char *) p->sval, "%s%s", p->left->sval, p->right->sval);
                         p->op = YYSTRING;
                         break;
-                     case '-':
-                        p->ival = levenshtein (p->left->sval, p->right->sval); // TODO FIX
-                        p->op = YYINTEGER;
-                        break;
-                     case '*':
-#warning "what a mess"
-                        p->sval = strdup(p->left->sval); // TODO FIX
-                        p->op = YYSTRING;
-                        break;
-                     case '/':
-#warning "what a mess"
-                        p->sval = strdup(p->right->sval); // TODO FIX
-                        p->op = YYSTRING;
-                        break;
-                     case '^':
-#warning "what a mess"
-                        p->sval = strdup(p->right->sval); // TODO FIX
-                        p->op = YYSTRING;
-                        break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
-                        fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
+                        fprintf(stderr, "SOURCE %d:%d, STRING MATH LOGIC ERROR\n", p->line, p->col);
                         exit(-1);
                         break;
                   }
