@@ -23,14 +23,15 @@
 #include "polybasic.tab.hpp"
 #include "reflex/flexlexer.h"
 
+int flexdebug = 0;
+
 // required fwd decls
 const char *has_tuple(const char *a);
 int is_reserved_label(const char *a);
 enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype retval);
 enum yytokentype is_reserved_word(const char *a);
 
-//#define DEBUG printf
-#define DEBUG
+#define DEBUGPRINTF if (flexdebug) printf
 %}
 
 %option flex bison unicode yylineno
@@ -88,57 +89,57 @@ EOL      [\r\n]{1,2}
 
 {VARNAME}   {
                enum yytokentype ret = is_reserved_varname('\0', yytext, YYVARNAME);
-               DEBUG("VARNAME='%s' %d\n", yytext, ret);
+               DEBUGPRINTF("VARNAME='%s' %d\n", yytext, ret);
                return ret;
             }
 
 {RATIONAL}  {
-               DEBUG("RATIONAL=%s\n", yytext);
+               DEBUGPRINTF("RATIONAL=%s\n", yytext);
                return YYRATIONAL;
             }
 
 {STRING}    {
-               DEBUG("STRING=%s\n", yytext);
+               DEBUGPRINTF("STRING=%s\n", yytext);
                return YYSTRING;
             }
 
 {INTEGER}   {
-               DEBUG("INTEGER=%s\n", yytext);
+               DEBUGPRINTF("INTEGER=%s\n", yytext);
                return YYINTEGER;
             }
 
 {DOUBLE}    {
-               DEBUG("DOUBLE=%s\n", yytext);
+               DEBUGPRINTF("DOUBLE=%s\n", yytext);
                return YYDOUBLE;
             }
 
 {ASSIGN}    {
-               DEBUG("token = '%s' %d\n", yytext, YYASSIGN);
+               DEBUGPRINTF("ASSIGN='%s'\n", yytext);
                return YYASSIGN;
             }
 
 {RELATION}  {
-               DEBUG("token = '%s' %d\n", yytext, YYRELATION);
+               DEBUGPRINTF("RELATION='%s'\n", yytext);
                return YYRELATION;
             }
 
 {SINGLE}    {
-               DEBUG("token = '%s' %d\n", yytext, yytext[0]);
+               DEBUGPRINTF("SINGLE='%s'\n", yytext);
                return yytext[0];
             }
 
 {IPSEP}     {
-               DEBUG("token = '%s' %d\n", yytext, YYIPSEP);
+               DEBUGPRINTF("IPSEP='%s'\n", yytext);
                return YYIPSEP;
             }
 
 {EOL}       {
-               DEBUG("token = 'EOL' %d\n", YYEOL);
+               DEBUGPRINTF("EOL='EOL'\n");
                return YYEOL;
             }
 
 .           {
-               printf("YYerrror %d ❮%s❯\n", yylineno, yytext);
+               DEBUGPRINTF("YYerrror %d ❮%s❯\n", yylineno, yytext);
                return YYerror;
             }
 

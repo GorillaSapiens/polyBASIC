@@ -12,6 +12,8 @@
 #include "runtime.h"
 
 extern FILE *yyin;
+extern int flexdebug;
+extern Tree *programtree;
 
 // a simple linked list of tuples
 // because i'm lazy,
@@ -182,26 +184,50 @@ void load_translations(const char *language) {
 }
 
 int main(int argc, char **argv) {
+   int treedebug = 0;
    char *language = getenv("POLYBASICLANG");
-   if (language == NULL) {
-      if (argc != 3) {
-         fprintf(stderr,
-            "POLYBASICLANG not set, and no language "
-            "given on command line.  exiting.\n");
-         exit(-1);
+
+   char *arg0 = argv[0];
+
+   // skip program name
+   argc--; argv++;
+
+   while(argv[0][0] == '-') {
+      switch (argv[0][1]) {
+         case 'f':
+            flexdebug = 1;
+            break;
+         case 't':
+            treedebug = 1;
+            break;
+         case 'l':
+            language = argv[1];
+            if (language == NULL) {
+               fprintf(stderr, "-l requires a language.\n");
+            }
+            argc--; argv++;
+            break;
       }
-      language = argv[1];
+
+      argc--; argv++;
+   }
+
+   if (language == NULL) {
+      fprintf(stderr,
+         "POLYBASICLANG not set, and no language "
+         "given on command line.  exiting.\n");
+      exit(-1);
    }
    load_translations(language);
 
    FILE *in = NULL;
 
-   if (argc > 1) {
-      in = fopen(argv[1], "r");
+   if (argv[0]) {
+      in = fopen(argv[0], "r");
 
       if (in == NULL) {
          fprintf(stderr,
-            "unable to open file %s\n", argv[1]);
+            "unable to open file %s\n", argv[0]);
          exit(-1);
       }
    }
@@ -221,9 +247,10 @@ int main(int argc, char **argv) {
    if (parser_result) {
       printf("failure\n");
    }
+   else if (treedebug) {
+      dumptree(programtree);
+   }
    else {
-      extern Tree *programtree;
-      //dumptree(programtree);
       runtree(programtree);
    }
 }
