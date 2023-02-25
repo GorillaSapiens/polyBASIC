@@ -1,5 +1,6 @@
 heck, just read the lex/yacc files here...
 
+git tag -n
 git tag -a milestone8 -m "milestone8, begin merge"
 git push origin --tags
 
