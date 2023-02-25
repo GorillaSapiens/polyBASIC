@@ -18,6 +18,7 @@ OBJECTS= \
    runtime_for.o \
    runtime_data.o \
    runtime.o \
+   flexdebug.o \
    hash.o \
    polybasic.tab.o
 
@@ -51,6 +52,8 @@ mapping3.h: mapping3.pl polybasic.ypp
 	./mapping3.pl < polybasic.ypp | uniq > mapping3.h
 
 main.o: mapping.h
+
+flexdebug.o: mapping.h
 
 dumptree.o: mapping2.h mapping3.h
 

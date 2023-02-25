@@ -6,6 +6,7 @@
 #include <errno.h>
 
 #include "tree.h"
+#include "flexdebug.h"
 
 #undef YY_USER_ACTION
 #define YY_USER_ACTION                                       \
@@ -23,15 +24,12 @@
 #include "polybasic.tab.hpp"
 #include "reflex/flexlexer.h"
 
-int flexdebug = 0;
-
 // required fwd decls
 const char *has_tuple(const char *a);
 int is_reserved_label(const char *a);
 enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype retval);
 enum yytokentype is_reserved_word(const char *a);
 
-#define DEBUGPRINTF if (flexdebug) printf
 %}
 
 %option flex bison unicode yylineno
@@ -90,52 +88,52 @@ EOL      [\r\n]{1,2}
 
 {VARNAME}   {
                enum yytokentype ret = is_reserved_varname('\0', yytext, YYVARNAME);
-               DEBUGPRINTF("VARNAME='%s' %d\n", yytext, ret);
+               flexdebug(yytext, (int) ret, yylineno, yylloc.first_column);
                return ret;
             }
 
 {RATIONAL}  {
-               DEBUGPRINTF("RATIONAL=%s\n", yytext);
+               flexdebug(yytext, (int) YYRATIONAL, yylineno, yylloc.first_column);
                return YYRATIONAL;
             }
 
 {STRING}    {
-               DEBUGPRINTF("STRING=%s\n", yytext);
+               flexdebug(yytext, (int) YYSTRING, yylineno, yylloc.first_column);
                return YYSTRING;
             }
 
 {INTEGER}   {
-               DEBUGPRINTF("INTEGER=%s\n", yytext);
+               flexdebug(yytext, (int) YYINTEGER, yylineno, yylloc.first_column);
                return YYINTEGER;
             }
 
 {DOUBLE}    {
-               DEBUGPRINTF("DOUBLE=%s\n", yytext);
+               flexdebug(yytext, (int) YYDOUBLE, yylineno, yylloc.first_column);
                return YYDOUBLE;
             }
 
 {ASSIGN}    {
-               DEBUGPRINTF("ASSIGN='%s'\n", yytext);
+               flexdebug(yytext, (int) YYASSIGN, yylineno, yylloc.first_column);
                return YYASSIGN;
             }
 
 {RELATION}  {
-               DEBUGPRINTF("RELATION='%s'\n", yytext);
+               flexdebug(yytext, (int) YYRELATION, yylineno, yylloc.first_column);
                return YYRELATION;
             }
 
 {SINGLE}    {
-               DEBUGPRINTF("SINGLE='%s' %c\n", yytext, yytext[0]);
+               flexdebug(yytext, (int) yytext[0], yylineno, yylloc.first_column);
                return yytext[0];
             }
 
 {IPSEP}     {
-               DEBUGPRINTF("IPSEP='%s'\n", yytext);
+               flexdebug(yytext, (int) YYIPSEP, yylineno, yylloc.first_column);
                return YYIPSEP;
             }
 
 {EOL}       {
-               DEBUGPRINTF("EOL='EOL'\n");
+               flexdebug(yytext, (int) YYEOL, yylineno, yylloc.first_column);
                return YYEOL;
             }
 

@@ -10,9 +10,9 @@
 #include "polybasic.tab.hpp"
 #include "mapping.h"
 #include "runtime.h"
+#include "flexdebug.h"
 
 extern FILE *yyin;
-extern int flexdebug;
 extern Tree *programtree;
 
 // a simple linked list of tuples
@@ -223,7 +223,7 @@ int main(int argc, char **argv) {
    while(argc && argv[0][0] == '-') {
       switch (argv[0][1]) {
          case 'f':
-            flexdebug = 1;
+            flexdebug_enable = 1;
             break;
          case 't':
             treedebug = 1;
