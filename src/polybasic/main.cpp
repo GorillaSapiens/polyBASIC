@@ -11,6 +11,7 @@
 #include "mapping.h"
 #include "runtime.h"
 #include "flexdebug.h"
+#include "utf8casecmp.h"
 
 extern FILE *yyin;
 extern Tree *programtree;
@@ -66,7 +67,8 @@ enum yytokentype is_reserved_word(const char *a) {
 
    // now see if there are any matches
    for (int i = 0; i < (sizeof(reserved)/sizeof(reserved[0])); i++) {
-      if (reserved[i].name && !strcmp(reserved[i].name, proper ? proper : a)) {
+      //if (reserved[i].name && !strcmp(reserved[i].name, proper ? proper : a)) {
+      if (reserved[i].name && !utf8casecmp(reserved[i].name, proper ? proper : a)) {
          return reserved[i].token;
       }
    }

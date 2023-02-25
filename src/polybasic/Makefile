@@ -19,6 +19,7 @@ OBJECTS= \
    runtime_data.o \
    runtime.o \
    flexdebug.o \
+   utf8casecmp.o \
    hash.o \
    polybasic.tab.o
 

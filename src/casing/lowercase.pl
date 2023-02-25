@@ -6,9 +6,9 @@ use Encode 'decode';
 #binmode(STDOUT, ':utf8');
 binmode *STDOUT, ':encoding(UTF-8)';
 
-printf("# this file is utf8\n");
-printf("# mappings from uppercase and titlecase to lowercase\n");
-printf("# if there is no mapping, it won't appear here\n");
+printf("// this file is utf8\n");
+printf("// mappings from uppercase and titlecase to lowercase\n");
+printf("// if there is no mapping, it won't appear here\n");
 printf("\n");
 printf("typedef struct LCMAP {\n");
 printf("   const char *utcase;\n");

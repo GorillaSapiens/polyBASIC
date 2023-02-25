@@ -1,5 +1,5 @@
 .PHONY: all
-all: reflex polybasic verify tests
+all: reflex casing polybasic verify tests
 
 .PHONY: reflex
 reflex:
@@ -7,6 +7,13 @@ reflex:
 	@echo ===== MAKE $@
 	@echo =========================
 	(cd reflex && make)
+
+.PHONY: casing
+casing:
+	@echo =========================
+	@echo ===== MAKE $@
+	@echo =========================
+	(cd casing && make)
 
 .PHONY: polybasic
 polybasic:
@@ -35,6 +42,7 @@ clean:
 	@echo ===== MAKE $@
 	@echo =========================
 	(cd polybasic && make clean)
+	(cd casing && make clean)
 
 .PHONY: squeaky
 squeaky: clean
