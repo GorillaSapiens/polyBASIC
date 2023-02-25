@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "utf8casecmp.h"
-#include "../casing/lowercase.h"
+#include "lowercase.h"
 
 static void lc(const char *src, char *dst) {
    while (*src) {

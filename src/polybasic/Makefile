@@ -2,6 +2,7 @@ reflex = ../reflex/RE-flex/src/reflex
 reflexinc = ../reflex/RE-flex/include
 reflexlib = ../reflex/RE-flex/lib
 bison = bison
+ucd = https://www.unicode.org/Public/UCD/latest/ucd/
 
 CC=gcc
 CPP=g++
@@ -58,9 +59,22 @@ flexdebug.o: mapping.h
 
 dumptree.o: mapping2.h mapping3.h
 
+utf8casecmp.o: lowercase.h
+
 .PHONY: todo
 todo:
 	./missing.pl | grep yes
+
+lowercase.h: lowercase.pl UnicodeData.txt SpecialCasing.txt
+	./lowercase.pl > lowercase.h
+
+# see https://www.unicode.org/L2/L1999/UnicodeData.html for an explanation
+# of this file format
+UnicodeData.txt:
+	wget $(ucd)UnicodeData.txt
+
+SpecialCasing.txt:
+	wget $(ucd)SpecialCasing.txt
 
 .PHONY: clean
 clean:
@@ -68,7 +82,12 @@ clean:
 	rm -f polybasic.tab.cpp polybasic.tab.hpp
 	rm -f polybasic
 	rm -f mapping.h mapping2.h mapping3.h
+	rm -f lowercase.h
 	rm -f $(OBJECTS)
+
+.PHONY: squeaky
+squeaky:
+	rm -f UnicodeData.txt SpecialCasing.txt
 
 %.o : %.cpp
 	$(CPP) $(CFLAGS) -c $(INCDIRS) $<
