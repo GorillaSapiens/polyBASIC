@@ -1,11 +1,11 @@
 #!/usr/bin/env perl
 
-@files = `ls *.txt`;
+@files = `ls *.pbt`;
 
 foreach $file (@files) {
    $file =~ s/[\x0a\x0d]//g;
-   if ($file ne "template.txt") {
-      print "==== $file\n";
+   if ($file ne "template.pbt") {
+      print "= $file\t\t";
       $docopy = 1;
       if (-e "../translations/$file") {
          $status = system("grep -q \"THIS FILE WAS AUTOMATICALLY GENERATED\" ../translations/$file");

@@ -43,9 +43,9 @@ close FILE;
 shift @all;
 
 foreach $language(@all) {
-   open FILE, ">$language.txt";
+   open FILE, ">$language.pbt";
    binmode(FILE, ":utf8");
-   open TEMPLATE, "<template.txt_";
+   open TEMPLATE, "<template.pbt";
    binmode(TEMPLATE, ":utf8");
    while (<TEMPLATE>) {
       s/\$LANGUAGE/$language/g;

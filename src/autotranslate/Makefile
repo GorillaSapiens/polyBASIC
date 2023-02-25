@@ -5,5 +5,5 @@ all:
 
 .PHONY:clean
 clean:
-	rm -f *.txt
+	git clean -f .
 

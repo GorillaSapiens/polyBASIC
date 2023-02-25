@@ -160,12 +160,25 @@ void read_translations(FILE *f) {
    }
 }
 
+const char *find_translations(void) {
+   static const char *possibilities[] = {
+      "./translations",
+      "../translations",
+      NULL
+   };
+
+   for (int i = 0; possibilities[i]; i++) {
+      if (directory_exists(possibilities[i])) {
+         return possibilities[i];
+      }
+   }
+   return NULL;
+}
+
 void load_translations(const char *language) {
    const char *path = getenv("POLYBASICPATH");
    if (path == NULL) {
-      fprintf(stderr,
-         "POLYBASICPATH environment variable not set.\n");
-      exit(-1);
+      path = find_translations();
    }
    if (!directory_exists(path)) {
       fprintf(stderr,
@@ -174,7 +187,7 @@ void load_translations(const char *language) {
    }
 
    char full_path[16384];
-   snprintf(full_path, sizeof(full_path), "%s/%s.txt", path, language);
+   snprintf(full_path, sizeof(full_path), "%s/%s.pbt", path, language);
 
    FILE *f = fopen(full_path, "r");
    if (f) {

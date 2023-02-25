@@ -6,7 +6,7 @@ set -e
 for each in `ls ../translations`
 do
 
-echo ======= VERIFY $each
+echo -n "= VERIFY $each :	"
 ./verify.pl ../translations/$each
 
 done
