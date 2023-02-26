@@ -305,46 +305,53 @@ bool Rational::operator >= (const Rational &other) {
    return (l >= r);
 }
 
-void Rational::print(char *buf) {
-   sprintf(buf, "#%c%ld'%ld/%ld", sign > 0 ? '+' : '-', whl, labs(num), labs(den));
+void Rational::print(char *buf, size_t buflen) const {
+   snprintf(buf, buflen, "#%c%ld'%ld/%ld",
+      sign > 0 ? '+' : '-', whl, labs(num), labs(den));
 }
 
-void Rational::prettyprint(char *buf) {
+void Rational::shortprint(char *buf, size_t buflen) const {
    if (whl == 0 && num == 0) {
-      sprintf(buf, "#0");
+      snprintf(buf, buflen, "#0");
       return;
    }
+   char mark[2] = {0, 0};
    if (sign < 0) {
-      sprintf(buf, "#-");
-   }
-   else {
-      sprintf(buf, "#");
+      mark[0] = '-';
    }
    if (num == 0) {
-      sprintf(buf + strlen(buf), "%ld", whl);
+      snprintf(buf, buflen, "#%s%ld", mark, whl);
       return;
    }
    if (whl == 0) {
-      sprintf(buf + strlen(buf), "%ld/%ld", num, den);
+      snprintf(buf, buflen, "#%s%ld/%ld", mark, num, den);
       return;
    }
-   sprintf(buf + strlen(buf), "%ld'%ld/%ld", whl, num, den);
+   snprintf(buf, buflen, "#%s%ld'%ld/%ld", mark, whl, num, den);
 }
 
 Rational::operator double() const {
    return ((double)sign * ((double)whl + ((double)num / (double)den)));
 }
 
-void Rational::abs(void) {
-   sign = 1;
+Rational::operator sREG_t() const {
+   return ((sREG_t)sign * (sREG_t)whl);
 }
 
-void Rational::floor(void) {
-   if (sign > 0) { num = 0; den = 1; }
-   if (sign < 0 && num > 0) { whl++; num = 0; den = 1; }
+Rational Rational::abs(void) const {
+   Rational ret(*this);
+   ret.sign = 1;
+   return ret;
 }
 
-int Rational::sgn(void) {
+Rational Rational::floor(void) const {
+   Rational ret(*this);
+   if (ret.sign > 0) { ret.num = 0; ret.den = 1; }
+   if (ret.sign < 0 && ret.num > 0) { ret.whl++; ret.num = 0; ret.den = 1; }
+   return ret;
+}
+
+int Rational::sgn(void) const {
    if(num == 0 && whl == 0) { return 0; }
    return sign;
 }

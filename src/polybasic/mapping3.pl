@@ -26,7 +26,7 @@ while (<>) {
       if ($_ eq "rval") {
          printf("if (!strcmp(opname, \"$op\")) {\n");
          printf("   char buf[1024];\n");
-         printf("   root->rval->print(buf);\n");
+         printf("   root->rval->print(buf, sizeof(buf));\n");
          printf("   printf(\"rval=\\\"%%s\\\"\\n\", buf); }\n");
       }
    }

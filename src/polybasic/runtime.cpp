@@ -104,16 +104,15 @@ Tree *deep_copy(Tree *subtree) {
             upgrade_to_number(copy->left);
          }
          if (copy->left->op == YYDOUBLE) {
-            copy->left->ival = (int)floor(copy->left->dval);
+            copy->left->ival = (int64_t)floor(copy->left->dval);
             copy->left->op = YYINTEGER;
          }
          else if (copy->left->op == YYINTEGER) {
-            copy->left->ival = (int)floor((double)copy->left->ival);
+            copy->left->ival = (int64_t)floor((double)copy->left->ival);
          }
          else if (copy->left->op == YYRATIONAL) {
             Rational *deleteme = copy->left->rval;
-            copy->left->rval->floor();
-            copy->left->ival = (int) (*copy->left->rval);
+            copy->left->ival = (int64_t) copy->left->rval->floor();
             copy->left->op = YYINTEGER;
             delete deleteme;
          }
@@ -124,16 +123,15 @@ Tree *deep_copy(Tree *subtree) {
             upgrade_to_number(copy->right);
          }
          if (copy->right->op == YYDOUBLE) {
-            copy->right->ival = (int)floor(copy->right->dval);
+            copy->right->ival = (int64_t)floor(copy->right->dval);
             copy->right->op = YYINTEGER;
          }
          else if (copy->right->op == YYINTEGER) {
-            copy->right->ival = (int)floor((double)copy->right->ival);
+            copy->right->ival = (int64_t)floor((double)copy->right->ival);
          }
          else if (copy->right->op == YYRATIONAL) {
             Rational *deleteme = copy->right->rval;
-            copy->right->rval->floor();
-            copy->right->ival = (int) (*copy->right->rval);
+            copy->right->ival = (int64_t) copy->right->rval->floor();
             copy->right->op = YYINTEGER;
             delete deleteme;
          }
@@ -276,7 +274,7 @@ Tree *evaluate(Tree *p) {
          p->left->ival = llabs(p->left->ival);
       }
       else if (p->left->op == YYRATIONAL) {
-         p->left->rval->abs();
+         *(p->left->rval) = p->left->rval->abs();
       }
       memcpy(p, p->left, sizeof(Tree));
       free(freeme);
@@ -375,7 +373,7 @@ Tree *evaluate(Tree *p) {
          p->left->ival = (int)floor((double)p->left->ival);
       }
       else if (p->left->op == YYRATIONAL) {
-         p->left->rval->floor();
+         *(p->left->rval) = p->left->rval->floor();
       }
       memcpy(p, p->left, sizeof(Tree));
       free(freeme);
@@ -897,7 +895,7 @@ void run(Tree *p) {
                      case YYRATIONAL:
                         {
                            char buf[1024];
-                           mid->rval->prettyprint(buf);
+                           mid->rval->shortprint(buf, sizeof(buf));
                            printf("%s ", buf);
                         }
                         break;

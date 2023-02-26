@@ -51,12 +51,15 @@ class Rational {
       bool operator > (const Rational &other);
       bool operator <= (const Rational &other);
       bool operator >= (const Rational &other);
-      void print(char *buf);
-      void prettyprint(char *buf);
-      operator double() const;
-      void abs(void);
-      void floor(void);
-      int sgn(void);
+
+      void print(char *buf, size_t buflen) const;
+      void shortprint(char *buf, size_t buflen) const;
+
+      explicit operator sREG_t() const;
+      explicit operator double() const;
+      Rational abs(void) const;
+      Rational floor(void) const;
+      int sgn(void) const;
 };
 
 #endif // _INCLUDE_RATIONAL_H_
