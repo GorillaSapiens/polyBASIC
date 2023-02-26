@@ -43,8 +43,9 @@ close FILE;
 shift @all;
 
 foreach $language(@all) {
-   open FILE, ">$language.pbt";
-   binmode(FILE, ":utf8");
+   $sharpindex = 1;
+   @file = ();
+
    open TEMPLATE, "<template.pbt";
    binmode(TEMPLATE, ":utf8");
    while (<TEMPLATE>) {
@@ -67,11 +68,26 @@ foreach $language(@all) {
          s/column/$column/g;
       }
 
-      print FILE $_;
+      $sharp = index($_, '#');
+      if ($sharp > $sharpindex) {
+         $sharpindex = $sharp;
+      }
+      push @file, $_;
    }
    close TEMPLATE;
+
+   foreach my $line(@file) {
+      $sharp = index($line, '#');
+      if ($sharp > 1) {
+         while ($sharp < $sharpindex) {
+            $line =~ s/#/ #/g;
+            $sharp++;
+         }
+      }
+   }
+
+   open FILE, ">$language.pbt";
+   binmode(FILE, ":utf8");
+   print FILE @file;
    close FILE;
 }
-
-
-
