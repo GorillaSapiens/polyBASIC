@@ -92,7 +92,7 @@ Tree *deep_copy(Tree *subtree) {
    else if (copy->op == YYVARNAME) {
       const Val *val = get_value(subtree->sval);
       if (!val) {
-         fprintf(stderr, "WARNING: line %d col %d, '%s' has no value\n",
+         fprintf(stderr, "ERROR: line %d col %d, '%s' has no value\n",
             copy->line, copy->col, copy->sval);
          exit(-1);
       }
@@ -119,7 +119,7 @@ Tree *deep_copy(Tree *subtree) {
    if (subtree->left) { copy->left = deep_copy(subtree->left); }
    if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
    if (subtree->right) { copy->right = deep_copy(subtree->right); }
-   copy->next = NULL; // if (subtree->next) { copy->next = deep_copy(subtree->next); }
+   copy->next = NULL;
 
    return copy;
 }
