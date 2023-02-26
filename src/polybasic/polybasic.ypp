@@ -41,6 +41,10 @@ Tree *programtree;
 %type <u> varname
 %type <u> varlist
 
+%type <u> arrayref
+%type <u> arraydim
+%type <u> arraydimlist
+
 %type <u> constant
 %type <u> constlist
 
@@ -64,6 +68,8 @@ Tree *programtree;
 %type <u> printstmt
 %type <u> repeatstmt
 %type <u> controlstmt
+%type <u> optionbase
+%type <u> dimstmt
 %type <u> randomize
 %type <u> remstatement
 
@@ -88,6 +94,7 @@ Tree *programtree;
 %token YYIF
 %token YYINPUT
 %token YYLET
+%token YYLETARRAYREF
 %token YYNEXT
 %token YYON
 %token YYOPTION
@@ -120,6 +127,8 @@ Tree *programtree;
 /* and other stuff */
 
 %token YYVARNAME
+%token YYARRAYREF
+%token YYARRAYDIM
 
 %token YYDOUBLE
 %token YYSTRING
@@ -128,6 +137,7 @@ Tree *programtree;
 
 %token YYRELATION
 %token YYASSIGN
+%token YYASSIGNARRAYREF
 
 %token YYIPSEP
 
@@ -238,13 +248,50 @@ statement     : assign
                   {
                      $$ = $1;
                   }
+              | optionbase
+                  {
+                     $$ = $1;
+                  }
+              | dimstmt
+                  {
+                     $$ = $1;
+                  }
               | randomize
                   {
                      $$ = $1;
                   }
               ;
 
-randomize     : YYRANDOMIZE
+optionbase     : YYOPTION YYBASE iconst
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYBASE;
+                     $$.ival = $3.ival;
+                  }
+               ;
+
+dimstmt        : YYDIM arraydimlist
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDIM;
+                     $$.right = copytree(&$2);
+                  }
+               ;
+
+arraydimlist   : arraydim YYIPSEP arraydimlist
+                  {
+                     $$ = $1;
+                     $$.middle = copytree(&$3);
+                  }
+               | arraydim
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+randomize      : YYRANDOMIZE
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -453,14 +500,52 @@ labellist     : label
                   }
               ;
 
-varname       : YYVARNAME
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYVARNAME;
-                  $$.sval = strdup(yytext);
-               }
-              ;
+varname        : YYVARNAME
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYVARNAME;
+                     $$.sval = strdup(yytext);
+                  }
+               ;
+
+arrayref       : varname '(' expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYARRAYREF;
+                     $$.sval = strdup($1.sval);
+                     $$.left = copytree(&$3);
+                  }
+               | varname '(' expression YYIPSEP expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYARRAYREF;
+                     $$.sval = strdup($1.sval);
+                     $$.left = copytree(&$3);
+                     $$.right = copytree(&$5);
+                  }
+               ;
+
+arraydim       : varname '(' iconst ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYARRAYDIM;
+                     $$.sval = strdup($1.sval);
+                     $$.left = copytree(&$3);
+                  }
+               | varname '(' iconst YYIPSEP iconst ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYARRAYDIM;
+                     $$.sval = strdup($1.sval);
+                     $$.left = copytree(&$3);
+                     $$.right = copytree(&$5);
+                  }
+               ;
 
 varlist        : varname YYIPSEP varlist
                   {
@@ -651,6 +736,10 @@ expression    : expression '+' expression
                      $$.op = YYSTR;
                      $$.left = copytree(&$3);
                   }
+              | arrayref
+                  {
+                     $$ = $1;
+                  }
               | varname
                   {
                      $$ = $1;
@@ -690,6 +779,15 @@ let         : YYLET varname YYASSIGN expression
                   $$.left = copytree(&$2);
                   $$.right = copytree(&$4);
                }
+            | YYLET arrayref YYASSIGN expression
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYLETARRAYREF;
+                  $$.sval = $2.sval;
+                  $$.left = copytree(&$2);
+                  $$.right = copytree(&$4);
+               }
             ;
 
 assign      : varname YYASSIGN expression
@@ -697,6 +795,14 @@ assign      : varname YYASSIGN expression
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
                   $$.op = YYASSIGN;
+                  $$.left = copytree(&$1);
+                  $$.right = copytree(&$3);
+               }
+            | arrayref YYASSIGN expression
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYASSIGNARRAYREF;
                   $$.left = copytree(&$1);
                   $$.right = copytree(&$3);
                }

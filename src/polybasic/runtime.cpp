@@ -73,6 +73,10 @@ static void register_data(Tree *root) {
    }
 }
 
+// fwd decls
+Tree *evaluate(Tree *p);
+void upgrade_to_number(Tree *p);
+
 // make a deep copy, substituting variables along the way
 Tree *deep_copy(Tree *subtree) {
    Tree *copy = (Tree *) malloc(sizeof(Tree));
@@ -83,17 +87,84 @@ Tree *deep_copy(Tree *subtree) {
 //      copy->label = strdup(subtree->label);
 //   }
 
+   if (subtree->left) { copy->left = deep_copy(subtree->left); }
+   if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
+   if (subtree->right) { copy->right = deep_copy(subtree->right); }
+
    if (copy->op == YYSTRING) {
       copy->sval = strdup(subtree->sval);
    }
    else if (copy->op == YYRATIONAL) {
       copy->rval = new Rational(*(subtree->rval));
    }
-   else if (copy->op == YYVARNAME) {
-      const Val *val = get_value(subtree->sval);
+   else if (copy->op == YYARRAYREF) {
+      if (copy->left) {
+         copy->left = evaluate(copy->left);
+         if (copy->left->op == YYSTRING) {
+            upgrade_to_number(copy->left);
+         }
+         if (copy->left->op == YYDOUBLE) {
+            copy->left->ival = (int)floor(copy->left->dval);
+            copy->left->op = YYINTEGER;
+         }
+         else if (copy->left->op == YYINTEGER) {
+            copy->left->ival = (int)floor((double)copy->left->ival);
+         }
+         else if (copy->left->op == YYRATIONAL) {
+            Rational *deleteme = copy->left->rval;
+            copy->left->rval->floor();
+            copy->left->ival = (int) (*copy->left->rval);
+            copy->left->op = YYINTEGER;
+            delete deleteme;
+         }
+      }
+      if (copy->right) {
+         copy->right = evaluate(copy->right);
+         if (copy->right->op == YYSTRING) {
+            upgrade_to_number(copy->right);
+         }
+         if (copy->right->op == YYDOUBLE) {
+            copy->right->ival = (int)floor(copy->right->dval);
+            copy->right->op = YYINTEGER;
+         }
+         else if (copy->right->op == YYINTEGER) {
+            copy->right->ival = (int)floor((double)copy->right->ival);
+         }
+         else if (copy->right->op == YYRATIONAL) {
+            Rational *deleteme = copy->right->rval;
+            copy->right->rval->floor();
+            copy->right->ival = (int) (*copy->right->rval);
+            copy->right->op = YYINTEGER;
+            delete deleteme;
+         }
+      }
+   }
+
+   if (copy->op == YYVARNAME || copy->op == YYARRAYREF) {
+      char varname[1024];
+      if (copy->op == YYVARNAME) {
+         sprintf(varname, "%s", subtree->sval);
+      }
+      else { // YYARRAYREF
+         if (copy->right) {
+            // TODO FIX bounds check these based on DIM?
+            sprintf(varname, "%s(%ld,%ld)", subtree->sval, copy->left->ival, copy->right->ival);
+            free(copy->left);
+            copy->left = NULL;
+            free(copy->right);
+            copy->right = NULL;
+         }
+         else {
+            // TODO FIX bounds check these based on DIM?
+            sprintf(varname, "%s(%ld)", subtree->sval, copy->left->ival);
+            free(copy->left);
+            copy->left = NULL;
+         }
+      }
+      const Val *val = get_value(varname);
       if (!val) {
          fprintf(stderr, "ERROR: line %d col %d, '%s' has no value\n",
-            copy->line, copy->col, copy->sval);
+            copy->line, copy->col, varname);
          exit(-1);
       }
       else {
@@ -116,9 +187,6 @@ Tree *deep_copy(Tree *subtree) {
       }
    }
 
-   if (subtree->left) { copy->left = deep_copy(subtree->left); }
-   if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
-   if (subtree->right) { copy->right = deep_copy(subtree->right); }
    copy->next = NULL;
 
    return copy;
@@ -781,18 +849,37 @@ void run(Tree *p) {
       switch (p->op) {
          case YYASSIGN:
          case YYLET:
+         case YYASSIGNARRAYREF:
+         case YYLETARRAYREF:
             {
-               int inuse = is_var_defined(p->left->sval);
-               if (p->op == YYASSIGN && !inuse) {
-                  fprintf(stderr, "WARNING: variable '%s' not in use line %d col %d, consider using LET\n",
-                     p->left->sval, p->left->line, p->left->col);
+               char varname[1024];
+               if (p->op == YYASSIGN || p->op == YYLET) {
+                  sprintf(varname, "%s", p->left->sval);
                }
-               else if (p->op == YYLET && inuse) {
+               else {
+                  if (p->left->right) {
+                     Tree *left = evaluate(deep_copy(p->left->left));
+                     Tree *right = evaluate(deep_copy(p->left->right));
+                     // TODO FIX bounds checking based on DIM?
+                     sprintf(varname, "%s(%ld,%ld)", p->left->sval, left->ival, right->ival);
+                  }
+                  else {
+                     Tree *left = evaluate(deep_copy(p->left->left));
+                     // TODO FIX bounds checking based on DIM?
+                     sprintf(varname, "%s(%ld)", p->left->sval, left->ival);
+                  }
+               }
+               int inuse = is_var_defined(varname);
+               if ((p->op == YYASSIGN || p->op == YYASSIGNARRAYREF) && !inuse) {
+                  fprintf(stderr, "WARNING: variable '%s' not in use line %d col %d, consider using LET\n",
+                     varname, p->left->line, p->left->col);
+               }
+               else if ((p->op == YYLET || p->op == YYLETARRAYREF) && inuse) {
                   fprintf(stderr, "WARNING: variable '%s' already in use line %d col %d\n",
-                     p->left->sval, p->left->line, p->left->col);
+                     varname, p->left->line, p->left->col);
                }
                Tree *result = evaluate(deep_copy(p->right));
-               set_value(p->sval, result);
+               set_value(varname, result);
                free((void *)result);
             }
             break;
@@ -1150,6 +1237,18 @@ void run(Tree *p) {
                      exit(-1);
                   }
                }
+            }
+            break;
+         case YYBASE:
+            {
+               // we're going to ignore this for now
+               // TODO FIX... should we?  why not just allow ANYTHING???
+            }
+            break;
+         case YYDIM:
+            {
+               // TODO FIX... should we?  we're not currently doing any bounds checking.
+               //dumpline(p);
             }
             break;
          default:
