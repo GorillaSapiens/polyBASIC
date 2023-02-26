@@ -113,7 +113,7 @@ Rational::Rational(const char *p) {
    simplify();
 }
 
-Rational Rational::operator + (Rational const & obj) {
+Rational Rational::operator + (Rational const & obj) const {
    Rational res;
 
    // TODO FIX can probably be done in a way that avoids overflow
@@ -148,7 +148,7 @@ Rational Rational::operator + (Rational const & obj) {
    return res;
 }
 
-Rational Rational::operator - (Rational const & obj) {
+Rational Rational::operator - (Rational const & obj) const {
    Rational res;
 
    // TODO FIX can probably be done in a way that avoids overflow
@@ -183,7 +183,7 @@ Rational Rational::operator - (Rational const & obj) {
    return res;
 }
 
-Rational Rational::operator * (Rational const & obj) {
+Rational Rational::operator * (Rational const & obj) const {
    Rational res;
 
    // TODO FIX can probably be done in a way that avoids overflow
@@ -220,7 +220,7 @@ Rational Rational::operator * (Rational const & obj) {
    return res;
 }
 
-Rational Rational::operator / (Rational const & obj) {
+Rational Rational::operator / (Rational const & obj) const {
    Rational res;
 
    // TODO FIX can probably be done in a way that avoids overflow
@@ -255,7 +255,7 @@ Rational Rational::operator / (Rational const & obj) {
    return res;
 }
 
-bool Rational::operator == (const Rational &other) {
+bool Rational::operator == (const Rational &other) const {
    sBIG_t l =
       ((sBIG_t) sign * ((sBIG_t) whl * (sBIG_t) den + (sBIG_t) num)) * (sBIG_t) other.den;
    sBIG_t r =
@@ -263,7 +263,7 @@ bool Rational::operator == (const Rational &other) {
    return (l == r);
 }
 
-bool Rational::operator != (const Rational &other) {
+bool Rational::operator != (const Rational &other) const {
    sBIG_t l =
       ((sBIG_t) sign * ((sBIG_t) whl * (sBIG_t) den + (sBIG_t) num)) * (sBIG_t) other.den;
    sBIG_t r =
@@ -272,7 +272,7 @@ bool Rational::operator != (const Rational &other) {
 }
 
 
-bool Rational::operator < (const Rational &other) {
+bool Rational::operator < (const Rational &other) const {
    sBIG_t l =
       ((sBIG_t) sign * ((sBIG_t) whl * (sBIG_t) den + (sBIG_t) num)) * (sBIG_t) other.den;
    sBIG_t r =
@@ -280,7 +280,7 @@ bool Rational::operator < (const Rational &other) {
    return (l < r);
 }
 
-bool Rational::operator > (const Rational &other) {
+bool Rational::operator > (const Rational &other) const {
    sBIG_t l =
       ((sBIG_t) sign * ((sBIG_t) whl * (sBIG_t) den + (sBIG_t) num)) * (sBIG_t) other.den;
    sBIG_t r =
@@ -289,7 +289,7 @@ bool Rational::operator > (const Rational &other) {
 }
 
 
-bool Rational::operator <= (const Rational &other) {
+bool Rational::operator <= (const Rational &other) const {
    sBIG_t l =
       ((sBIG_t) sign * ((sBIG_t) whl * (sBIG_t) den + (sBIG_t) num)) * (sBIG_t) other.den;
    sBIG_t r =
@@ -297,7 +297,7 @@ bool Rational::operator <= (const Rational &other) {
    return (l <= r);
 }
 
-bool Rational::operator >= (const Rational &other) {
+bool Rational::operator >= (const Rational &other) const {
    sBIG_t l =
       ((sBIG_t) sign * ((sBIG_t) whl * (sBIG_t) den + (sBIG_t) num)) * (sBIG_t) other.den;
    sBIG_t r =

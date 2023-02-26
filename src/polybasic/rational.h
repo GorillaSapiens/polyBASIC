@@ -41,16 +41,17 @@ class Rational {
       Rational(const Rational &orig);
       Rational(int8_t s, uREG_t w, uREG_t n, uREG_t d);
       Rational(const char *p);
-      Rational operator + (Rational const & obj);
-      Rational operator - (Rational const & obj);
-      Rational operator * (Rational const & obj);
-      Rational operator / (Rational const & obj);
-      bool operator == (const Rational &other);
-      bool operator != (const Rational &other);
-      bool operator < (const Rational &other);
-      bool operator > (const Rational &other);
-      bool operator <= (const Rational &other);
-      bool operator >= (const Rational &other);
+
+      Rational operator + (Rational const & obj) const;
+      Rational operator - (Rational const & obj) const;
+      Rational operator * (Rational const & obj) const;
+      Rational operator / (Rational const & obj) const;
+      bool operator == (const Rational &other) const;
+      bool operator != (const Rational &other) const;
+      bool operator < (const Rational &other) const;
+      bool operator > (const Rational &other) const;
+      bool operator <= (const Rational &other) const;
+      bool operator >= (const Rational &other) const;
 
       void print(char *buf, size_t buflen) const;
       void shortprint(char *buf, size_t buflen) const;
