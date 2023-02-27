@@ -185,7 +185,9 @@ Tree *deep_copy_defcall(Tree *defcall) {
       }
    }
 
-   return evaluate(deep_copy(def->right, def->left, head));
+   Tree *ret = evaluate(deep_copy(def->right, def->left, head));
+   if (defcall->middle) { ret->middle = deep_copy(defcall->middle); }
+   return ret;
 }
 
 // make a deep copy, substituting variables along the way

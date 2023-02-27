@@ -777,6 +777,14 @@ expression     : expression '+' expression
                      $$.sval = strdup($1.sval);
                      $$.left = copytree(&$3);
                   }
+               | varname '[' ']'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDEFCALL;
+                     $$.sval = strdup($1.sval);
+                     $$.left = NULL;
+                  }
                | arrayref
                   {
                      $$ = $1;
