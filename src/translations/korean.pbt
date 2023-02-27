@@ -52,6 +52,8 @@ SIN <= 사인         # the trigonomic sine function
 SQR <= 제곱         # the square root function
 TAN <= 접선         # the trigonomic tangent function
 DBL <= 더블         # convert to double
+RAT <= 파편         # convert to rational
+STR <= 텍스         # convert to string
 
 # from ECMA-55 §10
 

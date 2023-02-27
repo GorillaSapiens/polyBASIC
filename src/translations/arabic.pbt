@@ -48,6 +48,8 @@ SIN <= جيب                    # the trigonomic sine function
 SQR <= الجذرالتربيعي          # the square root function
 TAN <= الظل                   # the trigonomic tangent function
 DBL <= مزدوج                  # convert to double
+STR <= STR                    # convert to string
+RAT <= RAT                    # convert to rational
 
 # from ECMA-55 §10
 

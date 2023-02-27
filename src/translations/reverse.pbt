@@ -26,6 +26,8 @@ SIN <= NIS          # the trigonomic sine function
 SQR <= RQS          # the square root function
 TAN <= NAT          # the trigonomic tangent function
 DBL <= LBD          # convert to double
+RAT <= TAR          # convert to rational
+STR <= RTS          # convert to string
 
 # from ECMA-55 §10
 

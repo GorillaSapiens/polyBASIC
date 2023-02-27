@@ -48,6 +48,8 @@ SIN <= 正弦             # the trigonomic sine function
 SQR <= 平方根            # the square root function
 TAN <= 正接             # the trigonomic tangent function
 DBL <= ダブル            # convert to double
+STR <= STR            # convert to string
+RAT <= RAT            # convert to rational
 
 # from ECMA-55 §10
 

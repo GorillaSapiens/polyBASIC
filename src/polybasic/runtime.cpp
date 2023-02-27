@@ -378,6 +378,51 @@ Tree *evaluate(Tree *p) {
       memcpy(p, p->left, sizeof(Tree));
       free(freeme);
    }
+   else if (p->op == YYRAT) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
+      if (p->left->op == YYDOUBLE) {
+         p->left->op = YYRATIONAL;
+         p->left->rval = new Rational(p->left->dval);
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYRATIONAL;
+         p->left->rval = new Rational(p->left->ival);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         // leave it alone
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
+   else if (p->op == YYSTR) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         // leave it alone
+      }
+      char buf[1024];
+      if (p->left->op == YYDOUBLE) {
+         snprintf(buf, sizeof(buf), "%f", p->left->dval);
+         p->left->op = YYSTRING;
+         p->left->sval = strdup(buf);
+      }
+      else if (p->left->op == YYINTEGER) {
+         snprintf(buf, sizeof(buf), "%ld", p->left->ival);
+         p->left->op = YYSTRING;
+         p->left->sval = strdup(buf);
+      }
+      else if (p->left->op == YYRATIONAL) {
+         Rational *deleteme = p->left->rval;
+         deleteme->shortprint(buf, sizeof(buf));
+         p->left->op = YYSTRING;
+         p->left->sval = strdup(buf);
+         delete deleteme;
+      }
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
    else if (p->op == YYLOG) {
       Tree *freeme = p->left;
       if (p->left->op == YYSTRING) {

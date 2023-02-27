@@ -26,6 +26,8 @@ SIN <= SIN          # the trigonomic sine function
 SQR <= SQR          # the square root function
 TAN <= TAN          # the trigonomic tangent function
 DBL <= DBL          # convert to double
+RAT <= RAT          # convert to rational
+STR <= STR          # convert to string
 
 # from ECMA-55 §10
 

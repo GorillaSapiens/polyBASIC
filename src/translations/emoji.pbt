@@ -38,6 +38,8 @@ SIN <= 👽🤖         # the trigonomic sine function
 SQR <= 👽😺         # the square root function
 TAN <= 👽🦓         # the trigonomic tangent function
 DBL <= 🦓🦓         # to convert a type to double
+RAT <= 🐀           # convert to type rational
+STR <= 🧵           # convert to type string
 
 # from ECMA-55 §10
 

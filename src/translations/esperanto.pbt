@@ -48,6 +48,8 @@ SIN <= SINUSO                   # the trigonomic sine function
 SQR <= KVADRATARADIKO           # the square root function
 TAN <= TANĜANTO                 # the trigonomic tangent function
 DBL <= DUOBLA                   # convert to double
+STR <= STR                      # convert to string
+RAT <= RAT                      # convert to rational
 
 # from ECMA-55 §10
 

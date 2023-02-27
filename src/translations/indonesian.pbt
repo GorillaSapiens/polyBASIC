@@ -48,6 +48,8 @@ SIN <= SINUS                   # the trigonomic sine function
 SQR <= AKARPANGKATDUA          # the square root function
 TAN <= GARISSINGGUNG           # the trigonomic tangent function
 DBL <= DOBEL                   # convert to double
+STR <= STR                     # convert to string
+RAT <= RAT                     # convert to rational
 
 # from ECMA-55 §10
 

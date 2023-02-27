@@ -100,14 +100,12 @@ Tree *programtree;
 %token YYOPTION
 %token YYPRINT
 %token YYRANDOMIZE
-%token YYRAT
 %token YYREAD
 %token YYREM
 %token YYRESTORE
 %token YYRETURN
 %token YYSTEP
 %token YYSTOP
-%token YYSTR
 %token YYSUB
 %token YYTHEN
 %token YYTO
@@ -119,10 +117,12 @@ Tree *programtree;
 %token YYEXP
 %token YYINT
 %token YYLOG
+%token YYRAT
 %token YYRND
 %token YYSGN
 %token YYSIN
 %token YYSQR
+%token YYSTR
 %token YYTAN
 /* and other stuff */
 

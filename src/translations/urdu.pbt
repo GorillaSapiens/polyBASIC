@@ -48,6 +48,8 @@ SIN <= SINE                # the trigonomic sine function
 SQR <= مربعجڑ              # the square root function
 TAN <= ٹینجینٹ             # the trigonomic tangent function
 DBL <= دگنا                # convert to double
+STR <= STR                 # convert to string
+RAT <= RAT                 # convert to rational
 
 # from ECMA-55 §10
 
