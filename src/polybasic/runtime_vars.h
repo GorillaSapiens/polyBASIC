@@ -16,6 +16,14 @@ typedef struct Val {
    };
 } Val;
 
+typedef struct Varbound {
+   const char *name;
+   int line;
+   int dimensions;
+   int64_t upper1;
+   int64_t upper2;
+} Varbound;
+
 typedef struct Var {
    const char *name;
    Val value;
@@ -28,6 +36,16 @@ int set_value(const char *p, Val value);
 int set_value(const char *p, Tree *result);
 
 const Val *get_value(const char *p);
+
+int is_bound_defined(const char *p);
+
+void set_bound(const char *p,
+               int line,
+               int dimensions,
+               int64_t upper1,
+               int64_t upper2);
+
+const Varbound *get_varbound(const char *p);
 
 #endif
 

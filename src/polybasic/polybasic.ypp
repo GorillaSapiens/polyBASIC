@@ -529,6 +529,7 @@ arraydim       : varname '(' iconst ')'
                      $$.op = YYARRAYDIM;
                      $$.sval = strdup($1.sval);
                      $$.left = copytree(&$3);
+                     $$.right = NULL;
                   }
                | varname '(' iconst YYIPSEP iconst ')'
                   {

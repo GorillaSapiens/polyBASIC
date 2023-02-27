@@ -11,6 +11,9 @@
 #include "runtime_data.h"
 #include "runtime.h"
 
+static int64_t option_base = 0;
+static int64_t option_upper = 10; // default upper array bound per ECMA-55
+
 static void register_labels(Tree *root) {
    while (root) {
       if (root->label) {
@@ -26,6 +29,48 @@ static void register_labels(Tree *root) {
             set_label(root);
          }
       }
+      root = root->next;
+   }
+}
+
+static void register_option_base(Tree *root) {
+   while (root) {
+      if (root->op == YYBASE) {
+         // ECMA-55 allows only 0 or 1
+         // if it ain't 0, it's a 1
+         if (root->ival != 0) {
+            option_base = 1;
+            // and the first one wins,
+            // subsequent ones lose
+            return;
+         }
+      }
+      root = root->next;
+   }
+}
+
+static void register_arrays(Tree *root) {
+   while (root) {
+      if (root->op == YYDIM) {
+         for (Tree *list = root->right; list; list = list->middle) {
+            if (is_bound_defined(list->sval)) {
+               const Varbound *vb = get_varbound(list->sval);
+               fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+               fprintf(stderr, "SOURCE %d:%d, ARRAY %s ALREADY DEFINED ON LINE %d\n",
+                  list->line, list->col, list->sval, vb->line);
+               exit(-1);
+            }
+            else {
+               if (list->right) {
+                  set_bound(list->sval, list->line, 2, list->left->ival, list->right->ival);
+               }
+               else {
+                  set_bound(list->sval, list->line, 1, list->left->ival, 0);
+               }
+            }
+         }
+      }
+
       root = root->next;
    }
 }
@@ -895,18 +940,90 @@ void run(Tree *p) {
             {
                char varname[1024];
                if (p->op == YYASSIGN) {
+
+                  if (!is_bound_defined(p->left->sval)) {
+                     set_bound(p->left->sval, p->line, 0, 0, 0);
+                  }
+
+                  const Varbound *vb = get_varbound(p->left->sval);
+                  if (!vb || vb->dimensions != 0) {
+                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     if (vb->dimensions == 1) {
+                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld)] ARRAY ON LINE %d\n",
+                           p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
+                     }
+                     else {
+                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld, %ld..%ld)] ARRAY ON LINE %d\n",
+                           p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, option_base, vb->upper2, vb->line);
+                     }
+                     exit(-1);
+                  }
+
                   sprintf(varname, "%s", p->left->sval);
                }
                else {
                   if (p->left->right) {
                      Tree *left = evaluate(deep_copy(p->left->left));
                      Tree *right = evaluate(deep_copy(p->left->right));
-                     // TODO FIX bounds checking based on DIM?
+
+                     if (!is_bound_defined(p->left->sval)) {
+                        set_bound(p->left->sval, p->line, 2, option_upper, option_upper);
+                     }
+
+                     const Varbound *vb = get_varbound(p->left->sval);
+                     if (!vb || vb->dimensions != 2) {
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        if (vb->dimensions == 0) {
+                           fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS NONARRAY ON LINE %d\n",
+                                 p->line, p->col, p->sval, vb->line);
+                        }
+                        else {
+                           fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld)] ARRAY ON LINE %d\n",
+                              p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
+                        }
+                        exit(-1);
+                     }
+                     if (left->ival < option_base || left->ival > vb->upper1) {
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DIM1 AS %ld OUTSIDE BOUNDS1 %ld..%ld FROM LINE %d\n",
+                              p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
+                        exit(-1);
+                     }
+                     if (right->ival < option_base || right->ival > vb->upper2) {
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DIM2 AS %ld OUTSIDE BOUNDS2 %ld..%ld FROM LINE %d\n",
+                              p->line, p->col, p->sval, right->ival, option_base, vb->upper2, vb->line);
+                        exit(-1);
+                     }
+
                      sprintf(varname, "%s(%ld,%ld)", p->left->sval, left->ival, right->ival);
                   }
                   else {
                      Tree *left = evaluate(deep_copy(p->left->left));
-                     // TODO FIX bounds checking based on DIM?
+
+                     if (!is_bound_defined(p->left->sval)) {
+                        set_bound(p->left->sval, p->line, 1, option_upper, 0);
+                     }
+
+                     const Varbound *vb = get_varbound(p->left->sval);
+                     if (!vb || vb->dimensions != 1) {
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        if (vb->dimensions == 0) {
+                           fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS NONARRAY ON LINE %d\n",
+                                 p->line, p->col, p->sval, vb->line);
+                        }
+                        else {
+                           fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d ARRAY ON LINE %d\n",
+                                 p->line, p->col, p->sval, vb->dimensions, vb->line);
+                        }
+                        exit(-1);
+                     }
+                     if (left->ival < option_base || left->ival > vb->upper1) {
+                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DIM1 AS %ld OUTSIDE BOUNDS %ld..%ld FROM LINE %d\n",
+                              p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
+                        exit(-1);
+                     }
                      sprintf(varname, "%s(%ld)", p->left->sval, left->ival);
                   }
                }
@@ -1273,14 +1390,14 @@ void run(Tree *p) {
             break;
          case YYBASE:
             {
-               // we're going to ignore this for now
-               // TODO FIX... should we?  why not just allow ANYTHING???
+               // this is handled by register_option_base
+               // nothing to do here
             }
             break;
          case YYDIM:
             {
-               // TODO FIX... should we?  we're not currently doing any bounds checking.
-               //dumpline(p);
+               // this is handled by register_arrays
+               // nothing to do here
             }
             break;
          default:
@@ -1294,6 +1411,8 @@ void run(Tree *p) {
 
 void runtree(Tree *root) {
    register_labels(root);
+   register_option_base(root);
+   register_arrays(root);
    register_for(root);
    register_data(root);
    run(root);
