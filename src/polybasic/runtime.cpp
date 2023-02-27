@@ -112,6 +112,7 @@ static void register_def(Tree *root) {
       }
       root = root->next;
    }
+   def_check_cycle();
 }
 
 static void register_data(Tree *root) {

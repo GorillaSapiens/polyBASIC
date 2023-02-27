@@ -1,3 +1,5 @@
+#include "tree.h"
+#include "polybasic.tab.hpp"
 #include "runtime_def.h"
 #include "dumptree.h"
 #include "hash.h"
@@ -43,4 +45,58 @@ Tree *get_def(const char *p) {
       }
    }
    return NULL;
+}
+
+int dfc_h3(const char *p) {
+   unsigned long h = hash(p);
+
+   for (unsigned long i = 0; i < HASH_SIZE; i++) {
+      unsigned long j = (i + h) % HASH_SIZE;
+      if (defs[j] != NULL && !strcmp(p, defs[j]->sval)) {
+         return j;
+      }
+   }
+   return -1;
+}
+
+static void dfc_h2(char *visited, Tree *tree) {
+   if (!tree) {
+      return;
+   }
+
+   if (tree->op == YYDEFCALL) {
+      int callee = dfc_h3(tree->sval);
+      if (callee >= 0) {
+         if (visited[callee]) {
+            fprintf(stderr, "FN DEF CYCLE DETECTED:\n");
+            for (int i = 0; i < HASH_SIZE; i++) {
+               if (visited[i]) {
+                  fprintf(stderr, "   DEF '%s' line %d\n", defs[i]->sval, defs[i]->line);
+               }
+            }
+            exit(-1);
+         }
+         else {
+            visited[callee] = 1;
+            dfc_h2(visited, defs[callee]);
+         }
+      }
+   }
+   dfc_h2(visited, tree->left);
+   dfc_h2(visited, tree->middle);
+   dfc_h2(visited, tree->right);
+}
+
+static void dfc_h1(int i) {
+   char visited[HASH_SIZE] = { 0 };
+   if (defs[i]) {
+      visited[i] = 1;
+      dfc_h2(visited, defs[i]);
+   }
+}
+
+void def_check_cycle(void) {
+   for (int i = 0; i < HASH_SIZE; i++) {
+      dfc_h1(i);
+   }
 }

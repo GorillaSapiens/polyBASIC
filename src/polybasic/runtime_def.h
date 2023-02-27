@@ -9,4 +9,6 @@ int set_def(Tree *n);
 
 Tree *get_def(const char *p);
 
+void def_check_cycle(void);
+
 #endif
