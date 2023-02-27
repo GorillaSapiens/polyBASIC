@@ -17,6 +17,7 @@ OBJECTS= \
    runtime_vars.o \
    runtime_lbls.o \
    runtime_for.o \
+   runtime_def.o \
    runtime_data.o \
    runtime.o \
    flexdebug.o \

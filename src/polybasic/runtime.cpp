@@ -7,6 +7,7 @@
 #include "dumptree.h"
 #include "runtime_lbls.h"
 #include "runtime_for.h"
+#include "runtime_def.h"
 #include "runtime_vars.h"
 #include "runtime_data.h"
 #include "runtime.h"
@@ -83,11 +84,30 @@ static void register_for(Tree *root) {
             // TODO FIX localize this message
             printf("ERRROR: for statement on '%s' at line %i col %i already defined.\n"
                    "        previous definition at line %i col %i\n",
-               root->label, root->line, root->col, prev->line, prev->col);
+               root->sval, root->line, root->col, prev->line, prev->col);
             exit(-1);
          }
          else {
             set_for(root);
+         }
+      }
+      root = root->next;
+   }
+}
+
+static void register_def(Tree *root) {
+   while (root) {
+      if (root->op == YYDEF && root->sval) {
+         if (is_def_defined(root->sval)) {
+            Tree *prev = get_def(root->sval);
+            // TODO FIX localize this message
+            printf("ERRROR: def statement on '%s' at line %i col %i already defined.\n"
+                   "        previous definition at line %i col %i\n",
+               root->sval, root->line, root->col, prev->line, prev->col);
+            exit(-1);
+         }
+         else {
+            set_def(root);
          }
       }
       root = root->next;
@@ -121,20 +141,70 @@ static void register_data(Tree *root) {
 // fwd decls
 Tree *evaluate(Tree *p);
 void upgrade_to_number(Tree *p);
+Tree *deep_copy(Tree *subtree, Tree *params = NULL, Tree *values = NULL);
+
+int paramcount(Tree *tree) {
+   int ret = 0;
+   while (tree != NULL) {
+      tree = tree->middle;
+      ret++;
+   }
+   return ret;
+}
+
+Tree *deep_copy_defcall(Tree *defcall) {
+   Tree *def = get_def(defcall->sval);
+   if (!def) {
+      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+      fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED FUNCTION DEF '%s'\n",
+         defcall->line, defcall->col, defcall->sval);
+      exit(-1);
+   }
+   int defcount = paramcount(def->left);
+   int callcount = paramcount(defcall->left);
+   if (defcount != callcount) {
+      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+      fprintf(stderr, "SOURCE %d:%d, FUNCTION DEF '%s' REQUIRES %d PARAMS, BUT CALLED WITH %d\n",
+         defcall->line, defcall->col, defcall->sval, defcount, callcount);
+      exit(-1);
+   }
+
+   // TODO FIX so much leaky memory here...
+
+   // evaluate parameters
+   Tree *head = NULL;
+   Tree *tail = NULL;
+   for (Tree *mid = defcall->left; mid; mid = mid->middle) {
+      Tree *tmp = evaluate(deep_copy(mid));
+      if (!head) {
+         head = tail = tmp;
+      }
+      else {
+         tail->middle = tmp;
+         tail = tmp;
+      }
+   }
+
+   return evaluate(deep_copy(def->right, def->left, head));
+}
 
 // make a deep copy, substituting variables along the way
-Tree *deep_copy(Tree *subtree) {
+Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    Tree *copy = (Tree *) malloc(sizeof(Tree));
    memcpy(copy, subtree, sizeof(Tree));
+
+   if (subtree->op == YYDEFCALL) {
+      return deep_copy_defcall(subtree);
+   }
 
 // don't copy labels, we'd just have to free them later
 //   if (subtree->label) {
 //      copy->label = strdup(subtree->label);
 //   }
 
-   if (subtree->left) { copy->left = deep_copy(subtree->left); }
-   if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
-   if (subtree->right) { copy->right = deep_copy(subtree->right); }
+   if (subtree->left) { copy->left = deep_copy(subtree->left, params, values); }
+   if (subtree->middle) { copy->middle = deep_copy(subtree->middle, params, values); }
+   if (subtree->right) { copy->right = deep_copy(subtree->right, params, values); }
 
    if (copy->op == YYSTRING) {
       copy->sval = strdup(subtree->sval);
@@ -204,28 +274,61 @@ Tree *deep_copy(Tree *subtree) {
             copy->left = NULL;
          }
       }
-      const Val *val = get_value(varname);
-      if (!val) {
-         fprintf(stderr, "ERROR: line %d col %d, '%s' has no value\n",
-            copy->line, copy->col, varname);
-         exit(-1);
+
+      int found = 0;
+      if (params != NULL && values != NULL) {
+         Tree *p = params;
+         Tree *v = values;
+
+         while (p) {
+            if (!strcmp(p->sval, varname)) {
+               found = 1;
+               if (v->op == YYDOUBLE) {
+                  copy->op = YYDOUBLE;
+                  copy->dval = v->dval;
+               }
+               else if (v->op == YYINTEGER) {
+                  copy->op = YYINTEGER;
+                  copy->ival = v->ival;
+               }
+               else if (v->op == YYRATIONAL) {
+                  copy->op = YYRATIONAL;
+                  copy->rval = new Rational(*(v->rval));
+               }
+               else if (v->op == YYSTRING) {
+                  copy->op = YYSTRING;
+                  copy->sval = strdup(v->sval);
+               }
+               break;
+            }
+            p = p->middle;
+            v = v->middle;
+         }
       }
-      else {
-         if (val->typ == 'd') {
-            copy->op = YYDOUBLE;
-            copy->dval = val->dval;
+      if (!found) {
+         const Val *val = get_value(varname);
+         if (!val) {
+            fprintf(stderr, "ERROR: line %d col %d, '%s' has no value\n",
+                  copy->line, copy->col, varname);
+            exit(-1);
          }
-         else if (val->typ == 'i') {
-            copy->op = YYINTEGER;
-            copy->ival = val->ival;
-         }
-         else if (val->typ == 'r') {
-            copy->op = YYRATIONAL;
-            copy->rval = new Rational(*(val->rval));
-         }
-         else if (val->typ == 's') {
-            copy->op = YYSTRING;
-            copy->sval = strdup(val->sval);
+         else {
+            if (val->typ == 'd') {
+               copy->op = YYDOUBLE;
+               copy->dval = val->dval;
+            }
+            else if (val->typ == 'i') {
+               copy->op = YYINTEGER;
+               copy->ival = val->ival;
+            }
+            else if (val->typ == 'r') {
+               copy->op = YYRATIONAL;
+               copy->rval = new Rational(*(val->rval));
+            }
+            else if (val->typ == 's') {
+               copy->op = YYSTRING;
+               copy->sval = strdup(val->sval);
+            }
          }
       }
    }
@@ -1400,6 +1503,12 @@ void run(Tree *p) {
                // nothing to do here
             }
             break;
+         case YYDEF:
+            {
+               // this is handled by register_def
+               // nothing to do here
+            }
+            break;
          default:
             fprintf(stderr, "!!!! src:%d op %d line %d col %d\n", __LINE__, p->op, p->line, p->col);
             exit(-1);
@@ -1414,6 +1523,7 @@ void runtree(Tree *root) {
    register_option_base(root);
    register_arrays(root);
    register_for(root);
+   register_def(root);
    register_data(root);
    run(root);
 }

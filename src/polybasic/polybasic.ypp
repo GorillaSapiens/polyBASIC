@@ -77,8 +77,8 @@ Tree *programtree;
 
 %type <u> relation
 
-//%type <u> def
-
+%type <u> defstatement
+%type <u> paramlist
 
 %locations
 
@@ -86,6 +86,7 @@ Tree *programtree;
 %token YYBASE
 %token YYDATA
 %token YYDEF
+%token YYDEFCALL
 %token YYDIM
 %token YYEND
 %token YYFOR
@@ -253,6 +254,41 @@ statement      : assign
                      $$ = $1;
                   }
                | randomize
+                  {
+                     $$ = $1;
+                  }
+               | defstatement
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+defstatement   : YYDEF varname '[' paramlist ']' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = $2.col;
+                     $$.op = YYDEF;
+                     $$.sval = strdup($2.sval);
+                     $$.left = copytree(&$4);
+                     $$.right = copytree(&$6);
+                  }
+               | YYDEF varname '[' ']' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDEF;
+                     $$.sval = strdup($2.sval);
+                     $$.left = NULL;
+                     $$.right = copytree(&$5);
+                  }
+               ;
+
+paramlist      : varname YYIPSEP paramlist
+                  {
+                     $$ = $1;
+                     $$.middle = copytree(&$3);
+                  }
+               | varname
                   {
                      $$ = $1;
                   }
@@ -731,6 +767,14 @@ expression     : expression '+' expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYSTR;
+                     $$.left = copytree(&$3);
+                  }
+               | varname '[' exprlist ']'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDEFCALL;
+                     $$.sval = strdup($1.sval);
                      $$.left = copytree(&$3);
                   }
                | arrayref

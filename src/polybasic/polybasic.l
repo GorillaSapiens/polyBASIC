@@ -137,5 +137,9 @@ EOL      [\r\n]{1,2}
                return YYEOL;
             }
 
+.           {
+               flexdebug(yytext, (int) yytext[0], yylineno, yylloc.first_column);
+               return yytext[0];
+            }
 %%
 
