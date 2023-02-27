@@ -77,6 +77,8 @@ Tree *programtree;
 
 %type <u> relation
 
+//%type <u> def
+
 
 %locations
 
@@ -151,110 +153,110 @@ Tree *programtree;
 
 %%
 
-program       : linelist
+program        : linelist
                   {
                      // mischief managed!
                      $$ = $1;
                      programtree = copytree(&$$);
                   }
-              ;
+               ;
 
-linelist      : line
+linelist       : line
                   {
                      $$ = $1;
                   }
-              | line linelist
+               | line linelist
                   {
                      $$ = $1;
                      $$.next = copytree(&$2);
                   }
-              ;
+               ;
 
-line          : YYEOL
+line           : YYEOL
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYREM;
                   }
-              | statement YYEOL
+               | statement YYEOL
                   {
                      $$ = $1;
                      $$.label = NULL;
                   }
-              | label statement YYEOL
+               | label statement YYEOL
                   {
                      $$ = $2;
                      $$.label = strdup($1.sval);
                   }
-              | remstatement error YYEOL
+               | remstatement error YYEOL
                   {
                      $$ = $1;
                      yyerrok;
                      remsleep = 0;
                   }
-              | label remstatement error YYEOL
+               | label remstatement error YYEOL
                   {
                      $$ = $2;
                      $$.label = strdup($1.sval);
                      yyerrok;
                      remsleep = 0;
                   }
-              ;
+               ;
 
-remstatement  : YYREM
+remstatement   : YYREM
                   {
                      remsleep = 1;
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYREM;
                   }
-              ;
+               ;
 
-statement     : assign
+statement      : assign
                   {
                      $$ = $1;
                   }
-              | controlstmt
+               | controlstmt
                   {
                      $$ = $1;
                   }
-              | datastmt
+               | datastmt
                   {
                      $$ = $1;
                   }
-              | repeatstmt
+               | repeatstmt
                   {
                      $$ = $1;
                   }
-              | printstmt
+               | printstmt
                   {
                      $$ = $1;
                   }
-              | inputstmt
+               | inputstmt
                   {
                      $$ = $1;
                   }
-              | readstmt
+               | readstmt
                   {
                      $$ = $1;
                   }
-              | restorestmt
+               | restorestmt
                   {
                      $$ = $1;
                   }
-              | optionbase
+               | optionbase
                   {
                      $$ = $1;
                   }
-              | dimstmt
+               | dimstmt
                   {
                      $$ = $1;
                   }
-              | randomize
+               | randomize
                   {
                      $$ = $1;
                   }
-              ;
+               ;
 
 optionbase     : YYOPTION YYBASE iconst
                   {
@@ -335,35 +337,35 @@ printstmt   : YYPRINT exprlist
                }
             ;
 
-controlstmt   : YYGO YYTO label
+controlstmt    : YYGO YYTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
                      $$.sval = strdup($3.sval);
                   }
-              | YYGOTO label
+               | YYGOTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
                      $$.sval = strdup($2.sval);
                   }
-              | YYGO YYSUB label
+               | YYGO YYSUB label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
                      $$.sval = strdup($3.sval);
                   }
-              | YYGOSUB label
+               | YYGOSUB label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
                      $$.sval = strdup($2.sval);
                   }
-              | YYIF expression relation expression YYTHEN label
+               | YYIF expression relation expression YYTHEN label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -373,7 +375,7 @@ controlstmt   : YYGO YYTO label
                      $$.middle = copytree(&$6);
                      $$.right = copytree(&$4);
                   }
-              | YYON expression YYGO YYTO labellist
+               | YYON expression YYGO YYTO labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -382,7 +384,7 @@ controlstmt   : YYGO YYTO label
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$5);
                   }
-              | YYON expression YYGOTO labellist
+               | YYON expression YYGOTO labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -391,7 +393,7 @@ controlstmt   : YYGO YYTO label
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
                   }
-              | YYON expression YYGO YYSUB labellist
+               | YYON expression YYGO YYSUB labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -400,7 +402,7 @@ controlstmt   : YYGO YYTO label
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$5);
                   }
-              | YYON expression YYGOSUB labellist
+               | YYON expression YYGOSUB labellist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -409,36 +411,36 @@ controlstmt   : YYGO YYTO label
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
                   }
-              | YYRETURN
+               | YYRETURN
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRETURN;
                   }
-              | YYSTOP
+               | YYSTOP
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYSTOP;
                   }
-              | YYEND
+               | YYEND
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYEND;
                   }
-              ;
+               ;
 
-relation      : YYRELATION
+relation       : YYRELATION
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRELATION;
                      $$.sval = strdup(yytext);
                   }
-              ;
+               ;
 
-repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
+repeatstmt     : YYFOR varname YYASSIGN expression YYTO expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -448,7 +450,7 @@ repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
                      $$.right = copytree(&$6);
                      $$.middle = NULL;
                   }
-              | YYFOR varname YYASSIGN expression YYTO expression YYSTEP expression
+               | YYFOR varname YYASSIGN expression YYTO expression YYSTEP expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -458,14 +460,14 @@ repeatstmt    : YYFOR varname YYASSIGN expression YYTO expression
                      $$.right = copytree(&$6);
                      $$.middle = copytree(&$8);
                   }
-              | YYNEXT varname
+               | YYNEXT varname
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYNEXT;
                      $$.sval = strdup($2.sval);
                   }
-              ;
+               ;
 
 label          : varname
                   {
@@ -483,16 +485,16 @@ label          : varname
                   }
                ;
 
-labellist     : label
+labellist      : label
                   {
                      $$ = $1;
                   }
-              | label YYIPSEP labellist
+               | label YYIPSEP labellist
                   {
                      $$ = $1;
                      $$.middle = copytree(&$3);
                   }
-              ;
+               ;
 
 varname        : YYVARNAME
                   {
@@ -582,7 +584,7 @@ constlist      : constant YYIPSEP constlist
                   }
                ;
 
-expression    : expression '+' expression
+expression     : expression '+' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -590,7 +592,7 @@ expression    : expression '+' expression
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
-              | expression '&' expression
+               | expression '&' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -598,7 +600,7 @@ expression    : expression '+' expression
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
-              | expression '-' expression
+               | expression '-' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -606,7 +608,7 @@ expression    : expression '+' expression
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
-              | expression '*' expression
+               | expression '*' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -614,7 +616,7 @@ expression    : expression '+' expression
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
-              | expression '/' expression
+               | expression '/' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -622,7 +624,7 @@ expression    : expression '+' expression
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
-              | expression '^' expression
+               | expression '^' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -630,140 +632,140 @@ expression    : expression '+' expression
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
-              | '(' expression ')'
+               | '(' expression ')'
                   {
                      $$ = $2;
                   }
-              | YYABS '(' expression ')'
+               | YYABS '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYABS;
                      $$.left = copytree(&$3);
                   }
-              | YYATN '(' expression ')'
+               | YYATN '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYATN;
                      $$.left = copytree(&$3);
                   }
-              | YYCOS '(' expression ')'
+               | YYCOS '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYCOS;
                      $$.left = copytree(&$3);
                   }
-              | YYEXP '(' expression ')'
+               | YYEXP '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYEXP;
                      $$.left = copytree(&$3);
                   }
-              | YYLOG '(' expression ')'
+               | YYLOG '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYLOG;
                      $$.left = copytree(&$3);
                   }
-              | YYRND
+               | YYRND
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRND;
                   }
-              | YYSGN '(' expression ')'
+               | YYSGN '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYSGN;
                      $$.left = copytree(&$3);
                   }
-              | YYSIN '(' expression ')'
+               | YYSIN '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYSIN;
                      $$.left = copytree(&$3);
                   }
-              | YYSQR '(' expression ')'
+               | YYSQR '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYSQR;
                      $$.left = copytree(&$3);
                   }
-              | YYTAN '(' expression ')'
+               | YYTAN '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYTAN;
                      $$.left = copytree(&$3);
                   }
-              | YYDBL '(' expression ')'
+               | YYDBL '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYDBL;
                      $$.left = copytree(&$3);
                   }
-              | YYINT '(' expression ')'
+               | YYINT '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYINT;
                      $$.left = copytree(&$3);
                   }
-              | YYRAT '(' expression ')'
+               | YYRAT '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRAT;
                      $$.left = copytree(&$3);
                   }
-              | YYSTR '(' expression ')'
+               | YYSTR '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYSTR;
                      $$.left = copytree(&$3);
                   }
-              | arrayref
+               | arrayref
                   {
                      $$ = $1;
                   }
-              | varname
+               | varname
                   {
                      $$ = $1;
                   }
-              | constant
+               | constant
                   {
                      $$ = $1;
                   }
-              ;
+               ;
 
-exprlist      : expression YYIPSEP exprlist
-                 {
-                    $$ = $1;
-                    $$.middle = copytree(&$3);
-                 }
-              | expression
-                 {
-                    $$ = $1;
-                 }
-              ;
+exprlist       : expression YYIPSEP exprlist
+                  {
+                     $$ = $1;
+                     $$.middle = copytree(&$3);
+                  }
+               | expression
+                  {
+                     $$ = $1;
+                  }
+               ;
 
-inputstmt     : YYINPUT varlist
-                 {
-                    $$.line = yylineno;
-                    $$.col = yyloc.first_column;
-                    $$.op = YYINPUT;
-                    $$.right = copytree(&$2);
-               }
-            ;
+inputstmt      : YYINPUT varlist
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYINPUT;
+                     $$.right = copytree(&$2);
+                  }
+               ;
 
 assign      : varname YYASSIGN expression
                {
