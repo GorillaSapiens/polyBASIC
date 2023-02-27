@@ -29,5 +29,3 @@ result in the lowest necessary denominator.
 introduction of "ON <expresssion> GOSUB" because it seemed easy to do
 
 keywords are case insensitive
-
-dimensioned variables have been dropped.  they may be implemented later.
