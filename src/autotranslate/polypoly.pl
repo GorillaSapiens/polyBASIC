@@ -13,6 +13,9 @@ while(<FILE>) {
    chomp;
    s/[\x0a\x0d]//g;
    if ($mode == 0) {
+	   $mode++;
+   }
+   elsif ($mode == 1) {
       @all = split /,/;
       foreach my $all (@all) {
          $all = lc($all);
