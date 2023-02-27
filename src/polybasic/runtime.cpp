@@ -949,11 +949,11 @@ void run(Tree *p) {
                   if (!vb || vb->dimensions != 0) {
                      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
                      if (vb->dimensions == 1) {
-                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld)] ARRAY ON LINE %d\n",
+                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld) ARRAY ON LINE %d\n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
                      }
                      else {
-                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld, %ld..%ld)] ARRAY ON LINE %d\n",
+                        fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld, %ld..%ld) ARRAY ON LINE %d\n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, option_base, vb->upper2, vb->line);
                      }
                      exit(-1);
@@ -978,7 +978,7 @@ void run(Tree *p) {
                                  p->line, p->col, p->sval, vb->line);
                         }
                         else {
-                           fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld)] ARRAY ON LINE %d\n",
+                           fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld) ARRAY ON LINE %d\n",
                               p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
                         }
                         exit(-1);
