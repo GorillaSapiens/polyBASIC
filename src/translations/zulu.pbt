@@ -48,8 +48,8 @@ SIN <= SINE                              # the trigonomic sine function
 SQR <= ISQUAREROOT                       # the square root function
 TAN <= INHLIZIYOYAKHONA                  # the trigonomic tangent function
 DBL <= BILI                              # convert to double
-STR <= STR                               # convert to string
-RAT <= RAT                               # convert to rational
+STR <= UMBHALO                           # convert to string
+RAT <= NENGQONDO                         # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= XWAYISA                       # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= UMBHALO                          # to embed data in the program
+DATA <= ULWAZI                           # to embed data in the program
 
 # from ECMA-55 §18
 

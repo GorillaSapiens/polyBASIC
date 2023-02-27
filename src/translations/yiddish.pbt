@@ -48,8 +48,8 @@ SIN <= סינוס                     # the trigonomic sine function
 SQR <= קוואדראטווארצל            # the square root function
 TAN <= טאנדזשאנט                 # the trigonomic tangent function
 DBL <= טאפל                      # convert to double
-STR <= STR                       # convert to string
-RAT <= RAT                       # convert to rational
+STR <= טעקסט                     # convert to string
+RAT <= בארדאסדיק                 # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= READEAD               # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= דאטע                     # to embed data in the program
+DATA <= ינפארמאציע               # to embed data in the program
 
 # from ECMA-55 §18
 

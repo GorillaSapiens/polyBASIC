@@ -39,7 +39,7 @@ END <= শষ                   # the end statement
 ABS <= পরমমন                # the absolute value function
 ATN <= বপরতসপরশকতর          # the trigonomic arctangent function
 COS <= কসইন                 # the trigonomic cosine function
-EXP <= কষতকরক               # the exponential / power function
+EXP <= ততপরযপরণ             # the exponential / power function
 INT <= পরণসখয               # the integer / floor function
 LOG <= লগরদম                # the natural log function
 RND <= রল                   # generate random number
@@ -48,8 +48,8 @@ SIN <= সইন                  # the trigonomic sine function
 SQR <= বরগমল                # the square root function
 TAN <= সপরশকতর              # the trigonomic tangent function
 DBL <= দবগণ                 # convert to double
-STR <= STR                  # convert to string
-RAT <= RAT                  # convert to rational
+STR <= পঠয                  # convert to string
+RAT <= যকতসঙগত              # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= পনরযপডন          # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= ডট                  # to embed data in the program
+DATA <= তথয                 # to embed data in the program
 
 # from ECMA-55 §18
 

@@ -48,8 +48,8 @@ SIN <= 正弦           # the trigonomic sine function
 SQR <= 平方根          # the square root function
 TAN <= 切线           # the trigonomic tangent function
 DBL <= 双倍的          # convert to double
-STR <= STR          # convert to string
-RAT <= RAT          # convert to rational
+STR <= 文本           # convert to string
+RAT <= 合理的          # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= 重读       # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= 数据          # to embed data in the program
+DATA <= 信息          # to embed data in the program
 
 # from ECMA-55 §18
 

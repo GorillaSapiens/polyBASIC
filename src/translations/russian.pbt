@@ -48,8 +48,8 @@ SIN <= СИНУС                        # the trigonomic sine function
 SQR <= КВАДРАТНЫЙКОРЕНЬ             # the square root function
 TAN <= ТАНГЕНС                      # the trigonomic tangent function
 DBL <= ДВОЙНОЙ                      # convert to double
-STR <= STR                          # convert to string
-RAT <= RAT                          # convert to rational
+STR <= ТЕКСТ                        # convert to string
+RAT <= РАЦИОНАЛЬНЫЙ                 # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= ПЕРЕЧИТЫВАТЬ             # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= ДАННЫЕ                      # to embed data in the program
+DATA <= ИНФОРМАЦИЯ                  # to embed data in the program
 
 # from ECMA-55 §18
 

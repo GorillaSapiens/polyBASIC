@@ -48,8 +48,8 @@ SIN <= SINE                    # the trigonomic sine function
 SQR <= KIPEO                   # the square root function
 TAN <= TANGENT                 # the trigonomic tangent function
 DBL <= MARAMBILI               # convert to double
-STR <= STR                     # convert to string
-RAT <= RAT                     # convert to rational
+STR <= MAANDISHI               # convert to string
+RAT <= MANTIKI                 # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= KUSOMATENA          # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= TAKWIMU                # to embed data in the program
+DATA <= HABARI                 # to embed data in the program
 
 # from ECMA-55 §18
 

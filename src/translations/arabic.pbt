@@ -48,8 +48,8 @@ SIN <= جيب                    # the trigonomic sine function
 SQR <= الجذرالتربيعي          # the square root function
 TAN <= الظل                   # the trigonomic tangent function
 DBL <= مزدوج                  # convert to double
-STR <= STR                    # convert to string
-RAT <= RAT                    # convert to rational
+STR <= نص                     # convert to string
+RAT <= عاقل                   # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= إعادةالقراءة       # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= بيانات                # to embed data in the program
+DATA <= معلومة                # to embed data in the program
 
 # from ECMA-55 §18
 

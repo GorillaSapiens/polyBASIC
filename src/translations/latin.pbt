@@ -48,8 +48,8 @@ SIN <= SINUS                      # the trigonomic sine function
 SQR <= QUADRATUS                  # the square root function
 TAN <= TANGENS                    # the trigonomic tangent function
 DBL <= DUPLEX                     # convert to double
-STR <= STR                        # convert to string
-RAT <= RAT                        # convert to rational
+STR <= TEXT                       # convert to string
+RAT <= RATIONALIS                 # convert to rational
 
 # from ECMA-55 §10
 

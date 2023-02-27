@@ -48,8 +48,8 @@ SIN <= जय                 # the trigonomic sine function
 SQR <= वरगमल              # the square root function
 TAN <= सपरशरख             # the trigonomic tangent function
 DBL <= दहर                # convert to double
-STR <= STR                # convert to string
-RAT <= RAT                # convert to rational
+STR <= मलपठ               # convert to string
+RAT <= तरकसगत             # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= कफरसपढ         # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= आकड               # to embed data in the program
+DATA <= जनकर              # to embed data in the program
 
 # from ECMA-55 §18
 

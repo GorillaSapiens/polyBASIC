@@ -48,8 +48,8 @@ SIN <= SENO                     # the trigonomic sine function
 SQR <= RAÍZCUADRADA             # the square root function
 TAN <= TANGENTE                 # the trigonomic tangent function
 DBL <= DOBLE                    # convert to double
-STR <= STR                      # convert to string
-RAT <= RAT                      # convert to rational
+STR <= TEXTO                    # convert to string
+RAT <= RACIONAL                 # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= RELEER               # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= DATOS                   # to embed data in the program
+DATA <= INFORMACIÓN             # to embed data in the program
 
 # from ECMA-55 §18
 

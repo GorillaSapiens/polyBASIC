@@ -39,7 +39,7 @@ END <= آخر                 # the end statement
 ABS <= مطلققیمت            # the absolute value function
 ATN <= الٹاٹینجنٹ          # the trigonomic arctangent function
 COS <= کوسائن              # the trigonomic cosine function
-EXP <= کفایتشعاری          # the exponential / power function
+EXP <= صریح                # the exponential / power function
 INT <= انٹیجر              # the integer / floor function
 LOG <= لوگرتھم             # the natural log function
 RND <= رول                 # generate random number
@@ -48,8 +48,8 @@ SIN <= SINE                # the trigonomic sine function
 SQR <= مربعجڑ              # the square root function
 TAN <= ٹینجینٹ             # the trigonomic tangent function
 DBL <= دگنا                # convert to double
-STR <= STR                 # convert to string
-RAT <= RAT                 # convert to rational
+STR <= متن                 # convert to string
+RAT <= عقلی                # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= دوبارہپڑھیں     # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= ڈیٹا               # to embed data in the program
+DATA <= معلومات            # to embed data in the program
 
 # from ECMA-55 §18
 

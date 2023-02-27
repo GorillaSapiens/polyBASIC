@@ -48,8 +48,8 @@ SIN <= SINUSO                   # the trigonomic sine function
 SQR <= KVADRATARADIKO           # the square root function
 TAN <= TANĜANTO                 # the trigonomic tangent function
 DBL <= DUOBLA                   # convert to double
-STR <= STR                      # convert to string
-RAT <= RAT                      # convert to rational
+STR <= TEKSTO                   # convert to string
+RAT <= RACIA                    # convert to rational
 
 # from ECMA-55 §10
 
@@ -95,7 +95,7 @@ RESTORE <= RELEGI               # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= DATUMOJ                 # to embed data in the program
+DATA <= INFORMOJ                # to embed data in the program
 
 # from ECMA-55 §18
 

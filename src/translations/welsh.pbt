@@ -42,14 +42,14 @@ COS <= NGHOSIN                  # the trigonomic cosine function
 EXP <= ESBONYDDOL               # the exponential / power function
 INT <= GYFANRIF                 # the integer / floor function
 LOG <= LOGARITHM                # the natural log function
-RND <= TROLIA                   # generate random number
-SGN <= ARWYDDEM                 # determine the sign
+RND <= TREIGLECH                # generate random number
+SGN <= ARWYDDEN                 # determine the sign
 SIN <= SEIN                     # the trigonomic sine function
 SQR <= AILISRADD                # the square root function
 TAN <= TANGIAD                  # the trigonomic tangent function
 DBL <= DYBLWCH                  # convert to double
-STR <= STR                      # convert to string
-RAT <= RAT                      # convert to rational
+STR <= TECSTIO                  # convert to string
+RAT <= RHESYMOL                 # convert to rational
 
 # from ECMA-55 §10
 
@@ -57,7 +57,7 @@ DEF <= DDIFFINIA                # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= GADAWN                   # for variable assignment
+LET <= ADAWEN                   # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
@@ -65,7 +65,7 @@ LET <= GADAWN                   # for variable assignment
 GO <= AETHANT                   # part of the GOTO and GOSUB
 GOSUB <= ALWA                   # formed from GO and SUB if no direct translation exists
 GOTO <= BEICASID                # formed from GO and TO if no direct translation exists
-TO <= ATO                       # part of for/to/step/next constructs
+TO <= I                         # part of for/to/step/next constructs
 IF <= OS                        # part of if/then constructs
 THEN <= YNA                     # part of if/then constructs
 SUB <= HWB                      # beware, used as part of "go sub"
@@ -82,20 +82,20 @@ NEXT <= NESAF                   # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= PRINTIWYD              # to print things out
+PRINT <= BRINTIWYD              # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= FEWNBYNNEM             # the input statement
+INPUT <= MEWNBYNNER             # the input statement
 
 # from ECMA-55 §16
 
-READ <= DARLLENASIT             # part of read / restore
+READ <= DARLLENEST              # part of read / restore
 RESTORE <= AILDDARLLENWCH       # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= DATA                    # to embed data in the program
+DATA <= NGWYBODAETH             # to embed data in the program
 
 # from ECMA-55 §18
 
@@ -123,5 +123,5 @@ RANDOMIZE <= ARHAP
 
 # error messages
 
-err0|GWALLAU: ffeiliwch {0s}, leinith {1i}, golofnau {2i}
+err0|WALLAU: rhathellem {0s}, leinith {1i}, golofnau {2i}
 
