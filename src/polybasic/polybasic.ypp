@@ -74,7 +74,6 @@ Tree *programtree;
 %type <u> remstatement
 
 %type <u> assign
-%type <u> let
 
 %type <u> relation
 
@@ -94,7 +93,6 @@ Tree *programtree;
 %token YYIF
 %token YYINPUT
 %token YYLET
-%token YYLETARRAYREF
 %token YYNEXT
 %token YYON
 %token YYOPTION
@@ -213,10 +211,6 @@ remstatement  : YYREM
               ;
 
 statement     : assign
-                  {
-                     $$ = $1;
-                  }
-              | let
                   {
                      $$ = $1;
                   }
@@ -770,26 +764,6 @@ inputstmt     : YYINPUT varlist
                }
             ;
 
-let         : YYLET varname YYASSIGN expression
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYLET;
-                  $$.sval = $2.sval;
-                  $$.left = copytree(&$2);
-                  $$.right = copytree(&$4);
-               }
-            | YYLET arrayref YYASSIGN expression
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYLETARRAYREF;
-                  $$.sval = $2.sval;
-                  $$.left = copytree(&$2);
-                  $$.right = copytree(&$4);
-               }
-            ;
-
 assign      : varname YYASSIGN expression
                {
                   $$.line = yylineno;
@@ -798,6 +772,15 @@ assign      : varname YYASSIGN expression
                   $$.left = copytree(&$1);
                   $$.right = copytree(&$3);
                }
+            | YYLET varname YYASSIGN expression
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYASSIGN;
+                  $$.sval = $2.sval;
+                  $$.left = copytree(&$2);
+                  $$.right = copytree(&$4);
+               }
             | arrayref YYASSIGN expression
                {
                   $$.line = yylineno;
@@ -805,6 +788,15 @@ assign      : varname YYASSIGN expression
                   $$.op = YYASSIGNARRAYREF;
                   $$.left = copytree(&$1);
                   $$.right = copytree(&$3);
+               }
+            | YYLET arrayref YYASSIGN expression
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYASSIGNARRAYREF;
+                  $$.sval = $2.sval;
+                  $$.left = copytree(&$2);
+                  $$.right = copytree(&$4);
                }
             ;
 

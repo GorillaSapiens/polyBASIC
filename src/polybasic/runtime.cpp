@@ -891,12 +891,10 @@ void run(Tree *p) {
       Tree *np = p->next;
       switch (p->op) {
          case YYASSIGN:
-         case YYLET:
          case YYASSIGNARRAYREF:
-         case YYLETARRAYREF:
             {
                char varname[1024];
-               if (p->op == YYASSIGN || p->op == YYLET) {
+               if (p->op == YYASSIGN) {
                   sprintf(varname, "%s", p->left->sval);
                }
                else {
@@ -911,15 +909,6 @@ void run(Tree *p) {
                      // TODO FIX bounds checking based on DIM?
                      sprintf(varname, "%s(%ld)", p->left->sval, left->ival);
                   }
-               }
-               int inuse = is_var_defined(varname);
-               if ((p->op == YYASSIGN || p->op == YYASSIGNARRAYREF) && !inuse) {
-                  fprintf(stderr, "WARNING: variable '%s' not in use line %d col %d, consider using LET\n",
-                     varname, p->left->line, p->left->col);
-               }
-               else if ((p->op == YYLET || p->op == YYLETARRAYREF) && inuse) {
-                  fprintf(stderr, "WARNING: variable '%s' already in use line %d col %d\n",
-                     varname, p->left->line, p->left->col);
                }
                Tree *result = evaluate(deep_copy(p->right));
                set_value(varname, result);
