@@ -152,7 +152,7 @@ int paramcount(Tree *tree) {
    return ret;
 }
 
-Tree *deep_copy_defcall(Tree *defcall) {
+Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    Tree *def = get_def(defcall->sval);
    if (!def) {
       fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
@@ -175,7 +175,7 @@ Tree *deep_copy_defcall(Tree *defcall) {
    Tree *head = NULL;
    Tree *tail = NULL;
    for (Tree *mid = defcall->left; mid; mid = mid->middle) {
-      Tree *tmp = evaluate(deep_copy(mid));
+      Tree *tmp = evaluate(deep_copy(mid, params, values));
       if (!head) {
          head = tail = tmp;
       }
@@ -196,7 +196,7 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    memcpy(copy, subtree, sizeof(Tree));
 
    if (subtree->op == YYDEFCALL) {
-      return deep_copy_defcall(subtree);
+      return deep_copy_defcall(subtree, params, values);
    }
 
 // don't copy labels, we'd just have to free them later
