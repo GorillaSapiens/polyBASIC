@@ -9,7 +9,7 @@ for escapes.
 
 := for assignment, == for comparison. "=" is no longer valid.  this was
 done to eliminate a class of errors where people got "=" and "=="
-confused.
+confused.  the "LET" keyword is completely optional.
 
 both <> and != are accepted for "not equal" comparisons.  they are
 completely equivalent.
