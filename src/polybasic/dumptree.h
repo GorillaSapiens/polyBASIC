@@ -3,7 +3,7 @@
 
 #include "tree.h"
 
-void dumptree(Tree *root);
+void dumptree(Tree *root, int line);
 void dumpline(Tree *root);
 
 #endif

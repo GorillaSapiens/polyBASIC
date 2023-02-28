@@ -216,9 +216,10 @@ const char *shortname(const char *arg0) {
 }
 
 [[ noreturn ]] void usage(const char *arg0) {
-   printf("Usage: %s [-f] [-t] [-l <language>] [<input.bas>]\n", shortname(arg0));
+   printf("Usage: %s [-f] [-t <n>] [-l <language>] [<input.bas>]\n", shortname(arg0));
    printf("      -f : debug flex parser output, and then run program\n");
-   printf("      -t : dump parse tree, do not run program\n");
+   printf("      -t : dump parse tree for line <n>, do not run program\n");
+   printf("           n=0 will dump the entire tree\n");
    printf("      -l : specify language, overriding POLYBASICLANG env variable\n");
    printf("      if <input.bas> is omitted, read program from STDIN.\n");
    printf("         this is not recommended, and may not play well with INPUT statements.\n");
@@ -232,7 +233,7 @@ const char *shortname(const char *arg0) {
 }
 
 int main(int argc, char **argv) {
-   int treedebug = 0;
+   int treedebug = -1;
    char *language = getenv("POLYBASICLANG");
 
    char *arg0 = argv[0];
@@ -246,7 +247,8 @@ int main(int argc, char **argv) {
             flexdebug_enable = 1;
             break;
          case 't':
-            treedebug = 1;
+            treedebug = atoi(argv[1]);
+            argc--; argv++;
             break;
          case 'l':
             language = argv[1];
@@ -303,8 +305,8 @@ int main(int argc, char **argv) {
    if (parser_result) {
       printf("failure\n");
    }
-   else if (treedebug) {
-      dumptree(programtree);
+   else if (treedebug != -1) {
+      dumptree(programtree, treedebug);
    }
    else {
       runtree(programtree);

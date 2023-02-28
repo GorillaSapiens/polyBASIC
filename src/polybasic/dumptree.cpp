@@ -72,8 +72,21 @@ static void dumpthing(Tree *root, bool andnext) {
    if (andnext && root->next) { dumpthing(root->next, andnext); }
 }
 
-void dumptree(Tree *root) {
-   dumpthing(root, true);
+void dumptree(Tree *root, int line) {
+   if (line == 0) {
+      dumpthing(root, true);
+   }
+   else {
+      while (root && root->line != line) {
+         root = root->next;
+      }
+      if (root) {
+         dumpthing(root, false);
+      }
+      else {
+         fprintf(stderr, "ERROR: NO PARSE TREE FOR LINE %d\n", line);
+      }
+   }
 }
 
 void dumpline(Tree *root) {
