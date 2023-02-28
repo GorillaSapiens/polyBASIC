@@ -64,7 +64,6 @@ class Path {
 
 Path::Path() {
    spot = 0;
-   memset((void *)path, 0xFF, sizeof(path));
 }
 
 Path::Path(const Path &other) {
