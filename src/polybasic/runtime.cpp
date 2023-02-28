@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <float.h>
 #include <time.h>
 
 #include "tree.h"
@@ -390,6 +391,16 @@ void upgrade_to_double(Tree *p) {
 }
 
 Tree *evaluate(Tree *p) {
+   if (p->left) {
+      p->left = evaluate(p->left);
+   }
+   if (p->middle) {
+      p->middle = evaluate(p->middle);
+   }
+   if (p->right) {
+      p->right = evaluate(p->right);
+   }
+
    if (p->op == YYDOUBLE) {
       return p;
    }
@@ -401,16 +412,6 @@ Tree *evaluate(Tree *p) {
    }
    if (p->op == YYSTRING) {
       return p;
-   }
-
-   if (p->left) {
-      p->left = evaluate(p->left);
-   }
-   if (p->middle) {
-      p->middle = evaluate(p->middle);
-   }
-   if (p->right) {
-      p->right = evaluate(p->right);
    }
 
    if (p->op == YYABS) {
@@ -474,21 +475,25 @@ Tree *evaluate(Tree *p) {
    }
    else if (p->op == YYDBL) {
       Tree *freeme = p->left;
-      p->op = YYDOUBLE;
       if (p->left->op == YYSTRING) {
-         p->dval = atof(p->left->sval);
+         p->left->op = YYDOUBLE;
+         p->left->dval = atof(p->left->sval);
       }
       if (p->left->op == YYDOUBLE) {
-         p->dval = p->left->dval;
+         p->left->op = YYDOUBLE;
+         p->left->dval = p->left->dval;
       }
       else if (p->left->op == YYINTEGER) {
-         p->dval = (double) p->left->ival;
+         p->left->op = YYDOUBLE;
+         p->left->dval = (double) p->left->ival;
       }
       else if (p->left->op == YYRATIONAL) {
          Rational *deleteme = p->left->rval;
-         p->dval = (double) (*(p->left->rval));
+         p->left->op = YYDOUBLE;
+         p->left->dval = (double) (*(p->left->rval));
          delete deleteme;
       }
+      memcpy(p, p->left, sizeof(Tree));
       free(freeme);
    }
    else if (p->op == YYEXP) {
@@ -1144,20 +1149,32 @@ void run(Tree *p) {
                for (Tree *mid = result->middle; mid; mid = mid->middle) {
                   switch (mid->op) {
                      case YYDOUBLE:
-                        printf("%f ", mid->dval);
+                        {
+                           char buf[1024];
+                           sprintf(buf, "%g", mid->dval);
+                           if (!strchr(buf, '.')) {
+                              strcat(buf, ".0");
+                           }
+                           printf("%s", buf);
+
+                           // other unsatisfactory answers:
+                           //printf("%f", mid->dval);
+                           //printf("%g", mid->dval);
+                           //printf("%.*e ", DBL_DECIMAL_DIG, mid->dval);
+                        }
                         break;
                      case YYINTEGER:
-                        printf("%li ", mid->ival);
+                        printf("%li", mid->ival);
                         break;
                      case YYRATIONAL:
                         {
                            char buf[1024];
                            mid->rval->shortprint(buf, sizeof(buf));
-                           printf("%s ", buf);
+                           printf("%s", buf);
                         }
                         break;
                      case YYSTRING:
-                        printf("%s ", mid->sval);
+                        printf("%s", mid->sval);
                         break;
                      default:
                         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
@@ -1165,6 +1182,9 @@ void run(Tree *p) {
                            p->line, p->col, mid->op);
                         exit(-1);
                         break;
+                  }
+                  if (mid->middle) {
+                     printf(" ");
                   }
                }
                printf("\n");
