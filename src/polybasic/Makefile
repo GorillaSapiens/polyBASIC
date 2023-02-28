@@ -82,6 +82,7 @@ clean:
 	rm -f polybasic
 	rm -f mapping.hpp
 	rm -f lowercase.hpp
+	rm -f version.hpp
 	rm -f $(OBJECTS)
 
 .PHONY: squeaky

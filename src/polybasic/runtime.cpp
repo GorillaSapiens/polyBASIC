@@ -4,15 +4,15 @@
 #include <time.h>
 
 #include "eprintf.hpp"
-#include "tree.h"
+#include "tree.hpp"
 #include "polybasic.tab.hpp"
-#include "dumptree.h"
-#include "runtime_lbls.h"
-#include "runtime_for.h"
-#include "runtime_def.h"
-#include "runtime_vars.h"
-#include "runtime_data.h"
-#include "runtime.h"
+#include "dumptree.hpp"
+#include "runtime_lbls.hpp"
+#include "runtime_for.hpp"
+#include "runtime_def.hpp"
+#include "runtime_vars.hpp"
+#include "runtime_data.hpp"
+#include "runtime.hpp"
 
 static int64_t option_base = 0;
 static int64_t option_upper = 10; // default upper array bound per ECMA-55

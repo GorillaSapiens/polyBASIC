@@ -3,7 +3,7 @@
 #include <string>
 #include <math.h>
 
-#include "rational.h"
+#include "rational.hpp"
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)

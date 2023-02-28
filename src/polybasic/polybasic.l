@@ -5,8 +5,8 @@
 #include <dirent.h>
 #include <errno.h>
 
-#include "tree.h"
-#include "flexdebug.h"
+#include "tree.hpp"
+#include "flexdebug.hpp"
 
 #undef YY_USER_ACTION
 #define YY_USER_ACTION                                       \

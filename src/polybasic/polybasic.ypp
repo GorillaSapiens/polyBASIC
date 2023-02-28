@@ -3,11 +3,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "rational.h"
-#include "tree.h"
-#include "dumptree.h"
+#include "rational.hpp"
+#include "tree.hpp"
+#include "dumptree.hpp"
 #include "lex.yy.hpp"
-#include "safe_strdup.h"
+#include "safe_strdup.hpp"
 
 int remsleep = 0;
 void yyerror(const char *s);

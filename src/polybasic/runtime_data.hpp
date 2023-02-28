@@ -2,7 +2,7 @@
 #define _INCLUDE_RUNTIME_DATA_H_
 
 #include <stdint.h>
-#include "rational.h"
+#include "rational.hpp"
 
 void add_data(double d);
 void add_data(int64_t i);

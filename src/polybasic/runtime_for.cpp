@@ -1,6 +1,6 @@
-#include "runtime_for.h"
-#include "dumptree.h"
-#include "hash.h"
+#include "runtime_for.hpp"
+#include "dumptree.hpp"
+#include "hash.hpp"
 
 #define HASH_SIZE 65536
 static Tree *fors[HASH_SIZE];

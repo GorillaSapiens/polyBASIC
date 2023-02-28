@@ -1,6 +1,6 @@
-#include "tree.h"
+#include "tree.hpp"
 #include "polybasic.tab.hpp"
-#include "rational.h"
+#include "rational.hpp"
 #include "mapping.hpp"
 
 static void dumpval(Tree *root, char valtype) {

@@ -2,8 +2,9 @@
 #define _INCLUDE_RUNTIME_VARS_H_
 
 #include <stdint.h>
-#include "tree.h"
-#include "rational.h"
+
+#include "tree.hpp"
+#include "rational.hpp"
 #include "polybasic.tab.hpp"
 
 typedef struct Val {

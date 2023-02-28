@@ -1,8 +1,8 @@
-#include "tree.h"
+#include "tree.hpp"
 #include "polybasic.tab.hpp"
-#include "runtime_def.h"
-#include "dumptree.h"
-#include "hash.h"
+#include "runtime_def.hpp"
+#include "dumptree.hpp"
+#include "hash.hpp"
 
 #define HASH_SIZE 65536
 static Tree *defs[HASH_SIZE];

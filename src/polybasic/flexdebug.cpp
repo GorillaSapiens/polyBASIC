@@ -1,6 +1,6 @@
-#include "tree.h"
+#include "tree.hpp"
 #include "polybasic.tab.hpp"
-#include "flexdebug.h"
+#include "flexdebug.hpp"
 #include "mapping.hpp"
 
 int flexdebug_enable = 0;

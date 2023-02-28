@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "utf8casecmp.h"
+#include "utf8casecmp.hpp"
 #include "lowercase.hpp"
 
 static void lc(const char *src, char *dst) {

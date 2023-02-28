@@ -6,13 +6,13 @@
 #include <errno.h>
 
 #include "eprintf.hpp"
-#include "tree.h"
-#include "dumptree.h"
+#include "tree.hpp"
+#include "dumptree.hpp"
 #include "polybasic.tab.hpp"
 #include "mapping.hpp"
-#include "runtime.h"
-#include "flexdebug.h"
-#include "utf8casecmp.h"
+#include "runtime.hpp"
+#include "flexdebug.hpp"
+#include "utf8casecmp.hpp"
 
 extern FILE *yyin;
 extern Tree *programtree;

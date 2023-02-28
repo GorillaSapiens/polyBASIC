@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 #include "eprintf.hpp"
-#include "runtime_vars.h"
-#include "hash.h"
+#include "runtime_vars.hpp"
+#include "hash.hpp"
 
 #define HASH_SIZE 65536
 static Var *vars[HASH_SIZE];

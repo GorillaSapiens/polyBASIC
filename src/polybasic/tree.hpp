@@ -1,7 +1,7 @@
 #ifndef _INCLUDE_TREE_H_
 #define _INCLUDE_TREE_H_
 
-#include "rational.h"
+#include "rational.hpp"
 
 struct Tree;
 typedef struct Tree {

@@ -1,4 +1,4 @@
-#include "hash.h"
+#include "hash.hpp"
 
 unsigned long hash(const char *sstr) {
    const unsigned char *str = (const unsigned char *)sstr;

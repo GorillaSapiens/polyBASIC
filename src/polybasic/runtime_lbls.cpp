@@ -1,6 +1,6 @@
-#include "runtime_lbls.h"
-#include "dumptree.h"
-#include "hash.h"
+#include "runtime_lbls.hpp"
+#include "dumptree.hpp"
+#include "hash.hpp"
 
 #define HASH_SIZE 65536
 static Tree *lbls[HASH_SIZE];
