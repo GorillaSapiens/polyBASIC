@@ -8,6 +8,8 @@ CC=gcc
 CPP=g++
 CFLAGS=-g
 
+VERSION=0.90
+
 OBJECTS= \
    lex.yy.o \
    eprintf.o \
@@ -45,21 +47,25 @@ polybasic.tab.cpp: polybasic.ypp
 lex.yy.cpp: polybasic.l polybasic.tab.hpp
 	$(reflex) -yy --unicode --header-file=lex.yy.hpp polybasic.l
 
-mapping.h: mapping.pl polybasic.tab.hpp polybasic.ypp
-	./mapping.pl > mapping.h
+mapping.hpp: mapping.pl polybasic.tab.hpp polybasic.ypp
+	./mapping.pl > mapping.hpp
 
-main.o: mapping.h
+main.o: mapping.hpp version.hpp
 
-flexdebug.o: mapping.h
+flexdebug.o: mapping.hpp
 
-utf8casecmp.o: lowercase.h
+utf8casecmp.o: lowercase.hpp
 
 .PHONY: todo
 todo:
 	./missing.pl | grep yes
 
-lowercase.h: lowercase.pl UnicodeData.txt SpecialCasing.txt
-	./lowercase.pl > lowercase.h
+lowercase.hpp: lowercase.pl UnicodeData.txt SpecialCasing.txt
+	./lowercase.pl > lowercase.hpp
+
+.PHONY: version.hpp
+version.hpp:
+	echo "#define VERSION \"$(VERSION)."`date +%Y.%m.%d.%H.%M.%S`"\"" > version.hpp
 
 # see https://www.unicode.org/L2/L1999/UnicodeData.html for an explanation
 # of this file format
@@ -74,8 +80,8 @@ clean:
 	rm -f lex.yy.cpp lex.yy.hpp
 	rm -f polybasic.tab.cpp polybasic.tab.hpp
 	rm -f polybasic
-	rm -f mapping.h
-	rm -f lowercase.h
+	rm -f mapping.hpp
+	rm -f lowercase.hpp
 	rm -f $(OBJECTS)
 
 .PHONY: squeaky

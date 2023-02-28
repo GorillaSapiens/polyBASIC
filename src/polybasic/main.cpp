@@ -9,7 +9,7 @@
 #include "tree.h"
 #include "dumptree.h"
 #include "polybasic.tab.hpp"
-#include "mapping.h"
+#include "mapping.hpp"
 #include "runtime.h"
 #include "flexdebug.h"
 #include "utf8casecmp.h"
@@ -228,7 +228,7 @@ const char *shortname(const char *arg0) {
 }
 
 [[ noreturn ]] void version(const char *arg0) {
-   #include "version.h"
+#include "version.hpp"
    printf("%s version %s\n", shortname(arg0), VERSION);
    exit(0);
 }

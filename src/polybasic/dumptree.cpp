@@ -1,7 +1,7 @@
 #include "tree.h"
 #include "polybasic.tab.hpp"
 #include "rational.h"
-#include "mapping.h"
+#include "mapping.hpp"
 
 static void dumpval(Tree *root, char valtype) {
    switch(valtype) {

@@ -21,8 +21,9 @@
      yylloc.last_line = yylineno;                            \
   }
 
+#include <reflex/flexlexer.h>
+
 #include "polybasic.tab.hpp"
-#include "reflex/flexlexer.h"
 
 // required fwd decls
 const char *has_tuple(const char *a);

@@ -1,7 +1,7 @@
 #include "tree.h"
 #include "polybasic.tab.hpp"
 #include "flexdebug.h"
-#include "mapping.h"
+#include "mapping.hpp"
 
 int flexdebug_enable = 0;
 
