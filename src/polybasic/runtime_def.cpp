@@ -81,7 +81,7 @@ void Path::dump(void) {
    fprintf(stderr, "   ");
    for (int i = 0; i < spot; i++) {
       GURU;
-      eprintf("❮%0❯ at %1:%2 -> ",
+      eprintf("❮%0❯ at %1:%2 ->%b",
          defs[path[i]]->sval, defs[path[i]]->line, defs[path[i]]->col);
    }
    GURU;

@@ -117,6 +117,10 @@ void eprintf(const char *format,
             *out++ = '\t';
             in++;
          }
+         else if (*in == 'b') {
+            *out++ = ' ';
+            in++;
+         }
          else if (*in < '0' || *in > '9') {
             *out++ = *in++;
          }
