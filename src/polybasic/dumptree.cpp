@@ -1,3 +1,4 @@
+#include "eprintf.hpp"
 #include "tree.hpp"
 #include "polybasic.tab.hpp"
 #include "rational.hpp"
@@ -84,7 +85,8 @@ void dumptree(Tree *root, int line) {
          dumpthing(root, false);
       }
       else {
-         fprintf(stderr, "ERROR: NO PARSE TREE FOR LINE %d\n", line);
+         GURU;
+         eprintf("ERROR: NO PARSE TREE FOR LINE %0\n", line);
       }
    }
 }

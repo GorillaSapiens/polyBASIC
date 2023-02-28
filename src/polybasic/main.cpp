@@ -182,8 +182,8 @@ void load_translations(const char *language) {
       path = find_translations();
    }
    if (!directory_exists(path)) {
-      fprintf(stderr,
-         "cannot access directory %s.\n", path);
+      GURU;
+      eprintf("cannot access directory ❮%0❯.\n", path);
       exit(-1);
    }
 
@@ -196,10 +196,9 @@ void load_translations(const char *language) {
       fclose(f);
    }
    else {
-      fprintf(stderr,
-         "unable to open %s for reading. "
-         "please check POLYBASICPATH and/or language settings.\n",
-         full_path);
+      GURU;
+      eprintf("UNABLE TO OPEN %0 FOR READING.\n", full_path);
+      eprintf("PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.\n");
       exit(-1);
    }
 }
@@ -254,7 +253,8 @@ int main(int argc, char **argv) {
          case 'l':
             language = argv[1];
             if (language == NULL) {
-               fprintf(stderr, "-l requires a language.\n");
+               GURU;
+               eprintf("-l requires a language.\n");
             }
             argc--; argv++;
             break;
@@ -264,6 +264,7 @@ int main(int argc, char **argv) {
          case 'g':
             guru_enabled = true;
             GURU;
+            printf("GURU MODE ENABLED.");
             break;
          case 'h':
          case '?':
@@ -276,9 +277,9 @@ int main(int argc, char **argv) {
    }
 
    if (language == NULL) {
-      fprintf(stderr,
-            "POLYBASICLANG not set, and no language "
-            "given on command line.  exiting.\n");
+      GURU;
+      eprintf("'POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,");
+      eprintf("AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.\n");
       exit(-1);
    }
    load_translations(language);
@@ -289,8 +290,8 @@ int main(int argc, char **argv) {
       in = fopen(argv[0], "r");
 
       if (in == NULL) {
-         fprintf(stderr,
-               "unable to open file %s\n", argv[0]);
+         GURU;
+         eprintf("UNABLE TO OPEN FILE ❮%s❯\n", argv[0]);
          exit(-1);
       }
    }

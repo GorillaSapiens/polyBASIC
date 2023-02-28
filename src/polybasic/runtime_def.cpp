@@ -1,3 +1,4 @@
+#include "eprintf.hpp"
 #include "tree.hpp"
 #include "polybasic.tab.hpp"
 #include "runtime_def.hpp"
@@ -74,13 +75,18 @@ Path::Path(const Path &other) {
 void Path::dump(void) {
    if (!paths_yet) {
       paths_yet = 1;
-      fprintf(stderr, "ERROR: FN CYCLE DISCOVERED\n");
+      GURU;
+      eprintf("ERROR: DEFINITION CYCLE DISCOVERED\n");
    }
    fprintf(stderr, "   ");
    for (int i = 0; i < spot; i++) {
-      fprintf(stderr, "%s -> ", defs[path[i]]->sval);
+      GURU;
+      eprintf("❮%0❯ at %1:%2 -> ",
+         defs[path[i]]->sval, defs[path[i]]->line, defs[path[i]]->col);
    }
-   fprintf(stderr, "%s\n", defs[path[0]]->sval);
+   GURU;
+   eprintf("❮%0❯ at %1:%2\n",
+      defs[path[0]]->sval, defs[path[0]]->line, defs[path[0]]->col);
 }
 
 void Path::treedive(Tree *t) {

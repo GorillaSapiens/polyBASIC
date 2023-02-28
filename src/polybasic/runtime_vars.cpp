@@ -74,7 +74,7 @@ int set_value(const char *p, Tree *result) {
          break;
       default:
          GURU;
-         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED VARIABLE TYPE '%c'\n", result->line, result->col, result->op);
+         eprintf("SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯\n", result->line, result->col, result->op);
          break;
    }
    return set_value(p, value);
