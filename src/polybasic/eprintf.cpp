@@ -99,10 +99,7 @@ void add_error(const char *tag, const char *types, const char *format) {
    return;
 
    fail:
-      fprintf(stderr, "%s:\n", failmessage);
-      fprintf(stderr, "   ❮%s❯\n", tag);
-      fprintf(stderr, "   ❮%s❯\n", types);
-      fprintf(stderr, "   ❮%s❯\n", format);
+      fprintf(stderr, "ERROR :: %s :: ❮%s❯ ❮%s❯ ❮%s❯\n", failmessage, tag, types, format);
       //exit(-1);
 }
 
@@ -191,6 +188,8 @@ void eprintf(const char *tag, ...) {
          return;
       }
    }
+   fprintf(stderr, "FATAL!  ERROR TAG '%s' NOT FOUND!\n", tag);
+   //exit(-1);
 }
 
 #ifdef STANDALONE_TEST
