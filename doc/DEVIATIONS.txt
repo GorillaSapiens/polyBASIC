@@ -14,7 +14,8 @@ confused.  the "LET" keyword is completely optional.
 both <> and != are accepted for "not equal" comparisons.  they are
 completely equivalent.
 
-relational comparisons between string values follow C strcmp semantics.
+relational comparisons (<, <=, >, >=) between string values follow C
+strcmp semantics.
 
 line labels are optional, and need not be numeric, or even in numeric
 order.  lines are executed in order, and labels are used solely as
@@ -32,4 +33,6 @@ keywords are case insensitive
 
 DEF function names are unrestricted, but you must use square braces "["
 and "]" when defining and calling them.  parameters are not required,
-although square braces are still required even if there are no parameters.
+although square braces are still required when defining or calling, even
+if there are no parameters.  Circular dependencies in DEF functions are
+not allowed.
