@@ -1,5 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
+
+#include "eprintf.hpp"
 #include "runtime_vars.h"
 #include "hash.h"
 
@@ -71,7 +73,7 @@ int set_value(const char *p, Tree *result) {
          value.sval = result->sval;
          break;
       default:
-         fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+         GURU;
          fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED VARIABLE TYPE '%c'\n", result->line, result->col, result->op);
          break;
    }

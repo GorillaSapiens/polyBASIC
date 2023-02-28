@@ -5,6 +5,14 @@
 
 #include "eprintf.hpp"
 
+bool guru_enabled= false;
+
+void guru(const char *fname, int line) {
+   if (guru_enabled) {
+      fprintf(stderr, "GURU: %s:%d\n", fname, line);
+   }
+}
+
 struct Error;
 typedef struct Error {
    const char *tag;

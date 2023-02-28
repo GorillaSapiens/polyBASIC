@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <errno.h>
 
+#include "eprintf.hpp"
 #include "tree.h"
 #include "dumptree.h"
 #include "polybasic.tab.hpp"
@@ -259,6 +260,10 @@ int main(int argc, char **argv) {
             break;
          case 'v':
             version(arg0); // calls exit, never returns
+            break;
+         case 'g':
+            guru_enabled = true;
+            GURU;
             break;
          case 'h':
          case '?':

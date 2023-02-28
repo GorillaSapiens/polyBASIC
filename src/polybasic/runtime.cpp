@@ -3,6 +3,7 @@
 #include <float.h>
 #include <time.h>
 
+#include "eprintf.hpp"
 #include "tree.h"
 #include "polybasic.tab.hpp"
 #include "dumptree.h"
@@ -22,7 +23,7 @@ static void register_labels(Tree *root) {
          if (is_lbl_defined(root->label)) {
             Tree *prev = get_label(root->label);
             // TODO FIX localize this message
-            printf("ERRROR: label '%s' at line %i col %i already defined.\n"
+            printf("ERROR: label '%s' at line %i col %i already defined.\n"
                    "        previous definition at line %i col %i\n",
                root->label, root->line, root->col, prev->line, prev->col);
             exit(-1);
@@ -57,7 +58,7 @@ static void register_arrays(Tree *root) {
          for (Tree *list = root->right; list; list = list->middle) {
             if (is_bound_defined(list->sval)) {
                const Varbound *vb = get_varbound(list->sval);
-               fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+               GURU;
                fprintf(stderr, "SOURCE %d:%d, ARRAY %s ALREADY DEFINED ON LINE %d\n",
                   list->line, list->col, list->sval, vb->line);
                exit(-1);
@@ -83,7 +84,7 @@ static void register_for(Tree *root) {
          if (is_for_defined(root->sval)) {
             Tree *prev = get_for(root->sval);
             // TODO FIX localize this message
-            printf("ERRROR: for statement on '%s' at line %i col %i already defined.\n"
+            printf("ERROR: for statement on '%s' at line %i col %i already defined.\n"
                    "        previous definition at line %i col %i\n",
                root->sval, root->line, root->col, prev->line, prev->col);
             exit(-1);
@@ -102,7 +103,7 @@ static void register_def(Tree *root) {
          if (is_def_defined(root->sval)) {
             Tree *prev = get_def(root->sval);
             // TODO FIX localize this message
-            printf("ERRROR: def statement on '%s' at line %i col %i already defined.\n"
+            printf("ERROR: def statement on '%s' at line %i col %i already defined.\n"
                    "        previous definition at line %i col %i\n",
                root->sval, root->line, root->col, prev->line, prev->col);
             exit(-1);
@@ -157,7 +158,7 @@ int paramcount(Tree *tree) {
 Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    Tree *def = get_def(defcall->sval);
    if (!def) {
-      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+      GURU;
       fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED FUNCTION DEF '%s'\n",
          defcall->line, defcall->col, defcall->sval);
       exit(-1);
@@ -165,7 +166,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    int defcount = paramcount(def->left);
    int callcount = paramcount(defcall->left);
    if (defcount != callcount) {
-      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+      GURU;
       fprintf(stderr, "SOURCE %d:%d, FUNCTION DEF '%s' REQUIRES %d PARAMS, BUT CALLED WITH %d\n",
          defcall->line, defcall->col, defcall->sval, defcount, callcount);
       exit(-1);
@@ -762,7 +763,7 @@ Tree *evaluate(Tree *p) {
                         p->dval = pow(p->left->dval,p->right->dval);
                         break;
                      default:
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -792,7 +793,7 @@ Tree *evaluate(Tree *p) {
                         p->ival = (int64_t) pow(p->left->ival,p->right->ival);
                         break;
                      default:
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -827,7 +828,7 @@ Tree *evaluate(Tree *p) {
                         p->op = YYDOUBLE;
                         break;
                      default:
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MATH OP '%d'\n", p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -847,7 +848,7 @@ Tree *evaluate(Tree *p) {
                         p->op = YYSTRING;
                         break;
                      default:
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, STRING MATH LOGIC ERROR\n", p->line, p->col);
                         exit(-1);
                         break;
@@ -862,7 +863,7 @@ Tree *evaluate(Tree *p) {
             }
          }
          else {
-            fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+            GURU;
             fprintf(stderr, "SOURCE %d:%d, OPERAND MISMATCH '%p:%d' '%p:%d'\n",
                p->line, p->col,
                p->left, p->left ? p->left->op : -1,
@@ -1031,7 +1032,7 @@ Val convert_to_value(const char *s) {
       value.rval = new Rational(s);
    }
    else {
-      fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+      GURU;
       fprintf(stderr, "UNRECOGNIZED INPUT '%s'\n", s);
       exit(-1);
    }
@@ -1058,7 +1059,7 @@ void run(Tree *p) {
 
                   const Varbound *vb = get_varbound(p->left->sval);
                   if (!vb || vb->dimensions != 0) {
-                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     GURU;
                      if (vb->dimensions == 1) {
                         fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS DIM%d(%ld..%ld) ARRAY ON LINE %d\n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
@@ -1083,7 +1084,7 @@ void run(Tree *p) {
 
                      const Varbound *vb = get_varbound(p->left->sval);
                      if (!vb || vb->dimensions != 2) {
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         if (vb->dimensions == 0) {
                            fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS NONARRAY ON LINE %d\n",
                                  p->line, p->col, p->sval, vb->line);
@@ -1095,13 +1096,13 @@ void run(Tree *p) {
                         exit(-1);
                      }
                      if (left->ival < option_base || left->ival > vb->upper1) {
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DIM1 AS %ld OUTSIDE BOUNDS1 %ld..%ld FROM LINE %d\n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
                      }
                      if (right->ival < option_base || right->ival > vb->upper2) {
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DIM2 AS %ld OUTSIDE BOUNDS2 %ld..%ld FROM LINE %d\n",
                               p->line, p->col, p->sval, right->ival, option_base, vb->upper2, vb->line);
                         exit(-1);
@@ -1118,7 +1119,7 @@ void run(Tree *p) {
 
                      const Varbound *vb = get_varbound(p->left->sval);
                      if (!vb || vb->dimensions != 1) {
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         if (vb->dimensions == 0) {
                            fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DEFINED AS NONARRAY ON LINE %d\n",
                                  p->line, p->col, p->sval, vb->line);
@@ -1130,7 +1131,7 @@ void run(Tree *p) {
                         exit(-1);
                      }
                      if (left->ival < option_base || left->ival > vb->upper1) {
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, VARIABLE %s DIM1 AS %ld OUTSIDE BOUNDS %ld..%ld FROM LINE %d\n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
@@ -1177,7 +1178,7 @@ void run(Tree *p) {
                         printf("%s", mid->sval);
                         break;
                      default:
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED MID OP %d\n",
                            p->line, p->col, mid->op);
                         exit(-1);
@@ -1200,7 +1201,7 @@ void run(Tree *p) {
             {
                Tree *fore = get_for(p->sval);
                if (!fore) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED NEXT TARGET %s\n",
                      p->line, p->col, p->sval);
                   exit(-1);
@@ -1275,7 +1276,7 @@ void run(Tree *p) {
                   case 's':
                      {
                         // punt, this is just stupid
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, NEXT ON FOR LOOP WITH STRING VARIABLE\n",
                            p->line, p->col);
                         exit(-1);
@@ -1292,7 +1293,7 @@ void run(Tree *p) {
             {
                Tree *t = get_label(p->sval);
                if (!t) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED GOTO TARGET '%s'\n",
                      p->line, p->col, p->sval);
                   exit(-1);
@@ -1304,7 +1305,7 @@ void run(Tree *p) {
             {
                Tree *t = get_label(p->sval);
                if (!t) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, UNRECOGNIZED GOSUB TARGET %s\n",
                      p->line, p->col, p->sval);
                   exit(-1);
@@ -1312,7 +1313,7 @@ void run(Tree *p) {
 
                gosub_stack[gosub_spot++] = np;
                if (gosub_spot == GOSUB_STACKSIZE) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, GOSUB STACK OVERFLOW\n", p->line, p->col);
                   exit(-1);
                }
@@ -1324,7 +1325,7 @@ void run(Tree *p) {
             {
                gosub_spot--;
                if (gosub_spot < 0) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, GOSUB STACK UNDERFLOW\n", p->line, p->col);
                   exit(-1);
                }
@@ -1337,7 +1338,7 @@ void run(Tree *p) {
                Tree *right = evaluate(deep_copy(p->right));
                Tree *target = get_label(p->middle->sval);
                if (!target) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, UNKNOWN IF TARGET '%s'\n", p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1378,7 +1379,7 @@ void run(Tree *p) {
                   }
                }
                else {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, LEFT/RIGHT OP MISMATCH %d %d\n", p->line, p->col, left->op, right->op);
                   exit(-1);
                }
@@ -1402,13 +1403,13 @@ void run(Tree *p) {
                      i = atoi(result->sval);
                      break;
                   default:
-                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     GURU;
                      fprintf(stderr, "SOURCE %d:%d, UNHANDLED OP %d\n", p->line, p->left->col, result->op);
                      exit(-1);
                      break;
                }
                if (i < 0) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, NEGATIVED INDEX %d\n", p->line, p->left->col, i);
                   exit(-1);
                }
@@ -1419,20 +1420,20 @@ void run(Tree *p) {
                   label = label->middle;
                }
                if (i || label == NULL) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, INDEX %d OUT OF RANGE\n", p->line, p->left->col, oi);
                   exit(-1);
                }
                Tree *target = get_label(label->sval);
                if (!target) {
-                  fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                  GURU;
                   fprintf(stderr, "SOURCE %d:%d, UNDEFINED TARGET '%s'\n", p->line, label->col, label->sval);
                   exit(-1);
                }
                if (p->ival) { // GOSUB
                   gosub_stack[gosub_spot++] = np;
                   if (gosub_spot == GOSUB_STACKSIZE) {
-                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     GURU;
                      fprintf(stderr, "SOURCE %d:%d, GOSUB STACK OVERFLOW\n", p->line, p->col);
                      exit(-1);
                   }
@@ -1480,7 +1481,7 @@ void run(Tree *p) {
                         set_value(varname->sval, value);
                         break;
                      default:
-                        fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                        GURU;
                         fprintf(stderr, "SOURCE %d:%d, DATA READ UNDERFLOW\n", p->line, p->col);
                         exit(-1);
                         break;
@@ -1507,7 +1508,7 @@ void run(Tree *p) {
                      set_value(varname->sval, value);
                   }
                   else {
-                     fprintf(stderr, "INTERNAL ERROR %s:%d\n", __FILE__, __LINE__);
+                     GURU;
                      fprintf(stderr, "SOURCE %d:%d, DATA INPUT UNDERFLOW\n", p->line, p->col);
                      exit(-1);
                   }
