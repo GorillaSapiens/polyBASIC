@@ -47,6 +47,8 @@ Tree *get_def(const char *p) {
    return NULL;
 }
 
+// lots of helper functions to detect cycles
+
 int dfc_h3(const char *p) {
    unsigned long h = hash(p);
 
@@ -71,7 +73,7 @@ static void dfc_h2(char *visited, Tree *tree) {
             fprintf(stderr, "FN DEF CYCLE DETECTED:\n");
             for (int i = 0; i < HASH_SIZE; i++) {
                if (visited[i]) {
-                  fprintf(stderr, "   DEF '%s' line %d\n", defs[i]->sval, defs[i]->line);
+                  fprintf(stderr, "   LINE %d DEF %s\n", defs[i]->line, defs[i]->sval);
                }
             }
             exit(-1);
