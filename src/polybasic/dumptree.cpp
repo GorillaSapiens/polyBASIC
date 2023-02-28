@@ -1,10 +1,37 @@
-
-#include "rational.h"
 #include "tree.h"
+#include "polybasic.tab.hpp"
+#include "rational.h"
+#include "mapping.h"
 
-#include "mapping2.h"
+static void dumpval(Tree *root, char valtype) {
+   switch(valtype) {
+      case 'd':
+         {
+            char buf[1024];
+            sprintf(buf, "%g", root->dval);
+            if (!strchr(buf, '.')) {
+               strcat(buf, ".0");
+            }
+            printf("%s", buf);
+         }
+         break;
+      case 'i':
+         printf("ival=%li\n", root->ival);
+         break;
+      case 'r':
+         {
+            char buf[1024];
+            root->rval->shortprint(buf, sizeof(buf));
+            printf("rval=\"%s\"\n", buf);
+         }
+         break;
+      case 's':
+         printf("sval='%s'\n", root->sval ? root->sval : "<null>");
+         break;
+   }
+}
 
-void dumptree(Tree *root) {
+static void dumpthing(Tree *root, bool andnext) {
    const char *opname = NULL;
 
    if (!root) {
@@ -12,8 +39,10 @@ void dumptree(Tree *root) {
       return;
    }
 
+   int index = -1;
    for (int i = 0; reserved[i].name; i++) {
       if (reserved[i].token == root->op) {
+         index = i;
          opname = reserved[i].name;
          break;
       }
@@ -21,15 +50,14 @@ void dumptree(Tree *root) {
 
    if (opname) {
       printf("%p :: line %d col %d, op=%s(%d)\n", root, root->line, root->col, opname ? opname : "<nil>", root->op);
+      if (reserved[index].valprint) {
+         dumpval(root, reserved[index].valprint);
+      }
    }
    else {
       printf("%p :: line %d col %d, op=%c(%d)\n", root, root->line, root->col, root->op, root->op);
    }
    printf("   label:'%s'\n", root->label ? root->label : "<nil>");
-
-if (opname) {
-#include "mapping3.h"
-}
 
    printf("   left =%p\n", root->left);
    printf(" middle =%p\n", root->middle);
@@ -38,50 +66,16 @@ if (opname) {
    printf("   next =%p\n", root->next);
    printf("=====\n");
 
-   if (root->left) { dumptree(root->left); }
-   if (root->middle) { dumptree(root->middle); }
-   if (root->right) { dumptree(root->right); }
-   if (root->next) { dumptree(root->next); }
-   //if (root->prev) { dumptree(root->prev); }
+   if (root->left) { dumpthing(root->left, andnext); }
+   if (root->middle) { dumpthing(root->middle, andnext); }
+   if (root->right) { dumpthing(root->right, andnext); }
+   if (andnext && root->next) { dumpthing(root->next, andnext); }
+}
+
+void dumptree(Tree *root) {
+   dumpthing(root, true);
 }
 
 void dumpline(Tree *root) {
-   const char *opname = NULL;
-
-   if (!root) {
-      printf("root=<nil>\n");
-      return;
-   }
-
-   for (int i = 0; reserved[i].name; i++) {
-      if (reserved[i].token == root->op) {
-         opname = reserved[i].name;
-         break;
-      }
-   }
-
-   if (opname) {
-      printf("%p :: line %d col %d, op=%s(%d)\n", root, root->line, root->col, opname ? opname : "<nil>", root->op);
-   }
-   else {
-      printf("%p :: line %d col %d, op=%c(%d)\n", root, root->line, root->col, root->op, root->op);
-   }
-   printf("   label:'%s'\n", root->label ? root->label : "<nil>");
-
-if (opname) {
-#include "mapping3.h"
-}
-
-   printf("   left =%p\n", root->left);
-   printf(" middle =%p\n", root->middle);
-   printf("  right =%p\n", root->right);
-   //printf("   prev =%p\n", root->prev);
-   printf("   next =%p\n", root->next);
-   printf("=====\n");
-
-   if (root->left) { dumptree(root->left); }
-   if (root->middle) { dumptree(root->middle); }
-   if (root->right) { dumptree(root->right); }
-   //if (root->next) { dumptree(root->next); }
-   //if (root->prev) { dumptree(root->prev); }
+   dumpthing(root, false);
 }

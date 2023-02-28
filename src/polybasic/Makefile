@@ -45,20 +45,12 @@ polybasic.tab.cpp: polybasic.ypp
 lex.yy.cpp: polybasic.l polybasic.tab.hpp
 	$(reflex) -yy --unicode --header-file=lex.yy.hpp polybasic.l
 
-mapping.h: mapping.pl polybasic.tab.hpp
-	./mapping.pl < polybasic.tab.hpp > mapping.h
-
-mapping2.h: mapping.h
-	sed "s/enum yytokentype/int/g" mapping.h > mapping2.h
-
-mapping3.h: mapping3.pl polybasic.ypp
-	./mapping3.pl < polybasic.ypp | uniq > mapping3.h
+mapping.h: mapping.pl polybasic.tab.hpp polybasic.ypp
+	./mapping.pl > mapping.h
 
 main.o: mapping.h
 
 flexdebug.o: mapping.h
-
-dumptree.o: mapping2.h mapping3.h
 
 utf8casecmp.o: lowercase.h
 
@@ -82,7 +74,7 @@ clean:
 	rm -f lex.yy.cpp lex.yy.hpp
 	rm -f polybasic.tab.cpp polybasic.tab.hpp
 	rm -f polybasic
-	rm -f mapping.h mapping2.h mapping3.h
+	rm -f mapping.h
 	rm -f lowercase.h
 	rm -f $(OBJECTS)
 
