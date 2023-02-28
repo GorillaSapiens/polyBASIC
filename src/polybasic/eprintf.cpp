@@ -109,7 +109,15 @@ void eprintf(const char *format,
       }
       else {
          in++;
-         if (*in < '0' || *in > '9') {
+         if (*in == 'n') {
+            *out++ = '\n';
+            in++;
+         }
+         else if (*in == 't') {
+            *out++ = '\t';
+            in++;
+         }
+         else if (*in < '0' || *in > '9') {
             *out++ = *in++;
          }
          else {
