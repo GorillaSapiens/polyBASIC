@@ -49,56 +49,88 @@ Tree *get_def(const char *p) {
 
 // lots of helper functions to detect cycles
 
-int dfc_h3(const char *p) {
-   unsigned long h = hash(p);
+static int paths_yet = 0;
 
-   for (unsigned long i = 0; i < HASH_SIZE; i++) {
-      unsigned long j = (i + h) % HASH_SIZE;
-      if (defs[j] != NULL && !strcmp(p, defs[j]->sval)) {
-         return j;
-      }
-   }
-   return -1;
+class Path {
+      int path[HASH_SIZE];
+      int spot;
+   public:
+      Path();
+      Path(const Path &other);
+      void dump(void);
+      void treedive(Tree *t);
+      int add(int id);
+};
+
+Path::Path() {
+   spot = 0;
+   memset((void *)path, 0xFF, sizeof(path));
 }
 
-static void dfc_h2(char *visited, Tree *tree) {
-   if (!tree) {
-      return;
-   }
+Path::Path(const Path &other) {
+   spot = other.spot;
+   memcpy(path, other.path, sizeof(path));
+}
 
-   if (tree->op == YYDEFCALL) {
-      int callee = dfc_h3(tree->sval);
-      if (callee >= 0) {
-         if (visited[callee]) {
-            fprintf(stderr, "FN DEF CYCLE DETECTED:\n");
-            for (int i = 0; i < HASH_SIZE; i++) {
-               if (visited[i]) {
-                  fprintf(stderr, "   LINE %d DEF %s\n", defs[i]->line, defs[i]->sval);
-               }
+void Path::dump(void) {
+   if (!paths_yet) {
+      paths_yet = 1;
+      fprintf(stderr, "ERROR: FN CYCLE DISCOVERED\n");
+   }
+   fprintf(stderr, "   ");
+   for (int i = 0; i < spot; i++) {
+      fprintf(stderr, "%s -> ", defs[path[i]]->sval);
+   }
+   fprintf(stderr, "%s\n", defs[path[0]]->sval);
+}
+
+void Path::treedive(Tree *t) {
+   if (t) {
+      if (t->op == YYDEFCALL) {
+         for (int i = 0; i < HASH_SIZE; i++) {
+            if (defs[i] && !strcmp(defs[i]->sval, t->sval)) {
+               Path copy(*this);
+               copy.add(i);
             }
-            exit(-1);
          }
-         else {
-            visited[callee] = 1;
-            dfc_h2(visited, defs[callee]);
+      }
+      treedive(t->left);
+      treedive(t->middle);
+      treedive(t->right);
+   }
+}
+
+int Path::add(int id) {
+   if (spot) {
+      if (spot && id == path[0]) {
+         for (int i = 0; i < spot; i++) {
+            if (path[i] < id) {
+               return -1; // cycle, but we're not lowest
+            }
+         }
+         dump();
+         return 1; // cycle, and we're lowest
+      }
+      for (int i = 0; i < spot; i++) {
+         if (path[i] == id) {
+            return -1; // cycle, but doesn't start at path[0]
          }
       }
    }
-   dfc_h2(visited, tree->left);
-   dfc_h2(visited, tree->middle);
-   dfc_h2(visited, tree->right);
-}
-
-static void dfc_h1(int i) {
-   char visited[HASH_SIZE] = { 0 };
-   if (defs[i]) {
-      visited[i] = 1;
-      dfc_h2(visited, defs[i]);
-   }
+   path[spot++] = id;
+   treedive(defs[id]);
+   return 0; // no cycle
 }
 
 void def_check_cycle(void) {
+   paths_yet = 0;
    for (int i = 0; i < HASH_SIZE; i++) {
-      dfc_h1(i);
+      if (defs[i]) {
+         Path p;
+         p.add(i);
+      }
+   }
+   if (paths_yet) {
+      exit(-1);
    }
 }
