@@ -86,7 +86,7 @@ void dumptree(Tree *root, int line) {
       }
       else {
          GURU;
-         eprintf("ERROR: NO PARSE TREE FOR LINE %0\n", line);
+         eprintf("ERROR: NO PARSE TREE FOR LINE %0%n", line);
       }
    }
 }

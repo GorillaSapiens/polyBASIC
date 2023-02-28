@@ -58,7 +58,7 @@ static void register_arrays(Tree *root) {
             if (is_bound_defined(list->sval)) {
                const Varbound *vb = get_varbound(list->sval);
                GURU;
-               eprintf("SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3\n",
+               eprintf("SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n",
                   list->line, list->col, list->sval, vb->line);
                exit(-1);
             }
@@ -158,7 +158,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    Tree *def = get_def(defcall->sval);
    if (!def) {
       GURU;
-      eprintf("SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯\n",
+      eprintf("SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n",
          defcall->line, defcall->col, defcall->sval);
       exit(-1);
    }
@@ -166,7 +166,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    int callcount = paramcount(defcall->left);
    if (defcount != callcount) {
       GURU;
-      eprintf("SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4\n",
+      eprintf("SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n",
          defcall->line, defcall->col, defcall->sval, defcount, callcount);
       exit(-1);
    }
@@ -313,7 +313,7 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
          const Val *val = get_value(varname);
          if (!val) {
             GURU;
-            eprintf("ERROR: line %0 column %1, ❮%2❯ has no value\n",
+            eprintf("ERROR: line %0 column %1, ❮%2❯ has no value%n",
                   copy->line, copy->col, varname);
             exit(-1);
          }
@@ -764,7 +764,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯\n",
+                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n",
                            p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -795,7 +795,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯\n",
+                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n",
                             p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -831,7 +831,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯\n",
+                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n",
                            p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -852,7 +852,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, STRING MATH LOGIC ERROR\n", p->line, p->col);
+                        eprintf("SOURCE %0:%1, STRING MATH LOGIC ERROR%n", p->line, p->col);
                         exit(-1);
                         break;
                   }
@@ -867,7 +867,7 @@ Tree *evaluate(Tree *p) {
          }
          else {
             GURU;
-            eprintf("SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯\n",
+            eprintf("SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n",
                p->line, p->col,
                p->left, p->left ? p->left->op : -1,
                p->right, p->right ? p->right->op : -1);
@@ -1036,7 +1036,7 @@ Val convert_to_value(const char *s) {
    }
    else {
       GURU;
-      eprintf("UNRECOGNIZED INPUT ❮%0❯\n", s);
+      eprintf("UNRECOGNIZED INPUT ❮%0❯%n", s);
       exit(-1);
    }
    return value;
@@ -1064,12 +1064,12 @@ void run(Tree *p) {
                   if (!vb || vb->dimensions != 0) {
                      if (vb->dimensions == 1) {
                         GURU;
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6\n",
+                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
                      }
                      else {
                         GURU;
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8\n",
+                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, option_base, vb->upper2, vb->line);
                      }
                      exit(-1);
@@ -1090,25 +1090,25 @@ void run(Tree *p) {
                      if (!vb || vb->dimensions != 2) {
                         if (vb->dimensions == 0) {
                            GURU;
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3\n",
+                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n",
                                  p->line, p->col, p->sval, vb->line);
                         }
                         else {
                            GURU;
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6\n",
+                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n",
                               p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
                         }
                         exit(-1);
                      }
                      if (left->ival < option_base || left->ival > vb->upper1) {
                         GURU;
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6\n",
+                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
                      }
                      if (right->ival < option_base || right->ival > vb->upper2) {
                         GURU;
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6\n",
+                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n",
                               p->line, p->col, p->sval, right->ival, option_base, vb->upper2, vb->line);
                         exit(-1);
                      }
@@ -1126,19 +1126,19 @@ void run(Tree *p) {
                      if (!vb || vb->dimensions != 1) {
                         if (vb->dimensions == 0) {
                            GURU;
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3\n",
+                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n",
                                  p->line, p->col, p->sval, vb->line);
                         }
                         else {
                            GURU;
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4\n",
+                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n",
                                  p->line, p->col, p->sval, vb->dimensions, vb->line);
                         }
                         exit(-1);
                      }
                      if (left->ival < option_base || left->ival > vb->upper1) {
                         GURU;
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6\n",
+                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
                      }
@@ -1185,7 +1185,7 @@ void run(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MID OP %2\n",
+                        eprintf("SOURCE %0:%1, UNRECOGNIZED MID OP %2%n",
                            p->line, p->col, mid->op);
                         exit(-1);
                         break;
@@ -1208,7 +1208,7 @@ void run(Tree *p) {
                Tree *fore = get_for(p->sval);
                if (!fore) {
                   GURU;
-                  eprintf("SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯\n",
+                  eprintf("SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1283,7 +1283,7 @@ void run(Tree *p) {
                      {
                         // punt, this is just stupid
                         GURU;
-                        eprintf("SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE\n",
+                        eprintf("SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n",
                            p->line, p->col);
                         exit(-1);
                      }
@@ -1300,7 +1300,7 @@ void run(Tree *p) {
                Tree *t = get_label(p->sval);
                if (!t) {
                   GURU;
-                  eprintf("SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯\n",
+                  eprintf("SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1312,7 +1312,7 @@ void run(Tree *p) {
                Tree *t = get_label(p->sval);
                if (!t) {
                   GURU;
-                  eprintf("SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯\n",
+                  eprintf("SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1320,7 +1320,7 @@ void run(Tree *p) {
                gosub_stack[gosub_spot++] = np;
                if (gosub_spot == GOSUB_STACKSIZE) {
                   GURU;
-                  eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW\n", p->line, p->col);
+                  eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW%n", p->line, p->col);
                   exit(-1);
                }
 
@@ -1332,7 +1332,7 @@ void run(Tree *p) {
                gosub_spot--;
                if (gosub_spot < 0) {
                   GURU;
-                  eprintf("SOURCE %0:%1, GOSUB STACK UNDERFLOW\n", p->line, p->col);
+                  eprintf("SOURCE %0:%1, GOSUB STACK UNDERFLOW%n", p->line, p->col);
                   exit(-1);
                }
                np = gosub_stack[gosub_spot];
@@ -1345,7 +1345,7 @@ void run(Tree *p) {
                Tree *target = get_label(p->middle->sval);
                if (!target) {
                   GURU;
-                  eprintf("SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯\n", p->line, p->col, p->sval);
+                  eprintf("SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n", p->line, p->col, p->sval);
                   exit(-1);
                }
                if (left->op != right->op) {
@@ -1386,7 +1386,7 @@ void run(Tree *p) {
                }
                else {
                   GURU;
-                  eprintf("SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3\n",
+                  eprintf("SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n",
                      p->line, p->col, left->op, right->op);
                   exit(-1);
                }
@@ -1411,13 +1411,13 @@ void run(Tree *p) {
                      break;
                   default:
                      GURU;
-                     eprintf("SOURCE %0:%1, UNHANDLED OP %2\n", p->line, p->left->col, result->op);
+                     eprintf("SOURCE %0:%1, UNHANDLED OP %2%n", p->line, p->left->col, result->op);
                      exit(-1);
                      break;
                }
                if (i < 0) {
                   GURU;
-                  eprintf("SOURCE %0:%1, NEGATIVE INDEX %d\n", p->line, p->left->col, i);
+                  eprintf("SOURCE %0:%1, NEGATIVE INDEX %d%n", p->line, p->left->col, i);
                   exit(-1);
                }
                int oi = i;
@@ -1428,20 +1428,20 @@ void run(Tree *p) {
                }
                if (i || label == NULL) {
                   GURU;
-                  eprintf("SOURCE %0:%1, INDEX %2 OUT OF RANGE\n", p->line, p->left->col, oi);
+                  eprintf("SOURCE %0:%1, INDEX %2 OUT OF RANGE%n", p->line, p->left->col, oi);
                   exit(-1);
                }
                Tree *target = get_label(label->sval);
                if (!target) {
                   GURU;
-                  eprintf("SOURCE %0:%1, UNDEFINED LABEL ❮%2❯\n", p->line, label->col, label->sval);
+                  eprintf("SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n", p->line, label->col, label->sval);
                   exit(-1);
                }
                if (p->ival) { // GOSUB
                   gosub_stack[gosub_spot++] = np;
                   if (gosub_spot == GOSUB_STACKSIZE) {
                      GURU;
-                     eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW\n", p->line, p->col);
+                     eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW%n", p->line, p->col);
                      exit(-1);
                   }
                }
@@ -1489,7 +1489,7 @@ void run(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, DATA READ UNDERFLOW\n", p->line, p->col);
+                        eprintf("SOURCE %0:%1, DATA READ UNDERFLOW%n", p->line, p->col);
                         exit(-1);
                         break;
                   }
@@ -1516,7 +1516,7 @@ void run(Tree *p) {
                   }
                   else {
                      GURU;
-                     eprintf("SOURCE %0:%1, DATA INPUT UNDERFLOW\n", p->line, p->col);
+                     eprintf("SOURCE %0:%1, DATA INPUT UNDERFLOW%n", p->line, p->col);
                      exit(-1);
                   }
                }
@@ -1542,7 +1542,7 @@ void run(Tree *p) {
             break;
          default:
             GURU;
-            eprintf("UNHANDLED OPCODE src:%0 op %1 line %2 col %3\n", __LINE__, p->op, p->line, p->col);
+            eprintf("UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n", __LINE__, p->op, p->line, p->col);
             exit(-1);
             break;
       }
