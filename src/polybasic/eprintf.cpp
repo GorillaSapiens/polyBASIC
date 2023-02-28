@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <math.h>
 
 #include "eprintf.hpp"
 
@@ -25,14 +26,14 @@ static Error *head = NULL;
 
 typedef union Value {
    int i;
-   double f;
+   double d;
    char *s;
    char c;
 } Value;
 
 void add_error(const char *tag, const char *types, const char *format) {
    char failmessage[16384];
-   static const char *allowed_types = "ifsc";
+   static const char *allowed_types = "idsc";
 
    // not too spicy, please...
    if (strlen(types) > 10) {
@@ -43,12 +44,21 @@ void add_error(const char *tag, const char *types, const char *format) {
    // scan the format, to make sure types match, and we're not missing any
    {
       int bitmask = 0;
+
+      int n = 0;
+      for (const char *p = types; *p; p++, n++) {
+         if (!strchr(allowed_types, *p)) {
+            sprintf(failmessage, "SUBSTITUTION %d TYPE '%c' NOT ALLOWED", n, *p);
+            goto fail;
+         }
+      }
+
       for (const char *p = format; *p; p++) {
          if (*p == '\\') {
             p++;
             continue;
          }
-         if (*p == '{' && strlen(p) > 4) { // {Nt}
+         if (*p == '{' && strlen(p) >= 4) { // {Nt}
             int n = p[1] - '0';
             if (n < 0 || n > 9 || n > strlen(types) - 1) {
                sprintf(failmessage, "SUBSTITUTION '%c' OUT OF RANGE", p[1]);
@@ -69,7 +79,7 @@ void add_error(const char *tag, const char *types, const char *format) {
       // did we get everybody?
       for (int n = 0; n < strlen(types); n++) {
          if (!(bitmask & (1 << n))) {
-            sprintf(failmessage, "SUBSTITUTION %d MISSING.", n);
+            sprintf(failmessage, "SUBSTITUTION %d MISSING", n);
             goto fail;
          }
       }
@@ -111,7 +121,7 @@ void eprintf(const char *tag, ...) {
                   values[z].i = va_arg(argp, int);
                   break;
                case 'f':
-                  values[z].f = va_arg(argp, double);
+                  values[z].d = va_arg(argp, double);
                   break;
                case 's':
                   values[z].s = va_arg(argp, char *);
@@ -145,9 +155,15 @@ void eprintf(const char *tag, ...) {
                            spot += sprintf(buf + spot, "%i", values[n].i);
                            str += 3;
                            break;
-                        case 'f':
-                           spot += sprintf(buf + spot, "%lf", values[n].f);
-                           str += 3;
+                        case 'd':
+                           {
+                              double garbage;
+                              spot += sprintf(buf + spot, "%g", values[n].d);
+                              if (0.0 == modf(values[n].d, &garbage)) {
+                                 spot += sprintf(buf + spot, ".0"); // TODO FIX or should this be just "."?
+                              }
+                              str += 3;
+                           }
                            break;
                         case 's':
                            spot += sprintf(buf + spot, "%s", values[n].s);
@@ -179,9 +195,13 @@ void eprintf(const char *tag, ...) {
 
 #ifdef STANDALONE_TEST
 int main(int argc, char **argv) {
+   add_error("err_005", "i", "{0q}");
+   add_error("err_004", "z", "{0i}");
    add_error("err_003", "i", "some {1i} {2c} {3q}");
-   add_error("err_002", "ifcs", "\\{} \\{f some s={3s} c={2c} f={1f} i={0i} and why not \\{\\{ and \\{\\{\\{");
+   add_error("err_002", "idcs", "\\{} \\{f some s={3s} c={2c} f={1d} i={0i} and why not \\{\\{ and \\{\\{\\{");
    add_error("err_001", "i", "some {1} {2c} {3}");
    eprintf("err_002", 1, 3.14, 'x', "today");
+   eprintf("err_004", "x");
+   eprintf("err_005", "x");
 }
 #endif
