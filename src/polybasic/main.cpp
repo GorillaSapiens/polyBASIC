@@ -183,7 +183,7 @@ void load_translations(const char *language) {
    }
    if (!directory_exists(path)) {
       GURU;
-      eprintf("cannot access directory ❮%0❯.\n", path);
+      eprintf("CANNOT ACCESS DIRECTORY ❮%0❯.\n", path);
       exit(-1);
    }
 
@@ -291,7 +291,7 @@ int main(int argc, char **argv) {
 
       if (in == NULL) {
          GURU;
-         eprintf("UNABLE TO OPEN FILE ❮%s❯\n", argv[0]);
+         eprintf("UNABLE TO OPEN FILE ❮%0❯\n", argv[0]);
          exit(-1);
       }
    }
