@@ -200,7 +200,7 @@ void load_translations(const char *language) {
    if (path == NULL) {
       path = find_translations();
    }
-   if (!directory_exists(path)) {
+   if (!path || !directory_exists(path)) {
       GURU;
       eprintf("CANNOT ACCESS DIRECTORY ❮%0❯.%n", path);
       exit(-1);

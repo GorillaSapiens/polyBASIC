@@ -35,7 +35,12 @@ EprintfArg::EprintfArg(int64_t li) {
 }
 
 EprintfArg::EprintfArg(const char *s) {
-   data = strdup(s);
+   if (s) {
+      data = strdup(s);
+   }
+   else {
+      data = strdup("(null)");
+   }
 }
 
 EprintfArg::EprintfArg(Rational *r) {

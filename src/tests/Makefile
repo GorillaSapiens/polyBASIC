@@ -1,3 +1,3 @@
 .PHONY: test
 test:
-	./do_tests.sh
+	(cd simple_language_tests && make)
