@@ -120,8 +120,47 @@ RANDOMIZE <= ランダム化
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-
-# error messages
-
-err0|エラー: ファイル {0s}, ライン {1i}, 桁 {2i}
-
+❮%0❯ at %1:%2 ->	❮％0❯at％1：％2->
+❮%0❯ at %1:%2%n	❮％0❯at％1：％2％n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	コマンドラインには言語が与えられていません。終了。％n
+CANNOT ACCESS DIRECTORY ❮%0❯.%n	ディレクトリにアクセスできません❮％0❯。％n
+ERROR: DEFINITION CYCLE DISCOVERED%n	エラー：定義サイクルが発見された％n
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	エラー：ラベル❮％0❯at％1：％2既に定義されている％3：％4
+ERROR: line %0 column %1, ❮%2❯ has no value%n	エラー：line％0列％1、❮％2❯には値％nがありません
+ERROR: NO PARSE TREE FOR LINE %0%n	エラー：線の解析ツリーはありません％0％n
+-l requires a language.%n	-lは言語を必要とします。％n
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	「POLYBASICPATH」環境変数および/または言語設定を確認してください。％n
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG '環境変数は設定されていません、
+SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	ソース％0：％1、配列❮％2❯既にラインで定義されている％3％n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	ソース％0：％1、データ入力アンダーフロー％n
+SOURCE %0:%1, DATA READ UNDERFLOW%n	ソース％0：％1、データ読み取りアンダーフロー％n
+SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	ソース％0：％1、関数def❮％2❯に％3 paramsが必要ですが、％4％nで呼び出されます
+SOURCE %0:%1, GOSUB STACK OVERFLOW%n	ソース％0：％1、ゴスブスタックオーバーフロー％n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	ソース％0：％1、GOSUBスタックアンダーフロー％n
+SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	ソース％0：％1、インデックス％2範囲外％n
+SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	ソース％0：％1、左/右opミスマッチ％2％3％n
+SOURCE %0:%1, NEGATIVE INDEX %d%n	ソース％0：％1、負の指数％d％n
+SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	ソース％0：％1、文字列変数％nを使用したループの次へ
+SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	ソース％0：％1、オペランドの不一致
+SOURCE %0:%1, STRING MATH LOGIC ERROR%n	ソース％0：％1、文字列数学ロジックエラー％n
+SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	ソース％0：％1、未定義ラベル❮％2°％n
+SOURCE %0:%1, UNHANDLED OP %2%n	ソース％0：％1、未処理のop％2％n
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	ソース％0：％1、ラベルの場合は不明です❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	ソース％0：％1、認識されていない関数def❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	ソース％0：％1、認識されていないゴスブラベル❮％2°％n
+SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	ソース％0：％1、認識されていないgotoラベル❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	ソース％0：％1、認識されていない数学op❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	ソース％0：％1、認識されていないMID OP％2％n
+SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	ソース％0：％1、認識されていない次の変数❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	ソース％0：％1、認識されていない変数タイプ❮％2°％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	ソース％0：％1、変数❮％2 dim％3（％4 ..％5、％6 ..％7）ライン上の配列％8％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	ソース％0：％1、変数❮％2❯dim％3（％4 ..％5）ライン上の配列％6％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	ソース％0：％1、可変❮％2❯dim％3アレイオンライン％4％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	ソース％0：％1、可変❮％2❯
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	ソース％0：％1、可変❮％2 dim1 As％3外側の境界1％4 ..％5ライン％6％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	ソース％0：％1、可変❮％2 dim1 as％3外側の境界％4 ..％5ライン％6％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	ソース％0：％1、可変❮％2 dim2 as％3外側の境界2％4 ..％5 line％6％n
+UNABLE TO OPEN %0 FOR READING.%n	読み取りのために％0を開くことができません。％n
+UNABLE TO OPEN FILE ❮%0❯%n	ファイルを開くことができません❮％0〜％n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	未処理のopcode src：％0 op％1 line％2 col％3％n
+UNRECOGNIZED INPUT ❮%0❯%n	認識されていない入力❮％0〜％n

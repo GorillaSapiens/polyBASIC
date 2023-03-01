@@ -120,8 +120,47 @@ RANDOMIZE <= RANDOMIZE
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-
-# error messages
-
-err0|ERROR: file {0s}, linya {1i}, haligi {2i}
-
+❮%0❯ at %1:%2 ->	❮%0❯ sa%1:%2 ->
+❮%0❯ at %1:%2%n	❮%0❯ sa%1:%2%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	At walang wikang ibinigay sa linya ng utos. Paglabas.%n
+CANNOT ACCESS DIRECTORY ❮%0❯.%n	Hindi ma -access ang direktoryo ❮%0❯.%n
+ERROR: DEFINITION CYCLE DISCOVERED%n	ERROR: Napag -alaman ng Cycle ng Kahulugan%n
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Error: Label ❮%0❯ sa%1:%2 Natukoy na%3:%4
+ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: linya %0 haligi %1, ❮ %2❯ ay walang halaga %n
+ERROR: NO PARSE TREE FOR LINE %0%n	Error: walang puno ng parse para sa linya %0 %n
+-l requires a language.%n	-l ay nangangailangan ng isang wika.%n
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Mangyaring suriin ang 'POLYBASICPATH' variable at/o mga setting ng wika.%n
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Ang variable na kapaligiran ng POLYBASICLANG 'ay hindi nakatakda,
+SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Pinagmulan%0:%1, array ❮%2❯ Natukoy na sa linya%3%n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Pinagmulan%0:%1, Data Input underflow%n
+SOURCE %0:%1, DATA READ UNDERFLOW%n	Pinagmulan%0:%1, nabasa ng data ang underflow%n
+SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Pinagmulan %0: %1, function def ❮ %2❯ ay nangangailangan ng %3 mga param, ngunit tinawag na may %4 %n
+SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Pinagmulan%0:%1, Gosub stack overflow%n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Pinagmulan%0:%1, gosub stack underflow%n
+SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Pinagmulan %0: %1, index %2 sa saklaw %n
+SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Pinagmulan %0: %1, kaliwa/kanang op mismatch %2 %3 %n
+SOURCE %0:%1, NEGATIVE INDEX %d%n	Pinagmulan %0: %1, negatibong index %d %n
+SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Pinagmulan%0:%1, Susunod sa para sa loop na may String variable%n
+SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Pinagmulan%0:%1, operand mismatch ❮%2:%3❯ ❮%4:%5❯%n
+SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Pinagmulan%0:%1, String Math Logic Error%n
+SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi natukoy na label ❮%2❯%n
+SOURCE %0:%1, UNHANDLED OP %2%n	Pinagmulan %0: %1, Unhandled op %2 %n
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi kilala kung label ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang function def ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang label ng gosub ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang label ng goto ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang matematika op ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Pinagmulan %0: %1, hindi nakikilala mid op %2 %n
+SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang susunod na variable ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang uri ng variable ❮%2❯%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Pinagmulan%0:%1, variable ❮%2❯ tinukoy bilang dim%3 (%4 ..%5,%6 ..%7) array sa linya%8%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Pinagmulan%0:%1, variable ❮%2❯ tinukoy bilang dim%3 (%4 ..%5) array sa linya%6%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Pinagmulan%0:%1, variable ❮%2❯ tinukoy bilang dim%3 array sa linya%4%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Pinagmulan%0:%1, variable ❮%2❯ tinukoy bilang nonarray sa linya%3%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Pinagmulan %0: %1, variable ❮ %2❯ dim1 bilang %3 sa labas ng hangganan1 %4 .. %5 mula sa linya %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Pinagmulan %0: %1, variable ❮ %2❯ dim1 bilang %3 sa labas ng hangganan %4 .. %5 mula sa linya %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Pinagmulan %0: %1, variable ❮ %2❯ dim2 bilang %3 sa labas ng hangganan2 %4 .. %5 mula sa linya %6 %n
+UNABLE TO OPEN %0 FOR READING.%n	Hindi mabuksan ang %0 para sa pagbabasa. %n
+UNABLE TO OPEN FILE ❮%0❯%n	Hindi mabuksan ang file ❮%0❯%n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	UNHANDLED OPCODE SRC: %0 OP %1 LINE %2 Col %3 %n
+UNRECOGNIZED INPUT ❮%0❯%n	Hindi nakikilalang input ❮%0❯%n

@@ -9,13 +9,13 @@ $translation_file = $ARGV[0];
 $template_file = "template.txt";
 
 my %template_keyword_line;
-my %template_error;
-my %template_error_line;
+my @template_error;
+my @template_error_line;
 
 my %translation_keyword;
 my %translation_keyword_line;
-my %translation_error;
-my %translation_error_line;
+my @translation_error;
+my @translation_error_line;
 
 # for debugging
 sub dump_template_debug() {
@@ -78,12 +78,8 @@ foreach $line (@template) {
       $tmp =~ s/[ \t]+$//g;
 
       if (length($tmp)) {
-         @parts = split /\|/, $tmp;
-         $tag = shift @parts;
-         $err = join("|", @parts);
-
-         $template_error{$tag} = $err;
-         $template_error_line{$tag} = $lineno;
+         push @template_error, $tmp;
+         push @template_error_line, $lineno;
       }
    }
    $lineno++;
@@ -145,17 +141,11 @@ foreach $line (@translation) {
    elsif ($mode == 2) {
       $tmp = $line;
       $tmp =~ s/[\x0a\x0d]//g;
-      $tmp =~ s/^#.*//g;
-      $tmp =~ s/^[ \t]+//g;
-      $tmp =~ s/[ \t]+$//g;
+      $tmp =~ s/[\t].*$//g;
 
       if (length($tmp)) {
-         @parts = split /\|/, $tmp;
-         $tag = shift @parts;
-         $err = join("|", @parts);
-
-         $translation_error{$tag} = $err;
-         $translation_error_line{$tag} = $lineno;
+         push @translation_error, $tmp;
+         push @translation_error_line, $lineno;
       }
    }
    $lineno++;
@@ -181,17 +171,31 @@ foreach $key (keys(%translation_keyword_line)) {
    }
 }
 
-foreach $key (keys(%template_error_line)) {
-   if (!defined($translation_error_line{$key})) {
-      print "ERROR '$key' MISSING FROM $translation_file ($template_file:$template_error_line{$key})\n";
+for ($i = 0; $i <= $#template_error; $i++) {
+   $found = 0;
+   for ($j = 0; $j <= $#translation_error; $j++) {
+      if ($template_error[$i] eq $translation_error[$j]) {
+         $found = 1;
+         last;
+      }
+   }
+   if (!$found) {
+      print "MISSSING ERROR TRANSLATION LINE $template_error_line[$i] :: $template_error[$i]\n";
       print"\n";
       $problems++;
    }
 }
 
-foreach $key (keys(%translation_error_line)) {
-   if (!defined($template_error_line{$key})) {
-      print "UNEXPECTED ERROR '$key' IN $translation_file:$translation_error_line{$key}\n";
+for ($i = 0; $i <= $#translation_error; $i++) {
+   $found = 0;
+   for ($j = 0; $j <= $#template_error; $j++) {
+      if ($template_error[$j] eq $translation_error[$i]) {
+         $found = 1;
+         last;
+      }
+   }
+   if (!$found) {
+      print "UNUSED ERROR TRANSLATION LINE $translation_error_line[$i] :: $translation_error[$i]\n";
       print"\n";
       $problems++;
    }

@@ -120,8 +120,47 @@ RANDOMIZE <= ראנדאמייז
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-
-# error messages
-
-err0|גרייז: טעקע {0s}, ליניע {1i}, זייל {2i}
-
+❮%0❯ at %1:%2 ->	❮ %0❯ בייַ %1: %2 ->
+❮%0❯ at %1:%2%n	❮ %0❯ ביי %1: %2 %n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	און קיין שפּראַך געגעבן אויף באַפֿעלן שורה. אַרויסגאַנג. %n
+CANNOT ACCESS DIRECTORY ❮%0❯.%n	קענען ניט צוטריט וועגווייַזער ❮ %0❯. %n
+ERROR: DEFINITION CYCLE DISCOVERED%n	טעות: דעפֿיניציע ציקל דיסקאַווערד %n
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	גרייַז: לאַבעל ❮ %0❯ ביי %1: %2 שוין דיפיינד %3: %4
+ERROR: line %0 column %1, ❮%2❯ has no value%n	ERROR: ליניע %0 זייַל %1, ❮ %2❯ האט קיין ווערט %n
+ERROR: NO PARSE TREE FOR LINE %0%n	טעות: קיין פּאַרס בוים פֿאַר שורה %0 %n
+-l requires a language.%n	-ל ריקווייערז אַ שפּראַך. %n
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	ביטע טשעק 'POLYBASICPATH' סומפ.ווינדדיקע און / אָדער שפּראַך סעטטינגס. %n
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'סביבות וואַרף איז נישט באַשטימט,
+SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	מקור %0: %1, מענגע ❮ %2❯ שוין דיפיינד אויף שורה %3 %n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	מקור %0: %1, דאַטן אַרייַנשרייַב אַנדערפלאָו %n
+SOURCE %0:%1, DATA READ UNDERFLOW%n	מקור %0: %1, דאַטע לייענען אַנדערפלאָו %n
+SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	מקור %0: %1, פונקציאָנירן דעפ ❮ %2❯ ריקווייערז %3 פּאַראַמס, אָבער גערופֿן מיט %4 %n
+SOURCE %0:%1, GOSUB STACK OVERFLOW%n	מקור %0: %1, גאָסוב אָנלייגן אָוווערפלאָוד %n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	מקור %0: %1, גאָסוב אָנלייגן אַנדערפלאָו %n
+SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	מקור %0: %1, אינדעקס %2 אויס פון קייט %n
+SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	מקור %0: %1, לינקס / רעכט אויף מיסמאַטש %2 %3 %n
+SOURCE %0:%1, NEGATIVE INDEX %d%n	מקור %0: %1, נעגאַטיוו אינדעקס %ד %n
+SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	מקור %0: %1, ווייַטער פֿאַר שלייף מיט שטריקל וואַריאַנט %n
+SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	מקור %0: %1, אָפּעראַנד מיסמאַטש - %2: %3 ❯ ❮ %4: %5 ❯ %n
+SOURCE %0:%1, STRING MATH LOGIC ERROR%n	מקור %0: %1, שטריקל מאַט לאָגיק לאָגיק טעות %n
+SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	מקור %0: %1, ונדעפינעד לאַבעל ❮ %2❯ %n
+SOURCE %0:%1, UNHANDLED OP %2%n	מקור %0: %1, AndingSaLleed OP %2 %n
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	מקור %0: %1, אומבאַקאַנט אויב פירמע ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד פונקציאָנירן דעפ ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד Gosub Lady ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד גאָטאָ לאַבעל ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד מאַט אויף ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	מקור %0: %1, אַנרעקאַגנייזד מיטל אויף %2 %n
+SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד ווייַטער בייַטעוודיק ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד בייַטעוודיק טיפּ ❮ %2❯ %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 ( %4 .. %5, %6 .. %7) מענגע אויף שורה 8 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 ( %4 .. %5) מענגע אויף שורה 6 %6 %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 מענגע אויף שורה 4 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי ניטאַרי אויף שורה %3 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ dim1 ווי %3 אַרויס גווול 1 %4 .. %5 פון שורה %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ dim1 ווי %3 אַרויס גווול %4 .. %5 פון שורה %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ DIM2 ASD %3 אַרויס drunds2 %4 .. %5 פון שורה %6 %n
+UNABLE TO OPEN %0 FOR READING.%n	ניט געקענט צו עפענען %0 פֿאַר לייענען. %n
+UNABLE TO OPEN FILE ❮%0❯%n	ניט געקענט צו עפענען טעקע ❮ %0❯ %n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Undlavered Opcode SRC: %0 אָפּ %1 שורה %2 COR %3 %n
+UNRECOGNIZED INPUT ❮%0❯%n	אַנרעקאַגנייזד אַרייַנשרייַב נומער 0 %ן

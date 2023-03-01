@@ -120,8 +120,47 @@ RANDOMIZE <= MENGACAK
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-
-# error messages
-
-err0|KESALAHAN: mengajukan {0s}, garis {1i}, kolom {2i}
-
+❮%0❯ at %1:%2 ->	❮%0❯ AT%1:%2 ->
+❮%0❯ at %1:%2%n	❮%0 ❯ pada%1:%2%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Dan tidak ada bahasa yang diberikan pada baris perintah. Keluar.%n
+CANNOT ACCESS DIRECTORY ❮%0❯.%n	Tidak dapat mengakses direktori ❮%0❯.%n
+ERROR: DEFINITION CYCLE DISCOVERED%n	Kesalahan: siklus definisi ditemukan%n
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Kesalahan: Label ❮%0❯ AT%1:%2 Sudah Ditentukan%3:%4
+ERROR: line %0 column %1, ❮%2❯ has no value%n	Kesalahan: baris %0 kolom %1, ❮ %2❯ tidak memiliki nilai %n
+ERROR: NO PARSE TREE FOR LINE %0%n	Kesalahan: tidak ada pohon parse untuk baris %0 %n
+-l requires a language.%n	-l membutuhkan bahasa.%n
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Silakan periksa variabel lingkungan 'POLYBASICPATH' dan/atau pengaturan bahasa.%n
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Variabel lingkungan POLYBASICLANG tidak diatur,
+SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Sumber%0:%1, array ❮%2❯ sudah ditentukan pada garis%3%n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Sumber%0:%1, input data underflow%n
+SOURCE %0:%1, DATA READ UNDERFLOW%n	Sumber%0:%1, data membaca underflow%n
+SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Sumber %0: %1, fungsi def ❮ %2❯ membutuhkan %3 params, tetapi dipanggil dengan %4 %n
+SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Sumber%0:%1, Gosub Stack Overflow%n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Sumber%0:%1, Gosub Stack Underflow%n
+SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Sumber %0: %1, indeks %2 di luar kisaran %n
+SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	SUMBER %0: %1, KIRI/KANAN Ketidakcocokan %2 %3 %n
+SOURCE %0:%1, NEGATIVE INDEX %d%n	Sumber %0: %1, indeks negatif %d %n
+SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Sumber%0:%1, selanjutnya untuk loop dengan variabel string%n
+SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Sumber%0:%1, ketidakcocokan operan ❮%2:%3❯ ❮%4:%5❯%n
+SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Sumber%0:%1, string matematika logika kesalahan%n
+SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Sumber%0:%1, label yang tidak ditentukan ❮%2❯%n
+SOURCE %0:%1, UNHANDLED OP %2%n	Sumber %0: %1, op %2 %n tidak ditangani
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Sumber%0:%1, tidak diketahui apakah label ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Sumber%0:%1, fungsi yang tidak diakui def ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Sumber%0:%1, label GOSUB yang tidak dikenali ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Sumber%0:%1, label goto yang tidak diakui ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Sumber%0:%1, matematika yang tidak diakui op ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Sumber %0: %1, Mid op %2 %n yang tidak dikenali
+SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Sumber%0:%1, variabel berikutnya yang tidak dikenali ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Sumber%0:%1, jenis variabel yang tidak dikenal ❮%2❯%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai dim%3 (%4 ..%5,%6 ..%7) Array pada garis%8%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai dim%3 (%4 ..%5) array pada garis%6%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai redup%3 array pada line%4%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai nonarray pada line%3%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Sumber %0: %1, variabel ❮ %2❯ dim1 sebagai %3 Batas luar 1 %4 .. %5 dari garis %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Sumber %0: %1, variabel ❮ %2❯ dim1 sebagai %3 Batas luar %4 .. %5 dari garis %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Sumber %0: %1, variabel ❮ %2❯ dim2 sebagai %3 Batas luar2 %4 .. %5 dari garis %6 %n
+UNABLE TO OPEN %0 FOR READING.%n	Tidak dapat membuka %0 untuk membaca. %n
+UNABLE TO OPEN FILE ❮%0❯%n	Tidak dapat membuka file ❮%0❯%n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Opcode SRC yang tidak ditangani: %0 op %1 baris %2 col %3 %n
+UNRECOGNIZED INPUT ❮%0❯%n	Input yang tidak diakui ❮%0❯%n

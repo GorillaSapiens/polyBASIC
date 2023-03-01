@@ -120,8 +120,47 @@ RANDOMIZE <= 随机化
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-
-# error messages
-
-err0|错误: 文件 {0s}, 线 {1i}, 柱子 {2i}
-
+❮%0❯ at %1:%2 ->	❮％0❯在％1：％2->
+❮%0❯ at %1:%2%n	❮％0❯在％1：％2％n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	并且没有命令行上给出的语言。退出。％n
+CANNOT ACCESS DIRECTORY ❮%0❯.%n	无法访问目录❮％0❯。％n
+ERROR: DEFINITION CYCLE DISCOVERED%n	错误：定义周期发现的％n
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	错误：标签❮％0❯在％1：％2已经定义的％3：％4
+ERROR: line %0 column %1, ❮%2❯ has no value%n	错误：线％0列％1，❮％2❯没有值％n
+ERROR: NO PARSE TREE FOR LINE %0%n	错误：没有线的解析树％0％n
+-l requires a language.%n	-l需要一种语言。％n
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	请检查“ POLYBASICPATH”环境变量和/或语言设置。％n
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG的环境变量未设置，
+SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	源％0：％1，阵列❮％2❯已经在线上定义了3％n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	源％0：％1，数据输入下流％n
+SOURCE %0:%1, DATA READ UNDERFLOW%n	源％0：％1，数据读取底流量n
+SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	源％0：％1，函数def❮％2❯需要％3参数，但使用％n n命名
+SOURCE %0:%1, GOSUB STACK OVERFLOW%n	源％0：％1，GoSub堆栈溢出％n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	源％0：％1，GOSUB堆栈下流％n
+SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	源％0：％1，索引％2在范围％n中
+SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	来源％0：％1，左/右OP不匹配％2％3％n
+SOURCE %0:%1, NEGATIVE INDEX %d%n	来源％0：％1，负数指数％d％n
+SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	源％0：％1，接下来使用字符串变量％n的循环
+SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	来源％0：％1，操作数不匹配❮％2：％3❯％4：％5❯％n
+SOURCE %0:%1, STRING MATH LOGIC ERROR%n	源％0：％1，字符串数学逻辑错误％n
+SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	来源％0：％1，未定义的标签❮％2❯％n
+SOURCE %0:%1, UNHANDLED OP %2%n	来源％0：％1，未手持OP％2％n
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	源％0：％1，未知是否标签❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	源％0：％1，未识别的功能def❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	源％0：％1，未识别的GoSub标签❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	源％0：％1，未识别的goto标签❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	源％0：％1，未识别的数学op❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	源％0：％1，未识别的MID OP％2％N
+SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	源％0：％1，未识别的下一个变量❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	源％0：％1，未识别的变量类型❮％2❯％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	源％0：％1，变量❮％2❯定义为dim％3（％4 ..％5，％6 ..％7）在线％8％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	源％0：％1，变量❮％2❯定义为DIM％3（％4 ..％5）阵列在线％6％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	源％0：％1，变量❮％2❯定义为DIM％3阵列在线％4％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	源％0：％1，变量❮％2❯定义为非阵列在线％3％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	源％0：％1，变量❮％2❯dim1 as％3外部边界1％4 ..％5从线％6％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	源％0：％1，变量❮％2❯dim1 as％3外部边界％4 ..％5从线％n n line％6％n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	源％0：％1，变量❮％2❯dim2 as％3外部边界2％4 ..％5从线％6％n
+UNABLE TO OPEN %0 FOR READING.%n	无法打开％0进行阅读。％n
+UNABLE TO OPEN FILE ❮%0❯%n	无法打开文件❮％0❯％n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	未经用户的OPCODE SRC：％0 OP％1线％2 col％3％n
+UNRECOGNIZED INPUT ❮%0❯%n	未识别的输入❮％0❯％n

@@ -120,8 +120,47 @@ RANDOMIZE <= PHUNGULA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-
-# error messages
-
-err0|UKUPHAMBEKA: ifayili {0s}, ulayini {1i}, insika {2i}
-
+❮%0❯ at %1:%2 ->	❮ %0❯ ku %1: %2 ->
+❮%0❯ at %1:%2%n	❮ %0❯ ku- %1: %2 %n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Futhi alukho ulimi olunikezwe kulayini womyalo. Ukuphuma. %n
+CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ayikwazi ukufinyelela umkhombandlela ❮ %0❯. %n
+ERROR: DEFINITION CYCLE DISCOVERED%n	Iphutha: Ukuchazwa komjikelezo kutholakele %n
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Iphutha: Ilebula ❮ %0❯ ku- %1: %2 isivele ichaziwe %3: %4
+ERROR: line %0 column %1, ❮%2❯ has no value%n	Iphutha: umugqa %0 ikholomu %1, ❮ %2❯ ayinanzuzo %n
+ERROR: NO PARSE TREE FOR LINE %0%n	I-ERROR: Akukho Tree Parse for Line %0 %n
+-l requires a language.%n	-L kudinga ulimi. %n
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Sicela ubheke i- 'POLYBASICPATH' imvelo eguquguqukayo kanye / noma izilungiselelo zolimi. %n
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Ukuguquguquka kwemvelo kwePOLYBASICLANG 'akusethiwe,
+SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Umthombo %0: %1, u-Array ❮ %2❯ ochaziwe kulayini %3 %n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Umthombo %0: %1, Ukufakwa kwedatha okuvinjelwe %n
+SOURCE %0:%1, DATA READ UNDERFLOW%n	Umthombo %0: %1, idatha ifundwe underflow %n
+SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Umthombo %0: %1, I-Function Def ❮ %2❯ idinga %3 amapharamu, kepha ibizwa nge- %4 %n
+SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Umthombo %0: %1, GoSub Stack Overflow %n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Umthombo %0: %1, GoSub Stack Underflow %n
+SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Umthombo %0: %1, Index %2 Out of Range %n
+SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Umthombo %0: %1, kwesokunxele / kwesokudla op mismatch %2 %3 %n
+SOURCE %0:%1, NEGATIVE INDEX %d%n	Umthombo %0: %1, inkomba emibi %d %n
+SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Umthombo %0: %1, olandelayo on loop nge-string freaff %n
+SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Umthombo %0: %1, i-operand mismatch ❮ %2: %3❯ ❮ %4: %5❯ %n
+SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Umthombo %0: %1, I-String Math Logic Iphutha %n
+SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Umthombo %0: %1, ilebula elingachazwanga ❮ %2❯ %n
+SOURCE %0:%1, UNHANDLED OP %2%n	Umthombo %0: %1, ungajabuli i-OP %2 %n
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Umthombo %0: %1, Akaziwa Uma Ilebula ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Umthombo %0: %1, I-def engaziwa ye-def ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Umthombo %0: %1, Ilebula engaziwa ye-GOSUB ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Umthombo %0: %1, ilebula le-goto elingaziwa ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Umthombo %0: %1, ongaziwa nge-Math Op %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Umthombo %0: %1, engaziwa maphakathi ne-OP %2 %n
+SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Umthombo %0: %1, engaziwa ngokulandelana okulandelayo ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Umthombo %0: %1, Uhlobo olungaziwa oluguquguqukayo ❮ %2❯ %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ ochazwe njenge-Dim %3 ( %4 .. %5, %6 .. %7) Uhlu kulayini %8 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ uchazwe njenge-Dim %3 ( %4 .. %5) uhlu lwamalungu ku- %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ ochazwe njenge-Dim %3 Array kulayini %4 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ ochazwe njenge-nonnarray kulayini %3 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ dim1 njengoba %3 ngaphandle kwe-Bounds1 %4 .. %5 kusuka kulayini %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ dim1 njengoba %3 ngaphandle kwemingcele %4 .. %5 kusuka kulayini %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Umthombo %0: %1, aguquguqukayo ❮ %2❯ Dim2 njengoba %3 ngaphandle kwe-Sourts2 %4 .. %5 kusuka kulayini %6 %n
+UNABLE TO OPEN %0 FOR READING.%n	Ayikwazi ukuvula i- %0 yokufunda. %n
+UNABLE TO OPEN FILE ❮%0❯%n	Ayikwazi ukuvula ifayela ❮ %0❯ %n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	I-Opcode Src edidanisiwe: %0 op %1 umugqa %2 Col %3 %n
+UNRECOGNIZED INPUT ❮%0❯%n	Okokufaka okungaziwa ❮ %0❯ %n

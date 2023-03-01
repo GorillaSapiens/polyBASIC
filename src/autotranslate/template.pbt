@@ -120,8 +120,3 @@ RANDOMIZE <= RANDOMIZE
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-
-# error messages
-
-err0|ERROR: file {0s}, line {1i}, column {2i}
-
