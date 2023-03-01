@@ -214,7 +214,7 @@ void load_translations(const char *language) {
    }
    if (!path || !directory_exists(path)) {
       GURU;
-      eprintf("CANNOT ACCESS DIRECTORY ❮%0❯.%n", path);
+      eprintf("{ERROR}: {CANNOT ACCESS DIRECTORY} ❮%0❯%n", path);
       exit(-1);
    }
 
@@ -228,8 +228,8 @@ void load_translations(const char *language) {
    }
    else {
       GURU;
-      eprintf("UNABLE TO OPEN %0 FOR READING.%n", full_path);
-      eprintf("PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n");
+      eprintf("{ERROR}: {UNABLE TO OPEN TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
+      eprintf("{PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE} 'POLYBASICPATH'%n");
       exit(-1);
    }
 }
@@ -288,7 +288,8 @@ int main(int argc, char **argv) {
             language = argv[1];
             if (language == NULL) {
                GURU;
-               eprintf("-l requires a language.%n");
+               eprintf("-l {OPTION REQUIRES A LANGUAGE}%n");
+               exit(-1);
             }
             argc--; argv++;
             break;
@@ -323,8 +324,8 @@ int main(int argc, char **argv) {
 
    if (language == NULL) {
       GURU;
-      eprintf("ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,");
-      eprintf("AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n");
+      eprintf("{ERROR}: {UNSET ENVIRONMENT VARIABLE} 'POLYBASICLANG',");
+      eprintf("{AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.}%n");
       exit(-1);
    }
    load_translations(language);
@@ -336,7 +337,7 @@ int main(int argc, char **argv) {
 
       if (in == NULL) {
          GURU;
-         eprintf("UNABLE TO OPEN FILE ❮%0❯%n", argv[0]);
+         eprintf("{ERROR}: {UNABLE TO OPEN FILE} ❮%0❯%n", argv[0]);
          exit(-1);
       }
    }

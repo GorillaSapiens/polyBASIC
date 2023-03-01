@@ -120,51 +120,48 @@ RANDOMIZE <= 무작위화
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮%0%at%1 :%2->%b
-❮%0❯ at %1:%2%n	❮%0%at%1 :%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	그리고 명령 줄에는 언어가 없습니다. 출구.%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	디렉토리에 액세스 할 수 없습니다
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	환경 변수 'POLYBASICLANG'이 설정되지 않음
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	오류 : def ❯%0❮ 곱하기 정의%1 :%2 및%3 :%4%n
-ERROR: DEFINITION CYCLE DISCOVERED%n	오류 : 정의주기 발견%n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	오류 : ❯%0❮의 경우 곱하기 정의%1 :%2 및%3 :%4%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	오류 : 레이블 ❯%0❮ at%1 :%2 이미 정의 된%3 :%4%n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	오류 : line %0 열 %1, ❮ %2❯ 값이 없습니다.
-ERROR: NO PARSE TREE FOR LINE %0%n	오류 : 라인 %0 %n에 대한 구문 분석 트리 없음
--l requires a language.%n	-L 언어가 필요합니다.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	'POLYBASICPATH'환경 변수 및/또는 언어 설정을 확인하십시오.%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Source%0 :%1, 배열 ❮%2 ❯ 이미 라인에 정의 된%3%n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	소스%0 :%1, 데이터 입력 언더 플로우%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	소스%0 :%1, 데이터 읽기 언더 플로%n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Source %0 : %1, 기능 def ❮ %2❯는 %3 매개 변수를 필요로하지만 %4 %n으로 호출됩니다.
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	소스%0 :%1, Gosub 스택 오버플로%n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	소스%0 :%1, Gosub 스택 언더 플로%n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	소스 %0 : %1, 색인 %2 범위 %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	소스 %0 : %1, 왼쪽/오른쪽 OP 불일치 %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	소스 %0 : %1, 음수 인덱스 %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Source%0 :%1, 문자열 변수%n을 가진 루프에 대한 다음 on
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Source%0 :%1, 오페라 불일치 ❮%2 :%3❯%4 :%5 ❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	소스%0 :%1, 문자열 수학 로직 오류%n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Source%0 :%1, 정의되지 않은 레이블 ❮%2❯%n
-SOURCE %0:%1, UNHANDLED OP %2%n	Source %0 : %1, 취급되지 않은 OP %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Source%0 :%1, 알 수없는 레이블 ❮%2 ❯%n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Source%0 :%1, 인식되지 않은 이중 수학 OP ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Source%0 :%1, 인식되지 않은 기능 def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Source%0 :%1, 인식되지 않은 Gosub 레이블 ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Source%0 :%1, 인식되지 않은 Goto 레이블 ❮%2 ❯%n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Source%0 :%1, 인식되지 않은 정수 수학 OP ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Source %0 : %1, 인식되지 않은 중간 OP %2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Source%0 :%1, 인식되지 않은 다음 변수 ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Source%0 :%1, 인식되지 않은 합리적 수학 OP ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Source%0 :%1, 인식되지 않은 가변 유형 ❮%2❯%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	소스%0 :%1, 변수 ❮%2❯ Dim%3 (%4 ..%5,%6 ..%7) 배열%8%n으로 정의됩니다.
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	소스%0 :%1, 변수 ❮%2❯ Dim%3 (%4 ..%5) 라인에 대한 배열%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 Dim%3 어레이로 정의
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 비 체류로 정의 된%3%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim1 as %3 외부 경계 1 %4 .. %5 라인 %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim1 as %3 외부 경계 %4 .. %5 라인 %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim2 as %3 외부 경계 2 %4 .. %5 라인 %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	읽기를 위해 %0을 열 수 없습니다. %n
-UNABLE TO OPEN FILE ❮%0❯%n	파일을 열 수 없음 file%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	처리되지 않은 OPCODE SRC : %0 OP %1 라인 %2 COL %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	인식되지 않은 입력 ized%0 ❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	그리고 명령 줄에는 언어가 없습니다. 종료.
+ARRAY ALREADY DEFINED	배열은 이미 정의되었습니다
+ARRAY INDEX OUTSIDE OF BOUNDS	경계 외부의 배열 인덱스
+CANNOT ACCESS DIRECTORY	디렉토리에 액세스 할 수 없습니다
+DATA INPUT UNDERFLOW	데이터 입력 언더 플로우
+DATA READ UNDERFLOW	데이터를 읽습니다
+DEFINITION CYCLE DISCOVERED	정의주기가 발견되었습니다
+ERROR	오류
+FOR VARIABLE MULTIPLY DEFINED	변수 곱하기의 경우
+FUNCTION DEFINITION MULTIPLY DEFINED	함수 정의 곱하기 정의
+FUNCTION DEFINITION PARAMETER MISMATCH	함수 정의 매개 변수 불일치
+GOSUB STACK OVERFLOW	Gosub 스택 오버플로
+GOSUB STACK UNDERFLOW	Gosub 스택 언더 플로
+INDEX OUT OF RANGE	범위를 벗어난 색인
+LABEL ALREADY DEFINED	이미 정의 된 레이블
+LEFT / RIGHT OPERATION MISMATCH	왼쪽 / 오른쪽 작동 불일치
+NEGATIVE INDEX	음수 지수
+NEXT ON FOR LOOP WITH STRING VARIABLE	다음은 문자열 변수로 루프를 사용합니다
+OPERAND MISMATCH	피연산자 불일치
+OPTION REQUIRES A LANGUAGE	옵션에는 언어가 필요합니다
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	언어 설정 또는 환경 변수를 확인하십시오
+STRING MATH LOGIC ERROR	문자열 수학 논리 오류
+UNABLE TO OPEN FILE	열 수없는 파일
+UNABLE TO OPEN TO OPEN FILE FOR READING	읽기를 위해 파일을 열 수 없습니다
+UNDEFINED LABEL	정의되지 않은 레이블
+UNHANDLED OPERATION	처리되지 않은 작동
+UNHANDLED OPERATION CODE	처리되지 않은 작동 코드
+UNKNOWN IF LABEL	라벨이 알려지지 않았습니다
+UNRECOGNIZED DOUBLE MATH OPERATION	인식되지 않은 이중 수학 작동
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	인식되지 않은 함수 기능 정의
+UNRECOGNIZED GOSUB LABEL	인식되지 않은 GOSUB 레이블
+UNRECOGNIZED GOTO LABEL	인식되지 않은 GOTO 레이블
+UNRECOGNIZED INPUT	인식되지 않은 입력
+UNRECOGNIZED INTEGER MATH OPERATION	인식되지 않은 정수 수학 작동
+UNRECOGNIZED MATH TYPE	인식되지 않은 수학 유형
+UNRECOGNIZED NEXT VARIABLE	인식되지 않은 다음 변수
+UNRECOGNIZED OP IN PRINT	인식되지 않은 OP 인쇄
+UNRECOGNIZED RATIONAL MATH OPERATION	인식되지 않은 합리적 수학 운영
+UNRECOGNIZED VARIABLE TYPE	인식되지 않은 변수 유형
+UNSET ENVIRONMENT VARIABLE	미세한 환경 변수
+VARIABLE / ARRAY DEFINITION MISMATCH	변수 / 배열 정의 불일치
+VARIABLE DEFINED AS ARRAY	변수 배열로 정의됩니다
+VARIABLE DEFINED AS NONARRAY	변수가 아닌 것으로 정의됩니다
+VARIABLE HAS NO VALUE	변수는 값이 없습니다
+VARIABLE IS NOT AN ARRAY	변수는 배열이 아닙니다

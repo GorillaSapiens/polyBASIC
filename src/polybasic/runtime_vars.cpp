@@ -75,7 +75,8 @@ int set_value(const char *p, Tree *result) {
       default:
          GURU;
          // test case voidsetvalue
-         eprintf("SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n", result->line, result->col, result->op);
+         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED VARIABLE TYPE} ❮%2❯%n",
+            result->line, result->col, result->op);
          exit(-1);
          break;
    }

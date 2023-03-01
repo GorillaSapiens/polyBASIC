@@ -7,6 +7,7 @@ $problems = 0;
 
 $translation_file = $ARGV[0];
 $template_file = "template.txt";
+$errors_file = "../polybasic/errs.txt";
 
 my %template_keyword_line;
 my @template_error;
@@ -42,6 +43,14 @@ open TEMPLATE, "$template_file";
 binmode TEMPLATE, ':utf8';
 @template = <TEMPLATE>;
 close TEMPLATE;
+
+open ERRORS, "$errors_file" or die "cannot open errors file\n";
+binmode ERRORS, ':utf8';
+@errors = <ERRORS>;
+close ERRORS;
+
+@template = (@template, @errors);
+@errors = ();
 
 $mode = 0;
 $lineno = 1;

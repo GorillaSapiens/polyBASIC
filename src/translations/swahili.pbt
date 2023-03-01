@@ -32,80 +32,80 @@
 
 # from ECMA-55 §5.2
 
-END <= MWISHO                  # the end statement
+END <= MWISHO                       # the end statement
 
 # from ECMA-55 §9
 
-ABS <= THAMANIKABISA           # the absolute value function
-ATN <= INVERSETANGENT          # the trigonomic arctangent function
-COS <= COSINE                  # the trigonomic cosine function
-EXP <= EXPONENTIAL             # the exponential / power function
-INT <= NAMBARI                 # the integer / floor function
-LOG <= LOGARITHM               # the natural log function
-RND <= ROLL                    # generate random number
-SGN <= ISHARA                  # determine the sign
-SIN <= SINE                    # the trigonomic sine function
-SQR <= KIPEO                   # the square root function
-TAN <= TANGENT                 # the trigonomic tangent function
-DBL <= MARAMBILI               # convert to double
-STR <= MAANDISHI               # convert to string
-RAT <= MANTIKI                 # convert to rational
+ABS <= THAMANIKABISA                # the absolute value function
+ATN <= TANGENTISIYONAMAANA          # the trigonomic arctangent function
+COS <= COSINE                       # the trigonomic cosine function
+EXP <= EXPONENTIAL                  # the exponential / power function
+INT <= NAMBARI                      # the integer / floor function
+LOG <= LOGARITHM                    # the natural log function
+RND <= ROLL                         # generate random number
+SGN <= ISHARA                       # determine the sign
+SIN <= SINE                         # the trigonomic sine function
+SQR <= KIPEO                        # the square root function
+TAN <= TANGENT                      # the trigonomic tangent function
+DBL <= MARAMBILI                    # convert to double
+STR <= MAANDISHI                    # convert to string
+RAT <= MANTIKI                      # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= FAFANUA                 # for user defined functions
+DEF <= FAFANUA                      # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= ACHA                    # for variable assignment
+LET <= ACHA                         # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= NENDA                    # part of the GOTO and GOSUB
-GOSUB <= WITO                  # formed from GO and SUB if no direct translation exists
-GOTO <= RUKIA                  # formed from GO and TO if no direct translation exists
-TO <= KWA                      # part of for/to/step/next constructs
-IF <= KAMA                     # part of if/then constructs
-THEN <= BASI                   # part of if/then constructs
-SUB <= SUB                     # beware, used as part of "go sub"
-ON <= BADILI                   # a sort of a switch statement
-RETURN <= KURUDI               # used to exit a subroutine
-STOP <= KUMALIZA               # command to stop execution
+GO <= NENDA                         # part of the GOTO and GOSUB
+GOSUB <= WITO                       # formed from GO and SUB if no direct translation exists
+GOTO <= RUKIA                       # formed from GO and TO if no direct translation exists
+TO <= KWA                           # part of for/to/step/next constructs
+IF <= KAMA                          # part of if/then constructs
+THEN <= BASI                        # part of if/then constructs
+SUB <= SUB                          # beware, used as part of "go sub"
+ON <= BADILI                        # a sort of a switch statement
+RETURN <= KURUDI                    # used to exit a subroutine
+STOP <= KUMALIZA                    # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= KUTOKA                  # part of for/to/step/next constructs
-STEP <= HATUA                  # part of for/to/step/next constructs
-NEXT <= IFUATAYO               # part of for/to/step/next constructs
+FOR <= KUTOKA                       # part of for/to/step/next constructs
+STEP <= HATUA                       # part of for/to/step/next constructs
+NEXT <= IFUATAYO                    # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= CHAPISHA              # to print things out
+PRINT <= CHAPISHA                   # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= PEMBEJEO              # the input statement
+INPUT <= PEMBEJEO                   # the input statement
 
 # from ECMA-55 §16
 
-READ <= SOMA                   # part of read / restore
-RESTORE <= KUSOMATENA          # part of read / restore
+READ <= SOMA                        # part of read / restore
+RESTORE <= KUSOMATENA               # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= HABARI                 # to embed data in the program
+DATA <= HABARI                      # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= MWELEKEO                # dimension arrays
-OPTION <= CHAGUO               # see ECMA-55 §18.1
-BASE <= MSINGI                 # see ECMA-55 §18.1
+DIM <= MWELEKEO                     # dimension arrays
+OPTION <= CHAGUO                    # see ECMA-55 §18.1
+BASE <= MSINGI                      # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= KUMBUKA                 # see ECMA-55 §18.1
+REM <= KUMBUKA                      # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -120,51 +120,48 @@ RANDOMIZE <= BILAMPANGILIO
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮%0❯ kwa%1:%2 ->%b
-❮%0❯ at %1:%2%n	❮%0❯ kwa%1:%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Na hakuna lugha iliyopewa kwenye mstari wa amri. Kuondoka.%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	Haiwezi kupata saraka ❮%0❯.%n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Mazingira ya kutofautisha 'POLYBASICLANG' sio kuweka,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kosa: DEF ❮%0❯ Imefafanuliwa%1:%2 na%3:%4%n
-ERROR: DEFINITION CYCLE DISCOVERED%n	Kosa: Mzunguko wa ufafanuzi umegunduliwa%n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kosa: kwa ❮%0❯ imeongezeka%1:%2 na%3:%4%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Kosa: Lebo ❮%0❯ kwa%1:%2 tayari imefafanuliwa%3:%4%n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	Kosa: mstari %0 safu %1, ❮ %2❯ haina thamani %n
-ERROR: NO PARSE TREE FOR LINE %0%n	Kosa: Hakuna mti wa parse kwa mstari %0 %n
--l requires a language.%n	-l inahitaji lugha.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Tafadhali angalia mazingira ya 'POLYBASICPATH' na/au mipangilio ya lugha.%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Chanzo%0:%1, safu ❮%2❯ tayari imeelezewa kwenye mstari%3%n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Chanzo%0:%1, Uingizaji wa Takwimu Undered%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	Chanzo%0:%1, data iliyosomwa chini ya%n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Chanzo %0: %1, kazi def ❮ %2❯ inahitaji %3, lakini inaitwa na %4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Chanzo%0:%1, gosub stack kufurika%n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Chanzo%0:%1, gosub stack underflow%n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Chanzo %0: %1, index %2 kati ya anuwai %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Chanzo %0: %1, kushoto/kulia op mismatch %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	Chanzo %0: %1, index hasi %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Chanzo%0:%1, ijayo kwa kitanzi na kamba ya kutofautiana%n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Chanzo%0:%1, mismatch ya operesheni ❮%2:%3❯ ❮%4:%5❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Chanzo%0:%1, kosa la mantiki ya hesabu%n n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Chanzo%0:%1, lebo isiyoelezewa ❮%2❯%n
-SOURCE %0:%1, UNHANDLED OP %2%n	Chanzo %0: %1, OP isiyosafishwa %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Chanzo%0:%1, haijulikani ikiwa lebo ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Chanzo%0:%1, isiyojulikana mara mbili Math OP ❮%2❯%n N
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Chanzo%0:%1, kazi isiyotambuliwa def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Chanzo%0:%1, lebo isiyojulikana ya GoSub ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Chanzo%0:%1, lebo ya goto isiyojulikana ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Chanzo%0:%1, Inter Integer Math OP ❮%2❯%n N N
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Chanzo %0: %1, Mid Op %2 %n isiyojulikana 2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Chanzo%0:%1, kutofaulu kutofautiana ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Chanzo%0:%1, Math Op Op Op Op ❮%2❯%n N N N
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Chanzo%0:%1, Aina ya kutofautisha isiyojulikana ❮%2❯%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Chanzo%0:%1, kutofautisha ❮%2❯ hufafanuliwa kama dim%3 (%4 ..%5,%6 ..%7) safu kwenye mstari%8%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Chanzo%0:%1, kutofautisha ❮%2❯ hufafanuliwa kama dim%3 (%4 ..%5) safu kwenye mstari%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Chanzo%0:%1, kutofautisha ❮%2❯ hufafanuliwa kama safu ya dim%3 kwenye mstari%4%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Chanzo%0:%1, kutofautisha ❮%2❯ hufafanuliwa kama nonarray kwenye mstari%3%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Chanzo %0: %1, kutofautisha ❮ %2❯ dim1 kama %3 nje mipaka1 %4 .. %5 kutoka mstari %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Chanzo %0: %1, kutofautisha ❮ %2❯ dim1 kama %3 mipaka ya nje %4 .. %5 kutoka mstari %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Chanzo %0: %1, kutofautisha ❮ %2❯ dim2 kama %3 nje mipaka2 %4 .. %5 kutoka mstari %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	Haiwezi kufungua %0 kwa kusoma. %n
-UNABLE TO OPEN FILE ❮%0❯%n	Haiwezi kufungua faili ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Opcode isiyo na mwisho: %0 op %1 line %2 col %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	Uingizaji usiojulikana ❮%0❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Na hakuna lugha iliyopewa kwenye mstari wa amri. Kutoka.
+ARRAY ALREADY DEFINED	Safu tayari imeelezewa
+ARRAY INDEX OUTSIDE OF BOUNDS	Safu ya safu nje ya mipaka
+CANNOT ACCESS DIRECTORY	Haiwezi kufikia saraka
+DATA INPUT UNDERFLOW	Uingizaji wa data Underfer
+DATA READ UNDERFLOW	Takwimu zilizosomwa
+DEFINITION CYCLE DISCOVERED	Mzunguko wa ufafanuzi umegunduliwa
+ERROR	Kosa
+FOR VARIABLE MULTIPLY DEFINED	Kwa kutofautisha hufafanuliwa
+FUNCTION DEFINITION MULTIPLY DEFINED	Ufafanuzi wa kazi umefafanuliwa
+FUNCTION DEFINITION PARAMETER MISMATCH	Ufafanuzi wa kazi ya paramu
+GOSUB STACK OVERFLOW	Gosub stack kufurika
+GOSUB STACK UNDERFLOW	GoSub Stack Undered
+INDEX OUT OF RANGE	Index nje ya anuwai
+LABEL ALREADY DEFINED	Lebo tayari imeelezewa
+LEFT / RIGHT OPERATION MISMATCH	Kushoto / kulia Operesheni mismatch
+NEGATIVE INDEX	Kielelezo hasi
+NEXT ON FOR LOOP WITH STRING VARIABLE	Ifuatayo kwa kitanzi na kamba ya kutofautisha
+OPERAND MISMATCH	Uendeshaji wa kazi
+OPTION REQUIRES A LANGUAGE	Chaguo inahitaji lugha
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Tafadhali angalia mipangilio ya lugha au kutofautisha kwa mazingira
+STRING MATH LOGIC ERROR	Kosa la mantiki ya hesabu
+UNABLE TO OPEN FILE	Haiwezi kufungua faili
+UNABLE TO OPEN TO OPEN FILE FOR READING	Haiwezi kufungua kufungua faili ya kusoma
+UNDEFINED LABEL	Lebo isiyoelezewa
+UNHANDLED OPERATION	Operesheni isiyosababishwa
+UNHANDLED OPERATION CODE	Nambari ya operesheni isiyozuiliwa
+UNKNOWN IF LABEL	Haijulikani ikiwa lebo
+UNRECOGNIZED DOUBLE MATH OPERATION	Operesheni ya hesabu mara mbili isiyojulikana
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Ufafanuzi wa kazi ya kazi isiyojulikana
+UNRECOGNIZED GOSUB LABEL	Lebo isiyojulikana ya Gosub
+UNRECOGNIZED GOTO LABEL	Lebo isiyojulikana ya Goto
+UNRECOGNIZED INPUT	Pembejeo isiyojulikana
+UNRECOGNIZED INTEGER MATH OPERATION	Operesheni ya hesabu isiyojulikana
+UNRECOGNIZED MATH TYPE	Aina ya hesabu isiyojulikana
+UNRECOGNIZED NEXT VARIABLE	Kutofaulu kutofautisha inayofuata
+UNRECOGNIZED OP IN PRINT	OP isiyojulikana kwa kuchapishwa
+UNRECOGNIZED RATIONAL MATH OPERATION	Operesheni ya hesabu isiyojulikana
+UNRECOGNIZED VARIABLE TYPE	Aina ya kutofautisha isiyojulikana
+UNSET ENVIRONMENT VARIABLE	Mazingira ya kutofautisha
+VARIABLE / ARRAY DEFINITION MISMATCH	Kutofautisha / safu ya ufafanuzi
+VARIABLE DEFINED AS ARRAY	Inaweza kufafanuliwa kama safu
+VARIABLE DEFINED AS NONARRAY	Inaweza kufafanuliwa kama nonarray
+VARIABLE HAS NO VALUE	Kutofautisha haina thamani
+VARIABLE IS NOT AN ARRAY	Kubadilika sio safu

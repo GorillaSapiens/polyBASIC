@@ -1,1 +1,1 @@
-ERROR: label ❮fred❯ at 2:6 already defined 1:6
+ERROR: @2:6, LABEL ALREADY DEFINED, ❮fred❯ @1:6

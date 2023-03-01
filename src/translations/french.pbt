@@ -120,51 +120,48 @@ RANDOMIZE <= RANDOMISER
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮ %0❯ à %1: %2 -> %b
-❮%0❯ at %1:%2%n	❮ %0❯ à %1: %2 %n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Et aucune langue donnée sur la ligne de commande. Sortant. %n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	Impossible d'accéder au répertoire ❮ %0❯. %n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Variable d'environnement 'POLYBASICLANG' non réglé,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erreur: DEF ❮ %0❯ Multipliser définis %1: %2 et %3: %4 %n
-ERROR: DEFINITION CYCLE DISCOVERED%n	Erreur: cycle de définition découvert %n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erreur: pour ❮ %0❯ multipliez définie %1: %2 et %3: %4 %n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Erreur: étiquette ❮ %0❯ à %1: %2 déjà défini %3: %4 %n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	Erreur: ligne %0 colonne %1, ❮ %2❯ n'a pas de valeur %n
-ERROR: NO PARSE TREE FOR LINE %0%n	Erreur: pas d'arbre d'analyse pour la ligne %0 %n
--l requires a language.%n	-l nécessite une langue. %n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Veuillez vérifier les paramètres de la variable et / ou de la langue «POLYBASICPATH». %n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Source %0: %1, tableau ❮ %2❯ déjà défini en ligne %3 %n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Source %0: %1, sous-flux d'entrée de données %n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	Source %0: %1, les données lisent un sous-flux %n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Source %0: %1, fonction def ❮ %2❯ nécessite %3 params, mais appelés avec %4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Source %0: %1, gosub stack overflow %n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Source %0: %1, sous-flux de pile Gosub %n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Source %0: %1, index %2 hors de portée %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Source %0: %1, inadéquation d'op gauche / droite %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	Source %0: %1, indice négatif %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Source %0: %1, Suivant pour une boucle avec variable de chaîne %n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Source %0: %1, décalage de l'opérande ❮ %2: %3❯ ❮ %4: %5❯ %n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Source %0: %1, String Math Logic Error %n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Source %0: %1, étiquette non définie ❮ %2❯ %n
-SOURCE %0:%1, UNHANDLED OP %2%n	Source %0: %1, OP non perdue %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Source %0: %1, inconnu si l'étiquette ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Source %0: %1, Double mathématiques non reconnues OP ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Source %0: %1, fonction non reconnue def ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Source %0: %1, étiquette Gosub non reconnue ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Source %0: %1, étiquette Goto non reconnue ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Source %0: %1, mathématiques entières non reconnues op ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Source %0: %1, Mid Op %non reconnu
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Source %0: %1, variable suivante non reconnue ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Source %0: %1, mathématiques rationnelles non reconnues op ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Source %0: %1, type variable non reconnu ❮ %2❯ %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Source %0: %1, variable ❮ %2❯ définie comme dim %3 ( %4 .. %5, %6 .. %7) tableau en ligne %8 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Source %0: %1, variable ❮ %2❯ définie comme dim %3 ( %4 .. %5) tableau en ligne %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Source %0: %1, variable ❮ %2❯ définie comme dim %3 tableau en ligne %4 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Source %0: %1, variable ❮ %2❯ définie comme non-réseau en ligne %3 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Source %0: %1, variable ❮ %2❯ dim1 comme %3 bornes extérieures1 %4 .. %5 de la ligne %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Source %0: %1, variable ❮ %2❯ dim1 comme %3 bornes extérieures %4 .. %5 de la ligne %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Source %0: %1, variable ❮ %2❯ dim2 comme %3 bornes extérieures 2 %4 .. %5 de la ligne %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	Impossible d'ouvrir %0 pour la lecture. %n
-UNABLE TO OPEN FILE ❮%0❯%n	Impossible d'ouvrir le fichier ❮ %0❯ %n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Opcode non géré src: %0 op %1 ligne %2 col %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	Entrée non reconnue ❮ %0❯ %n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Et aucune langue donnée sur la ligne de commande. Sortant.
+ARRAY ALREADY DEFINED	Tableau déjà défini
+ARRAY INDEX OUTSIDE OF BOUNDS	Index du tableau en dehors des limites
+CANNOT ACCESS DIRECTORY	Impossible d'accéder au répertoire
+DATA INPUT UNDERFLOW	Sous-ballable d'entrée de données
+DATA READ UNDERFLOW	Données lus sous-plein
+DEFINITION CYCLE DISCOVERED	Cycle de définition découvert
+ERROR	ERREUR
+FOR VARIABLE MULTIPLY DEFINED	Pour une multiplication variable définie
+FUNCTION DEFINITION MULTIPLY DEFINED	Définition de fonction Multiplise définie
+FUNCTION DEFINITION PARAMETER MISMATCH	Définition de définition de la fonction Déliachance
+GOSUB STACK OVERFLOW	Gosub Stack Overflow
+GOSUB STACK UNDERFLOW	Underflow Gosub Stack
+INDEX OUT OF RANGE	Index hors de portée
+LABEL ALREADY DEFINED	Étiquette déjà définie
+LEFT / RIGHT OPERATION MISMATCH	Déliachance de l'opération gauche / droite
+NEGATIVE INDEX	Indice négatif
+NEXT ON FOR LOOP WITH STRING VARIABLE	Suivant pour Loop avec variable de chaîne
+OPERAND MISMATCH	Décalage de l'opérande
+OPTION REQUIRES A LANGUAGE	L'option nécessite une langue
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Veuillez vérifier les paramètres de la langue ou la variable d'environnement
+STRING MATH LOGIC ERROR	Erreur de logique mathématique de chaîne
+UNABLE TO OPEN FILE	IMPOSSIBLE D'OUVRIR LE FICHIER
+UNABLE TO OPEN TO OPEN FILE FOR READING	Impossible d'ouvrir à ouvrir le fichier pour la lecture
+UNDEFINED LABEL	Étiquette non définie
+UNHANDLED OPERATION	Opération de non-géandée
+UNHANDLED OPERATION CODE	Code d'opération non géré
+UNKNOWN IF LABEL	Inconnu si l'étiquette
+UNRECOGNIZED DOUBLE MATH OPERATION	Opération de double mathématiques non reconnue
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Définition de la fonction de fonction non reconnue
+UNRECOGNIZED GOSUB LABEL	Étiquette Gosub non reconnue
+UNRECOGNIZED GOTO LABEL	Étiquette goto non reconnue
+UNRECOGNIZED INPUT	Entrée non reconnue
+UNRECOGNIZED INTEGER MATH OPERATION	Opération mathématique entier non reconnue
+UNRECOGNIZED MATH TYPE	Type mathématique non reconnu
+UNRECOGNIZED NEXT VARIABLE	Variable suivante non reconnue
+UNRECOGNIZED OP IN PRINT	OP non reconnu sur papier
+UNRECOGNIZED RATIONAL MATH OPERATION	Opération de mathématiques rationnelles non reconnue
+UNRECOGNIZED VARIABLE TYPE	Type variable non reconnu
+UNSET ENVIRONMENT VARIABLE	Variable d'environnement non.
+VARIABLE / ARRAY DEFINITION MISMATCH	Déliaté de définition variable / tableau
+VARIABLE DEFINED AS ARRAY	Variable définie comme un tableau
+VARIABLE DEFINED AS NONARRAY	Variable définie comme non.
+VARIABLE HAS NO VALUE	La variable n'a aucune valeur
+VARIABLE IS NOT AN ARRAY	La variable n'est pas un tableau

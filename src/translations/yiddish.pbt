@@ -120,51 +120,48 @@ RANDOMIZE <= ראנדאמייז
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮ %0❯ בייַ %1: %2 -> %ב
-❮%0❯ at %1:%2%n	❮ %0❯ ביי %1: %2 %n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	און קיין שפּראַך געגעבן אויף באַפֿעלן שורה. אַרויסגאַנג. %n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	קענען ניט צוטריט וועגווייַזער ❮ %0❯. %n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	סומסיל 'פּאָליבאַסיקלאַנג' ניט שטעלן,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	ERROR: דעפ ❮ %0❯ מערן דיפיינד %1: %2 און %3: %4 %n
-ERROR: DEFINITION CYCLE DISCOVERED%n	טעות: דעפֿיניציע ציקל דיסקאַווערד %n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	גרייַז: פֿאַר ❮ %0❯ מערן דיפיינד %1: %2 און %3: %4 %n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	טעות: לאַבעל ❮ %0❯ ביי %1: %2 שוין דיפיינד %3: %4 %n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	ERROR: ליניע %0 זייַל %1, ❮ %2❯ האט קיין ווערט %n
-ERROR: NO PARSE TREE FOR LINE %0%n	טעות: קיין פּאַרס בוים פֿאַר שורה %0 %n
--l requires a language.%n	-ל ריקווייערז אַ שפּראַך. %n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	ביטע טשעק 'POLYBASICPATH' סומפ.ווינדדיקע און / אָדער שפּראַך סעטטינגס. %n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	מקור %0: %1, מענגע ❮ %2❯ שוין דיפיינד אויף שורה %3 %n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	מקור %0: %1, דאַטן אַרייַנשרייַב אַנדערפלאָו %n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	מקור %0: %1, דאַטע לייענען אַנדערפלאָו %n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	מקור %0: %1, פונקציאָנירן דעפ ❮ %2❯ ריקווייערז %3 פּאַראַמס, אָבער גערופֿן מיט %4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	מקור %0: %1, גאָסוב אָנלייגן אָוווערפלאָוד %n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	מקור %0: %1, גאָסוב אָנלייגן אַנדערפלאָו %n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	מקור %0: %1, אינדעקס %2 אויס פון קייט %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	מקור %0: %1, לינקס / רעכט אויף מיסמאַטש %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	מקור %0: %1, נעגאַטיוו אינדעקס %ד %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	מקור %0: %1, ווייַטער פֿאַר שלייף מיט שטריקל וואַריאַנט %n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	מקור %0: %1, אָפּעראַנד מיסמאַטש - %2: %3 ❯ ❮ %4: %5 ❯ %n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	מקור %0: %1, שטריקל מאַט לאָגיק לאָגיק טעות %n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	מקור %0: %1, ונדעפינעד לאַבעל ❮ %2❯ %n
-SOURCE %0:%1, UNHANDLED OP %2%n	מקור %0: %1, AndingSaLleed OP %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	מקור %0: %1, אומבאַקאַנט אויב פירמע ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד טאָפּל מאַט אָפּ ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד פונקציאָנירן דעפ ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד Gosub Lady ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד גאָטאָ לאַבעל ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד ינטאַדזשער מאַט אויף ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	מקור %0: %1, אַנרעקאַגנייזד מיטל אויף %2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד ווייַטער בייַטעוודיק ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד באַרדאַסדיק מאַט אויף ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד בייַטעוודיק טיפּ ❮ %2❯ %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 ( %4 .. %5, %6 .. %7) מענגע אויף שורה 8 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 ( %4 .. %5) מענגע אויף שורה 6 %6 %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 מענגע אויף שורה 4 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי ניטאַרי אויף שורה %3 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ dim1 ווי %3 אַרויס גווול 1 %4 .. %5 פון שורה %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ dim1 ווי %3 אַרויס גווול %4 .. %5 פון שורה %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ DIM2 ASD %3 אַרויס drunds2 %4 .. %5 פון שורה %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	ניט געקענט צו עפענען %0 פֿאַר לייענען. %n
-UNABLE TO OPEN FILE ❮%0❯%n	ניט געקענט צו עפענען טעקע ❮ %0❯ %n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Undlavered Opcode SRC: %0 אָפּ %1 שורה %2 COR %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	אַנרעקאַגנייזד אַרייַנשרייַב נומער 0 %ן
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	און קיין שפּראַך געגעבן אויף באַפֿעלן שורה. אַרויסגאַנג.
+ARRAY ALREADY DEFINED	מענגע שוין דיפיינד
+ARRAY INDEX OUTSIDE OF BOUNDS	מענגע ינדעקס אַרויס פון גווול
+CANNOT ACCESS DIRECTORY	קען נישט צוטריט וועגווייַזער
+DATA INPUT UNDERFLOW	דאַטן אַרייַנשרייַב אַנדערפלאָו
+DATA READ UNDERFLOW	דאַטן לייענען אַנדערפלאָו
+DEFINITION CYCLE DISCOVERED	דעפֿיניציע ציקל דיסקאַווערד
+ERROR	גרייַז
+FOR VARIABLE MULTIPLY DEFINED	פֿאַר בייַטעוודיק מערן דיפיינד
+FUNCTION DEFINITION MULTIPLY DEFINED	פונקציע דעפֿיניציע מערן דיפיינד
+FUNCTION DEFINITION PARAMETER MISMATCH	פונקציע דעפֿיניציע פּאַראַמעטער מיסמאַטש
+GOSUB STACK OVERFLOW	גאָסוב אָנלייגן אָוווערפלאָו
+GOSUB STACK UNDERFLOW	גאָסוב אָנלייגן אַנדערפלאָו
+INDEX OUT OF RANGE	אינדעקס אויס פון קייט
+LABEL ALREADY DEFINED	פירמע שוין דיפיינד
+LEFT / RIGHT OPERATION MISMATCH	לינקס / רעכט אָפּעראַציע מיסמאַטש
+NEGATIVE INDEX	נעגאַטיוו אינדעקס
+NEXT ON FOR LOOP WITH STRING VARIABLE	ווייַטער פֿאַר שלייף מיט שטריקל בייַטעוודיק
+OPERAND MISMATCH	אָפּעראַנד מיסמאַטש
+OPTION REQUIRES A LANGUAGE	אָפּציע ריקווייערז אַ שפּראַך
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ביטע טשעק שפּראַך סעטטינגס אָדער סוויווע בייַטעוודיק
+STRING MATH LOGIC ERROR	שטריקל מאַט לאָגיק טעות
+UNABLE TO OPEN FILE	ניט געקענט צו עפענען טעקע
+UNABLE TO OPEN TO OPEN FILE FOR READING	ניט געקענט צו עפֿענען די טעקע פֿאַר לייענען
+UNDEFINED LABEL	Undefined פירמע
+UNHANDLED OPERATION	ונהאַנדלעד אָפּעראַציע
+UNHANDLED OPERATION CODE	ונהאַנדלעד אָפּעראַציע קאָד
+UNKNOWN IF LABEL	אומבאַקאַנט אויב פירמע
+UNRECOGNIZED DOUBLE MATH OPERATION	אַנרעקאַגנייזד טאָפּל מאַט אָפּעראַציע
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	אַנרעקאַגנייזד פונקציע פונקציע דעפֿיניציע
+UNRECOGNIZED GOSUB LABEL	אַנרעקאַגנייזד Gosub לאַבעל
+UNRECOGNIZED GOTO LABEL	אַנרעקאַגנייזד גאָטאָ פירמע
+UNRECOGNIZED INPUT	אַנרעקאַגנייזד אַרייַנשרייַב
+UNRECOGNIZED INTEGER MATH OPERATION	אַנרעקאַגנייזד ינטאַדזשער מאַט אָפּעראַציע
+UNRECOGNIZED MATH TYPE	אַנרעקאַגנייזד מאַטאַמאַטיק טיפּ
+UNRECOGNIZED NEXT VARIABLE	אַנרעקאַגנייזד ווייַטער בייַטעוודיק
+UNRECOGNIZED OP IN PRINT	אַנרעקאַגנייזד אַפּ אין דרוקן
+UNRECOGNIZED RATIONAL MATH OPERATION	אַנרעקאַגנייזד באַרדאַסדיק מאַט אָפּעראַציע
+UNRECOGNIZED VARIABLE TYPE	אַנרעקאַגנייזד בייַטעוודיק טיפּ
+UNSET ENVIRONMENT VARIABLE	ונעט סוויווע בייַטעוודיק
+VARIABLE / ARRAY DEFINITION MISMATCH	וואַריאַנטע / מענגע דעפֿיניציע מיסמאַטש
+VARIABLE DEFINED AS ARRAY	וואַריאַבלע דיפיינד ווי מענגע
+VARIABLE DEFINED AS NONARRAY	וואַריאַבלע דיפיינד ווי ניט מער
+VARIABLE HAS NO VALUE	וואַריאַבלע האט קיין ווערט
+VARIABLE IS NOT AN ARRAY	וואַריאַבלע איז נישט אַ מענגע

@@ -26,7 +26,7 @@ static void register_labels(Tree *root) {
             Tree *prev = get_label(root->label);
             GURU;
             // test case multiple_integer_label multiple_string_label
-            eprintf("ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n",
+            eprintf("{ERROR}: @%1:%2, {LABEL ALREADY DEFINED}, ❮%0❯ @%3:%4%n",
                root->label, root->line, root->col, prev->line, prev->col);
             exit(-1);
          }
@@ -62,7 +62,7 @@ static void register_arrays(Tree *root) {
                const Varbound *vb = get_varbound(list->sval);
                GURU;
                // test case multiple_dim
-               eprintf("SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n",
+               eprintf("{ERROR}: @%0:%1, {ARRAY ALREADY DEFINED} ❮%2❯ @%3%n",
                   list->line, list->col, list->sval, vb->line);
                exit(-1);
             }
@@ -88,7 +88,7 @@ static void register_for(Tree *root) {
             Tree *prev = get_for(root->sval);
             GURU;
             // test case multiple_for
-            eprintf("ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n",
+            eprintf("{ERROR}: @%1:%2, {FOR VARIABLE MULTIPLY DEFINED} ❮%0❯ @%3:%4%n",
                root->sval, root->line, root->col, prev->line, prev->col);
             exit(-1);
          }
@@ -107,7 +107,7 @@ static void register_def(Tree *root) {
             Tree *prev = get_def(root->sval);
             GURU;
             // test case multiple_def
-            eprintf("ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n",
+            eprintf("{ERROR}: @%1:%2 {FUNCTION DEFINITION MULTIPLY DEFINED} ❮%0❯ @%3:%4%n",
                root->sval, root->line, root->col, prev->line, prev->col);
             exit(-1);
          }
@@ -163,7 +163,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    if (!def) {
       GURU;
       // test case unrecognized_defcall
-      eprintf("SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n",
+      eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED FUNCTION FUNCTION DEFINITION} ❮%2❯%n",
          defcall->line, defcall->col, defcall->sval);
       exit(-1);
    }
@@ -172,7 +172,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    if (defcount != callcount) {
       GURU;
       // test case param_mismatch1 param_mismatch2
-      eprintf("SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n",
+      eprintf("{ERROR}: @%0:%1, {FUNCTION DEFINITION PARAMETER MISMATCH} ❮%2❯ %3<>%4%n",
          defcall->line, defcall->col, defcall->sval, defcount, callcount);
       exit(-1);
    }
@@ -320,7 +320,7 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
          if (!val) {
             GURU;
             // test case no_value
-            eprintf("ERROR: line %0 column %1, ❮%2❯ has no value%n",
+            eprintf("{ERROR}: @%0:%1, {VARIABLE HAS NO VALUE} ❮%2❯%n",
                   copy->line, copy->col, varname);
             exit(-1);
          }
@@ -775,7 +775,7 @@ Tree *evaluate(Tree *p) {
                      default:
                         GURU;
                         // test case double_amp
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED DOUBLE MATH OPERATION} ❮%2❯%n",
                            p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -806,7 +806,7 @@ Tree *evaluate(Tree *p) {
                      default:
                         GURU;
                         // test case integer_amp
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED INTEGER MATH OPERATION} ❮%2❯%n",
                             p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -842,7 +842,7 @@ Tree *evaluate(Tree *p) {
                      default:
                         GURU;
                         // test case rational_amp
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED RATIONAL MATH OPERATION} ❮%2❯%n",
                            p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -864,7 +864,7 @@ Tree *evaluate(Tree *p) {
                      default:
                         GURU;
                         // no test case, strings are converted to numbers
-                        eprintf("SOURCE %0:%1, STRING MATH LOGIC ERROR%n", p->line, p->col);
+                        eprintf("{ERROR}: @%0:%1, {STRING MATH LOGIC ERROR}%n", p->line, p->col);
                         exit(-1);
                         break;
                   }
@@ -878,7 +878,7 @@ Tree *evaluate(Tree *p) {
                default:
                   GURU;
                   // test case voidmath2
-                  eprintf("SOURCE %0:%1, UNRECOGNIZED MATH TYPE ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED MATH TYPE} ❮%2❯%n",
                      p->line, p->col, p->left->op);
                   exit(-1);
                   break;
@@ -887,7 +887,7 @@ Tree *evaluate(Tree *p) {
          else {
             GURU;
             // test case voidmath
-            eprintf("SOURCE %0:%1, OPERAND MISMATCH ❮%2❯ ❮%3❯%n",
+            eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❮%2❯ ❮%3❯%n",
                p->line, p->col,
                p->left ? p->left->op : -1,
                p->right ? p->right->op : -1);
@@ -1057,7 +1057,7 @@ Val convert_to_value(const char *s) {
    else {
       GURU;
       // no test case, conversion always yeilds something
-      eprintf("UNRECOGNIZED INPUT ❮%0❯%n", s);
+      eprintf("{ERROR}: {UNRECOGNIZED INPUT} ❮%0❯%n", s);
       exit(-1);
    }
    return value;
@@ -1086,13 +1086,13 @@ void run(Tree *p) {
                      if (vb->dimensions == 1) {
                         GURU;
                         // test case vardim1
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n",
+                        eprintf("{ERROR}: @%0:%1, {VARIABLE / ARRAY DEFINITION MISMATCH} ❮%2❯ DIM%3(%4..%5) @%6%n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
                      }
                      else {
                         GURU;
                         // test case vardim2
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n",
+                        eprintf("{ERROR}: @%0:%1, {VARIABLE / ARRAY DEFINITION MISMATCH} ❮%2❯ DIM%3(%4..%5, %6..%7) @%8%n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, option_base, vb->upper2, vb->line);
                      }
                      exit(-1);
@@ -1114,14 +1114,14 @@ void run(Tree *p) {
                         if (vb->dimensions == 0) {
                            GURU;
                            // testcase vardim3
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n",
+                           eprintf("{ERROR}: @%0:%1, {VARIABLE IS NOT AN ARRAY} ❮%2❯ @%3%n",
                                  p->line, p->col, p->sval, vb->line);
                            exit(-1);
                         }
                         else {
                            GURU;
                            // testcase vardim4
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n",
+                           eprintf("{ERROR}: @%0:%1, {VARIABLE / ARRAY DEFINITION MISMATCH} ❮%2❯ DIM%3(%4..%5) @%6%n",
                               p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
                            exit(-1);
                         }
@@ -1130,14 +1130,14 @@ void run(Tree *p) {
                      if (left->ival < option_base || left->ival > vb->upper1) {
                         GURU;
                         // test case varbounds1
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n",
+                        eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUTSIDE OF BOUNDS} ❮%2❯(%3) DIM1(%4..%5) @%6%n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
                      }
                      if (right->ival < option_base || right->ival > vb->upper2) {
                         GURU;
                         // test case varbounds2
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n",
+                        eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUTSIDE OF BOUNDS} ❮%2❯(%3) DIM2(%4..%5) @%6%n",
                               p->line, p->col, p->sval, right->ival, option_base, vb->upper2, vb->line);
                         exit(-1);
                      }
@@ -1156,14 +1156,14 @@ void run(Tree *p) {
                         if (vb->dimensions == 0) {
                            GURU;
                            // test case varbounds3
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n",
+                           eprintf("{ERROR}: @%0:%1, {VARIABLE DEFINED AS NONARRAY} ❮%2❯ @%3%n",
                                  p->line, p->col, p->sval, vb->line);
                            exit(-1);
                         }
                         else {
                            GURU;
                            // test case varbounds4
-                           eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n",
+                           eprintf("{ERROR}: @%0:%1, {VARIABLE DEFINED AS ARRAY} ❮%2❯ DIM%3 @%4%n",
                                  p->line, p->col, p->sval, vb->dimensions, vb->line);
                            exit(-1);
                         }
@@ -1172,7 +1172,7 @@ void run(Tree *p) {
                      if (left->ival < option_base || left->ival > vb->upper1) {
                         GURU;
                         // test case varbounds
-                        eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n",
+                        eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUTSIDE OF BOUNDS} ❮%2❯(%3) DIM1(%4..%5) @%6%n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
                      }
@@ -1220,7 +1220,7 @@ void run(Tree *p) {
                      default:
                         GURU;
                         // test case voidprint
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MID OP %2%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED OP IN PRINT} ❮%2%❯%n",
                            p->line, p->col, mid->op);
                         exit(-1);
                         break;
@@ -1244,7 +1244,7 @@ void run(Tree *p) {
                if (!fore) {
                   GURU;
                   // test case unrecognext
-                  eprintf("SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED NEXT VARIABLE} ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1320,7 +1320,7 @@ void run(Tree *p) {
                         // punt, this is just stupid
                         GURU;
                         // test case loopstring
-                        eprintf("SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n",
+                        eprintf("{ERROR}: @%0:%1, {NEXT ON FOR LOOP WITH STRING VARIABLE}%n",
                            p->line, p->col);
                         exit(-1);
                      }
@@ -1338,7 +1338,7 @@ void run(Tree *p) {
                if (!t) {
                   GURU;
                   // test case badgoto
-                  eprintf("SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOTO LABEL} ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1351,7 +1351,7 @@ void run(Tree *p) {
                if (!t) {
                   GURU;
                   // test case badgosub
-                  eprintf("SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOSUB LABEL} ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1360,7 +1360,7 @@ void run(Tree *p) {
                if (gosub_spot == GOSUB_STACKSIZE) {
                   GURU;
                   // test case gosuboverflow
-                  eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW%n", p->line, p->col);
+                  eprintf("{ERROR}: @%0:%1, {GOSUB STACK OVERFLOW}%n", p->line, p->col);
                   exit(-1);
                }
 
@@ -1373,7 +1373,7 @@ void run(Tree *p) {
                if (gosub_spot < 0) {
                   GURU;
                   // test case gosubunderflow
-                  eprintf("SOURCE %0:%1, GOSUB STACK UNDERFLOW%n", p->line, p->col);
+                  eprintf("{ERROR}: @%0:%1, {GOSUB STACK UNDERFLOW}%n", p->line, p->col);
                   exit(-1);
                }
                np = gosub_stack[gosub_spot];
@@ -1387,7 +1387,7 @@ void run(Tree *p) {
                if (!target) {
                   GURU;
                   // test case badiflabel
-                  eprintf("SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n", p->line, p->col, p->sval);
+                  eprintf("{ERROR}: @%0:%1, {UNKNOWN IF LABEL} ❮%2❯%n", p->line, p->col, p->middle->sval);
                   exit(-1);
                }
                if (left->op != right->op) {
@@ -1429,7 +1429,7 @@ void run(Tree *p) {
                else {
                   GURU;
                   // test case voidif
-                  eprintf("SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n",
+                  eprintf("{ERROR}: @%0:%1, {LEFT / RIGHT OPERATION MISMATCH} ❮%2❯ ❮%3❯%n",
                      p->line, p->col, left->op, right->op);
                   exit(-1);
                }
@@ -1455,14 +1455,14 @@ void run(Tree *p) {
                   default:
                      GURU;
                      // test case voidon
-                     eprintf("SOURCE %0:%1, UNHANDLED OP %2%n", p->line, p->left->col, result->op);
+                     eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION} ❮%2❯%n", p->line, p->left->col, result->op);
                      exit(-1);
                      break;
                }
                if (i < 0) {
                   GURU;
                   // test case negativeon
-                  eprintf("SOURCE %0:%1, NEGATIVE INDEX %d%n", p->line, p->left->col, i);
+                  eprintf("{ERROR}: @%0:%1, {NEGATIVE INDEX} ❮%d❯%n", p->line, p->left->col, i);
                   exit(-1);
                }
                int oi = i;
@@ -1474,14 +1474,14 @@ void run(Tree *p) {
                if (i || label == NULL) {
                   GURU;
                   // test case bigon
-                  eprintf("SOURCE %0:%1, INDEX %2 OUT OF RANGE%n", p->line, p->left->col, oi);
+                  eprintf("{ERROR}: @%0:%1, {INDEX OUT OF RANGE} ❮%2❯%n", p->line, p->left->col, oi);
                   exit(-1);
                }
                Tree *target = get_label(label->sval);
                if (!target) {
                   GURU;
                   // test case badonlabel
-                  eprintf("SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n", p->line, label->col, label->sval);
+                  eprintf("{ERROR}: @%0:%1, {UNDEFINED LABEL} ❮%2❯%n", p->line, label->col, label->sval);
                   exit(-1);
                }
                if (p->ival) { // GOSUB
@@ -1489,7 +1489,7 @@ void run(Tree *p) {
                   if (gosub_spot == GOSUB_STACKSIZE) {
                      GURU;
                      // test case ongosuboverflow
-                     eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW%n", p->line, p->col);
+                     eprintf("{ERROR}: @%0:%1, {GOSUB STACK OVERFLOW}%n", p->line, p->col);
                      exit(-1);
                   }
                }
@@ -1538,7 +1538,7 @@ void run(Tree *p) {
                      default:
                         GURU;
                         // test case readunderflow
-                        eprintf("SOURCE %0:%1, DATA READ UNDERFLOW%n", p->line, p->col);
+                        eprintf("{ERROR}: @%0:%1, {DATA READ UNDERFLOW}%n", p->line, p->col);
                         exit(-1);
                         break;
                   }
@@ -1566,7 +1566,7 @@ void run(Tree *p) {
                   else {
                      GURU;
                      // test case inputunderflow
-                     eprintf("SOURCE %0:%1, DATA INPUT UNDERFLOW%n", p->line, p->col);
+                     eprintf("{ERROR}: @%0:%1, {DATA INPUT UNDERFLOW}%n", p->line, p->col);
                      exit(-1);
                   }
                }
@@ -1593,7 +1593,7 @@ void run(Tree *p) {
          default:
             GURU;
             // no test case
-            eprintf("UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n", __LINE__, p->op, p->line, p->col);
+            eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION CODE} ❮%2❯%n", p->line, p->col, p->op);
             exit(-1);
             break;
       }

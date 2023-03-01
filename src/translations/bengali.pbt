@@ -120,51 +120,48 @@ RANDOMIZE <= এলমলভব
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	%1 0❯%1:%2 ->%বি এ
-❮%0❯ at %1:%2%n	%1 0❯%1:%2%এন
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	এবং কমান্ড লাইনে কোনও ভাষা দেওয়া হয়নি। প্রস্থান।%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	ডিরেক্টরি অ্যাক্সেস করতে পারে না ❮%0❯।%n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	পরিবেশ পরিবর্তনশীল 'পলিবাসিক্ল্যাং' সেট করা হয়নি,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	ত্রুটি: ডিএফ ❮%0❯ গুণিত সংজ্ঞায়িত%1:%2 এবং%3:%4%এন
-ERROR: DEFINITION CYCLE DISCOVERED%n	ত্রুটি: সংজ্ঞা চক্র%n আবিষ্কার করেছে
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	ত্রুটি: ❮%0 ❯ গুণিত সংজ্ঞায়িত%1:%2 এবং%3:%4%এন
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	ত্রুটি:%1 এ লেবেল ❮%0❯:%2 ইতিমধ্যে সংজ্ঞায়িত%3:%4%এন
-ERROR: line %0 column %1, ❮%2❯ has no value%n	ত্রুটি: লাইন %0 কলাম %1, ❮ %2❯ এর কোনও মান %এন নেই
-ERROR: NO PARSE TREE FOR LINE %0%n	ত্রুটি: লাইন %0 %এন এর জন্য পার্স ট্রি নেই
--l requires a language.%n	-এল একটি ভাষা প্রয়োজন।%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	দয়া করে 'পলিবাসিকপথ' পরিবেশের পরিবর্তনশীল এবং/অথবা ভাষার সেটিংস পরীক্ষা করুন।%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	উত্স%0:%1, অ্যারে ❮%2❯ ইতিমধ্যে লাইন%3%এন এ সংজ্ঞায়িত
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	উত্স%0:%1, ডেটা ইনপুট আন্ডারফ্লো%এন
-SOURCE %0:%1, DATA READ UNDERFLOW%n	উত্স%0:%1, ডেটা রিড আন্ডারফ্লো%এন
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	উত্স %0: %1, ফাংশন ডিএফ ❮ %2❯ এর জন্য %3 প্যারাম প্রয়োজন, তবে %4 %এন দিয়ে কল করা হয়
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	উত্স%0:%1, গোসব স্ট্যাক ওভারফ্লো%এন
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	উত্স%0:%1, গোসব স্ট্যাক আন্ডারফ্লো%এন
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	উত্স %0: %1, সূচক %2 রেঞ্জের বাইরে %এন
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	উত্স %0: %1, বাম/ডান ওপি মেলে  %%2 %3 %এন
-SOURCE %0:%1, NEGATIVE INDEX %d%n	উত্স %0: %1, নেতিবাচক সূচক %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	উত্স%0:%1, স্ট্রিং ভেরিয়েবল%এন সহ লুপের জন্য পরবর্তী
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	উত্স%0:%1, অপারেন্ড অমিল ❮%2:%3❯ ❮%4:%5❯%এন
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	উত্স%0:%1, স্ট্রিং ম্যাথ লজিক ত্রুটি%এন
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	উত্স%0:%1, অপরিজ্ঞাত লেবেল ❮%2❯%এন
-SOURCE %0:%1, UNHANDLED OP %2%n	উত্স %0: %1, আনহ্যান্ডড ওপি %2 %এন
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	উত্স%0:%1, অজানা যদি লেবেল ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	উত্স%0:%1, অচেনা ডাবল ম্যাথ অপ ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	উত্স%0:%1, অচেনা ফাংশন ডিএফ ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	উত্স%0:%1, অচেনা গোসব লেবেল ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	উত্স%0:%1, অচেনা গোটো লেবেল ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	উত্স%0:%1, অচেনা পূর্ণসংখ্যা গণিত অপ ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	উত্স %0: %1, অচেনা মিড ওপ %2 %এন
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	উত্স%0:%1, স্বীকৃত পরবর্তী পরিবর্তনশীল ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	উত্স%0:%1, অচেনা যুক্তিযুক্ত গণিত অপ ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	উত্স%0:%1, অচেনা পরিবর্তনশীল প্রকার ❮%2❯%এন
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	উত্স%0:%1, ভেরিয়েবল ❮%2❯ ম্লান%3 (%4 ..%5,%6 ..%7) হিসাবে সংজ্ঞায়িত
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	উত্স%0:%1, ভেরিয়েবল ❮%2❯ ডিম%3 (%4 ..%5) লাইন অন লাইন%6%এন হিসাবে সংজ্ঞায়িত
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	উত্স%0:%1, পরিবর্তনশীল ❮%2❯ লাইন%4%এন এ ডিম%3 অ্যারে হিসাবে সংজ্ঞায়িত
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	উত্স%0:%1, ভেরিয়েবল ❮%2❯ লাইনে ননআরে হিসাবে সংজ্ঞায়িত%3%এন
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	উত্স %0: %1, পরিবর্তনশীল ❮ %2❯ DIM1 হিসাবে %3 এর বাইরে সীমা 1 %4 .. %5 লাইন থেকে %6 %এন
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	উত্স %0: %1, পরিবর্তনশীল ❮ %2❯ DIM1 হিসাবে %3 এর বাইরে %3 %4 .. %5 লাইন থেকে %6 %এন
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	উত্স %0: %1, পরিবর্তনশীল ❮ %2❯ DIM2 হিসাবে %3 এর বাইরে 2 %4 .. %5 লাইন থেকে %6 %এন
-UNABLE TO OPEN %0 FOR READING.%n	পড়ার জন্য %0 খুলতে অক্ষম। %n
-UNABLE TO OPEN FILE ❮%0❯%n	ফাইল খুলতে অক্ষম ❮%0❯%এন
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Unhandled opcode src: %0 op %1 লাইন %2 কল %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	অচেনা ইনপুট ❮%0❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	এবং কমান্ড লাইনে কোনও ভাষা দেওয়া হয়নি। প্রস্থান করা।
+ARRAY ALREADY DEFINED	অ্যারে ইতিমধ্যে সংজ্ঞায়িত
+ARRAY INDEX OUTSIDE OF BOUNDS	সীমানার বাইরে অ্যারে সূচক
+CANNOT ACCESS DIRECTORY	ডিরেক্টরি অ্যাক্সেস করতে পারে না
+DATA INPUT UNDERFLOW	ডেটা ইনপুট আন্ডারফ্লো
+DATA READ UNDERFLOW	ডেটা আন্ডারফ্লো রিড
+DEFINITION CYCLE DISCOVERED	সংজ্ঞা চক্র আবিষ্কার
+ERROR	ত্রুটি
+FOR VARIABLE MULTIPLY DEFINED	ভেরিয়েবলের জন্য গুণিত সংজ্ঞায়িত
+FUNCTION DEFINITION MULTIPLY DEFINED	ফাংশন সংজ্ঞা গুণিত সংজ্ঞায়িত
+FUNCTION DEFINITION PARAMETER MISMATCH	ফাংশন সংজ্ঞা প্যারামিটার অমিল
+GOSUB STACK OVERFLOW	গোসব স্ট্যাক ওভারফ্লো
+GOSUB STACK UNDERFLOW	গোসব স্ট্যাক আন্ডারফ্লো
+INDEX OUT OF RANGE	সীমা ছাড়িয়ে সূচক
+LABEL ALREADY DEFINED	ইতিমধ্যে সংজ্ঞায়িত লেবেল
+LEFT / RIGHT OPERATION MISMATCH	বাম / ডান অপারেশন অমিল
+NEGATIVE INDEX	নেতিবাচক সূচক
+NEXT ON FOR LOOP WITH STRING VARIABLE	স্ট্রিং ভেরিয়েবল সহ লুপের জন্য পরবর্তী
+OPERAND MISMATCH	অপারেন্ড অমিল
+OPTION REQUIRES A LANGUAGE	বিকল্পের জন্য একটি ভাষা প্রয়োজন
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ভাষা সেটিংস বা পরিবেশ পরিবর্তনশীল পরীক্ষা করুন
+STRING MATH LOGIC ERROR	স্ট্রিং ম্যাথ লজিক ত্রুটি
+UNABLE TO OPEN FILE	নথি খুলতে অক্ষম
+UNABLE TO OPEN TO OPEN FILE FOR READING	পড়ার জন্য ফাইল খুলতে খুলতে অক্ষম
+UNDEFINED LABEL	অপরিবর্তিত লেবেল
+UNHANDLED OPERATION	Unhanded অপারেশন
+UNHANDLED OPERATION CODE	Unhandled অপারেশন কোড
+UNKNOWN IF LABEL	অজানা যদি লেবেল
+UNRECOGNIZED DOUBLE MATH OPERATION	অচেনা ডাবল গণিত অপারেশন
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	অচেনা ফাংশন ফাংশন সংজ্ঞা
+UNRECOGNIZED GOSUB LABEL	অচেনা গোসব লেবেল
+UNRECOGNIZED GOTO LABEL	অজ্ঞাত গোটো লেবেল
+UNRECOGNIZED INPUT	অচেনা ইনপুট
+UNRECOGNIZED INTEGER MATH OPERATION	অচেনা পূর্ণসংখ্যা গণিত অপারেশন
+UNRECOGNIZED MATH TYPE	স্বীকৃত গণিতের ধরণ
+UNRECOGNIZED NEXT VARIABLE	অচেনা পরবর্তী পরিবর্তনশীল
+UNRECOGNIZED OP IN PRINT	মুদ্রণে অচেনা ওপি
+UNRECOGNIZED RATIONAL MATH OPERATION	অচেনা যুক্তিযুক্ত গণিত অপারেশন
+UNRECOGNIZED VARIABLE TYPE	অচেনা পরিবর্তনশীল প্রকার
+UNSET ENVIRONMENT VARIABLE	আনসেট পরিবেশ পরিবর্তনশীল
+VARIABLE / ARRAY DEFINITION MISMATCH	পরিবর্তনশীল / অ্যারে সংজ্ঞা অমিল
+VARIABLE DEFINED AS ARRAY	পরিবর্তনশীল অ্যারে হিসাবে সংজ্ঞায়িত
+VARIABLE DEFINED AS NONARRAY	পরিবর্তনশীল ননআরে হিসাবে সংজ্ঞায়িত
+VARIABLE HAS NO VALUE	ভেরিয়েবলের কোনও মান নেই
+VARIABLE IS NOT AN ARRAY	পরিবর্তনশীল একটি অ্যারে নয়

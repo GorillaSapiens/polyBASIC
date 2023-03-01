@@ -120,51 +120,48 @@ RANDOMIZE <= अनयमत
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮%0 ❮%1:%2 ->%b पर
-❮%0❯ at %1:%2%n	❮%0 ❮%1 पर:%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	और कमांड लाइन पर कोई भाषा नहीं दी गई है। बाहर निकलना।%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	निर्देशिका ❮%0❯ तक पहुंच नहीं सकते।%n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	पर्यावरण चर 'पॉलीबासिकलंग' सेट नहीं है,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	त्रुटि: def ❮%0❯ गुणा परिभाषित%1:%2 और%3:%4%n
-ERROR: DEFINITION CYCLE DISCOVERED%n	त्रुटि: परिभाषा चक्र की खोज%n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	त्रुटि: ❮%0❯ के लिए गुणा परिभाषित%1:%2 और%3:%4%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	त्रुटि: लेबल ❮%0❯%1 पर:%2 पहले से ही परिभाषित%3:%4%एन
-ERROR: line %0 column %1, ❮%2❯ has no value%n	त्रुटि: लाइन %0 कॉलम %1, ❮ %2❯ का कोई मूल्य %n नहीं है
-ERROR: NO PARSE TREE FOR LINE %0%n	त्रुटि: लाइन %0 %n के लिए कोई पार्स पेड़ नहीं
--l requires a language.%n	-ल को एक भाषा की आवश्यकता होती है।%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	कृपया 'पॉलीबैसिकपाथ' पर्यावरण चर और/या भाषा सेटिंग्स की जाँच करें।%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	स्रोत%0:%1, सरणी ❮%2❯ पहले से ही लाइन%3%एन पर परिभाषित किया गया है
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	स्रोत%0:%1, डेटा इनपुट अंडरफ्लो%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	स्रोत%0:%1, डेटा पढ़ा गया%n%n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	स्रोत %0: %1, फ़ंक्शन def ❮ %2, के लिए %3 params की आवश्यकता होती है, लेकिन %4 %n के साथ कहा जाता है
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	स्रोत%0:%1, गोसुब स्टैक ओवरफ्लो%एन
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	स्रोत%0:%1, गोसुब स्टैक अंडरफ्लो%एन
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	स्रोत %0: %1, सूचकांक %2 रेंज %n से बाहर
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	स्रोत %0: %1, बाएं/दाएं ओपी बेमेल %2 %3 %एन
-SOURCE %0:%1, NEGATIVE INDEX %d%n	स्रोत %0: %1, नकारात्मक सूचकांक %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	स्रोत%0:%1, स्ट्रिंग चर%n के साथ लूप के लिए आगे
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	स्रोत%0:%1, ऑपरेंड बेमेल ❮%2:%3 ❮%%4:%5❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	स्रोत%0:%1, स्ट्रिंग गणित तर्क त्रुटि%n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	स्रोत%0:%1, अपरिभाषित लेबल ❮%2❯%n
-SOURCE %0:%1, UNHANDLED OP %2%n	स्रोत %0: %1, अनहेल्दी ओपी %2 %एन
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	स्रोत%0:%1, अज्ञात यदि लेबल ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	स्रोत%0:%1, अपरिचित डबल मैथ ऑप of%2 of%n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	स्रोत%0:%1, अपरिचित फ़ंक्शन def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	स्रोत%0:%1, गैर -मान्यता प्राप्त गोसुब लेबल ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	स्रोत%0:%1, गैर -मान्यता प्राप्त गोटो लेबल ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	स्रोत%0:%1, अपरिचित पूर्णांक गणित ओपी of%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	स्रोत %0: %1, अपरिचित मध्य op %2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	स्रोत%0:%1, बिना मान्यता प्राप्त अगला चर ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	स्रोत%0:%1, गैर -मान्यता प्राप्त तर्कसंगत गणित ओपी ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	स्रोत%0:%1, अपरिचित चर प्रकार ❮%2 ❮%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	स्रोत%0:%1, चर ❮%2❯ को मंद%3 (%4 ..%5,%6 ..%7) के रूप में परिभाषित किया गया
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	स्रोत%0:%1, चर ❮%2❯ को DIM%3 (%4 ..%5) के रूप में परिभाषित किया गया
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	स्रोत%0:%1, चर ❮%2❯ लाइन%4%n पर dim%3 सरणी के रूप में परिभाषित किया गया
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	स्रोत%0:%1, चर ❮%2❯ लाइन%3%एन पर nonarray के रूप में परिभाषित किया गया
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	स्रोत %0: %1, चर ❮ %2❯ डिम 1 के रूप में %3 के बाहर सीमा 1 %4 .. %5 लाइन %6 %n से
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	स्रोत %0: %1, चर ❮ %2❯ डिम 1 के रूप में %3 के बाहर सीमा %4 .. %5 लाइन %6 %n से
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	स्रोत %0: %1, चर ❮ %2❯ डिम 2 के रूप में %3 के बाहर सीमा 2 %4 .. %5 लाइन %6 %एन से
-UNABLE TO OPEN %0 FOR READING.%n	पढ़ने के लिए %0 खोलने में असमर्थ। %n
-UNABLE TO OPEN FILE ❮%0❯%n	फ़ाइल को खोलने में असमर्थ ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Unhandled opcode src: %0 op %1 लाइन %2 col %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	गैर -मान्यता प्राप्त इनपुट ❮%0❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	और कमांड लाइन पर कोई भाषा नहीं दी गई है। बाहर निकलना।
+ARRAY ALREADY DEFINED	सरणी पहले से ही परिभाषित है
+ARRAY INDEX OUTSIDE OF BOUNDS	सीमा के बाहर सरणी सूचकांक
+CANNOT ACCESS DIRECTORY	एक्सेस डायरेक्टरी नहीं कर सकते
+DATA INPUT UNDERFLOW	आंकड़ा इनपुट अंडरफ्लो
+DATA READ UNDERFLOW	डेटा पढ़ें अंडरफ्लो
+DEFINITION CYCLE DISCOVERED	परिभाषा चक्र की खोज की गई
+ERROR	गलती
+FOR VARIABLE MULTIPLY DEFINED	चर के लिए परिभाषित गुणा
+FUNCTION DEFINITION MULTIPLY DEFINED	फ़ंक्शन परिभाषा गुणा परिभाषित
+FUNCTION DEFINITION PARAMETER MISMATCH	समारोह परिभाषा पैरामीटर बेमेल
+GOSUB STACK OVERFLOW	गोसुब स्टैक ओवरफ्लो
+GOSUB STACK UNDERFLOW	गोसुब स्टैक अंडरफ्लो
+INDEX OUT OF RANGE	सीमा से बाहर
+LABEL ALREADY DEFINED	पहले से परिभाषित लेबल
+LEFT / RIGHT OPERATION MISMATCH	लेफ्ट / राइट ऑपरेशन बेमेल
+NEGATIVE INDEX	ऋणात्मक सूचकांक
+NEXT ON FOR LOOP WITH STRING VARIABLE	स्ट्रिंग चर के साथ लूप के लिए अगला
+OPERAND MISMATCH	संचालक बेमेल
+OPTION REQUIRES A LANGUAGE	विकल्प के लिए एक भाषा की आवश्यकता होती है
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	कृपया भाषा सेटिंग्स या पर्यावरण चर की जाँच करें
+STRING MATH LOGIC ERROR	स्ट्रिंग गणित तर्क त्रुटि
+UNABLE TO OPEN FILE	फाइल खोलने में असमर्थ
+UNABLE TO OPEN TO OPEN FILE FOR READING	पढ़ने के लिए फ़ाइल खोलने के लिए खोलने में असमर्थ
+UNDEFINED LABEL	अपरिभाषित लेबल
+UNHANDLED OPERATION	अनहेल्दी संचालन
+UNHANDLED OPERATION CODE	अनियंत्रित ऑपरेशन कोड
+UNKNOWN IF LABEL	अज्ञात अगर लेबल
+UNRECOGNIZED DOUBLE MATH OPERATION	अपरिचित दोहरे गणित संचालन
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	अपरिचित फ़ंक्शन फ़ंक्शन परिभाषा
+UNRECOGNIZED GOSUB LABEL	अपरिचित gosub लेबल
+UNRECOGNIZED GOTO LABEL	गैर -मान्यता प्राप्त गोटो लेबल
+UNRECOGNIZED INPUT	अपरिचित इनपुट
+UNRECOGNIZED INTEGER MATH OPERATION	निहित पूर्णांक गणित संचालन
+UNRECOGNIZED MATH TYPE	बिना मान्यता प्राप्त गणित प्रकार
+UNRECOGNIZED NEXT VARIABLE	अगला चर की पहचान की गई
+UNRECOGNIZED OP IN PRINT	प्रिंट में अपरिचित ओपी
+UNRECOGNIZED RATIONAL MATH OPERATION	अप्रकाशित तर्कसंगत गणित संचालन
+UNRECOGNIZED VARIABLE TYPE	अपरिचित चर प्रकार
+UNSET ENVIRONMENT VARIABLE	अस्वाभाविक पर्यावरण चर
+VARIABLE / ARRAY DEFINITION MISMATCH	परिवर्तनीय / सरणी परिभाषा बेमेल
+VARIABLE DEFINED AS ARRAY	चर को सरणी के रूप में परिभाषित किया गया
+VARIABLE DEFINED AS NONARRAY	वैरिएबल को नॉनरे के रूप में परिभाषित किया गया
+VARIABLE HAS NO VALUE	चर का कोई मूल्य नहीं है
+VARIABLE IS NOT AN ARRAY	चर एक सरणी नहीं है

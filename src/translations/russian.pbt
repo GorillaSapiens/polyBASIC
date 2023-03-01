@@ -120,51 +120,48 @@ RANDOMIZE <= РАНДОМИЗИРОВАТЬ
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮%0❯ AT%1:%2 ->%b
-❮%0❯ at %1:%2%n	❮%0❯ AT%1:%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	И нет языка, не указанного в командной строке. Выход.%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	Невозможно получить доступ к каталогу ❮%0❯.%n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Переменная среды 'POLYBASICLANG' не установлен,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Ошибка: def ❮%0❯ Умноженное определено%1:%2 и%3:%4%n
-ERROR: DEFINITION CYCLE DISCOVERED%n	Ошибка: цикл определения обнаружена%n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Ошибка: для ❮%0❯ Умноженное определение%1:%2 и%3:%4%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Ошибка: метка ❮%0❯%1:%2 уже определено%3:%4%n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	Ошибка: Line %0 Column %1, ❮ %2❯ не имеет значения %n
-ERROR: NO PARSE TREE FOR LINE %0%n	Ошибка: нет дерева разбора для линии %0 %n
--l requires a language.%n	-l требует языка.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Пожалуйста, проверьте переменную среды POLYBASICPATH и/или языковые настройки.%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Источник%0:%1, массив ❮%2❯ уже определен на линии%3%n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Источник%0:%1, ввод данных под разделение потока%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	Источник%0:%1, Data Read Underflow%n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Источник %0: %1, Функция def ❮ %2❯ требует %3 параметров, но вызовов с 4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Источник%0:%1, gosub Stack Overflow%n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Источник%0:%1, gosub Stack inderflow%n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Источник %0: %1, индекс %2 из диапазона %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Источник %0: %1, слева/правое несоответствие OP %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	Источник %0: %1, отрицательный индекс %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Источник%0:%1, следующий для цикла с помощью строковой переменной%n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Источник%0:%1, несоответствие операнда ❮%2:%3❯%4:%5❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Источник%0:%1, строка математическая логика ошибка%n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Источник%0:%1, неопределенная метка ❮%2❯%n
-SOURCE %0:%1, UNHANDLED OP %2%n	Источник %0: %1, Unlended OP %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Источник%0:%1, неизвестно, если метка ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Источник%0:%1, непризнанная двойная математика op ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Источник%0:%1, непризнанная функция def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Источник%0:%1, непризнанная метка Gosub ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Источник%0:%1, непризнанная метка goto ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Источник%0:%1, непризнанная целочисленная математика op ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Источник %0: %1, непризнанная середина OP %2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Источник%0:%1, непризнанная следующая переменная ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Источник%0:%1, непризнанный рациональный математический OP ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Источник%0:%1, непризнанный тип переменной ❮%2❯%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Источник%0:%1, переменная ❮%2
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Источник%0:%1, переменная ❮%2❯ определено как Dim%3 (%4 ..%5) массив на линию%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Источник%0:%1, переменная ❮%2❯ определено как массив Dim%3 на линии%4%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Источник%0:%1, переменная ❮%2
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Источник %0: %1, переменная ❮ %2❯ Dim1 As %3 внешние границы1 %4 .. %5 от линии %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Источник %0: %1, переменная ❮ %2❯ Dim1 As %3 внешние границы %4 .. %5 из линии %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Источник %0: %1, переменная ❮ %2❯ Dim2 As %3 внешние границы 2 %4 .. %5 от линии %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	Невозможно открыть %0 для чтения. %n
-UNABLE TO OPEN FILE ❮%0❯%n	Невозможно открыть файл ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Неупомянутый OpCode SRC: %0 OP %1 Line %2 COL %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	Нераспознанный вход ❮%0❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	И нет языка, не указанного в командной строке. Выход.
+ARRAY ALREADY DEFINED	Массив уже определен
+ARRAY INDEX OUTSIDE OF BOUNDS	Массив индекс за пределами
+CANNOT ACCESS DIRECTORY	Не может получить доступ к каталогу
+DATA INPUT UNDERFLOW	Вход данных в разделе
+DATA READ UNDERFLOW	Данные прочитали недостаток
+DEFINITION CYCLE DISCOVERED	Цикл определения обнаружено
+ERROR	ОШИБКА
+FOR VARIABLE MULTIPLY DEFINED	Для переменной умноженной определенной
+FUNCTION DEFINITION MULTIPLY DEFINED	Определение функции умноженное определено
+FUNCTION DEFINITION PARAMETER MISMATCH	Определение функции несоответствие параметров
+GOSUB STACK OVERFLOW	Госуб стек переполнен
+GOSUB STACK UNDERFLOW	Gosub Stack hoonflow
+INDEX OUT OF RANGE	Указатель
+LABEL ALREADY DEFINED	Метка уже определен
+LEFT / RIGHT OPERATION MISMATCH	Несоответствие левой / правой операции
+NEGATIVE INDEX	Отрицательный индекс
+NEXT ON FOR LOOP WITH STRING VARIABLE	Далее для петли с переменной строки
+OPERAND MISMATCH	Операнд несоответствие
+OPTION REQUIRES A LANGUAGE	Вариант требует языка
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Пожалуйста, проверьте настройки языка или переменную среды
+STRING MATH LOGIC ERROR	Ошибка математической логики строки
+UNABLE TO OPEN FILE	НЕВОЗМОЖНО ОТКРЫТЬ ФАЙЛ
+UNABLE TO OPEN TO OPEN FILE FOR READING	Невозможно открыть для открытия файла для чтения
+UNDEFINED LABEL	Неопределенная этикетка
+UNHANDLED OPERATION	Неупомянутая операция
+UNHANDLED OPERATION CODE	Код операции нездоровой
+UNKNOWN IF LABEL	Неизвестно, если этикетка
+UNRECOGNIZED DOUBLE MATH OPERATION	Нераспознанная двойная математическая операция
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Определение функции нерасположенной функции
+UNRECOGNIZED GOSUB LABEL	Непознанный лейбл Госуба
+UNRECOGNIZED GOTO LABEL	Непознанный лейбл Goto
+UNRECOGNIZED INPUT	Непознанный вход
+UNRECOGNIZED INTEGER MATH OPERATION	Непознанная целочисленная математическая операция
+UNRECOGNIZED MATH TYPE	Непознанный математический тип
+UNRECOGNIZED NEXT VARIABLE	Непознанная следующая переменная
+UNRECOGNIZED OP IN PRINT	Непознанный OP в печати
+UNRECOGNIZED RATIONAL MATH OPERATION	Нераспознанная рациональная математическая операция
+UNRECOGNIZED VARIABLE TYPE	Непознанный тип переменной
+UNSET ENVIRONMENT VARIABLE	Неоткрытая переменная среды
+VARIABLE / ARRAY DEFINITION MISMATCH	Несоответствие определения переменной / массива
+VARIABLE DEFINED AS ARRAY	Переменная, определенная как массив
+VARIABLE DEFINED AS NONARRAY	Переменная, определяемая как nonArray
+VARIABLE HAS NO VALUE	Переменная не имеет значения
+VARIABLE IS NOT AN ARRAY	Переменная не массив

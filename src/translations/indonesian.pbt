@@ -120,51 +120,48 @@ RANDOMIZE <= MENGACAK
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮%0❯ AT%1:%2 ->%b
-❮%0❯ at %1:%2%n	❮%0❯ AT%1:%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Dan tidak ada bahasa yang diberikan pada baris perintah. Keluar.%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	Tidak dapat mengakses direktori ❮%0❯.%n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Variabel lingkungan 'POLYBASICLANG' tidak diatur,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kesalahan: def ❮%0❯ multiply didefinisikan%1:%2 dan%3:%4%n
-ERROR: DEFINITION CYCLE DISCOVERED%n	Kesalahan: siklus definisi ditemukan%n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kesalahan: Untuk ❮%0❯ multiply didefinisikan%1:%2 dan%3:%4%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Kesalahan: Label ❮%0 ❯ AT%1:%2 sudah ditentukan%3:%4%n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	Kesalahan: baris %0 kolom %1, ❮ %2❯ tidak memiliki nilai %n
-ERROR: NO PARSE TREE FOR LINE %0%n	Kesalahan: tidak ada pohon parse untuk baris %0 %n
--l requires a language.%n	-l membutuhkan bahasa.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Silakan periksa variabel lingkungan 'POLYBASICPATH' dan/atau pengaturan bahasa.%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Sumber%0:%1, array ❮%2❯ sudah ditentukan pada garis%3%n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Sumber%0:%1, input data underflow%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	SUMBER%0:%1, data membaca underflow%n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Sumber %0: %1, fungsi def ❮ %2❯ membutuhkan %3 params, tetapi dipanggil dengan %4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Sumber%0:%1, Gosub Stack Overflow%n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Sumber%0:%1, Gosub Stack Underflow%n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Sumber %0: %1, indeks %2 di luar kisaran %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	SUMBER %0: %1, KIRI/KANAN Ketidakcocokan %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	Sumber %0: %1, indeks negatif %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Sumber%0:%1, selanjutnya untuk loop dengan variabel string%n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Sumber%0:%1, ketidakcocokan operan ❮%2:%3❯ ❮%4:%5❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Sumber%0:%1, kesalahan logika matematika string%n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Sumber%0:%1, label yang tidak ditentukan ❮%2❯%n
-SOURCE %0:%1, UNHANDLED OP %2%n	Sumber %0: %1, op %2 %n tidak ditangani
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Sumber%0:%1, tidak diketahui apakah label ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Sumber%0:%1, OP Matematika Ganda yang tidak dikenali ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Sumber%0:%1, fungsi yang tidak diakui def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Sumber%0:%1, label GOSUB yang tidak dikenali ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Sumber%0:%1, label goto yang tidak dikenali ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Sumber%0:%1, Integer Math Op ❮%2 ❮%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	SUMBER %0: %1, MID OP %2 %n yang tidak dikenali
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Sumber%0:%1, variabel berikutnya yang tidak dikenali ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Sumber%0:%1, matematika rasional yang tidak dikenali Op ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Sumber%0:%1, jenis variabel yang tidak dikenali ❮%2❯%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai dim%3 (%4 ..%5,%6 ..%7) Array pada garis%8%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai dim%3 (%4 ..%5) array pada garis%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai redup%3 array pada line%4%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai nonarray pada garis%3%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Sumber %0: %1, variabel ❮ %2❯ dim1 sebagai %3 Batas luar1 %4 .. %5 dari garis %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Sumber %0: %1, variabel ❮ %2❯ DIM1 As %3 Batas luar %4 .. %5 dari garis %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Sumber %0: %1, variabel ❮ %2❯ dim2 sebagai %3 batas luar2 %4 .. %5 dari garis %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	Tidak dapat membuka %0 untuk membaca. %n
-UNABLE TO OPEN FILE ❮%0❯%n	Tidak dapat membuka file ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	OPCODE SRC yang tidak ditangani: %0 op %1 baris %2 col %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	Input yang tidak diakui ❮%0❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Dan tidak ada bahasa yang diberikan pada baris perintah. Keluar.
+ARRAY ALREADY DEFINED	Array sudah ditentukan
+ARRAY INDEX OUTSIDE OF BOUNDS	Indeks array di luar batas
+CANNOT ACCESS DIRECTORY	Tidak dapat mengakses direktori
+DATA INPUT UNDERFLOW	Input Data Underflow
+DATA READ UNDERFLOW	Data Baca Underflow
+DEFINITION CYCLE DISCOVERED	Siklus definisi ditemukan
+ERROR	KESALAHAN
+FOR VARIABLE MULTIPLY DEFINED	Untuk variabel multipel didefinisikan
+FUNCTION DEFINITION MULTIPLY DEFINED	Definisi fungsi berlipat ganda didefinisikan
+FUNCTION DEFINITION PARAMETER MISMATCH	Ketidaksesuaian parameter definisi fungsi
+GOSUB STACK OVERFLOW	Gosub Stack Overflow
+GOSUB STACK UNDERFLOW	Gosub Stack Underflow
+INDEX OUT OF RANGE	Indeks di luar jangkauan
+LABEL ALREADY DEFINED	Label sudah ditentukan
+LEFT / RIGHT OPERATION MISMATCH	Ketidakcocokan Operasi Kiri / Kanan
+NEGATIVE INDEX	Indeks negatif
+NEXT ON FOR LOOP WITH STRING VARIABLE	Selanjutnya untuk loop dengan variabel string
+OPERAND MISMATCH	Ketidakcocokan operan
+OPTION REQUIRES A LANGUAGE	Opsi membutuhkan bahasa
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Silakan periksa pengaturan bahasa atau variabel lingkungan
+STRING MATH LOGIC ERROR	Kesalahan logika matematika string
+UNABLE TO OPEN FILE	TIDAK DAPAT MEMBUKA FILE
+UNABLE TO OPEN TO OPEN FILE FOR READING	Tidak dapat membuka file untuk membuka file
+UNDEFINED LABEL	Label yang tidak ditentukan
+UNHANDLED OPERATION	Operasi yang tidak ditangani
+UNHANDLED OPERATION CODE	Kode operasi yang tidak ditangani
+UNKNOWN IF LABEL	Tidak diketahui jika label
+UNRECOGNIZED DOUBLE MATH OPERATION	Operasi matematika ganda yang tidak dikenal
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Definisi fungsi fungsi yang tidak dikenal
+UNRECOGNIZED GOSUB LABEL	Label Gosub yang tidak dikenali
+UNRECOGNIZED GOTO LABEL	Label GOTO yang tidak dikenali
+UNRECOGNIZED INPUT	Input yang tidak diakui
+UNRECOGNIZED INTEGER MATH OPERATION	Operasi matematika integer yang tidak dikenal
+UNRECOGNIZED MATH TYPE	Jenis matematika yang tidak dikenal
+UNRECOGNIZED NEXT VARIABLE	Variabel berikutnya yang tidak dikenali
+UNRECOGNIZED OP IN PRINT	OP yang tidak diakui di media cetak
+UNRECOGNIZED RATIONAL MATH OPERATION	Operasi matematika rasional yang tidak dikenal
+UNRECOGNIZED VARIABLE TYPE	Jenis variabel yang tidak dikenali
+UNSET ENVIRONMENT VARIABLE	Variabel Lingkungan yang Tidak Terbaik
+VARIABLE / ARRAY DEFINITION MISMATCH	Ketidakcocokan Definisi Variabel / Array
+VARIABLE DEFINED AS ARRAY	Variabel didefinisikan sebagai array
+VARIABLE DEFINED AS NONARRAY	Variabel didefinisikan sebagai nonarray
+VARIABLE HAS NO VALUE	Variabel tidak memiliki nilai
+VARIABLE IS NOT AN ARRAY	Variabel bukan array

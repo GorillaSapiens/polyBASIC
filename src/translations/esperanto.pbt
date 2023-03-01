@@ -46,7 +46,7 @@ RND <= RULO                     # generate random number
 SGN <= SIGNO                    # determine the sign
 SIN <= SINUSO                   # the trigonomic sine function
 SQR <= KVADRATARADIKO           # the square root function
-TAN <= TANĜANTO                 # the trigonomic tangent function
+TAN <= TANGENTO                 # the trigonomic tangent function
 DBL <= DUOBLA                   # convert to double
 STR <= TEKSTO                   # convert to string
 RAT <= RACIA                    # convert to rational
@@ -105,7 +105,7 @@ BASE <= BAZO                    # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= RIMARKO                  # see ECMA-55 §18.1
+REM <= RIMARKU                  # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -120,51 +120,48 @@ RANDOMIZE <= HAZARDA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮%0❯ je%1:%2 ->%b
-❮%0❯ at %1:%2%n	❮%0❯ je%1:%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Kaj neniu lingvo donita sur komandlinio. Elirante.%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ne povas aliri dosierujon ❮%0❯.%n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Media variablo 'POLYBASICLANG' ne agordita,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Eraro: def ❮%0❯ multobligu difinitan%1:%2 kaj%3:%4%n
-ERROR: DEFINITION CYCLE DISCOVERED%n	Eraro: Difina ciklo malkovrita%n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Eraro: Por ❮%0❯ multobligu difinitan%1:%2 kaj%3:%4%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Eraro: Etikedo ❮%0❯ AT%1:%2 Jam difinita%3:%4%n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	Eraro: Line %0 Kolumno %1, ❮ %2❯ havas neniun valoron %n
-ERROR: NO PARSE TREE FOR LINE %0%n	Eraro: Neniu parsearbo por linio %0 %n
--l requires a language.%n	-L postulas lingvon.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Bonvolu kontroli la median variablon de 'POLYBASICPATH' kaj/aŭ lingvaj agordoj.%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Fonto%0:%1, Array ❮%2❯ Jam difinita en linio%3%n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Fonto%0:%1, datuma eniga subfluo%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	Fonto%0:%1, Datumoj Legu Subfluon%n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Fonto %0: %1, funkcio def ❮ %2❯ postulas %3 paramojn, sed nomataj kun %4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Fonto%0:%1, Gosub Stack Overflow%n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Fonto%0:%1, Gosub Stack Underflow%n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Fonto %0: %1, indekso %2 ekster gamo %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Fonto %0: %1, Maldekstra/Dekstra OP Malsaĝulo %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	Fonto %0: %1, negativa indekso %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Fonto%0:%1, poste por buklo kun ĉena variablo%n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Fonto%0:%1, Operand -miskomparo ❮%2:%3❯ ❮%4:%5❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Fonto%0:%1, ĉena matematika logika eraro%n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Fonto%0:%1, nedifinita etikedo ❮%2❯%n
-SOURCE %0:%1, UNHANDLED OP %2%n	Fonto %0: %1, Unhandled OP %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fonto%0:%1, nekonata se etikedo ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Fonto%0:%1, ne rekonita duobla matematiko op ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fonto%0:%1, ne rekonita funkcio def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fonto%0:%1, ne rekonita GOSUB -etikedo ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Fonto%0:%1, ne rekonita goto -etikedo ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Fonto%0:%1, ne rekonita entjera matematiko op ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fonto %0: %1, ne rekonita meza op %2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Fonto%0:%1, ne rekonita sekva variablo ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Fonto%0:%1, ne rekonita racia matematiko op ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Fonto%0:%1, ne rekonita ŝanĝiĝema tipo ❮%2❯%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fonto%0:%1, variablo ❮%2❯ difinita kiel dim%3 (%4 ..%5,%6 ..%7) Array On Line%8%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Fonto%0:%1, variablo ❮%2❯ difinita kiel DIM%3 (%4 ..%5) Array On Line%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Fonto%0:%1, variablo ❮%2❯ difinita kiel dim%3 tabelo sur linio%4%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Fonto%0:%1, variablo ❮%2❯ difinita kiel nearray On Line%3%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Fonto %0: %1, variablo ❮ %2❯ DIM1 kiel %3 ekster Bounds1 %4 .. %5 de linio %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Fonto %0: %1, variablo ❮ %2❯ DIM1 kiel %3 ekster limoj %4 .. %5 de linio %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Fonto %0: %1, variablo ❮ %2❯ DIM2 kiel %3 ekster limoj2 %4 .. %5 de linio %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	Ne eblas malfermi %0 por legado. %n
-UNABLE TO OPEN FILE ❮%0❯%n	Ne eblas malfermi dosieron ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Unhandled Opcode Src: %0 OP %1 Line %2 Col %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	Ne rekonita enigo ❮%0❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Kaj neniu lingvo donita sur komandlinio. Elirante.
+ARRAY ALREADY DEFINED	Tabelo jam difinita
+ARRAY INDEX OUTSIDE OF BOUNDS	Array -indekso ekster limoj
+CANNOT ACCESS DIRECTORY	Ne povas aliri dosierujon
+DATA INPUT UNDERFLOW	Datuma eniga subfluo
+DATA READ UNDERFLOW	Datumoj Legu Subfluon
+DEFINITION CYCLE DISCOVERED	Difina ciklo malkovrita
+ERROR	Eraro
+FOR VARIABLE MULTIPLY DEFINED	Por variablo multobligita difinita
+FUNCTION DEFINITION MULTIPLY DEFINED	Funkcia difino multobliĝas difinita
+FUNCTION DEFINITION PARAMETER MISMATCH	Funkcia Difina Parametro Malsukcesa
+GOSUB STACK OVERFLOW	Gosub -stako superfluas
+GOSUB STACK UNDERFLOW	Gosub Stack Subfluo
+INDEX OUT OF RANGE	Indekso ekster la gamo
+LABEL ALREADY DEFINED	Etikedo jam difinita
+LEFT / RIGHT OPERATION MISMATCH	Maldekstra / Dekstra Operacio Mismatch
+NEGATIVE INDEX	Negativa indekso
+NEXT ON FOR LOOP WITH STRING VARIABLE	Venonta por buklo kun ĉena variablo
+OPERAND MISMATCH	Operanda miskompreno
+OPTION REQUIRES A LANGUAGE	Opcio postulas lingvon
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Bonvolu kontroli lingvajn agordojn aŭ median variablon
+STRING MATH LOGIC ERROR	Ŝnuro de matematika logika eraro
+UNABLE TO OPEN FILE	Ne eblas malfermi dosieron
+UNABLE TO OPEN TO OPEN FILE FOR READING	Ne povas malfermi por malfermi dosieron por legado
+UNDEFINED LABEL	Nedifinita etikedo
+UNHANDLED OPERATION	Neinstruita operacio
+UNHANDLED OPERATION CODE	Malkonata Operacia Kodo
+UNKNOWN IF LABEL	Nekonata se etikedo
+UNRECOGNIZED DOUBLE MATH OPERATION	Ne rekonita duobla matematika operacio
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Ne rekonita funkcia funkcia difino
+UNRECOGNIZED GOSUB LABEL	Ne rekonita gosub -etikedo
+UNRECOGNIZED GOTO LABEL	Ne rekonita goto -etikedo
+UNRECOGNIZED INPUT	Ne rekonita enigo
+UNRECOGNIZED INTEGER MATH OPERATION	Ne rekonita entjera matematika operacio
+UNRECOGNIZED MATH TYPE	Ne rekonita matematika tipo
+UNRECOGNIZED NEXT VARIABLE	Ne rekonita sekva variablo
+UNRECOGNIZED OP IN PRINT	Ne rekonita OP en presaĵo
+UNRECOGNIZED RATIONAL MATH OPERATION	Ne rekonita racia matematika operacio
+UNRECOGNIZED VARIABLE TYPE	Ne rekonita varia tipo
+UNSET ENVIRONMENT VARIABLE	Malŝaltita media variablo
+VARIABLE / ARRAY DEFINITION MISMATCH	Variabla / Array -Difino Malsukcesa
+VARIABLE DEFINED AS ARRAY	Variaĵo difinita kiel tabelo
+VARIABLE DEFINED AS NONARRAY	Variaĵo difinita kiel nearray
+VARIABLE HAS NO VALUE	Variaĵo havas neniun valoron
+VARIABLE IS NOT AN ARRAY	Variaĵo ne estas tabelo

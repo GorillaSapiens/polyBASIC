@@ -120,51 +120,48 @@ RANDOMIZE <= ALEATORIZAR
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮%0❯ a%1:%2 ->%b
-❮%0❯ at %1:%2%n	❮%0❯ a%1:%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Y no hay lenguaje dado en la línea de comando. Salir.%n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	No se puede acceder al directorio ❮%0❯.%n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Variable de entorno 'POLYBASICLANG' no establecido,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: DEF ❮%0❯ Multiplicar el%1:%2 y%3:%4%n
-ERROR: DEFINITION CYCLE DISCOVERED%n	Error: ciclo de definición descubierto%n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: para ❮%0❯ Multiplicar el%1:%2 y%3:%4%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Error: etiqueta ❮%0❯ a%1:%2 ya definido%3:%4%n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: línea %0 columna %1, ❮ %2❯ no tiene valor %n
-ERROR: NO PARSE TREE FOR LINE %0%n	Error: no hay árbol de análisis para la línea %0 %n
--l requires a language.%n	-L requiere un idioma.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Consulte la variable de entorno 'POLYBASICPATH' y/o la configuración del lenguaje.%n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Fuente%0:%1, matriz ❮%2❯ ya definido en línea%3%n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Fuente%0:%1, entrada de datos subflujo%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	Fuente%0:%1, Data Read Subflow%n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Fuente %0: %1, función def ❮ %2❯ Requiere %3 parámetos, pero llamado con %4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Fuente%0:%1, Gosub Stack Overflow%n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Fuente%0:%1, Gosub Stack subflow%n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Fuente %0: %1, índice %2 fuera del rango %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Fuente %0: %1, Izquierda/Right OP Mishery %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	Fuente %0: %1, índice negativo %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Fuente%0:%1, siguiente en bucle con variable de cadena%n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Fuente%0:%1, desajuste de operando ❮%2:%3❯ ❮%4:%5❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Fuente%0:%1, error de error lógico de matemáticas de cadena%n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Fuente%0:%1, etiqueta indefinida ❮%2❯%n
-SOURCE %0:%1, UNHANDLED OP %2%n	Fuente %0: %1, OP no controlado %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fuente%0:%1, desconocido si etiqueta ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Fuente%0:%1, Op de matemáticas doble no reconocidas ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fuente%0:%1, función no reconocida def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fuente%0:%1, etiqueta GOSUB no reconocida ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Fuente%0:%1, etiqueta GOTO no reconocida ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Fuente%0:%1, Integer Integer Math Op no reconocido ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fuente %0: %1, OP Mid no reconocido 2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Fuente%0:%1, Next Variable no reconocida ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Fuente%0:%1, Op de matemáticas racionales no reconocidas ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Fuente%0:%1, tipo variable no reconocido ❮%2❯%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 (%4 ..%5,%6 ..%7) Matriz en línea%8%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 (%4 ..%5) Matriz en línea%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 matriz en línea%4%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Fuente%0:%1, variable ❮%2❯ definida como no array en línea%3%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Fuente %0: %1, variable ❮ %2❯ dim1 AS %3 límites externos1 %4 .. %5 de la línea %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Fuente %0: %1, variable ❮ %2❯ dim1 AS %3 límites externos %4 .. %5 de la línea %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Fuente %0: %1, variable ❮ %2❯ dim2 AS %3 límites externos 2 %4 .. %5 de la línea %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	No se puede abrir %0 para leer. %n
-UNABLE TO OPEN FILE ❮%0❯%n	No se puede abrir el archivo ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Opcode no controlado SRC: %0 op %1 línea %2 col %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	Entrada no reconocida ❮%0❯%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Y no hay lenguaje dado en la línea de comandos. Saliendo.
+ARRAY ALREADY DEFINED	Matriz ya definida
+ARRAY INDEX OUTSIDE OF BOUNDS	Índice de matriz fuera de los límites
+CANNOT ACCESS DIRECTORY	No se puede acceder al directorio
+DATA INPUT UNDERFLOW	Ingresos de datos Subflogo
+DATA READ UNDERFLOW	Datos leídos bajo flujo
+DEFINITION CYCLE DISCOVERED	Ciclo de definición descubierto
+ERROR	ERROR
+FOR VARIABLE MULTIPLY DEFINED	Para variable multiplicar definida
+FUNCTION DEFINITION MULTIPLY DEFINED	Definición de función multiplicar definida
+FUNCTION DEFINITION PARAMETER MISMATCH	Desajuste de parámetros de definición de función
+GOSUB STACK OVERFLOW	Desbordamiento de la pila gosub
+GOSUB STACK UNDERFLOW	Gosub Stack subsflow
+INDEX OUT OF RANGE	Índice fuera de rango
+LABEL ALREADY DEFINED	Etiqueta ya definida
+LEFT / RIGHT OPERATION MISMATCH	Operación izquierda / derecha desajuste
+NEGATIVE INDEX	Índice negativo
+NEXT ON FOR LOOP WITH STRING VARIABLE	SIGUIENTE EN FOR LOOP con variable de cadena
+OPERAND MISMATCH	Desajuste de operando
+OPTION REQUIRES A LANGUAGE	La opción requiere un idioma
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Verifique la configuración del idioma o la variable de entorno
+STRING MATH LOGIC ERROR	String Math Logic Error
+UNABLE TO OPEN FILE	NO ES POSIBLE ABRIR EL ARCHIVO
+UNABLE TO OPEN TO OPEN FILE FOR READING	No se puede abrir para abrir el archivo para la lectura
+UNDEFINED LABEL	Etiqueta indefinida
+UNHANDLED OPERATION	Operación no controlada
+UNHANDLED OPERATION CODE	Código de operación no controlado
+UNKNOWN IF LABEL	Desconocido si la etiqueta
+UNRECOGNIZED DOUBLE MATH OPERATION	Operación de matemáticas doble no reconocida
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Definición de función de función no reconocida
+UNRECOGNIZED GOSUB LABEL	Etiqueta gosub no reconocida
+UNRECOGNIZED GOTO LABEL	Etiqueta goto no reconocida
+UNRECOGNIZED INPUT	Entrada no reconocida
+UNRECOGNIZED INTEGER MATH OPERATION	Operación de matemáticas enteras no reconocidas
+UNRECOGNIZED MATH TYPE	Tipo de matemáticas no reconocido
+UNRECOGNIZED NEXT VARIABLE	Next Variable no reconocida
+UNRECOGNIZED OP IN PRINT	OP no reconocido impreso
+UNRECOGNIZED RATIONAL MATH OPERATION	Operación matemática racional no reconocida
+UNRECOGNIZED VARIABLE TYPE	Tipo de variable no reconocido
+UNSET ENVIRONMENT VARIABLE	Variable de entorno no establecida
+VARIABLE / ARRAY DEFINITION MISMATCH	Desajuste de definición de variable / matriz
+VARIABLE DEFINED AS ARRAY	Variable definida como matriz
+VARIABLE DEFINED AS NONARRAY	Variable definida como no matriz
+VARIABLE HAS NO VALUE	La variable no tiene valor
+VARIABLE IS NOT AN ARRAY	La variable no es una matriz

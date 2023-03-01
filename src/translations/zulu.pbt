@@ -120,51 +120,48 @@ RANDOMIZE <= PHUNGULA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮ %0❯ ku %1: %2 -> %B
-❮%0❯ at %1:%2%n	❮ %0❯ ku- %1: %2 %n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Futhi alukho ulimi olunikezwe kulayini womyalo. Ukuphuma. %n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ayikwazi ukufinyelela umkhombandlela ❮ %0❯. %n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Ukuguquguquka kwemvelo 'POLYBASICLANG' akusethiwe,
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	I-ERROR: def ❮ %0❯ ichaze i- %1: %2 no %3: %4 %n
-ERROR: DEFINITION CYCLE DISCOVERED%n	Iphutha: Ukuchazwa komjikelezo kutholakele %n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	I-ERROR: ye-❮ %0❯ ichaze kaningi %1: %2 no %3: %4 %n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Iphutha: Ilebula ❮ %0❯ ku- %1: %2 isivele ichaziwe %3: %4 %n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	Iphutha: umugqa %0 ikholomu %1, ❮ %2❯ ayinanzuzo %n
-ERROR: NO PARSE TREE FOR LINE %0%n	I-ERROR: Akukho Tree Parse for Line %0 %n
--l requires a language.%n	-L kudinga ulimi. %n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Sicela ubheke i- 'POLYBASICPATH' imvelo eguquguqukayo kanye / noma izilungiselelo zolimi. %n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Umthombo %0: %1, u-Array ❮ %2❯ ochaziwe kulayini %3 %n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Umthombo %0: %1, Ukufakwa kwedatha okuvinjelwe %n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	Umthombo %0: %1, idatha ifundwe underflow %n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Umthombo %0: %1, I-Function Def ❮ %2❯ idinga %3 amapharamu, kepha ibizwa nge- %4 %n
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Umthombo %0: %1, GoSub Stack Overflow %n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Umthombo %0: %1, GoSub Stack Underflow %n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Umthombo %0: %1, Index %2 Out of Range %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Umthombo %0: %1, kwesokunxele / kwesokudla op mismatch %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	Umthombo %0: %1, inkomba emibi %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Umthombo %0: %1, olandelayo on loop nge-string freaff %n
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Umthombo %0: %1, i-operand mismatch ❮ %2: %3❯ ❮ %4: %5❯ %n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Umthombo %0: %1, I-String Math Logic Iphutha %n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Umthombo %0: %1, ilebula elingachazwanga ❮ %2❯ %n
-SOURCE %0:%1, UNHANDLED OP %2%n	Umthombo %0: %1, ungajabuli i-OP %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Umthombo %0: %1, Akaziwa Uma ilebula ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Umthombo %0: %1, agcutenced math ap ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Umthombo %0: %1, I-def engaziwa ye-def ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Umthombo %0: %1, Ilebula engaziwa ye-GOSUB ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Umthombo %0: %1, ilebula le-goto elingaziwa ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Umthombo %0: %1, Inombolo ye-Integer Math ye-Integer Op %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Umthombo %0: %1, engaziwa maphakathi ne-OP %2 %n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Umthombo %0: %1, engaziwa ngokulandelana okulandelayo ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Umthombo %0: %1, ukungaziwa okungaziwa kwezibalo ze-OP %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Umthombo %0: %1, Uhlobo olungaziwa oluguquguqukayo ❮ %2❯ %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ ochazwe njenge-Dim %3 ( %4 .. %5, %6 .. %7) Uhlu kulayini %8 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ uchazwe njenge-Dim %3 ( %4 .. %5) uhlu lwamalungu ku- %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ ochazwe njenge-Dim %3 Array kulayini %4 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ ochazwe njenge-nonnarray kulayini %3 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ dim1 njengoba %3 ngaphandle kwe-Bounds1 %4 .. %5 kusuka kulayini %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ dim1 njengoba %3 ngaphandle kwemingcele %4 .. %5 kusuka kulayini %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Umthombo %0: %1, aguquguqukayo ❮ %2❯ Dim2 njengoba %3 ngaphandle kwe-Sourts2 %4 .. %5 kusuka kulayini %6 %n
-UNABLE TO OPEN %0 FOR READING.%n	Ayikwazi ukuvula i- %0 yokufunda. %n
-UNABLE TO OPEN FILE ❮%0❯%n	Ayikwazi ukuvula ifayela ❮ %0❯ %n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	I-Opcode Src edidanisiwe: %0 op %1 umugqa %2 Col %3 %n
-UNRECOGNIZED INPUT ❮%0❯%n	Okokufaka okungaziwa ❮ %0❯ %n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Futhi alukho ulimi olunikezwe kulayini womyalo. Ukuphuma.
+ARRAY ALREADY DEFINED	I-Array isivele ichaziwe
+ARRAY INDEX OUTSIDE OF BOUNDS	I-Array Index ngaphandle kwemingcele
+CANNOT ACCESS DIRECTORY	Ayikwazi ukufinyelela umkhombandlela
+DATA INPUT UNDERFLOW	Ukufakwa kwedatha okungekho emthethweni
+DATA READ UNDERFLOW	Idatha ifundwe ngaphansi
+DEFINITION CYCLE DISCOVERED	Ukuchazwa komjikelezo kutholakele
+ERROR	Ukuphambeka
+FOR VARIABLE MULTIPLY DEFINED	Ngokuchazwa okuchaziwe okuhlukahlukene
+FUNCTION DEFINITION MULTIPLY DEFINED	Ukuchazwa komsebenzi okuchazwe kaningi
+FUNCTION DEFINITION PARAMETER MISMATCH	Umsebenzi wokuchaza upharamitha mismatch
+GOSUB STACK OVERFLOW	I-Gosub Stack iyachichima
+GOSUB STACK UNDERFLOW	I-Gosub Stack Ukuchichima
+INDEX OUT OF RANGE	Inkomba ngaphandle kwebanga
+LABEL ALREADY DEFINED	Ilebula echaziwe
+LEFT / RIGHT OPERATION MISMATCH	I-Left / Right Operation Mismatch
+NEGATIVE INDEX	Inkomba engemihle
+NEXT ON FOR LOOP WITH STRING VARIABLE	Ngokulandelayo ku-loop nge-string eguquguqukayo
+OPERAND MISMATCH	I-Operand Mismatch
+OPTION REQUIRES A LANGUAGE	Inketho idinga ulimi
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Sicela ubheke izilungiselelo zolimi noma ukuguquguquka kwemvelo
+STRING MATH LOGIC ERROR	Iphutha le-String Math Iphutha
+UNABLE TO OPEN FILE	Ayikwazi ukuvula ifayela
+UNABLE TO OPEN TO OPEN FILE FOR READING	Ayikwazi ukuvula ukuvula ifayela lokufunda
+UNDEFINED LABEL	Ilebula elingachazwanga
+UNHANDLED OPERATION	Ukusebenza okungenamkhawulo
+UNHANDLED OPERATION CODE	Ikhodi yokusebenza engathandeki
+UNKNOWN IF LABEL	Akwaziwa uma ilebula
+UNRECOGNIZED DOUBLE MATH OPERATION	Ukusebenza okungaziwa okuphindwe kabili kwezibalo
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Ukuchazwa Okungaziwa Umsebenzi Wokusebenza
+UNRECOGNIZED GOSUB LABEL	Ilebula ye-GOSUB engaziwa
+UNRECOGNIZED GOTO LABEL	Ilebula ye-goto engaziwa
+UNRECOGNIZED INPUT	Okokufaka okungaziwa
+UNRECOGNIZED INTEGER MATH OPERATION	Ukusebenza okungaziwa kwe-Integer Math
+UNRECOGNIZED MATH TYPE	Uhlobo lwezibalo olungaziwa
+UNRECOGNIZED NEXT VARIABLE	Ukuhlukahluka okungaziwa okulandelayo
+UNRECOGNIZED OP IN PRINT	I-op engaziwa
+UNRECOGNIZED RATIONAL MATH OPERATION	Ukusebenza okungaziwa okungaziwa kwezibalo
+UNRECOGNIZED VARIABLE TYPE	Uhlobo olungenakuqhathaniswa
+UNSET ENVIRONMENT VARIABLE	Ukuhlukahluka kwemvelo ye-UNESET
+VARIABLE / ARRAY DEFINITION MISMATCH	Okuguqukayo / Ukuchazwa kwencazelo Mismatch
+VARIABLE DEFINED AS ARRAY	Okuguquguqukayo okuchaziwe njengohlu
+VARIABLE DEFINED AS NONARRAY	Okuguquguqukayo kuchazwe njenge-nonray
+VARIABLE HAS NO VALUE	Okuguqukayo akunanzuzo
+VARIABLE IS NOT AN ARRAY	Okuguqukayo akuyona i-array

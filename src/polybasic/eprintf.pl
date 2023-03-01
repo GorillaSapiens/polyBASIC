@@ -16,7 +16,8 @@ foreach $file (@ARGV) {
          $contents =~ s/[\x0a\x0d]//g;
          $contents =~ s/^[^\"]*\"//g;
          $contents =~ s/\".*//g;
-         print "$contents\n";
+         $contents =~ s/\{([^\}]+)\}/print "$1\n"/ge;
+         #print "$contents\n";
       }
    }
 }

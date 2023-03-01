@@ -1,1 +1,1 @@
-ERROR: def ❮a❯ multiply defined 2:8 and 1:8
+ERROR: @2:8 FUNCTION DEFINITION MULTIPLY DEFINED ❮a❯ @1:8

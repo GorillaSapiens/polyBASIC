@@ -1,1 +1,1 @@
-ERROR: line 1 column 6, ❮b❯ has no value
+ERROR: @1:6, VARIABLE HAS NO VALUE ❮b❯

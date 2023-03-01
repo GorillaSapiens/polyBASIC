@@ -98,18 +98,27 @@ void eprintf(const char *format,
    string translation;
    char output[4096];
    char *out = output;
-
-   if (errmap.find(format) == errmap.end()) {
-      translation = format;
-   }
-   else {
-      translation = errmap[format];
-   }
-
-   const char *in = translation.c_str();
+   const char *in = format;
 
    while (*in) {
-      if (*in != '%') {
+      if (*in == '{') {
+         char buf[4096];
+         strcpy(buf, in + 1);
+         char *s = strchr(buf, '}');
+         *s = 0;
+         if (errmap.find(buf) == errmap.end()) {
+            translation = buf;
+         }
+         else {
+            translation = errmap[buf];
+         }
+         strcpy(out, translation.c_str());
+         out += strlen(out);
+         s = strchr((char *)in, '}');
+         in = s;
+         in++;
+      }
+      else if (*in != '%') {
          *out++ = *in++;
       }
       else {

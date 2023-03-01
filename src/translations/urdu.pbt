@@ -120,51 +120,48 @@ RANDOMIZE <= بےترتیب
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮ ٪ 0❯ at 1: ٪ 2 -> ٪ b
-❮%0❯ at %1:%2%n	❮ ٪ 0❯ at 1: ٪ 2 ٪ n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	اور کمانڈ لائن پر کوئی زبان نہیں دی گئی۔ باہر نکلنا۔ ٪ n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	ڈائریکٹری تک رسائی حاصل نہیں کرسکتی ❮ ٪ 0❯. ٪ n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	ماحولیاتی متغیر 'پولیباسیکلنگ' سیٹ نہیں ،
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	خرابی: Def ❮ ٪ 0❯ وضاحت شدہ ٪ 1: ٪ 2 اور ٪ 3: ٪ 4 ٪ N
-ERROR: DEFINITION CYCLE DISCOVERED%n	غلطی: تعریف سائیکل دریافت ٪ n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	خرابی: ❮ ٪ 0❯ کے لئے وضاحت شدہ ٪ 1: ٪ 2 اور ٪ 3: ٪ 4 ٪ N
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	غلطی: لیبل ❮ ٪ 0❯ at 1: ٪ 2 پہلے ہی وضاحت شدہ ٪ 3: ٪ 4 ٪ n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	خرابی: لائن ٪ 0 کالم ٪ 1 ، ❮ ٪ 2❯ کی کوئی قیمت نہیں ہے ٪ n
-ERROR: NO PARSE TREE FOR LINE %0%n	غلطی: لائن ٪ 0 ٪ n کے لئے کوئی پارس درخت نہیں
--l requires a language.%n	-l کو ایک زبان کی ضرورت ہے۔ ٪ n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	براہ کرم 'پولی بیسک پاتھ' ماحولیاتی متغیر اور/یا زبان کی ترتیبات کو چیک کریں۔ ٪ N
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	ماخذ ٪ 0: ٪ 1 ، سرنی ❮ ٪ 2❯ لائن پر پہلے ہی بیان کردہ ٪ 3 ٪ n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	ماخذ ٪ 0: ٪ 1 ، ڈیٹا ان پٹ انڈر فلو ٪ n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	ماخذ ٪ 0: ٪ 1 ، ڈیٹا انڈر فلو ٪ N پڑھا
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	ماخذ ٪ 0: ٪ 1 ، فنکشن ڈیف ❮ ٪ 2❯ میں ٪ 3 پیرام کی ضرورت ہوتی ہے ، لیکن ٪ 4 ٪ N کے ساتھ کہا جاتا ہے
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	ماخذ ٪ 0: ٪ 1 ، گوسب اسٹیک اوور فلو ٪ n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	ماخذ ٪ 0: ٪ 1 ، گوسب اسٹیک انڈر فلو ٪ n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	ماخذ ٪ 0: ٪ 1 ، انڈیکس ٪ 2 سے باہر کی حد ٪ n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	ماخذ ٪ 0: ٪ 1 ، بائیں/دائیں اوپی مماثل ٪ 2 ٪ 3 ٪ n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	ماخذ ٪ 0: ٪ 1 ، منفی انڈیکس ٪ d ٪ n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	ماخذ ٪ 0: ٪ 1 ، سٹرنگ متغیر ٪ n کے ساتھ لوپ کے لئے اگلا ،
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	ماخذ ٪ 0: ٪ 1 ، اوپیرینڈ مماثل ❮ ٪ 2: ٪ 3❯ ❮ ٪ 4: ٪ 5❯ ٪ n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	ماخذ ٪ 0: ٪ 1 ، سٹرنگ ریاضی کی منطق کی خرابی ٪ n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر متعینہ لیبل ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNHANDLED OP %2%n	ماخذ ٪ 0: ٪ 1 ، غیر منقولہ اوپی ٪ 2 ٪ n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، نامعلوم اگر لیبل ❮ ٪ 2❯ ٪ N
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ ڈبل ریاضی op ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ فنکشن ڈیف ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ گوسوب لیبل ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ گوٹو لیبل ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ عددی ریاضی op ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ وسط او پی ٪ 2 ٪ N
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ اگلی متغیر ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ عقلی ریاضی op ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ متغیر قسم ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ DIM ٪ 3 (٪ 4 .. ٪ 5 ، ٪ 6 .. ٪ 7) کے طور پر بیان کیا گیا ہے
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ DIM ٪ 3 (٪ 4 .. ٪ 5) کے طور پر بیان کردہ لائن پر لائن ٪ 6 ٪ N
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ لائن پر DIM ٪ 3 سرنی کے طور پر بیان کردہ 4 ٪ N
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ لائن پر نانری کے طور پر بیان کردہ ٪ 3 ٪ n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ dim1 as ٪ 3 سے باہر کی حد 1 ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ n سے ٪ 5
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim1 as ٪ 3 سے باہر ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ N سے ٪ 5
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim2 as ٪ 3 سے باہر کی حد 2 ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ N سے ٪ 5
-UNABLE TO OPEN %0 FOR READING.%n	پڑھنے کے لئے ٪ 0 کھولنے سے قاصر۔ ٪ n
-UNABLE TO OPEN FILE ❮%0❯%n	فائل کھولنے سے قاصر ❮ ٪ 0❯ ٪ n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	غیر منقولہ اوپکوڈ ایس آر سی: ٪ 0 آپٹ ٪ 1 لائن ٪ 2 کرنل ٪ 3 ٪ n
-UNRECOGNIZED INPUT ❮%0❯%n	غیر تسلیم شدہ ان پٹ ❮ ٪ 0❯ ٪ n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	اور کمانڈ لائن پر کوئی زبان نہیں دی گئی۔ باہر نکلنا۔
+ARRAY ALREADY DEFINED	سرنی پہلے ہی بیان کی گئی ہے
+ARRAY INDEX OUTSIDE OF BOUNDS	حد سے باہر سرنی انڈیکس
+CANNOT ACCESS DIRECTORY	ڈائریکٹری تک رسائی حاصل نہیں کرسکتی ہے
+DATA INPUT UNDERFLOW	ڈیٹا ان پٹ انڈر فلو
+DATA READ UNDERFLOW	ڈیٹا انڈر فلو پڑھتا ہے
+DEFINITION CYCLE DISCOVERED	تعریف سائیکل دریافت ہوا
+ERROR	غلطی
+FOR VARIABLE MULTIPLY DEFINED	متغیر ضرب کے لئے
+FUNCTION DEFINITION MULTIPLY DEFINED	فنکشن کی تعریف ضرب کی وضاحت
+FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامیٹر مماثل
+GOSUB STACK OVERFLOW	گوسب اسٹیک اوور فلو
+GOSUB STACK UNDERFLOW	گوسب اسٹیک انڈر فلو
+INDEX OUT OF RANGE	رینج سے باہر انڈیکس
+LABEL ALREADY DEFINED	لیبل پہلے ہی بیان کیا گیا ہے
+LEFT / RIGHT OPERATION MISMATCH	بائیں / دائیں آپریشن مماثلت
+NEGATIVE INDEX	منفی انڈیکس
+NEXT ON FOR LOOP WITH STRING VARIABLE	سٹرنگ متغیر کے ساتھ لوپ کے لئے اگلا
+OPERAND MISMATCH	آپٹینڈ مماثل
+OPTION REQUIRES A LANGUAGE	آپشن کے لئے زبان کی ضرورت ہوتی ہے
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	براہ کرم زبان کی ترتیبات یا ماحولیاتی متغیر کو چیک کریں
+STRING MATH LOGIC ERROR	سٹرنگ ریاضی کی منطق کی خرابی
+UNABLE TO OPEN FILE	فائل کھولنے سے قاصر ہے
+UNABLE TO OPEN TO OPEN FILE FOR READING	پڑھنے کے لئے فائل کھولنے کے لئے کھولنے سے قاصر ہے
+UNDEFINED LABEL	غیر متعینہ لیبل
+UNHANDLED OPERATION	غیر منقولہ آپریشن
+UNHANDLED OPERATION CODE	غیر منقولہ آپریشن کوڈ
+UNKNOWN IF LABEL	نامعلوم اگر لیبل ہے
+UNRECOGNIZED DOUBLE MATH OPERATION	غیر تسلیم شدہ ڈبل ریاضی کا آپریشن
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	غیر تسلیم شدہ فنکشن کی تعریف
+UNRECOGNIZED GOSUB LABEL	غیر تسلیم شدہ گوسب لیبل
+UNRECOGNIZED GOTO LABEL	غیر تسلیم شدہ گوٹو لیبل
+UNRECOGNIZED INPUT	غیر تسلیم شدہ ان پٹ
+UNRECOGNIZED INTEGER MATH OPERATION	غیر تسلیم شدہ انٹیجر ریاضی آپریشن
+UNRECOGNIZED MATH TYPE	غیر تسلیم شدہ ریاضی کی قسم
+UNRECOGNIZED NEXT VARIABLE	غیر تسلیم شدہ اگلا متغیر
+UNRECOGNIZED OP IN PRINT	پرنٹ میں غیر تسلیم شدہ او پی
+UNRECOGNIZED RATIONAL MATH OPERATION	غیر تسلیم شدہ عقلی ریاضی کا آپریشن
+UNRECOGNIZED VARIABLE TYPE	غیر تسلیم شدہ متغیر قسم
+UNSET ENVIRONMENT VARIABLE	غیر سیٹ ماحول متغیر
+VARIABLE / ARRAY DEFINITION MISMATCH	متغیر / سرنی تعریف مماثل
+VARIABLE DEFINED AS ARRAY	متغیر کی وضاحت سرنی کے طور پر کی گئی ہے
+VARIABLE DEFINED AS NONARRAY	متغیر کی وضاحت نانری کے طور پر کی گئی ہے
+VARIABLE HAS NO VALUE	متغیر کی کوئی قیمت نہیں ہے
+VARIABLE IS NOT AN ARRAY	متغیر کوئی صف نہیں ہے

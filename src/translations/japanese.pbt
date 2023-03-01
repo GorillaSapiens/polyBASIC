@@ -120,51 +120,48 @@ RANDOMIZE <= ランダム化
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->%b	❮％0❯at％1：％2->％b
-❮%0❯ at %1:%2%n	❮％0❯at％1：％2％n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	コマンドラインには言語が与えられていません。終了。％n
-CANNOT ACCESS DIRECTORY ❮%0❯.%n	ディレクトリにアクセスできません❮％0❯。％n
-ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	環境変数「POLYBASICLANG」が設定されていない、
-ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	エラー：def❮％0❯定義済み％1：％2および％3：％4％nを掛ける
-ERROR: DEFINITION CYCLE DISCOVERED%n	エラー：定義サイクルが発見された％n
-ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	エラー：❮％0〜定義された％1：％2および％3：％4％nを掛ける
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	エラー：ラベル❮％0❯at％1：％2既に定義されている％3：％4％n
-ERROR: line %0 column %1, ❮%2❯ has no value%n	エラー：line％0列％1、❮％2❯には値％nがありません
-ERROR: NO PARSE TREE FOR LINE %0%n	エラー：線の解析ツリーはありません％0％n
--l requires a language.%n	-lは言語を必要とします。％n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	「POLYBASICPATH」環境変数および/または言語設定を確認してください。％n
-SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	ソース％0：％1、アレイ❮％2❯既にラインで定義されている％3％n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	ソース％0：％1、データ入力アンダーフロー％n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	ソース％0：％1、データ読み取りアンダーフロー％n
-SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	ソース％0：％1、関数def❮％2❯に％3 paramsが必要ですが、％4％nで呼び出されます
-SOURCE %0:%1, GOSUB STACK OVERFLOW%n	ソース％0：％1、ゴスブスタックオーバーフロー％n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	ソース％0：％1、ゴスブスタックアンダーフロー％n
-SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	ソース％0：％1、インデックス％2範囲外％n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	ソース％0：％1、左/右opミスマッチ％2％3％n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	ソース％0：％1、負のインデックス％d％n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	ソース％0：％1、文字列変数％nを使用したループの次は
-SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	ソース％0：％1、オペランドの不一致
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	ソース％0：％1、文字列数学ロジックエラー％n
-SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	ソース％0：％1、未定義ラベル❮％2°％n
-SOURCE %0:%1, UNHANDLED OP %2%n	ソース％0：％1、未処理のop％2％n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	ソース％0：％1、ラベルの場合は不明です❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	ソース％0：％1、認識されていない二重数学op❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	ソース％0：％1、認識されていない関数def❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	ソース％0：％1、認識されていないゴスブラベル❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	ソース％0：％1、認識されていないgotoラベル❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	ソース％0：％1、認識されていない整数数学op❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	ソース％0：％1、認識されていないMID OP％2％n
-SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	ソース％0：％1、認識されていない次の変数❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	ソース％0：％1、認識されていない合理的数学op❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	ソース％0：％1、認識されていない変数タイプ❮％2°％n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	ソース％0：％1、変数❮％2 dim％3（％4 ..％5、％6 ..％7）ライン上の配列％8％nとして定義
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	ソース％0：％1、変数❮％2❯dim％3（％4 ..％5）ライン上の配列％6％n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	ソース％0：％1、可変❮％2❯dim％3 array on line％4％nとして定義
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	ソース％0：％1、可変❮％2❯
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	ソース％0：％1、可変❮％2 dim1 as％3外側の境界1％4 ..％5 line％6％n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	ソース％0：％1、可変❮％2 dim1 as％3外側の境界％4 ..％5 line％6％n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	ソース％0：％1、可変❮％2 dim2 as％3外側の境界2％4 ..％5 line％6％n
-UNABLE TO OPEN %0 FOR READING.%n	読み取りのために％0を開くことができません。％n
-UNABLE TO OPEN FILE ❮%0❯%n	ファイルを開くことができません❮％0〜％n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	未処理のopcode src：％0 op％1 line％2 col％3％n
-UNRECOGNIZED INPUT ❮%0❯%n	認識されていない入力❮％0〜％n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	コマンドラインには言語が与えられていません。終了。
+ARRAY ALREADY DEFINED	すでに定義されている配列
+ARRAY INDEX OUTSIDE OF BOUNDS	境界外の配列インデックス
+CANNOT ACCESS DIRECTORY	ディレクトリにアクセスできません
+DATA INPUT UNDERFLOW	データ入力アンダーフロー
+DATA READ UNDERFLOW	データはアンダーフローを読みます
+DEFINITION CYCLE DISCOVERED	定義サイクルが発見されました
+ERROR	エラー
+FOR VARIABLE MULTIPLY DEFINED	可変乗算定義の場合
+FUNCTION DEFINITION MULTIPLY DEFINED	関数定義が定義されているのを掛けています
+FUNCTION DEFINITION PARAMETER MISMATCH	関数定義パラメーターの不一致
+GOSUB STACK OVERFLOW	GOSUBスタックオーバーフロー
+GOSUB STACK UNDERFLOW	GOSUBスタックアンダーフロー
+INDEX OUT OF RANGE	範囲外のインデックス
+LABEL ALREADY DEFINED	すでに定義されているラベル
+LEFT / RIGHT OPERATION MISMATCH	左 /右操作の不一致
+NEGATIVE INDEX	負のインデックス
+NEXT ON FOR LOOP WITH STRING VARIABLE	次に、文字列変数を使用してループを使用します
+OPERAND MISMATCH	オペランドの不一致
+OPTION REQUIRES A LANGUAGE	オプションには言語が必要です
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	言語設定または環境変数を確認してください
+STRING MATH LOGIC ERROR	文字列数学ロジックエラー
+UNABLE TO OPEN FILE	ファイルを開くことができません
+UNABLE TO OPEN TO OPEN FILE FOR READING	読み取りのためにファイルを開くことができません
+UNDEFINED LABEL	未定義のラベル
+UNHANDLED OPERATION	未処理の操作
+UNHANDLED OPERATION CODE	未処理の操作コード
+UNKNOWN IF LABEL	ラベルの場合は不明です
+UNRECOGNIZED DOUBLE MATH OPERATION	認識されていない二重数学操作
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	認識されていない関数関数定義
+UNRECOGNIZED GOSUB LABEL	認識されていないゴスブラベル
+UNRECOGNIZED GOTO LABEL	認識されていないgotoラベル
+UNRECOGNIZED INPUT	認識されていない入力
+UNRECOGNIZED INTEGER MATH OPERATION	認識されていない整数数学操作
+UNRECOGNIZED MATH TYPE	認識されていない数学タイプ
+UNRECOGNIZED NEXT VARIABLE	認識されていない次の変数
+UNRECOGNIZED OP IN PRINT	印刷されていない認識されていないOP
+UNRECOGNIZED RATIONAL MATH OPERATION	認識されていない合理的な数学操作
+UNRECOGNIZED VARIABLE TYPE	認識されていない変数タイプ
+UNSET ENVIRONMENT VARIABLE	設定されていない環境変数
+VARIABLE / ARRAY DEFINITION MISMATCH	変数 /配列定義の不一致
+VARIABLE DEFINED AS ARRAY	配列として定義された変数
+VARIABLE DEFINED AS NONARRAY	非アレイとして定義された変数
+VARIABLE HAS NO VALUE	変数には値がありません
+VARIABLE IS NOT AN ARRAY	変数は配列ではありません
