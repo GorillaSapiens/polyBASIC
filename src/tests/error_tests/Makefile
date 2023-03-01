@@ -4,4 +4,4 @@ all:
 
 .PHONY: clean
 clean:
-	rm -f *actual.txt
+	rm -f *actual.txt *guru.txt
