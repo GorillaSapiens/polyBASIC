@@ -161,6 +161,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    Tree *def = get_def(defcall->sval);
    if (!def) {
       GURU;
+      // test case unrecognized_defcall
       eprintf("SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n",
          defcall->line, defcall->col, defcall->sval);
       exit(-1);
@@ -169,6 +170,8 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    int callcount = paramcount(defcall->left);
    if (defcount != callcount) {
       GURU;
+      // test case param_mismatch1
+      // test case param_mismatch2
       eprintf("SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n",
          defcall->line, defcall->col, defcall->sval, defcount, callcount);
       exit(-1);
@@ -316,6 +319,7 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
          const Val *val = get_value(varname);
          if (!val) {
             GURU;
+            // test case no_value
             eprintf("ERROR: line %0 column %1, ❮%2❯ has no value%n",
                   copy->line, copy->col, varname);
             exit(-1);
@@ -750,7 +754,6 @@ Tree *evaluate(Tree *p) {
                case YYDOUBLE:
                   switch(p->op) {
                      case '+':
-                     case '&':
                         p->dval = p->left->dval + p->right->dval;
                         break;
                      case '-':
@@ -767,7 +770,8 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n",
+                        // test case double_amp
+                        eprintf("SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n",
                            p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -781,7 +785,6 @@ Tree *evaluate(Tree *p) {
                case YYINTEGER:
                   switch(p->op) {
                      case '+':
-                     case '&':
                         p->ival = p->left->ival + p->right->ival;
                         break;
                      case '-':
@@ -798,7 +801,8 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n",
+                        // test case integer_amp
+                        eprintf("SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n",
                             p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -812,7 +816,6 @@ Tree *evaluate(Tree *p) {
                case YYRATIONAL:
                   switch(p->op) {
                      case '+':
-                     case '&':
                         p->rval = new Rational (*(p->left->rval) + *(p->right->rval));
                         p->op = YYRATIONAL;
                         break;
@@ -834,7 +837,8 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
-                        eprintf("SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n",
+                        // test case rational_amp
+                        eprintf("SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n",
                            p->line, p->col, p->op);
                         exit(-1);
                         break;
@@ -855,6 +859,7 @@ Tree *evaluate(Tree *p) {
                         break;
                      default:
                         GURU;
+                        // no test case, strings are converted to numbers
                         eprintf("SOURCE %0:%1, STRING MATH LOGIC ERROR%n", p->line, p->col);
                         exit(-1);
                         break;
@@ -870,6 +875,7 @@ Tree *evaluate(Tree *p) {
          }
          else {
             GURU;
+            // no test case, type conversion is always successful
             eprintf("SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n",
                p->line, p->col,
                p->left, p->left ? p->left->op : -1,
@@ -1039,6 +1045,7 @@ Val convert_to_value(const char *s) {
    }
    else {
       GURU;
+      // no test case, conversion always yeilds something
       eprintf("UNRECOGNIZED INPUT ❮%0❯%n", s);
       exit(-1);
    }
@@ -1067,11 +1074,13 @@ void run(Tree *p) {
                   if (!vb || vb->dimensions != 0) {
                      if (vb->dimensions == 1) {
                         GURU;
+                        // test case vardim1
                         eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
                      }
                      else {
                         GURU;
+                        // test case vardim2
                         eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n",
                            p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, option_base, vb->upper2, vb->line);
                      }
@@ -1093,18 +1102,23 @@ void run(Tree *p) {
                      if (!vb || vb->dimensions != 2) {
                         if (vb->dimensions == 0) {
                            GURU;
+                           // testcase vardim3
                            eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n",
                                  p->line, p->col, p->sval, vb->line);
+                           exit(-1);
                         }
                         else {
                            GURU;
+                           // testcase vardim4
                            eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n",
                               p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
+                           exit(-1);
                         }
                         exit(-1);
                      }
                      if (left->ival < option_base || left->ival > vb->upper1) {
                         GURU;
+//FNORD
                         eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
