@@ -36,6 +36,7 @@ clean:
 	@echo =========================
 	(cd polybasic && make clean)
 	(cd autotranslate && make clean)
+	(cd tests && make clean)
 
 .PHONY: squeaky
 squeaky: clean
