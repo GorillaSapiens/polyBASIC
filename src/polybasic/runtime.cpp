@@ -23,7 +23,7 @@ static void register_labels(Tree *root) {
          if (is_lbl_defined(root->label)) {
             Tree *prev = get_label(root->label);
             GURU;
-            eprintf("ERROR: label ❮%0❯ at %1:%2 already defined %3:%4",
+            eprintf("ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n",
                root->label, root->line, root->col, prev->line, prev->col);
             exit(-1);
          }
