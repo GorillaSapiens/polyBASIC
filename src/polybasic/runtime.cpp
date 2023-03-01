@@ -1475,6 +1475,7 @@ void run(Tree *p) {
                   gosub_stack[gosub_spot++] = np;
                   if (gosub_spot == GOSUB_STACKSIZE) {
                      GURU;
+                     // test case ongosuboverflow
                      eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW%n", p->line, p->col);
                      exit(-1);
                   }
@@ -1523,6 +1524,7 @@ void run(Tree *p) {
                         break;
                      default:
                         GURU;
+                        // test case readunderflow
                         eprintf("SOURCE %0:%1, DATA READ UNDERFLOW%n", p->line, p->col);
                         exit(-1);
                         break;
@@ -1550,6 +1552,7 @@ void run(Tree *p) {
                   }
                   else {
                      GURU;
+                     // test case inputunderflow
                      eprintf("SOURCE %0:%1, DATA INPUT UNDERFLOW%n", p->line, p->col);
                      exit(-1);
                   }
@@ -1576,6 +1579,7 @@ void run(Tree *p) {
             break;
          default:
             GURU;
+            // no test case
             eprintf("UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n", __LINE__, p->op, p->line, p->col);
             exit(-1);
             break;
