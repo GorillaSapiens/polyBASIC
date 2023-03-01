@@ -23,8 +23,7 @@ static void register_labels(Tree *root) {
          if (is_lbl_defined(root->label)) {
             Tree *prev = get_label(root->label);
             GURU;
-            // test case multiple_integer_label
-            // test case multiple_string_label
+            // test case multiple_integer_label multiple_string_label
             eprintf("ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n",
                root->label, root->line, root->col, prev->line, prev->col);
             exit(-1);
@@ -170,8 +169,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    int callcount = paramcount(defcall->left);
    if (defcount != callcount) {
       GURU;
-      // test case param_mismatch1
-      // test case param_mismatch2
+      // test case param_mismatch1 param_mismatch2
       eprintf("SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n",
          defcall->line, defcall->col, defcall->sval, defcount, callcount);
       exit(-1);
@@ -1118,13 +1116,14 @@ void run(Tree *p) {
                      }
                      if (left->ival < option_base || left->ival > vb->upper1) {
                         GURU;
-//FNORD
+                        // test case varbounds1
                         eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
                      }
                      if (right->ival < option_base || right->ival > vb->upper2) {
                         GURU;
+                        // test case varbounds2
                         eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n",
                               p->line, p->col, p->sval, right->ival, option_base, vb->upper2, vb->line);
                         exit(-1);
@@ -1143,18 +1142,23 @@ void run(Tree *p) {
                      if (!vb || vb->dimensions != 1) {
                         if (vb->dimensions == 0) {
                            GURU;
+                           // test case varbounds3
                            eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n",
                                  p->line, p->col, p->sval, vb->line);
+                           exit(-1);
                         }
                         else {
                            GURU;
+                           // test case varbounds4
                            eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n",
                                  p->line, p->col, p->sval, vb->dimensions, vb->line);
+                           exit(-1);
                         }
                         exit(-1);
                      }
                      if (left->ival < option_base || left->ival > vb->upper1) {
                         GURU;
+                        // test case varbounds
                         eprintf("SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n",
                               p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
                         exit(-1);
