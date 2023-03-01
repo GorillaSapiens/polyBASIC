@@ -192,6 +192,35 @@ void read_translations(FILE *f) {
    }
 }
 
+void read_errors(FILE *f) {
+   char buf[16384];
+   int mode = 0;
+   while (fgets(buf, sizeof(buf), f) == buf) {
+      if (!mode) {
+         if (strstr(buf, "[errors]") == buf) {
+            mode++;
+         }
+      }
+      else {
+         int n = strlen(buf);
+         if (n) {
+            if (buf[n - 1] < ' ') {
+               buf[n - 1] = 0;
+               n--;
+
+               if (n) {
+                  char *translation = strchr(buf, '\t');
+                  if (translation) {
+                     *translation++ = 0;
+                     add_error(buf, translation);
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
 const char *find_translations(void) {
    static const char *possibilities[] = {
       "./translations",
@@ -234,6 +263,33 @@ void load_translations(const char *language) {
    }
 }
 
+void load_errors(const char *language) {
+   const char *path = getenv("POLYBASICPATH");
+   if (path == NULL) {
+      path = find_translations();
+   }
+   if (!path || !directory_exists(path)) {
+      GURU;
+      eprintf("{ERROR}: {CANNOT ACCESS DIRECTORY} ❮%0❯%n", path);
+      exit(-1);
+   }
+
+   char full_path[16384];
+   snprintf(full_path, sizeof(full_path), "%s/%s.pbt", path, language);
+
+   FILE *f = fopen(full_path, "r");
+   if (f) {
+      read_errors(f);
+      fclose(f);
+   }
+   else {
+      GURU;
+      eprintf("{ERROR}: {UNABLE TO OPEN TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
+      eprintf("{PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE} 'POLYBASICPATH'%n");
+      exit(-1);
+   }
+}
+
 const char *shortname(const char *arg0) {
    const char *s = strrchr(arg0, '/');
    if (s) {
@@ -249,6 +305,7 @@ const char *shortname(const char *arg0) {
 [[ noreturn ]] void usage(const char *arg0) {
    printf("Usage: %s [-l <language>] [<input.bas>]\n", shortname(arg0));
    printf("      -l : specify language, overriding POLYBASICLANG env variable\n");
+   printf("\n");
    printf("      if <input.bas> is omitted, read program from STDIN.\n");
    printf("         this is not recommended, and may not work well with INPUT statements.\n");
    printf("\n");
@@ -258,7 +315,8 @@ const char *shortname(const char *arg0) {
    printf("      -? : print this usage information and exit\n");
    printf("\n");
    printf("      The following additional options are intended for debugging only.\n");
-   printf("      -g     : enable 'guru mode'\n");
+   printf("      -e     : specify language used for error messages\n");
+   printf("      -g     : enable 'guru mode' with additional debug output\n");
    printf("      -0     : enable the VOID keyword\n");
    printf("      -f     : debug flex parser output, and then run program\n");
    printf("      -t <n> : dump parse tree for line <n>, do not run program\n");
@@ -275,6 +333,7 @@ const char *shortname(const char *arg0) {
 int main(int argc, char **argv) {
    int treedebug = -1;
    char *language = getenv("POLYBASICLANG");
+   char *errlanguage = NULL;
 
    char *arg0 = argv[0];
 
@@ -294,6 +353,15 @@ int main(int argc, char **argv) {
             argc--; argv++;
             break;
          // debugging options
+         case 'e':
+            errlanguage = argv[1];
+            if (errlanguage == NULL) {
+               GURU;
+               eprintf("-e {OPTION REQUIRES A LANGUAGE}%n");
+               exit(-1);
+            }
+            argc--; argv++;
+            break;
          case '0':
             void_enabled = true;
             break;
@@ -329,6 +397,9 @@ int main(int argc, char **argv) {
       exit(-1);
    }
    load_translations(language);
+   if (errlanguage) {
+      load_errors(errlanguage);
+   }
 
    FILE *in = NULL;
 
