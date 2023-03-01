@@ -14,6 +14,8 @@
 #include "runtime_data.hpp"
 #include "runtime.hpp"
 
+extern bool void_enabled;
+
 static int64_t option_base = 0;
 static int64_t option_upper = 10; // default upper array bound per ECMA-55
 
@@ -351,7 +353,11 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
 void upgrade_to_number(Tree *p) {
    if (p->op == YYSTRING) {
       const char *s = p->sval;
-      if (strchr((char *)s, '#') == s) {
+      if (void_enabled && !strcasecmp(s, "void")) {
+         p->op = YYVOID;
+         p->ival = 0;
+      }
+      else if (strchr((char *)s, '#') == s) {
          p->op = YYRATIONAL;
          p->rval = new Rational(s);
       }
@@ -869,15 +875,22 @@ Tree *evaluate(Tree *p) {
                   free((void *)p->right);
                   p->right = NULL;
                   break;
+               default:
+                  GURU;
+                  // test case voidmath2
+                  eprintf("SOURCE %0:%1, UNRECOGNIZED MATH TYPE ❮%2❯%n",
+                     p->line, p->col, p->left->op);
+                  exit(-1);
+                  break;
             }
          }
          else {
             GURU;
-            // no test case, type conversion is always successful
-            eprintf("SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n",
+            // test case voidmath
+            eprintf("SOURCE %0:%1, OPERAND MISMATCH ❮%2❯ ❮%3❯%n",
                p->line, p->col,
-               p->left, p->left ? p->left->op : -1,
-               p->right, p->right ? p->right->op : -1);
+               p->left ? p->left->op : -1,
+               p->right ? p->right->op : -1);
             exit(-1);
          }
       }
@@ -1206,7 +1219,7 @@ void run(Tree *p) {
                         break;
                      default:
                         GURU;
-                        // no test case, this should not be possible
+                        // test case voidprint
                         eprintf("SOURCE %0:%1, UNRECOGNIZED MID OP %2%n",
                            p->line, p->col, mid->op);
                         exit(-1);
@@ -1415,7 +1428,7 @@ void run(Tree *p) {
                }
                else {
                   GURU;
-                  // no test case
+                  // test case voidif
                   eprintf("SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n",
                      p->line, p->col, left->op, right->op);
                   exit(-1);
@@ -1441,7 +1454,7 @@ void run(Tree *p) {
                      break;
                   default:
                      GURU;
-                     // no test case
+                     // test case voidon
                      eprintf("SOURCE %0:%1, UNHANDLED OP %2%n", p->line, p->left->col, result->op);
                      exit(-1);
                      break;
