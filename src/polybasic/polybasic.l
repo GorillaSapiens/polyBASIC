@@ -34,11 +34,6 @@ enum yytokentype is_reserved_word(const char *a);
 %}
 
 %option flex bison unicode yylineno
-//%option bison
-//%option unicode
-//%option yylineno
-
-
 
 WHITESPACE  [ \t]+
 

@@ -1,3 +1,5 @@
+This document details differences from various other forms of BASIC.
+
 (*) addition of unicode, obviously
 
 (*) support for multiple translations
