@@ -1,0 +1,10 @@
+workflow:
+
+(1) upload polybasic.ods to google sheets
+(2) make changes
+(3) download as *.ods
+(4) download as *.tsv
+(5) run make
+
+(6) do manual fixups on ../translations/emoji.pbt
+(7) do manual fixups on ../translations/reverse.pbt
