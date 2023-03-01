@@ -1,3 +1,7 @@
 .PHONY: test
 test:
-	(cd simple_language_tests && make)
+	for each in `ls -d */`; do (cd $$each && make); done
+
+.PHONY: clean
+clean:
+	for each in `ls -d */`; do (cd $$each && make clean); done
