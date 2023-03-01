@@ -124,6 +124,7 @@ RANDOMIZE <= RANDOMISIEREN
 ❮%0❯ at %1:%2%n	❮%0❯ bei%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Und keine Sprache in der Befehlszeile angegeben. Verlassen.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Kann nicht auf Verzeichnis zugreifen ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Umgebungsvariable 'POLYBASICLANG' nicht eingestellt,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Fehler: Def ❮%0❯ Multiplizieren Sie definierte%1:%2 und%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Fehler: Definitionszyklus%n entdeckt n n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Fehler: Für ❮%0❯ Multiplizieren Sie definierte%1:%2 und%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Fehler: Zeile %0 Spalte %1, �
 ERROR: NO PARSE TREE FOR LINE %0%n	Fehler: Kein Parse Tree für Linie %0 %n
 -l requires a language.%n	-l erfordert eine Sprache.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Bitte überprüfen Sie die Umgebungsvariable und/oder die Spracheinstellungen von "POLYBASICPATH".%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'Umgebungsvariable nicht festgelegt,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Quelle%0:%1, Array ❮%2❯ bereits auf Zeile%3%n definiert
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Quelle%0:%1, Dateneingabe Unterlauf%n n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Quelle%0:%1, Daten unterlesen Unterlauf%n

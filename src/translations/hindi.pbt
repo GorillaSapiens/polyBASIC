@@ -124,15 +124,15 @@ RANDOMIZE <= अनयमत
 ❮%0❯ at %1:%2%n	❮%0 ❮%1 पर:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	और कमांड लाइन पर कोई भाषा नहीं दी गई है। बाहर निकलना।%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	निर्देशिका ❮%0❯ तक पहुंच नहीं सकते।%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	पर्यावरण चर 'पॉलीबासिकलंग' सेट नहीं है,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	त्रुटि: def ❮%0❯ गुणा परिभाषित%1:%2 और%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	त्रुटि: परिभाषा चक्र की खोज%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	त्रुटि: ❮%0❯ के लिए गुणा परिभाषित%1:%2 और%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	त्रुटि: लेबल ❮%0❯%1 पर:%2 पहले से ही परिभाषित%3:%4%एन
 ERROR: line %0 column %1, ❮%2❯ has no value%n	त्रुटि: लाइन %0 कॉलम %1, ❮ %2❯ का कोई मूल्य %n नहीं है
-ERROR: NO PARSE TREE FOR LINE %0%n	त्रुटि: लाइन %0 %n के लिए कोई पार्स ट्री नहीं
+ERROR: NO PARSE TREE FOR LINE %0%n	त्रुटि: लाइन %0 %n के लिए कोई पार्स पेड़ नहीं
 -l requires a language.%n	-ल को एक भाषा की आवश्यकता होती है।%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	कृपया 'पॉलीबैसिकपाथ' पर्यावरण चर और/या भाषा सेटिंग्स की जाँच करें।%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'पर्यावरण चर सेट नहीं,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	स्रोत%0:%1, सरणी ❮%2❯ पहले से ही लाइन%3%एन पर परिभाषित किया गया है
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	स्रोत%0:%1, डेटा इनपुट अंडरफ्लो%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	स्रोत%0:%1, डेटा पढ़ा गया%n%n

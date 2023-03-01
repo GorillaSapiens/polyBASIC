@@ -124,6 +124,7 @@ RANDOMIZE <= عشوائي
 ❮%0❯ at %1:%2%n	❮ ٪ 0❯ في ٪ 1: ٪ 2 ٪ N
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	ولا توجد لغة ممنوحة على سطر الأوامر. الخروج. ٪ ن
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	لا يمكن الوصول إلى دليل ❮ ٪ 0❯. ٪ n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	لم يتم تعيين متغير البيئة "POLYBASICLANG" ،
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	خطأ: def ❮ ٪ 0❯ ضاعف ٪ 1: ٪ 2 و ٪ 3: ٪ 4 ٪ n
 ERROR: DEFINITION CYCLE DISCOVERED%n	خطأ: دورة التعريف المكتشفة ٪ n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	خطأ: بالنسبة لـ ❮ ٪ 0❯ ، اضرب ٪ 1: ٪ 2 و ٪ 3: ٪ 4 ٪ n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	خطأ: السطر ٪ 0 الع
 ERROR: NO PARSE TREE FOR LINE %0%n	خطأ: لا توجد شجرة تحليل للخط ٪ 0 ٪ N
 -l requires a language.%n	-L يتطلب لغة. ٪ ن
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	يرجى التحقق من "POLYBASICPATH" المتغير و/أو إعدادات اللغة. ٪ N
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	متغير البيئة POLYBASICLANG غير محدد ،
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	المصدر ٪ 0: ٪ 1 ، صفيف ❮ ٪ 2❯ محدد بالفعل على الخط ٪ 3 ٪ n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	المصدر ٪ 0: ٪ 1 ، إدخال البيانات underflow ٪ n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	المصدر ٪ 0: ٪ 1 ، قراءة البيانات underflow ٪ n

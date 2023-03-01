@@ -124,6 +124,7 @@ RANDOMIZE <= BILAMPANGILIO
 ❮%0❯ at %1:%2%n	❮%0❯ kwa%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Na hakuna lugha iliyopewa kwenye mstari wa amri. Kuondoka.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Haiwezi kupata saraka ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Mazingira ya kutofautisha 'POLYBASICLANG' sio kuweka,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kosa: DEF ❮%0❯ Imefafanuliwa%1:%2 na%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Kosa: Mzunguko wa ufafanuzi umegunduliwa%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kosa: kwa ❮%0❯ imeongezeka%1:%2 na%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Kosa: mstari %0 safu %1, ❮ %
 ERROR: NO PARSE TREE FOR LINE %0%n	Kosa: Hakuna mti wa parse kwa mstari %0 %n
 -l requires a language.%n	-l inahitaji lugha.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Tafadhali angalia mazingira ya 'POLYBASICPATH' na/au mipangilio ya lugha.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Mazingira ya POLYBASICLANG 'hayajawekwa,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Chanzo%0:%1, safu ❮%2❯ tayari imeelezewa kwenye mstari%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Chanzo%0:%1, Uingizaji wa Takwimu Undered%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Chanzo%0:%1, data iliyosomwa chini ya%n

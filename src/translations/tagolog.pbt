@@ -124,6 +124,7 @@ RANDOMIZE <= RANDOMIZE
 ❮%0❯ at %1:%2%n	❮%0❯ sa%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	At walang wikang ibinigay sa linya ng utos. Paglabas.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Hindi ma -access ang direktoryo ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Hindi nakatakda ang variable na 'POLYBASICLANG',
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: def ❮%0❯ Multiply tinukoy%1:%2 at%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	ERROR: Napag -alaman ng Cycle ng Kahulugan%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	ERROR: Para sa ❮%0❯ Multiply na tinukoy%1:%2 at%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: linya %0 haligi %1, ❮
 ERROR: NO PARSE TREE FOR LINE %0%n	Error: walang puno ng parse para sa linya %0 %n
 -l requires a language.%n	-l ay nangangailangan ng isang wika.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Mangyaring suriin ang 'POLYBASICPATH' variable at/o mga setting ng wika.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Ang variable na kapaligiran ng POLYBASICLANG 'ay hindi nakatakda,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Pinagmulan%0:%1, array ❮%2❯ Natukoy na sa linya%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Pinagmulan%0:%1, Data Input underflow%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Pinagmulan%0:%1, nabasa ng data ang underflow%n

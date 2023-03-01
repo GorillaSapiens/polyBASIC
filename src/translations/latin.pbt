@@ -124,6 +124,7 @@ RANDOMIZE <= RANDOMIZE
 ❮%0❯ at %1:%2%n	❮ %0❯ ad %1, %2 %n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Et non linguam dedit in order versus. Exivit. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Potest accedere Directory ❮ %0❯. %n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Environment variabilis 'POLYBASICLANG' non posuit:
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: DEF ❮ %0❯ multiplicare defined %1: %2 %3, %4 %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Error: Definitio exolvuntur inventa %n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: nam ❮ %0 ❯ multiplicare defined %1: %2 et %3, %4 %n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: linea %0 columna %1, �
 ERROR: NO PARSE TREE FOR LINE %0%n	Error: Non parse in linea %0 %n
 -l requires a language.%n	-L postulat lingua. %n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Placere reprehendo 'POLYBASICPATH, environment variabilis et / vel lingua occasus. %n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'environment variabilis non posuit:
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Fontem %0: %1, ordinata ❮ %2❯ iam defined in line %3 %n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Source %0: %1, data initus underflow %n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Fonte %0: %1, data Read underflow %n

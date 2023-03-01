@@ -124,6 +124,7 @@ RANDOMIZE <= ראנדאמייז
 ❮%0❯ at %1:%2%n	❮ %0❯ ביי %1: %2 %n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	און קיין שפּראַך געגעבן אויף באַפֿעלן שורה. אַרויסגאַנג. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	קענען ניט צוטריט וועגווייַזער ❮ %0❯. %n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	סומסיל 'פּאָליבאַסיקלאַנג' ניט שטעלן,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	ERROR: דעפ ❮ %0❯ מערן דיפיינד %1: %2 און %3: %4 %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	טעות: דעפֿיניציע ציקל דיסקאַווערד %n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	גרייַז: פֿאַר ❮ %0❯ מערן דיפיינד %1: %2 און %3: %4 %n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	ERROR: ליניע %0 זייַ�
 ERROR: NO PARSE TREE FOR LINE %0%n	טעות: קיין פּאַרס בוים פֿאַר שורה %0 %n
 -l requires a language.%n	-ל ריקווייערז אַ שפּראַך. %n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	ביטע טשעק 'POLYBASICPATH' סומפ.ווינדדיקע און / אָדער שפּראַך סעטטינגס. %n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'סביבות וואַרף איז נישט באַשטימט,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	מקור %0: %1, מענגע ❮ %2❯ שוין דיפיינד אויף שורה %3 %n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	מקור %0: %1, דאַטן אַרייַנשרייַב אַנדערפלאָו %n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	מקור %0: %1, דאַטע לייענען אַנדערפלאָו %n

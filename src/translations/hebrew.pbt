@@ -124,6 +124,7 @@ RANDOMIZE <= אקראי
 ❮%0❯ at %1:%2%n	❮%0❯ ב%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	ושום שפה ניתנת בשורת הפקודה. יציאה.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	לא ניתן לגשת לספריה ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	משתנה סביבה 'POLYBASICLANG' לא מוגדר,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	שגיאה: def ❮%0❯ הכפל%מוגדר%1:%2 ו-%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	שגיאה: מחזור ההגדרה התגלה%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	שגיאה: עבור ❮%0❯ הכפלת%מוגדרת%1:%2 ו-%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	שגיאה: קו %0 עמודה
 ERROR: NO PARSE TREE FOR LINE %0%n	שגיאה: אין עץ ניתוח עבור קו %0 %n
 -l requires a language.%n	-ל דורש שפה.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	אנא בדוק משתנה סביבת 'POLYBASICPATH' ו/או הגדרות שפה.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	משתנה הסביבה של POLYBASICLANG לא מוגדר,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	מקור%0:%1, מערך ❮%2❯ כבר מוגדר על קו%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	מקור%0:%1, זרימת קלט נתונים%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	מקור%0:%1, נתונים נקראו תחת זרימה%n

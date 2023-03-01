@@ -124,6 +124,7 @@ RANDOMIZE <= بےترتیب
 ❮%0❯ at %1:%2%n	❮ ٪ 0❯ at 1: ٪ 2 ٪ n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	اور کمانڈ لائن پر کوئی زبان نہیں دی گئی۔ باہر نکلنا۔ ٪ n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	ڈائریکٹری تک رسائی حاصل نہیں کرسکتی ❮ ٪ 0❯. ٪ n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	ماحولیاتی متغیر 'پولیباسیکلنگ' سیٹ نہیں ،
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	خرابی: Def ❮ ٪ 0❯ وضاحت شدہ ٪ 1: ٪ 2 اور ٪ 3: ٪ 4 ٪ N
 ERROR: DEFINITION CYCLE DISCOVERED%n	غلطی: تعریف سائیکل دریافت ٪ n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	خرابی: ❮ ٪ 0❯ کے لئے وضاحت شدہ ٪ 1: ٪ 2 اور ٪ 3: ٪ 4 ٪ N
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	خرابی: لائن ٪ 0 کا
 ERROR: NO PARSE TREE FOR LINE %0%n	غلطی: لائن ٪ 0 ٪ n کے لئے کوئی پارس درخت نہیں
 -l requires a language.%n	-l کو ایک زبان کی ضرورت ہے۔ ٪ n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	براہ کرم 'پولی بیسک پاتھ' ماحولیاتی متغیر اور/یا زبان کی ترتیبات کو چیک کریں۔ ٪ N
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'ماحولیاتی متغیر مقرر نہیں ،
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	ماخذ ٪ 0: ٪ 1 ، سرنی ❮ ٪ 2❯ لائن پر پہلے ہی بیان کردہ ٪ 3 ٪ n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	ماخذ ٪ 0: ٪ 1 ، ڈیٹا ان پٹ انڈر فلو ٪ n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	ماخذ ٪ 0: ٪ 1 ، ڈیٹا انڈر فلو ٪ N پڑھا

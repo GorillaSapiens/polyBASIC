@@ -124,6 +124,7 @@ RANDOMIZE <= ランダム化
 ❮%0❯ at %1:%2%n	❮％0❯at％1：％2％n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	コマンドラインには言語が与えられていません。終了。％n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	ディレクトリにアクセスできません❮％0❯。％n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	環境変数「POLYBASICLANG」が設定されていない、
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	エラー：def❮％0❯定義済み％1：％2および％3：％4％nを掛ける
 ERROR: DEFINITION CYCLE DISCOVERED%n	エラー：定義サイクルが発見された％n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	エラー：❮％0〜定義された％1：％2および％3：％4％nを掛ける
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	エラー：line％0列％1、
 ERROR: NO PARSE TREE FOR LINE %0%n	エラー：線の解析ツリーはありません％0％n
 -l requires a language.%n	-lは言語を必要とします。％n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	「POLYBASICPATH」環境変数および/または言語設定を確認してください。％n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG '環境変数は設定されていません、
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	ソース％0：％1、アレイ❮％2❯既にラインで定義されている％3％n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	ソース％0：％1、データ入力アンダーフロー％n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	ソース％0：％1、データ読み取りアンダーフロー％n

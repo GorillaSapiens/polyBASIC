@@ -124,6 +124,7 @@ RANDOMIZE <= ALEATÓRIA
 ❮%0❯ at %1:%2%n	❮%0❯ em%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	E nenhum idioma dado na linha de comando. Saindo.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Não é possível acessar o diretório ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Ambiente variável 'POLYBASICLANG' não está definido,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erro: def ❮%0❯ Multiply definido%1:%2 e%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Erro: ciclo de definição descoberta%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erro: por ❮%0❯ Multiply definido%1:%2 e%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Erro: linha %0 coluna %1, ❮ 
 ERROR: NO PARSE TREE FOR LINE %0%n	Erro: nenhuma árvore de análise para linha %0 %n
 -l requires a language.%n	-l requer um idioma.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Verifique a variável de ambiente 'POLYBASICPATH' e/ou configurações de idioma.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Variável de ambiente PoliBasiclang não definida,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Fonte%0:%1, matriz ❮%2❯ já definido na linha%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Fonte%0:%1, entrada de dados subflow%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Fonte%0:%1, dados Leia o subflow%n

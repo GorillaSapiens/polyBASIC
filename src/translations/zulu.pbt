@@ -124,6 +124,7 @@ RANDOMIZE <= PHUNGULA
 ❮%0❯ at %1:%2%n	❮ %0❯ ku- %1: %2 %n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Futhi alukho ulimi olunikezwe kulayini womyalo. Ukuphuma. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ayikwazi ukufinyelela umkhombandlela ❮ %0❯. %n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Ukuguquguquka kwemvelo 'POLYBASICLANG' akusethiwe,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	I-ERROR: def ❮ %0❯ ichaze i- %1: %2 no %3: %4 %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Iphutha: Ukuchazwa komjikelezo kutholakele %n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	I-ERROR: ye-❮ %0❯ ichaze kaningi %1: %2 no %3: %4 %n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Iphutha: umugqa %0 ikholomu %1
 ERROR: NO PARSE TREE FOR LINE %0%n	I-ERROR: Akukho Tree Parse for Line %0 %n
 -l requires a language.%n	-L kudinga ulimi. %n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Sicela ubheke i- 'POLYBASICPATH' imvelo eguquguqukayo kanye / noma izilungiselelo zolimi. %n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Ukuguquguquka kwemvelo kwePOLYBASICLANG 'akusethiwe,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Umthombo %0: %1, u-Array ❮ %2❯ ochaziwe kulayini %3 %n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Umthombo %0: %1, Ukufakwa kwedatha okuvinjelwe %n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Umthombo %0: %1, idatha ifundwe underflow %n

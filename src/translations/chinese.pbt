@@ -124,6 +124,7 @@ RANDOMIZE <= 随机化
 ❮%0❯ at %1:%2%n	❮％0❯在％1：％2％n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	并且在命令行上没有使用语言。退出。％n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	无法访问目录❮％0❯。％n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	环境变量“ POLYBASICLANG”未设置，
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	错误：def❮％0❯乘法定义％1：％2和％3：％4％n
 ERROR: DEFINITION CYCLE DISCOVERED%n	错误：定义周期发现％n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	错误：对于❮％0❯乘法定义％1：％2和％3：％4％n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	错误：线％0列％1，❮�
 ERROR: NO PARSE TREE FOR LINE %0%n	错误：无解析树的线％0％n
 -l requires a language.%n	-l需要一种语言。％n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	请检查“ POLYBASICPATH”环境变量和/或语言设置。％n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG的环境变量未设置，
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	源％0：％1，阵列❮％2❯已经在行上定义了3％n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	源％0：％1，数据输入下流％n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	源％0：％1，数据读取底流量n

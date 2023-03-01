@@ -124,6 +124,7 @@ RANDOMIZE <= MENGACAK
 ❮%0❯ at %1:%2%n	❮%0❯ AT%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Dan tidak ada bahasa yang diberikan pada baris perintah. Keluar.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Tidak dapat mengakses direktori ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Variabel lingkungan 'POLYBASICLANG' tidak diatur,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kesalahan: def ❮%0❯ multiply didefinisikan%1:%2 dan%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Kesalahan: siklus definisi ditemukan%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kesalahan: Untuk ❮%0❯ multiply didefinisikan%1:%2 dan%3:%4%n
@@ -131,8 +132,7 @@ ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Kesalahan: Label ❮%0 �
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Kesalahan: baris %0 kolom %1, ❮ %2❯ tidak memiliki nilai %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Kesalahan: tidak ada pohon parse untuk baris %0 %n
 -l requires a language.%n	-l membutuhkan bahasa.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Harap periksa variabel lingkungan 'POLYBASICPATH' dan/atau pengaturan bahasa.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Variabel lingkungan POLYBASICLANG tidak disetel,
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Silakan periksa variabel lingkungan 'POLYBASICPATH' dan/atau pengaturan bahasa.%n
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Sumber%0:%1, array ❮%2❯ sudah ditentukan pada garis%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Sumber%0:%1, input data underflow%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	SUMBER%0:%1, data membaca underflow%n

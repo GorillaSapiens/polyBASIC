@@ -124,6 +124,7 @@ RANDOMIZE <= HAZARDA
 ❮%0❯ at %1:%2%n	❮%0❯ je%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Kaj neniu lingvo donita sur komandlinio. Elirante.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ne povas aliri dosierujon ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Media variablo 'POLYBASICLANG' ne agordita,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Eraro: def ❮%0❯ multobligu difinitan%1:%2 kaj%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Eraro: Difina ciklo malkovrita%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Eraro: Por ❮%0❯ multobligu difinitan%1:%2 kaj%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Eraro: Line %0 Kolumno %1, ❮
 ERROR: NO PARSE TREE FOR LINE %0%n	Eraro: Neniu parsearbo por linio %0 %n
 -l requires a language.%n	-L postulas lingvon.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Bonvolu kontroli la median variablon de 'POLYBASICPATH' kaj/aŭ lingvaj agordoj.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'media variablo ne agordita,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Fonto%0:%1, Array ❮%2❯ Jam difinita en linio%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Fonto%0:%1, datuma eniga subfluo%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Fonto%0:%1, Datumoj Legu Subfluon%n

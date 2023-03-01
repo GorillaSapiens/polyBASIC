@@ -124,6 +124,7 @@ RANDOMIZE <= ARHAP
 ❮%0❯ at %1:%2%n	❮%0❯ ar%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	A dim iaith a roddir ar linell orchymyn. Gadael.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Methu cyrchu cyfeiriadur ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Newidyn Amgylchedd 'POLYBASICLANG' heb ei osod,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Gwall: def ❮%0❯ Lluoswch wedi'i ddiffinio%1:%2 a%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Gwall: Cylch diffiniad wedi'i ddarganfod%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Gwall: ar gyfer ❮%0❯ Lluoswch wedi'i ddiffinio%1:%2 a%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Gwall: llinell %0 colofn %1, �
 ERROR: NO PARSE TREE FOR LINE %0%n	Gwall: dim coeden ddosrannu ar gyfer llinell %0 %n
 -l requires a language.%n	-L yn gofyn am iaith.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Gwiriwch newidyn amgylchedd a/neu osodiadau iaith 'POLYBASICPATH'.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Newidyn amgylchedd POLYBASICLANG 'heb ei osod,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Ffynhonnell%0:%1, arae ❮%2❯ wedi'i diffinio eisoes ar linell%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Ffynhonnell%0:%1, tan -lif mewnbwn data%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Ffynhonnell%0:%1, data yn darllen tan -lif%n

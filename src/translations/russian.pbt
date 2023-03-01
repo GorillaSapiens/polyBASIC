@@ -124,6 +124,7 @@ RANDOMIZE <= РАНДОМИЗИРОВАТЬ
 ❮%0❯ at %1:%2%n	❮%0❯ AT%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	И нет языка, не указанного в командной строке. Выход.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Невозможно получить доступ к каталогу ❮%0❯.%n
+ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,	Переменная среды 'POLYBASICLANG' не установлен,
 ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Ошибка: def ❮%0❯ Умноженное определено%1:%2 и%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Ошибка: цикл определения обнаружена%n
 ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Ошибка: для ❮%0❯ Умноженное определение%1:%2 и%3:%4%n
@@ -132,7 +133,6 @@ ERROR: line %0 column %1, ❮%2❯ has no value%n	Ошибка: Line %0 Column %
 ERROR: NO PARSE TREE FOR LINE %0%n	Ошибка: нет дерева разбора для линии %0 %n
 -l requires a language.%n	-l требует языка.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Пожалуйста, проверьте переменную среды POLYBASICPATH и/или языковые настройки.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'переменная среды не установлена,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Источник%0:%1, массив ❮%2❯ уже определен на линии%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Источник%0:%1, ввод данных под разделение потока%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Источник%0:%1, Data Read Underflow%n
