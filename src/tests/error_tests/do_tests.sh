@@ -3,6 +3,12 @@
 export PATH=$PATH:../../polybasic
 export POLYBASICPATH=../../translations
 
+if [ ! -e "../../polybasic/polybasic" ]
+then
+   echo "polybasic executable missing!";
+   exit 1;
+fi
+
 for file in `ls *.bas`
 do
    base=`basename -s .bas $file`
