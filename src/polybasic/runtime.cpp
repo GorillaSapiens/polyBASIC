@@ -26,8 +26,8 @@ static void register_labels(Tree *root) {
             Tree *prev = get_label(root->label);
             GURU;
             // test case multiple_integer_label multiple_string_label
-            eprintf("{ERROR}: @%1:%2, {LABEL ALREADY DEFINED}, ❮%0❯ @%3:%4%n",
-               root->label, root->line, root->col, prev->line, prev->col);
+            eprintf("{ERROR}: @%0:%1, {LABEL ALREADY DEFINED}, ❮%2❯ @%3:%4%n",
+               root->line, root->col, root->label, prev->line, prev->col);
             exit(-1);
          }
          else {
@@ -88,8 +88,8 @@ static void register_for(Tree *root) {
             Tree *prev = get_for(root->sval);
             GURU;
             // test case multiple_for
-            eprintf("{ERROR}: @%1:%2, {FOR VARIABLE MULTIPLY DEFINED} ❮%0❯ @%3:%4%n",
-               root->sval, root->line, root->col, prev->line, prev->col);
+            eprintf("{ERROR}: @%0:%1, {FOR VARIABLE MULTIPLY DEFINED} ❮%2❯ @%3:%4%n",
+               root->line, root->col, root->sval, prev->line, prev->col);
             exit(-1);
          }
          else {
@@ -107,8 +107,8 @@ static void register_def(Tree *root) {
             Tree *prev = get_def(root->sval);
             GURU;
             // test case multiple_def
-            eprintf("{ERROR}: @%1:%2 {FUNCTION DEFINITION MULTIPLY DEFINED} ❮%0❯ @%3:%4%n",
-               root->sval, root->line, root->col, prev->line, prev->col);
+            eprintf("{ERROR}: @%0:%1 {FUNCTION DEFINITION MULTIPLY DEFINED} ❮%2❯ @%3:%4%n",
+               root->line, root->col, root->sval, prev->line, prev->col);
             exit(-1);
          }
          else {
