@@ -23,6 +23,8 @@ static void register_labels(Tree *root) {
          if (is_lbl_defined(root->label)) {
             Tree *prev = get_label(root->label);
             GURU;
+            // test case multiple_integer_label
+            // test case multiple_string_label
             eprintf("ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n",
                root->label, root->line, root->col, prev->line, prev->col);
             exit(-1);
@@ -58,6 +60,7 @@ static void register_arrays(Tree *root) {
             if (is_bound_defined(list->sval)) {
                const Varbound *vb = get_varbound(list->sval);
                GURU;
+               // test case multiple_dim
                eprintf("SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n",
                   list->line, list->col, list->sval, vb->line);
                exit(-1);
@@ -82,9 +85,9 @@ static void register_for(Tree *root) {
       if (root->op == YYFOR && root->sval) {
          if (is_for_defined(root->sval)) {
             Tree *prev = get_for(root->sval);
-            // TODO FIX localize this message
-            printf("ERROR: for statement on '%s' at line %i col %i already defined.\n"
-                   "        previous definition at line %i col %i\n",
+            GURU;
+            // test case multiple_for
+            eprintf("ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n",
                root->sval, root->line, root->col, prev->line, prev->col);
             exit(-1);
          }
@@ -101,9 +104,9 @@ static void register_def(Tree *root) {
       if (root->op == YYDEF && root->sval) {
          if (is_def_defined(root->sval)) {
             Tree *prev = get_def(root->sval);
-            // TODO FIX localize this message
-            printf("ERROR: def statement on '%s' at line %i col %i already defined.\n"
-                   "        previous definition at line %i col %i\n",
+            GURU;
+            // test case multiple_def
+            eprintf("ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n",
                root->sval, root->line, root->col, prev->line, prev->col);
             exit(-1);
          }

@@ -76,15 +76,18 @@ void Path::dump(void) {
    if (!paths_yet) {
       paths_yet = 1;
       GURU;
+      // test case cycle_def
       eprintf("ERROR: DEFINITION CYCLE DISCOVERED%n");
    }
    fprintf(stderr, "   ");
    for (int i = 0; i < spot; i++) {
       GURU;
+      // test case cycle_def
       eprintf("❮%0❯ at %1:%2 ->%b",
          defs[path[i]]->sval, defs[path[i]]->line, defs[path[i]]->col);
    }
    GURU;
+   // test case cycle_def
    eprintf("❮%0❯ at %1:%2%n",
       defs[path[0]]->sval, defs[path[0]]->line, defs[path[0]]->col);
 }

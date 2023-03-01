@@ -1,0 +1,4 @@
+10 FOR i := 1 TO 10
+20 NEXT i
+30 FOR i := 1 TO 10
+40 NEXT i
