@@ -17,7 +17,7 @@ foreach $file (`ls ../../translations/*.utf8`) {
    $base =~ s/^.*\///g;
    $base =~ s/.utf8//g;
 
-   print "=== $base $file\n";
+   print "===== $base\n";
 
    %t = ();
    $mode = 0;
