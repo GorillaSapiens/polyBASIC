@@ -1,0 +1,5 @@
+ERROR: DEFINITION CYCLE DISCOVERED
+   ❮e❯ at 5:5 -> ❮a❯ at 1:5 -> ❮b❯ at 2:5 -> ❮e❯ at 5:5
+   ❮d❯ at 4:5 -> ❮c❯ at 3:5 -> ❮d❯ at 4:5
+   ❮d❯ at 4:5 -> ❮h❯ at 8:5 -> ❮d❯ at 4:5
+   ❮g❯ at 7:5 -> ❮f❯ at 6:5 -> ❮g❯ at 7:5
