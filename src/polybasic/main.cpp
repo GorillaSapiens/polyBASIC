@@ -297,7 +297,7 @@ int main(int argc, char **argv) {
 
    if (language == NULL) {
       GURU;
-      eprintf("'POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,");
+      eprintf("ENVIRONMENT VARIABLE 'POLYBASICLANG' NOT SET,");
       eprintf("AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n");
       exit(-1);
    }
