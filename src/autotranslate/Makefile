@@ -1,8 +1,8 @@
 .PHONY:all
 all:
 	./polypoly.pl
-	./reverse.pl > reverse.pbt
-	./emoji.pl > emoji.pbt
+	./reverse.pl > reverse.utf8
+	./emoji.pl > emoji.utf8
 	./dotransfer.pl
 
 .PHONY:clean

@@ -1,10 +1,10 @@
 #!/usr/bin/env perl
 
-@files = `ls *.pbt`;
+@files = `ls *.utf8`;
 
 foreach $file (@files) {
    $file =~ s/[\x0a\x0d]//g;
-   if ($file ne "template.pbt") {
+   if ($file ne "template.utf8") {
       print "= $file\t\t";
       $docopy = 1;
       if (-e "../translations/$file") {

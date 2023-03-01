@@ -75,7 +75,7 @@ foreach $language(@all) {
    $sharpindex = 1;
    @file = ();
 
-   open TEMPLATE, "<template.pbt";
+   open TEMPLATE, "<template.utf8";
    binmode(TEMPLATE, ":utf8");
    while (<TEMPLATE>) {
       s/\$LANGUAGE/$language/g;
@@ -115,7 +115,7 @@ foreach $language(@all) {
       }
    }
 
-   open FILE, ">$language.pbt";
+   open FILE, ">$language.utf8";
    binmode(FILE, ":utf8");
    print FILE @file;
 

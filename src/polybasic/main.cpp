@@ -248,7 +248,7 @@ void load_translations(const char *language) {
    }
 
    char full_path[16384];
-   snprintf(full_path, sizeof(full_path), "%s/%s.pbt", path, language);
+   snprintf(full_path, sizeof(full_path), "%s/%s.utf8", path, language);
 
    FILE *f = fopen(full_path, "r");
    if (f) {
@@ -275,7 +275,7 @@ void load_errors(const char *language) {
    }
 
    char full_path[16384];
-   snprintf(full_path, sizeof(full_path), "%s/%s.pbt", path, language);
+   snprintf(full_path, sizeof(full_path), "%s/%s.utf8", path, language);
 
    FILE *f = fopen(full_path, "r");
    if (f) {

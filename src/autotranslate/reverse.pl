@@ -3,7 +3,7 @@
 use utf8;
 binmode(STDOUT, ":utf8");
 
-open FILE, "template.pbt";
+open FILE, "template.utf8";
 binmode(FILE, ":utf8");
 @template = <FILE>;
 close FILE;

@@ -30,7 +30,7 @@ sub toemoji($) {
    return $ret;
 }
 
-open FILE, "template.pbt";
+open FILE, "template.utf8";
 binmode(FILE, ":utf8");
 @template = <FILE>;
 close FILE;
