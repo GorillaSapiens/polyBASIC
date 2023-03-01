@@ -32,84 +32,84 @@
 
 # from ECMA-55 §5.2
 
-END <= 🍆🍌🍄🍇          # the end statement
+END <= 🍓🍇🍒          # the end statement
 
 # from ECMA-55 §9
 
-ABS <= 🍇🍆🍄🍌          # the absolute value function
-ATN <= 🍎🍎🍇🍌          # the trigonomic arctangent function
-COS <= 🍓🥥          # the trigonomic cosine function
-EXP <= 🍎🥥🍇🍇          # the exponential / power function
-INT <= 🍆🍌🍉🍑          # the integer / floor function
-LOG <= 🍑🍒🍑🍌          # the natural log function
-RND <= 🥥🍑🍌🍓          # generate random number
-SGN <= 🍑🍌🍒🥥          # determine the sign
-SIN <= 🥥🍌🍄🥥          # the trigonomic sine function
-SQR <= 🍌🥥🥥🍎          # the square root function
-TAN <= 🍆🍇🥥🍑          # the trigonomic tangent function
-DBL <= 🍑🍇🍄🍓          # convert to double
-STR <= 🍎🍌🥥🍎          # convert to string
-RAT <= 🍎🍎🍆🍓          # convert to rational
+ABS <= 🍇🍆🍌          # the absolute value function
+ATN <= 🍎🍎🥥          # the trigonomic arctangent function
+COS <= 🍉🍒🍇          # the trigonomic cosine function
+EXP <= 🍆🍓🥥          # the exponential / power function
+INT <= 🍒🍆🥥          # the integer / floor function
+LOG <= 🍑🍑          # the natural log function
+RND <= 🍎🍆🍌          # generate random number
+SGN <= 🥥🍓🍒          # determine the sign
+SIN <= 🍌🍄🍄          # the trigonomic sine function
+SQR <= 🍆🍉🥥          # the square root function
+TAN <= 🍒🍄🥥          # the trigonomic tangent function
+DBL <= 🍆🍆🍓          # convert to double
+STR <= 🍌🍓🥥          # convert to string
+RAT <= 🍄🍄          # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= 🍒🍉🍓🍓          # for user defined functions
+DEF <= 🍑🍇🍒          # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= 🍉🍆🍒🍌          # for variable assignment
+LET <= 🍉🍇          # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= 🥥🍇🍇🍑            # part of the GOTO and GOSUB
-GOSUB <= 🍄🍓🍇🍄      # formed from GO and SUB if no direct translation exists
-GOTO <= 🍓🥥🍑🥥        # formed from GO and TO if no direct translation exists
-TO <= 🍓🍇🍓🍒            # part of for/to/step/next constructs
-IF <= 🍎🍉🍑🍒            # part of if/then constructs
-THEN <= 🍒🍎🍄🍉        # part of if/then constructs
-SUB <= 🍄🍒🍎🍎          # beware, used as part of "go sub"
-ON <= 🍓🍓🍒🍒            # a sort of a switch statement
-RETURN <= 🍇🍄🍌🍄    # used to exit a subroutine
-STOP <= 🍇🍎🍒🍒        # command to stop execution
+GO <= 🍒🍌🍒            # part of the GOTO and GOSUB
+GOSUB <= 🥥🍎🍎      # formed from GO and SUB if no direct translation exists
+GOTO <= 🍒🍆🍓        # formed from GO and TO if no direct translation exists
+TO <= 🍇🍒🥥            # part of for/to/step/next constructs
+IF <= 🍑🍒🍓            # part of if/then constructs
+THEN <= 🍓🍑🍎        # part of if/then constructs
+SUB <= 🍒🍌🍎          # beware, used as part of "go sub"
+ON <= 🍇🥥🍓            # a sort of a switch statement
+RETURN <= 🍌    # used to exit a subroutine
+STOP <= 🍎🍑🥥        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= 🍒🍉🥥🍒          # part of for/to/step/next constructs
-STEP <= 🍌🍓🍇🍑        # part of for/to/step/next constructs
-NEXT <= 🍆🍌🍑🍉        # part of for/to/step/next constructs
+FOR <= 🍌🥥🍄          # part of for/to/step/next constructs
+STEP <= 🍆🍇🍌        # part of for/to/step/next constructs
+NEXT <= 🍎🍆🍇        # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= 🍉🍉🍑🍇      # to print things out
+PRINT <= 🍆🍇🍒      # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= 🍄🍑🍑🍎      # the input statement
+INPUT <= 🍇🍇🍄      # the input statement
 
 # from ECMA-55 §16
 
-READ <= 🍄🍄🍓        # part of read / restore
-RESTORE <= 🍄🍉🍒🍎  # part of read / restore
+READ <= 🍓🥥        # part of read / restore
+RESTORE <= 🍎🍎🍒  # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= 🍑🍓🍌🍓        # to embed data in the program
+DATA <= 🍒🍇        # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= 🍌🍑🍎🍓          # dimension arrays
-OPTION <= 🍎🍎🥥🍄    # see ECMA-55 §18.1
-BASE <= 🍆🍆🍓        # see ECMA-55 §18.1
+DIM <= 🍒🍒🍓          # dimension arrays
+OPTION <= 🍌🍇🍄    # see ECMA-55 §18.1
+BASE <= 🍄🍌🍉        # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= 🥥🍎🍇🍌          # see ECMA-55 §18.1
+REM <= 🥥🍓🍇          # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
-RANDOMIZE <= 🍎🍇🍓🍑
+RANDOMIZE <= 🍆🍓🍌
 
 #### end of ECMA-55 defined constants
 #
@@ -117,51 +117,51 @@ RANDOMIZE <= 🍎🍇🍓🍑
 # while they may appear in other versions of BASIC,
 # do NOT appear in ECMA-55:
 #
-# LOOP <= 🍇🍆🍒🍌  # designed to evoke an error for testing
+# LOOP <= 🍇🥥🍄  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	🍆🍌🍎🍌 🍉🍓🍑🍒 🍑🍑🥥🍎 🍒🍆🍑🍎 🍓🍓🍒🍒 🍆🥥🍇🍌 🍄🍇🥥🍒.  🍄🍉🍎🍇.
-ARRAY ALREADY DEFINED	🍉🍉🍄🍒 🍌🍎🥥🍇 🍉🍓🍇🍒
-ARRAY INDEX OUTSIDE OF BOUNDS	🍉🍉🍄🍒 🍌🍒🍌🍌 🍆🍆🍎🍑 🍒🍄🍒🍒 🍒🍄🍓
-CANNOT ACCESS DIRECTORY	🍉🍒🍆🍓 🍑🍉🍎🍑 🍎🍇🍌🍎
-DATA INPUT UNDERFLOW	🍑🍓🍌🍓 🍄🍑🍑🍎 🥥🍆🍒🍎
-DATA READ UNDERFLOW	🍑🍓🍌🍓 🍄🍄🍓 🥥🍆🍒🍎
-DEFINITION CYCLE DISCOVERED	🍎🍇🍆🍎 🍄🍉🍎🍑 🥥🍎🍄
-ERROR	🍇🍒🍒🍇
-FOR VARIABLE MULTIPLY DEFINED	🍒🍉🥥🍒 🍇🍄🍆🥥 🥥🍌🍄 🍉🍓🍇🍒
-FUNCTION DEFINITION MULTIPLY DEFINED	🥥🍆🍓 🍎🍇🍆🍎 🥥🍌🍄 🍉🍓🍇🍒
-FUNCTION DEFINITION PARAMETER MISMATCH	🥥🍆🍓 🍎🍇🍆🍎 🍆🍓🍑🍉 🍑🍓🍓🍌
-GOSUB STACK OVERFLOW	🍄🍓🍇🍄 🍑🍑🍒🍇 🍑🍉🍒🍒
-GOSUB STACK UNDERFLOW	🍄🍓🍇🍄 🍑🍑🍒🍇 🥥🍆🍒🍎
-INDEX OUT OF RANGE	🍌🍒🍌🍌 🍇🍄🍉🍓 🍒🍄🍒🍒 🍓🍌🍒🍓
-LABEL ALREADY DEFINED	🍑🍄🍉🍎 🍌🍎🥥🍇 🍉🍓🍇🍒
-LEFT / RIGHT OPERATION MISMATCH	🍉🍄🍌🍄 / 🍄🍆🍎🍌 🍆🍉🍓🍒 🍑🍓🍓🍌
-NEGATIVE INDEX	🍉🍌🍓 🍌🍒🍌🍌
-NEXT ON FOR LOOP WITH STRING VARIABLE	🍆🍌🍑🍉 🍓🍓🍒🍒 🍒🍉🥥🍒 🍇🍆🍒🍌 🥥🍎🍇🍓 🍉🍉🍓🍇 🍇🍄🍆🥥
-OPERAND MISMATCH	🍉🍄🍌🍉 🍑🍓🍓🍌
-OPTION REQUIRES A LANGUAGE	🍎🍎🥥🍄 🥥🍓🍇🥥 🍎🍌🍎🥥 🍑🍑🥥🍎
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	🍌🍎🍄🍄 🍇🍌🍌🍎 🍑🍑🥥🍎 🍉🍎🥥🍎 🍓🍎🍒🍒 🍆🍉🍓🍎 🍇🍄🍆🥥
-STRING MATH LOGIC ERROR	🍉🍉🍓🍇 🥥🥥🍎🍉 🍄🍄🍇🍎 🍇🍒🍒🍇
-UNABLE TO OPEN FILE	🍒🍌🍄 🍓🍇🍓🍒 🍌🥥🍉🍇 🍑🍑🍎🍓
-UNABLE TO OPEN TO OPEN FILE FOR READING	🍒🍌🍄 🍓🍇🍓🍒 🍌🥥🍉🍇 🍓🍇🍓🍒 🍌🥥🍉🍇 🍑🍑🍎🍓 🍒🍉🥥🍒 🥥🍓🍒
-UNDEFINED LABEL	🍑🍄🍑🍄 🍑🍄🍉🍎
-UNHANDLED OPERATION	🍎🍌🥥🍉 🍆🍉🍓🍒
-UNHANDLED OPERATION CODE	🍎🍌🥥🍉 🍆🍉🍓🍒 🍓🍓🍇🍑
-UNKNOWN IF LABEL	🍑🍎🍉🍓 🍎🍉🍑🍒 🍑🍄🍉🍎
-UNRECOGNIZED DOUBLE MATH OPERATION	🥥🍓🍄🍑 🍓🍎🍒🥥 🥥🥥🍎🍉 🍆🍉🍓🍒
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	🥥🍓🍄🍑 🥥🍆🍓 🥥🍆🍓 🍎🍇🍆🍎
-UNRECOGNIZED GOSUB LABEL	🥥🍓🍄🍑 🍄🍓🍇🍄 🍑🍄🍉🍎
-UNRECOGNIZED GOTO LABEL	🥥🍓🍄🍑 🍓🥥🍑🥥 🍑🍄🍉🍎
-UNRECOGNIZED INPUT	🥥🍓🍄🍑 🍄🍑🍑🍎
-UNRECOGNIZED INTEGER MATH OPERATION	🥥🍓🍄🍑 🍄🥥🍒🍎 🥥🥥🍎🍉 🍆🍉🍓🍒
-UNRECOGNIZED MATH TYPE	🥥🍓🍄🍑 🥥🥥🍎🍉 🍌🍇🍓
-UNRECOGNIZED NEXT VARIABLE	🥥🍓🍄🍑 🍆🍌🍑🍉 🍇🍄🍆🥥
-UNRECOGNIZED OP IN PRINT	🥥🍓🍄🍑 🍎🍎🍒🍒 🍉🥥🍑🍒 🍉🍉🍑🍇
-UNRECOGNIZED RATIONAL MATH OPERATION	🥥🍓🍄🍑 🍌🍎🍆🍇 🥥🥥🍎🍉 🍆🍉🍓🍒
-UNRECOGNIZED VARIABLE TYPE	🥥🍓🍄🍑 🍇🍄🍆🥥 🍌🍇🍓
-UNSET ENVIRONMENT VARIABLE	🍎🍄🍄🍎 🍆🍉🍓🍎 🍇🍄🍆🥥
-VARIABLE / ARRAY DEFINITION MISMATCH	🍇🍄🍆🥥 / 🍉🍉🍄🍒 🍎🍇🍆🍎 🍑🍓🍓🍌
-VARIABLE DEFINED AS ARRAY	🍇🍄🍆🥥 🍉🍓🍇🍒 🍌🍓🍇🍑 🍉🍉🍄🍒
-VARIABLE DEFINED AS NONARRAY	🍇🍄🍆🥥 🍉🍓🍇🍒 🍌🍓🍇🍑 🍄🥥🍓🍇
-VARIABLE HAS NO VALUE	🍇🍄🍆🥥 🍇🍌🍓🥥 🍉🍓🍑🍒 🍉🍌🍒🍎
-VARIABLE IS NOT AN ARRAY	🍇🍄🍆🥥 🥥🍆🍒🍒 🍆🍎🍇 🍆🍌🍇🍑 🍉🍉🍄🍒
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	🍆🍌🍓 🍌🍉🍌 🍓🍓🥥 🍎🍑🍇 🍇🥥🍓 🍄🍎🍎 🍄🥥.  🍌🍓🍎.
+ARRAY ALREADY DEFINED	🍌🍄🥥 🍇🍓🍑 🍓🍆🍄
+ARRAY INDEX OUTSIDE OF BOUNDS	🍌🍄🥥 🍆🍇🍎 🍒🍓🍌 🥥🍉🍓 🍑🍆🍓
+CANNOT ACCESS DIRECTORY	🥥🥥🍓 🍑🍎🍑 🍑🍌🍒
+DATA INPUT UNDERFLOW	🍒🍇 🍇🍇🍄 🍎🍇🍉
+DATA READ UNDERFLOW	🍒🍇 🍓🥥 🍎🍇🍉
+DEFINITION CYCLE DISCOVERED	🥥🍒🥥 🍄🍇🍄 🍆🍌🍓
+ERROR	🍆🍒🍌
+FOR VARIABLE MULTIPLY DEFINED	🍌🥥🍄 🍓🥥🍓 🍆🍓🥥 🍓🍆🍄
+FUNCTION DEFINITION MULTIPLY DEFINED	🍓🍒🍉 🥥🍒🥥 🍆🍓🥥 🍓🍆🍄
+FUNCTION DEFINITION PARAMETER MISMATCH	🍓🍒🍉 🥥🍒🥥 🍓🍇🍓 🍌🍎
+GOSUB STACK OVERFLOW	🥥🍎🍎 🍓🍌 🍒🍌🍎
+GOSUB STACK UNDERFLOW	🥥🍎🍎 🍓🍌 🍎🍇🍉
+INDEX OUT OF RANGE	🍆🍇🍎 🍉🍄🥥 🥥🍉🍓 🍉🍌
+LABEL ALREADY DEFINED	🍒🍆🍎 🍇🍓🍑 🍓🍆🍄
+LEFT / RIGHT OPERATION MISMATCH	🍎🍓🥥 / 🍉🍌🍇 🍇🍌🍓 🍌🍎
+NEGATIVE INDEX	🍑🍎🍇 🍆🍇🍎
+NEXT ON FOR LOOP WITH STRING VARIABLE	🍎🍆🍇 🍇🥥🍓 🍌🥥🍄 🍇🥥🍄 🍒🍄🍌 🥥🍎🍇 🍓🥥🍓
+OPERAND MISMATCH	🍌🍄🥥 🍌🍎
+OPTION REQUIRES A LANGUAGE	🍌🍇🍄 🍆🍆🍓 🥥🍓🍒 🍓🍓🥥
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	🥥🍎🍇 🍇🍒🍇 🍓🍓🥥 🍇🥥 🍇🍇🍓 🍄🥥🍎 🍓🥥🍓
+STRING MATH LOGIC ERROR	🥥🍎🍇 🍌🍎🍓 🍄🍄🍒 🍆🍒🍌
+UNABLE TO OPEN FILE	🍇🍓🍒 🍇🍒🥥 🍎🍄🥥 🍌🍑🍉
+UNABLE TO OPEN TO OPEN FILE FOR READING	🍇🍓🍒 🍇🍒🥥 🍎🍄🥥 🍇🍒🥥 🍎🍄🥥 🍌🍑🍉 🍌🥥🍄 🥥🍑🍑
+UNDEFINED LABEL	🍓🥥🍇 🍒🍆🍎
+UNHANDLED OPERATION	🍌🍇🍎 🍇🍌🍓
+UNHANDLED OPERATION CODE	🍌🍇🍎 🍇🍌🍓 🍎🍇🍌
+UNKNOWN IF LABEL	🍓🍆🍉 🍑🍒🍓 🍒🍆🍎
+UNRECOGNIZED DOUBLE MATH OPERATION	🍉🍄🥥 🍒🥥🍒 🍌🍎🍓 🍇🍌🍓
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	🍉🍄🥥 🍓🍒🍉 🍓🍒🍉 🥥🍒🥥
+UNRECOGNIZED GOSUB LABEL	🍉🍄🥥 🥥🍎🍎 🍒🍆🍎
+UNRECOGNIZED GOTO LABEL	🍉🍄🥥 🍒🍆🍓 🍒🍆🍎
+UNRECOGNIZED INPUT	🍉🍄🥥 🍇🍇🍄
+UNRECOGNIZED INTEGER MATH OPERATION	🍉🍄🥥 🍑🍌🍉 🍌🍎🍓 🍇🍌🍓
+UNRECOGNIZED MATH TYPE	🍉🍄🥥 🍌🍎🍓 🍌🍉🍌
+UNRECOGNIZED NEXT VARIABLE	🍉🍄🥥 🍎🍆🍇 🍓🥥🍓
+UNRECOGNIZED OP IN PRINT	🍉🍄🥥 🍑🍆🍄 🍌🍑🍓 🍆🍇🍒
+UNRECOGNIZED RATIONAL MATH OPERATION	🍉🍄🥥 🍆🍎🍉 🍌🍎🍓 🍇🍌🍓
+UNRECOGNIZED VARIABLE TYPE	🍉🍄🥥 🍓🥥🍓 🍌🍉🍌
+UNSET ENVIRONMENT VARIABLE	🍇🍒🍎 🍄🥥🍎 🍓🥥🍓
+VARIABLE / ARRAY DEFINITION MISMATCH	🍓🥥🍓 / 🍌🍄🥥 🥥🍒🥥 🍌🍎
+VARIABLE DEFINED AS ARRAY	🍓🥥🍓 🍓🍆🍄 🍉🥥🍑 🍌🍄🥥
+VARIABLE DEFINED AS NONARRAY	🍓🥥🍓 🍓🍆🍄 🍉🥥🍑 🍒🍇🍄
+VARIABLE HAS NO VALUE	🍓🥥🍓 🍄🍎🍌 🍌🍉🍌 🍌🍑
+VARIABLE IS NOT AN ARRAY	🍓🥥🍓 🍒🍓🍓 🍌🍒🍉 🍄🍎🍑 🍌🍄🥥

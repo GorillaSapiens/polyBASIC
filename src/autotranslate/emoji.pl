@@ -16,7 +16,11 @@ sub toemoji($) {
       $value = (($value << 5) + $value) ^ ord($char);
    }
 
-   $value %= 10000;
+   # 991 was chosen arbitrarily.  it's a prime number
+   # that produces tokens that do not collide in the
+   # verification step
+   $value %= 991;
+
    my $ret = "";
    while ($value > 0) {
       $ret .= $alphabet[$value % length($language)];
