@@ -18,17 +18,19 @@ foreach $file (`ls *guru.txt`) {
             print "$pieces[0]:$pieces[1]\n";
             $pieces[1]++;
             $cmd = "head -$pieces[1] ../../polybasic/$pieces[0] | tail -1";
-            @out = `$cmd`;
-            foreach my $out (@out) {
-               $out =~ s/^[ ]+//g;
-            }
-            $actual = pop @out;
-            print $actual;
-            if ($actual =~ / $stub / || $actual =~ / $stub$/) {
-               print "MATCH\n";
-            }
-            else {
-               print "FAIL\n";
+            if (!($cmd =~ />/)) { # WTF?
+               @out = `$cmd`;
+               foreach my $out (@out) {
+                  $out =~ s/^[ ]+//g;
+               }
+               $actual = pop @out;
+               print $actual;
+               if ($actual =~ / $stub / || $actual =~ / $stub$/) {
+                  print "MATCH\n";
+               }
+               else {
+                  print "FAIL\n";
+               }
             }
          }
       }
