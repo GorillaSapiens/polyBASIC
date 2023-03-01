@@ -52,32 +52,28 @@ const char *has_tuple(const char *token) {
 }
 
 enum yytokentype is_reserved_word(const char *a) {
-   const char *proper = NULL;
+   const char *english = NULL;
 
    // find the tuple that matches this word.
    for (Tuple *p = tuple_head; p; p = p->next) {
-      if (!strcmp(p->translation, a)) {
-         proper = p->english;
+      if (!utf8casecmp(p->translation, a)) {
+         english = p->english;
          break;
       }
-      if (!strcmp(p->english, a)) {
-         proper = p->translation;
-         break;
-      }
+   }
+
+   if (!english) {
+      return (enum yytokentype) 0;
    }
 
    // now see if there are any matches
    for (int i = 0; i < (sizeof(reserved)/sizeof(reserved[0])); i++) {
-#ifdef CASE_MUST_MATCH
-      if (reserved[i].name && !strcmp(reserved[i].name, proper ? proper : a)) {
+      if (reserved[i].name && !strcmp(reserved[i].name, english)) {
          return reserved[i].token;
       }
-#else
-      if (reserved[i].name && !utf8casecmp(reserved[i].name, proper ? proper : a)) {
-         return reserved[i].token;
-      }
-#endif
    }
+
+   // we should never get this far!
    return (enum yytokentype) 0;
 }
 
@@ -146,17 +142,40 @@ char *trim(char *in) {
 
 void read_translations(FILE *f) {
    char buf[16384];
+   int mode = 0;
    while (fgets(buf, sizeof(buf), f) == buf) {
-      char *s;
-      if ((s = /*assignment*/ strchr(buf, '#'))) {
-         *s = 0;
+      if (!mode) {
+         char *s;
+         if ((s = /*assignment*/ strchr(buf, '#'))) {
+            *s = 0;
+         }
+         if ((s = /*assignment*/ strstr(buf, "<="))) {
+            *s = 0;
+            char *english = trim(buf);
+            char *translation = trim(s+2);
+            //printf("TUPLE |%s|%s|\n", a, b);
+            add_tuple(english,translation);
+         }
+         if (strstr(buf, "[errors]") == buf) {
+            mode++;
+         }
       }
-      if ((s = /*assignment*/ strstr(buf, "<="))) {
-         *s = 0;
-         char *english = trim(buf);
-         char *translation = trim(s+2);
-         //printf("TUPLE |%s|%s|\n", a, b);
-         add_tuple(english,translation);
+      else {
+         int n = strlen(buf);
+         if (n) {
+            if (buf[n - 1] < ' ') {
+               buf[n - 1] = 0;
+               n--;
+
+               if (n) {
+                  char *translation = strchr(buf, '\t');
+                  if (translation) {
+                     *translation++ = 0;
+                     add_error(buf, translation);
+                  }
+               }
+            }
+         }
       }
    }
 }

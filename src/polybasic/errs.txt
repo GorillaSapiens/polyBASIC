@@ -1,4 +1,4 @@
-❮%0❯ at %1:%2 -> 
+❮%0❯ at %1:%2 ->%b
 ❮%0❯ at %1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n
