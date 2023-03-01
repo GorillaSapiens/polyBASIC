@@ -1206,6 +1206,7 @@ void run(Tree *p) {
                         break;
                      default:
                         GURU;
+                        // no test case, this should not be possible
                         eprintf("SOURCE %0:%1, UNRECOGNIZED MID OP %2%n",
                            p->line, p->col, mid->op);
                         exit(-1);
@@ -1229,6 +1230,7 @@ void run(Tree *p) {
                Tree *fore = get_for(p->sval);
                if (!fore) {
                   GURU;
+                  // test case unrecognext
                   eprintf("SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
@@ -1304,6 +1306,7 @@ void run(Tree *p) {
                      {
                         // punt, this is just stupid
                         GURU;
+                        // test case loopstring
                         eprintf("SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n",
                            p->line, p->col);
                         exit(-1);
@@ -1321,6 +1324,7 @@ void run(Tree *p) {
                Tree *t = get_label(p->sval);
                if (!t) {
                   GURU;
+                  // test case badgoto
                   eprintf("SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
@@ -1333,6 +1337,7 @@ void run(Tree *p) {
                Tree *t = get_label(p->sval);
                if (!t) {
                   GURU;
+                  // test case badgosub
                   eprintf("SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n",
                      p->line, p->col, p->sval);
                   exit(-1);
@@ -1341,6 +1346,7 @@ void run(Tree *p) {
                gosub_stack[gosub_spot++] = np;
                if (gosub_spot == GOSUB_STACKSIZE) {
                   GURU;
+                  // test case gosuboverflow
                   eprintf("SOURCE %0:%1, GOSUB STACK OVERFLOW%n", p->line, p->col);
                   exit(-1);
                }
@@ -1353,6 +1359,7 @@ void run(Tree *p) {
                gosub_spot--;
                if (gosub_spot < 0) {
                   GURU;
+                  // test case gosubunderflow
                   eprintf("SOURCE %0:%1, GOSUB STACK UNDERFLOW%n", p->line, p->col);
                   exit(-1);
                }
@@ -1366,6 +1373,7 @@ void run(Tree *p) {
                Tree *target = get_label(p->middle->sval);
                if (!target) {
                   GURU;
+                  // test case badiflabel
                   eprintf("SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n", p->line, p->col, p->sval);
                   exit(-1);
                }
@@ -1407,6 +1415,7 @@ void run(Tree *p) {
                }
                else {
                   GURU;
+                  // no test case
                   eprintf("SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n",
                      p->line, p->col, left->op, right->op);
                   exit(-1);
@@ -1432,12 +1441,14 @@ void run(Tree *p) {
                      break;
                   default:
                      GURU;
+                     // no test case
                      eprintf("SOURCE %0:%1, UNHANDLED OP %2%n", p->line, p->left->col, result->op);
                      exit(-1);
                      break;
                }
                if (i < 0) {
                   GURU;
+                  // test case negativeon
                   eprintf("SOURCE %0:%1, NEGATIVE INDEX %d%n", p->line, p->left->col, i);
                   exit(-1);
                }
@@ -1449,12 +1460,14 @@ void run(Tree *p) {
                }
                if (i || label == NULL) {
                   GURU;
+                  // test case bigon
                   eprintf("SOURCE %0:%1, INDEX %2 OUT OF RANGE%n", p->line, p->left->col, oi);
                   exit(-1);
                }
                Tree *target = get_label(label->sval);
                if (!target) {
                   GURU;
+                  // test case badonlabel
                   eprintf("SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n", p->line, label->col, label->sval);
                   exit(-1);
                }
