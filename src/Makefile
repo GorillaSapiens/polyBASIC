@@ -1,5 +1,5 @@
 .PHONY: all
-all: reflex polybasic verify tests
+all: reflex polybasic autotranslate verify tests
 
 .PHONY: reflex
 reflex:
@@ -14,6 +14,13 @@ polybasic:
 	@echo ===== MAKE $@
 	@echo =========================
 	(cd polybasic && make)
+
+.PHONY: autotranslate
+autotranslate:
+	@echo =========================
+	@echo ===== MAKE $@
+	@echo =========================
+	(cd autotranslate && make)
 
 .PHONY: verify
 verify:
