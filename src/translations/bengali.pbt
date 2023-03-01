@@ -120,11 +120,13 @@ RANDOMIZE <= এলমলভব
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	%1 0❯%1:%2 -> এ
+❮%0❯ at %1:%2 ->%b	%1 0❯%1:%2 ->%বি এ
 ❮%0❯ at %1:%2%n	%1 0❯%1:%2%এন
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	এবং কমান্ড লাইনে কোনও ভাষা দেওয়া হয়নি। প্রস্থান।%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	ডিরেক্টরি অ্যাক্সেস করতে পারে না ❮%0❯।%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	ত্রুটি: ডিএফ ❮%0❯ গুণিত সংজ্ঞায়িত%1:%2 এবং%3:%4%এন
 ERROR: DEFINITION CYCLE DISCOVERED%n	ত্রুটি: সংজ্ঞা চক্র%n আবিষ্কার করেছে
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	ত্রুটি: ❮%0 ❯ গুণিত সংজ্ঞায়িত%1:%2 এবং%3:%4%এন
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	ত্রুটি:%1 এ লেবেল ❮%0❯:%2 ইতিমধ্যে সংজ্ঞায়িত%3:%4%এন
 ERROR: line %0 column %1, ❮%2❯ has no value%n	ত্রুটি: লাইন %0 কলাম %1, ❮ %2❯ এর কোনও মান %এন নেই
 ERROR: NO PARSE TREE FOR LINE %0%n	ত্রুটি: লাইন %0 %এন এর জন্য পার্স ট্রি নেই

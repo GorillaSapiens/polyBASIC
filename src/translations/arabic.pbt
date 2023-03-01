@@ -120,11 +120,13 @@ RANDOMIZE <= عشوائي
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮ ٪ 0❯ في ٪ 1: ٪ 2 ->
+❮%0❯ at %1:%2 ->%b	❮ ٪ 0❯ في ٪ 1: ٪ 2 -> ٪ ب
 ❮%0❯ at %1:%2%n	❮ ٪ 0❯ في ٪ 1: ٪ 2 ٪ N
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	ولا توجد لغة ممنوحة على سطر الأوامر. الخروج. ٪ ن
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	لا يمكن الوصول إلى دليل ❮ ٪ 0❯. ٪ n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	خطأ: def ❮ ٪ 0❯ ضاعف ٪ 1: ٪ 2 و ٪ 3: ٪ 4 ٪ n
 ERROR: DEFINITION CYCLE DISCOVERED%n	خطأ: دورة التعريف المكتشفة ٪ n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	خطأ: بالنسبة لـ ❮ ٪ 0❯ ، اضرب ٪ 1: ٪ 2 و ٪ 3: ٪ 4 ٪ n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	خطأ: التسمية ❮ ٪ 0❯ في ٪ 1: ٪ 2 محددة بالفعل ٪ 3: ٪ 4 ٪ n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	خطأ: السطر ٪ 0 العمود ٪ 1 ، ❮ ٪ 2❯ ليس له قيمة ٪ n
 ERROR: NO PARSE TREE FOR LINE %0%n	خطأ: لا توجد شجرة تحليل للخط ٪ 0 ٪ N

@@ -120,17 +120,19 @@ RANDOMIZE <= 무작위화
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0%at%1 :%2->
+❮%0❯ at %1:%2 ->%b	❮%0%at%1 :%2->%b
 ❮%0❯ at %1:%2%n	❮%0%at%1 :%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	그리고 명령 줄에는 언어가 없습니다. 출구.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	디렉토리에 액세스 할 수 없습니다
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	오류 : def ❯%0❮ 곱하기 정의%1 :%2 및%3 :%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	오류 : 정의주기 발견%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	오류 : ❯%0❮의 경우 곱하기 정의%1 :%2 및%3 :%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	오류 : 레이블 ❯%0❮ at%1 :%2 이미 정의 된%3 :%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	오류 : line %0 열 %1, ❮ %2❯ 값이 없습니다.
 ERROR: NO PARSE TREE FOR LINE %0%n	오류 : 라인 %0 %n에 대한 구문 분석 트리 없음
 -l requires a language.%n	-L 언어가 필요합니다.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	'POLYBASICPATH'환경 변수 및/또는 언어 설정을 확인하십시오.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Poly -Basiclang 'Environment 변수 설정되지 않음
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'Environment 변수 설정되지 않음
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Source%0 :%1, 배열 ❮%2 ❯ 이미 라인에 정의 된%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	소스%0 :%1, 데이터 입력 언더 플로우%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	소스%0 :%1, 데이터 읽기 언더 플로%n
@@ -139,7 +141,7 @@ SOURCE %0:%1, GOSUB STACK OVERFLOW%n	소스%0 :%1, Gosub 스택 오버플로%n
 SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	소스%0 :%1, Gosub 스택 언더 플로%n
 SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	소스 %0 : %1, 색인 %2 범위 %n
 SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	소스 %0 : %1, 왼쪽/오른쪽 OP 불일치 %2 %3 %n
-SOURCE %0:%1, NEGATIVE INDEX %d%n	소스 %0 : %1, 음의 지수 %d %n
+SOURCE %0:%1, NEGATIVE INDEX %d%n	소스 %0 : %1, 음수 인덱스 %d %n
 SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Source%0 :%1, 문자열 변수%n을 가진 루프에 대한 다음 on
 SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Source%0 :%1, 오페라 불일치 ❮%2 :%3❯%4 :%5 ❯%n
 SOURCE %0:%1, STRING MATH LOGIC ERROR%n	소스%0 :%1, 문자열 수학 로직 오류%n
@@ -156,7 +158,7 @@ SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Source%0 :%1, 인식되지 �
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	소스%0 :%1, 변수 ❮%2❯ Dim%3 (%4 ..%5,%6 ..%7) 배열%8%n으로 정의됩니다.
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	소스%0 :%1, 변수 ❮%2❯ Dim%3 (%4 ..%5) 라인에 대한 배열%6%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 Dim%3 어레이로 정의
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 비 체류로 정의 된%3%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 비 계절로 정의 된%3%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim1 as %3 외부 경계 1 %4 .. %5 라인 %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim1 as %3 외부 경계 %4 .. %5 라인 %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim2 as %3 외부 경계 2 %4 .. %5 라인 %6 %n

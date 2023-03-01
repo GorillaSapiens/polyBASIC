@@ -120,11 +120,13 @@ RANDOMIZE <= ALEATÓRIA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ em%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ em%1:%2 ->%B
 ❮%0❯ at %1:%2%n	❮%0❯ em%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	E nenhum idioma dado na linha de comando. Saindo.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Não é possível acessar o diretório ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erro: def ❮%0❯ Multiply definido%1:%2 e%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Erro: ciclo de definição descoberta%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erro: por ❮%0❯ Multiply definido%1:%2 e%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Erro: etiqueta ❮%0❯ em%1:%2 já definido%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Erro: linha %0 coluna %1, ❮ %2❯ não tem valor %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Erro: nenhuma árvore de análise para linha %0 %n

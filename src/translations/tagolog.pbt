@@ -120,11 +120,13 @@ RANDOMIZE <= RANDOMIZE
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ sa%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ sa%1:%2 ->%B
 ❮%0❯ at %1:%2%n	❮%0❯ sa%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	At walang wikang ibinigay sa linya ng utos. Paglabas.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Hindi ma -access ang direktoryo ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: def ❮%0❯ Multiply tinukoy%1:%2 at%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	ERROR: Napag -alaman ng Cycle ng Kahulugan%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	ERROR: Para sa ❮%0❯ Multiply na tinukoy%1:%2 at%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Error: Label ❮%0❯ sa%1:%2 Natukoy na%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: linya %0 haligi %1, ❮ %2❯ ay walang halaga %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Error: walang puno ng parse para sa linya %0 %n

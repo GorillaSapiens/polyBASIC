@@ -120,11 +120,13 @@ RANDOMIZE <= РАНДОМИЗИРОВАТЬ
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ AT%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ AT%1:%2 ->%b
 ❮%0❯ at %1:%2%n	❮%0❯ AT%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	И нет языка, не указанного в командной строке. Выход.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Невозможно получить доступ к каталогу ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Ошибка: def ❮%0❯ Умноженное определено%1:%2 и%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Ошибка: цикл определения обнаружена%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Ошибка: для ❮%0❯ Умноженное определение%1:%2 и%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Ошибка: метка ❮%0❯%1:%2 уже определено%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Ошибка: Line %0 Column %1, ❮ %2❯ не имеет значения %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Ошибка: нет дерева разбора для линии %0 %n
@@ -162,5 +164,5 @@ SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Источник %0: %1, переменная ❮ %2❯ Dim2 As %3 внешние границы 2 %4 .. %5 от линии %6 %n
 UNABLE TO OPEN %0 FOR READING.%n	Невозможно открыть %0 для чтения. %n
 UNABLE TO OPEN FILE ❮%0❯%n	Невозможно открыть файл ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Unkcode OpCode SRC: %0 OP %1 Линия %2 COL %3 %n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Неупомянутый OpCode SRC: %0 OP %1 Line %2 COL %3 %n
 UNRECOGNIZED INPUT ❮%0❯%n	Нераспознанный вход ❮%0❯%n

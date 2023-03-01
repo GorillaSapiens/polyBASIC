@@ -120,11 +120,13 @@ RANDOMIZE <= HAZARDA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ je%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ je%1:%2 ->%b
 ❮%0❯ at %1:%2%n	❮%0❯ je%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Kaj neniu lingvo donita sur komandlinio. Elirante.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ne povas aliri dosierujon ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Eraro: def ❮%0❯ multobligu difinitan%1:%2 kaj%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Eraro: Difina ciklo malkovrita%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Eraro: Por ❮%0❯ multobligu difinitan%1:%2 kaj%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Eraro: Etikedo ❮%0❯ AT%1:%2 Jam difinita%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Eraro: Line %0 Kolumno %1, ❮ %2❯ havas neniun valoron %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Eraro: Neniu parsearbo por linio %0 %n

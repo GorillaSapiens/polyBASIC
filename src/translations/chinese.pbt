@@ -120,11 +120,13 @@ RANDOMIZE <= 随机化
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮％0❯在％1：％2->
+❮%0❯ at %1:%2 ->%b	❮％0❯在％1：％2->％b
 ❮%0❯ at %1:%2%n	❮％0❯在％1：％2％n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	并且在命令行上没有使用语言。退出。％n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	无法访问目录❮％0❯。％n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	错误：def❮％0❯乘法定义％1：％2和％3：％4％n
 ERROR: DEFINITION CYCLE DISCOVERED%n	错误：定义周期发现％n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	错误：对于❮％0❯乘法定义％1：％2和％3：％4％n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	错误：标签❮％0❯在％1：％2已经定义的％3：％4％n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	错误：线％0列％1，❮％2❯没有值％n
 ERROR: NO PARSE TREE FOR LINE %0%n	错误：无解析树的线％0％n

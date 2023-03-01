@@ -120,11 +120,13 @@ RANDOMIZE <= PHUNGULA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮ %0❯ ku %1: %2 ->
+❮%0❯ at %1:%2 ->%b	❮ %0❯ ku %1: %2 -> %B
 ❮%0❯ at %1:%2%n	❮ %0❯ ku- %1: %2 %n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Futhi alukho ulimi olunikezwe kulayini womyalo. Ukuphuma. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ayikwazi ukufinyelela umkhombandlela ❮ %0❯. %n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	I-ERROR: def ❮ %0❯ ichaze i- %1: %2 no %3: %4 %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Iphutha: Ukuchazwa komjikelezo kutholakele %n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	I-ERROR: ye-❮ %0❯ ichaze kaningi %1: %2 no %3: %4 %n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Iphutha: Ilebula ❮ %0❯ ku- %1: %2 isivele ichaziwe %3: %4 %n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Iphutha: umugqa %0 ikholomu %1, ❮ %2❯ ayinanzuzo %n
 ERROR: NO PARSE TREE FOR LINE %0%n	I-ERROR: Akukho Tree Parse for Line %0 %n
@@ -145,7 +147,7 @@ SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Umthombo %0: %1, i-oper
 SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Umthombo %0: %1, I-String Math Logic Iphutha %n
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Umthombo %0: %1, ilebula elingachazwanga ❮ %2❯ %n
 SOURCE %0:%1, UNHANDLED OP %2%n	Umthombo %0: %1, ungajabuli i-OP %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Umthombo %0: %1, Akaziwa Uma Ilebula ❮ %2❯ %n
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Umthombo %0: %1, Akaziwa Uma ilebula ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Umthombo %0: %1, I-def engaziwa ye-def ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Umthombo %0: %1, Ilebula engaziwa ye-GOSUB ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Umthombo %0: %1, ilebula le-goto elingaziwa ❮ %2❯ %n

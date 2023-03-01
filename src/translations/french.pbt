@@ -120,11 +120,13 @@ RANDOMIZE <= RANDOMISER
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮ %0❯ à %1: %2 ->
+❮%0❯ at %1:%2 ->%b	❮ %0❯ à %1: %2 -> %b
 ❮%0❯ at %1:%2%n	❮ %0❯ à %1: %2 %n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Et aucune langue donnée sur la ligne de commande. Sortant. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Impossible d'accéder au répertoire ❮ %0❯. %n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erreur: DEF ❮ %0❯ Multipliser définis %1: %2 et %3: %4 %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Erreur: cycle de définition découvert %n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Erreur: pour ❮ %0❯ multipliez définie %1: %2 et %3: %4 %n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Erreur: étiquette ❮ %0❯ à %1: %2 déjà défini %3: %4 %n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Erreur: ligne %0 colonne %1, ❮ %2❯ n'a pas de valeur %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Erreur: pas d'arbre d'analyse pour la ligne %0 %n

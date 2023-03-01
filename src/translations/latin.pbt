@@ -120,11 +120,13 @@ RANDOMIZE <= RANDOMIZE
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮ %0❯ ad %1: %2 ->
+❮%0❯ at %1:%2 ->%b	❮ %0 ❯ %1, %2 -> %B
 ❮%0❯ at %1:%2%n	❮ %0❯ ad %1, %2 %n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Et non linguam dedit in order versus. Exivit. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Potest accedere Directory ❮ %0❯. %n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: DEF ❮ %0❯ multiplicare defined %1: %2 %3, %4 %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Error: Definitio exolvuntur inventa %n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Error: nam ❮ %0 ❯ multiplicare defined %1: %2 et %3, %4 %n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Error: Label ❮ %0❯ ad %1: %2 iam defined %3, %4 %n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: linea %0 columna %1, ❮ %2❯ habet valorem %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Error: Non parse in linea %0 %n

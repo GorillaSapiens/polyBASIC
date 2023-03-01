@@ -120,11 +120,13 @@ RANDOMIZE <= MENGACAK
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ AT%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ AT%1:%2 ->%b
 ❮%0❯ at %1:%2%n	❮%0❯ AT%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Dan tidak ada bahasa yang diberikan pada baris perintah. Keluar.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Tidak dapat mengakses direktori ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kesalahan: def ❮%0❯ multiply didefinisikan%1:%2 dan%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Kesalahan: siklus definisi ditemukan%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kesalahan: Untuk ❮%0❯ multiply didefinisikan%1:%2 dan%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Kesalahan: Label ❮%0 ❯ AT%1:%2 sudah ditentukan%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Kesalahan: baris %0 kolom %1, ❮ %2❯ tidak memiliki nilai %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Kesalahan: tidak ada pohon parse untuk baris %0 %n

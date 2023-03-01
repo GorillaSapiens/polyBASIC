@@ -120,11 +120,13 @@ RANDOMIZE <= אקראי
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ ב%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ at%1:%2 ->%b
 ❮%0❯ at %1:%2%n	❮%0❯ ב%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	ושום שפה ניתנת בשורת הפקודה. יציאה.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	לא ניתן לגשת לספריה ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	שגיאה: def ❮%0❯ הכפל%מוגדר%1:%2 ו-%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	שגיאה: מחזור ההגדרה התגלה%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	שגיאה: עבור ❮%0❯ הכפלת%מוגדרת%1:%2 ו-%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	שגיאה: תווית ❮%0❯ at%1:%2 כבר מוגדר%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	שגיאה: קו %0 עמודה %1, ❮ %2❯ אין ערך %n
 ERROR: NO PARSE TREE FOR LINE %0%n	שגיאה: אין עץ ניתוח עבור קו %0 %n

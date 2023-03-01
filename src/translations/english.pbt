@@ -120,11 +120,13 @@ RANDOMIZE <= RANDOMIZE
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ at %1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ at %1:%2 ->%b
 ❮%0❯ at %1:%2%n	❮%0❯ at %1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	CANNOT ACCESS DIRECTORY ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	ERROR: DEFINITION CYCLE DISCOVERED%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	ERROR: line %0 column %1, ❮%2❯ has no value%n
 ERROR: NO PARSE TREE FOR LINE %0%n	ERROR: NO PARSE TREE FOR LINE %0%n

@@ -120,11 +120,13 @@ RANDOMIZE <= ראנדאמייז
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮ %0❯ בייַ %1: %2 ->
+❮%0❯ at %1:%2 ->%b	❮ %0❯ בייַ %1: %2 -> %ב
 ❮%0❯ at %1:%2%n	❮ %0❯ ביי %1: %2 %n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	און קיין שפּראַך געגעבן אויף באַפֿעלן שורה. אַרויסגאַנג. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	קענען ניט צוטריט וועגווייַזער ❮ %0❯. %n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	ERROR: דעפ ❮ %0❯ מערן דיפיינד %1: %2 און %3: %4 %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	טעות: דעפֿיניציע ציקל דיסקאַווערד %n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	גרייַז: פֿאַר ❮ %0❯ מערן דיפיינד %1: %2 און %3: %4 %n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	טעות: לאַבעל ❮ %0❯ ביי %1: %2 שוין דיפיינד %3: %4 %n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	ERROR: ליניע %0 זייַל %1, ❮ %2❯ האט קיין ווערט %n
 ERROR: NO PARSE TREE FOR LINE %0%n	טעות: קיין פּאַרס בוים פֿאַר שורה %0 %n

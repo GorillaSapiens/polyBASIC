@@ -120,11 +120,13 @@ RANDOMIZE <= अनयमत
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0 ❮%1:%2 -> पर
+❮%0❯ at %1:%2 ->%b	❮%0 ❮%1:%2 ->%b पर
 ❮%0❯ at %1:%2%n	❮%0 ❮%1 पर:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	और कमांड लाइन पर कोई भाषा नहीं दी गई है। बाहर निकलना।%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	निर्देशिका ❮%0❯ तक पहुंच नहीं सकते।%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	त्रुटि: def ❮%0❯ गुणा परिभाषित%1:%2 और%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	त्रुटि: परिभाषा चक्र की खोज%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	त्रुटि: ❮%0❯ के लिए गुणा परिभाषित%1:%2 और%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	त्रुटि: लेबल ❮%0❯%1 पर:%2 पहले से ही परिभाषित%3:%4%एन
 ERROR: line %0 column %1, ❮%2❯ has no value%n	त्रुटि: लाइन %0 कॉलम %1, ❮ %2❯ का कोई मूल्य %n नहीं है
 ERROR: NO PARSE TREE FOR LINE %0%n	त्रुटि: लाइन %0 %n के लिए कोई पार्स ट्री नहीं

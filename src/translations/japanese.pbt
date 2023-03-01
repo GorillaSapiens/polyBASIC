@@ -120,11 +120,13 @@ RANDOMIZE <= ランダム化
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮％0❯at％1：％2->
+❮%0❯ at %1:%2 ->%b	❮％0❯at％1：％2->％b
 ❮%0❯ at %1:%2%n	❮％0❯at％1：％2％n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	コマンドラインには言語が与えられていません。終了。％n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	ディレクトリにアクセスできません❮％0❯。％n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	エラー：def❮％0❯定義済み％1：％2および％3：％4％nを掛ける
 ERROR: DEFINITION CYCLE DISCOVERED%n	エラー：定義サイクルが発見された％n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	エラー：❮％0〜定義された％1：％2および％3：％4％nを掛ける
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	エラー：ラベル❮％0❯at％1：％2既に定義されている％3：％4％n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	エラー：line％0列％1、❮％2❯には値％nがありません
 ERROR: NO PARSE TREE FOR LINE %0%n	エラー：線の解析ツリーはありません％0％n

@@ -120,11 +120,13 @@ RANDOMIZE <= BILAMPANGILIO
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ kwa%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ kwa%1:%2 ->%b
 ❮%0❯ at %1:%2%n	❮%0❯ kwa%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Na hakuna lugha iliyopewa kwenye mstari wa amri. Kuondoka.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Haiwezi kupata saraka ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kosa: DEF ❮%0❯ Imefafanuliwa%1:%2 na%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Kosa: Mzunguko wa ufafanuzi umegunduliwa%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Kosa: kwa ❮%0❯ imeongezeka%1:%2 na%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Kosa: Lebo ❮%0❯ kwa%1:%2 tayari imefafanuliwa%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Kosa: mstari %0 safu %1, ❮ %2❯ haina thamani %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Kosa: Hakuna mti wa parse kwa mstari %0 %n

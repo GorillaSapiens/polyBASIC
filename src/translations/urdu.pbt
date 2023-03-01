@@ -120,14 +120,16 @@ RANDOMIZE <= بےترتیب
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮ ٪ 0❯ at 1: ٪ 2 ->
+❮%0❯ at %1:%2 ->%b	❮ ٪ 0❯ at 1: ٪ 2 -> ٪ b
 ❮%0❯ at %1:%2%n	❮ ٪ 0❯ at 1: ٪ 2 ٪ n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	اور کمانڈ لائن پر کوئی زبان نہیں دی گئی۔ باہر نکلنا۔ ٪ n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	ڈائریکٹری تک رسائی حاصل نہیں کرسکتی ❮ ٪ 0❯. ٪ n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	خرابی: Def ❮ ٪ 0❯ وضاحت شدہ ٪ 1: ٪ 2 اور ٪ 3: ٪ 4 ٪ N
 ERROR: DEFINITION CYCLE DISCOVERED%n	غلطی: تعریف سائیکل دریافت ٪ n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	خرابی: ❮ ٪ 0❯ کے لئے وضاحت شدہ ٪ 1: ٪ 2 اور ٪ 3: ٪ 4 ٪ N
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	غلطی: لیبل ❮ ٪ 0❯ at 1: ٪ 2 پہلے ہی وضاحت شدہ ٪ 3: ٪ 4 ٪ n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	خرابی: لائن ٪ 0 کالم ٪ 1 ، ❮ ٪ 2❯ کی کوئی قیمت نہیں ہے ٪ n
-ERROR: NO PARSE TREE FOR LINE %0%n	غلطی: لائن ٪ 0 ٪ N کے لئے کوئی پارس درخت نہیں
+ERROR: NO PARSE TREE FOR LINE %0%n	غلطی: لائن ٪ 0 ٪ n کے لئے کوئی پارس درخت نہیں
 -l requires a language.%n	-l کو ایک زبان کی ضرورت ہے۔ ٪ n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	براہ کرم 'پولی بیسک پاتھ' ماحولیاتی متغیر اور/یا زبان کی ترتیبات کو چیک کریں۔ ٪ N
 POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'ماحولیاتی متغیر مقرر نہیں ،
@@ -158,9 +160,9 @@ SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	ما
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ لائن پر DIM ٪ 3 سرنی کے طور پر بیان کردہ 4 ٪ N
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ لائن پر نانری کے طور پر بیان کردہ ٪ 3 ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ dim1 as ٪ 3 سے باہر کی حد 1 ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ n سے ٪ 5
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim1 as ٪ 3 سے باہر ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ N سے ٪ 5
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim1 as ٪ 3 سے باہر ٪ 4 .. ٪ 5 سے ٪ 5 ٪ 6 ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim2 as ٪ 3 سے باہر کی حد 2 ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ N سے ٪ 5
 UNABLE TO OPEN %0 FOR READING.%n	پڑھنے کے لئے ٪ 0 کھولنے سے قاصر۔ ٪ n
 UNABLE TO OPEN FILE ❮%0❯%n	فائل کھولنے سے قاصر ❮ ٪ 0❯ ٪ n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	غیر منقولہ اوپکوڈ ایس آر سی: ٪ 0 آپٹ ٪ 1 لائن ٪ 2 کرنل ٪ 3 ٪ n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	غیر منقولہ اوپکوڈ ایس آر سی: ٪ 0 آپٹ ٪ 1 لائن ٪ 2 کرنل ٪ 3 ٪ N
 UNRECOGNIZED INPUT ❮%0❯%n	غیر تسلیم شدہ ان پٹ ❮ ٪ 0❯ ٪ n

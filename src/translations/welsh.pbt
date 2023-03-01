@@ -120,11 +120,13 @@ RANDOMIZE <= ARHAP
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-❮%0❯ at %1:%2 ->	❮%0❯ ar%1:%2 ->
+❮%0❯ at %1:%2 ->%b	❮%0❯ ar%1:%2 ->%b
 ❮%0❯ at %1:%2%n	❮%0❯ ar%1:%2%n
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	A dim iaith a roddir ar linell orchymyn. Gadael.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Methu cyrchu cyfeiriadur ❮%0❯.%n
+ERROR: def ❮%0❯ multiply defined %1:%2 and %3:%4%n	Gwall: def ❮%0❯ Lluoswch wedi'i ddiffinio%1:%2 a%3:%4%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Gwall: Cylch diffiniad wedi'i ddarganfod%n
+ERROR: for ❮%0❯ multiply defined %1:%2 and %3:%4%n	Gwall: ar gyfer ❮%0❯ Lluoswch wedi'i ddiffinio%1:%2 a%3:%4%n
 ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Gwall: Label ❮%0❯ ar%1:%2 eisoes wedi'i ddiffinio%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Gwall: llinell %0 colofn %1, ❮ %2❯ nid oes gan unrhyw werth %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Gwall: dim coeden ddosrannu ar gyfer llinell %0 %n
