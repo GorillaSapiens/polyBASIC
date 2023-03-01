@@ -125,14 +125,14 @@ RANDOMIZE <= ALEATÓRIA
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	E nenhum idioma dado na linha de comando. Saindo.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Não é possível acessar o diretório ❮%0❯.%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Erro: ciclo de definição descoberta%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Erro: Rótulo ❮%0❯ em%1:%2 já definido%3:%4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Erro: etiqueta ❮%0❯ em%1:%2 já definido%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Erro: linha %0 coluna %1, ❮ %2❯ não tem valor %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Erro: nenhuma árvore de análise para linha %0 %n
 -l requires a language.%n	-l requer um idioma.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Verifique a variável de ambiente 'POLYBASICPATH' e/ou configurações de idioma.%n
 POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Variável de ambiente PoliBasiclang não definida,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Fonte%0:%1, matriz ❮%2❯ já definido na linha%3%n
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Fonte%0:%1, entrada de dados subfluente%n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Fonte%0:%1, entrada de dados subflow%n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Fonte%0:%1, dados Leia o subflow%n
 SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Fonte %0: %1, função def ❮ %2❯ requer %3 params, mas chamado com %4 %n
 SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Fonte%0:%1, Gosub Stack Overflow%n
@@ -149,16 +149,16 @@ SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fonte%0:%1, desconhecido se rótulo �
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fonte%0:%1, função não reconhecida def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fonte%0:%1, etiqueta Gosub não reconhecida ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Fonte%0:%1, rótulo Goto não reconhecido ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Fonte%0:%1, matemática não reconhecida ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fonte %0: %1, não reconhecido Op %2 %n
+SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Fonte%0:%1, Math Op não reconhecido ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fonte %0: %1, não reconhecido médio %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Fonte%0:%1, não reconhecida a próxima variável ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Fonte%0:%1, Tipo de variável não reconhecido ❮%2❯%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fonte%0:%1, variável ❮%2❯ Definido como Dim%3 (%4 ..%5,%6 ..%7) Matriz na linha%8%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fonte%0:%1, variável ❮%2❯ Definido como Dim%3 (%4 ..%5,%6 ..%7) Matriz on -line%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Fonte%0:%1, variável ❮%2❯ Definido como Dim%3 (%4 ..%5) Matriz on -line%6%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Fonte%0:%1, variável ❮%2❯ Definido como Dim%3 Array na linha%4%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Fonte%0:%1, variável ❮%2❯ Definido como não -marge on -line%3%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Fonte %0: %1, variável ❮ %2❯ DIM1 como %3 limites externos1 %4 .. %5 da linha %6 %n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Fonte %0: %1, variável ❮ %2❯ DIM1 como %3 Limites externos %4 .. %5 da linha %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Fonte %0: %1, variável ❮ %2❯ Dim1 como %3 Limites externos1 %4 .. %5 da linha %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Fonte %0: %1, variável ❮ %2❯ DIM1 como %3 Limes externos %4 .. %5 da linha %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Fonte %0: %1, variável ❮ %2❯ Dim2 como %3 Limites externos2 %4 .. %5 da linha %6 %n
 UNABLE TO OPEN %0 FOR READING.%n	Incapaz de abrir %0 para leitura. %n
 UNABLE TO OPEN FILE ❮%0❯%n	Incapaz de abrir o arquivo ❮%0❯%n

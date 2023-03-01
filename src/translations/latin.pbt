@@ -125,7 +125,7 @@ RANDOMIZE <= RANDOMIZE
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Et non linguam dedit in order versus. Exivit. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Potest accedere Directory ❮ %0❯. %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Error: Definitio exolvuntur inventa %n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Error: Label ❮ %0❯ ad %1: %2 iam defined %3, %4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Error: Label ❮ %0❯ ad %1: %2 iam defined %3, %4 %n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: linea %0 columna %1, ❮ %2❯ habet valorem %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Error: Non parse in linea %0 %n
 -l requires a language.%n	-L postulat lingua. %n
@@ -147,7 +147,7 @@ SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Source %0: %1, Undefined Label ❮ %2 �
 SOURCE %0:%1, UNHANDLED OP %2%n	Source %0: %1, Unhandled op %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fontem %0: %1, ignotum si titulus ❮ %2 ^ n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fontem %0: %1, latuit functio def ❮ %2 ❯ %n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fontem %0: %1, cognognized Gosub Label ❮ %2 ^ n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fontem %0: %1, cognognized Gosub Label ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Source %0: %1, latuit gata Label ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Fontem %0: %1, latuit math op ❮ %2 ^ n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fonte %0: %1, latuit medium op %2 %n

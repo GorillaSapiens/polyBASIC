@@ -125,7 +125,7 @@ RANDOMIZE <= ראנדאמייז
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	און קיין שפּראַך געגעבן אויף באַפֿעלן שורה. אַרויסגאַנג. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	קענען ניט צוטריט וועגווייַזער ❮ %0❯. %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	טעות: דעפֿיניציע ציקל דיסקאַווערד %n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	גרייַז: לאַבעל ❮ %0❯ ביי %1: %2 שוין דיפיינד %3: %4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	טעות: לאַבעל ❮ %0❯ ביי %1: %2 שוין דיפיינד %3: %4 %n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	ERROR: ליניע %0 זייַל %1, ❮ %2❯ האט קיין ווערט %n
 ERROR: NO PARSE TREE FOR LINE %0%n	טעות: קיין פּאַרס בוים פֿאַר שורה %0 %n
 -l requires a language.%n	-ל ריקווייערז אַ שפּראַך. %n

@@ -65,7 +65,7 @@ LET <= GADAWN                   # for variable assignment
 GO <= AETHANT                   # part of the GOTO and GOSUB
 GOSUB <= ALWA                   # formed from GO and SUB if no direct translation exists
 GOTO <= BEICASID                # formed from GO and TO if no direct translation exists
-TO <= ATO                       # part of for/to/step/next constructs
+TO <= I                         # part of for/to/step/next constructs
 IF <= OS                        # part of if/then constructs
 THEN <= YNA                     # part of if/then constructs
 SUB <= HWB                      # beware, used as part of "go sub"
@@ -125,7 +125,7 @@ RANDOMIZE <= ARHAP
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	A dim iaith a roddir ar linell orchymyn. Gadael.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Methu cyrchu cyfeiriadur ❮%0❯.%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Gwall: Cylch diffiniad wedi'i ddarganfod%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Gwall: Label ❮%0❯ ar%1:%2 eisoes wedi'i ddiffinio%3:%4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Gwall: Label ❮%0❯ ar%1:%2 eisoes wedi'i ddiffinio%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Gwall: llinell %0 colofn %1, ❮ %2❯ nid oes gan unrhyw werth %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Gwall: dim coeden ddosrannu ar gyfer llinell %0 %n
 -l requires a language.%n	-L yn gofyn am iaith.%n

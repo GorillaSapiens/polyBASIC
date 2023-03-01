@@ -125,7 +125,7 @@ RANDOMIZE <= PHUNGULA
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Futhi alukho ulimi olunikezwe kulayini womyalo. Ukuphuma. %n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Ayikwazi ukufinyelela umkhombandlela ❮ %0❯. %n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Iphutha: Ukuchazwa komjikelezo kutholakele %n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Iphutha: Ilebula ❮ %0❯ ku- %1: %2 isivele ichaziwe %3: %4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Iphutha: Ilebula ❮ %0❯ ku- %1: %2 isivele ichaziwe %3: %4 %n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Iphutha: umugqa %0 ikholomu %1, ❮ %2❯ ayinanzuzo %n
 ERROR: NO PARSE TREE FOR LINE %0%n	I-ERROR: Akukho Tree Parse for Line %0 %n
 -l requires a language.%n	-L kudinga ulimi. %n

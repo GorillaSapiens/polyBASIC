@@ -125,28 +125,28 @@ RANDOMIZE <= RANDOMISIEREN
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Und keine Sprache in der Befehlszeile angegeben. Verlassen.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	Kann nicht auf Verzeichnis zugreifen ❮%0❯.%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Fehler: Definitionszyklus%n entdeckt n n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Fehler: Etikett ❮%0❯ bei%1:%2 bereits definiert%3:%4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Fehler: Etikett ❮%0❯ bei%1:%2 bereits definiert%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Fehler: Zeile %0 Spalte %1, ❮ %2❯ hat keinen Wert %n n
 ERROR: NO PARSE TREE FOR LINE %0%n	Fehler: Kein Parse Tree für Linie %0 %n
 -l requires a language.%n	-l erfordert eine Sprache.%n
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Bitte überprüfen Sie die Umgebungsvariable und/oder die Spracheinstellungen von "POLYBASICPATH".%n
 POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	POLYBASICLANG 'Umgebungsvariable nicht festgelegt,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Quelle%0:%1, Array ❮%2❯ bereits auf Zeile%3%n definiert
-SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Quelle%0:%1, Dateneingabe Unterlauf%n
+SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Quelle%0:%1, Dateneingabe Unterlauf%n n
 SOURCE %0:%1, DATA READ UNDERFLOW%n	Quelle%0:%1, Daten lesen Unterlauf%n
 SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Quelle %0: %1, Funktion def ❮ %2❯ erfordert %3 Parames, aber mit %4 %n aufgerufen
 SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Quelle%0:%1, Gosub Stack Overflow%n n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Quelle%0:%1, Gosub Stapel Unterlauf%n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Quelle%0:%1, Gosub Stack Unterlauf%n n
 SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Quelle %0: %1, Index %2 außer Reichweite %n n
 SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Quelle %0: %1, links/rechter Op -Nichtübereinstimmung %2 %3 %n
 SOURCE %0:%1, NEGATIVE INDEX %d%n	Quelle %0: %1, negativer Index %d %n
-SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Quelle%0:%1, als nächstes für die Schleife mit String -Variable%n
+SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Quelle%0:%1, als nächstes für die Schleife mit String Variable%n n
 SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Quelle%0:%1, Operand -Nichtübereinstimmung ❮%2:%3❯%4:%5❯%n
 SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Quelle%0:%1, String Math Logic ERROR%n
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Quelle%0:%1, undefiniertes Etikett ❮%2❯%n n
 SOURCE %0:%1, UNHANDLED OP %2%n	Quelle %0: %1, unhandelte Op %2 %n
-SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Quelle%0:%1, unbekannt, wenn Kennzeichnung ❮%2❯%n n
-SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Quelle%0:%1, nicht anerkannte Funktion def ❮%2❯%n
+SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Quelle%0:%1, unbekannt, wenn Kennzeichnung ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Quelle%0:%1, nicht erkannte Funktion def ❮%2❯%n n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Quelle%0:%1, nicht anerkanntes Gosub -Label ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Quelle%0:%1, nicht anerkanntes Goto -Label ❮%2❯%n n
 SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Quelle%0:%1, nicht anerkannte Mathematik op ❮%2❯%n n
@@ -155,12 +155,12 @@ SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Quelle%0:%1, nicht anerkannt
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Quelle%0:%1, nicht anerkannter variabler Typ ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Quelle%0:%1, Variable ❮%2❯ definiert als Dim%3 (%4 ..%5,%6 ..%7) Array auf Linie%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Quelle%0:%1, Variable ❮%2❯ definiert als Dim%3 (%4 ..%5) Array auf Linie%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Quelle%0:%1, Variable ❮%2❯ definiert als Dim%3 -Array auf Linie%4%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Quelle%0:%1, Variable ❮%2 ❯ definiert als Nicht -Array online%3%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Quelle%0:%1, Variable ❮%2❯ definiert als Dim%3 Array auf Linie%4%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Quelle%0:%1, Variable ❮%2❯ definiert als Nicht -Array online%3%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Quelle %0: %1, Variable ❮ %2❯ Dim1 als %3 Außengrenzen1 %4 .. %5 von Linie %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Quelle %0: %1, Variable ❮ %2❯ Dim1 als %3 Außengrenzen %4 .. %5 von Linie %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Quelle %0: %1, Variable ❮ %2❯ Dim2 als %3 Außengrenzen2 %4 .. %5 von Linie %6 %n
 UNABLE TO OPEN %0 FOR READING.%n	Es kann nicht %0 für das Lesen eröffnen. %n
 UNABLE TO OPEN FILE ❮%0❯%n	Datei kann nicht geöffnet ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Ungezogenes Opcode SRC: %0 op %1 Linie %2 col %3 %n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Ungezogenes Opcode SRC: %0 op %1 Line %2 col %3 %n
 UNRECOGNIZED INPUT ❮%0❯%n	Unerkannter Input ❮%0❯%n

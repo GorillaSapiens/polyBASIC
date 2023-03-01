@@ -122,45 +122,45 @@ RANDOMIZE <= ALEATORIZAR
 [errors]
 ❮%0❯ at %1:%2 ->	❮%0❯ a%1:%2 ->
 ❮%0❯ at %1:%2%n	❮%0❯ a%1:%2%n
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Y no hay lenguaje dado en la línea de comandos. Salir.%n
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	Y no hay lenguaje dado en la línea de comando. Salir.%n
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	No se puede acceder al directorio ❮%0❯.%n
 ERROR: DEFINITION CYCLE DISCOVERED%n	Error: ciclo de definición descubierto%n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	Error: etiqueta ❮%0❯ a%1:%2 ya definido%3:%4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	Error: etiqueta ❮%0❯ a%1:%2 ya definido%3:%4%n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	Error: línea %0 columna %1, ❮ %2❯ no tiene valor %n
 ERROR: NO PARSE TREE FOR LINE %0%n	Error: no hay árbol de análisis para la línea %0 %n
 -l requires a language.%n	-L requiere un idioma.%n
-PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Consulte la variable de entorno 'POLYBASICPATH' y/o la configuración del idioma.%n
-POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Variable de entorno de POLYBASICLANG 'no establecido,
+PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	Consulte la variable de entorno 'POLYBASICPATH' y/o la configuración del lenguaje.%n
+POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	Variable de entorno de POLYBASICLANG 'no establecida,
 SOURCE %0:%1, ARRAY ❮%2❯ ALREADY DEFINED ON LINE %3%n	Fuente%0:%1, matriz ❮%2❯ ya definido en línea%3%n
 SOURCE %0:%1, DATA INPUT UNDERFLOW%n	Fuente%0:%1, entrada de datos subflujo%n
-SOURCE %0:%1, DATA READ UNDERFLOW%n	Fuente%0:%1, Data Leer bajo flujo%n
+SOURCE %0:%1, DATA READ UNDERFLOW%n	Fuente%0:%1, Data Read Subflow%n
 SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	Fuente %0: %1, función def ❮ %2❯ Requiere %3 parámetos, pero llamado con %4 %n
 SOURCE %0:%1, GOSUB STACK OVERFLOW%n	Fuente%0:%1, Gosub Stack Overflow%n
 SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	Fuente%0:%1, Gosub Stack subflow%n
 SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	Fuente %0: %1, índice %2 fuera del rango %n
-SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Fuente %0: %1, Izquierda/Right OP Mismatch %2 %3 %n
+SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	Fuente %0: %1, Izquierda/Right OP Mishery %2 %3 %n
 SOURCE %0:%1, NEGATIVE INDEX %d%n	Fuente %0: %1, índice negativo %d %n
 SOURCE %0:%1, NEXT ON FOR LOOP WITH STRING VARIABLE%n	Fuente%0:%1, siguiente en bucle con variable de cadena%n
 SOURCE %0:%1, OPERAND MISMATCH ❮%2:%3❯ ❮%4:%5❯%n	Fuente%0:%1, desajuste de operando ❮%2:%3❯ ❮%4:%5❯%n
-SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Fuente%0:%1, String Math Logic Error%n
+SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Fuente%0:%1, error de error lógico de matemáticas de cadena%n
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Fuente%0:%1, etiqueta indefinida ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Fuente %0: %1, OP no controlado %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fuente%0:%1, desconocido si etiqueta ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fuente%0:%1, función no reconocida def ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fuente%0:%1, etiqueta Gosub no reconocida ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fuente%0:%1, etiqueta GOSUB no reconocida ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Fuente%0:%1, etiqueta GOTO no reconocida ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Fuente%0:%1, Op de matemáticas no reconocidas ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fuente %0: %1, OP Mid no reconocido %2 %n
+SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fuente %0: %1, OP Mid no reconocido 2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Fuente%0:%1, Next Variable no reconocida ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Fuente%0:%1, tipo variable no reconocido ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 (%4 ..%5,%6 ..%7) Matriz en línea%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 (%4 ..%5) Matriz en línea%6%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Fuente%0:%1, variable ❮%2❯ definida como DIM%3 matriz en línea%4%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 matriz en línea%4%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Fuente%0:%1, variable ❮%2❯ definida como no array en línea%3%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Fuente %0: %1, variable ❮ %2❯ DIM1 AS %3 Límites externos1 %4 .. %5 de la línea %6 %n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Fuente %0: %1, variable ❮ %2❯ dim1 AS %3 límites externos1 %4 .. %5 de la línea %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Fuente %0: %1, variable ❮ %2❯ dim1 AS %3 límites externos %4 .. %5 de la línea %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Fuente %0: %1, variable ❮ %2❯ dim2 AS %3 límites externos 2 %4 .. %5 de la línea %6 %n
 UNABLE TO OPEN %0 FOR READING.%n	No se puede abrir %0 para leer. %n
 UNABLE TO OPEN FILE ❮%0❯%n	No se puede abrir el archivo ❮%0❯%n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Código de operación no controlado SRC: %0 op %1 línea %2 col %3 %n
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	Opcode no controlado SRC: %0 op %1 línea %2 col %3 %n
 UNRECOGNIZED INPUT ❮%0❯%n	Entrada no reconocida ❮%0❯%n

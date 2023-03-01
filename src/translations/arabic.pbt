@@ -121,13 +121,13 @@ RANDOMIZE <= عشوائي
 
 [errors]
 ❮%0❯ at %1:%2 ->	❮ ٪ 0❯ في ٪ 1: ٪ 2 ->
-❮%0❯ at %1:%2%n	❮ ٪ 0❯ في ٪ 1: ٪ 2 ٪ n
+❮%0❯ at %1:%2%n	❮ ٪ 0❯ في ٪ 1: ٪ 2 ٪ N
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.%n	ولا توجد لغة ممنوحة على سطر الأوامر. الخروج. ٪ ن
 CANNOT ACCESS DIRECTORY ❮%0❯.%n	لا يمكن الوصول إلى دليل ❮ ٪ 0❯. ٪ n
 ERROR: DEFINITION CYCLE DISCOVERED%n	خطأ: دورة التعريف المكتشفة ٪ n
-ERROR: label ❮%0❯ at %1:%2 already defined %3:%4	خطأ: التسمية ❮ ٪ 0❯ في ٪ 1: ٪ 2 محددة بالفعل ٪ 3: ٪ 4
+ERROR: label ❮%0❯ at %1:%2 already defined %3:%4%n	خطأ: التسمية ❮ ٪ 0❯ في ٪ 1: ٪ 2 محددة بالفعل ٪ 3: ٪ 4 ٪ n
 ERROR: line %0 column %1, ❮%2❯ has no value%n	خطأ: السطر ٪ 0 العمود ٪ 1 ، ❮ ٪ 2❯ ليس له قيمة ٪ n
-ERROR: NO PARSE TREE FOR LINE %0%n	خطأ: لا توجد شجرة تحليل للخط ٪ 0 ٪ n
+ERROR: NO PARSE TREE FOR LINE %0%n	خطأ: لا توجد شجرة تحليل للخط ٪ 0 ٪ N
 -l requires a language.%n	-L يتطلب لغة. ٪ ن
 PLEASE CHECK 'POLYBASICPATH' ENVIRONMENT VARIABLE AND/OR LANGUAGE SETTINGS.%n	يرجى التحقق من "POLYBASICPATH" المتغير و/أو إعدادات اللغة. ٪ N
 POLYBASICLANG' ENVIRONMENT VARIABLE NOT SET,	متغير البيئة POLYBASICLANG غير محدد ،
@@ -136,7 +136,7 @@ SOURCE %0:%1, DATA INPUT UNDERFLOW%n	المصدر ٪ 0: ٪ 1 ، إدخال ال�
 SOURCE %0:%1, DATA READ UNDERFLOW%n	المصدر ٪ 0: ٪ 1 ، قراءة البيانات underflow ٪ n
 SOURCE %0:%1, FUNCTION DEF ❮%2❯ REQUIRES %3 PARAMS, BUT CALLED WITH %4%n	المصدر ٪ 0: ٪ 1 ، الدالة def ❮ ٪ 2❯ تتطلب ٪ 3 params ، ولكن دعا مع ٪ 4 ٪ n
 SOURCE %0:%1, GOSUB STACK OVERFLOW%n	المصدر ٪ 0: ٪ 1 ، Gosub Stack Overflow ٪ n
-SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	المصدر ٪ 0: ٪ 1 ، Gosub Stack Underflow ٪ n
+SOURCE %0:%1, GOSUB STACK UNDERFLOW%n	المصدر ٪ 0: ٪ 1 ، Gosub Stack underflow ٪ n
 SOURCE %0:%1, INDEX %2 OUT OF RANGE%n	المصدر ٪ 0: ٪ 1 ، فهرس ٪ 2 من النطاق ٪ ن
 SOURCE %0:%1, LEFT/RIGHT OP MISMATCH %2 %3%n	المصدر ٪ 0: ٪ 1 ، اليسار/اليمين OP عدم التطابق ٪ 2 ٪ 3 ٪ N
 SOURCE %0:%1, NEGATIVE INDEX %d%n	المصدر ٪ 0: ٪ 1 ، المؤشر السلبي ٪ d ٪ n
@@ -154,7 +154,7 @@ SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	المصدر ٪ 0: ٪ 1 ، Mid Op ٪ 2 ٪
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	المصدر ٪ 0: ٪ 1 ، المتغير التالي غير المعترف به ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	المصدر ٪ 0: ٪ 1 ، النوع المتغير غير المعترف به ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	المصدر ٪ 0: ٪ 1 ، المتغير ❮ ٪ 2❯ محدد على أنه dim ٪ 3 (٪ 4 .. ٪ 5 ، ٪ 6 .. ٪ 7) صفيف في الخط ٪ 8 ٪ n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	المصدر ٪ 0: ٪ 1 ، المتغير ❮ ٪ 2❯ محدد على أنه DIM ٪ 3 (٪ 4 .. ٪ 5) صفيف في الخط ٪ 6 ٪ n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	المصدر ٪ 0: ٪ 1 ، المتغير ❮ ٪ 2❯ محدد على أنه dim ٪ 3 (٪ 4 .. ٪ 5) صفيف في الخط ٪ 6 ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	المصدر ٪ 0: ٪ 1 ، المتغير ❮ ٪ 2❯ محدد على أنه dim ٪ 3 صفيف في الخط ٪ 4 ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	المصدر ٪ 0: ٪ 1 ، المتغير ❮ ٪ 2❯ المعرّف بأنه غير محدد على الخط ٪ 3 ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	المصدر ٪ 0: ٪ 1 ، المتغير ❮ ٪ 2❯ DIM1 AS ٪ 3 خارج الحدود 1 ٪ 4 .. ٪ 5 من الخط ٪ 6 ٪ n
