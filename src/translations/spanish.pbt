@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Fuente%0:%1, error de error lógico de m
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Fuente%0:%1, etiqueta indefinida ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Fuente %0: %1, OP no controlado %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fuente%0:%1, desconocido si etiqueta ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Fuente%0:%1, Op de matemáticas doble no reconocidas ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fuente%0:%1, función no reconocida def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fuente%0:%1, etiqueta GOSUB no reconocida ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Fuente%0:%1, etiqueta GOTO no reconocida ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Fuente%0:%1, Op de matemáticas no reconocidas ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Fuente%0:%1, Integer Integer Math Op no reconocido ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fuente %0: %1, OP Mid no reconocido 2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Fuente%0:%1, Next Variable no reconocida ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Fuente%0:%1, Op de matemáticas racionales no reconocidas ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Fuente%0:%1, tipo variable no reconocido ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 (%4 ..%5,%6 ..%7) Matriz en línea%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Fuente%0:%1, variable ❮%2❯ definido como DIM%3 (%4 ..%5) Matriz en línea%6%n

@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Источник%0:%1, строка ма
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Источник%0:%1, неопределенная метка ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Источник %0: %1, Unlended OP %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Источник%0:%1, неизвестно, если метка ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Источник%0:%1, непризнанная двойная математика op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Источник%0:%1, непризнанная функция def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Источник%0:%1, непризнанная метка Gosub ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Источник%0:%1, непризнанная метка goto ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Источник%0:%1, непризнанная математика op ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Источник%0:%1, непризнанная целочисленная математика op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Источник %0: %1, непризнанная середина OP %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Источник%0:%1, непризнанная следующая переменная ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Источник%0:%1, непризнанный рациональный математический OP ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Источник%0:%1, непризнанный тип переменной ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Источник%0:%1, переменная ❮%2
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Источник%0:%1, переменная ❮%2❯ определено как Dim%3 (%4 ..%5) массив на линию%6%n

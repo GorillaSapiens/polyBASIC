@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Source %0: %1, String Math Logic Error %
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Source %0: %1, étiquette non définie ❮ %2❯ %n
 SOURCE %0:%1, UNHANDLED OP %2%n	Source %0: %1, OP non perdue %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Source %0: %1, inconnu si l'étiquette ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Source %0: %1, Double mathématiques non reconnues OP ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Source %0: %1, fonction non reconnue def ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Source %0: %1, étiquette Gosub non reconnue ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Source %0: %1, étiquette Goto non reconnue ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Source %0: %1, mathématiques non reconnues OP ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Source %0: %1, mathématiques entières non reconnues op ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Source %0: %1, Mid Op %non reconnu
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Source %0: %1, variable suivante non reconnue ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Source %0: %1, mathématiques rationnelles non reconnues op ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Source %0: %1, type variable non reconnu ❮ %2❯ %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Source %0: %1, variable ❮ %2❯ définie comme dim %3 ( %4 .. %5, %6 .. %7) tableau en ligne %8 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Source %0: %1, variable ❮ %2❯ définie comme dim %3 ( %4 .. %5) tableau en ligne %6 %n

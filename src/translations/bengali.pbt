@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	উত্স%0:%1, স্ট্রিং
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	উত্স%0:%1, অপরিজ্ঞাত লেবেল ❮%2❯%এন
 SOURCE %0:%1, UNHANDLED OP %2%n	উত্স %0: %1, আনহ্যান্ডড ওপি %2 %এন
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	উত্স%0:%1, অজানা যদি লেবেল ❮%2❯%এন
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	উত্স%0:%1, অচেনা ডাবল ম্যাথ অপ ❮%2❯%এন
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	উত্স%0:%1, অচেনা ফাংশন ডিএফ ❮%2❯%এন
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	উত্স%0:%1, অচেনা গোসব লেবেল ❮%2❯%এন
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	উত্স%0:%1, অচেনা গোটো লেবেল ❮%2❯%এন
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	উত্স%0:%1, স্বীকৃত গণিত অপ ❮%2❯%এন
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	উত্স%0:%1, অচেনা পূর্ণসংখ্যা গণিত অপ ❮%2❯%এন
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	উত্স %0: %1, অচেনা মিড ওপ %2 %এন
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	উত্স%0:%1, স্বীকৃত পরবর্তী পরিবর্তনশীল ❮%2❯%এন
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	উত্স%0:%1, অচেনা যুক্তিযুক্ত গণিত অপ ❮%2❯%এন
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	উত্স%0:%1, অচেনা পরিবর্তনশীল প্রকার ❮%2❯%এন
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	উত্স%0:%1, ভেরিয়েবল ❮%2❯ ম্লান%3 (%4 ..%5,%6 ..%7) হিসাবে সংজ্ঞায়িত
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	উত্স%0:%1, ভেরিয়েবল ❮%2❯ ডিম%3 (%4 ..%5) লাইন অন লাইন%6%এন হিসাবে সংজ্ঞায়িত

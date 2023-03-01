@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	स्रोत%0:%1, स्ट्रि
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	स्रोत%0:%1, अपरिभाषित लेबल ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	स्रोत %0: %1, अनहेल्दी ओपी %2 %एन
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	स्रोत%0:%1, अज्ञात यदि लेबल ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	स्रोत%0:%1, अपरिचित डबल मैथ ऑप of%2 of%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	स्रोत%0:%1, अपरिचित फ़ंक्शन def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	स्रोत%0:%1, गैर -मान्यता प्राप्त गोसुब लेबल ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	स्रोत%0:%1, गैर -मान्यता प्राप्त गोटो लेबल ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	स्रोत%0:%1, अपरिचित गणित ओपी of%2❯%एन
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	स्रोत%0:%1, अपरिचित पूर्णांक गणित ओपी of%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	स्रोत %0: %1, अपरिचित मध्य op %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	स्रोत%0:%1, बिना मान्यता प्राप्त अगला चर ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	स्रोत%0:%1, गैर -मान्यता प्राप्त तर्कसंगत गणित ओपी ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	स्रोत%0:%1, अपरिचित चर प्रकार ❮%2 ❮%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	स्रोत%0:%1, चर ❮%2❯ को मंद%3 (%4 ..%5,%6 ..%7) के रूप में परिभाषित किया गया
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	स्रोत%0:%1, चर ❮%2❯ को DIM%3 (%4 ..%5) के रूप में परिभाषित किया गया

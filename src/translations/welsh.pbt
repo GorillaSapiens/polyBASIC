@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Ffynhonnell%0:%1, gwall rhesymeg mathema
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Ffynhonnell%0:%1, label heb ei ddiffinio ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Ffynhonnell %0: %1, OP heb ei drin %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Ffynhonnell%0:%1, anhysbys os yw label ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Ffynhonnell%0:%1, Math Dwbl heb ei gydnabod Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Ffynhonnell%0:%1, swyddogaeth heb ei chydnabod def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Ffynhonnell%0:%1, label gosub heb ei gydnabod ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Ffynhonnell%0:%1, label goto heb ei gydnabod ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Ffynhonnell%0:%1, Math Math heb ei gydnabod ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Ffynhonnell%0:%1, Math cyfanrif heb ei gydnabod Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Ffynhonnell %0: %1, heb ei gydnabod canol op %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Ffynhonnell%0:%1, heb ei gydnabod y newidyn nesaf ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Ffynhonnell%0:%1, Math rhesymegol heb ei gydnabod Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Ffynhonnell%0:%1, math newidiol heb ei gydnabod ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Ffynhonnell%0:%1, newidyn ❮%2❯ wedi'i ddiffinio fel dim%3 (%4 ..%5,%6 ..%7) arae ar linell%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Ffynhonnell%0:%1, newidyn ❮%2❯ wedi'i ddiffinio fel dim%3 (%4 ..%5) arae ar linell%6%n

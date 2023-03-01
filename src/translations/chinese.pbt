@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	源％0：％1，字符串数学逻辑�
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	来源％0：％1，未定义的标签❮％2❯％n
 SOURCE %0:%1, UNHANDLED OP %2%n	源％0：％1，未手持OP％2％N
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	源％0：％1，未知是否标签❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	来源％0：％1，未识别的双数学op❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	源％0：％1，未识别的函数def❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	源％0：％1，未识别的GoSub标签❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	源％0：％1，未识别的goto标签❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	来源％0：％1，未识别的数学op❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	源％0：％1，未识别的整数数学op❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	源％0：％1，未识别的中op％2％n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	源％0：％1，未识别的下一个变量❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	来源％0：％1，未认可的有理学数学op❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	源％0：％1，未识别的变量类型❮％2❯％n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	源％0：％1，变量❮％2❯定义为dim％3（％4 ..％5，％6 ..％7）in line％n line％8％n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	源％0：％1，变量❮％2❯定义为dim％3（％4 ..％5）阵列在线％6％n

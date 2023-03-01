@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Chanzo%0:%1, kosa la mantiki ya hesabu%n
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Chanzo%0:%1, lebo isiyoelezewa ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Chanzo %0: %1, OP isiyosafishwa %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Chanzo%0:%1, haijulikani ikiwa lebo ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Chanzo%0:%1, isiyojulikana mara mbili Math OP ❮%2❯%n N
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Chanzo%0:%1, kazi isiyotambuliwa def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Chanzo%0:%1, lebo isiyojulikana ya GoSub ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Chanzo%0:%1, lebo ya goto isiyojulikana ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Chanzo%0:%1, Math Op Op ❮%2❯%n N
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Chanzo%0:%1, Inter Integer Math OP ❮%2❯%n N N
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Chanzo %0: %1, Mid Op %2 %n isiyojulikana 2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Chanzo%0:%1, kutofaulu kutofautiana ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Chanzo%0:%1, Math Op Op Op Op ❮%2❯%n N N N
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Chanzo%0:%1, Aina ya kutofautisha isiyojulikana ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Chanzo%0:%1, kutofautisha ❮%2❯ hufafanuliwa kama dim%3 (%4 ..%5,%6 ..%7) safu kwenye mstari%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Chanzo%0:%1, kutofautisha ❮%2❯ hufafanuliwa kama dim%3 (%4 ..%5) safu kwenye mstari%6%n

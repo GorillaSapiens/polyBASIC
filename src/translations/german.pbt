@@ -148,17 +148,19 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Quelle%0:%1, String Math Logic ERROR%n
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Quelle%0:%1, undefiniertes Etikett ❮%2❯%n n
 SOURCE %0:%1, UNHANDLED OP %2%n	Quelle %0: %1, unhandelte Op %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Quelle%0:%1, unbekannt, wenn Kennzeichnung ❮%2❯%n n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Quelle%0:%1, nicht anerkannte Doppelmathematik Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Quelle%0:%1, nicht erkannte Funktion def ❮%2❯%n n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Quelle%0:%1, nicht anerkanntes Gosub -Label ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Quelle%0:%1, nicht anerkanntes Goto -Label ❮%2❯%n n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Quelle%0:%1, nicht anerkannte Mathematik op ❮%2❯%n n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Quelle%0:%1, nicht erkannte Ganzzahl Math Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Quelle %0: %1, nicht anerkannte Mid Op %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Quelle%0:%1, nicht anerkannte nächste Variable ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Quelle%0:%1, nicht anerkannte rationale Mathematik Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Quelle%0:%1, nicht anerkannter variabler Typ ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Quelle%0:%1, Variable ❮%2❯ definiert als Dim%3 (%4 ..%5,%6 ..%7) Array auf Linie%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Quelle%0:%1, Variable ❮%2❯ definiert als Dim%3 (%4 ..%5) Array auf Linie%6%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	Quelle%0:%1, Variable ❮%2❯ definiert als Dim%3 Array auf Linie%4%n
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Quelle%0:%1, Variable ❮%2 ❯ definiert als Nicht -Array online%3%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	Quelle%0:%1, Variable ❮%2❯ definiert als Nicht -Array online%3%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	Quelle %0: %1, Variable ❮ %2❯ Dim1 als %3 Außengrenzen1 %4 .. %5 von Linie %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	Quelle %0: %1, Variable ❮ %2❯ Dim1 als %3 Außengrenzen %4 .. %5 von Linie %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	Quelle %0: %1, Variable ❮ %2❯ Dim2 als %3 Außengrenzen2 %4 .. %5 von Linie %6 %n

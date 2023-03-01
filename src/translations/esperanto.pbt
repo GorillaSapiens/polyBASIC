@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Fonto%0:%1, ĉena matematika logika erar
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Fonto%0:%1, nedifinita etikedo ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Fonto %0: %1, Unhandled OP %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fonto%0:%1, nekonata se etikedo ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Fonto%0:%1, ne rekonita duobla matematiko op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fonto%0:%1, ne rekonita funkcio def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fonto%0:%1, ne rekonita GOSUB -etikedo ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Fonto%0:%1, ne rekonita goto -etikedo ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Fonto%0:%1, ne rekonita matematiko op ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Fonto%0:%1, ne rekonita entjera matematiko op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fonto %0: %1, ne rekonita meza op %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Fonto%0:%1, ne rekonita sekva variablo ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Fonto%0:%1, ne rekonita racia matematiko op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Fonto%0:%1, ne rekonita ŝanĝiĝema tipo ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fonto%0:%1, variablo ❮%2❯ difinita kiel dim%3 (%4 ..%5,%6 ..%7) Array On Line%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Fonto%0:%1, variablo ❮%2❯ difinita kiel DIM%3 (%4 ..%5) Array On Line%6%n

@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	מקור %0: %1, שטריקל מאַט �
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	מקור %0: %1, ונדעפינעד לאַבעל ❮ %2❯ %n
 SOURCE %0:%1, UNHANDLED OP %2%n	מקור %0: %1, AndingSaLleed OP %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	מקור %0: %1, אומבאַקאַנט אויב פירמע ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד טאָפּל מאַט אָפּ ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד פונקציאָנירן דעפ ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד Gosub Lady ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד גאָטאָ לאַבעל ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד מאַט אויף ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד ינטאַדזשער מאַט אויף ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	מקור %0: %1, אַנרעקאַגנייזד מיטל אויף %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד ווייַטער בייַטעוודיק ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד באַרדאַסדיק מאַט אויף ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	מקור %0: %1, אַנרעקאַגנייזד בייַטעוודיק טיפּ ❮ %2❯ %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 ( %4 .. %5, %6 .. %7) מענגע אויף שורה 8 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	מקור %0: %1, בייַטעוודיק ❮ %2❯ דיפיינד ווי טונקל %3 ( %4 .. %5) מענגע אויף שורה 6 %6 %6 %n

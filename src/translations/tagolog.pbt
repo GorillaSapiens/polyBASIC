@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Pinagmulan%0:%1, String Math Logic Error
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi natukoy na label ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Pinagmulan %0: %1, Unhandled op %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi kilala kung label ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang dobleng matematika op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang function def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang label ng gosub ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang label ng goto ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang matematika op ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang integer math op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Pinagmulan %0: %1, hindi nakikilala mid op %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang susunod na variable ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang Rational Math Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Pinagmulan%0:%1, hindi nakikilalang uri ng variable ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Pinagmulan%0:%1, variable ❮%2❯ tinukoy bilang dim%3 (%4 ..%5,%6 ..%7) array sa linya%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Pinagmulan%0:%1, variable ❮%2❯ tinukoy bilang dim%3 (%4 ..%5) array sa linya%6%n

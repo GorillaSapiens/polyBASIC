@@ -148,17 +148,19 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	소스%0 :%1, 문자열 수학 로직 �
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Source%0 :%1, 정의되지 않은 레이블 ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Source %0 : %1, 취급되지 않은 OP %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Source%0 :%1, 알 수없는 레이블 ❮%2 ❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Source%0 :%1, 인식되지 않은 이중 수학 OP ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Source%0 :%1, 인식되지 않은 기능 def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Source%0 :%1, 인식되지 않은 Gosub 레이블 ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Source%0 :%1, 인식되지 않은 Goto 레이블 ❮%2 ❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Source%0 :%1, 인식되지 않은 수학 OP ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Source%0 :%1, 인식되지 않은 정수 수학 OP ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Source %0 : %1, 인식되지 않은 중간 OP %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Source%0 :%1, 인식되지 않은 다음 변수 ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Source%0 :%1, 인식되지 않은 합리적 수학 OP ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Source%0 :%1, 인식되지 않은 가변 유형 ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	소스%0 :%1, 변수 ❮%2❯ Dim%3 (%4 ..%5,%6 ..%7) 배열%8%n으로 정의됩니다.
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	소스%0 :%1, 변수 ❮%2❯ Dim%3 (%4 ..%5) 라인에 대한 배열%6%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 Dim%3 어레이로 정의
-SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 비 계절로 정의 된%3%n
+SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	소스%0 :%1, 변수 ❮%2❯ 라인에서 비 체류로 정의 된%3%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim1 as %3 외부 경계 1 %4 .. %5 라인 %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim1 as %3 외부 경계 %4 .. %5 라인 %6 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	소스 %0 : %1, 변수 ❮ %2 ❯ dim2 as %3 외부 경계 2 %4 .. %5 라인 %6 %n

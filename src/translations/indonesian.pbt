@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Sumber%0:%1, kesalahan logika matematika
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Sumber%0:%1, label yang tidak ditentukan ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	Sumber %0: %1, op %2 %n tidak ditangani
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Sumber%0:%1, tidak diketahui apakah label ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Sumber%0:%1, OP Matematika Ganda yang tidak dikenali ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Sumber%0:%1, fungsi yang tidak diakui def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Sumber%0:%1, label GOSUB yang tidak dikenali ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Sumber%0:%1, label goto yang tidak dikenali ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Sumber%0:%1, matematika yang tidak dikenali Op ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Sumber%0:%1, Integer Math Op ❮%2 ❮%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	SUMBER %0: %1, MID OP %2 %n yang tidak dikenali
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Sumber%0:%1, variabel berikutnya yang tidak dikenali ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Sumber%0:%1, matematika rasional yang tidak dikenali Op ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Sumber%0:%1, jenis variabel yang tidak dikenali ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai dim%3 (%4 ..%5,%6 ..%7) Array pada garis%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Sumber%0:%1, variabel ❮%2❯ didefinisikan sebagai dim%3 (%4 ..%5) array pada garis%6%n

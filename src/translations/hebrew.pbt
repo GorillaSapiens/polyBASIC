@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	מקור%0:%1, שגיאת היגיון �
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	מקור%0:%1, תווית לא מוגדרת ❮%2❯%n
 SOURCE %0:%1, UNHANDLED OP %2%n	מקור %0: %1, OP %לא מטופלים 2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	מקור%0:%1, לא ידוע אם התווית ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	מקור%0:%1, לא מוכר כפול מתמטיקה OP ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	מקור%0:%1, פונקציה לא מוכרת def ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	מקור%0:%1, תווית Gosub לא מוכרת ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	מקור%0:%1, תווית GOTO לא מוכרת ❮%2❯%n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	מקור%0:%1, מתמטיקה לא מוכרת ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	מקור%0:%1, מספר שלם מתמטיקה שלם ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	מקור %0: %1, לא מוכר באמצע OP %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	מקור%0:%1, משתנה הבא לא מוכר ❮%2❯%n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	מקור%0:%1, מתמטיקה רציונלית לא מוכרת ❮%2❯%n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	מקור%0:%1, סוג משתנה לא מוכר ❮%2❯%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	מקור%0:%1, משתנה ❮%2❯ מוגדר כ- Dim%3 (%4 ..%5,%6 ..%7) מערך על קו%8%n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	מקור%0:%1, משתנה ❮%2❯ מוגדר כ- Dim%3 (%4 ..%5) מערך על קו%6%n

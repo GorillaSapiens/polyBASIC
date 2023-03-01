@@ -148,21 +148,23 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	ماخذ ٪ 0: ٪ 1 ، سٹرنگ ریا
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر متعینہ لیبل ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, UNHANDLED OP %2%n	ماخذ ٪ 0: ٪ 1 ، غیر منقولہ اوپی ٪ 2 ٪ n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، نامعلوم اگر لیبل ❮ ٪ 2❯ ٪ N
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ ڈبل ریاضی op ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ فنکشن ڈیف ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ گوسوب لیبل ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ گوٹو لیبل ❮ ٪ 2❯ ٪ n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ ریاضی op ❮ ٪ 2❯ ٪ n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ عددی ریاضی op ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ وسط او پی ٪ 2 ٪ N
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ اگلی متغیر ❮ ٪ 2❯ ٪ n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ عقلی ریاضی op ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	ماخذ ٪ 0: ٪ 1 ، غیر تسلیم شدہ متغیر قسم ❮ ٪ 2❯ ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ DIM ٪ 3 (٪ 4 .. ٪ 5 ، ٪ 6 .. ٪ 7) کے طور پر بیان کیا گیا ہے
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ DIM ٪ 3 (٪ 4 .. ٪ 5) کے طور پر بیان کردہ لائن پر لائن ٪ 6 ٪ N
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3 ARRAY ON LINE %4%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ لائن پر DIM ٪ 3 سرنی کے طور پر بیان کردہ 4 ٪ N
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS NONARRAY ON LINE %3%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ لائن پر نانری کے طور پر بیان کردہ ٪ 3 ٪ n
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS1 %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ dim1 as ٪ 3 سے باہر کی حد 1 ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ n سے ٪ 5
-SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim1 as ٪ 3 سے باہر ٪ 4 .. ٪ 5 سے ٪ 5 ٪ 6 ٪ n
+SOURCE %0:%1, VARIABLE ❮%2❯ DIM1 AS %3 OUTSIDE BOUNDS %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim1 as ٪ 3 سے باہر ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ N سے ٪ 5
 SOURCE %0:%1, VARIABLE ❮%2❯ DIM2 AS %3 OUTSIDE BOUNDS2 %4..%5 FROM LINE %6%n	ماخذ ٪ 0: ٪ 1 ، متغیر ❮ ٪ 2❯ Dim2 as ٪ 3 سے باہر کی حد 2 ٪ 4 .. ٪ 5 لائن ٪ 6 ٪ N سے ٪ 5
 UNABLE TO OPEN %0 FOR READING.%n	پڑھنے کے لئے ٪ 0 کھولنے سے قاصر۔ ٪ n
 UNABLE TO OPEN FILE ❮%0❯%n	فائل کھولنے سے قاصر ❮ ٪ 0❯ ٪ n
-UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	غیر منقولہ اوپکوڈ ایس آر سی: ٪ 0 آپٹ ٪ 1 لائن ٪ 2 کرنل ٪ 3 ٪ N
+UNHANDLED OPCODE src:%0 op %1 line %2 col %3%n	غیر منقولہ اوپکوڈ ایس آر سی: ٪ 0 آپٹ ٪ 1 لائن ٪ 2 کرنل ٪ 3 ٪ n
 UNRECOGNIZED INPUT ❮%0❯%n	غیر تسلیم شدہ ان پٹ ❮ ٪ 0❯ ٪ n

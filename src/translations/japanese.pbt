@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	ソース％0：％1、文字列数学�
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	ソース％0：％1、未定義ラベル❮％2°％n
 SOURCE %0:%1, UNHANDLED OP %2%n	ソース％0：％1、未処理のop％2％n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	ソース％0：％1、ラベルの場合は不明です❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	ソース％0：％1、認識されていない二重数学op❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	ソース％0：％1、認識されていない関数def❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	ソース％0：％1、認識されていないゴスブラベル❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	ソース％0：％1、認識されていないgotoラベル❮％2❯％n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	ソース％0：％1、認識されていない数学op
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	ソース％0：％1、認識されていない整数数学op❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	ソース％0：％1、認識されていないMID OP％2％n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	ソース％0：％1、認識されていない次の変数❮％2❯％n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	ソース％0：％1、認識されていない合理的数学op❮％2❯％n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	ソース％0：％1、認識されていない変数タイプ❮％2°％n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	ソース％0：％1、変数❮％2 dim％3（％4 ..％5、％6 ..％7）ライン上の配列％8％nとして定義
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	ソース％0：％1、変数❮％2❯dim％3（％4 ..％5）ライン上の配列％6％n

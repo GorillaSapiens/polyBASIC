@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Umthombo %0: %1, I-String Math Logic Iph
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Umthombo %0: %1, ilebula elingachazwanga ❮ %2❯ %n
 SOURCE %0:%1, UNHANDLED OP %2%n	Umthombo %0: %1, ungajabuli i-OP %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Umthombo %0: %1, Akaziwa Uma ilebula ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Umthombo %0: %1, agcutenced math ap ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Umthombo %0: %1, I-def engaziwa ye-def ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Umthombo %0: %1, Ilebula engaziwa ye-GOSUB ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Umthombo %0: %1, ilebula le-goto elingaziwa ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Umthombo %0: %1, ongaziwa nge-Math Op %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Umthombo %0: %1, Inombolo ye-Integer Math ye-Integer Op %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Umthombo %0: %1, engaziwa maphakathi ne-OP %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Umthombo %0: %1, engaziwa ngokulandelana okulandelayo ❮ %2❯ %n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Umthombo %0: %1, ukungaziwa okungaziwa kwezibalo ze-OP %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Umthombo %0: %1, Uhlobo olungaziwa oluguquguqukayo ❮ %2❯ %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ ochazwe njenge-Dim %3 ( %4 .. %5, %6 .. %7) Uhlu kulayini %8 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Umthombo %0: %1, uguquguqukayo ❮ %2❯ uchazwe njenge-Dim %3 ( %4 .. %5) uhlu lwamalungu ku- %6 %n

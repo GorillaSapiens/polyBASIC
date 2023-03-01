@@ -148,12 +148,14 @@ SOURCE %0:%1, STRING MATH LOGIC ERROR%n	Fonte %0: %1, linea Math Logica Error %n
 SOURCE %0:%1, UNDEFINED LABEL ❮%2❯%n	Source %0: %1, Undefined Label ❮ %2 ❯ %n
 SOURCE %0:%1, UNHANDLED OP %2%n	Source %0: %1, Unhandled op %2 %n
 SOURCE %0:%1, UNKNOWN IF LABEL ❮%2❯%n	Fontem %0: %1, ignotum si titulus ❮ %2 ^ n
+SOURCE %0:%1, UNRECOGNIZED DOUBLE MATH OP ❮%2❯%n	Fontem %0: %1, latuit duplex math op ❮ %2 ^ n
 SOURCE %0:%1, UNRECOGNIZED FUNCTION DEF ❮%2❯%n	Fontem %0: %1, latuit functio def ❮ %2 ❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOSUB LABEL ❮%2❯%n	Fontem %0: %1, cognognized Gosub Label ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED GOTO LABEL ❮%2❯%n	Source %0: %1, latuit gata Label ❮ %2❯ %n
-SOURCE %0:%1, UNRECOGNIZED MATH OP ❮%2❯%n	Fontem %0: %1, latuit math op ❮ %2 ^ n
+SOURCE %0:%1, UNRECOGNIZED INTEGER MATH OP ❮%2❯%n	Fontem %0: %1, intelligitur integer math op ❮ %2 ❯ %n
 SOURCE %0:%1, UNRECOGNIZED MID OP %2%n	Fonte %0: %1, latuit medium op %2 %n
 SOURCE %0:%1, UNRECOGNIZED NEXT VARIABLE ❮%2❯%n	Fontem %0: %1, latuit Next variabilis ❮ %2 ^ n
+SOURCE %0:%1, UNRECOGNIZED RATIONAL MATH OP ❮%2❯%n	Fontem %0: %1, latuit rationalis math op ❮ %2❯ %n
 SOURCE %0:%1, UNRECOGNIZED VARIABLE TYPE ❮%2❯%n	Fonte %0: %1, latuit variabilis generis ❮ %2 ❯ %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5, %6..%7) ARRAY ON LINE %8%n	Fonte %0: %1, variabilis ❮ %2❯ defined Dim %3 ( %4 .. %5, %6 .. %7) ordinata in linea %8 %n
 SOURCE %0:%1, VARIABLE ❮%2❯ DEFINED AS DIM%3(%4..%5) ARRAY ON LINE %6%n	Fontem %0: %1, variabilis ❮ %2❯ defined Dim %3 ( %4 .. %5) ordinata in line %6 %n
