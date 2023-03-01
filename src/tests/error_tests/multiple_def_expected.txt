@@ -1,0 +1,2 @@
+ERROR: def statement on 'a' at line 2 col 8 already defined.
+        previous definition at line 1 col 8
