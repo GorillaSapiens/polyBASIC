@@ -17,6 +17,8 @@
 extern FILE *yyin;
 extern Tree *programtree;
 
+bool void_enabled = false;
+
 // a simple linked list of tuples
 // because i'm lazy,
 // efficiency is not required,
@@ -86,6 +88,16 @@ enum yytokentype is_reserved_varname(char sigil, const char *a, enum yytokentype
          *s = 0;
       }
    }
+
+   if (!strcasecmp(copy, "void")) {
+      if (!void_enabled) {
+         return retval;
+      }
+      else {
+         return YYVOID;
+      }
+   }
+
    enum yytokentype token = is_reserved_word(copy);
    if (token) {
       if (!sigil) {
@@ -235,13 +247,22 @@ const char *shortname(const char *arg0) {
 }
 
 [[ noreturn ]] void usage(const char *arg0) {
-   printf("Usage: %s [-f] [-t <n>] [-l <language>] [<input.bas>]\n", shortname(arg0));
-   printf("      -f : debug flex parser output, and then run program\n");
-   printf("      -t : dump parse tree for line <n>, do not run program\n");
-   printf("           n=0 will dump the entire tree\n");
+   printf("Usage: %s [-l <language>] [<input.bas>]\n", shortname(arg0));
    printf("      -l : specify language, overriding POLYBASICLANG env variable\n");
    printf("      if <input.bas> is omitted, read program from STDIN.\n");
-   printf("         this is not recommended, and may not play well with INPUT statements.\n");
+   printf("         this is not recommended, and may not work well with INPUT statements.\n");
+   printf("\n");
+   printf("      The following additional options are also available.\n");
+   printf("      -v : print version information and exit\n");
+   printf("      -h : print this usage information and exit\n");
+   printf("      -? : print this usage information and exit\n");
+   printf("\n");
+   printf("      The following additional options are intended for debugging only.\n");
+   printf("      -g     : enable 'guru mode'\n");
+   printf("      -0     : enable the VOID keyword\n");
+   printf("      -f     : debug flex parser output, and then run program\n");
+   printf("      -t <n> : dump parse tree for line <n>, do not run program\n");
+   printf("               n=0 will dump the entire tree\n");
    exit(0);
 }
 
@@ -262,19 +283,24 @@ int main(int argc, char **argv) {
 
    while(argc && argv[0][0] == '-') {
       switch (argv[0][1]) {
-         case 'f':
-            flexdebug_enable = 1;
-            break;
-         case 't':
-            treedebug = atoi(argv[1]);
-            argc--; argv++;
-            break;
+         // normal options
          case 'l':
             language = argv[1];
             if (language == NULL) {
                GURU;
                eprintf("-l requires a language.%n");
             }
+            argc--; argv++;
+            break;
+         // debugging options
+         case '0':
+            void_enabled = true;
+            break;
+         case 'f':
+            flexdebug_enabled = true;
+            break;
+         case 't':
+            treedebug = atoi(argv[1]);
             argc--; argv++;
             break;
          case 'v':

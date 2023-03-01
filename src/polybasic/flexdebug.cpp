@@ -3,10 +3,10 @@
 #include "flexdebug.hpp"
 #include "mapping.hpp"
 
-int flexdebug_enable = 0;
+bool flexdebug_enabled = false;
 
 void flexdebug(const char *s, int yytt, int line, int col) {
-   if (!flexdebug_enable) {
+   if (!flexdebug_enabled) {
       return;
    }
 

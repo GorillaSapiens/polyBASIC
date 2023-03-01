@@ -52,6 +52,7 @@ Tree *programtree;
 %type <u> iconst
 %type <u> rconst
 %type <u> sconst
+%type <u> vconst
 
 %type <u> expression
 %type <u> exprlist
@@ -135,6 +136,7 @@ Tree *programtree;
 %token YYSTRING
 %token YYINTEGER
 %token YYRATIONAL
+%token YYVOID // for testing
 
 %token YYRELATION
 %token YYASSIGN
@@ -607,6 +609,10 @@ constant       : dconst
                   {
                      $$ = $1;
                   }
+               | vconst
+                  {
+                     $$ = $1;
+                  }
                ;
 
 constlist      : constant YYIPSEP constlist
@@ -861,6 +867,15 @@ dconst      : YYDOUBLE
                   $$.col = yyloc.first_column;
                   $$.op = YYDOUBLE;
                   $$.dval = atof(yytext);
+               }
+            ;
+
+vconst      : YYVOID
+               {
+                  $$.line = yylineno;
+                  $$.col = yyloc.first_column;
+                  $$.op = YYVOID;
+                  $$.ival = 0;
                }
             ;
 
