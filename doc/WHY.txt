@@ -1,0 +1,85 @@
+Why did i do this?  BASIC is pretty much a dead language.
+
+Without getting into too many details, i fell ill while driving across
+country, and was prescribed a medication that left me unable to operate
+heavy machinery.
+
+It was illegal for me to drive for about 2 weeks.  With no other options,
+i booked myself into a hotel room, and ordered a lot of pizza.
+
+A friend suggested i take on some kind of programming project, and
+suggested a compiler for his favorite flavor of BASIC.
+
+As a seasoned programmer, i had cut my teeth on old Apple ][ and Atari
+BASIC, and it had been a while since i'd written a compiler.  i thought
+if i started out simple, i could refresh my memory, and then later apply
+some of these things to the project my friend was interested in.
+
+However, i needed some things to make the project interesting to me.
+
+i'd long wondered why most programming languages are based on English
+keywords [1], and what it would look like to try to support multiple
+spoken languages.  With the advent of Unicode, this shouldn't be a big
+deal, right?  Turns out it took a lot of effort for me to find RE/flex,
+a version of lex/flex that even understood Unicode.
+
+i'd also had a long standing problem with how computers represented
+floating point numbers.  Having participated in many coding competitions,
+both as a competitor and as a judge, my favorite class of problems to trip
+people up with was to give them something involving floating point maths
+where rounding errors were certain to accumulate and shoot them in the
+foot. i wanted to do something with rational numbers, no rounding errors.
+
+The authors of the ECMA-116 BASIC standard recognized rounding problems
+with floating point numbers, and tried to fix it by introducing fixed
+point numbers into the language, but even that is not always satisfactory
+[2].  i had always wanted to do a math type based on rational fractions,
+and wanted to see what kinds of problems that fixed, and what kinds of
+problems it introduced.
+
+So there i was, locked in a hotel room, scratching my weird coding itches,
+hopped up on some strange med that messed with my sense of balance,
+and this is what happened.
+
+i mostly focused on ECMA-55, because it had a small number of keywords,
+and i did not want to get stuck in a translation tar pit.  my first two
+"languages" were "reverse" (all the keywords are backwards) and "emoji",
+where keywords were arbitrary series of Unicode emoji characters (i needed
+to be able to test Unicode input).  i needed to be able to try switching
+back and forth with english, reverse, and emoji.  i also developed the
+"Rational" number type at this time.
+
+i did steal a few features from ECMA-116, as well as some other flavors
+of BASIC, and dropped or enhanced some ECMA-55 features because they
+seemed dirt stupid easy to do at the time.
+
+i also looked into later versions of BASIC, such as ANSI X3.113-1987,
+Full BASIC, True BASIC, etc...  They all suffered from the "second system"
+effect, and were too complicated for a quick 2 week project.  In fact
+it is doubtful ANYONE has ever fully implemented these specifications [3].
+
+So that's how we got here.  Right now i'm mostly concerned with correct
+keyword translations, which i think can only be done correctly by
+crowdsourcing, and i have no idea how to make this toy popular enough
+for that.
+
+As a teacher who influenced me greatly in my early years once told me,
+"a piece of art is never finished, it is simply abandoned."
+
+i'm not giving up just yet though. i'll likely putter around with
+translations for a while longer.  but the core of the thing, the language
+interpreter, is pretty much done.
+
+Footnotes:
+
+[1]
+Coding Is for Everyone—as Long as You Speak English
+https://www.wired.com/story/coding-is-for-everyoneas-long-as-you-speak-english/
+
+[2]
+WHY FIXED POINT WON'T CURE YOUR FLOATING POINT BLUES
+https://accu.org/journals/overload/18/100/harris_1717/
+
+[3]
+Full BASIC
+https://en.wikipedia.org/wiki/Full_BASIC
