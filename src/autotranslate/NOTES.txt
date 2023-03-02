@@ -5,3 +5,7 @@ workflow:
 (3) download as *.ods
 (4) download as *.tsv
 (5) run make
+
+The polybasic.ods file should be the PRIMARY source for translations.
+It should be downloaded as polybasic.tsv so the automated tools can read it.
+Let the automated tools take it from there.
