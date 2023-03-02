@@ -1,11 +1,16 @@
 workflow:
 
 (1) upload polybasic.ods to google sheets
-(2) make changes
-(3) download as *.ods
-(4) download as *.tsv
+(2) make changes on lang_* pages
+    make sure there are no duplicates (orange highlinging in column A)
+(3) download the polybasic.txv sheet as a *.tsv
+(4) download the work as *.ods
 (5) run make
 
+The order is important.  If you download the *.ods first, all the calls
+to google translate get redone, which takes time, and introduces errors.
+(lots of things translated as "Loading...")
+
 The polybasic.ods file should be the PRIMARY source for translations.
-It should be downloaded as polybasic.tsv so the automated tools can read it.
-Let the automated tools take it from there.
+It should be downloaded as polybasic.tsv so the automated tools can
+read it.  Let the automated tools take it from there.
