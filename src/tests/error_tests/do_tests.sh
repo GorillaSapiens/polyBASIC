@@ -25,6 +25,7 @@ do
    DIFF=$(diff -q $base\_expected.txt $base\_actual.txt)
    if [ "$DIFF" ]
    then
+      diff -uprN $base\_expected.txt $base\_actual.txt
       echo FAIL
       exit 1
    else
