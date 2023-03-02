@@ -58,7 +58,7 @@ Full BASIC, True BASIC, etc...  They all suffered from the "second system"
 effect, and were too complicated for a quick 2 week project.  In fact
 it is doubtful ANYONE has ever fully implemented these specifications [3].
 
-So that's how we got here.  Right now i'm mostly concerned with correct
+So that's how we got here.  Right now i'm mostly concerned with good
 keyword translations, which i think can only be done correctly by
 crowdsourcing, and i have no idea how to make this toy popular enough
 for that.
