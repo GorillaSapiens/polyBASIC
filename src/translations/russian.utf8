@@ -146,7 +146,7 @@ UNHANDLED OPERATION	НЕУПОМЯНУТАЯ ОПЕРАЦИЯ
 UNHANDLED OPERATION CODE	КОД ОПЕРАЦИИ НЕЗДОРОВОЙ
 UNKNOWN IF LABEL	НЕИЗВЕСТНО, ЕСЛИ ЭТИКЕТКА
 UNRECOGNIZED DOUBLE MATH OPERATION	НЕПОЗНАННАЯ ДВОЙНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕРАСПОЗНАННОЙ ФУНКЦИИ
+UNRECOGNIZED FUNCTION DEFINITION	НЕПОЗНАННОЕ ОПРЕДЕЛЕНИЕ ФУНКЦИИ
 UNRECOGNIZED GOSUB LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ ГОСУБА
 UNRECOGNIZED GOTO LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ GOTO
 UNRECOGNIZED INPUT	НЕПОЗНАННЫЙ ВХОД

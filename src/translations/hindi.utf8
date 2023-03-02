@@ -132,7 +132,7 @@ GOSUB STACK OVERFLOW	गोसुब स्टैक ओवरफ्लो
 GOSUB STACK UNDERFLOW	गोसुब स्टैक अंडरफ्लो
 INDEX OUT OF RANGE	सीमा से बाहर
 LABEL ALREADY DEFINED	पहले से परिभाषित लेबल
-LEFT / RIGHT OPERATION MISMATCH	लेफ्ट / राइट ऑपरेशन बेमेल
+LEFT / RIGHT OPERATION MISMATCH	बाएं / दाएं ऑपरेशन बेमेल
 NEGATIVE INDEX	ऋणात्मक सूचकांक
 NEXT ON FOR LOOP WITH STRING VARIABLE	स्ट्रिंग चर के साथ लूप के लिए अगला
 OPERAND MISMATCH	संचालक बेमेल
@@ -146,12 +146,12 @@ UNHANDLED OPERATION	अनहेल्दी संचालन
 UNHANDLED OPERATION CODE	अनियंत्रित ऑपरेशन कोड
 UNKNOWN IF LABEL	अज्ञात अगर लेबल
 UNRECOGNIZED DOUBLE MATH OPERATION	अपरिचित दोहरे गणित संचालन
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	अपरिचित फ़ंक्शन फ़ंक्शन परिभाषा
+UNRECOGNIZED FUNCTION DEFINITION	अपरिचित कार्य परिभाषा
 UNRECOGNIZED GOSUB LABEL	अपरिचित GOSUB लेबल
 UNRECOGNIZED GOTO LABEL	गैर -मान्यता प्राप्त गोटो लेबल
 UNRECOGNIZED INPUT	अपरिचित इनपुट
 UNRECOGNIZED INTEGER MATH OPERATION	निहित पूर्णांक गणित संचालन
-UNRECOGNIZED MATH TYPE	बिना मान्यता प्राप्त गणित प्रकार
+UNRECOGNIZED MATH TYPE	अपरिचित गणित प्रकार
 UNRECOGNIZED NEXT VARIABLE	अगला चर की पहचान की गई
 UNRECOGNIZED OP IN PRINT	प्रिंट में अपरिचित ओपी
 UNRECOGNIZED RATIONAL MATH OPERATION	बिना मान्यता प्राप्त तर्कसंगत गणित संचालन

@@ -123,7 +123,7 @@ ARRAY INDEX OUTSIDE OF BOUNDS	فهرس الصفيف خارج الحدود
 CANNOT ACCESS DIRECTORY	لا يمكن الوصول إلى الدليل
 DATA INPUT UNDERFLOW	إدخال البيانات UNDERFLOW
 DATA READ UNDERFLOW	قراءة البيانات UNDERFLOW
-DEFINITION CYCLE DISCOVERED	تم اكتشاف دورة التعريف
+DEFINITION CYCLE DISCOVERED	دورة التعريف التي تم اكتشافها
 ERROR	خطأ
 FOR VARIABLE MULTIPLY DEFINED	للمتغير الضاعف المحدد
 FUNCTION DEFINITION MULTIPLY DEFINED	تعريف الوظيفة المحددة محددة
@@ -132,7 +132,7 @@ GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
 GOSUB STACK UNDERFLOW	GOSUB STACK UNDERFLOW
 INDEX OUT OF RANGE	فهرس خارج النطاق
 LABEL ALREADY DEFINED	تسمية محددة بالفعل
-LEFT / RIGHT OPERATION MISMATCH	عدم تطابق العملية اليسرى / اليمنى
+LEFT / RIGHT OPERATION MISMATCH	عدم تطابق العملية اليمنى / اليمنى
 NEGATIVE INDEX	الفهرس السلبي
 NEXT ON FOR LOOP WITH STRING VARIABLE	التالي على حلقة مع متغير السلسلة
 OPERAND MISMATCH	عدم تطابق المعامل
@@ -146,7 +146,7 @@ UNHANDLED OPERATION	عملية غير معطلة
 UNHANDLED OPERATION CODE	رمز التشغيل غير المعقول
 UNKNOWN IF LABEL	غير معروف إذا كانت العلامة
 UNRECOGNIZED DOUBLE MATH OPERATION	عملية رياضيات مزدوجة غير معترف بها
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	تعريف وظيفة الوظيفة غير المعترف بها
+UNRECOGNIZED FUNCTION DEFINITION	تعريف الوظيفة غير المعترف به
 UNRECOGNIZED GOSUB LABEL	تسمية GOSUB غير المعترف بها
 UNRECOGNIZED GOTO LABEL	تسمية GOTO غير المعترف بها
 UNRECOGNIZED INPUT	المدخلات غير المعترف بها
@@ -157,7 +157,7 @@ UNRECOGNIZED OP IN PRINT	OP غير المعترف به في الطباعة
 UNRECOGNIZED RATIONAL MATH OPERATION	عملية الرياضيات العقلانية غير المعترف بها
 UNRECOGNIZED VARIABLE TYPE	نوع متغير غير معترف به
 UNSET ENVIRONMENT VARIABLE	غير متغير البيئة
-VARIABLE / ARRAY DEFINITION MISMATCH	متغير / تعريف التعريف عدم تطابق
+VARIABLE / ARRAY DEFINITION MISMATCH	متغير / تعريف تعريف عدم تطابق
 VARIABLE DEFINED AS ARRAY	متغير محدد على أنه صفيف
 VARIABLE DEFINED AS NONARRAY	متغير تعريف
 VARIABLE HAS NO VALUE	المتغير ليس له قيمة
