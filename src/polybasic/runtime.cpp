@@ -163,7 +163,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    if (!def) {
       GURU;
       // test case unrecognized_defcall
-      eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED FUNCTION FUNCTION DEFINITION} ❮%2❯%n",
+      eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED FUNCTION DEFINITION} ❮%2❯%n",
          defcall->line, defcall->col, defcall->sval);
       exit(-1);
    }
