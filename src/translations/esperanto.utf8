@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= FINO                     # the end statement
+END <= FINO              # the end statement
 
 # from ECMA-55 §9
 
-ABS <= ABSOLUTAVALORO           # the absolute value function
-ATN <= INVERSATANGENTO          # the trigonomic arctangent function
-COS <= KOSINARO                 # the trigonomic cosine function
-EXP <= EKSPONENTA               # the exponential / power function
-INT <= ENTJERO                  # the integer / floor function
-LOG <= LOGARITMO                # the natural log function
-RND <= RULO                     # generate random number
-SGN <= SIGNO                    # determine the sign
-SIN <= SINUSO                   # the trigonomic sine function
-SQR <= KVADRATARADIKO           # the square root function
-TAN <= TANGENTO                 # the trigonomic tangent function
-DBL <= DUOBLA                   # convert to double
-STR <= TEKSTO                   # convert to string
-RAT <= RACIA                    # convert to rational
+ABS <= ABS               # the absolute value function
+ATN <= ATN               # the trigonomic arctangent function
+COS <= COS               # the trigonomic cosine function
+EXP <= EXP               # the exponential / power function
+INT <= INT               # the integer / floor function
+LOG <= REGISTRI          # the natural log function
+RND <= RND               # generate random number
+SGN <= SGN               # determine the sign
+SIN <= PEKO              # the trigonomic sine function
+SQR <= SQR               # the square root function
+TAN <= TAN               # the trigonomic tangent function
+DBL <= DBL               # convert to double
+STR <= STR               # convert to string
+RAT <= RATO              # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DIFINI                   # for user defined functions
+DEF <= DEF               # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= LASU                     # for variable assignment
+LET <= LASU              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= VOKU                   # formed from GO and SUB if no direct translation exists
-GOTO <= SALTU                   # formed from GO and TO if no direct translation exists
-TO <= AL                        # part of for/to/step/next constructs
-IF <= SE                        # part of if/then constructs
-ON <= ŜALTI                     # a sort of a switch statement
-RETURN <= REVENU                # used to exit a subroutine
-STOP <= FINITA                  # command to stop execution
+GOSUB <= GOSUB           # formed from GO and SUB if no direct translation exists
+GOTO <= IRUAL            # formed from GO and TO if no direct translation exists
+TO <= AL                 # part of for/to/step/next constructs
+IF <= SE                 # part of if/then constructs
+ON <= ON                 # a sort of a switch statement
+RETURN <= REVENU         # used to exit a subroutine
+STOP <= ĈESU             # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DE                       # part of for/to/step/next constructs
-STEP <= PAŜO                    # part of for/to/step/next constructs
-NEXT <= POSTE                   # part of for/to/step/next constructs
+FOR <= POR               # part of for/to/step/next constructs
+STEP <= PAŜO             # part of for/to/step/next constructs
+NEXT <= POSTE            # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= PRESI                  # to print things out
+PRINT <= PRESI           # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= ENIGO                  # the input statement
+INPUT <= ENIGO           # the input statement
 
 # from ECMA-55 §16
 
-READ <= LEGU                    # part of read / restore
-RESTORE <= RELEGI               # part of read / restore
+READ <= LEGU             # part of read / restore
+RESTORE <= RESTAŬRI      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= INFORMOJ                # to embed data in the program
+DATA <= DATUMOJ          # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSIO                 # dimension arrays
-OPTION <= OPCIO                 # see ECMA-55 §18.1
-BASE <= BAZO                    # see ECMA-55 §18.1
+DIM <= DIM               # dimension arrays
+OPTION <= OPCIO          # see ECMA-55 §18.1
+BASE <= BAZO             # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= RIMARKU                  # see ECMA-55 §18.1
+REM <= REM               # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= HAZARDA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Kaj neniu lingvo donita sur komandlinio. Elirante.
-ARRAY ALREADY DEFINED	Tabelo jam difinita
-ARRAY INDEX OUTSIDE OF BOUNDS	Array -indekso ekster limoj
-CANNOT ACCESS DIRECTORY	Ne povas aliri dosierujon
-DATA INPUT UNDERFLOW	Datuma eniga subfluo
-DATA READ UNDERFLOW	Datumoj Legu Subfluon
-DEFINITION CYCLE DISCOVERED	Difina ciklo malkovrita
-ERROR	Eraro
-FOR VARIABLE MULTIPLY DEFINED	Por variablo multobligita difinita
-FUNCTION DEFINITION MULTIPLY DEFINED	Funkcia difino multobliĝas difinita
-FUNCTION DEFINITION PARAMETER MISMATCH	Funkcia Difina Parametro Malsukcesa
-GOSUB STACK OVERFLOW	Gosub -stako superfluas
-GOSUB STACK UNDERFLOW	Gosub Stack Subfluo
-INDEX OUT OF RANGE	Indekso ekster la gamo
-LABEL ALREADY DEFINED	Etikedo jam difinita
-LEFT / RIGHT OPERATION MISMATCH	Maldekstra / Dekstra Operacio Mismatch
-NEGATIVE INDEX	Negativa indekso
-NEXT ON FOR LOOP WITH STRING VARIABLE	Venonta por buklo kun ĉena variablo
-OPERAND MISMATCH	Operanda miskompreno
-OPTION REQUIRES A LANGUAGE	Opcio postulas lingvon
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Bonvolu kontroli lingvajn agordojn aŭ median variablon
-STRING MATH LOGIC ERROR	Ŝnuro de matematika logika eraro
-UNABLE TO OPEN FILE	Ne eblas malfermi dosieron
-UNABLE TO OPEN TO OPEN FILE FOR READING	Ne povas malfermi por malfermi dosieron por legado
-UNDEFINED LABEL	Nedifinita etikedo
-UNHANDLED OPERATION	Neinstruita operacio
-UNHANDLED OPERATION CODE	Malkonata Operacia Kodo
-UNKNOWN IF LABEL	Nekonata se etikedo
-UNRECOGNIZED DOUBLE MATH OPERATION	Ne rekonita duobla matematika operacio
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Ne rekonita funkcia funkcia difino
-UNRECOGNIZED GOSUB LABEL	Ne rekonita gosub -etikedo
-UNRECOGNIZED GOTO LABEL	Ne rekonita goto -etikedo
-UNRECOGNIZED INPUT	Ne rekonita enigo
-UNRECOGNIZED INTEGER MATH OPERATION	Ne rekonita entjera matematika operacio
-UNRECOGNIZED MATH TYPE	Ne rekonita matematika tipo
-UNRECOGNIZED NEXT VARIABLE	Ne rekonita sekva variablo
-UNRECOGNIZED OP IN PRINT	Ne rekonita OP en presaĵo
-UNRECOGNIZED RATIONAL MATH OPERATION	Ne rekonita racia matematika operacio
-UNRECOGNIZED VARIABLE TYPE	Ne rekonita varia tipo
-UNSET ENVIRONMENT VARIABLE	Malŝaltita media variablo
-VARIABLE / ARRAY DEFINITION MISMATCH	Variabla / Array -Difino Malsukcesa
-VARIABLE DEFINED AS ARRAY	Variaĵo difinita kiel tabelo
-VARIABLE DEFINED AS NONARRAY	Variaĵo difinita kiel nearray
-VARIABLE HAS NO VALUE	Variaĵo havas neniun valoron
-VARIABLE IS NOT AN ARRAY	Variaĵo ne estas tabelo
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	KAJ NENIU LINGVO DONITA SUR KOMANDLINIO. ELIRANTE.
+ARRAY ALREADY DEFINED	TABELO JAM DIFINITA
+ARRAY INDEX OUTSIDE OF BOUNDS	ARRAY -INDEKSO EKSTER LIMOJ
+CANNOT ACCESS DIRECTORY	NE POVAS ALIRI DOSIERUJON
+DATA INPUT UNDERFLOW	DATUMA ENIGA SUBFLUO
+DATA READ UNDERFLOW	DATUMOJ LEGU SUBFLUON
+DEFINITION CYCLE DISCOVERED	DIFINA CIKLO MALKOVRITA
+ERROR	ERARO
+FOR VARIABLE MULTIPLY DEFINED	POR VARIABLO MULTOBLIGITA DIFINITA
+FUNCTION DEFINITION MULTIPLY DEFINED	FUNKCIA DIFINO MULTOBLIĜAS DIFINITA
+FUNCTION DEFINITION PARAMETER MISMATCH	FUNKCIA DIFINA PARAMETRO MALSUKCESA
+GOSUB STACK OVERFLOW	GOSUB -STAKO SUPERFLUAS
+GOSUB STACK UNDERFLOW	GOSUB STACK SUBFLUO
+INDEX OUT OF RANGE	INDEKSO EKSTER LA GAMO
+LABEL ALREADY DEFINED	ETIKEDO JAM DIFINITA
+LEFT / RIGHT OPERATION MISMATCH	MALDEKSTRA / DEKSTRA OPERACIO MISMATCH
+NEGATIVE INDEX	NEGATIVA INDEKSO
+NEXT ON FOR LOOP WITH STRING VARIABLE	VENONTA POR BUKLO KUN ĈENA VARIABLO
+OPERAND MISMATCH	OPERANDA MISKOMPRENO
+OPTION REQUIRES A LANGUAGE	OPCIO POSTULAS LINGVON
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	BONVOLU KONTROLI LINGVAJN AGORDOJN AŬ MEDIAN VARIABLON
+STRING MATH LOGIC ERROR	ŜNURO DE MATEMATIKA LOGIKA ERARO
+UNABLE TO OPEN FILE	NE EBLAS MALFERMI DOSIERON
+UNABLE TO OPEN TO OPEN FILE FOR READING	NE POVAS MALFERMI POR MALFERMI DOSIERON POR LEGADO
+UNDEFINED LABEL	NEDIFINITA ETIKEDO
+UNHANDLED OPERATION	NEINSTRUITA OPERACIO
+UNHANDLED OPERATION CODE	MALKONATA OPERACIA KODO
+UNKNOWN IF LABEL	NEKONATA SE ETIKEDO
+UNRECOGNIZED DOUBLE MATH OPERATION	NE REKONITA DUOBLA MATEMATIKA OPERACIO
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	NE REKONITA FUNKCIA FUNKCIA DIFINO
+UNRECOGNIZED GOSUB LABEL	NE REKONITA GOSUB -ETIKEDO
+UNRECOGNIZED GOTO LABEL	NE REKONITA GOTO -ETIKEDO
+UNRECOGNIZED INPUT	NE REKONITA ENIGO
+UNRECOGNIZED INTEGER MATH OPERATION	NE REKONITA ENTJERA MATEMATIKA OPERACIO
+UNRECOGNIZED MATH TYPE	NE REKONITA MATEMATIKA TIPO
+UNRECOGNIZED NEXT VARIABLE	NE REKONITA SEKVA VARIABLO
+UNRECOGNIZED OP IN PRINT	NE REKONITA OP EN PRESAĴO
+UNRECOGNIZED RATIONAL MATH OPERATION	NE REKONITA RACIA MATEMATIKA OPERACIO
+UNRECOGNIZED VARIABLE TYPE	NE REKONITA VARIA TIPO
+UNSET ENVIRONMENT VARIABLE	MALŜALTITA MEDIA VARIABLO
+VARIABLE / ARRAY DEFINITION MISMATCH	VARIABLA / ARRAY -DIFINO MALSUKCESA
+VARIABLE DEFINED AS ARRAY	VARIAĴO DIFINITA KIEL TABELO
+VARIABLE DEFINED AS NONARRAY	VARIAĴO DIFINITA KIEL NEARRAY
+VARIABLE HAS NO VALUE	VARIAĴO HAVAS NENIUN VALORON
+VARIABLE IS NOT AN ARRAY	VARIAĴO NE ESTAS TABELO

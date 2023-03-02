@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= 終わり            # the end statement
+END <= 終わり           # the end statement
 
 # from ECMA-55 §9
 
-ABS <= 絶対値            # the absolute value function
-ATN <= 逆の接線           # the trigonomic arctangent function
-COS <= 余弦             # the trigonomic cosine function
-EXP <= 指数             # the exponential / power function
-INT <= 整数             # the integer / floor function
-LOG <= 対数             # the natural log function
-RND <= ロール            # generate random number
-SGN <= サイン            # determine the sign
-SIN <= 正弦             # the trigonomic sine function
-SQR <= 平方根            # the square root function
-TAN <= 正接             # the trigonomic tangent function
-DBL <= ダブル            # convert to double
-STR <= 文章             # convert to string
-RAT <= 合理的な           # convert to rational
+ABS <= 腹筋            # the absolute value function
+ATN <= ATN           # the trigonomic arctangent function
+COS <= COS           # the trigonomic cosine function
+EXP <= EXP           # the exponential / power function
+INT <= INT           # the integer / floor function
+LOG <= ログ            # the natural log function
+RND <= RND           # generate random number
+SGN <= SGN           # determine the sign
+SIN <= 罪             # the trigonomic sine function
+SQR <= SQR           # the square root function
+TAN <= 日焼け           # the trigonomic tangent function
+DBL <= DBL           # convert to double
+STR <= STR           # convert to string
+RAT <= ねずみ           # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= 定義             # for user defined functions
+DEF <= DEF           # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= させて            # for variable assignment
+LET <= させて           # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= 電話           # formed from GO and SUB if no direct translation exists
-GOTO <= ジャンプ          # formed from GO and TO if no direct translation exists
-TO <= に               # part of for/to/step/next constructs
-IF <= もしも             # part of if/then constructs
-ON <= スイッチ            # a sort of a switch statement
-RETURN <= 戻る          # used to exit a subroutine
-STOP <= 終了した          # command to stop execution
+GOSUB <= GOSUB       # formed from GO and SUB if no direct translation exists
+GOTO <= GOTO         # formed from GO and TO if no direct translation exists
+TO <= に              # part of for/to/step/next constructs
+IF <= もしも            # part of if/then constructs
+ON <= の上             # a sort of a switch statement
+RETURN <= 戻る         # used to exit a subroutine
+STOP <= ストップ         # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= から             # part of for/to/step/next constructs
-STEP <= ステップ          # part of for/to/step/next constructs
-NEXT <= 次             # part of for/to/step/next constructs
+FOR <= ために           # part of for/to/step/next constructs
+STEP <= ステップ         # part of for/to/step/next constructs
+NEXT <= 次            # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= 印刷           # to print things out
+PRINT <= 印刷          # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= 入力           # the input statement
+INPUT <= 入力          # the input statement
 
 # from ECMA-55 §16
 
-READ <= 読む            # part of read / restore
-RESTORE <= 読み直します     # part of read / restore
+READ <= 読む           # part of read / restore
+RESTORE <= 戻す        # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= 情報            # to embed data in the program
+DATA <= データ          # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= 寸法             # dimension arrays
-OPTION <= オプション       # see ECMA-55 §18.1
-BASE <= ベース           # see ECMA-55 §18.1
+DIM <= 薄暗い           # dimension arrays
+OPTION <= オプション      # see ECMA-55 §18.1
+BASE <= ベース          # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= 述べる            # see ECMA-55 §18.1
+REM <= REM           # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -148,7 +148,7 @@ UNKNOWN IF LABEL	ラベルの場合は不明です
 UNRECOGNIZED DOUBLE MATH OPERATION	認識されていない二重数学操作
 UNRECOGNIZED FUNCTION FUNCTION DEFINITION	認識されていない関数関数定義
 UNRECOGNIZED GOSUB LABEL	認識されていないゴスブラベル
-UNRECOGNIZED GOTO LABEL	認識されていないgotoラベル
+UNRECOGNIZED GOTO LABEL	認識されていないGOTOラベル
 UNRECOGNIZED INPUT	認識されていない入力
 UNRECOGNIZED INTEGER MATH OPERATION	認識されていない整数数学操作
 UNRECOGNIZED MATH TYPE	認識されていない数学タイプ

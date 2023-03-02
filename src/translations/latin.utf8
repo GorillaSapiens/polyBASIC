@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= FINIS                      # the end statement
+END <= FINIS             # the end statement
 
 # from ECMA-55 §9
 
-ABS <= ABSOLUTUS                  # the absolute value function
-ATN <= INVERSUMTANGENTEM          # the trigonomic arctangent function
-COS <= COSINUS                    # the trigonomic cosine function
-EXP <= EXPONENTIALIS              # the exponential / power function
-INT <= INTEGER                    # the integer / floor function
-LOG <= LOGARITHMUS                # the natural log function
-RND <= VOLUMEN                    # generate random number
-SGN <= SIGNUM                     # determine the sign
-SIN <= SINUS                      # the trigonomic sine function
-SQR <= QUADRATUS                  # the square root function
-TAN <= TANGENS                    # the trigonomic tangent function
-DBL <= DUPLEX                     # convert to double
-STR <= TEXT                       # convert to string
-RAT <= RATIONALIS                 # convert to rational
+ABS <= ABS               # the absolute value function
+ATN <= ATN               # the trigonomic arctangent function
+COS <= COS               # the trigonomic cosine function
+EXP <= OPSTO             # the exponential / power function
+INT <= INT               # the integer / floor function
+LOG <= LOGUS             # the natural log function
+RND <= RND               # generate random number
+SGN <= SGN               # determine the sign
+SIN <= PECCATUM          # the trigonomic sine function
+SQR <= SQR               # the square root function
+TAN <= TAN               # the trigonomic tangent function
+DBL <= DBL               # convert to double
+STR <= STRO              # convert to string
+RAT <= RAT               # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DEFINIRE                   # for user defined functions
+DEF <= C                 # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= FIAT                       # for variable assignment
+LET <= FIAT              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= VOCO                     # formed from GO and SUB if no direct translation exists
-GOTO <= JUMP                      # formed from GO and TO if no direct translation exists
-TO <= UT                          # part of for/to/step/next constructs
-IF <= SI                          # part of if/then constructs
-ON <= SWITCH                      # a sort of a switch statement
-RETURN <= REDITUS                 # used to exit a subroutine
-STOP <= COMPLEXUS                 # command to stop execution
+GOSUB <= CAESIM          # formed from GO and SUB if no direct translation exists
+GOTO <= GOTO             # formed from GO and TO if no direct translation exists
+TO <= UT                 # part of for/to/step/next constructs
+IF <= SI                 # part of if/then constructs
+ON <= IN                 # a sort of a switch statement
+RETURN <= REDITUS        # used to exit a subroutine
+STOP <= PROHIBERE        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= EX                         # part of for/to/step/next constructs
-STEP <= GRADUS                    # part of for/to/step/next constructs
-NEXT <= DEINDE                    # part of for/to/step/next constructs
+FOR <= ENIM              # part of for/to/step/next constructs
+STEP <= GRADUS           # part of for/to/step/next constructs
+NEXT <= DEINDE           # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= PRINT                    # to print things out
+PRINT <= PRINT           # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= INPUT                    # the input statement
+INPUT <= INPUT           # the input statement
 
 # from ECMA-55 §16
 
-READ <= LEGERE                    # part of read / restore
-RESTORE <= RELIGIO                # part of read / restore
+READ <= LEGERE           # part of read / restore
+RESTORE <= RESTITUO      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= NOTITIA                   # to embed data in the program
+DATA <= NOTITIA          # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSIO                   # dimension arrays
-OPTION <= OPTIO                   # see ECMA-55 §18.1
-BASE <= BASIS                     # see ECMA-55 §18.1
+DIM <= CALIGO            # dimension arrays
+OPTION <= OPTIO          # see ECMA-55 §18.1
+BASE <= BASIS            # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= ADNOTATIO                  # see ECMA-55 §18.1
+REM <= REM               # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= RANDOMIZE
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Et non linguam dedit in order versus. Exivit.
-ARRAY ALREADY DEFINED	Ordinata iam defined
-ARRAY INDEX OUTSIDE OF BOUNDS	Ordinata index extra terminos
-CANNOT ACCESS DIRECTORY	Potest obvius Directory
-DATA INPUT UNDERFLOW	Data input underflow
-DATA READ UNDERFLOW	Data Read underflow
-DEFINITION CYCLE DISCOVERED	Definitio exolvuntur inventa
-ERROR	Error
-FOR VARIABLE MULTIPLY DEFINED	Nam variabilis multiplicentur defined
-FUNCTION DEFINITION MULTIPLY DEFINED	Function definitione definitur
-FUNCTION DEFINITION PARAMETER MISMATCH	Function definitio parametch Mismatch
-GOSUB STACK OVERFLOW	Gessectus AMCFERO
-GOSUB STACK UNDERFLOW	Gessub ACERVUS underflow
-INDEX OUT OF RANGE	Index de range
-LABEL ALREADY DEFINED	Pittacium iam defined
-LEFT / RIGHT OPERATION MISMATCH	Sinistram / ius operationem mismatch
-NEGATIVE INDEX	Negans index
-NEXT ON FOR LOOP WITH STRING VARIABLE	Deinde in pro loop cum filum variabilis
-OPERAND MISMATCH	Operand mismatch
-OPTION REQUIRES A LANGUAGE	Optio postulat a lingua
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Placere reprehendo lingua occasus vel environment variabilis
-STRING MATH LOGIC ERROR	Math Math Logica Error
-UNABLE TO OPEN FILE	'Non aperire file
-UNABLE TO OPEN TO OPEN FILE FOR READING	'Non aperire aperire file ad Lectio
-UNDEFINED LABEL	Undefined Label
-UNHANDLED OPERATION	Unharled operatio
-UNHANDLED OPERATION CODE	Unhared operatio codice
-UNKNOWN IF LABEL	Ignotum si label
-UNRECOGNIZED DOUBLE MATH OPERATION	Duplex duplici math operandi
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Cognita munus munus definitio
-UNRECOGNIZED GOSUB LABEL	Cognita Gosob Label
-UNRECOGNIZED GOTO LABEL	Cognita gata label
-UNRECOGNIZED INPUT	Input
-UNRECOGNIZED INTEGER MATH OPERATION	Cognita integer math operandi
-UNRECOGNIZED MATH TYPE	Cognita math type
-UNRECOGNIZED NEXT VARIABLE	Latuit Next variabilis
-UNRECOGNIZED OP IN PRINT	Cognita OP in Print
-UNRECOGNIZED RATIONAL MATH OPERATION	Cognita rationalis math operandi
-UNRECOGNIZED VARIABLE TYPE	Cognita variabilis type
-UNSET ENVIRONMENT VARIABLE	Unset environment variabilis
-VARIABLE / ARRAY DEFINITION MISMATCH	Variabilis / ordinata Definitio Mismatch
-VARIABLE DEFINED AS ARRAY	Variabilis defined as ordinata
-VARIABLE DEFINED AS NONARRAY	Variabilis defined ut nonarray
-VARIABLE HAS NO VALUE	Variabilis habet valorem
-VARIABLE IS NOT AN ARRAY	Variabilis non est ordinata
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ET NON LINGUAM DEDIT IN ORDER VERSUS. EXIVIT.
+ARRAY ALREADY DEFINED	ORDINATA IAM DEFINED
+ARRAY INDEX OUTSIDE OF BOUNDS	ORDINATA INDEX EXTRA TERMINOS
+CANNOT ACCESS DIRECTORY	POTEST OBVIUS DIRECTORY
+DATA INPUT UNDERFLOW	DATA INPUT UNDERFLOW
+DATA READ UNDERFLOW	DATA READ UNDERFLOW
+DEFINITION CYCLE DISCOVERED	DEFINITIO EXOLVUNTUR INVENTA
+ERROR	ERROR
+FOR VARIABLE MULTIPLY DEFINED	NAM VARIABILIS MULTIPLICENTUR DEFINED
+FUNCTION DEFINITION MULTIPLY DEFINED	FUNCTION DEFINITIONE DEFINITUR
+FUNCTION DEFINITION PARAMETER MISMATCH	FUNCTION DEFINITIO PARAMETCH MISMATCH
+GOSUB STACK OVERFLOW	GESSECTUS AMCFERO
+GOSUB STACK UNDERFLOW	GESSUB ACERVUS UNDERFLOW
+INDEX OUT OF RANGE	INDEX DE RANGE
+LABEL ALREADY DEFINED	PITTACIUM IAM DEFINED
+LEFT / RIGHT OPERATION MISMATCH	SINISTRAM / IUS OPERATIONEM MISMATCH
+NEGATIVE INDEX	NEGANS INDEX
+NEXT ON FOR LOOP WITH STRING VARIABLE	DEINDE IN PRO LOOP CUM FILUM VARIABILIS
+OPERAND MISMATCH	OPERAND MISMATCH
+OPTION REQUIRES A LANGUAGE	OPTIO POSTULAT A LINGUA
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	PLACERE REPREHENDO LINGUA OCCASUS VEL ENVIRONMENT VARIABILIS
+STRING MATH LOGIC ERROR	MATH MATH LOGICA ERROR
+UNABLE TO OPEN FILE	'NON APERIRE FILE
+UNABLE TO OPEN TO OPEN FILE FOR READING	'NON APERIRE APERIRE FILE AD LECTIO
+UNDEFINED LABEL	UNDEFINED LABEL
+UNHANDLED OPERATION	UNHARLED OPERATIO
+UNHANDLED OPERATION CODE	UNHARED OPERATIO CODICE
+UNKNOWN IF LABEL	IGNOTUM SI LABEL
+UNRECOGNIZED DOUBLE MATH OPERATION	DUPLEX DUPLICI MATH OPERANDI
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	COGNITA MUNUS MUNUS DEFINITIO
+UNRECOGNIZED GOSUB LABEL	COGNITA GOSOB LABEL
+UNRECOGNIZED GOTO LABEL	COGNITA GATA LABEL
+UNRECOGNIZED INPUT	INPUT
+UNRECOGNIZED INTEGER MATH OPERATION	COGNITA INTEGER MATH OPERANDI
+UNRECOGNIZED MATH TYPE	COGNITA MATH TYPE
+UNRECOGNIZED NEXT VARIABLE	LATUIT NEXT VARIABILIS
+UNRECOGNIZED OP IN PRINT	COGNITA OP IN PRINT
+UNRECOGNIZED RATIONAL MATH OPERATION	COGNITA RATIONALIS MATH OPERANDI
+UNRECOGNIZED VARIABLE TYPE	COGNITA VARIABILIS TYPE
+UNSET ENVIRONMENT VARIABLE	UNSET ENVIRONMENT VARIABILIS
+VARIABLE / ARRAY DEFINITION MISMATCH	VARIABILIS / ORDINATA DEFINITIO MISMATCH
+VARIABLE DEFINED AS ARRAY	VARIABILIS DEFINED AS ORDINATA
+VARIABLE DEFINED AS NONARRAY	VARIABILIS DEFINED UT NONARRAY
+VARIABLE HAS NO VALUE	VARIABILIS HABET VALOREM
+VARIABLE IS NOT AN ARRAY	VARIABILIS NON EST ORDINATA

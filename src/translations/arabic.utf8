@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= نهاية                  # the end statement
+END <= نهاية                # the end statement
 
 # from ECMA-55 §9
 
-ABS <= قيمهمطلقه              # the absolute value function
-ATN <= عكسالظل                # the trigonomic arctangent function
-COS <= جيبالتمام              # the trigonomic cosine function
-EXP <= متسارع                 # the exponential / power function
-INT <= عددصحيح                # the integer / floor function
-LOG <= لوغاريتم               # the natural log function
-RND <= لفافة                  # generate random number
-SGN <= لافتة                  # determine the sign
-SIN <= جيب                    # the trigonomic sine function
-SQR <= الجذرالتربيعي          # the square root function
-TAN <= الظل                   # the trigonomic tangent function
-DBL <= مزدوج                  # convert to double
-STR <= نص                     # convert to string
-RAT <= عاقل                   # convert to rational
+ABS <= عضلاتالمعدة          # the absolute value function
+ATN <= ATN                  # the trigonomic arctangent function
+COS <= كوس                  # the trigonomic cosine function
+EXP <= إكسب                 # the exponential / power function
+INT <= INT                  # the integer / floor function
+LOG <= سجل                  # the natural log function
+RND <= RND                  # generate random number
+SGN <= SGN                  # determine the sign
+SIN <= الخطيئة              # the trigonomic sine function
+SQR <= SQR                  # the square root function
+TAN <= تان                  # the trigonomic tangent function
+DBL <= DBL                  # convert to double
+STR <= شارع                 # convert to string
+RAT <= فأر                  # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= يعرف                   # for user defined functions
+DEF <= ديف                  # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= يترك                   # for variable assignment
+LET <= يترك                 # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= يتصل                 # formed from GO and SUB if no direct translation exists
-GOTO <= القفز                 # formed from GO and TO if no direct translation exists
-TO <= ل                       # part of for/to/step/next constructs
-IF <= لو                      # part of if/then constructs
-ON <= يحول                    # a sort of a switch statement
-RETURN <= يعود                # used to exit a subroutine
-STOP <= تمالانتهاءمن          # command to stop execution
+GOSUB <= جوسوب              # formed from GO and SUB if no direct translation exists
+GOTO <= اذهبإلى             # formed from GO and TO if no direct translation exists
+TO <= ل                     # part of for/to/step/next constructs
+IF <= لو                    # part of if/then constructs
+ON <= على                   # a sort of a switch statement
+RETURN <= يعود              # used to exit a subroutine
+STOP <= قف                  # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= من                     # part of for/to/step/next constructs
-STEP <= خطوة                  # part of for/to/step/next constructs
-NEXT <= التالي                # part of for/to/step/next constructs
+FOR <= من                   # part of for/to/step/next constructs
+STEP <= خطوة                # part of for/to/step/next constructs
+NEXT <= التالي              # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= مطبعة                # to print things out
+PRINT <= مطبعة              # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= مدخل                 # the input statement
+INPUT <= مدخل               # the input statement
 
 # from ECMA-55 §16
 
-READ <= يقرأ                  # part of read / restore
-RESTORE <= إعادةالقراءة       # part of read / restore
+READ <= يقرأ                # part of read / restore
+RESTORE <= يعيد             # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= معلومة                # to embed data in the program
+DATA <= بيانات              # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= البعد                  # dimension arrays
-OPTION <= خيار                # see ECMA-55 §18.1
-BASE <= قاعدة                 # see ECMA-55 §18.1
+DIM <= خافت                 # dimension arrays
+OPTION <= خيار              # see ECMA-55 §18.1
+BASE <= قاعدة               # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= ملاحظة                 # see ECMA-55 §18.1
+REM <= ريم                  # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -121,15 +121,15 @@ AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ولا توجد لغة ممنو
 ARRAY ALREADY DEFINED	صفيف محدد بالفعل
 ARRAY INDEX OUTSIDE OF BOUNDS	فهرس الصفيف خارج الحدود
 CANNOT ACCESS DIRECTORY	لا يمكن الوصول إلى الدليل
-DATA INPUT UNDERFLOW	إدخال البيانات underflow
-DATA READ UNDERFLOW	قراءة البيانات underflow
-DEFINITION CYCLE DISCOVERED	دورة التعريف التي تم اكتشافها
+DATA INPUT UNDERFLOW	إدخال البيانات UNDERFLOW
+DATA READ UNDERFLOW	قراءة البيانات UNDERFLOW
+DEFINITION CYCLE DISCOVERED	تم اكتشاف دورة التعريف
 ERROR	خطأ
 FOR VARIABLE MULTIPLY DEFINED	للمتغير الضاعف المحدد
 FUNCTION DEFINITION MULTIPLY DEFINED	تعريف الوظيفة المحددة محددة
 FUNCTION DEFINITION PARAMETER MISMATCH	تعريف وظيفة عدم تطابق المعلمة
-GOSUB STACK OVERFLOW	Gosub Stack Overflow
-GOSUB STACK UNDERFLOW	Gosub Stack Underflow
+GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
+GOSUB STACK UNDERFLOW	GOSUB STACK UNDERFLOW
 INDEX OUT OF RANGE	فهرس خارج النطاق
 LABEL ALREADY DEFINED	تسمية محددة بالفعل
 LEFT / RIGHT OPERATION MISMATCH	عدم تطابق العملية اليسرى / اليمنى
@@ -146,9 +146,9 @@ UNHANDLED OPERATION	عملية غير معطلة
 UNHANDLED OPERATION CODE	رمز التشغيل غير المعقول
 UNKNOWN IF LABEL	غير معروف إذا كانت العلامة
 UNRECOGNIZED DOUBLE MATH OPERATION	عملية رياضيات مزدوجة غير معترف بها
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	تعريف الوظيفة غير المعترف به
-UNRECOGNIZED GOSUB LABEL	تسمية Gosub غير المعترف بها
-UNRECOGNIZED GOTO LABEL	تسمية Goto غير المعترف بها
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	تعريف وظيفة الوظيفة غير المعترف بها
+UNRECOGNIZED GOSUB LABEL	تسمية GOSUB غير المعترف بها
+UNRECOGNIZED GOTO LABEL	تسمية GOTO غير المعترف بها
 UNRECOGNIZED INPUT	المدخلات غير المعترف بها
 UNRECOGNIZED INTEGER MATH OPERATION	عملية رياضيات عدد صحيح غير معترف بها
 UNRECOGNIZED MATH TYPE	نوع الرياضيات غير المعترف به
@@ -157,7 +157,7 @@ UNRECOGNIZED OP IN PRINT	OP غير المعترف به في الطباعة
 UNRECOGNIZED RATIONAL MATH OPERATION	عملية الرياضيات العقلانية غير المعترف بها
 UNRECOGNIZED VARIABLE TYPE	نوع متغير غير معترف به
 UNSET ENVIRONMENT VARIABLE	غير متغير البيئة
-VARIABLE / ARRAY DEFINITION MISMATCH	متغير / تعريف تعريف عدم تطابق
+VARIABLE / ARRAY DEFINITION MISMATCH	متغير / تعريف التعريف عدم تطابق
 VARIABLE DEFINED AS ARRAY	متغير محدد على أنه صفيف
 VARIABLE DEFINED AS NONARRAY	متغير تعريف
 VARIABLE HAS NO VALUE	المتغير ليس له قيمة

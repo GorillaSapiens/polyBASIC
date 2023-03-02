@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= ENDE                     # the end statement
+END <= ENDE                  # the end statement
 
 # from ECMA-55 §9
 
-ABS <= ABSOLUTERWERT            # the absolute value function
-ATN <= INVERSETANGENTE          # the trigonomic arctangent function
-COS <= KOSINUS                  # the trigonomic cosine function
-EXP <= EXPONENTIELL             # the exponential / power function
-INT <= GANZEZAHL                # the integer / floor function
-LOG <= LOGARITHMUS              # the natural log function
-RND <= ROLLEN                   # generate random number
-SGN <= ZEICHEN                  # determine the sign
-SIN <= SINUS                    # the trigonomic sine function
-SQR <= QUADRATWURZEL            # the square root function
-TAN <= TANGENTE                 # the trigonomic tangent function
-DBL <= DOPPELT                  # convert to double
-STR <= TEXT                     # convert to string
-RAT <= RATIONAL                 # convert to rational
+ABS <= ABS                   # the absolute value function
+ATN <= ATN                   # the trigonomic arctangent function
+COS <= COS                   # the trigonomic cosine function
+EXP <= EXP                   # the exponential / power function
+INT <= INT                   # the integer / floor function
+LOG <= PROTOKOLL             # the natural log function
+RND <= RND                   # generate random number
+SGN <= SGN                   # determine the sign
+SIN <= SÜNDE                 # the trigonomic sine function
+SQR <= SQR                   # the square root function
+TAN <= BRÄUNEN               # the trigonomic tangent function
+DBL <= DBL                   # convert to double
+STR <= STR                   # convert to string
+RAT <= RATTE                 # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DEFINIEREN               # for user defined functions
+DEF <= DEF                   # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= LASSEN                   # for variable assignment
+LET <= LASSEN                # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= FORDERUNG              # formed from GO and SUB if no direct translation exists
-GOTO <= SPRINGEN                # formed from GO and TO if no direct translation exists
-TO <= ZU                        # part of for/to/step/next constructs
-IF <= WENN                      # part of if/then constructs
-ON <= SCHALTEN                  # a sort of a switch statement
-RETURN <= ZURÜCKKEHREN          # used to exit a subroutine
-STOP <= FERTIG                  # command to stop execution
+GOSUB <= GOSUB               # formed from GO and SUB if no direct translation exists
+GOTO <= GEHEZU               # formed from GO and TO if no direct translation exists
+TO <= ZU                     # part of for/to/step/next constructs
+IF <= WENN                   # part of if/then constructs
+ON <= AN                     # a sort of a switch statement
+RETURN <= ZURÜCKKEHREN       # used to exit a subroutine
+STOP <= STOPPEN              # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= AUS                      # part of for/to/step/next constructs
-STEP <= SCHRITT                 # part of for/to/step/next constructs
-NEXT <= NÄCHSTE                 # part of for/to/step/next constructs
+FOR <= FÜR                   # part of for/to/step/next constructs
+STEP <= SCHRITT              # part of for/to/step/next constructs
+NEXT <= NÄCHSTE              # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= DRUCKEN                # to print things out
+PRINT <= DRUCKEN             # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= EINGANG                # the input statement
+INPUT <= EINGANG             # the input statement
 
 # from ECMA-55 §16
 
-READ <= LESEN                   # part of read / restore
-RESTORE <= NOCHEINMALLESEN      # part of read / restore
+READ <= LESEN                # part of read / restore
+RESTORE <= WIEDERHERSTELLEN  # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= INFORMATION             # to embed data in the program
+DATA <= DATEN                # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= ABMESSUNGEN              # dimension arrays
-OPTION <= MÖGLICHKEIT           # see ECMA-55 §18.1
-BASE <= BASE                    # see ECMA-55 §18.1
+DIM <= DÜSTER                # dimension arrays
+OPTION <= MÖGLICHKEIT        # see ECMA-55 §18.1
+BASE <= BASE                 # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= ANMERKUNG                # see ECMA-55 §18.1
+REM <= REM                   # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= RANDOMISIEREN
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Und keine Sprache in der Befehlszeile angegeben. Ausgehen.
-ARRAY ALREADY DEFINED	Array bereits definiert
-ARRAY INDEX OUTSIDE OF BOUNDS	Array -Index außerhalb der Grenzen
-CANNOT ACCESS DIRECTORY	Kann nicht auf Verzeichnis zugreifen
-DATA INPUT UNDERFLOW	Dateneingangsunterlauf
-DATA READ UNDERFLOW	Daten lesen Unterlauf
-DEFINITION CYCLE DISCOVERED	Definitionszyklus entdeckt
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	UND KEINE SPRACHE IN DER BEFEHLSZEILE ANGEGEBEN. AUSGEHEN.
+ARRAY ALREADY DEFINED	ARRAY BEREITS DEFINIERT
+ARRAY INDEX OUTSIDE OF BOUNDS	ARRAY -INDEX AUSSERHALB DER GRENZEN
+CANNOT ACCESS DIRECTORY	KANN NICHT AUF VERZEICHNIS ZUGREIFEN
+DATA INPUT UNDERFLOW	DATENEINGANGSUNTERLAUF
+DATA READ UNDERFLOW	DATEN LESEN UNTERLAUF
+DEFINITION CYCLE DISCOVERED	DEFINITIONSZYKLUS ENTDECKT
 ERROR	FEHLER
-FOR VARIABLE MULTIPLY DEFINED	Für variable multiplizierte definiert
-FUNCTION DEFINITION MULTIPLY DEFINED	Funktionsdefinition multipliziert definiert
-FUNCTION DEFINITION PARAMETER MISMATCH	Funktionsdefinition Parameter Fehlanpassung
-GOSUB STACK OVERFLOW	Gosub Stack Overflow
-GOSUB STACK UNDERFLOW	Gosub -Stack -Unterlauf
-INDEX OUT OF RANGE	Index außerhalb des Bereichs
-LABEL ALREADY DEFINED	Etikett bereits definiert
-LEFT / RIGHT OPERATION MISMATCH	Nichtübereinstimmung links / rechts Operation
-NEGATIVE INDEX	Negativer Index
-NEXT ON FOR LOOP WITH STRING VARIABLE	Als nächstes für die Schleife mit String -Variable
-OPERAND MISMATCH	Operand -Nichtübereinstimmung
-OPTION REQUIRES A LANGUAGE	Option erfordert eine Sprache
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Bitte überprüfen Sie die Spracheinstellungen oder Umgebungsvariable
-STRING MATH LOGIC ERROR	String -Mathematik -Logikfehler
+FOR VARIABLE MULTIPLY DEFINED	FÜR VARIABLE MULTIPLIZIERTE DEFINIERT
+FUNCTION DEFINITION MULTIPLY DEFINED	FUNKTIONSDEFINITION MULTIPLIZIERT DEFINIERT
+FUNCTION DEFINITION PARAMETER MISMATCH	FUNKTIONSDEFINITION PARAMETER FEHLANPASSUNG
+GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
+GOSUB STACK UNDERFLOW	GOSUB -STACK -UNTERLAUF
+INDEX OUT OF RANGE	INDEX AUSSERHALB DES BEREICHS
+LABEL ALREADY DEFINED	ETIKETT BEREITS DEFINIERT
+LEFT / RIGHT OPERATION MISMATCH	NICHTÜBEREINSTIMMUNG LINKS / RECHTS OPERATION
+NEGATIVE INDEX	NEGATIVER INDEX
+NEXT ON FOR LOOP WITH STRING VARIABLE	ALS NÄCHSTES FÜR DIE SCHLEIFE MIT STRING -VARIABLE
+OPERAND MISMATCH	OPERAND -NICHTÜBEREINSTIMMUNG
+OPTION REQUIRES A LANGUAGE	OPTION ERFORDERT EINE SPRACHE
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	BITTE ÜBERPRÜFEN SIE DIE SPRACHEINSTELLUNGEN ODER UMGEBUNGSVARIABLE
+STRING MATH LOGIC ERROR	STRING -MATHEMATIK -LOGIKFEHLER
 UNABLE TO OPEN FILE	DATEI KANN NICHT GEÖFFNET WERDEN
-UNABLE TO OPEN TO OPEN FILE FOR READING	Es kann nicht geöffnet werden, die Datei zum Lesen zu öffnen
-UNDEFINED LABEL	Undefined Etikett
-UNHANDLED OPERATION	Nicht behandelter Operation
-UNHANDLED OPERATION CODE	Nicht behandelter Betriebscode
-UNKNOWN IF LABEL	Unbekannt, wenn Etikett
-UNRECOGNIZED DOUBLE MATH OPERATION	Unerkannter Doppelmathematikoperation
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Nicht erkannte Funktionsfunktionsdefinition
-UNRECOGNIZED GOSUB LABEL	Nicht anerkanntes Gosub -Label
-UNRECOGNIZED GOTO LABEL	Nicht anerkanntes Goto -Label
-UNRECOGNIZED INPUT	Unerkannte Eingabe
-UNRECOGNIZED INTEGER MATH OPERATION	Unerkannte Ganzzahl -Mathematikoperation
-UNRECOGNIZED MATH TYPE	Unerkannter mathematischer Typ
-UNRECOGNIZED NEXT VARIABLE	Unerkannte nächste Variable
-UNRECOGNIZED OP IN PRINT	Unerkannter OP in gedruckter Form
-UNRECOGNIZED RATIONAL MATH OPERATION	Unerkannter rationaler mathematischer Operation
-UNRECOGNIZED VARIABLE TYPE	Unerkannter variabler Typ
-UNSET ENVIRONMENT VARIABLE	Unbegrenzte Umgebungsvariable
-VARIABLE / ARRAY DEFINITION MISMATCH	Variable / Array -Definition Fehlanpassung
-VARIABLE DEFINED AS ARRAY	Variable als Array definiert
-VARIABLE DEFINED AS NONARRAY	Variable definiert als Nonarray
-VARIABLE HAS NO VALUE	Variable hat keinen Wert
-VARIABLE IS NOT AN ARRAY	Variable ist kein Array
+UNABLE TO OPEN TO OPEN FILE FOR READING	ES KANN NICHT GEÖFFNET WERDEN, DIE DATEI ZUM LESEN ZU ÖFFNEN
+UNDEFINED LABEL	UNDEFINED ETIKETT
+UNHANDLED OPERATION	NICHT BEHANDELTER OPERATION
+UNHANDLED OPERATION CODE	NICHT BEHANDELTER BETRIEBSCODE
+UNKNOWN IF LABEL	UNBEKANNT, WENN ETIKETT
+UNRECOGNIZED DOUBLE MATH OPERATION	UNERKANNTER DOPPELMATHEMATIKOPERATION
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	NICHT ERKANNTE FUNKTIONSFUNKTIONSDEFINITION
+UNRECOGNIZED GOSUB LABEL	NICHT ANERKANNTES GOSUB -LABEL
+UNRECOGNIZED GOTO LABEL	NICHT ANERKANNTES GOTO -LABEL
+UNRECOGNIZED INPUT	UNERKANNTE EINGABE
+UNRECOGNIZED INTEGER MATH OPERATION	UNERKANNTE GANZZAHL -MATHEMATIKOPERATION
+UNRECOGNIZED MATH TYPE	UNERKANNTER MATHEMATISCHER TYP
+UNRECOGNIZED NEXT VARIABLE	UNERKANNTE NÄCHSTE VARIABLE
+UNRECOGNIZED OP IN PRINT	UNERKANNTER OP IN GEDRUCKTER FORM
+UNRECOGNIZED RATIONAL MATH OPERATION	UNERKANNTER RATIONALER MATHEMATISCHER OPERATION
+UNRECOGNIZED VARIABLE TYPE	UNERKANNTER VARIABLER TYP
+UNSET ENVIRONMENT VARIABLE	UNBEGRENZTE UMGEBUNGSVARIABLE
+VARIABLE / ARRAY DEFINITION MISMATCH	VARIABLE / ARRAY -DEFINITION FEHLANPASSUNG
+VARIABLE DEFINED AS ARRAY	VARIABLE ALS ARRAY DEFINIERT
+VARIABLE DEFINED AS NONARRAY	VARIABLE DEFINIERT ALS NONARRAY
+VARIABLE HAS NO VALUE	VARIABLE HAT KEINEN WERT
+VARIABLE IS NOT AN ARRAY	VARIABLE IST KEIN ARRAY

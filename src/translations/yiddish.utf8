@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= ויסלאזן                   # the end statement
+END <= ויסלאזן           # the end statement
 
 # from ECMA-55 §9
 
-ABS <= אבסאלוטווערט              # the absolute value function
-ATN <= פארקערטטאנדזשאנט          # the trigonomic arctangent function
-COS <= קאסינע                    # the trigonomic cosine function
-EXP <= עקספאונענשאל              # the exponential / power function
-INT <= ינטאדזשער                 # the integer / floor function
-LOG <= LOGARITHM                 # the natural log function
-RND <= זעמל                      # generate random number
-SGN <= צייכן                     # determine the sign
-SIN <= סינוס                     # the trigonomic sine function
-SQR <= קוואדראטווארצל            # the square root function
-TAN <= טאנדזשאנט                 # the trigonomic tangent function
-DBL <= טאפל                      # convert to double
-STR <= טעקסט                     # convert to string
-RAT <= בארדאסדיק                 # convert to rational
+ABS <= אבס               # the absolute value function
+ATN <= TTN               # the trigonomic arctangent function
+COS <= קאס               # the trigonomic cosine function
+EXP <= עקספ              # the exponential / power function
+INT <= ינט               # the integer / floor function
+LOG <= קלאץ              # the natural log function
+RND <= RND               # generate random number
+SGN <= SGN               # determine the sign
+SIN <= זינד              # the trigonomic sine function
+SQR <= סקר               # the square root function
+TAN <= בעזש              # the trigonomic tangent function
+DBL <= דבל               # convert to double
+STR <= STR               # convert to string
+RAT <= שטשור             # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= דעפינירן                  # for user defined functions
+DEF <= DEATH             # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= לאזן                      # for variable assignment
+LET <= לאזן              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= רופן                    # formed from GO and SUB if no direct translation exists
-GOTO <= שפרונג                   # formed from GO and TO if no direct translation exists
-TO <= צו                         # part of for/to/step/next constructs
-IF <= ויב                        # part of if/then constructs
-ON <= יבערבייט                   # a sort of a switch statement
-RETURN <= ומקערן                 # used to exit a subroutine
-STOP <= געענדיקט                 # command to stop execution
+GOSUB <= גאסוב           # formed from GO and SUB if no direct translation exists
+GOTO <= גייצו            # formed from GO and TO if no direct translation exists
+TO <= צו                 # part of for/to/step/next constructs
+IF <= ויב                # part of if/then constructs
+ON <= אף                 # a sort of a switch statement
+RETURN <= ומקערן         # used to exit a subroutine
+STOP <= אפשטעל           # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= פון                       # part of for/to/step/next constructs
-STEP <= טרעפל                    # part of for/to/step/next constructs
-NEXT <= ווייטער                  # part of for/to/step/next constructs
+FOR <= פון               # part of for/to/step/next constructs
+STEP <= טרעפל            # part of for/to/step/next constructs
+NEXT <= ווייטער          # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= פארקויפט                # to print things out
+PRINT <= פארקויפט        # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= אריינשרייב              # the input statement
+INPUT <= אריינשרייב      # the input statement
 
 # from ECMA-55 §16
 
-READ <= לייענען                  # part of read / restore
-RESTORE <= READEAD               # part of read / restore
+READ <= לייענען          # part of read / restore
+RESTORE <= ריוויינד      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= ינפארמאציע               # to embed data in the program
+DATA <= דאטע             # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= ויסמעסטונג                # dimension arrays
-OPTION <= בריירע                 # see ECMA-55 §18.1
-BASE <= באזע                     # see ECMA-55 §18.1
+DIM <= טונקל             # dimension arrays
+OPTION <= בריירע         # see ECMA-55 §18.1
+BASE <= באזע             # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= באמערקונג                 # see ECMA-55 §18.1
+REM <= רעמאוועס          # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -141,13 +141,13 @@ PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ביטע טשעק שפּ�
 STRING MATH LOGIC ERROR	שטריקל מאַט לאָגיק טעות
 UNABLE TO OPEN FILE	ניט געקענט צו עפענען טעקע
 UNABLE TO OPEN TO OPEN FILE FOR READING	ניט געקענט צו עפֿענען די טעקע פֿאַר לייענען
-UNDEFINED LABEL	Undefined פירמע
+UNDEFINED LABEL	UNDEFINED פירמע
 UNHANDLED OPERATION	ונהאַנדלעד אָפּעראַציע
 UNHANDLED OPERATION CODE	ונהאַנדלעד אָפּעראַציע קאָד
 UNKNOWN IF LABEL	אומבאַקאַנט אויב פירמע
 UNRECOGNIZED DOUBLE MATH OPERATION	אַנרעקאַגנייזד טאָפּל מאַט אָפּעראַציע
 UNRECOGNIZED FUNCTION FUNCTION DEFINITION	אַנרעקאַגנייזד פונקציע פונקציע דעפֿיניציע
-UNRECOGNIZED GOSUB LABEL	אַנרעקאַגנייזד Gosub לאַבעל
+UNRECOGNIZED GOSUB LABEL	אַנרעקאַגנייזד GOSUB לאַבעל
 UNRECOGNIZED GOTO LABEL	אַנרעקאַגנייזד גאָטאָ פירמע
 UNRECOGNIZED INPUT	אַנרעקאַגנייזד אַרייַנשרייַב
 UNRECOGNIZED INTEGER MATH OPERATION	אַנרעקאַגנייזד ינטאַדזשער מאַט אָפּעראַציע

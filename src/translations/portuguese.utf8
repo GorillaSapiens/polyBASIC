@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= FIM                      # the end statement
+END <= FIM                 # the end statement
 
 # from ECMA-55 §9
 
-ABS <= VALORABSOLUTO            # the absolute value function
-ATN <= TANGENTEINVERSA          # the trigonomic arctangent function
-COS <= COSSENO                  # the trigonomic cosine function
-EXP <= EXPONENCIAL              # the exponential / power function
-INT <= INTEIRO                  # the integer / floor function
-LOG <= LOGARITMO                # the natural log function
-RND <= ROLAR                    # generate random number
-SGN <= SINAL                    # determine the sign
-SIN <= SENO                     # the trigonomic sine function
-SQR <= RAIZQUADRADA             # the square root function
-TAN <= TANGENTE                 # the trigonomic tangent function
-DBL <= DOBRO                    # convert to double
-STR <= TEXTO                    # convert to string
-RAT <= RACIONAL                 # convert to rational
+ABS <= ABDÔMEN             # the absolute value function
+ATN <= ATN                 # the trigonomic arctangent function
+COS <= COS                 # the trigonomic cosine function
+EXP <= EXP                 # the exponential / power function
+INT <= INT                 # the integer / floor function
+LOG <= REGISTRO            # the natural log function
+RND <= RND                 # generate random number
+SGN <= SGN                 # determine the sign
+SIN <= PECADO              # the trigonomic sine function
+SQR <= SQR                 # the square root function
+TAN <= BRONZEADO           # the trigonomic tangent function
+DBL <= DBL                 # convert to double
+STR <= STR                 # convert to string
+RAT <= RATO                # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DEFINIR                  # for user defined functions
+DEF <= DEF                 # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= DEIXAR                   # for variable assignment
+LET <= DEIXAR              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= CHAMAR                 # formed from GO and SUB if no direct translation exists
-GOTO <= PULAR                   # formed from GO and TO if no direct translation exists
-TO <= PARA                      # part of for/to/step/next constructs
-IF <= SE                        # part of if/then constructs
-ON <= TROCAR                    # a sort of a switch statement
-RETURN <= RETORNAR              # used to exit a subroutine
-STOP <= FINALIZADO              # command to stop execution
+GOSUB <= GOSUB             # formed from GO and SUB if no direct translation exists
+GOTO <= VÁPARA             # formed from GO and TO if no direct translation exists
+TO <= PARA                 # part of for/to/step/next constructs
+IF <= SE                   # part of if/then constructs
+ON <= SOBRE                # a sort of a switch statement
+RETURN <= RETORNAR         # used to exit a subroutine
+STOP <= PARAR              # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DE                       # part of for/to/step/next constructs
-STEP <= ETAPA                   # part of for/to/step/next constructs
-NEXT <= PRÓXIMO                 # part of for/to/step/next constructs
+FOR <= DE                  # part of for/to/step/next constructs
+STEP <= ETAPA              # part of for/to/step/next constructs
+NEXT <= PRÓXIMO            # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= IMPRIMIR               # to print things out
+PRINT <= IMPRIMIR          # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= ENTRADA                # the input statement
+INPUT <= ENTRADA           # the input statement
 
 # from ECMA-55 §16
 
-READ <= LER                     # part of read / restore
-RESTORE <= RELER                # part of read / restore
+READ <= LER                # part of read / restore
+RESTORE <= RESTAURAR       # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= INFORMAÇÃO              # to embed data in the program
+DATA <= DADOS              # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSÃO                 # dimension arrays
-OPTION <= OPÇÃO                 # see ECMA-55 §18.1
-BASE <= BASE                    # see ECMA-55 §18.1
+DIM <= ESCURECIDO          # dimension arrays
+OPTION <= OPÇÃO            # see ECMA-55 §18.1
+BASE <= BASE               # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= OBSERVAÇÃO               # see ECMA-55 §18.1
+REM <= REM                 # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= ALEATÓRIA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	E nenhum idioma dado na linha de comando. Saindo.
-ARRAY ALREADY DEFINED	Array já definido
-ARRAY INDEX OUTSIDE OF BOUNDS	Índice de matriz fora dos limites
-CANNOT ACCESS DIRECTORY	Não é possível acessar o diretório
-DATA INPUT UNDERFLOW	Entrada de dados subfluente
-DATA READ UNDERFLOW	Dados Leia o subfluxo
-DEFINITION CYCLE DISCOVERED	Ciclo de definição descoberto
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	E NENHUM IDIOMA DADO NA LINHA DE COMANDO. SAINDO.
+ARRAY ALREADY DEFINED	ARRAY JÁ DEFINIDO
+ARRAY INDEX OUTSIDE OF BOUNDS	ÍNDICE DE MATRIZ FORA DOS LIMITES
+CANNOT ACCESS DIRECTORY	NÃO É POSSÍVEL ACESSAR O DIRETÓRIO
+DATA INPUT UNDERFLOW	ENTRADA DE DADOS SUBFLUENTE
+DATA READ UNDERFLOW	DADOS LEIA O SUBFLUXO
+DEFINITION CYCLE DISCOVERED	CICLO DE DEFINIÇÃO DESCOBERTO
 ERROR	ERRO
-FOR VARIABLE MULTIPLY DEFINED	Para variável multiplique definida
-FUNCTION DEFINITION MULTIPLY DEFINED	Definição de função Multiplicada
-FUNCTION DEFINITION PARAMETER MISMATCH	Função Definição Parâmetro Indatch
-GOSUB STACK OVERFLOW	Gosub Stack Overflow
-GOSUB STACK UNDERFLOW	Gosub Stack Subflow
-INDEX OUT OF RANGE	Índice fora de alcance
-LABEL ALREADY DEFINED	Rótulo já definido
-LEFT / RIGHT OPERATION MISMATCH	Indatibilidade de operação esquerda / direita
-NEGATIVE INDEX	Índice negativo
-NEXT ON FOR LOOP WITH STRING VARIABLE	Em seguida, para loop com variável de string
-OPERAND MISMATCH	Incompatibilidade do operando
-OPTION REQUIRES A LANGUAGE	A opção requer um idioma
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Verifique as configurações de idioma ou a variável de ambiente
-STRING MATH LOGIC ERROR	Erro de lógica matemática da string
+FOR VARIABLE MULTIPLY DEFINED	PARA VARIÁVEL MULTIPLIQUE DEFINIDA
+FUNCTION DEFINITION MULTIPLY DEFINED	DEFINIÇÃO DE FUNÇÃO MULTIPLICADA
+FUNCTION DEFINITION PARAMETER MISMATCH	FUNÇÃO DEFINIÇÃO PARÂMETRO INDATCH
+GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
+GOSUB STACK UNDERFLOW	GOSUB STACK SUBFLOW
+INDEX OUT OF RANGE	ÍNDICE FORA DE ALCANCE
+LABEL ALREADY DEFINED	RÓTULO JÁ DEFINIDO
+LEFT / RIGHT OPERATION MISMATCH	INDATIBILIDADE DE OPERAÇÃO ESQUERDA / DIREITA
+NEGATIVE INDEX	ÍNDICE NEGATIVO
+NEXT ON FOR LOOP WITH STRING VARIABLE	EM SEGUIDA, PARA LOOP COM VARIÁVEL DE STRING
+OPERAND MISMATCH	INCOMPATIBILIDADE DO OPERANDO
+OPTION REQUIRES A LANGUAGE	A OPÇÃO REQUER UM IDIOMA
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	VERIFIQUE AS CONFIGURAÇÕES DE IDIOMA OU A VARIÁVEL DE AMBIENTE
+STRING MATH LOGIC ERROR	ERRO DE LÓGICA MATEMÁTICA DA STRING
 UNABLE TO OPEN FILE	IMPOSSÍVEL ABRIR O FICHEIRO
-UNABLE TO OPEN TO OPEN FILE FOR READING	Incapaz de abrir para abrir o arquivo para leitura
-UNDEFINED LABEL	Etiqueta indefinida
-UNHANDLED OPERATION	Operação não combinada
-UNHANDLED OPERATION CODE	Código de operação não atribuído
-UNKNOWN IF LABEL	Desconhecido se rótulo
-UNRECOGNIZED DOUBLE MATH OPERATION	Operação de matemática dupla não reconhecida
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Definição de função não reconhecida
-UNRECOGNIZED GOSUB LABEL	Etiqueta Gosub não reconhecida
-UNRECOGNIZED GOTO LABEL	Rótulo Goto não reconhecido
-UNRECOGNIZED INPUT	Entrada não reconhecida
-UNRECOGNIZED INTEGER MATH OPERATION	Operação de matemática inteira não reconhecida
-UNRECOGNIZED MATH TYPE	Tipo de matemática não reconhecido
-UNRECOGNIZED NEXT VARIABLE	Próxima variável não reconhecida
-UNRECOGNIZED OP IN PRINT	OP não reconhecido na impressão
-UNRECOGNIZED RATIONAL MATH OPERATION	Operação de matemática racional não reconhecida
-UNRECOGNIZED VARIABLE TYPE	Tipo de variável não reconhecido
-UNSET ENVIRONMENT VARIABLE	Variável de ambiente não definido
-VARIABLE / ARRAY DEFINITION MISMATCH	Variável / Definição de Array incompatibilidade
-VARIABLE DEFINED AS ARRAY	Variável definida como matriz
-VARIABLE DEFINED AS NONARRAY	Variável definida como não -marge
-VARIABLE HAS NO VALUE	A variável não tem valor
-VARIABLE IS NOT AN ARRAY	A variável não é uma matriz
+UNABLE TO OPEN TO OPEN FILE FOR READING	INCAPAZ DE ABRIR PARA ABRIR O ARQUIVO PARA LEITURA
+UNDEFINED LABEL	ETIQUETA INDEFINIDA
+UNHANDLED OPERATION	OPERAÇÃO NÃO COMBINADA
+UNHANDLED OPERATION CODE	CÓDIGO DE OPERAÇÃO NÃO ATRIBUÍDO
+UNKNOWN IF LABEL	DESCONHECIDO SE RÓTULO
+UNRECOGNIZED DOUBLE MATH OPERATION	OPERAÇÃO DE MATEMÁTICA DUPLA NÃO RECONHECIDA
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	DEFINIÇÃO DE FUNÇÃO NÃO RECONHECIDA
+UNRECOGNIZED GOSUB LABEL	ETIQUETA GOSUB NÃO RECONHECIDA
+UNRECOGNIZED GOTO LABEL	RÓTULO GOTO NÃO RECONHECIDO
+UNRECOGNIZED INPUT	ENTRADA NÃO RECONHECIDA
+UNRECOGNIZED INTEGER MATH OPERATION	OPERAÇÃO DE MATEMÁTICA INTEIRA NÃO RECONHECIDA
+UNRECOGNIZED MATH TYPE	TIPO DE MATEMÁTICA NÃO RECONHECIDO
+UNRECOGNIZED NEXT VARIABLE	PRÓXIMA VARIÁVEL NÃO RECONHECIDA
+UNRECOGNIZED OP IN PRINT	OP NÃO RECONHECIDO NA IMPRESSÃO
+UNRECOGNIZED RATIONAL MATH OPERATION	OPERAÇÃO DE MATEMÁTICA RACIONAL NÃO RECONHECIDA
+UNRECOGNIZED VARIABLE TYPE	TIPO DE VARIÁVEL NÃO RECONHECIDO
+UNSET ENVIRONMENT VARIABLE	VARIÁVEL DE AMBIENTE UNSET
+VARIABLE / ARRAY DEFINITION MISMATCH	VARIÁVEL / DEFINIÇÃO DE ARRAY INCOMPATIBILIDADE
+VARIABLE DEFINED AS ARRAY	VARIÁVEL DEFINIDA COMO MATRIZ
+VARIABLE DEFINED AS NONARRAY	VARIÁVEL DEFINIDA COMO NÃO -MARGE
+VARIABLE HAS NO VALUE	A VARIÁVEL NÃO TEM VALOR
+VARIABLE IS NOT AN ARRAY	A VARIÁVEL NÃO É UMA MATRIZ

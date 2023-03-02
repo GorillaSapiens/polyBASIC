@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= FIN                      # the end statement
+END <= FIN                             # the end statement
 
 # from ECMA-55 §9
 
-ABS <= VALORABSOLUTO            # the absolute value function
-ATN <= TANGENTEINVERSA          # the trigonomic arctangent function
-COS <= COSENO                   # the trigonomic cosine function
-EXP <= EXPONENCIAL              # the exponential / power function
-INT <= ENTERO                   # the integer / floor function
-LOG <= LOGARITMO                # the natural log function
-RND <= ROLLO                    # generate random number
-SGN <= FIRMAR                   # determine the sign
-SIN <= SENO                     # the trigonomic sine function
-SQR <= RAÍZCUADRADA             # the square root function
-TAN <= TANGENTE                 # the trigonomic tangent function
-DBL <= DOBLE                    # convert to double
-STR <= TEXTO                    # convert to string
-RAT <= RACIONAL                 # convert to rational
+ABS <= ABDOMINALES                     # the absolute value function
+ATN <= ATN                             # the trigonomic arctangent function
+COS <= COSTILLA                        # the trigonomic cosine function
+EXP <= EXP                             # the exponential / power function
+INT <= ENT                             # the integer / floor function
+LOG <= REGISTRO                        # the natural log function
+RND <= RND                             # generate random number
+SGN <= SGN                             # determine the sign
+SIN <= PECADO                          # the trigonomic sine function
+SQR <= SQR                             # the square root function
+TAN <= BRONCEARSE                      # the trigonomic tangent function
+DBL <= DBL                             # convert to double
+STR <= STRI                            # convert to string
+RAT <= RATA                            # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DEFINIR                  # for user defined functions
+DEF <= DEFENSOR                        # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= DEJAR                    # for variable assignment
+LET <= DEJAR                           # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= LLAMAR                 # formed from GO and SUB if no direct translation exists
-GOTO <= SALTAR                  # formed from GO and TO if no direct translation exists
-TO <= A                         # part of for/to/step/next constructs
-IF <= SI                        # part of if/then constructs
-ON <= CAMBIAR                   # a sort of a switch statement
-RETURN <= DEVOLVER              # used to exit a subroutine
-STOP <= FINALIZADO              # command to stop execution
+GOSUB <= GOSUB                         # formed from GO and SUB if no direct translation exists
+GOTO <= IRA                            # formed from GO and TO if no direct translation exists
+TO <= A                                # part of for/to/step/next constructs
+IF <= SI                               # part of if/then constructs
+ON <= EN                               # a sort of a switch statement
+RETURN <= DEVOLVER                     # used to exit a subroutine
+STOP <= DETENER                        # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DE                       # part of for/to/step/next constructs
-STEP <= PASO                    # part of for/to/step/next constructs
-NEXT <= PRÓXIMO                 # part of for/to/step/next constructs
+FOR <= PARA                            # part of for/to/step/next constructs
+STEP <= PASO                           # part of for/to/step/next constructs
+NEXT <= PRÓXIMO                        # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= IMPRIMIR               # to print things out
+PRINT <= IMPRIMIR                      # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= APORTE                 # the input statement
+INPUT <= APORTE                        # the input statement
 
 # from ECMA-55 §16
 
-READ <= LEER                    # part of read / restore
-RESTORE <= RELEER               # part of read / restore
+READ <= LEER                           # part of read / restore
+RESTORE <= RESTAURAR                   # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= INFORMACIÓN             # to embed data in the program
+DATA <= DATOS                          # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSIÓN                # dimension arrays
-OPTION <= OPCIÓN                # see ECMA-55 §18.1
-BASE <= BASE                    # see ECMA-55 §18.1
+DIM <= OSCURO                          # dimension arrays
+OPTION <= OPCIÓN                       # see ECMA-55 §18.1
+BASE <= BASE                           # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= OBSERVACIÓN              # see ECMA-55 §18.1
+REM <= MOVIMIENTORÁPIDODELOJO          # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= ALEATORIZAR
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Y no hay lenguaje dado en la línea de comandos. Saliendo.
-ARRAY ALREADY DEFINED	Matriz ya definida
-ARRAY INDEX OUTSIDE OF BOUNDS	Índice de matriz fuera de los límites
-CANNOT ACCESS DIRECTORY	No se puede acceder al directorio
-DATA INPUT UNDERFLOW	Ingresos de datos Subflogo
-DATA READ UNDERFLOW	Datos leídos bajo flujo
-DEFINITION CYCLE DISCOVERED	Ciclo de definición descubierto
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Y NO HAY LENGUAJE DADO EN LA LÍNEA DE COMANDOS. SALIENDO.
+ARRAY ALREADY DEFINED	MATRIZ YA DEFINIDA
+ARRAY INDEX OUTSIDE OF BOUNDS	ÍNDICE DE MATRIZ FUERA DE LOS LÍMITES
+CANNOT ACCESS DIRECTORY	NO SE PUEDE ACCEDER AL DIRECTORIO
+DATA INPUT UNDERFLOW	INGRESOS DE DATOS SUBFLOGO
+DATA READ UNDERFLOW	DATOS LEÍDOS BAJO FLUJO
+DEFINITION CYCLE DISCOVERED	CICLO DE DEFINICIÓN DESCUBIERTO
 ERROR	ERROR
-FOR VARIABLE MULTIPLY DEFINED	Para variable multiplicar definida
-FUNCTION DEFINITION MULTIPLY DEFINED	Definición de función multiplicar definida
-FUNCTION DEFINITION PARAMETER MISMATCH	Desajuste de parámetros de definición de función
-GOSUB STACK OVERFLOW	Desbordamiento de la pila gosub
-GOSUB STACK UNDERFLOW	Gosub Stack subsflow
-INDEX OUT OF RANGE	Índice fuera de rango
-LABEL ALREADY DEFINED	Etiqueta ya definida
-LEFT / RIGHT OPERATION MISMATCH	Operación izquierda / derecha desajuste
-NEGATIVE INDEX	Índice negativo
-NEXT ON FOR LOOP WITH STRING VARIABLE	SIGUIENTE EN FOR LOOP con variable de cadena
-OPERAND MISMATCH	Desajuste de operando
-OPTION REQUIRES A LANGUAGE	La opción requiere un idioma
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Verifique la configuración del idioma o la variable de entorno
-STRING MATH LOGIC ERROR	String Math Logic Error
+FOR VARIABLE MULTIPLY DEFINED	PARA VARIABLE MULTIPLICAR DEFINIDA
+FUNCTION DEFINITION MULTIPLY DEFINED	DEFINICIÓN DE FUNCIÓN MULTIPLICAR DEFINIDA
+FUNCTION DEFINITION PARAMETER MISMATCH	DESAJUSTE DE PARÁMETROS DE DEFINICIÓN DE FUNCIÓN
+GOSUB STACK OVERFLOW	DESBORDAMIENTO DE LA PILA GOSUB
+GOSUB STACK UNDERFLOW	GOSUB STACK SUBSFLOW
+INDEX OUT OF RANGE	ÍNDICE FUERA DE RANGO
+LABEL ALREADY DEFINED	ETIQUETA YA DEFINIDA
+LEFT / RIGHT OPERATION MISMATCH	OPERACIÓN IZQUIERDA / DERECHA DESAJUSTE
+NEGATIVE INDEX	ÍNDICE NEGATIVO
+NEXT ON FOR LOOP WITH STRING VARIABLE	SIGUIENTE EN FOR LOOP CON VARIABLE DE CADENA
+OPERAND MISMATCH	DESAJUSTE DE OPERANDO
+OPTION REQUIRES A LANGUAGE	LA OPCIÓN REQUIERE UN IDIOMA
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	VERIFIQUE LA CONFIGURACIÓN DEL IDIOMA O LA VARIABLE DE ENTORNO
+STRING MATH LOGIC ERROR	STRING MATH LOGIC ERROR
 UNABLE TO OPEN FILE	NO ES POSIBLE ABRIR EL ARCHIVO
-UNABLE TO OPEN TO OPEN FILE FOR READING	No se puede abrir para abrir el archivo para la lectura
-UNDEFINED LABEL	Etiqueta indefinida
-UNHANDLED OPERATION	Operación no controlada
-UNHANDLED OPERATION CODE	Código de operación no controlado
-UNKNOWN IF LABEL	Desconocido si la etiqueta
-UNRECOGNIZED DOUBLE MATH OPERATION	Operación de matemáticas doble no reconocida
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Definición de función de función no reconocida
-UNRECOGNIZED GOSUB LABEL	Etiqueta gosub no reconocida
-UNRECOGNIZED GOTO LABEL	Etiqueta goto no reconocida
-UNRECOGNIZED INPUT	Entrada no reconocida
-UNRECOGNIZED INTEGER MATH OPERATION	Operación de matemáticas enteras no reconocidas
-UNRECOGNIZED MATH TYPE	Tipo de matemáticas no reconocido
-UNRECOGNIZED NEXT VARIABLE	Next Variable no reconocida
-UNRECOGNIZED OP IN PRINT	OP no reconocido impreso
-UNRECOGNIZED RATIONAL MATH OPERATION	Operación matemática racional no reconocida
-UNRECOGNIZED VARIABLE TYPE	Tipo de variable no reconocido
-UNSET ENVIRONMENT VARIABLE	Variable de entorno no establecida
-VARIABLE / ARRAY DEFINITION MISMATCH	Desajuste de definición de variable / matriz
-VARIABLE DEFINED AS ARRAY	Variable definida como matriz
-VARIABLE DEFINED AS NONARRAY	Variable definida como no matriz
-VARIABLE HAS NO VALUE	La variable no tiene valor
-VARIABLE IS NOT AN ARRAY	La variable no es una matriz
+UNABLE TO OPEN TO OPEN FILE FOR READING	NO SE PUEDE ABRIR PARA ABRIR EL ARCHIVO PARA LA LECTURA
+UNDEFINED LABEL	ETIQUETA INDEFINIDA
+UNHANDLED OPERATION	OPERACIÓN NO CONTROLADA
+UNHANDLED OPERATION CODE	CÓDIGO DE OPERACIÓN NO CONTROLADO
+UNKNOWN IF LABEL	DESCONOCIDO SI LA ETIQUETA
+UNRECOGNIZED DOUBLE MATH OPERATION	OPERACIÓN DE MATEMÁTICAS DOBLE NO RECONOCIDA
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	DEFINICIÓN DE FUNCIÓN DE FUNCIÓN NO RECONOCIDA
+UNRECOGNIZED GOSUB LABEL	ETIQUETA GOSUB NO RECONOCIDA
+UNRECOGNIZED GOTO LABEL	ETIQUETA GOTO NO RECONOCIDA
+UNRECOGNIZED INPUT	ENTRADA NO RECONOCIDA
+UNRECOGNIZED INTEGER MATH OPERATION	OPERACIÓN DE MATEMÁTICAS ENTERAS NO RECONOCIDAS
+UNRECOGNIZED MATH TYPE	TIPO DE MATEMÁTICAS NO RECONOCIDO
+UNRECOGNIZED NEXT VARIABLE	NEXT VARIABLE NO RECONOCIDA
+UNRECOGNIZED OP IN PRINT	OP NO RECONOCIDO IMPRESO
+UNRECOGNIZED RATIONAL MATH OPERATION	OPERACIÓN MATEMÁTICA RACIONAL NO RECONOCIDA
+UNRECOGNIZED VARIABLE TYPE	TIPO DE VARIABLE NO RECONOCIDO
+UNSET ENVIRONMENT VARIABLE	VARIABLE DE ENTORNO NO ESTABLECIDA
+VARIABLE / ARRAY DEFINITION MISMATCH	DESAJUSTE DE DEFINICIÓN DE VARIABLE / MATRIZ
+VARIABLE DEFINED AS ARRAY	VARIABLE DEFINIDA COMO MATRIZ
+VARIABLE DEFINED AS NONARRAY	VARIABLE DEFINIDA COMO NO MATRIZ
+VARIABLE HAS NO VALUE	LA VARIABLE NO TIENE VALOR
+VARIABLE IS NOT AN ARRAY	LA VARIABLE NO ES UNA MATRIZ

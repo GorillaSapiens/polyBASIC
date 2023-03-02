@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= FIN                      # the end statement
+END <= FIN                  # the end statement
 
 # from ECMA-55 §9
 
-ABS <= VALEURABSOLUE            # the absolute value function
-ATN <= TANGENTEINVERSE          # the trigonomic arctangent function
-COS <= COSINUS                  # the trigonomic cosine function
-EXP <= EXPONENTIEL              # the exponential / power function
-INT <= ENTIER                   # the integer / floor function
-LOG <= LOGARITHME               # the natural log function
-RND <= ROULEAU                  # generate random number
-SGN <= SIGNE                    # determine the sign
-SIN <= SINUS                    # the trigonomic sine function
-SQR <= RACINECARRÉE             # the square root function
-TAN <= TANGENTE                 # the trigonomic tangent function
-DBL <= DOUBLE                   # convert to double
-STR <= TEXTE                    # convert to string
-RAT <= RATIONNEL                # convert to rational
+ABS <= TAILLE               # the absolute value function
+ATN <= ATN                  # the trigonomic arctangent function
+COS <= COS                  # the trigonomic cosine function
+EXP <= EXP                  # the exponential / power function
+INT <= INT                  # the integer / floor function
+LOG <= LOGARITHME           # the natural log function
+RND <= RND                  # generate random number
+SGN <= SGN                  # determine the sign
+SIN <= SINUS                # the trigonomic sine function
+SQR <= SQR                  # the square root function
+TAN <= TANGENTE             # the trigonomic tangent function
+DBL <= DBL                  # convert to double
+STR <= STR                  # convert to string
+RAT <= FRACTION             # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DÉFINIR                  # for user defined functions
+DEF <= DEF                  # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= LAISSER                  # for variable assignment
+LET <= LAISSER              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= APPEL                  # formed from GO and SUB if no direct translation exists
-GOTO <= SAUT                    # formed from GO and TO if no direct translation exists
-TO <= POUR                      # part of for/to/step/next constructs
-IF <= SI                        # part of if/then constructs
-ON <= CHANGER                   # a sort of a switch statement
-RETURN <= RETOUR                # used to exit a subroutine
-STOP <= FINI                    # command to stop execution
+GOSUB <= APPEL              # formed from GO and SUB if no direct translation exists
+GOTO <= SAUT                # formed from GO and TO if no direct translation exists
+TO <= JUSQUÀ                # part of for/to/step/next constructs
+IF <= SI                    # part of if/then constructs
+ON <= SUR                   # a sort of a switch statement
+RETURN <= PARTIR            # used to exit a subroutine
+STOP <= ARRÊT               # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DEPUIS                   # part of for/to/step/next constructs
-STEP <= MARCHER                 # part of for/to/step/next constructs
-NEXT <= SUIVANT                 # part of for/to/step/next constructs
+FOR <= POUR                 # part of for/to/step/next constructs
+STEP <= MARCHER             # part of for/to/step/next constructs
+NEXT <= SUIVANT             # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= IMPRIMER               # to print things out
+PRINT <= IMPRIMER           # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= SAISIR                 # the input statement
+INPUT <= SAISIR             # the input statement
 
 # from ECMA-55 §16
 
-READ <= LIRE                    # part of read / restore
-RESTORE <= RELIER               # part of read / restore
+READ <= LIRE                # part of read / restore
+RESTORE <= RESTAURER        # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= INFORMATION             # to embed data in the program
+DATA <= DONNÉES             # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSION                # dimension arrays
-OPTION <= OPTION                # see ECMA-55 §18.1
-BASE <= BASE                    # see ECMA-55 §18.1
+DIM <= DIMENSION            # dimension arrays
+OPTION <= OPTION            # see ECMA-55 §18.1
+BASE <= BASE                # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= REMARQUE                 # see ECMA-55 §18.1
+REM <= COMMENTAIRE          # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= RANDOMISER
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Et aucune langue donnée sur la ligne de commande. Sortant.
-ARRAY ALREADY DEFINED	Tableau déjà défini
-ARRAY INDEX OUTSIDE OF BOUNDS	Index du tableau en dehors des limites
-CANNOT ACCESS DIRECTORY	Impossible d'accéder au répertoire
-DATA INPUT UNDERFLOW	Sous-ballable d'entrée de données
-DATA READ UNDERFLOW	Données lus sous-plein
-DEFINITION CYCLE DISCOVERED	Cycle de définition découvert
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ET AUCUNE LANGUE DONNÉE SUR LA LIGNE DE COMMANDE. SORTANT.
+ARRAY ALREADY DEFINED	TABLEAU DÉJÀ DÉFINI
+ARRAY INDEX OUTSIDE OF BOUNDS	INDEX DU TABLEAU EN DEHORS DES LIMITES
+CANNOT ACCESS DIRECTORY	IMPOSSIBLE D'ACCÉDER AU RÉPERTOIRE
+DATA INPUT UNDERFLOW	SOUS-BALLABLE D'ENTRÉE DE DONNÉES
+DATA READ UNDERFLOW	DONNÉES LUS SOUS-PLEIN
+DEFINITION CYCLE DISCOVERED	CYCLE DE DÉFINITION DÉCOUVERT
 ERROR	ERREUR
-FOR VARIABLE MULTIPLY DEFINED	Pour une multiplication variable définie
-FUNCTION DEFINITION MULTIPLY DEFINED	Définition de fonction Multiplise définie
-FUNCTION DEFINITION PARAMETER MISMATCH	Définition de définition de la fonction Déliachance
-GOSUB STACK OVERFLOW	Gosub Stack Overflow
-GOSUB STACK UNDERFLOW	Underflow Gosub Stack
-INDEX OUT OF RANGE	Index hors de portée
-LABEL ALREADY DEFINED	Étiquette déjà définie
-LEFT / RIGHT OPERATION MISMATCH	Déliachance de l'opération gauche / droite
-NEGATIVE INDEX	Indice négatif
-NEXT ON FOR LOOP WITH STRING VARIABLE	Suivant pour Loop avec variable de chaîne
-OPERAND MISMATCH	Décalage de l'opérande
-OPTION REQUIRES A LANGUAGE	L'option nécessite une langue
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Veuillez vérifier les paramètres de la langue ou la variable d'environnement
-STRING MATH LOGIC ERROR	Erreur de logique mathématique de chaîne
+FOR VARIABLE MULTIPLY DEFINED	POUR VARIABLE MULTIPLY DÉFINIE
+FUNCTION DEFINITION MULTIPLY DEFINED	DÉFINITION DE FONCTION MULTIPLISE DÉFINIE
+FUNCTION DEFINITION PARAMETER MISMATCH	DÉFINITION DE DÉFINITION DE LA FONCTION DÉLIACHANCE
+GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
+GOSUB STACK UNDERFLOW	UNDERFLOW GOSUB STACK
+INDEX OUT OF RANGE	INDEX HORS DE PORTÉE
+LABEL ALREADY DEFINED	ÉTIQUETTE DÉJÀ DÉFINIE
+LEFT / RIGHT OPERATION MISMATCH	DÉLIACHANCE DE L'OPÉRATION GAUCHE / DROITE
+NEGATIVE INDEX	INDICE NÉGATIF
+NEXT ON FOR LOOP WITH STRING VARIABLE	SUIVANT POUR LOOP AVEC VARIABLE DE CHAÎNE
+OPERAND MISMATCH	DÉCALAGE DE L'OPÉRANDE
+OPTION REQUIRES A LANGUAGE	L'OPTION NÉCESSITE UNE LANGUE
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	VEUILLEZ VÉRIFIER LES PARAMÈTRES DE LA LANGUE OU LA VARIABLE D'ENVIRONNEMENT
+STRING MATH LOGIC ERROR	ERREUR DE LOGIQUE MATHÉMATIQUE DE CHAÎNE
 UNABLE TO OPEN FILE	IMPOSSIBLE D'OUVRIR LE FICHIER
-UNABLE TO OPEN TO OPEN FILE FOR READING	Impossible d'ouvrir à ouvrir le fichier pour la lecture
-UNDEFINED LABEL	Étiquette non définie
-UNHANDLED OPERATION	Opération de non-géandée
-UNHANDLED OPERATION CODE	Code d'opération non géré
-UNKNOWN IF LABEL	Inconnu si l'étiquette
-UNRECOGNIZED DOUBLE MATH OPERATION	Opération de double mathématiques non reconnue
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Définition de la fonction de fonction non reconnue
-UNRECOGNIZED GOSUB LABEL	Étiquette Gosub non reconnue
-UNRECOGNIZED GOTO LABEL	Étiquette goto non reconnue
-UNRECOGNIZED INPUT	Entrée non reconnue
-UNRECOGNIZED INTEGER MATH OPERATION	Opération mathématique entier non reconnue
-UNRECOGNIZED MATH TYPE	Type mathématique non reconnu
-UNRECOGNIZED NEXT VARIABLE	Variable suivante non reconnue
-UNRECOGNIZED OP IN PRINT	OP non reconnu sur papier
-UNRECOGNIZED RATIONAL MATH OPERATION	Opération de mathématiques rationnelles non reconnue
-UNRECOGNIZED VARIABLE TYPE	Type variable non reconnu
-UNSET ENVIRONMENT VARIABLE	Variable d'environnement non.
-VARIABLE / ARRAY DEFINITION MISMATCH	Déliaté de définition variable / tableau
-VARIABLE DEFINED AS ARRAY	Variable définie comme un tableau
-VARIABLE DEFINED AS NONARRAY	Variable définie comme non.
-VARIABLE HAS NO VALUE	La variable n'a aucune valeur
-VARIABLE IS NOT AN ARRAY	La variable n'est pas un tableau
+UNABLE TO OPEN TO OPEN FILE FOR READING	IMPOSSIBLE D'OUVRIR À OUVRIR LE FICHIER POUR LA LECTURE
+UNDEFINED LABEL	ÉTIQUETTE NON DÉFINIE
+UNHANDLED OPERATION	OPÉRATION DE NON-GÉANDÉE
+UNHANDLED OPERATION CODE	CODE D'OPÉRATION NON GÉRÉ
+UNKNOWN IF LABEL	INCONNU SI L'ÉTIQUETTE
+UNRECOGNIZED DOUBLE MATH OPERATION	OPÉRATION DE DOUBLE MATHÉMATIQUES NON RECONNUE
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	DÉFINITION DE LA FONCTION DE FONCTION NON RECONNUE
+UNRECOGNIZED GOSUB LABEL	ÉTIQUETTE GOSUB NON RECONNUE
+UNRECOGNIZED GOTO LABEL	ÉTIQUETTE GOTO NON RECONNUE
+UNRECOGNIZED INPUT	ENTRÉE NON RECONNUE
+UNRECOGNIZED INTEGER MATH OPERATION	OPÉRATION MATHÉMATIQUE ENTIER NON RECONNUE
+UNRECOGNIZED MATH TYPE	TYPE MATHÉMATIQUE NON RECONNU
+UNRECOGNIZED NEXT VARIABLE	VARIABLE SUIVANTE NON RECONNUE
+UNRECOGNIZED OP IN PRINT	OP NON RECONNU SUR PAPIER
+UNRECOGNIZED RATIONAL MATH OPERATION	OPÉRATION DE MATHÉMATIQUES RATIONNELLES NON RECONNUS
+UNRECOGNIZED VARIABLE TYPE	TYPE VARIABLE NON RECONNU
+UNSET ENVIRONMENT VARIABLE	VARIABLE D'ENVIRONNEMENT NON.
+VARIABLE / ARRAY DEFINITION MISMATCH	DÉLIATÉ DE DÉFINITION VARIABLE / TABLEAU
+VARIABLE DEFINED AS ARRAY	VARIABLE DÉFINIE COMME UN TABLEAU
+VARIABLE DEFINED AS NONARRAY	VARIABLE DÉFINIE COMME NON.
+VARIABLE HAS NO VALUE	LA VARIABLE N'A AUCUNE VALEUR
+VARIABLE IS NOT AN ARRAY	LA VARIABLE N'EST PAS UN TABLEAU

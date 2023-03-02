@@ -36,24 +36,24 @@ END <= 结尾           # the end statement
 
 # from ECMA-55 §9
 
-ABS <= 绝对值          # the absolute value function
-ATN <= 逆切线          # the trigonomic arctangent function
-COS <= 余弦           # the trigonomic cosine function
-EXP <= 指数           # the exponential / power function
-INT <= 整数           # the integer / floor function
-LOG <= 对数           # the natural log function
-RND <= 卷            # generate random number
-SGN <= 符号           # determine the sign
-SIN <= 正弦           # the trigonomic sine function
-SQR <= 平方根          # the square root function
-TAN <= 切线           # the trigonomic tangent function
-DBL <= 双倍的          # convert to double
-STR <= 文本           # convert to string
-RAT <= 合理的          # convert to rational
+ABS <= 腹肌           # the absolute value function
+ATN <= ATN          # the trigonomic arctangent function
+COS <= COS          # the trigonomic cosine function
+EXP <= 经验           # the exponential / power function
+INT <= INT          # the integer / floor function
+LOG <= 日志           # the natural log function
+RND <= RND          # generate random number
+SGN <= SGN          # determine the sign
+SIN <= 罪            # the trigonomic sine function
+SQR <= SQR          # the square root function
+TAN <= 棕褐色          # the trigonomic tangent function
+DBL <= DBL          # convert to double
+STR <= STR          # convert to string
+RAT <= 鼠            # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= 定义           # for user defined functions
+DEF <= 防御           # for user defined functions
 
 # from ECMA-55 §11
 
@@ -62,18 +62,18 @@ LET <= 让            # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= 称呼         # formed from GO and SUB if no direct translation exists
-GOTO <= 跳           # formed from GO and TO if no direct translation exists
+GOSUB <= GOSUB      # formed from GO and SUB if no direct translation exists
+GOTO <= 去           # formed from GO and TO if no direct translation exists
 TO <= 到             # part of for/to/step/next constructs
 IF <= 如果            # part of if/then constructs
-ON <= 转变            # a sort of a switch statement
+ON <= 在             # a sort of a switch statement
 RETURN <= 返回        # used to exit a subroutine
-STOP <= 完成的         # command to stop execution
+STOP <= 停止          # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= 从            # part of for/to/step/next constructs
+FOR <= 为了           # part of for/to/step/next constructs
 STEP <= 步           # part of for/to/step/next constructs
 NEXT <= 下一个         # part of for/to/step/next constructs
 
@@ -88,21 +88,21 @@ INPUT <= 输入         # the input statement
 # from ECMA-55 §16
 
 READ <= 读           # part of read / restore
-RESTORE <= 重读       # part of read / restore
+RESTORE <= 恢复       # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= 信息          # to embed data in the program
+DATA <= 数据          # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= 方面           # dimension arrays
+DIM <= 暗淡           # dimension arrays
 OPTION <= 选项        # see ECMA-55 §18.1
 BASE <= 根据          # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= 评论           # see ECMA-55 §18.1
+REM <= REM          # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -128,8 +128,8 @@ ERROR	错误
 FOR VARIABLE MULTIPLY DEFINED	对于可变倍数定义
 FUNCTION DEFINITION MULTIPLY DEFINED	功能定义乘以定义
 FUNCTION DEFINITION PARAMETER MISMATCH	功能定义参数不匹配
-GOSUB STACK OVERFLOW	GoSub堆栈溢出
-GOSUB STACK UNDERFLOW	GoSub堆栈下流
+GOSUB STACK OVERFLOW	GOSUB堆栈溢出
+GOSUB STACK UNDERFLOW	GOSUB堆栈下流
 INDEX OUT OF RANGE	索引超出范围
 LABEL ALREADY DEFINED	标签已经定义
 LEFT / RIGHT OPERATION MISMATCH	左 /右操作不匹配
@@ -147,8 +147,8 @@ UNHANDLED OPERATION CODE	未经处理的操作代码
 UNKNOWN IF LABEL	未知是否标签
 UNRECOGNIZED DOUBLE MATH OPERATION	未识别的双重数学操作
 UNRECOGNIZED FUNCTION FUNCTION DEFINITION	无法识别的功能函数定义
-UNRECOGNIZED GOSUB LABEL	无法识别的GoSub标签
-UNRECOGNIZED GOTO LABEL	无法识别的Goto标签
+UNRECOGNIZED GOSUB LABEL	无法识别的GOSUB标签
+UNRECOGNIZED GOTO LABEL	无法识别的GOTO标签
 UNRECOGNIZED INPUT	未识别的输入
 UNRECOGNIZED INTEGER MATH OPERATION	无法识别的整数数学操作
 UNRECOGNIZED MATH TYPE	无法识别的数学类型
@@ -158,7 +158,7 @@ UNRECOGNIZED RATIONAL MATH OPERATION	未被认可的理性数学操作
 UNRECOGNIZED VARIABLE TYPE	无法识别的变量类型
 UNSET ENVIRONMENT VARIABLE	未设置的环境变量
 VARIABLE / ARRAY DEFINITION MISMATCH	变量 /数组定义不匹配
-VARIABLE DEFINED AS ARRAY	变量定义为数组
+VARIABLE DEFINED AS ARRAY	定义为数组的变量
 VARIABLE DEFINED AS NONARRAY	定义为非阵列的变量
 VARIABLE HAS NO VALUE	变量没有值
 VARIABLE IS NOT AN ARRAY	变量不是数组

@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= آخر                 # the end statement
+END <= آخر              # the end statement
 
 # from ECMA-55 §9
 
-ABS <= مطلققیمت            # the absolute value function
-ATN <= الٹاٹینجنٹ          # the trigonomic arctangent function
-COS <= کوسائن              # the trigonomic cosine function
-EXP <= کفایتشعاری          # the exponential / power function
-INT <= انٹیجر              # the integer / floor function
-LOG <= لوگرتھم             # the natural log function
-RND <= رول                 # generate random number
-SGN <= دستخطکریں           # determine the sign
-SIN <= SINE                # the trigonomic sine function
-SQR <= مربعجڑ              # the square root function
-TAN <= ٹینجینٹ             # the trigonomic tangent function
-DBL <= دگنا                # convert to double
-STR <= متن                 # convert to string
-RAT <= عقلی                # convert to rational
+ABS <= ABS              # the absolute value function
+ATN <= ATN              # the trigonomic arctangent function
+COS <= کیونکہ           # the trigonomic cosine function
+EXP <= ختم              # the exponential / power function
+INT <= انٹ              # the integer / floor function
+LOG <= لاگ              # the natural log function
+RND <= RND              # generate random number
+SGN <= SGN              # determine the sign
+SIN <= گناہ             # the trigonomic sine function
+SQR <= SQR              # the square root function
+TAN <= ٹین              # the trigonomic tangent function
+DBL <= ڈیبیایل          # convert to double
+STR <= STR              # convert to string
+RAT <= چوہا             # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= وضاحتکریں           # for user defined functions
+DEF <= ڈیف              # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= دو                  # for variable assignment
+LET <= دو               # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= کالکریں           # formed from GO and SUB if no direct translation exists
-GOTO <= چھلانگ             # formed from GO and TO if no direct translation exists
-TO <= TO                   # part of for/to/step/next constructs
-IF <= اگر                  # part of if/then constructs
-ON <= سوئچ                 # a sort of a switch statement
-RETURN <= واپس             # used to exit a subroutine
-STOP <= ختم                # command to stop execution
+GOSUB <= گوسب           # formed from GO and SUB if no direct translation exists
+GOTO <= کےپاسجاؤ        # formed from GO and TO if no direct translation exists
+TO <= TO                # part of for/to/step/next constructs
+IF <= اگر               # part of if/then constructs
+ON <= پر                # a sort of a switch statement
+RETURN <= واپس          # used to exit a subroutine
+STOP <= بندکرو          # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= سے                  # part of for/to/step/next constructs
-STEP <= مرحلہ              # part of for/to/step/next constructs
-NEXT <= اگلے               # part of for/to/step/next constructs
+FOR <= کےلئے            # part of for/to/step/next constructs
+STEP <= مرحلہ           # part of for/to/step/next constructs
+NEXT <= اگلے            # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= پرنٹکریں          # to print things out
+PRINT <= پرنٹکریں       # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= انپٹ              # the input statement
+INPUT <= انپٹ           # the input statement
 
 # from ECMA-55 §16
 
-READ <= پڑھیں              # part of read / restore
-RESTORE <= دوبارہپڑھیں     # part of read / restore
+READ <= پڑھیں           # part of read / restore
+RESTORE <= بحالکریں     # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= معلومات            # to embed data in the program
+DATA <= ڈیٹا            # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= طولوعرض             # dimension arrays
-OPTION <= آپشن             # see ECMA-55 §18.1
-BASE <= بنیاد              # see ECMA-55 §18.1
+DIM <= مدھم             # dimension arrays
+OPTION <= آپشن          # see ECMA-55 §18.1
+BASE <= بنیاد           # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= تبصرہ               # see ECMA-55 §18.1
+REM <= ریم              # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -130,7 +130,7 @@ FUNCTION DEFINITION MULTIPLY DEFINED	فنکشن کی تعریف ضرب کی وض
 FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامیٹر مماثل
 GOSUB STACK OVERFLOW	گوسب اسٹیک اوور فلو
 GOSUB STACK UNDERFLOW	گوسب اسٹیک انڈر فلو
-INDEX OUT OF RANGE	رینج سے باہر انڈیکس
+INDEX OUT OF RANGE	انڈیکس رینج سے باہر
 LABEL ALREADY DEFINED	لیبل پہلے ہی بیان کیا گیا ہے
 LEFT / RIGHT OPERATION MISMATCH	بائیں / دائیں آپریشن مماثلت
 NEGATIVE INDEX	منفی انڈیکس
@@ -150,7 +150,7 @@ UNRECOGNIZED FUNCTION FUNCTION DEFINITION	غیر تسلیم شدہ فنکشن ک
 UNRECOGNIZED GOSUB LABEL	غیر تسلیم شدہ گوسب لیبل
 UNRECOGNIZED GOTO LABEL	غیر تسلیم شدہ گوٹو لیبل
 UNRECOGNIZED INPUT	غیر تسلیم شدہ ان پٹ
-UNRECOGNIZED INTEGER MATH OPERATION	غیر تسلیم شدہ انٹیجر ریاضی آپریشن
+UNRECOGNIZED INTEGER MATH OPERATION	غیر تسلیم شدہ عددی ریاضی کا آپریشن
 UNRECOGNIZED MATH TYPE	غیر تسلیم شدہ ریاضی کی قسم
 UNRECOGNIZED NEXT VARIABLE	غیر تسلیم شدہ اگلا متغیر
 UNRECOGNIZED OP IN PRINT	پرنٹ میں غیر تسلیم شدہ او پی

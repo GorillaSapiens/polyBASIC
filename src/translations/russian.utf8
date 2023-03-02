@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= КОНЕЦ                        # the end statement
+END <= КОНЕЦ                     # the end statement
 
 # from ECMA-55 §9
 
-ABS <= АБСОЛЮТНАЯВЕЛИЧИНА           # the absolute value function
-ATN <= ОБРАТНАЯКАСАТЕЛЬНАЯ          # the trigonomic arctangent function
-COS <= КОСИНУС                      # the trigonomic cosine function
-EXP <= ЭКСПОНЕНЦИАЛЬНЫЙ             # the exponential / power function
-INT <= ЦЕЛОЕЧИСЛО                   # the integer / floor function
-LOG <= ЛОГАРИФМ                     # the natural log function
-RND <= РУЛОН                        # generate random number
-SGN <= ЗНАК                         # determine the sign
-SIN <= СИНУС                        # the trigonomic sine function
-SQR <= КВАДРАТНЫЙКОРЕНЬ             # the square root function
-TAN <= ТАНГЕНС                      # the trigonomic tangent function
-DBL <= ДВОЙНОЙ                      # convert to double
-STR <= ТЕКСТ                        # convert to string
-RAT <= РАЦИОНАЛЬНЫЙ                 # convert to rational
+ABS <= АБС                       # the absolute value function
+ATN <= АТ                        # the trigonomic arctangent function
+COS <= ПОСАДКА                   # the trigonomic cosine function
+EXP <= ЭКСПЛУАТ                  # the exponential / power function
+INT <= ИНТ                       # the integer / floor function
+LOG <= БРЕВНО                    # the natural log function
+RND <= RND                       # generate random number
+SGN <= СНОГСШИБАТЕЛЬНЫЙ          # determine the sign
+SIN <= ГРЕХ                      # the trigonomic sine function
+SQR <= SQR                       # the square root function
+TAN <= ЗАГАР                     # the trigonomic tangent function
+DBL <= DBL                       # convert to double
+STR <= СТР                       # convert to string
+RAT <= КРЫСА                     # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= ОПРЕДЕЛЯТЬ                   # for user defined functions
+DEF <= ДЕФЕКТ                    # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= ПОЗВОЛЯТЬ                    # for variable assignment
+LET <= ПОЗВОЛЯТЬ                 # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= ВЫЗОВ                      # formed from GO and SUB if no direct translation exists
-GOTO <= ПРЫГАТЬ                     # formed from GO and TO if no direct translation exists
-TO <= К                             # part of for/to/step/next constructs
-IF <= ЕСЛИ                          # part of if/then constructs
-ON <= ВЫКЛЮЧАТЕЛЬ                   # a sort of a switch statement
-RETURN <= ВОЗВРАЩАТЬСЯ              # used to exit a subroutine
-STOP <= ЗАКОНЧЕННЫЙ                 # command to stop execution
+GOSUB <= ГОСУБ                   # formed from GO and SUB if no direct translation exists
+GOTO <= ИДТИК                    # formed from GO and TO if no direct translation exists
+TO <= К                          # part of for/to/step/next constructs
+IF <= ЕСЛИ                       # part of if/then constructs
+ON <= НА                         # a sort of a switch statement
+RETURN <= ВОЗВРАЩАТЬСЯ           # used to exit a subroutine
+STOP <= ОСТАНАВЛИВАТЬСЯ          # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= ОТ                           # part of for/to/step/next constructs
-STEP <= ШАГ                         # part of for/to/step/next constructs
-NEXT <= СЛЕДУЮЩИЙ                   # part of for/to/step/next constructs
+FOR <= ДЛЯ                       # part of for/to/step/next constructs
+STEP <= ШАГ                      # part of for/to/step/next constructs
+NEXT <= СЛЕДУЮЩИЙ                # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= РАСПЕЧАТАТЬ                # to print things out
+PRINT <= РАСПЕЧАТАТЬ             # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= ВХОД                       # the input statement
+INPUT <= ВХОД                    # the input statement
 
 # from ECMA-55 §16
 
-READ <= ЧИТАТЬ                      # part of read / restore
-RESTORE <= ПЕРЕЧИТЫВАТЬ             # part of read / restore
+READ <= ЧИТАТЬ                   # part of read / restore
+RESTORE <= ВОССТАНОВИТЬ          # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= ИНФОРМАЦИЯ                  # to embed data in the program
+DATA <= ДАННЫЕ                   # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= ИЗМЕРЕНИЕ                    # dimension arrays
-OPTION <= ВАРИАНТ                   # see ECMA-55 §18.1
-BASE <= БАЗА                        # see ECMA-55 §18.1
+DIM <= ТУСКЛЫЙ                   # dimension arrays
+OPTION <= ВАРИАНТ                # see ECMA-55 §18.1
+BASE <= БАЗА                     # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= ПРИМЕЧАНИЕ                   # see ECMA-55 §18.1
+REM <= РЕМ                       # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= РАНДОМИЗИРОВАТЬ
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	И нет языка, не указанного в командной строке. Выход.
-ARRAY ALREADY DEFINED	Массив уже определен
-ARRAY INDEX OUTSIDE OF BOUNDS	Массив индекс за пределами
-CANNOT ACCESS DIRECTORY	Не может получить доступ к каталогу
-DATA INPUT UNDERFLOW	Вход данных в разделе
-DATA READ UNDERFLOW	Данные прочитали недостаток
-DEFINITION CYCLE DISCOVERED	Цикл определения обнаружено
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	И НЕТ ЯЗЫКА, НЕ УКАЗАННОГО В КОМАНДНОЙ СТРОКЕ. ВЫХОД.
+ARRAY ALREADY DEFINED	МАССИВ УЖЕ ОПРЕДЕЛЕН
+ARRAY INDEX OUTSIDE OF BOUNDS	МАССИВ ИНДЕКС ЗА ПРЕДЕЛАМИ
+CANNOT ACCESS DIRECTORY	НЕ МОЖЕТ ПОЛУЧИТЬ ДОСТУП К КАТАЛОГУ
+DATA INPUT UNDERFLOW	ВВОД ДАННЫХ В НИЖНЕМ ПОТОКЕ
+DATA READ UNDERFLOW	ДАННЫЕ ЧИТАЮТ НЕДОСТАТОЧНЫЙ ПОТОК
+DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
-FOR VARIABLE MULTIPLY DEFINED	Для переменной умноженной определенной
-FUNCTION DEFINITION MULTIPLY DEFINED	Определение функции умноженное определено
-FUNCTION DEFINITION PARAMETER MISMATCH	Определение функции несоответствие параметров
-GOSUB STACK OVERFLOW	Госуб стек переполнен
-GOSUB STACK UNDERFLOW	Gosub Stack hoonflow
-INDEX OUT OF RANGE	Указатель
-LABEL ALREADY DEFINED	Метка уже определен
-LEFT / RIGHT OPERATION MISMATCH	Несоответствие левой / правой операции
-NEGATIVE INDEX	Отрицательный индекс
-NEXT ON FOR LOOP WITH STRING VARIABLE	Далее для петли с переменной строки
-OPERAND MISMATCH	Операнд несоответствие
-OPTION REQUIRES A LANGUAGE	Вариант требует языка
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Пожалуйста, проверьте настройки языка или переменную среды
-STRING MATH LOGIC ERROR	Ошибка математической логики строки
+FOR VARIABLE MULTIPLY DEFINED	ДЛЯ ПЕРЕМЕННОЙ УМНОЖЕННОЙ ОПРЕДЕЛЕННОЙ
+FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖАЕТСЯ
+FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
+GOSUB STACK OVERFLOW	ГОСУБ СТЕК ПЕРЕПОЛНЕН
+GOSUB STACK UNDERFLOW	GOSUB STACK HOONFLOW
+INDEX OUT OF RANGE	УКАЗАТЕЛЬ
+LABEL ALREADY DEFINED	МЕТКА УЖЕ ОПРЕДЕЛЕН
+LEFT / RIGHT OPERATION MISMATCH	НЕСООТВЕТСТВИЕ ЛЕВОЙ / ПРАВОЙ ОПЕРАЦИИ
+NEGATIVE INDEX	ОТРИЦАТЕЛЬНЫЙ ИНДЕКС
+NEXT ON FOR LOOP WITH STRING VARIABLE	ДАЛЕЕ ДЛЯ ПЕТЛИ СО СТРОКОВОЙ ПЕРЕМЕННОЙ
+OPERAND MISMATCH	ОПЕРАНД НЕСООТВЕТСТВИЕ
+OPTION REQUIRES A LANGUAGE	ВАРИАНТ ТРЕБУЕТ ЯЗЫКА
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ПОЖАЛУЙСТА, ПРОВЕРЬТЕ НАСТРОЙКИ ЯЗЫКА ИЛИ ПЕРЕМЕННУЮ СРЕДЫ
+STRING MATH LOGIC ERROR	ОШИБКА МАТЕМАТИЧЕСКОЙ ЛОГИКИ СТРОКИ
 UNABLE TO OPEN FILE	НЕВОЗМОЖНО ОТКРЫТЬ ФАЙЛ
-UNABLE TO OPEN TO OPEN FILE FOR READING	Невозможно открыть для открытия файла для чтения
-UNDEFINED LABEL	Неопределенная этикетка
-UNHANDLED OPERATION	Неупомянутая операция
-UNHANDLED OPERATION CODE	Код операции нездоровой
-UNKNOWN IF LABEL	Неизвестно, если этикетка
-UNRECOGNIZED DOUBLE MATH OPERATION	Нераспознанная двойная математическая операция
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Определение функции нерасположенной функции
-UNRECOGNIZED GOSUB LABEL	Непознанный лейбл Госуба
-UNRECOGNIZED GOTO LABEL	Непознанный лейбл Goto
-UNRECOGNIZED INPUT	Непознанный вход
-UNRECOGNIZED INTEGER MATH OPERATION	Непознанная целочисленная математическая операция
-UNRECOGNIZED MATH TYPE	Непознанный математический тип
-UNRECOGNIZED NEXT VARIABLE	Непознанная следующая переменная
-UNRECOGNIZED OP IN PRINT	Непознанный OP в печати
-UNRECOGNIZED RATIONAL MATH OPERATION	Нераспознанная рациональная математическая операция
-UNRECOGNIZED VARIABLE TYPE	Непознанный тип переменной
-UNSET ENVIRONMENT VARIABLE	Неоткрытая переменная среды
-VARIABLE / ARRAY DEFINITION MISMATCH	Несоответствие определения переменной / массива
-VARIABLE DEFINED AS ARRAY	Переменная, определенная как массив
-VARIABLE DEFINED AS NONARRAY	Переменная, определяемая как nonArray
-VARIABLE HAS NO VALUE	Переменная не имеет значения
-VARIABLE IS NOT AN ARRAY	Переменная не массив
+UNABLE TO OPEN TO OPEN FILE FOR READING	НЕВОЗМОЖНО ОТКРЫТЬ ДЛЯ ОТКРЫТИЯ ФАЙЛА ДЛЯ ЧТЕНИЯ
+UNDEFINED LABEL	НЕОПРЕДЕЛЕННАЯ ЭТИКЕТКА
+UNHANDLED OPERATION	НЕУПОМЯНУТАЯ ОПЕРАЦИЯ
+UNHANDLED OPERATION CODE	КОД ОПЕРАЦИИ НЕЗДОРОВОЙ
+UNKNOWN IF LABEL	НЕИЗВЕСТНО, ЕСЛИ ЭТИКЕТКА
+UNRECOGNIZED DOUBLE MATH OPERATION	НЕПОЗНАННАЯ ДВОЙНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕРАСПОЗНАННОЙ ФУНКЦИИ
+UNRECOGNIZED GOSUB LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ ГОСУБА
+UNRECOGNIZED GOTO LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ GOTO
+UNRECOGNIZED INPUT	НЕПОЗНАННЫЙ ВХОД
+UNRECOGNIZED INTEGER MATH OPERATION	НЕПОЗНАННАЯ ЦЕЛОЧИСЛЕННАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
+UNRECOGNIZED MATH TYPE	НЕПОЗНАННЫЙ МАТЕМАТИЧЕСКИЙ ТИП
+UNRECOGNIZED NEXT VARIABLE	НЕПОЗНАННАЯ СЛЕДУЮЩАЯ ПЕРЕМЕННАЯ
+UNRECOGNIZED OP IN PRINT	НЕПОЗНАННЫЙ OP В ПЕЧАТИ
+UNRECOGNIZED RATIONAL MATH OPERATION	НЕРАСПОЗНАННАЯ РАЦИОНАЛЬНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
+UNRECOGNIZED VARIABLE TYPE	НЕПОЗНАННЫЙ ТИП ПЕРЕМЕННОЙ
+UNSET ENVIRONMENT VARIABLE	НЕОТКРЫТАЯ ПЕРЕМЕННАЯ СРЕДЫ
+VARIABLE / ARRAY DEFINITION MISMATCH	НЕСООТВЕТСТВИЕ ОПРЕДЕЛЕНИЯ ПЕРЕМЕННОЙ / МАССИВА
+VARIABLE DEFINED AS ARRAY	ПЕРЕМЕННАЯ, ОПРЕДЕЛЕННАЯ КАК МАССИВ
+VARIABLE DEFINED AS NONARRAY	ПЕРЕМЕННАЯ, ОПРЕДЕЛЯЕМАЯ КАК NONARRAY
+VARIABLE HAS NO VALUE	ПЕРЕМЕННАЯ НЕ ИМЕЕТ ЗНАЧЕНИЯ
+VARIABLE IS NOT AN ARRAY	ПЕРЕМЕННАЯ НЕ МАССИВ

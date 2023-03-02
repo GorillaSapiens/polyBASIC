@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= अत                 # the end statement
+END <= अत                  # the end statement
 
 # from ECMA-55 §9
 
-ABS <= नरपकषमलय           # the absolute value function
-ATN <= उलटसपरशरख          # the trigonomic arctangent function
-COS <= कजय                # the trigonomic cosine function
-EXP <= घतय                # the exponential / power function
-INT <= परणक               # the integer / floor function
-LOG <= लगरतम              # the natural log function
-RND <= लढकन               # generate random number
-SGN <= सकत                # determine the sign
-SIN <= जय                 # the trigonomic sine function
-SQR <= वरगमल              # the square root function
-TAN <= सपरशरख             # the trigonomic tangent function
-DBL <= दहर                # convert to double
-STR <= मलपठ               # convert to string
-RAT <= तरकसगत             # convert to rational
+ABS <= पट                  # the absolute value function
+ATN <= एटएन                # the trigonomic arctangent function
+COS <= भडरनयतरक            # the trigonomic cosine function
+EXP <= ऍकसप                # the exponential / power function
+INT <= INTयह               # the integer / floor function
+LOG <= लकडकलटठ             # the natural log function
+RND <= रउड                 # generate random number
+SGN <= एसजएन               # determine the sign
+SIN <= पप                  # the trigonomic sine function
+SQR <= दसरतमहसमकष          # the square root function
+TAN <= टन                  # the trigonomic tangent function
+DBL <= ऋणतमक               # convert to double
+STR <= एसटआर               # convert to string
+RAT <= चह                  # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= परभषतकरन           # for user defined functions
+DEF <= डईएफ                # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= हनदन               # for variable assignment
+LET <= हनदन                # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= पकरन             # formed from GO and SUB if no direct translation exists
-GOTO <= कदन               # formed from GO and TO if no direct translation exists
-TO <= क                   # part of for/to/step/next constructs
-IF <= अगर                 # part of if/then constructs
-ON <= बदलन                # a sort of a switch statement
-RETURN <= वपसकरन          # used to exit a subroutine
-STOP <= खतम               # command to stop execution
+GOSUB <= गसब               # formed from GO and SUB if no direct translation exists
+GOTO <= कलएजओ              # formed from GO and TO if no direct translation exists
+TO <= क                    # part of for/to/step/next constructs
+IF <= अगर                  # part of if/then constructs
+ON <= पर                   # a sort of a switch statement
+RETURN <= वपसकरन           # used to exit a subroutine
+STOP <= रकन                # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= स                  # part of for/to/step/next constructs
-STEP <= कदम               # part of for/to/step/next constructs
-NEXT <= अगल               # part of for/to/step/next constructs
+FOR <= कलए                 # part of for/to/step/next constructs
+STEP <= कदम                # part of for/to/step/next constructs
+NEXT <= अगल                # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= परट              # to print things out
+PRINT <= परट               # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= इनपट             # the input statement
+INPUT <= इनपट              # the input statement
 
 # from ECMA-55 §16
 
-READ <= पढन               # part of read / restore
-RESTORE <= कफरसपढ         # part of read / restore
+READ <= पढन                # part of read / restore
+RESTORE <= पनरसथपतकरन      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= जनकर              # to embed data in the program
+DATA <= आकड                # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= आयम                # dimension arrays
-OPTION <= वकलप            # see ECMA-55 §18.1
-BASE <= आधर               # see ECMA-55 §18.1
+DIM <= मद                  # dimension arrays
+OPTION <= वकलप             # see ECMA-55 §18.1
+BASE <= आधर                # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= टपपण               # see ECMA-55 §18.1
+REM <= नकलदन               # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -147,15 +147,15 @@ UNHANDLED OPERATION CODE	अनियंत्रित ऑपरेशन क�
 UNKNOWN IF LABEL	अज्ञात अगर लेबल
 UNRECOGNIZED DOUBLE MATH OPERATION	अपरिचित दोहरे गणित संचालन
 UNRECOGNIZED FUNCTION FUNCTION DEFINITION	अपरिचित फ़ंक्शन फ़ंक्शन परिभाषा
-UNRECOGNIZED GOSUB LABEL	अपरिचित gosub लेबल
+UNRECOGNIZED GOSUB LABEL	अपरिचित GOSUB लेबल
 UNRECOGNIZED GOTO LABEL	गैर -मान्यता प्राप्त गोटो लेबल
 UNRECOGNIZED INPUT	अपरिचित इनपुट
 UNRECOGNIZED INTEGER MATH OPERATION	निहित पूर्णांक गणित संचालन
 UNRECOGNIZED MATH TYPE	बिना मान्यता प्राप्त गणित प्रकार
 UNRECOGNIZED NEXT VARIABLE	अगला चर की पहचान की गई
 UNRECOGNIZED OP IN PRINT	प्रिंट में अपरिचित ओपी
-UNRECOGNIZED RATIONAL MATH OPERATION	अप्रकाशित तर्कसंगत गणित संचालन
-UNRECOGNIZED VARIABLE TYPE	अपरिचित चर प्रकार
+UNRECOGNIZED RATIONAL MATH OPERATION	बिना मान्यता प्राप्त तर्कसंगत गणित संचालन
+UNRECOGNIZED VARIABLE TYPE	गैर -मान्यता प्राप्त चर प्रकार
 UNSET ENVIRONMENT VARIABLE	अस्वाभाविक पर्यावरण चर
 VARIABLE / ARRAY DEFINITION MISMATCH	परिवर्तनीय / सरणी परिभाषा बेमेल
 VARIABLE DEFINED AS ARRAY	चर को सरणी के रूप में परिभाषित किया गया

@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= AKHIR                   # the end statement
+END <= AKHIR               # the end statement
 
 # from ECMA-55 §9
 
-ABS <= NILAIMUTLAK             # the absolute value function
-ATN <= TANGENTERBALIK          # the trigonomic arctangent function
-COS <= KOSINUS                 # the trigonomic cosine function
-EXP <= EKSPONENSIAL            # the exponential / power function
-INT <= BILANGANBULAT           # the integer / floor function
-LOG <= LOGARITMA               # the natural log function
-RND <= GULUNGAN                # generate random number
-SGN <= TANDA                   # determine the sign
-SIN <= SINUS                   # the trigonomic sine function
-SQR <= AKARPANGKATDUA          # the square root function
-TAN <= GARISSINGGUNG           # the trigonomic tangent function
-DBL <= DOBEL                   # convert to double
-STR <= TEKS                    # convert to string
-RAT <= RASIONAL                # convert to rational
+ABS <= ABS                 # the absolute value function
+ATN <= ATN                 # the trigonomic arctangent function
+COS <= COS                 # the trigonomic cosine function
+EXP <= EXP                 # the exponential / power function
+INT <= INT                 # the integer / floor function
+LOG <= CATATAN             # the natural log function
+RND <= RND                 # generate random number
+SGN <= SGN                 # determine the sign
+SIN <= DOSA                # the trigonomic sine function
+SQR <= SQR                 # the square root function
+TAN <= TAN                 # the trigonomic tangent function
+DBL <= DBL                 # convert to double
+STR <= STR                 # convert to string
+RAT <= TIKUS               # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= MENDEFINISIKAN          # for user defined functions
+DEF <= DEF                 # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= MEMBIARKAN              # for variable assignment
+LET <= MEMBIARKAN          # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= PANGGILAN             # formed from GO and SUB if no direct translation exists
-GOTO <= MELOMPAT               # formed from GO and TO if no direct translation exists
-TO <= KE                       # part of for/to/step/next constructs
-IF <= JIKA                     # part of if/then constructs
-ON <= MENGALIHKAN              # a sort of a switch statement
-RETURN <= KEMBALI              # used to exit a subroutine
-STOP <= SELESAI                # command to stop execution
+GOSUB <= GOSUB             # formed from GO and SUB if no direct translation exists
+GOTO <= PERGIKE            # formed from GO and TO if no direct translation exists
+TO <= KE                   # part of for/to/step/next constructs
+IF <= JIKA                 # part of if/then constructs
+ON <= PADA                 # a sort of a switch statement
+RETURN <= KEMBALI          # used to exit a subroutine
+STOP <= BERHENTI           # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DARI                    # part of for/to/step/next constructs
-STEP <= MELANGKAH              # part of for/to/step/next constructs
-NEXT <= BERIKUTNYA             # part of for/to/step/next constructs
+FOR <= UNTUK               # part of for/to/step/next constructs
+STEP <= MELANGKAH          # part of for/to/step/next constructs
+NEXT <= BERIKUTNYA         # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= MENCETAK              # to print things out
+PRINT <= MENCETAK          # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= MEMASUKKAN            # the input statement
+INPUT <= MEMASUKKAN        # the input statement
 
 # from ECMA-55 §16
 
-READ <= MEMBACA                # part of read / restore
-RESTORE <= MEMBACAKEMBALI      # part of read / restore
+READ <= MEMBACA            # part of read / restore
+RESTORE <= MEMULIHKAN      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= INFORMASI              # to embed data in the program
+DATA <= DATA               # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSI                 # dimension arrays
-OPTION <= PILIHAN              # see ECMA-55 §18.1
-BASE <= BASIS                  # see ECMA-55 §18.1
+DIM <= REDUP               # dimension arrays
+OPTION <= PILIHAN          # see ECMA-55 §18.1
+BASE <= BASIS              # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= KOMENTAR                # see ECMA-55 §18.1
+REM <= REM                 # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= MENGACAK
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Dan tidak ada bahasa yang diberikan pada baris perintah. Keluar.
-ARRAY ALREADY DEFINED	Array sudah ditentukan
-ARRAY INDEX OUTSIDE OF BOUNDS	Indeks array di luar batas
-CANNOT ACCESS DIRECTORY	Tidak dapat mengakses direktori
-DATA INPUT UNDERFLOW	Input Data Underflow
-DATA READ UNDERFLOW	Data Baca Underflow
-DEFINITION CYCLE DISCOVERED	Siklus definisi ditemukan
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	DAN TIDAK ADA BAHASA YANG DIBERIKAN PADA BARIS PERINTAH. KELUAR.
+ARRAY ALREADY DEFINED	ARRAY SUDAH DITENTUKAN
+ARRAY INDEX OUTSIDE OF BOUNDS	INDEKS ARRAY DI LUAR BATAS
+CANNOT ACCESS DIRECTORY	TIDAK DAPAT MENGAKSES DIREKTORI
+DATA INPUT UNDERFLOW	INPUT DATA UNDERFLOW
+DATA READ UNDERFLOW	DATA BACA UNDERFLOW
+DEFINITION CYCLE DISCOVERED	SIKLUS DEFINISI DITEMUKAN
 ERROR	KESALAHAN
-FOR VARIABLE MULTIPLY DEFINED	Untuk variabel multipel didefinisikan
-FUNCTION DEFINITION MULTIPLY DEFINED	Definisi fungsi berlipat ganda didefinisikan
-FUNCTION DEFINITION PARAMETER MISMATCH	Ketidaksesuaian parameter definisi fungsi
-GOSUB STACK OVERFLOW	Gosub Stack Overflow
-GOSUB STACK UNDERFLOW	Gosub Stack Underflow
-INDEX OUT OF RANGE	Indeks di luar jangkauan
-LABEL ALREADY DEFINED	Label sudah ditentukan
-LEFT / RIGHT OPERATION MISMATCH	Ketidakcocokan Operasi Kiri / Kanan
-NEGATIVE INDEX	Indeks negatif
-NEXT ON FOR LOOP WITH STRING VARIABLE	Selanjutnya untuk loop dengan variabel string
-OPERAND MISMATCH	Ketidakcocokan operan
-OPTION REQUIRES A LANGUAGE	Opsi membutuhkan bahasa
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Silakan periksa pengaturan bahasa atau variabel lingkungan
-STRING MATH LOGIC ERROR	Kesalahan logika matematika string
+FOR VARIABLE MULTIPLY DEFINED	UNTUK VARIABEL MULTIPEL DIDEFINISIKAN
+FUNCTION DEFINITION MULTIPLY DEFINED	DEFINISI FUNGSI DIKALIKAN DIDEFINISIKAN
+FUNCTION DEFINITION PARAMETER MISMATCH	KETIDAKSESUAIAN PARAMETER DEFINISI FUNGSI
+GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
+GOSUB STACK UNDERFLOW	GOSUB STACK UNDERFLOW
+INDEX OUT OF RANGE	INDEKS DI LUAR JANGKAUAN
+LABEL ALREADY DEFINED	LABEL SUDAH DITENTUKAN
+LEFT / RIGHT OPERATION MISMATCH	KETIDAKCOCOKAN OPERASI KIRI / KANAN
+NEGATIVE INDEX	INDEKS NEGATIF
+NEXT ON FOR LOOP WITH STRING VARIABLE	SELANJUTNYA UNTUK LOOP DENGAN VARIABEL STRING
+OPERAND MISMATCH	KETIDAKCOCOKAN OPERAN
+OPTION REQUIRES A LANGUAGE	OPSI MEMBUTUHKAN BAHASA
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	SILAKAN PERIKSA PENGATURAN BAHASA ATAU VARIABEL LINGKUNGAN
+STRING MATH LOGIC ERROR	KESALAHAN LOGIKA MATEMATIKA STRING
 UNABLE TO OPEN FILE	TIDAK DAPAT MEMBUKA FILE
-UNABLE TO OPEN TO OPEN FILE FOR READING	Tidak dapat membuka file untuk membuka file
-UNDEFINED LABEL	Label yang tidak ditentukan
-UNHANDLED OPERATION	Operasi yang tidak ditangani
-UNHANDLED OPERATION CODE	Kode operasi yang tidak ditangani
-UNKNOWN IF LABEL	Tidak diketahui jika label
-UNRECOGNIZED DOUBLE MATH OPERATION	Operasi matematika ganda yang tidak dikenal
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Definisi fungsi fungsi yang tidak dikenal
-UNRECOGNIZED GOSUB LABEL	Label Gosub yang tidak dikenali
-UNRECOGNIZED GOTO LABEL	Label GOTO yang tidak dikenali
-UNRECOGNIZED INPUT	Input yang tidak diakui
-UNRECOGNIZED INTEGER MATH OPERATION	Operasi matematika integer yang tidak dikenal
-UNRECOGNIZED MATH TYPE	Jenis matematika yang tidak dikenal
-UNRECOGNIZED NEXT VARIABLE	Variabel berikutnya yang tidak dikenali
-UNRECOGNIZED OP IN PRINT	OP yang tidak diakui di media cetak
-UNRECOGNIZED RATIONAL MATH OPERATION	Operasi matematika rasional yang tidak dikenal
-UNRECOGNIZED VARIABLE TYPE	Jenis variabel yang tidak dikenali
-UNSET ENVIRONMENT VARIABLE	Variabel Lingkungan yang Tidak Terbaik
-VARIABLE / ARRAY DEFINITION MISMATCH	Ketidakcocokan Definisi Variabel / Array
-VARIABLE DEFINED AS ARRAY	Variabel didefinisikan sebagai array
-VARIABLE DEFINED AS NONARRAY	Variabel didefinisikan sebagai nonarray
-VARIABLE HAS NO VALUE	Variabel tidak memiliki nilai
-VARIABLE IS NOT AN ARRAY	Variabel bukan array
+UNABLE TO OPEN TO OPEN FILE FOR READING	TIDAK DAPAT MEMBUKA FILE UNTUK MEMBUKA FILE
+UNDEFINED LABEL	LABEL YANG TIDAK DITENTUKAN
+UNHANDLED OPERATION	OPERASI YANG TIDAK DITANGANI
+UNHANDLED OPERATION CODE	KODE OPERASI YANG TIDAK DITANGANI
+UNKNOWN IF LABEL	TIDAK DIKETAHUI JIKA LABEL
+UNRECOGNIZED DOUBLE MATH OPERATION	OPERASI MATEMATIKA GANDA YANG TIDAK DIKENAL
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	DEFINISI FUNGSI FUNGSI YANG TIDAK DIKENAL
+UNRECOGNIZED GOSUB LABEL	LABEL GOSUB YANG TIDAK DIKENALI
+UNRECOGNIZED GOTO LABEL	LABEL GOTO YANG TIDAK DIKENALI
+UNRECOGNIZED INPUT	INPUT YANG TIDAK DIAKUI
+UNRECOGNIZED INTEGER MATH OPERATION	OPERASI MATEMATIKA INTEGER YANG TIDAK DIKENAL
+UNRECOGNIZED MATH TYPE	JENIS MATEMATIKA YANG TIDAK DIKENAL
+UNRECOGNIZED NEXT VARIABLE	VARIABEL BERIKUTNYA YANG TIDAK DIKENALI
+UNRECOGNIZED OP IN PRINT	OP YANG TIDAK DIAKUI DI MEDIA CETAK
+UNRECOGNIZED RATIONAL MATH OPERATION	OPERASI MATEMATIKA RASIONAL YANG TIDAK DIKENAL
+UNRECOGNIZED VARIABLE TYPE	JENIS VARIABEL YANG TIDAK DIKENALI
+UNSET ENVIRONMENT VARIABLE	VARIABEL LINGKUNGAN UNSET
+VARIABLE / ARRAY DEFINITION MISMATCH	KETIDAKCOCOKAN DEFINISI VARIABEL / ARRAY
+VARIABLE DEFINED AS ARRAY	VARIABEL DIDEFINISIKAN SEBAGAI ARRAY
+VARIABLE DEFINED AS NONARRAY	VARIABEL DIDEFINISIKAN SEBAGAI NONARRAY
+VARIABLE HAS NO VALUE	VARIABEL TIDAK MEMILIKI NILAI
+VARIABLE IS NOT AN ARRAY	VARIABEL BUKAN ARRAY

@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= শষ                   # the end statement
+END <= শষ              # the end statement
 
 # from ECMA-55 §9
 
-ABS <= পরমমন                # the absolute value function
-ATN <= বপরতসপরশকতর          # the trigonomic arctangent function
-COS <= কসইন                 # the trigonomic cosine function
-EXP <= ততপরযপরণ             # the exponential / power function
-INT <= পরণসখয               # the integer / floor function
-LOG <= লগরদম                # the natural log function
-RND <= রল                   # generate random number
-SGN <= চহন                  # determine the sign
-SIN <= সইন                  # the trigonomic sine function
-SQR <= বরগমল                # the square root function
-TAN <= সপরশকতর              # the trigonomic tangent function
-DBL <= দবগণ                 # convert to double
-STR <= পঠয                  # convert to string
-RAT <= যকতসঙগত              # convert to rational
+ABS <= অযবস            # the absolute value function
+ATN <= ATN             # the trigonomic arctangent function
+COS <= কস              # the trigonomic cosine function
+EXP <= একসপরস          # the exponential / power function
+INT <= ইনট             # the integer / floor function
+LOG <= লগ              # the natural log function
+RND <= RND             # generate random number
+SGN <= এসজএন           # determine the sign
+SIN <= পপ              # the trigonomic sine function
+SQR <= এসকউআর          # the square root function
+TAN <= টযন             # the trigonomic tangent function
+DBL <= ডবএল            # convert to double
+STR <= সটর             # convert to string
+RAT <= ইদর             # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= সজঞযত                # for user defined functions
+DEF <= ডফ              # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= দন                   # for variable assignment
+LET <= দন              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= কল                 # formed from GO and SUB if no direct translation exists
-GOTO <= লফ                  # formed from GO and TO if no direct translation exists
-TO <= পরত                   # part of for/to/step/next constructs
-IF <= যদ                    # part of if/then constructs
-ON <= সযইচ                  # a sort of a switch statement
-RETURN <= পরতযবরতন          # used to exit a subroutine
-STOP <= সমপত                # command to stop execution
+GOSUB <= গসব           # formed from GO and SUB if no direct translation exists
+GOTO <= যও             # formed from GO and TO if no direct translation exists
+TO <= পরত              # part of for/to/step/next constructs
+IF <= যদ               # part of if/then constructs
+ON <= চল               # a sort of a switch statement
+RETURN <= পরতযবরতন     # used to exit a subroutine
+STOP <= থমন            # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= থক                   # part of for/to/step/next constructs
-STEP <= পদকষপ               # part of for/to/step/next constructs
-NEXT <= পরবরত               # part of for/to/step/next constructs
+FOR <= জনয             # part of for/to/step/next constructs
+STEP <= পদকষপ          # part of for/to/step/next constructs
+NEXT <= পরবরত          # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= ছপ                 # to print things out
+PRINT <= ছপ            # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= ইনপট               # the input statement
+INPUT <= ইনপট          # the input statement
 
 # from ECMA-55 §16
 
-READ <= পডন                 # part of read / restore
-RESTORE <= পনরযপডন          # part of read / restore
+READ <= পডন            # part of read / restore
+RESTORE <= পনরদধর      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= তথয                 # to embed data in the program
+DATA <= ডট             # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= মতর                  # dimension arrays
-OPTION <= বকলপ              # see ECMA-55 §18.1
-BASE <= বস                  # see ECMA-55 §18.1
+DIM <= মলন             # dimension arrays
+OPTION <= বকলপ         # see ECMA-55 §18.1
+BASE <= বস             # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= মনতবয                # see ECMA-55 §18.1
+REM <= রম              # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -142,8 +142,8 @@ STRING MATH LOGIC ERROR	স্ট্রিং ম্যাথ লজিক ত�
 UNABLE TO OPEN FILE	নথি খুলতে অক্ষম
 UNABLE TO OPEN TO OPEN FILE FOR READING	পড়ার জন্য ফাইল খুলতে খুলতে অক্ষম
 UNDEFINED LABEL	অপরিবর্তিত লেবেল
-UNHANDLED OPERATION	Unhanded অপারেশন
-UNHANDLED OPERATION CODE	Unhandled অপারেশন কোড
+UNHANDLED OPERATION	UNHANDED অপারেশন
+UNHANDLED OPERATION CODE	UNHANDLED অপারেশন কোড
 UNKNOWN IF LABEL	অজানা যদি লেবেল
 UNRECOGNIZED DOUBLE MATH OPERATION	অচেনা ডাবল গণিত অপারেশন
 UNRECOGNIZED FUNCTION FUNCTION DEFINITION	অচেনা ফাংশন ফাংশন সংজ্ঞা

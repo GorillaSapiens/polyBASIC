@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= TERFYNA                  # the end statement
+END <= TERFYNA              # the end statement
 
 # from ECMA-55 §9
 
-ABS <= GWERTHABSOLIWT           # the absolute value function
-ATN <= TANGIADGWRTHDRO          # the trigonomic arctangent function
-COS <= NGHOSIN                  # the trigonomic cosine function
-EXP <= ESBONYDDOL               # the exponential / power function
-INT <= GYFANRIF                 # the integer / floor function
-LOG <= LOGARITHM                # the natural log function
-RND <= TREIGLECH                # generate random number
-SGN <= ARWYDDEN                 # determine the sign
-SIN <= SEIN                     # the trigonomic sine function
-SQR <= AILISRADD                # the square root function
-TAN <= TANGIAD                  # the trigonomic tangent function
-DBL <= DYBLWCH                  # convert to double
-STR <= TECSTIO                  # convert to string
-RAT <= RHESYMOL                 # convert to rational
+ABS <= ABS                  # the absolute value function
+ATN <= ATN                  # the trigonomic arctangent function
+COS <= GOSAU                # the trigonomic cosine function
+EXP <= EXP                  # the exponential / power function
+INT <= YNGYFARWYDD          # the integer / floor function
+LOG <= LOG                  # the natural log function
+RND <= RND                  # generate random number
+SGN <= SGN                  # determine the sign
+SIN <= BECHODD              # the trigonomic sine function
+SQR <= SQR                  # the square root function
+TAN <= BARCIANT             # the trigonomic tangent function
+DBL <= DBL                  # convert to double
+STR <= STRYD                # convert to string
+RAT <= LLYGODEN             # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DDIFFINIA                # for user defined functions
+DEF <= DEF                  # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= ADAWEN                   # for variable assignment
+LET <= GADAWN               # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= ALWA                   # formed from GO and SUB if no direct translation exists
-GOTO <= BEICASID                # formed from GO and TO if no direct translation exists
-TO <= I                         # part of for/to/step/next constructs
-IF <= OS                        # part of if/then constructs
-ON <= SWITSITH                  # a sort of a switch statement
-RETURN <= DDYCHWELO             # used to exit a subroutine
-STOP <= GORFFENEDIG             # command to stop execution
+GOSUB <= GOSUB              # formed from GO and SUB if no direct translation exists
+GOTO <= MYNDI               # formed from GO and TO if no direct translation exists
+TO <= I                     # part of for/to/step/next constructs
+IF <= OS                    # part of if/then constructs
+ON <= YMLAEN                # a sort of a switch statement
+RETURN <= DDYCHWELO         # used to exit a subroutine
+STOP <= ARHOSWCH            # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= ODDIWRTH                 # part of for/to/step/next constructs
-STEP <= CAMOCH                  # part of for/to/step/next constructs
-NEXT <= NESAF                   # part of for/to/step/next constructs
+FOR <= DROS                 # part of for/to/step/next constructs
+STEP <= CAMOCH              # part of for/to/step/next constructs
+NEXT <= NESAF               # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= BRINTIWYD              # to print things out
+PRINT <= BRINTIWYD          # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= MEWNBYNNER             # the input statement
+INPUT <= MEWNBYNNER         # the input statement
 
 # from ECMA-55 §16
 
-READ <= DARLLENEST              # part of read / restore
-RESTORE <= AILDDARLLENWCH       # part of read / restore
+READ <= DARLLENEST          # part of read / restore
+RESTORE <= HATGYWEIRIFF     # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= NGWYBODAETH             # to embed data in the program
+DATA <= DATA                # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSIWN                # dimension arrays
-OPTION <= OPSIWN                # see ECMA-55 §18.1
-BASE <= SEILIANT                # see ECMA-55 §18.1
+DIM <= PYLER                # dimension arrays
+OPTION <= OPSIWN            # see ECMA-55 §18.1
+BASE <= SEILIANT            # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= SYLW                     # see ECMA-55 §18.1
+REM <= REM                  # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= ARHAP
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	A dim iaith a roddir ar linell orchymyn. Gadael.
-ARRAY ALREADY DEFINED	Arae eisoes wedi'i diffinio
-ARRAY INDEX OUTSIDE OF BOUNDS	Mynegai arae y tu allan i ffiniau
-CANNOT ACCESS DIRECTORY	Methu Cyrchu Cyfeiriadur
-DATA INPUT UNDERFLOW	Tan -lif mewnbwn data
-DATA READ UNDERFLOW	Data Darllen Tanlif
-DEFINITION CYCLE DISCOVERED	Cylch diffiniad wedi'i ddarganfod
-ERROR	Wallau
-FOR VARIABLE MULTIPLY DEFINED	Ar gyfer newidyn lluosi wedi'i ddiffinio
-FUNCTION DEFINITION MULTIPLY DEFINED	Diffiniad swyddogaeth lluosi wedi'i ddiffinio
-FUNCTION DEFINITION PARAMETER MISMATCH	Camgymhariad paramedr diffiniad swyddogaeth
-GOSUB STACK OVERFLOW	Gorlif pentwr gosub
-GOSUB STACK UNDERFLOW	Tan -lif pentwr gosub
-INDEX OUT OF RANGE	Mynegai y tu allan i'r amrediad
-LABEL ALREADY DEFINED	Label eisoes wedi'i ddiffinio
-LEFT / RIGHT OPERATION MISMATCH	Camgymhariad Operation Chwith / dde
-NEGATIVE INDEX	Mynegai Negyddol
-NEXT ON FOR LOOP WITH STRING VARIABLE	Nesaf ymlaen am ddolen gyda newidyn llinyn
-OPERAND MISMATCH	Camgymhariad Operand
-OPTION REQUIRES A LANGUAGE	Opsiwn yn gofyn am iaith
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Gwiriwch Gosodiadau Iaith neu Amgylchedd Amgylchedd
-STRING MATH LOGIC ERROR	Gwall rhesymeg mathemateg llinyn
-UNABLE TO OPEN FILE	Methu agor ffeil
-UNABLE TO OPEN TO OPEN FILE FOR READING	Methu agor i agor ffeil ar gyfer darllen
-UNDEFINED LABEL	Label heb ei ddiffinio
-UNHANDLED OPERATION	Gweithrediad heb ei drin
-UNHANDLED OPERATION CODE	Cod gweithredu heb ei drin
-UNKNOWN IF LABEL	Anhysbys os label
-UNRECOGNIZED DOUBLE MATH OPERATION	Gweithrediad mathemateg dwbl heb ei gydnabod
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Diffiniad swyddogaeth heb ei gydnabod
-UNRECOGNIZED GOSUB LABEL	Label gosub heb ei gydnabod
-UNRECOGNIZED GOTO LABEL	Label goto heb ei gydnabod
-UNRECOGNIZED INPUT	Mewnbwn heb ei gydnabod
-UNRECOGNIZED INTEGER MATH OPERATION	Gweithrediad mathemateg cyfanrif heb ei gydnabod
-UNRECOGNIZED MATH TYPE	Math mathemateg heb ei gydnabod
-UNRECOGNIZED NEXT VARIABLE	Newidyn nesaf heb ei gydnabod
-UNRECOGNIZED OP IN PRINT	OP heb ei gydnabod mewn print
-UNRECOGNIZED RATIONAL MATH OPERATION	Gweithrediad mathemateg rhesymegol heb ei gydnabod
-UNRECOGNIZED VARIABLE TYPE	Math Amrywiol heb ei gydnabod
-UNSET ENVIRONMENT VARIABLE	Newidyn amgylchedd dadosod
-VARIABLE / ARRAY DEFINITION MISMATCH	Camgymhariad Diffiniad Amrywiol / Array
-VARIABLE DEFINED AS ARRAY	Amrywiol wedi'i ddiffinio fel arae
-VARIABLE DEFINED AS NONARRAY	Amrywiol wedi'i ddiffinio fel nonarray
-VARIABLE HAS NO VALUE	Nid oes gwerth i newidyn
-VARIABLE IS NOT AN ARRAY	Nid yw newidyn yn arae
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	A DIM IAITH A RODDIR AR LINELL ORCHYMYN. GADAEL.
+ARRAY ALREADY DEFINED	ARAE EISOES WEDI'I DIFFINIO
+ARRAY INDEX OUTSIDE OF BOUNDS	MYNEGAI ARAE Y TU ALLAN I FFINIAU
+CANNOT ACCESS DIRECTORY	METHU CYRCHU CYFEIRIADUR
+DATA INPUT UNDERFLOW	TAN -LIF MEWNBWN DATA
+DATA READ UNDERFLOW	DATA DARLLEN TANLIF
+DEFINITION CYCLE DISCOVERED	CYLCH DIFFINIAD WEDI'I DDARGANFOD
+ERROR	GWALLAU
+FOR VARIABLE MULTIPLY DEFINED	AR GYFER NEWIDYN LLUOSI WEDI'I DDIFFINIO
+FUNCTION DEFINITION MULTIPLY DEFINED	DIFFINIAD SWYDDOGAETH LLUOSI WEDI'I DDIFFINIO
+FUNCTION DEFINITION PARAMETER MISMATCH	CAMGYMHARIAD PARAMEDR DIFFINIAD SWYDDOGAETH
+GOSUB STACK OVERFLOW	GORLIF PENTWR GOSUB
+GOSUB STACK UNDERFLOW	TAN -LIF PENTWR GOSUB
+INDEX OUT OF RANGE	MYNEGAI Y TU ALLAN I'R AMREDIAD
+LABEL ALREADY DEFINED	LABEL EISOES WEDI'I DDIFFINIO
+LEFT / RIGHT OPERATION MISMATCH	CAMGYMHARIAD OPERATION CHWITH / DDE
+NEGATIVE INDEX	MYNEGAI NEGYDDOL
+NEXT ON FOR LOOP WITH STRING VARIABLE	NESAF YMLAEN AM DDOLEN GYDA NEWIDYN LLINYN
+OPERAND MISMATCH	CAMGYMHARIAD OPERAND
+OPTION REQUIRES A LANGUAGE	OPSIWN YN GOFYN AM IAITH
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	GWIRIWCH GOSODIADAU IAITH NEU AMGYLCHEDD AMGYLCHEDD
+STRING MATH LOGIC ERROR	GWALL RHESYMEG MATHEMATEG LLINYN
+UNABLE TO OPEN FILE	METHU AGOR FFEIL
+UNABLE TO OPEN TO OPEN FILE FOR READING	METHU AGOR I AGOR FFEIL AR GYFER DARLLEN
+UNDEFINED LABEL	LABEL HEB EI DDIFFINIO
+UNHANDLED OPERATION	GWEITHREDIAD HEB EI DRIN
+UNHANDLED OPERATION CODE	COD GWEITHREDU HEB EI DRIN
+UNKNOWN IF LABEL	ANHYSBYS OS LABEL
+UNRECOGNIZED DOUBLE MATH OPERATION	GWEITHREDIAD MATHEMATEG DWBL HEB EI GYDNABOD
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	DIFFINIAD SWYDDOGAETH HEB EI GYDNABOD
+UNRECOGNIZED GOSUB LABEL	LABEL GOSUB HEB EI GYDNABOD
+UNRECOGNIZED GOTO LABEL	LABEL GOTO HEB EI GYDNABOD
+UNRECOGNIZED INPUT	MEWNBWN HEB EI GYDNABOD
+UNRECOGNIZED INTEGER MATH OPERATION	GWEITHREDIAD MATHEMATEG CYFANRIF HEB EI GYDNABOD
+UNRECOGNIZED MATH TYPE	MATH MATHEMATEG HEB EI GYDNABOD
+UNRECOGNIZED NEXT VARIABLE	NEWIDYN NESAF HEB EI GYDNABOD
+UNRECOGNIZED OP IN PRINT	OP HEB EI GYDNABOD MEWN PRINT
+UNRECOGNIZED RATIONAL MATH OPERATION	GWEITHREDIAD MATHEMATEG RHESYMEGOL HEB EI GYDNABOD
+UNRECOGNIZED VARIABLE TYPE	MATH AMRYWIOL HEB EI GYDNABOD
+UNSET ENVIRONMENT VARIABLE	NEWIDYN AMGYLCHEDD DADOSOD
+VARIABLE / ARRAY DEFINITION MISMATCH	CAMGYMHARIAD DIFFINIAD AMRYWIOL / ARRAY
+VARIABLE DEFINED AS ARRAY	AMRYWIOL WEDI'I DDIFFINIO FEL ARAE
+VARIABLE DEFINED AS NONARRAY	AMRYWIOL WEDI'I DDIFFINIO FEL NONARRAY
+VARIABLE HAS NO VALUE	NID OES GWERTH I NEWIDYN
+VARIABLE IS NOT AN ARRAY	NID YW NEWIDYN YN ARAE

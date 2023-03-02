@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= UKUGCINA                          # the end statement
+END <= UKUGCINA               # the end statement
 
 # from ECMA-55 §9
 
-ABS <= INANIELIPHELELE                   # the absolute value function
-ATN <= IINVERSETANGENT                   # the trigonomic arctangent function
-COS <= ICOSI                             # the trigonomic cosine function
-EXP <= UKUVEZA                           # the exponential / power function
-INT <= PHETHE                            # the integer / floor function
-LOG <= ISILINGANISOSOGAZIDUZEMI          # the natural log function
-RND <= QOQA                              # generate random number
-SGN <= BHALA                             # determine the sign
-SIN <= SINE                              # the trigonomic sine function
-SQR <= ISQUAREROOT                       # the square root function
-TAN <= INHLIZIYOYAKHONA                  # the trigonomic tangent function
-DBL <= BILI                              # convert to double
-STR <= UMBHALO                           # convert to string
-RAT <= NENGQONDO                         # convert to rational
+ABS <= VALEKE                 # the absolute value function
+ATN <= AT                     # the trigonomic arctangent function
+COS <= ICONSI                 # the trigonomic cosine function
+EXP <= EKHOKHA                # the exponential / power function
+INT <= INT                    # the integer / floor function
+LOG <= UGODO                  # the natural log function
+RND <= RND                    # generate random number
+SGN <= ISGN                   # determine the sign
+SIN <= ONA                    # the trigonomic sine function
+SQR <= ISQR                   # the square root function
+TAN <= UMBALAONSUNDU          # the trigonomic tangent function
+DBL <= DLB                    # convert to double
+STR <= NTRLD                  # convert to string
+RAT <= IGUNDANE               # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= CHASISELA                         # for user defined functions
+DEF <= UKUKHANISA             # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= VUMELA                            # for variable assignment
+LET <= VUMELA                 # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= MEMEZA                          # formed from GO and SUB if no direct translation exists
-GOTO <= GXUMA                            # formed from GO and TO if no direct translation exists
-TO <= KWA                                # part of for/to/step/next constructs
-IF <= NXA                                # part of if/then constructs
-ON <= SHINTSHA                           # a sort of a switch statement
-RETURN <= BUYISELAEMUVA                  # used to exit a subroutine
-STOP <= KUQEDIWE                         # command to stop execution
+GOSUB <= INGQINAPHE           # formed from GO and SUB if no direct translation exists
+GOTO <= IYAKU                 # formed from GO and TO if no direct translation exists
+TO <= KWA                     # part of for/to/step/next constructs
+IF <= NXA                     # part of if/then constructs
+ON <= PHEZUKWA                # a sort of a switch statement
+RETURN <= BUYISELAEMUVA       # used to exit a subroutine
+STOP <= IMA                   # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= UKUSUKA                           # part of for/to/step/next constructs
-STEP <= GXATHA                           # part of for/to/step/next constructs
-NEXT <= OLANDELAYO                       # part of for/to/step/next constructs
+FOR <= INGOMANE               # part of for/to/step/next constructs
+STEP <= GXATHA                # part of for/to/step/next constructs
+NEXT <= OLANDELAYO            # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= CINDEZELA                       # to print things out
+PRINT <= CINDEZELA            # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= FAKA                            # the input statement
+INPUT <= FAKA                 # the input statement
 
 # from ECMA-55 §16
 
-READ <= FUNDA                            # part of read / restore
-RESTORE <= XWAYISA                       # part of read / restore
+READ <= FUNDA                 # part of read / restore
+RESTORE <= KHUZA              # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= ULWAZI                           # to embed data in the program
+DATA <= UMBHALO               # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= UBUKHULU                          # dimension arrays
-OPTION <= UKUKHETHA                      # see ECMA-55 §18.1
-BASE <= ISIZINDA                         # see ECMA-55 §18.1
+DIM <= FUSHANE                # dimension arrays
+OPTION <= UKUKHETHA           # see ECMA-55 §18.1
+BASE <= ISIZINDA              # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= PHAWULA                           # see ECMA-55 §18.1
+REM <= THUMA                  # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= PHUNGULA
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Futhi alukho ulimi olunikezwe kulayini womyalo. Ukuphuma.
-ARRAY ALREADY DEFINED	I-Array isivele ichaziwe
-ARRAY INDEX OUTSIDE OF BOUNDS	I-Array Index ngaphandle kwemingcele
-CANNOT ACCESS DIRECTORY	Ayikwazi ukufinyelela umkhombandlela
-DATA INPUT UNDERFLOW	Ukufakwa kwedatha okungekho emthethweni
-DATA READ UNDERFLOW	Idatha ifundwe ngaphansi
-DEFINITION CYCLE DISCOVERED	Ukuchazwa komjikelezo kutholakele
-ERROR	Ukuphambeka
-FOR VARIABLE MULTIPLY DEFINED	Ngokuchazwa okuchaziwe okuhlukahlukene
-FUNCTION DEFINITION MULTIPLY DEFINED	Ukuchazwa komsebenzi okuchazwe kaningi
-FUNCTION DEFINITION PARAMETER MISMATCH	Umsebenzi wokuchaza upharamitha mismatch
-GOSUB STACK OVERFLOW	I-Gosub Stack iyachichima
-GOSUB STACK UNDERFLOW	I-Gosub Stack Ukuchichima
-INDEX OUT OF RANGE	Inkomba ngaphandle kwebanga
-LABEL ALREADY DEFINED	Ilebula echaziwe
-LEFT / RIGHT OPERATION MISMATCH	I-Left / Right Operation Mismatch
-NEGATIVE INDEX	Inkomba engemihle
-NEXT ON FOR LOOP WITH STRING VARIABLE	Ngokulandelayo ku-loop nge-string eguquguqukayo
-OPERAND MISMATCH	I-Operand Mismatch
-OPTION REQUIRES A LANGUAGE	Inketho idinga ulimi
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Sicela ubheke izilungiselelo zolimi noma ukuguquguquka kwemvelo
-STRING MATH LOGIC ERROR	Iphutha le-String Math Iphutha
-UNABLE TO OPEN FILE	Ayikwazi ukuvula ifayela
-UNABLE TO OPEN TO OPEN FILE FOR READING	Ayikwazi ukuvula ukuvula ifayela lokufunda
-UNDEFINED LABEL	Ilebula elingachazwanga
-UNHANDLED OPERATION	Ukusebenza okungenamkhawulo
-UNHANDLED OPERATION CODE	Ikhodi yokusebenza engathandeki
-UNKNOWN IF LABEL	Akwaziwa uma ilebula
-UNRECOGNIZED DOUBLE MATH OPERATION	Ukusebenza okungaziwa okuphindwe kabili kwezibalo
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Ukuchazwa Okungaziwa Umsebenzi Wokusebenza
-UNRECOGNIZED GOSUB LABEL	Ilebula ye-GOSUB engaziwa
-UNRECOGNIZED GOTO LABEL	Ilebula ye-goto engaziwa
-UNRECOGNIZED INPUT	Okokufaka okungaziwa
-UNRECOGNIZED INTEGER MATH OPERATION	Ukusebenza okungaziwa kwe-Integer Math
-UNRECOGNIZED MATH TYPE	Uhlobo lwezibalo olungaziwa
-UNRECOGNIZED NEXT VARIABLE	Ukuhlukahluka okungaziwa okulandelayo
-UNRECOGNIZED OP IN PRINT	I-op engaziwa
-UNRECOGNIZED RATIONAL MATH OPERATION	Ukusebenza okungaziwa okungaziwa kwezibalo
-UNRECOGNIZED VARIABLE TYPE	Uhlobo olungenakuqhathaniswa
-UNSET ENVIRONMENT VARIABLE	Ukuhlukahluka kwemvelo ye-UNESET
-VARIABLE / ARRAY DEFINITION MISMATCH	Okuguqukayo / Ukuchazwa kwencazelo Mismatch
-VARIABLE DEFINED AS ARRAY	Okuguquguqukayo okuchaziwe njengohlu
-VARIABLE DEFINED AS NONARRAY	Okuguquguqukayo kuchazwe njenge-nonray
-VARIABLE HAS NO VALUE	Okuguqukayo akunanzuzo
-VARIABLE IS NOT AN ARRAY	Okuguqukayo akuyona i-array
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	FUTHI ALUKHO ULIMI OLUNIKEZWE KULAYINI WOMYALO. UKUPHUMA.
+ARRAY ALREADY DEFINED	I-ARRAY ISIVELE ICHAZIWE
+ARRAY INDEX OUTSIDE OF BOUNDS	I-ARRAY INDEX NGAPHANDLE KWEMINGCELE
+CANNOT ACCESS DIRECTORY	AYIKWAZI UKUFINYELELA UMKHOMBANDLELA
+DATA INPUT UNDERFLOW	UKUFAKWA KWEDATHA OKUNGEKHO EMTHETHWENI
+DATA READ UNDERFLOW	IDATHA IFUNDWE NGAPHANSI
+DEFINITION CYCLE DISCOVERED	UKUCHAZWA KOMJIKELEZO KUTHOLAKELE
+ERROR	UKUPHAMBEKA
+FOR VARIABLE MULTIPLY DEFINED	NGOKUCHAZWA OKUCHAZIWE OKUHLUKAHLUKENE
+FUNCTION DEFINITION MULTIPLY DEFINED	UKUCHAZWA KOMSEBENZI OKUCHAZWE KANINGI
+FUNCTION DEFINITION PARAMETER MISMATCH	UMSEBENZI WOKUCHAZA UPHARAMITHA MISMATCH
+GOSUB STACK OVERFLOW	I-GOSUB STACK IYACHICHIMA
+GOSUB STACK UNDERFLOW	I-GOSUB STACK UKUCHICHIMA
+INDEX OUT OF RANGE	INKOMBA NGAPHANDLE KWEBANGA
+LABEL ALREADY DEFINED	ILEBULA ECHAZIWE
+LEFT / RIGHT OPERATION MISMATCH	I-LEFT / RIGHT OPERATION MISMATCH
+NEGATIVE INDEX	INKOMBA ENGEMIHLE
+NEXT ON FOR LOOP WITH STRING VARIABLE	NGOKULANDELAYO KU-LOOP NGE-STRING EGUQUGUQUKAYO
+OPERAND MISMATCH	I-OPERAND MISMATCH
+OPTION REQUIRES A LANGUAGE	INKETHO IDINGA ULIMI
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	SICELA UBHEKE IZILUNGISELELO ZOLIMI NOMA UKUGUQUGUQUKA KWEMVELO
+STRING MATH LOGIC ERROR	IPHUTHA LE-STRING MATH IPHUTHA
+UNABLE TO OPEN FILE	AYIKWAZI UKUVULA IFAYELA
+UNABLE TO OPEN TO OPEN FILE FOR READING	AYIKWAZI UKUVULA UKUVULA IFAYELA LOKUFUNDA
+UNDEFINED LABEL	ILEBULA ELINGACHAZWANGA
+UNHANDLED OPERATION	UKUSEBENZA OKUNGENAMKHAWULO
+UNHANDLED OPERATION CODE	IKHODI YOKUSEBENZA ENGATHANDEKI
+UNKNOWN IF LABEL	AKWAZIWA UMA ILEBULA
+UNRECOGNIZED DOUBLE MATH OPERATION	UKUSEBENZA OKUNGAZIWA OKUPHINDWE KABILI KWEZIBALO
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	UKUCHAZWA OKUNGAZIWA UMSEBENZI WOKUSEBENZA
+UNRECOGNIZED GOSUB LABEL	ILEBULA YE-GOSUB ENGAZIWA
+UNRECOGNIZED GOTO LABEL	ILEBULA YE-GOTO ENGAZIWA
+UNRECOGNIZED INPUT	OKOKUFAKA OKUNGAZIWA
+UNRECOGNIZED INTEGER MATH OPERATION	UKUSEBENZA OKUNGAZIWA KWE-INTEGER MATH
+UNRECOGNIZED MATH TYPE	UHLOBO LWEZIBALO OLUNGAZIWA
+UNRECOGNIZED NEXT VARIABLE	UKUHLUKAHLUKA OKUNGAZIWA OKULANDELAYO
+UNRECOGNIZED OP IN PRINT	I-OP ENGAZIWA
+UNRECOGNIZED RATIONAL MATH OPERATION	UKUSEBENZA OKUNGAZIWA OKUNGAZIWA KWEZIBALO
+UNRECOGNIZED VARIABLE TYPE	UHLOBO OLUNGENAKUQHATHANISWA
+UNSET ENVIRONMENT VARIABLE	UKUHLUKAHLUKA KWEMVELO YE-UNESET
+VARIABLE / ARRAY DEFINITION MISMATCH	OKUGUQUKAYO / UKUCHAZWA KWENCAZELO MISMATCH
+VARIABLE DEFINED AS ARRAY	OKUGUQUGUQUKAYO OKUCHAZIWE NJENGOHLU
+VARIABLE DEFINED AS NONARRAY	OKUGUQUGUQUKAYO KUCHAZWE NJENGE-NONRAY
+VARIABLE HAS NO VALUE	OKUGUQUKAYO AKUNANZUZO
+VARIABLE IS NOT AN ARRAY	OKUGUQUKAYO AKUYONA I-ARRAY

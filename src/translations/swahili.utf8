@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= MWISHO                       # the end statement
+END <= MWISHO           # the end statement
 
 # from ECMA-55 §9
 
-ABS <= THAMANIKABISA                # the absolute value function
-ATN <= TANGENTISIYONAMAANA          # the trigonomic arctangent function
-COS <= COSINE                       # the trigonomic cosine function
-EXP <= EXPONENTIAL                  # the exponential / power function
-INT <= NAMBARI                      # the integer / floor function
-LOG <= LOGARITHM                    # the natural log function
-RND <= ROLL                         # generate random number
-SGN <= ISHARA                       # determine the sign
-SIN <= SINE                         # the trigonomic sine function
-SQR <= KIPEO                        # the square root function
-TAN <= TANGENT                      # the trigonomic tangent function
-DBL <= MARAMBILI                    # convert to double
-STR <= MAANDISHI                    # convert to string
-RAT <= MANTIKI                      # convert to rational
+ABS <= ABS              # the absolute value function
+ATN <= ATN              # the trigonomic arctangent function
+COS <= COS              # the trigonomic cosine function
+EXP <= EXP              # the exponential / power function
+INT <= INT              # the integer / floor function
+LOG <= LOGI             # the natural log function
+RND <= RND              # generate random number
+SGN <= SGN              # determine the sign
+SIN <= DHAMBI           # the trigonomic sine function
+SQR <= SQR              # the square root function
+TAN <= TAN              # the trigonomic tangent function
+DBL <= DBL              # convert to double
+STR <= STR              # convert to string
+RAT <= PANYA            # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= FAFANUA                      # for user defined functions
+DEF <= DEF              # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= ACHA                         # for variable assignment
+LET <= RUHUSU           # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= WITO                       # formed from GO and SUB if no direct translation exists
-GOTO <= RUKIA                       # formed from GO and TO if no direct translation exists
-TO <= KWA                           # part of for/to/step/next constructs
-IF <= KAMA                          # part of if/then constructs
-ON <= BADILI                        # a sort of a switch statement
-RETURN <= KURUDI                    # used to exit a subroutine
-STOP <= KUMALIZA                    # command to stop execution
+GOSUB <= GOSUB          # formed from GO and SUB if no direct translation exists
+GOTO <= ENDAKWA         # formed from GO and TO if no direct translation exists
+TO <= KWA               # part of for/to/step/next constructs
+IF <= KAMA              # part of if/then constructs
+ON <= ON                # a sort of a switch statement
+RETURN <= KURUDI        # used to exit a subroutine
+STOP <= ACHA            # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= KUTOKA                       # part of for/to/step/next constructs
-STEP <= HATUA                       # part of for/to/step/next constructs
-NEXT <= IFUATAYO                    # part of for/to/step/next constructs
+FOR <= KUTOKA           # part of for/to/step/next constructs
+STEP <= HATUA           # part of for/to/step/next constructs
+NEXT <= IFUATAYO        # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= CHAPISHA                   # to print things out
+PRINT <= CHAPISHA       # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= PEMBEJEO                   # the input statement
+INPUT <= PEMBEJEO       # the input statement
 
 # from ECMA-55 §16
 
-READ <= SOMA                        # part of read / restore
-RESTORE <= KUSOMATENA               # part of read / restore
+READ <= SOMA            # part of read / restore
+RESTORE <= REJESHA      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= HABARI                      # to embed data in the program
+DATA <= TAKWIMU         # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= MWELEKEO                     # dimension arrays
-OPTION <= CHAGUO                    # see ECMA-55 §18.1
-BASE <= MSINGI                      # see ECMA-55 §18.1
+DIM <= DIM              # dimension arrays
+OPTION <= CHAGUO        # see ECMA-55 §18.1
+BASE <= MSINGI          # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= KUMBUKA                      # see ECMA-55 §18.1
+REM <= REM              # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= BILAMPANGILIO
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	Na hakuna lugha iliyopewa kwenye mstari wa amri. Kutoka.
-ARRAY ALREADY DEFINED	Safu tayari imeelezewa
-ARRAY INDEX OUTSIDE OF BOUNDS	Safu ya safu nje ya mipaka
-CANNOT ACCESS DIRECTORY	Haiwezi kufikia saraka
-DATA INPUT UNDERFLOW	Uingizaji wa data Underfer
-DATA READ UNDERFLOW	Takwimu zilizosomwa
-DEFINITION CYCLE DISCOVERED	Mzunguko wa ufafanuzi umegunduliwa
-ERROR	Kosa
-FOR VARIABLE MULTIPLY DEFINED	Kwa kutofautisha hufafanuliwa
-FUNCTION DEFINITION MULTIPLY DEFINED	Ufafanuzi wa kazi umefafanuliwa
-FUNCTION DEFINITION PARAMETER MISMATCH	Ufafanuzi wa kazi ya paramu
-GOSUB STACK OVERFLOW	Gosub stack kufurika
-GOSUB STACK UNDERFLOW	GoSub Stack Undered
-INDEX OUT OF RANGE	Index nje ya anuwai
-LABEL ALREADY DEFINED	Lebo tayari imeelezewa
-LEFT / RIGHT OPERATION MISMATCH	Kushoto / kulia Operesheni mismatch
-NEGATIVE INDEX	Kielelezo hasi
-NEXT ON FOR LOOP WITH STRING VARIABLE	Ifuatayo kwa kitanzi na kamba ya kutofautisha
-OPERAND MISMATCH	Uendeshaji wa kazi
-OPTION REQUIRES A LANGUAGE	Chaguo inahitaji lugha
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Tafadhali angalia mipangilio ya lugha au kutofautisha kwa mazingira
-STRING MATH LOGIC ERROR	Kosa la mantiki ya hesabu
-UNABLE TO OPEN FILE	Haiwezi kufungua faili
-UNABLE TO OPEN TO OPEN FILE FOR READING	Haiwezi kufungua kufungua faili ya kusoma
-UNDEFINED LABEL	Lebo isiyoelezewa
-UNHANDLED OPERATION	Operesheni isiyosababishwa
-UNHANDLED OPERATION CODE	Nambari ya operesheni isiyozuiliwa
-UNKNOWN IF LABEL	Haijulikani ikiwa lebo
-UNRECOGNIZED DOUBLE MATH OPERATION	Operesheni ya hesabu mara mbili isiyojulikana
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Ufafanuzi wa kazi ya kazi isiyojulikana
-UNRECOGNIZED GOSUB LABEL	Lebo isiyojulikana ya Gosub
-UNRECOGNIZED GOTO LABEL	Lebo isiyojulikana ya Goto
-UNRECOGNIZED INPUT	Pembejeo isiyojulikana
-UNRECOGNIZED INTEGER MATH OPERATION	Operesheni ya hesabu isiyojulikana
-UNRECOGNIZED MATH TYPE	Aina ya hesabu isiyojulikana
-UNRECOGNIZED NEXT VARIABLE	Kutofaulu kutofautisha inayofuata
-UNRECOGNIZED OP IN PRINT	OP isiyojulikana kwa kuchapishwa
-UNRECOGNIZED RATIONAL MATH OPERATION	Operesheni ya hesabu isiyojulikana
-UNRECOGNIZED VARIABLE TYPE	Aina ya kutofautisha isiyojulikana
-UNSET ENVIRONMENT VARIABLE	Mazingira ya kutofautisha
-VARIABLE / ARRAY DEFINITION MISMATCH	Kutofautisha / safu ya ufafanuzi
-VARIABLE DEFINED AS ARRAY	Inaweza kufafanuliwa kama safu
-VARIABLE DEFINED AS NONARRAY	Inaweza kufafanuliwa kama nonarray
-VARIABLE HAS NO VALUE	Kutofautisha haina thamani
-VARIABLE IS NOT AN ARRAY	Kubadilika sio safu
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	NA HAKUNA LUGHA ILIYOPEWA KWENYE MSTARI WA AMRI. KUTOKA.
+ARRAY ALREADY DEFINED	SAFU TAYARI IMEELEZEWA
+ARRAY INDEX OUTSIDE OF BOUNDS	SAFU YA SAFU NJE YA MIPAKA
+CANNOT ACCESS DIRECTORY	HAIWEZI KUFIKIA SARAKA
+DATA INPUT UNDERFLOW	UINGIZAJI WA DATA UNDERFER
+DATA READ UNDERFLOW	TAKWIMU ZILIZOSOMWA
+DEFINITION CYCLE DISCOVERED	MZUNGUKO WA UFAFANUZI UMEGUNDULIWA
+ERROR	KOSA
+FOR VARIABLE MULTIPLY DEFINED	KWA KUTOFAUTISHA HUFAFANULIWA
+FUNCTION DEFINITION MULTIPLY DEFINED	UFAFANUZI WA KAZI UMEFAFANULIWA
+FUNCTION DEFINITION PARAMETER MISMATCH	UFAFANUZI WA KAZI YA PARAMU
+GOSUB STACK OVERFLOW	GOSUB STACK KUFURIKA
+GOSUB STACK UNDERFLOW	GOSUB STACK UNDERED
+INDEX OUT OF RANGE	INDEX NJE YA ANUWAI
+LABEL ALREADY DEFINED	LEBO TAYARI IMEELEZEWA
+LEFT / RIGHT OPERATION MISMATCH	KUSHOTO / KULIA OPERESHENI MISMATCH
+NEGATIVE INDEX	KIELELEZO HASI
+NEXT ON FOR LOOP WITH STRING VARIABLE	IFUATAYO KWA KITANZI NA KAMBA YA KUTOFAUTISHA
+OPERAND MISMATCH	UENDESHAJI WA KAZI
+OPTION REQUIRES A LANGUAGE	CHAGUO INAHITAJI LUGHA
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	TAFADHALI ANGALIA MIPANGILIO YA LUGHA AU KUTOFAUTISHA KWA MAZINGIRA
+STRING MATH LOGIC ERROR	KOSA LA MANTIKI YA HESABU
+UNABLE TO OPEN FILE	HAIWEZI KUFUNGUA FAILI
+UNABLE TO OPEN TO OPEN FILE FOR READING	HAIWEZI KUFUNGUA KUFUNGUA FAILI YA KUSOMA
+UNDEFINED LABEL	LEBO ISIYOELEZEWA
+UNHANDLED OPERATION	OPERESHENI ISIYOSABABISHWA
+UNHANDLED OPERATION CODE	NAMBARI YA OPERESHENI ISIYOZUILIWA
+UNKNOWN IF LABEL	HAIJULIKANI IKIWA LEBO
+UNRECOGNIZED DOUBLE MATH OPERATION	OPERESHENI YA HESABU MARA MBILI ISIYOJULIKANA
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	UFAFANUZI WA KAZI YA KAZI ISIYOJULIKANA
+UNRECOGNIZED GOSUB LABEL	LEBO ISIYOJULIKANA YA GOSUB
+UNRECOGNIZED GOTO LABEL	LEBO ISIYOJULIKANA YA GOTO
+UNRECOGNIZED INPUT	PEMBEJEO ISIYOJULIKANA
+UNRECOGNIZED INTEGER MATH OPERATION	OPERESHENI YA HESABU ISIYOJULIKANA
+UNRECOGNIZED MATH TYPE	AINA YA HESABU ISIYOJULIKANA
+UNRECOGNIZED NEXT VARIABLE	KUTOFAULU KUTOFAUTISHA INAYOFUATA
+UNRECOGNIZED OP IN PRINT	OP ISIYOJULIKANA KWA KUCHAPISHWA
+UNRECOGNIZED RATIONAL MATH OPERATION	OPERESHENI YA HESABU ISIYOJULIKANA
+UNRECOGNIZED VARIABLE TYPE	AINA YA KUTOFAUTISHA ISIYOJULIKANA
+UNSET ENVIRONMENT VARIABLE	MAZINGIRA YA KUTOFAUTISHA
+VARIABLE / ARRAY DEFINITION MISMATCH	KUTOFAUTISHA / SAFU YA UFAFANUZI
+VARIABLE DEFINED AS ARRAY	INAWEZA KUFAFANULIWA KAMA SAFU
+VARIABLE DEFINED AS NONARRAY	INAWEZA KUFAFANULIWA KAMA NONARRAY
+VARIABLE HAS NO VALUE	KUTOFAUTISHA HAINA THAMANI
+VARIABLE IS NOT AN ARRAY	KUBADILIKA SIO SAFU

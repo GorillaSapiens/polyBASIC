@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= MAGTAPOS                     # the end statement
+END <= MAGTAPOS            # the end statement
 
 # from ECMA-55 §9
 
-ABS <= GANAPNAHALAGA                # the absolute value function
-ATN <= KABALIGTARANTANGENT          # the trigonomic arctangent function
-COS <= COSINE                       # the trigonomic cosine function
-EXP <= EXPONENTIAL                  # the exponential / power function
-INT <= INTEGER                      # the integer / floor function
-LOG <= LOGARITHM                    # the natural log function
-RND <= ROLL                         # generate random number
-SGN <= TANDA                        # determine the sign
-SIN <= SINE                         # the trigonomic sine function
-SQR <= PARISUKATNAUGAT              # the square root function
-TAN <= TANGENT                      # the trigonomic tangent function
-DBL <= DOBLE                        # convert to double
-STR <= TEKSTO                       # convert to string
-RAT <= MAKATUWIRAN                  # convert to rational
+ABS <= ABS                 # the absolute value function
+ATN <= ATN                 # the trigonomic arctangent function
+COS <= COS                 # the trigonomic cosine function
+EXP <= EXP                 # the exponential / power function
+INT <= INT                 # the integer / floor function
+LOG <= MAGLOG              # the natural log function
+RND <= RND                 # generate random number
+SGN <= SGN                 # determine the sign
+SIN <= KASALANAN           # the trigonomic sine function
+SQR <= SQR                 # the square root function
+TAN <= KULAYBALAT          # the trigonomic tangent function
+DBL <= DBL                 # convert to double
+STR <= STR                 # convert to string
+RAT <= DAGA                # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= TUKUYIN                      # for user defined functions
+DEF <= DEF                 # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= HAYAAN                       # for variable assignment
+LET <= HAYAAN              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= TUMAWAG                    # formed from GO and SUB if no direct translation exists
-GOTO <= TUMALON                     # formed from GO and TO if no direct translation exists
-TO <= SA                            # part of for/to/step/next constructs
-IF <= KUNG                          # part of if/then constructs
-ON <= LUMIPAT                       # a sort of a switch statement
-RETURN <= BUMALIK                   # used to exit a subroutine
-STOP <= TAPOSNA                     # command to stop execution
+GOSUB <= GOSUB             # formed from GO and SUB if no direct translation exists
+GOTO <= PUMUNTASA          # formed from GO and TO if no direct translation exists
+TO <= SA                   # part of for/to/step/next constructs
+IF <= KUNG                 # part of if/then constructs
+ON <= KAILAN               # a sort of a switch statement
+RETURN <= BUMALIK          # used to exit a subroutine
+STOP <= HUMINTO            # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= MULASA                       # part of for/to/step/next constructs
-STEP <= HAKBANG                     # part of for/to/step/next constructs
-NEXT <= SUSUNOD                     # part of for/to/step/next constructs
+FOR <= PARASA              # part of for/to/step/next constructs
+STEP <= HAKBANG            # part of for/to/step/next constructs
+NEXT <= SUSUNOD            # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= IPRINT                     # to print things out
+PRINT <= IPRINT            # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= INPUT                      # the input statement
+INPUT <= INPUT             # the input statement
 
 # from ECMA-55 §16
 
-READ <= BASAHIN                     # part of read / restore
-RESTORE <= BASAHINMULI              # part of read / restore
+READ <= BASAHIN            # part of read / restore
+RESTORE <= IBALIK          # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= IMPORMASYON                 # to embed data in the program
+DATA <= DATA               # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= SUKAT                        # dimension arrays
-OPTION <= PAGPIPILIAN               # see ECMA-55 §18.1
-BASE <= BASE                        # see ECMA-55 §18.1
+DIM <= MALABO              # dimension arrays
+OPTION <= PAGPIPILIAN      # see ECMA-55 §18.1
+BASE <= BASE               # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= PANSININ                     # see ECMA-55 §18.1
+REM <= REM                 # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -117,48 +117,48 @@ RANDOMIZE <= RANDOMIZE
 # LOOP <= LOOP  # designed to evoke an error for testing
 
 [errors]
-AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	At walang wikang ibinigay sa linya ng utos. Paglabas.
-ARRAY ALREADY DEFINED	Natukoy na ang array
-ARRAY INDEX OUTSIDE OF BOUNDS	Array index sa labas ng mga hangganan
-CANNOT ACCESS DIRECTORY	Hindi ma -access ang direktoryo
-DATA INPUT UNDERFLOW	Data input underflow
-DATA READ UNDERFLOW	Basahin ang data ng underflow
-DEFINITION CYCLE DISCOVERED	Natuklasan ang kahulugan ng cycle
-ERROR	Error
-FOR VARIABLE MULTIPLY DEFINED	Para sa variable na dumami na tinukoy
-FUNCTION DEFINITION MULTIPLY DEFINED	Ang kahulugan ng pag -andar ay dumarami na tinukoy
-FUNCTION DEFINITION PARAMETER MISMATCH	Pag -andar ng kahulugan ng function na mismatch
-GOSUB STACK OVERFLOW	Overflow ng Gosub stack
-GOSUB STACK UNDERFLOW	Gosub stack underflow
-INDEX OUT OF RANGE	Index sa labas ng saklaw
-LABEL ALREADY DEFINED	Natukoy na ang label
-LEFT / RIGHT OPERATION MISMATCH	Kaliwa / kanang operasyon mismatch
-NEGATIVE INDEX	Negatibong index
-NEXT ON FOR LOOP WITH STRING VARIABLE	Susunod sa para sa loop na may variable na string
-OPERAND MISMATCH	Operand mismatch
-OPTION REQUIRES A LANGUAGE	Ang pagpipilian ay nangangailangan ng isang wika
-PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	Mangyaring suriin ang mga setting ng wika o variable ng kapaligiran
-STRING MATH LOGIC ERROR	String Error sa Logic ng String
+AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	AT WALANG WIKANG IBINIGAY SA LINYA NG UTOS. PAGLABAS.
+ARRAY ALREADY DEFINED	NATUKOY NA ANG ARRAY
+ARRAY INDEX OUTSIDE OF BOUNDS	ARRAY INDEX SA LABAS NG MGA HANGGANAN
+CANNOT ACCESS DIRECTORY	HINDI MA -ACCESS ANG DIREKTORYO
+DATA INPUT UNDERFLOW	DATA INPUT UNDERFLOW
+DATA READ UNDERFLOW	BASAHIN ANG DATA NG UNDERFLOW
+DEFINITION CYCLE DISCOVERED	NATUKLASAN ANG KAHULUGAN NG CYCLE
+ERROR	ERROR
+FOR VARIABLE MULTIPLY DEFINED	PARA SA VARIABLE NA DUMAMI NA TINUKOY
+FUNCTION DEFINITION MULTIPLY DEFINED	ANG KAHULUGAN NG PAG -ANDAR AY DUMARAMI NA TINUKOY
+FUNCTION DEFINITION PARAMETER MISMATCH	PAG -ANDAR NG KAHULUGAN NG FUNCTION NA MISMATCH
+GOSUB STACK OVERFLOW	OVERFLOW NG GOSUB STACK
+GOSUB STACK UNDERFLOW	GOSUB STACK UNDERFLOW
+INDEX OUT OF RANGE	INDEX SA LABAS NG SAKLAW
+LABEL ALREADY DEFINED	NATUKOY NA ANG LABEL
+LEFT / RIGHT OPERATION MISMATCH	KALIWA / KANANG OPERASYON MISMATCH
+NEGATIVE INDEX	NEGATIBONG INDEX
+NEXT ON FOR LOOP WITH STRING VARIABLE	SUSUNOD SA PARA SA LOOP NA MAY VARIABLE NA STRING
+OPERAND MISMATCH	OPERAND MISMATCH
+OPTION REQUIRES A LANGUAGE	ANG PAGPIPILIAN AY NANGANGAILANGAN NG ISANG WIKA
+PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	MANGYARING SURIIN ANG MGA SETTING NG WIKA O VARIABLE NG KAPALIGIRAN
+STRING MATH LOGIC ERROR	STRING ERROR SA LOGIC NG STRING
 UNABLE TO OPEN FILE	HINDI MABUKSAN ANG FILE
-UNABLE TO OPEN TO OPEN FILE FOR READING	Hindi mabuksan upang buksan ang file para sa pagbabasa
-UNDEFINED LABEL	Hindi natukoy na label
-UNHANDLED OPERATION	Hindi nag -iisang operasyon
-UNHANDLED OPERATION CODE	Hindi naka -iwas na code ng operasyon
-UNKNOWN IF LABEL	Hindi alam kung label
-UNRECOGNIZED DOUBLE MATH OPERATION	Hindi nakikilalang dobleng operasyon sa matematika
-UNRECOGNIZED FUNCTION FUNCTION DEFINITION	Hindi nakikilalang kahulugan ng pag -andar ng pag -andar
-UNRECOGNIZED GOSUB LABEL	Hindi nakikilalang label ng GOSUB
-UNRECOGNIZED GOTO LABEL	Hindi nakikilalang label ng Goto
-UNRECOGNIZED INPUT	Hindi nakikilalang input
-UNRECOGNIZED INTEGER MATH OPERATION	Hindi nakikilalang operasyon ng integer matematika
-UNRECOGNIZED MATH TYPE	Hindi nakikilalang uri ng matematika
-UNRECOGNIZED NEXT VARIABLE	Hindi nakikilalang susunod na variable
-UNRECOGNIZED OP IN PRINT	Hindi nakikilalang op sa print
-UNRECOGNIZED RATIONAL MATH OPERATION	Hindi nakikilalang operasyon na makatarungang matematika
-UNRECOGNIZED VARIABLE TYPE	Hindi nakikilalang uri ng variable
-UNSET ENVIRONMENT VARIABLE	Unset variable variable
-VARIABLE / ARRAY DEFINITION MISMATCH	Variable / Array Definition mismatch
-VARIABLE DEFINED AS ARRAY	Variable na tinukoy bilang array
-VARIABLE DEFINED AS NONARRAY	Variable na tinukoy bilang nonarray
-VARIABLE HAS NO VALUE	Ang variable ay walang halaga
-VARIABLE IS NOT AN ARRAY	Ang variable ay hindi isang array
+UNABLE TO OPEN TO OPEN FILE FOR READING	HINDI MABUKSAN UPANG BUKSAN ANG FILE PARA SA PAGBABASA
+UNDEFINED LABEL	HINDI NATUKOY NA LABEL
+UNHANDLED OPERATION	HINDI NAG -IISANG OPERASYON
+UNHANDLED OPERATION CODE	HINDI NAKA -IWAS NA CODE NG OPERASYON
+UNKNOWN IF LABEL	HINDI ALAM KUNG LABEL
+UNRECOGNIZED DOUBLE MATH OPERATION	HINDI NAKIKILALANG DOBLENG OPERASYON SA MATEMATIKA
+UNRECOGNIZED FUNCTION FUNCTION DEFINITION	HINDI NAKIKILALANG KAHULUGAN NG PAG -ANDAR NG PAG -ANDAR
+UNRECOGNIZED GOSUB LABEL	HINDI NAKIKILALANG LABEL NG GOSUB
+UNRECOGNIZED GOTO LABEL	HINDI NAKIKILALANG LABEL NG GOTO
+UNRECOGNIZED INPUT	HINDI NAKIKILALANG INPUT
+UNRECOGNIZED INTEGER MATH OPERATION	HINDI NAKIKILALANG OPERASYON NG INTEGER MATEMATIKA
+UNRECOGNIZED MATH TYPE	HINDI NAKIKILALANG URI NG MATEMATIKA
+UNRECOGNIZED NEXT VARIABLE	HINDI NAKIKILALANG SUSUNOD NA VARIABLE
+UNRECOGNIZED OP IN PRINT	HINDI NAKIKILALANG OP SA PRINT
+UNRECOGNIZED RATIONAL MATH OPERATION	HINDI NAKIKILALANG OPERASYON NA MAKATARUNGANG MATEMATIKA
+UNRECOGNIZED VARIABLE TYPE	HINDI NAKIKILALANG URI NG VARIABLE
+UNSET ENVIRONMENT VARIABLE	UNSET VARIABLE VARIABLE
+VARIABLE / ARRAY DEFINITION MISMATCH	VARIABLE / ARRAY DEFINITION MISMATCH
+VARIABLE DEFINED AS ARRAY	VARIABLE NA TINUKOY BILANG ARRAY
+VARIABLE DEFINED AS NONARRAY	VARIABLE NA TINUKOY BILANG NONARRAY
+VARIABLE HAS NO VALUE	ANG VARIABLE AY WALANG HALAGA
+VARIABLE IS NOT AN ARRAY	ANG VARIABLE AY HINDI ISANG ARRAY

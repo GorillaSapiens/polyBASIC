@@ -32,77 +32,77 @@
 
 # from ECMA-55 §5.2
 
-END <= סוף                   # the end statement
+END <= סוף               # the end statement
 
 # from ECMA-55 §9
 
-ABS <= ערךמוחלט              # the absolute value function
-ATN <= משיקהפוך              # the trigonomic arctangent function
-COS <= קוסינוס               # the trigonomic cosine function
-EXP <= אקספוננציאלי          # the exponential / power function
-INT <= מספרשלם               # the integer / floor function
-LOG <= לוגריתם               # the natural log function
-RND <= גליל                  # generate random number
-SGN <= סימן                  # determine the sign
-SIN <= סינוס                 # the trigonomic sine function
-SQR <= שורשריבועי            # the square root function
-TAN <= משיק                  # the trigonomic tangent function
-DBL <= להכפיל                # convert to double
-STR <= טקסט                  # convert to string
-RAT <= רציונלי               # convert to rational
+ABS <= שריריבטן          # the absolute value function
+ATN <= אטן               # the trigonomic arctangent function
+COS <= חסתעלים           # the trigonomic cosine function
+EXP <= EXP               # the exponential / power function
+INT <= INT               # the integer / floor function
+LOG <= עץ                # the natural log function
+RND <= RND               # generate random number
+SGN <= SGN               # determine the sign
+SIN <= חטא               # the trigonomic sine function
+SQR <= SQR               # the square root function
+TAN <= להשתזף            # the trigonomic tangent function
+DBL <= DBL               # convert to double
+STR <= STR               # convert to string
+RAT <= עכברוש            # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= להגדיר                # for user defined functions
+DEF <= DEF               # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= לתת                   # for variable assignment
+LET <= לתת               # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= שיחה                # formed from GO and SUB if no direct translation exists
-GOTO <= קפיצה                # formed from GO and TO if no direct translation exists
-TO <= ל                      # part of for/to/step/next constructs
-IF <= אם                     # part of if/then constructs
-ON <= החלף                   # a sort of a switch statement
-RETURN <= לחזור              # used to exit a subroutine
-STOP <= גמור                 # command to stop execution
+GOSUB <= גוסוב           # formed from GO and SUB if no direct translation exists
+GOTO <= לךל              # formed from GO and TO if no direct translation exists
+TO <= ל                  # part of for/to/step/next constructs
+IF <= אם                 # part of if/then constructs
+ON <= על                 # a sort of a switch statement
+RETURN <= לחזור          # used to exit a subroutine
+STOP <= תפסיק            # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= מ                     # part of for/to/step/next constructs
-STEP <= שלב                  # part of for/to/step/next constructs
-NEXT <= הבא                  # part of for/to/step/next constructs
+FOR <= מ                 # part of for/to/step/next constructs
+STEP <= שלב              # part of for/to/step/next constructs
+NEXT <= הבא              # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= הדפס                # to print things out
+PRINT <= הדפס            # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= קלט                 # the input statement
+INPUT <= קלט             # the input statement
 
 # from ECMA-55 §16
 
-READ <= לקרוא                # part of read / restore
-RESTORE <= לקרואמחדש         # part of read / restore
+READ <= לקרוא            # part of read / restore
+RESTORE <= לשחזר         # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= מידע                 # to embed data in the program
+DATA <= נתונים           # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= ממד                   # dimension arrays
-OPTION <= אופציה             # see ECMA-55 §18.1
-BASE <= בסיס                 # see ECMA-55 §18.1
+DIM <= עמום              # dimension arrays
+OPTION <= אופציה         # see ECMA-55 §18.1
+BASE <= בסיס             # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= הערה                  # see ECMA-55 §18.1
+REM <= REM               # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -128,8 +128,8 @@ ERROR	שְׁגִיאָה
 FOR VARIABLE MULTIPLY DEFINED	עבור כפול משתנה מוגדר
 FUNCTION DEFINITION MULTIPLY DEFINED	הגדרת פונקציה כפול מוגדרת
 FUNCTION DEFINITION PARAMETER MISMATCH	הגדרת פונקציה חוסר התאמה של פרמטר
-GOSUB STACK OVERFLOW	הצפת ערימה של Gosub
-GOSUB STACK UNDERFLOW	זרימת הערימה של Gosub
+GOSUB STACK OVERFLOW	הצפת ערימה של GOSUB
+GOSUB STACK UNDERFLOW	זרימת הערימה של GOSUB
 INDEX OUT OF RANGE	אינדקס מחוץ לטווח
 LABEL ALREADY DEFINED	תווית כבר מוגדרת
 LEFT / RIGHT OPERATION MISMATCH	חוסר התאמה בין מבצע שמאל / ימין
@@ -143,11 +143,11 @@ UNABLE TO OPEN FILE	לא ניתן לפתוח קובץ
 UNABLE TO OPEN TO OPEN FILE FOR READING	לא ניתן לפתוח לקובץ פתוח לקריאה
 UNDEFINED LABEL	תווית לא מוגדרת
 UNHANDLED OPERATION	פעולה לא מטופלת
-UNHANDLED OPERATION CODE	קוד פעולה לא מטופל
+UNHANDLED OPERATION CODE	קוד פעולה שלא מטופל
 UNKNOWN IF LABEL	לא ידוע אם תווית
 UNRECOGNIZED DOUBLE MATH OPERATION	פעולת מתמטיקה כפולה לא מוכרת
 UNRECOGNIZED FUNCTION FUNCTION DEFINITION	הגדרת פונקציה לא מוכרת
-UNRECOGNIZED GOSUB LABEL	תווית Gosub לא מוכרת
+UNRECOGNIZED GOSUB LABEL	תווית GOSUB לא מוכרת
 UNRECOGNIZED GOTO LABEL	תווית GOTO לא מוכרת
 UNRECOGNIZED INPUT	קלט לא מוכר
 UNRECOGNIZED INTEGER MATH OPERATION	פעולת מתמטיקה שלמה לא מוכרת
@@ -157,7 +157,7 @@ UNRECOGNIZED OP IN PRINT	OP לא מוכר בהדפס
 UNRECOGNIZED RATIONAL MATH OPERATION	פעולת מתמטיקה רציונלית לא מוכרת
 UNRECOGNIZED VARIABLE TYPE	סוג משתנה לא מוכר
 UNSET ENVIRONMENT VARIABLE	ביטול סביבת הסביבה
-VARIABLE / ARRAY DEFINITION MISMATCH	משתנה / מערך הגדרת חוסר התאמה
+VARIABLE / ARRAY DEFINITION MISMATCH	חוסר התאמה בין הגדרת משתנה / מערך
 VARIABLE DEFINED AS ARRAY	משתנה המוגדר כמערך
 VARIABLE DEFINED AS NONARRAY	משתנה המוגדר כלא מערך
 VARIABLE HAS NO VALUE	למשתנה אין שום ערך
