@@ -14,6 +14,8 @@
 #include "runtime_data.hpp"
 #include "runtime.hpp"
 
+extern const char *eop2string(int op);
+
 extern bool void_enabled;
 
 static int64_t option_base = 0;
@@ -776,7 +778,7 @@ Tree *evaluate(Tree *p) {
                         GURU;
                         // test case double_amp
                         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED DOUBLE MATH OPERATION} ❮%2❯%n",
-                           p->line, p->col, p->op);
+                           p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
                   }
@@ -807,7 +809,7 @@ Tree *evaluate(Tree *p) {
                         GURU;
                         // test case integer_amp
                         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED INTEGER MATH OPERATION} ❮%2❯%n",
-                            p->line, p->col, p->op);
+                            p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
                   }
@@ -843,7 +845,7 @@ Tree *evaluate(Tree *p) {
                         GURU;
                         // test case rational_amp
                         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED RATIONAL MATH OPERATION} ❮%2❯%n",
-                           p->line, p->col, p->op);
+                           p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
                   }
@@ -879,7 +881,7 @@ Tree *evaluate(Tree *p) {
                   GURU;
                   // test case voidmath2
                   eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED MATH TYPE} ❮%2❯%n",
-                     p->line, p->col, p->left->op);
+                     p->line, p->col, eop2string(p->left->op));
                   exit(-1);
                   break;
             }
@@ -889,8 +891,8 @@ Tree *evaluate(Tree *p) {
             // test case voidmath
             eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❮%2❯ ❮%3❯%n",
                p->line, p->col,
-               p->left ? p->left->op : -1,
-               p->right ? p->right->op : -1);
+               eop2string(p->left ? p->left->op : -1),
+               eop2string(p->right ? p->right->op : -1));
             exit(-1);
          }
       }
@@ -1221,7 +1223,7 @@ void run(Tree *p) {
                         GURU;
                         // test case voidprint
                         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED OP IN PRINT} ❮%2%❯%n",
-                           p->line, p->col, mid->op);
+                           p->line, p->col, eop2string(mid->op));
                         exit(-1);
                         break;
                   }
@@ -1440,7 +1442,7 @@ void run(Tree *p) {
                   GURU;
                   // test case voidif
                   eprintf("{ERROR}: @%0:%1, {LEFT / RIGHT OPERATION MISMATCH} ❮%2❯ ❮%3❯%n",
-                     p->line, p->col, left->op, right->op);
+                     p->line, p->col, eop2string(left->op), eop2string(right->op));
                   exit(-1);
                }
             }
@@ -1465,7 +1467,8 @@ void run(Tree *p) {
                   default:
                      GURU;
                      // test case voidon
-                     eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION} ❮%2❯%n", p->line, p->left->col, result->op);
+                     eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION} ❮%2❯%n",
+                        p->line, p->left->col, eop2string(result->op));
                      exit(-1);
                      break;
                }
@@ -1603,7 +1606,8 @@ void run(Tree *p) {
          default:
             GURU;
             // no test case
-            eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION CODE} ❮%2❯%n", p->line, p->col, p->op);
+            eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION CODE} ❮%2❯%n",
+               p->line, p->col, eop2string(p->op));
             exit(-1);
             break;
       }

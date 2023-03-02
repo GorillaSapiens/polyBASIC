@@ -27,6 +27,7 @@ do
    then
       diff -uprN $base\_expected.txt $base\_actual.txt
       echo FAIL
+      echo to fix: cp $base\_actual.txt $base\_expected.txt
       exit 1
    else
       echo PASS

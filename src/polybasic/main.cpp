@@ -33,6 +33,31 @@ typedef struct Tuple {
 
 Tuple *tuple_head = NULL;
 
+// returns strdup()'d mem, but we're probably
+// about to exit anyway...
+const char *eop2string(int op) {
+   char buffer[4096];
+   if (op >= ' ' && op <= '~') {
+      buffer[0] = op;
+      buffer[1] = 0;
+      return strdup(buffer);
+   }
+   for (int i = 0; reserved[i].name; i++) {
+      if ((int)reserved[i].token == op) {
+         for (Tuple *t = tuple_head; t; t = t->next) {
+            if (!strcmp(t->english, reserved[i].name) ||
+                !strcmp(t->translation, reserved[i].name)) {
+               sprintf(buffer, "%s/%s", t->english, t->translation);
+               return strdup(buffer);
+            }
+         }
+         return strdup(reserved[i].name);
+      }
+   }
+   sprintf(buffer, "?%d?", op);
+   return strdup(buffer);
+}
+
 void add_tuple(const char *english, const char *translation) {
    Tuple *tuple = (struct Tuple *) malloc(sizeof(struct Tuple));
    tuple->english = strdup(english);

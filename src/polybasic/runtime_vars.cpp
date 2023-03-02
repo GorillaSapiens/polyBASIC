@@ -5,6 +5,8 @@
 #include "runtime_vars.hpp"
 #include "hash.hpp"
 
+extern const char *eop2string(int op);
+
 #define HASH_SIZE 65536
 static Var *vars[HASH_SIZE];
 
@@ -76,7 +78,7 @@ int set_value(const char *p, Tree *result) {
          GURU;
          // test case voidsetvalue
          eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED VARIABLE TYPE} ❮%2❯%n",
-            result->line, result->col, result->op);
+            result->line, result->col, eop2string(result->op));
          exit(-1);
          break;
    }
