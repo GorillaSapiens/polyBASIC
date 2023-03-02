@@ -62,13 +62,10 @@ LET <= TEL          # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= OG            # part of the GOTO and GOSUB
 GOSUB <= BUSOG      # formed from GO and SUB if no direct translation exists
 GOTO <= OTOG        # formed from GO and TO if no direct translation exists
 TO <= OT            # part of for/to/step/next constructs
 IF <= FI            # part of if/then constructs
-THEN <= NEHT        # part of if/then constructs
-SUB <= BUS          # beware, used as part of "go sub"
 ON <= NO            # a sort of a switch statement
 RETURN <= NRUTER    # used to exit a subroutine
 STOP <= POTS        # command to stop execution

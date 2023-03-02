@@ -62,13 +62,10 @@ LET <= させて            # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= 行く              # part of the GOTO and GOSUB
 GOSUB <= 電話           # formed from GO and SUB if no direct translation exists
 GOTO <= ジャンプ          # formed from GO and TO if no direct translation exists
 TO <= に               # part of for/to/step/next constructs
 IF <= もしも             # part of if/then constructs
-THEN <= それから          # part of if/then constructs
-SUB <= サブ             # beware, used as part of "go sub"
 ON <= スイッチ            # a sort of a switch statement
 RETURN <= 戻る          # used to exit a subroutine
 STOP <= 終了した          # command to stop execution

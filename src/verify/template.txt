@@ -20,7 +20,6 @@ DIM
 END
 EXP
 FOR
-GO
 GOTO
 GOSUB
 IF
@@ -45,9 +44,7 @@ SQR
 STEP
 STOP
 STR
-SUB
 TAN
-THEN
 TO
 
 [errors]

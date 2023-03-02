@@ -62,13 +62,10 @@ LET <= دو                  # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= جاؤ                  # part of the GOTO and GOSUB
 GOSUB <= کالکریں           # formed from GO and SUB if no direct translation exists
 GOTO <= چھلانگ             # formed from GO and TO if no direct translation exists
 TO <= TO                   # part of for/to/step/next constructs
 IF <= اگر                  # part of if/then constructs
-THEN <= پھر                # part of if/then constructs
-SUB <= سب                  # beware, used as part of "go sub"
 ON <= سوئچ                 # a sort of a switch statement
 RETURN <= واپس             # used to exit a subroutine
 STOP <= ختم                # command to stop execution

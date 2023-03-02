@@ -62,13 +62,10 @@ LET <= LET          # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= GO            # part of the GOTO and GOSUB
 GOSUB <= GOSUB      # formed from GO and SUB if no direct translation exists
 GOTO <= GOTO        # formed from GO and TO if no direct translation exists
 TO <= TO            # part of for/to/step/next constructs
 IF <= IF            # part of if/then constructs
-THEN <= THEN        # part of if/then constructs
-SUB <= SUB          # beware, used as part of "go sub"
 ON <= ON            # a sort of a switch statement
 RETURN <= RETURN    # used to exit a subroutine
 STOP <= STOP        # command to stop execution

@@ -62,13 +62,10 @@ LET <= ПОЗВОЛЯТЬ                    # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= ИДТИ                          # part of the GOTO and GOSUB
 GOSUB <= ВЫЗОВ                      # formed from GO and SUB if no direct translation exists
 GOTO <= ПРЫГАТЬ                     # formed from GO and TO if no direct translation exists
 TO <= К                             # part of for/to/step/next constructs
 IF <= ЕСЛИ                          # part of if/then constructs
-THEN <= ЗАТЕМ                       # part of if/then constructs
-SUB <= ПОДСТАВКА                    # beware, used as part of "go sub"
 ON <= ВЫКЛЮЧАТЕЛЬ                   # a sort of a switch statement
 RETURN <= ВОЗВРАЩАТЬСЯ              # used to exit a subroutine
 STOP <= ЗАКОНЧЕННЫЙ                 # command to stop execution

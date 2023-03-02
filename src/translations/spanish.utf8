@@ -62,13 +62,10 @@ LET <= DEJAR                    # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= IR                        # part of the GOTO and GOSUB
 GOSUB <= LLAMAR                 # formed from GO and SUB if no direct translation exists
 GOTO <= SALTAR                  # formed from GO and TO if no direct translation exists
 TO <= A                         # part of for/to/step/next constructs
 IF <= SI                        # part of if/then constructs
-THEN <= ENTONCES                # part of if/then constructs
-SUB <= SUB                      # beware, used as part of "go sub"
 ON <= CAMBIAR                   # a sort of a switch statement
 RETURN <= DEVOLVER              # used to exit a subroutine
 STOP <= FINALIZADO              # command to stop execution

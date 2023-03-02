@@ -62,13 +62,10 @@ LET <= לתת                   # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= ללכת                   # part of the GOTO and GOSUB
 GOSUB <= שיחה                # formed from GO and SUB if no direct translation exists
 GOTO <= קפיצה                # formed from GO and TO if no direct translation exists
 TO <= ל                      # part of for/to/step/next constructs
 IF <= אם                     # part of if/then constructs
-THEN <= לאחרמכן              # part of if/then constructs
-SUB <= תת                    # beware, used as part of "go sub"
 ON <= החלף                   # a sort of a switch statement
 RETURN <= לחזור              # used to exit a subroutine
 STOP <= גמור                 # command to stop execution

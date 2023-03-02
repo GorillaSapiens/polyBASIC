@@ -91,7 +91,6 @@ Tree *programtree;
 %token YYDIM
 %token YYEND
 %token YYFOR
-%token YYGO
 %token YYGOSUB
 %token YYGOTO
 %token YYIF

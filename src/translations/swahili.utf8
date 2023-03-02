@@ -62,13 +62,10 @@ LET <= ACHA                         # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= NENDA                         # part of the GOTO and GOSUB
 GOSUB <= WITO                       # formed from GO and SUB if no direct translation exists
 GOTO <= RUKIA                       # formed from GO and TO if no direct translation exists
 TO <= KWA                           # part of for/to/step/next constructs
 IF <= KAMA                          # part of if/then constructs
-THEN <= BASI                        # part of if/then constructs
-SUB <= SUB                          # beware, used as part of "go sub"
 ON <= BADILI                        # a sort of a switch statement
 RETURN <= KURUDI                    # used to exit a subroutine
 STOP <= KUMALIZA                    # command to stop execution

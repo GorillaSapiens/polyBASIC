@@ -62,13 +62,10 @@ LET <= LAISSER                  # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= ALLER                     # part of the GOTO and GOSUB
 GOSUB <= APPEL                  # formed from GO and SUB if no direct translation exists
 GOTO <= SAUT                    # formed from GO and TO if no direct translation exists
 TO <= POUR                      # part of for/to/step/next constructs
 IF <= SI                        # part of if/then constructs
-THEN <= ALORS                   # part of if/then constructs
-SUB <= SOUS                     # beware, used as part of "go sub"
 ON <= CHANGER                   # a sort of a switch statement
 RETURN <= RETOUR                # used to exit a subroutine
 STOP <= FINI                    # command to stop execution

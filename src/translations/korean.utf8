@@ -62,13 +62,10 @@ LET <= 허락하다          # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GO <= 가다             # part of the GOTO and GOSUB
 GOSUB <= 부르다         # formed from GO and SUB if no direct translation exists
 GOTO <= 도약           # formed from GO and TO if no direct translation exists
 TO <= 에게             # part of for/to/step/next constructs
 IF <= 만약에            # part of if/then constructs
-THEN <= 그다음에         # part of if/then constructs
-SUB <= 보결            # beware, used as part of "go sub"
 ON <= 스위치            # a sort of a switch statement
 RETURN <= 반품         # used to exit a subroutine
 STOP <= 완성된          # command to stop execution
