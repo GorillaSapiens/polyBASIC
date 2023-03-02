@@ -1379,7 +1379,8 @@ void run(Tree *p) {
                np = gosub_stack[gosub_spot];
             }
             break;
-         case YYIF:
+         case YYIFGOTO:
+         case YYIFGOSUB:
             {
                Tree *left = evaluate(deep_copy(p->left));
                Tree *right = evaluate(deep_copy(p->right));
@@ -1423,6 +1424,15 @@ void run(Tree *p) {
 
                if (left->op == right->op) {
                   if (is_relation_true(left, p->sval, right)) {
+                     if (p->op == YYIFGOSUB) {
+                        gosub_stack[gosub_spot++] = np;
+                        if (gosub_spot == GOSUB_STACKSIZE) {
+                           GURU;
+                           // test case ifgosuboverflow
+                           eprintf("{ERROR}: @%0:%1, {GOSUB STACK OVERFLOW}%n", p->line, p->col);
+                           exit(-1);
+                        }
+                     }
                      np = target;
                   }
                }

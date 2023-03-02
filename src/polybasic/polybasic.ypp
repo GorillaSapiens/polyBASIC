@@ -95,6 +95,8 @@ Tree *programtree;
 %token YYGOSUB
 %token YYGOTO
 %token YYIF
+%token YYIFGOTO
+%token YYIFGOSUB
 %token YYINPUT
 %token YYLET
 %token YYNEXT
@@ -108,8 +110,6 @@ Tree *programtree;
 %token YYRETURN
 %token YYSTEP
 %token YYSTOP
-%token YYSUB
-%token YYTHEN
 %token YYTO
 /* function names, not many, so make 'em tokens */
 %token YYABS
@@ -375,26 +375,12 @@ printstmt   : YYPRINT exprlist
                }
             ;
 
-controlstmt    : YYGO YYTO label
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYGOTO;
-                     $$.sval = strdup($3.sval);
-                  }
-               | YYGOTO label
+controlstmt    : YYGOTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
                      $$.sval = strdup($2.sval);
-                  }
-               | YYGO YYSUB label
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYGOSUB;
-                     $$.sval = strdup($3.sval);
                   }
                | YYGOSUB label
                   {
@@ -403,24 +389,25 @@ controlstmt    : YYGO YYTO label
                      $$.op = YYGOSUB;
                      $$.sval = strdup($2.sval);
                   }
-               | YYIF expression relation expression YYTHEN label
+               | YYIF expression relation expression YYGOTO label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYIF;
+                     $$.op = YYIFGOTO;
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.middle = copytree(&$6);
                      $$.right = copytree(&$4);
                   }
-               | YYON expression YYGO YYTO labellist
+               | YYIF expression relation expression YYGOSUB label
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYON;
-                     $$.ival = 0;
+                     $$.op = YYIFGOSUB;
+                     $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
-                     $$.right = copytree(&$5);
+                     $$.middle = copytree(&$6);
+                     $$.right = copytree(&$4);
                   }
                | YYON expression YYGOTO labellist
                   {
@@ -430,15 +417,6 @@ controlstmt    : YYGO YYTO label
                      $$.ival = 0;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
-                  }
-               | YYON expression YYGO YYSUB labellist
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYON;
-                     $$.ival = 1;
-                     $$.left = copytree(&$2);
-                     $$.right = copytree(&$5);
                   }
                | YYON expression YYGOSUB labellist
                   {
