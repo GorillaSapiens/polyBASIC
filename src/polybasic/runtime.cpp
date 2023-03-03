@@ -712,19 +712,10 @@ Tree *evaluate(Tree *p) {
       memcpy(p, p->left, sizeof(Tree));
       free(freeme);
    }
-
-   if (p->left && p->right ) {
-      if (p->op == '+' ||
-            p->op == '-' ||
-            p->op == '*' ||
-            p->op == '/' ||
-            p->op == '^' ||
-            p->op == '&') {
-
-         // ECMA-116 uses '&' ; for other types we'll just treat it like a '+'
-
-         if ((p->left->op != p->right->op) || 
-             (p->left->op == YYSTRING && p->op != '&')) {
+   else if (strchr("+-*/^&", p->op)) {
+      if (p->left && p->right ) {
+         if ((p->left->op != p->right->op) ||
+               (p->left->op == YYSTRING && p->op != '&')) {
             // in a mismatch, try to make strings into numbers
             if (p->left->op == YYSTRING) {
                upgrade_to_number(p->left);
@@ -755,7 +746,7 @@ Tree *evaluate(Tree *p) {
             }
          }
 
-         if (p->left && p->right && p->left->op == p->right->op) {
+         if (p->left->op == p->right->op) {
             switch(p->left->op) {
                case YYDOUBLE:
                   switch(p->op) {
@@ -778,7 +769,7 @@ Tree *evaluate(Tree *p) {
                         GURU;
                         // test case double_amp
                         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED DOUBLE MATH OPERATION} ❮%2❯%n",
-                           p->line, p->col, eop2string(p->op));
+                              p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
                   }
@@ -809,7 +800,7 @@ Tree *evaluate(Tree *p) {
                         GURU;
                         // test case integer_amp
                         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED INTEGER MATH OPERATION} ❮%2❯%n",
-                            p->line, p->col, eop2string(p->op));
+                              p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
                   }
@@ -845,7 +836,7 @@ Tree *evaluate(Tree *p) {
                         GURU;
                         // test case rational_amp
                         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED RATIONAL MATH OPERATION} ❮%2❯%n",
-                           p->line, p->col, eop2string(p->op));
+                              p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
                   }
@@ -881,7 +872,7 @@ Tree *evaluate(Tree *p) {
                   GURU;
                   // test case voidmath2
                   eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED MATH TYPE} ❮%2❯%n",
-                     p->line, p->col, eop2string(p->left->op));
+                        p->line, p->col, eop2string(p->left->op));
                   exit(-1);
                   break;
             }
@@ -894,6 +885,42 @@ Tree *evaluate(Tree *p) {
                eop2string(p->left ? p->left->op : -1),
                eop2string(p->right ? p->right->op : -1));
             exit(-1);
+         }
+      }
+      else if (!p->left && p->right && p->op == '-') {
+         switch (p->right->op) {
+            case YYDOUBLE:
+               p->dval = -(p->right->dval);
+               p->op = YYDOUBLE;
+               free(p->right);
+               p->right = NULL;
+               break;
+            case YYINTEGER:
+               p->ival = -(p->right->ival);
+               p->op = YYINTEGER;
+               free(p->right);
+               p->right = NULL;
+               break;
+            case YYRATIONAL:
+               {
+                  Rational *deleteme = p->right->rval;
+                  p->rval = new Rational(-(*p->right->rval));
+                  p->op = YYRATIONAL;
+                  delete deleteme;
+                  free(p->right);
+                  p->right = NULL;
+               }
+               break;
+            case YYSTRING:
+            default:
+               GURU;
+               // test case voidnegation stringnegation
+               eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❮%2❯ ❮%3❯%n",
+                  p->line, p->col,
+                  eop2string(p->op),
+                  eop2string(p->right ? p->right->op : -1));
+               exit(-1);
+               break;
          }
       }
    }

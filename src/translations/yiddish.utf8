@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	דאַטן אַרייַנשרייַב אַנדערפלאָ�
 DATA READ UNDERFLOW	דאַטן לייענען אַנדערפלאָו
 DEFINITION CYCLE DISCOVERED	דעפֿיניציע ציקל דיסקאַווערד
 ERROR	גרייַז
+FAILURE	דורכפאַל
 FOR VARIABLE MULTIPLY DEFINED	פֿאַר בייַטעוודיק מערן דיפיינד
 FUNCTION DEFINITION MULTIPLY DEFINED	פונקציע דעפֿיניציע מערן דיפיינד
 FUNCTION DEFINITION PARAMETER MISMATCH	פונקציע דעפֿיניציע פּאַראַמעטער מיסמאַטש
@@ -139,6 +140,7 @@ OPERAND MISMATCH	אָפּעראַנד מיסמאַטש
 OPTION REQUIRES A LANGUAGE	אָפּציע ריקווייערז אַ שפּראַך
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ביטע טשעק שפּראַך סעטטינגס אָדער סוויווע בייַטעוודיק
 STRING MATH LOGIC ERROR	שטריקל מאַט לאָגיק טעות
+SYNTAX ERROR	סינטאַקס טעות
 UNABLE TO OPEN FILE	ניט געקענט צו עפענען טעקע
 UNABLE TO OPEN TO OPEN FILE FOR READING	ניט געקענט צו עפֿענען די טעקע פֿאַר לייענען
 UNDEFINED LABEL	UNDEFINED פירמע

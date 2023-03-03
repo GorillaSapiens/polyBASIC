@@ -45,6 +45,7 @@ class Rational {
 
       Rational operator + (Rational const & obj) const;
       Rational operator - (Rational const & obj) const;
+      Rational operator - () const;
       Rational operator * (Rational const & obj) const;
       Rational operator / (Rational const & obj) const;
       bool operator == (const Rational &other) const;

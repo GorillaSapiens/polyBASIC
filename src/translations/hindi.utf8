@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	आंकड़ा इनपुट अंडरफ्लो
 DATA READ UNDERFLOW	डेटा पढ़ें अंडरफ्लो
 DEFINITION CYCLE DISCOVERED	परिभाषा चक्र की खोज की गई
 ERROR	गलती
+FAILURE	असफलता
 FOR VARIABLE MULTIPLY DEFINED	चर के लिए परिभाषित गुणा
 FUNCTION DEFINITION MULTIPLY DEFINED	फ़ंक्शन परिभाषा गुणा परिभाषित
 FUNCTION DEFINITION PARAMETER MISMATCH	समारोह परिभाषा पैरामीटर बेमेल
@@ -139,6 +140,7 @@ OPERAND MISMATCH	संचालक बेमेल
 OPTION REQUIRES A LANGUAGE	विकल्प के लिए एक भाषा की आवश्यकता होती है
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	कृपया भाषा सेटिंग्स या पर्यावरण चर की जाँच करें
 STRING MATH LOGIC ERROR	स्ट्रिंग गणित तर्क त्रुटि
+SYNTAX ERROR	वक्य रचना त्रुटि
 UNABLE TO OPEN FILE	फाइल खोलने में असमर्थ
 UNABLE TO OPEN TO OPEN FILE FOR READING	पढ़ने के लिए फ़ाइल खोलने के लिए खोलने में असमर्थ
 UNDEFINED LABEL	अपरिभाषित लेबल

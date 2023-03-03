@@ -241,6 +241,15 @@ Rational Rational::operator - (Rational const & obj) const {
    return res;
 }
 
+Rational Rational::operator - () const {
+   if (whl == 0 && num == 0) {
+      return Rational(1, 0, 0, 1);
+   }
+   else {
+      return Rational(-sign, whl, num, den);
+   }
+}
+
 Rational Rational::operator * (Rational const & obj) const {
    Rational res;
 

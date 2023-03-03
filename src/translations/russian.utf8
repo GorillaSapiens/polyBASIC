@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	ВВОД ДАННЫХ В НИЖНЕМ ПОТОКЕ
 DATA READ UNDERFLOW	ДАННЫЕ ЧИТАЮТ НЕДОСТАТОЧНЫЙ ПОТОК
 DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
+FAILURE	ОТКАЗ
 FOR VARIABLE MULTIPLY DEFINED	ДЛЯ ПЕРЕМЕННОЙ УМНОЖЕННОЙ ОПРЕДЕЛЕННОЙ
 FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖАЕТСЯ
 FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
@@ -139,6 +140,7 @@ OPERAND MISMATCH	ОПЕРАНД НЕСООТВЕТСТВИЕ
 OPTION REQUIRES A LANGUAGE	ВАРИАНТ ТРЕБУЕТ ЯЗЫКА
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ПОЖАЛУЙСТА, ПРОВЕРЬТЕ НАСТРОЙКИ ЯЗЫКА ИЛИ ПЕРЕМЕННУЮ СРЕДЫ
 STRING MATH LOGIC ERROR	ОШИБКА МАТЕМАТИЧЕСКОЙ ЛОГИКИ СТРОКИ
+SYNTAX ERROR	ОШИБКА СИНТАКСИСА
 UNABLE TO OPEN FILE	НЕВОЗМОЖНО ОТКРЫТЬ ФАЙЛ
 UNABLE TO OPEN TO OPEN FILE FOR READING	НЕВОЗМОЖНО ОТКРЫТЬ ДЛЯ ОТКРЫТИЯ ФАЙЛА ДЛЯ ЧТЕНИЯ
 UNDEFINED LABEL	НЕОПРЕДЕЛЕННАЯ ЭТИКЕТКА

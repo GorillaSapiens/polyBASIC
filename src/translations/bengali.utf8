@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	ডেটা ইনপুট আন্ডারফ্লো
 DATA READ UNDERFLOW	ডেটা আন্ডারফ্লো রিড
 DEFINITION CYCLE DISCOVERED	সংজ্ঞা চক্র আবিষ্কার
 ERROR	ত্রুটি
+FAILURE	ব্যর্থতা
 FOR VARIABLE MULTIPLY DEFINED	ভেরিয়েবল গুণিত জন্য সংজ্ঞায়িত
 FUNCTION DEFINITION MULTIPLY DEFINED	ফাংশন সংজ্ঞা গুণিত সংজ্ঞায়িত
 FUNCTION DEFINITION PARAMETER MISMATCH	ফাংশন সংজ্ঞা প্যারামিটার অমিল
@@ -139,6 +140,7 @@ OPERAND MISMATCH	অপারেন্ড অমিল
 OPTION REQUIRES A LANGUAGE	বিকল্পের জন্য একটি ভাষা প্রয়োজন
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ভাষা সেটিংস বা পরিবেশ পরিবর্তনশীল পরীক্ষা করুন
 STRING MATH LOGIC ERROR	স্ট্রিং ম্যাথ লজিক ত্রুটি
+SYNTAX ERROR	বাক্যগঠন ত্রুটি
 UNABLE TO OPEN FILE	নথি খুলতে অক্ষম
 UNABLE TO OPEN TO OPEN FILE FOR READING	পড়ার জন্য ফাইল খুলতে খুলতে অক্ষম
 UNDEFINED LABEL	অপরিবর্তিত লেবেল

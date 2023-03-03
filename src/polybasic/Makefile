@@ -38,7 +38,7 @@ LIBS= \
 
 all: polybasic errs.txt
 
-errs.txt: dumptree.cpp main.cpp runtime.cpp runtime_def.cpp runtime_vars.cpp
+errs.txt: *.cpp *.ypp *.l
 	./eprintf.pl $^ | sort -u > errs.txt
 
 polybasic: polybasic.tab.hpp $(OBJECTS)

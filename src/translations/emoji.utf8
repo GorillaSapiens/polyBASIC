@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	🍒🍇 🍇🍇🍄 🍎🍇🍉
 DATA READ UNDERFLOW	🍒🍇 🍓🥥 🍎🍇🍉
 DEFINITION CYCLE DISCOVERED	🥥🍒🥥 🍄🍇🍄 🍆🍌🍓
 ERROR	🍆🍒🍌
+FAILURE	🥥🍓🍒
 FOR VARIABLE MULTIPLY DEFINED	🍌🥥🍄 🍓🥥🍓 🍆🍓🥥 🍓🍆🍄
 FUNCTION DEFINITION MULTIPLY DEFINED	🍓🍒🍉 🥥🍒🥥 🍆🍓🥥 🍓🍆🍄
 FUNCTION DEFINITION PARAMETER MISMATCH	🍓🍒🍉 🥥🍒🥥 🍓🍇🍓 🍌🍎
@@ -139,6 +140,7 @@ OPERAND MISMATCH	🍌🍄🥥 🍌🍎
 OPTION REQUIRES A LANGUAGE	🍌🍇🍄 🍆🍆🍓 🥥🍓🍒 🍓🍓🥥
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	🥥🍎🍇 🍇🍒🍇 🍓🍓🥥 🍇🥥 🍇🍇🍓 🍄🥥🍎 🍓🥥🍓
 STRING MATH LOGIC ERROR	🥥🍎🍇 🍌🍎🍓 🍄🍄🍒 🍆🍒🍌
+SYNTAX ERROR	🍉🍆🍇 🍆🍒🍌
 UNABLE TO OPEN FILE	🍇🍓🍒 🍇🍒🥥 🍎🍄🥥 🍌🍑🍉
 UNABLE TO OPEN TO OPEN FILE FOR READING	🍇🍓🍒 🍇🍒🥥 🍎🍄🥥 🍇🍒🥥 🍎🍄🥥 🍌🍑🍉 🍌🥥🍄 🥥🍑🍑
 UNDEFINED LABEL	🍓🥥🍇 🍒🍆🍎

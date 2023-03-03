@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	إدخال البيانات UNDERFLOW
 DATA READ UNDERFLOW	قراءة البيانات UNDERFLOW
 DEFINITION CYCLE DISCOVERED	دورة التعريف التي تم اكتشافها
 ERROR	خطأ
+FAILURE	فشل
 FOR VARIABLE MULTIPLY DEFINED	للمتغير الضاعف المحدد
 FUNCTION DEFINITION MULTIPLY DEFINED	تعريف الوظيفة المحددة محددة
 FUNCTION DEFINITION PARAMETER MISMATCH	تعريف وظيفة عدم تطابق المعلمة
@@ -139,6 +140,7 @@ OPERAND MISMATCH	عدم تطابق المعامل
 OPTION REQUIRES A LANGUAGE	الخيار يتطلب لغة
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	يرجى التحقق من إعدادات اللغة أو متغير البيئة
 STRING MATH LOGIC ERROR	خطأ في منطق الرياضيات
+SYNTAX ERROR	خطأ في بناء الجملة
 UNABLE TO OPEN FILE	غير قادر على فتح ملف
 UNABLE TO OPEN TO OPEN FILE FOR READING	غير قادر على فتح ملف للقراءة
 UNDEFINED LABEL	تسمية غير محددة

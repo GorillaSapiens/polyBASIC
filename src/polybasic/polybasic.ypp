@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "eprintf.hpp"
 #include "rational.hpp"
 #include "tree.hpp"
 #include "dumptree.hpp"
@@ -603,19 +604,19 @@ constlist      : constant YYIPSEP constlist
                   }
                ;
 
-expression     : expression '+' expression
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = '+';
-                     $$.left = copytree(&$1);
-                     $$.right = copytree(&$3);
-                  }
-               | expression '&' expression
+expression     : expression '&' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = '&';
+                     $$.left = copytree(&$1);
+                     $$.right = copytree(&$3);
+                  }
+               | expression '+' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = '+';
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
@@ -780,6 +781,14 @@ expression     : expression '+' expression
                   {
                      $$ = $1;
                   }
+               | '-' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = '-';
+                     $$.left = NULL;
+                     $$.right = copytree(&$2);
+                  }
                ;
 
 exprlist       : expression YYIPSEP exprlist
@@ -894,10 +903,16 @@ sconst      : YYSTRING
             ;
 %%
 
-// TODO FIX why do we neeed this, shouldn't this be in a skeleton somewhere?
 void yyerror(const char *s) {
    if (!remsleep) {
-      printf("yyerror: %s line %d col %d '%s'\n", s, yylineno, yylloc.first_column, yytext);
+      if (!strcmp(s, "syntax error")) {
+         eprintf("{SYNTAX ERROR} @%0:%1 ❮%2❯%n",
+            yylineno, yylloc.first_column, yytext);
+      }
+      else {
+         eprintf("{ERROR} @%0:%1 ❮%2❯ ❮%3❯%n",
+            yylineno, yylloc.first_column, s, yytext);
+      }
    }
 }
 

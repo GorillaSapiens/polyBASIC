@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	זרימת קלט נתונים
 DATA READ UNDERFLOW	נתונים קראו את הזרימה
 DEFINITION CYCLE DISCOVERED	מחזור ההגדרה התגלה
 ERROR	שְׁגִיאָה
+FAILURE	כישלון
 FOR VARIABLE MULTIPLY DEFINED	עבור כפול משתנה מוגדר
 FUNCTION DEFINITION MULTIPLY DEFINED	הגדרת פונקציה כפול מוגדרת
 FUNCTION DEFINITION PARAMETER MISMATCH	הגדרת פונקציה חוסר התאמה של פרמטר
@@ -139,6 +140,7 @@ OPERAND MISMATCH	אי התאמה אופרנד
 OPTION REQUIRES A LANGUAGE	אפשרות דורשת שפה
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	אנא בדוק את הגדרות השפה או משתנה הסביבה
 STRING MATH LOGIC ERROR	שגיאת היגיון במתמטיקה של מחרוזת
+SYNTAX ERROR	שגיאת תחביר
 UNABLE TO OPEN FILE	לא ניתן לפתוח קובץ
 UNABLE TO OPEN TO OPEN FILE FOR READING	לא ניתן לפתוח לקובץ פתוח לקריאה
 UNDEFINED LABEL	תווית לא מוגדרת

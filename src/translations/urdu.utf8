@@ -125,6 +125,7 @@ DATA INPUT UNDERFLOW	ڈیٹا ان پٹ انڈر فلو
 DATA READ UNDERFLOW	ڈیٹا انڈر فلو کو پڑھتا ہے
 DEFINITION CYCLE DISCOVERED	تعریف سائیکل دریافت ہوا
 ERROR	غلطی
+FAILURE	ناکامی
 FOR VARIABLE MULTIPLY DEFINED	متغیر ضرب کے لئے
 FUNCTION DEFINITION MULTIPLY DEFINED	فنکشن کی تعریف ضرب کی وضاحت
 FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامیٹر مماثل
@@ -139,6 +140,7 @@ OPERAND MISMATCH	اوپیرینڈ مماثل
 OPTION REQUIRES A LANGUAGE	آپشن کے لئے زبان کی ضرورت ہوتی ہے
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	براہ کرم زبان کی ترتیبات یا ماحولیاتی متغیر کو چیک کریں
 STRING MATH LOGIC ERROR	سٹرنگ ریاضی کی منطق کی خرابی
+SYNTAX ERROR	نحو کی خرابی
 UNABLE TO OPEN FILE	فائل کھولنے سے قاصر ہے
 UNABLE TO OPEN TO OPEN FILE FOR READING	پڑھنے کے لئے فائل کھولنے کے لئے کھولنے سے قاصر ہے
 UNDEFINED LABEL	غیر متعینہ لیبل

@@ -451,7 +451,7 @@ int main(int argc, char **argv) {
    }
 
    if (parser_result) {
-      printf("failure\n");
+      eprintf("{FAILURE}%n");
    }
    else if (treedebug != -1) {
       dumptree(programtree, treedebug);
