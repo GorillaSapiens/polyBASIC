@@ -49,9 +49,15 @@ R_FRAC      [#][+-]?[1-9][0-9]*[/][1-9][0-9]*
 R_FULL      [#][+-]?[0-9]+['][0-9]+[/][1-9][0-9]*
 RATIONAL    {R_ZERO}|{R_INT}|{R_ZFRAC}|{R_FRAC}|{R_FULL}
 
-INTEGER  ([+-]?[0-9]+)
+I_ZERO      ([0])
+I_NONZERO   ([1-9][0-9]*)
+INTEGER     {I_ZERO}|{I_NONZERO}
 
-DOUBLE   [+-]?(([0-9]+[.]?)|(([0-9]+)?[.][0-9]+))([Ee][+-]?[0-9]+)?
+D_ZERO      ([0][.][0]*)
+D_NONZERO   ([1-9][0-9]*[.])
+D_FRAC      ([0-9]+)
+D_EXP       ([Ee][+-]?[1-9][0-9]*)
+DOUBLE      {D_ZERO}|({D_NONZERO}{D_FRAC}?{D_EXP}?)|([.]{D_FRAC}{D_EXP}?)
 
 /* ECMA-55 §4.2 */
 

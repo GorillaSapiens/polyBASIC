@@ -923,6 +923,29 @@ Tree *evaluate(Tree *p) {
                break;
          }
       }
+      else if (!p->left && p->right && p->op == '+') {
+         switch (p->right->op) {
+            case YYDOUBLE:
+            case YYINTEGER:
+            case YYRATIONAL:
+               {
+                  Tree *right = p->right;
+                  memcpy(p, p->right, sizeof(Tree));
+                  free(right);
+               }
+               break;
+            case YYSTRING:
+            default:
+               GURU;
+               // test case voidpositive stringpositive
+               eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❮%2❯ ❮%3❯%n",
+                  p->line, p->col,
+                  eop2string(p->op),
+                  eop2string(p->right ? p->right->op : -1));
+               exit(-1);
+               break;
+         }
+      }
    }
 
    return p;

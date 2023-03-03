@@ -604,7 +604,23 @@ constlist      : constant YYIPSEP constlist
                   }
                ;
 
-expression     : expression '&' expression
+expression     : '+' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = '+';
+                     $$.left = NULL;
+                     $$.right = copytree(&$2);
+                  }
+               | '-' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = '-';
+                     $$.left = NULL;
+                     $$.right = copytree(&$2);
+                  }
+               | expression '&' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -780,14 +796,6 @@ expression     : expression '&' expression
                | constant
                   {
                      $$ = $1;
-                  }
-               | '-' expression
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = '-';
-                     $$.left = NULL;
-                     $$.right = copytree(&$2);
                   }
                ;
 
