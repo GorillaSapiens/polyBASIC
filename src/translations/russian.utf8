@@ -38,7 +38,7 @@ END <= КОНЕЦ                     # the end statement
 
 ABS <= АБС                       # the absolute value function
 ATN <= АТ                        # the trigonomic arctangent function
-COS <= ПОСАДКА                   # the trigonomic cosine function
+COS <= ЗАСЕЛЕНИЕ                 # the trigonomic cosine function
 EXP <= ЭКСПЛУАТ                  # the exponential / power function
 INT <= ИНТ                       # the integer / floor function
 LOG <= БРЕВНО                    # the natural log function
@@ -53,7 +53,7 @@ RAT <= КРЫСА                     # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= ДЕФЕКТ                    # for user defined functions
+DEF <= ДЕФ                       # for user defined functions
 
 # from ECMA-55 §11
 
@@ -66,6 +66,7 @@ GOSUB <= ГОСУБ                   # formed from GO and SUB if no direct tran
 GOTO <= ИДТИК                    # formed from GO and TO if no direct translation exists
 TO <= К                          # part of for/to/step/next constructs
 IF <= ЕСЛИ                       # part of if/then constructs
+THEN <= ЗАТЕМ                    # part of if/then constructs
 ON <= НА                         # a sort of a switch statement
 RETURN <= ВОЗВРАЩАТЬСЯ           # used to exit a subroutine
 STOP <= ОСТАНАВЛИВАТЬСЯ          # command to stop execution
@@ -102,7 +103,7 @@ BASE <= БАЗА                     # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= РЕМ                       # see ECMA-55 §18.1
+REM <= ПЕРЕОБОРУДОВАНИЕ          # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -119,15 +120,15 @@ RANDOMIZE <= РАНДОМИЗИРОВАТЬ
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	И НЕТ ЯЗЫКА, НЕ УКАЗАННОГО В КОМАНДНОЙ СТРОКЕ. ВЫХОД.
 ARRAY ALREADY DEFINED	МАССИВ УЖЕ ОПРЕДЕЛЕН
-ARRAY INDEX OUTSIDE OF BOUNDS	МАССИВ ИНДЕКС ЗА ПРЕДЕЛАМИ
+ARRAY INDEX OUTSIDE OF BOUNDS	МАССИВ ИНДЕКС ЗА ПРЕДЕЛАМИ ГРАНИЦ
 CANNOT ACCESS DIRECTORY	НЕ МОЖЕТ ПОЛУЧИТЬ ДОСТУП К КАТАЛОГУ
-DATA INPUT UNDERFLOW	ВВОД ДАННЫХ В НИЖНЕМ ПОТОКЕ
+DATA INPUT UNDERFLOW	ВХОД ДАННЫХ В РАЗДЕЛЕ
 DATA READ UNDERFLOW	ДАННЫЕ ЧИТАЮТ НЕДОСТАТОЧНЫЙ ПОТОК
 DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
 FAILURE	ОТКАЗ
-FOR VARIABLE MULTIPLY DEFINED	ДЛЯ ПЕРЕМЕННОЙ УМНОЖЕННОЙ ОПРЕДЕЛЕННОЙ
-FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖАЕТСЯ
+FOR VARIABLE MULTIPLY DEFINED	ДЛЯ ПЕРЕМЕННОЙ УМНОЖЕННОЙ ОПРЕДЕЛЕНИЯ
+FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖЕННОЕ ОПРЕДЕЛЕНО
 FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
 GOSUB STACK OVERFLOW	ГОСУБ СТЕК ПЕРЕПОЛНЕН
 GOSUB STACK UNDERFLOW	GOSUB STACK HOONFLOW
@@ -135,7 +136,7 @@ INDEX OUT OF RANGE	УКАЗАТЕЛЬ
 LABEL ALREADY DEFINED	МЕТКА УЖЕ ОПРЕДЕЛЕН
 LEFT / RIGHT OPERATION MISMATCH	НЕСООТВЕТСТВИЕ ЛЕВОЙ / ПРАВОЙ ОПЕРАЦИИ
 NEGATIVE INDEX	ОТРИЦАТЕЛЬНЫЙ ИНДЕКС
-NEXT ON FOR LOOP WITH STRING VARIABLE	ДАЛЕЕ ДЛЯ ПЕТЛИ СО СТРОКОВОЙ ПЕРЕМЕННОЙ
+NEXT ON FOR LOOP WITH STRING VARIABLE	ДАЛЕЕ ДЛЯ ПЕТЛИ С ПЕРЕМЕННОЙ СТРОКИ
 OPERAND MISMATCH	ОПЕРАНД НЕСООТВЕТСТВИЕ
 OPTION REQUIRES A LANGUAGE	ВАРИАНТ ТРЕБУЕТ ЯЗЫКА
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ПОЖАЛУЙСТА, ПРОВЕРЬТЕ НАСТРОЙКИ ЯЗЫКА ИЛИ ПЕРЕМЕННУЮ СРЕДЫ
@@ -147,7 +148,7 @@ UNDEFINED LABEL	НЕОПРЕДЕЛЕННАЯ ЭТИКЕТКА
 UNHANDLED OPERATION	НЕУПОМЯНУТАЯ ОПЕРАЦИЯ
 UNHANDLED OPERATION CODE	КОД ОПЕРАЦИИ НЕЗДОРОВОЙ
 UNKNOWN IF LABEL	НЕИЗВЕСТНО, ЕСЛИ ЭТИКЕТКА
-UNRECOGNIZED DOUBLE MATH OPERATION	НЕПОЗНАННАЯ ДВОЙНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
+UNRECOGNIZED DOUBLE MATH OPERATION	НЕРАСПОЗНАННАЯ ДВОЙНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
 UNRECOGNIZED FUNCTION DEFINITION	НЕПОЗНАННОЕ ОПРЕДЕЛЕНИЕ ФУНКЦИИ
 UNRECOGNIZED GOSUB LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ ГОСУБА
 UNRECOGNIZED GOTO LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ GOTO
@@ -163,4 +164,4 @@ VARIABLE / ARRAY DEFINITION MISMATCH	НЕСООТВЕТСТВИЕ ОПРЕДЕЛ
 VARIABLE DEFINED AS ARRAY	ПЕРЕМЕННАЯ, ОПРЕДЕЛЕННАЯ КАК МАССИВ
 VARIABLE DEFINED AS NONARRAY	ПЕРЕМЕННАЯ, ОПРЕДЕЛЯЕМАЯ КАК NONARRAY
 VARIABLE HAS NO VALUE	ПЕРЕМЕННАЯ НЕ ИМЕЕТ ЗНАЧЕНИЯ
-VARIABLE IS NOT AN ARRAY	ПЕРЕМЕННАЯ НЕ МАССИВ
+VARIABLE IS NOT AN ARRAY	ПЕРЕМЕННАЯ НЕ МАССИВА

@@ -66,6 +66,7 @@ GOSUB <= GOSUB               # formed from GO and SUB if no direct translation e
 GOTO <= GEHEZU               # formed from GO and TO if no direct translation exists
 TO <= ZU                     # part of for/to/step/next constructs
 IF <= WENN                   # part of if/then constructs
+THEN <= DANN                 # part of if/then constructs
 ON <= AN                     # a sort of a switch statement
 RETURN <= ZURÜCKKEHREN       # used to exit a subroutine
 STOP <= STOPPEN              # command to stop execution
@@ -96,7 +97,7 @@ DATA <= DATEN                # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DÜSTER                # dimension arrays
+DIM <= SCHWACH               # dimension arrays
 OPTION <= MÖGLICHKEIT        # see ECMA-55 §18.1
 BASE <= BASE                 # see ECMA-55 §18.1
 
@@ -133,7 +134,7 @@ GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
 GOSUB STACK UNDERFLOW	GOSUB -STACK -UNTERLAUF
 INDEX OUT OF RANGE	INDEX AUSSERHALB DES BEREICHS
 LABEL ALREADY DEFINED	ETIKETT BEREITS DEFINIERT
-LEFT / RIGHT OPERATION MISMATCH	NICHTÜBEREINSTIMMUNG LINKS / RECHTS OPERATION
+LEFT / RIGHT OPERATION MISMATCH	FEHLANPASSUNG DES LINKEN / RECHTEN BETRIEBS
 NEGATIVE INDEX	NEGATIVER INDEX
 NEXT ON FOR LOOP WITH STRING VARIABLE	ALS NÄCHSTES FÜR DIE SCHLEIFE MIT STRING -VARIABLE
 OPERAND MISMATCH	OPERAND -NICHTÜBEREINSTIMMUNG

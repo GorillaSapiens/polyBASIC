@@ -66,6 +66,7 @@ GOSUB <= 부르다          # formed from GO and SUB if no direct translation ex
 GOTO <= 도약            # formed from GO and TO if no direct translation exists
 TO <= 에게              # part of for/to/step/next constructs
 IF <= 만약              # part of if/then constructs
+THEN <= 그다음에          # part of if/then constructs
 ON <= 까지              # a sort of a switch statement
 RETURN <= 반품          # used to exit a subroutine
 STOP <= 멈추다           # command to stop execution
@@ -135,11 +136,11 @@ INDEX OUT OF RANGE	범위를 벗어난 색인
 LABEL ALREADY DEFINED	이미 정의 된 레이블
 LEFT / RIGHT OPERATION MISMATCH	왼쪽 / 오른쪽 작동 불일치
 NEGATIVE INDEX	음수 지수
-NEXT ON FOR LOOP WITH STRING VARIABLE	다음은 문자열 변수로 루프를 위해 켜집니다
+NEXT ON FOR LOOP WITH STRING VARIABLE	다음은 문자열 변수로 루프를 사용합니다
 OPERAND MISMATCH	피연산자 불일치
 OPTION REQUIRES A LANGUAGE	옵션에는 언어가 필요합니다
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	언어 설정 또는 환경 변수를 확인하십시오
-STRING MATH LOGIC ERROR	문자열 수학 논리 오류
+STRING MATH LOGIC ERROR	문자열 수학 로직 오류
 SYNTAX ERROR	구문 오류
 UNABLE TO OPEN FILE	열 수없는 파일
 UNABLE TO OPEN TO OPEN FILE FOR READING	읽기를 위해 파일을 열 수 없습니다

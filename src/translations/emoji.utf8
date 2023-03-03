@@ -66,6 +66,7 @@ GOSUB <= 🥥🍎🍎      # formed from GO and SUB if no direct translation exi
 GOTO <= 🍒🍆🍓        # formed from GO and TO if no direct translation exists
 TO <= 🍇🍒🥥            # part of for/to/step/next constructs
 IF <= 🍑🍒🍓            # part of if/then constructs
+THEN <= 🍓🍑🍎        # part of if/then constructs
 ON <= 🍇🥥🍓            # a sort of a switch statement
 RETURN <= 🍌    # used to exit a subroutine
 STOP <= 🍎🍑🥥        # command to stop execution

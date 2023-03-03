@@ -53,7 +53,7 @@ RAT <= IGUNDANE               # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= UKUKHANGELA            # for user defined functions
+DEF <= UKUKHANISA             # for user defined functions
 
 # from ECMA-55 §11
 
@@ -66,6 +66,7 @@ GOSUB <= INGQINAPHE           # formed from GO and SUB if no direct translation 
 GOTO <= IYAKU                 # formed from GO and TO if no direct translation exists
 TO <= KWA                     # part of for/to/step/next constructs
 IF <= NXA                     # part of if/then constructs
+THEN <= KHONA                 # part of if/then constructs
 ON <= PHEZUKWA                # a sort of a switch statement
 RETURN <= BUYISELAEMUVA       # used to exit a subroutine
 STOP <= IMA                   # command to stop execution
@@ -98,7 +99,7 @@ DATA <= UMBHALO               # to embed data in the program
 
 DIM <= FUSHANE                # dimension arrays
 OPTION <= UKUKHETHA           # see ECMA-55 §18.1
-BASE <= ISISEKELA             # see ECMA-55 §18.1
+BASE <= ISIZINDA              # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 

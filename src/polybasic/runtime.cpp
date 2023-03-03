@@ -615,8 +615,26 @@ Tree *evaluate(Tree *p) {
       free(freeme);
    }
    else if (p->op == YYRND) {
-      p->op = YYDOUBLE;
-      p->dval = (double)rand() / (double)RAND_MAX;
+      Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
+      if (p->left->op == YYDOUBLE) {
+         // do nothing
+      }
+      else if (p->left->op == YYINTEGER) {
+         p->left->op = YYDOUBLE;
+         p->left->dval = (double)p->left->ival;
+      }
+      else if (p->left->op == YYRATIONAL) {
+         p->left->op = YYDOUBLE;
+         Rational *deleteme = p->left->rval;
+         p->left->dval = (double)*(p->left->rval);
+         delete deleteme;
+      }
+      p->left->dval = (double)rand()/(double)(RAND_MAX/(p->left->dval));
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
    }
    else if (p->op == YYRANDOMIZE) {
       time_t t = time(NULL);
@@ -1443,34 +1461,35 @@ void run(Tree *p) {
                   eprintf("{ERROR}: @%0:%1, {UNKNOWN IF LABEL} ❮%2❯%n", p->line, p->col, p->middle->sval);
                   exit(-1);
                }
+
                if (left->op != right->op) {
                   // in a mismatch, try to make strings into numbers
-                  if (p->left->op == YYSTRING) {
-                     upgrade_to_number(p->left);
+                  if (left->op == YYSTRING) {
+                     upgrade_to_number(left);
                   }
-                  if (p->right->op == YYSTRING) {
-                     upgrade_to_number(p->right);
-                  }
-
-                  if (p->left->op == YYRATIONAL && p->right->op == YYINTEGER) {
-                     upgrade_to_rational(p->right);
-                  }
-                  else if (p->left->op == YYINTEGER && p->right->op == YYRATIONAL) {
-                     upgrade_to_rational(p->left);
+                  if (right->op == YYSTRING) {
+                     upgrade_to_number(right);
                   }
 
-                  if (p->left->op == YYRATIONAL && p->right->op == YYDOUBLE) {
-                     upgrade_to_double(p->left);
+                  if (left->op == YYRATIONAL && right->op == YYINTEGER) {
+                     upgrade_to_rational(right);
                   }
-                  else if (p->left->op == YYDOUBLE && p->right->op == YYRATIONAL) {
-                     upgrade_to_double(p->right);
+                  else if (left->op == YYINTEGER && right->op == YYRATIONAL) {
+                     upgrade_to_rational(left);
                   }
 
-                  if (p->left->op == YYINTEGER && p->right->op == YYDOUBLE) {
-                     upgrade_to_double(p->left);
+                  if (left->op == YYRATIONAL && right->op == YYDOUBLE) {
+                     upgrade_to_double(left);
                   }
-                  else if (p->left->op == YYDOUBLE && p->right->op == YYINTEGER) {
-                     upgrade_to_double(p->right);
+                  else if (left->op == YYDOUBLE && right->op == YYRATIONAL) {
+                     upgrade_to_double(right);
+                  }
+
+                  if (left->op == YYINTEGER && right->op == YYDOUBLE) {
+                     upgrade_to_double(left);
+                  }
+                  else if (left->op == YYDOUBLE && right->op == YYINTEGER) {
+                     upgrade_to_double(right);
                   }
                }
 

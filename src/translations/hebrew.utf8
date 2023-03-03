@@ -66,6 +66,7 @@ GOSUB <= גוסוב           # formed from GO and SUB if no direct translation 
 GOTO <= לךל              # formed from GO and TO if no direct translation exists
 TO <= ל                  # part of for/to/step/next constructs
 IF <= אם                 # part of if/then constructs
+THEN <= לאחרמכן          # part of if/then constructs
 ON <= על                 # a sort of a switch statement
 RETURN <= לחזור          # used to exit a subroutine
 STOP <= תפסיק            # command to stop execution
@@ -158,8 +159,8 @@ UNRECOGNIZED NEXT VARIABLE	משתנה הבא לא מוכר
 UNRECOGNIZED OP IN PRINT	OP לא מוכר בהדפס
 UNRECOGNIZED RATIONAL MATH OPERATION	פעולת מתמטיקה רציונלית לא מוכרת
 UNRECOGNIZED VARIABLE TYPE	סוג משתנה לא מוכר
-UNSET ENVIRONMENT VARIABLE	משתנה סביבת הסביבה
-VARIABLE / ARRAY DEFINITION MISMATCH	משתנה / מערך הגדרת חוסר התאמה
+UNSET ENVIRONMENT VARIABLE	ביטול סביבת הסביבה
+VARIABLE / ARRAY DEFINITION MISMATCH	חוסר התאמה בין הגדרת משתנה / מערך
 VARIABLE DEFINED AS ARRAY	משתנה המוגדר כמערך
 VARIABLE DEFINED AS NONARRAY	משתנה המוגדר כלא מערך
 VARIABLE HAS NO VALUE	למשתנה אין שום ערך

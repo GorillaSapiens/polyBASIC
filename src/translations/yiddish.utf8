@@ -66,6 +66,7 @@ GOSUB <= גאסוב           # formed from GO and SUB if no direct translation 
 GOTO <= גייצו            # formed from GO and TO if no direct translation exists
 TO <= צו                 # part of for/to/step/next constructs
 IF <= ויב                # part of if/then constructs
+THEN <= ווי              # part of if/then constructs
 ON <= אף                 # a sort of a switch statement
 RETURN <= ומקערן         # used to exit a subroutine
 STOP <= אפשטעל           # command to stop execution

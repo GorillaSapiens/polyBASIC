@@ -75,7 +75,7 @@ Tree *programtree;
 %type <u> randomize
 %type <u> remstatement
 
-%type <u> assign
+%type <u> assignstmt
 
 %type <u> relation
 
@@ -95,6 +95,7 @@ Tree *programtree;
 %token YYGOSUB
 %token YYGOTO
 %token YYIF
+%token YYTHEN
 %token YYIFGOTO
 %token YYIFGOSUB
 %token YYINPUT
@@ -181,6 +182,16 @@ line           : YYEOL
                      $$.col = yyloc.first_column;
                      $$.op = YYREM;
                   }
+               | statement ':'
+                  {
+                     $$ = $1;
+                     $$.label = NULL;
+                  }
+               | label statement ':'
+                  {
+                     $$ = $2;
+                     $$.label = strdup($1.sval);
+                  }
                | statement YYEOL
                   {
                      $$ = $1;
@@ -215,7 +226,7 @@ remstatement   : YYREM
                   }
                ;
 
-statement      : assign
+statement      : assignstmt
                   {
                      $$ = $1;
                   }
@@ -389,6 +400,16 @@ controlstmt    : YYGOTO label
                      $$.op = YYGOSUB;
                      $$.sval = strdup($2.sval);
                   }
+               | YYIF expression relation expression YYTHEN label
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYIFGOTO;
+                     $$.sval = strdup($3.sval);
+                     $$.left = copytree(&$2);
+                     $$.middle = copytree(&$6);
+                     $$.right = copytree(&$4);
+                  }
                | YYIF expression relation expression YYGOTO label
                   {
                      $$.line = yylineno;
@@ -454,9 +475,16 @@ relation       : YYRELATION
                      $$.op = YYRELATION;
                      $$.sval = strdup(yytext);
                   }
+               | '='
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYRELATION;
+                     $$.sval = strdup("==");
+                  }
                ;
 
-repeatstmt     : YYFOR varname YYASSIGN expression YYTO expression
+repeatstmt     : YYFOR varname assign expression YYTO expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -466,7 +494,7 @@ repeatstmt     : YYFOR varname YYASSIGN expression YYTO expression
                      $$.right = copytree(&$6);
                      $$.middle = NULL;
                   }
-               | YYFOR varname YYASSIGN expression YYTO expression YYSTEP expression
+               | YYFOR varname assign expression YYTO expression YYSTEP expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -707,11 +735,12 @@ expression     : '+' expression
                      $$.op = YYLOG;
                      $$.left = copytree(&$3);
                   }
-               | YYRND
+               | YYRND '(' expression ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRND;
+                     $$.left = copytree(&$3);
                   }
                | YYSGN '(' expression ')'
                   {
@@ -819,7 +848,15 @@ inputstmt      : YYINPUT varlist
                   }
                ;
 
-assign      : varname YYASSIGN expression
+assign      : YYASSIGN
+               {
+               }
+            | '='
+               {
+               }
+            ;
+
+assignstmt  : varname assign expression
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
@@ -827,7 +864,7 @@ assign      : varname YYASSIGN expression
                   $$.left = copytree(&$1);
                   $$.right = copytree(&$3);
                }
-            | YYLET varname YYASSIGN expression
+            | YYLET varname assign expression
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
@@ -836,7 +873,7 @@ assign      : varname YYASSIGN expression
                   $$.left = copytree(&$2);
                   $$.right = copytree(&$4);
                }
-            | arrayref YYASSIGN expression
+            | arrayref assign expression
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
@@ -844,7 +881,7 @@ assign      : varname YYASSIGN expression
                   $$.left = copytree(&$1);
                   $$.right = copytree(&$3);
                }
-            | YYLET arrayref YYASSIGN expression
+            | YYLET arrayref assign expression
                {
                   $$.line = yylineno;
                   $$.col = yyloc.first_column;
@@ -915,7 +952,7 @@ void yyerror(const char *s) {
    if (!remsleep) {
       if (!strcmp(s, "syntax error")) {
          eprintf("{SYNTAX ERROR} @%0:%1 ❮%2❯%n",
-            yylineno, yylloc.first_column, yytext);
+            yylineno, yylloc.first_column, (yytext[0] < ' ') ? "EOL" : yytext);
       }
       else {
          eprintf("{ERROR} @%0:%1 ❮%2❯ ❮%3❯%n",

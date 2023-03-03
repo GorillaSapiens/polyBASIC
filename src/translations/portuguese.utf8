@@ -32,77 +32,78 @@
 
 # from ECMA-55 §5.2
 
-END <= FIM                 # the end statement
+END <= FIM                # the end statement
 
 # from ECMA-55 §9
 
-ABS <= ABDÔMEN             # the absolute value function
-ATN <= ATN                 # the trigonomic arctangent function
-COS <= COS                 # the trigonomic cosine function
-EXP <= EXP                 # the exponential / power function
-INT <= INT                 # the integer / floor function
-LOG <= REGISTRO            # the natural log function
-RND <= RND                 # generate random number
-SGN <= SGN                 # determine the sign
-SIN <= PECADO              # the trigonomic sine function
-SQR <= SQR                 # the square root function
-TAN <= BRONZEADO           # the trigonomic tangent function
-DBL <= DBL                 # convert to double
-STR <= STR                 # convert to string
-RAT <= RATO                # convert to rational
+ABS <= ABDÔMEN            # the absolute value function
+ATN <= ATN                # the trigonomic arctangent function
+COS <= COS                # the trigonomic cosine function
+EXP <= EXP                # the exponential / power function
+INT <= INT                # the integer / floor function
+LOG <= REGISTRO           # the natural log function
+RND <= RND                # generate random number
+SGN <= SGN                # determine the sign
+SIN <= PECADO             # the trigonomic sine function
+SQR <= SQR                # the square root function
+TAN <= BRONZEADO          # the trigonomic tangent function
+DBL <= DBL                # convert to double
+STR <= STR                # convert to string
+RAT <= RATO               # convert to rational
 
 # from ECMA-55 §10
 
-DEF <= DEF                 # for user defined functions
+DEF <= DEF                # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= DEIXAR              # for variable assignment
+LET <= DEIXAR             # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= GOSUB             # formed from GO and SUB if no direct translation exists
-GOTO <= VÁPARA             # formed from GO and TO if no direct translation exists
-TO <= PARA                 # part of for/to/step/next constructs
-IF <= SE                   # part of if/then constructs
-ON <= SOBRE                # a sort of a switch statement
-RETURN <= RETORNAR         # used to exit a subroutine
-STOP <= PARAR              # command to stop execution
+GOSUB <= GOSUB            # formed from GO and SUB if no direct translation exists
+GOTO <= VÁPARA            # formed from GO and TO if no direct translation exists
+TO <= PARA                # part of for/to/step/next constructs
+IF <= SE                  # part of if/then constructs
+THEN <= ENTÃO             # part of if/then constructs
+ON <= SOBRE               # a sort of a switch statement
+RETURN <= RETORNAR        # used to exit a subroutine
+STOP <= PARAR             # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DE                  # part of for/to/step/next constructs
-STEP <= ETAPA              # part of for/to/step/next constructs
-NEXT <= PRÓXIMO            # part of for/to/step/next constructs
+FOR <= DE                 # part of for/to/step/next constructs
+STEP <= ETAPA             # part of for/to/step/next constructs
+NEXT <= PRÓXIMO           # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= IMPRIMIR          # to print things out
+PRINT <= IMPRIMIR         # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= ENTRADA           # the input statement
+INPUT <= ENTRADA          # the input statement
 
 # from ECMA-55 §16
 
-READ <= LER                # part of read / restore
-RESTORE <= RESTAURAR       # part of read / restore
+READ <= LER               # part of read / restore
+RESTORE <= RESTAURAR      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= DADOS              # to embed data in the program
+DATA <= DADOS             # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= ESCURECIDO          # dimension arrays
-OPTION <= OPÇÃO            # see ECMA-55 §18.1
-BASE <= BASE               # see ECMA-55 §18.1
+DIM <= DIM                # dimension arrays
+OPTION <= OPÇÃO           # see ECMA-55 §18.1
+BASE <= BASE              # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= REM                 # see ECMA-55 §18.1
+REM <= REM                # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -158,7 +159,7 @@ UNRECOGNIZED NEXT VARIABLE	PRÓXIMA VARIÁVEL NÃO RECONHECIDA
 UNRECOGNIZED OP IN PRINT	OP NÃO RECONHECIDO NA IMPRESSÃO
 UNRECOGNIZED RATIONAL MATH OPERATION	OPERAÇÃO DE MATEMÁTICA RACIONAL NÃO RECONHECIDA
 UNRECOGNIZED VARIABLE TYPE	TIPO DE VARIÁVEL NÃO RECONHECIDO
-UNSET ENVIRONMENT VARIABLE	VARIÁVEL DE AMBIENTE UNSET
+UNSET ENVIRONMENT VARIABLE	VARIÁVEL DE AMBIENTE NÃO DEFINIDO
 VARIABLE / ARRAY DEFINITION MISMATCH	VARIÁVEL / DEFINIÇÃO DE ARRAY INCOMPATIBILIDADE
 VARIABLE DEFINED AS ARRAY	VARIÁVEL DEFINIDA COMO MATRIZ
 VARIABLE DEFINED AS NONARRAY	VARIÁVEL DEFINIDA COMO NÃO -MARGE

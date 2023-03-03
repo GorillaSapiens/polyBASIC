@@ -66,6 +66,7 @@ GOSUB <= GOSUB             # formed from GO and SUB if no direct translation exi
 GOTO <= PUMUNTASA          # formed from GO and TO if no direct translation exists
 TO <= SA                   # part of for/to/step/next constructs
 IF <= KUNG                 # part of if/then constructs
+THEN <= PAGKATAPOS         # part of if/then constructs
 ON <= KAILAN               # a sort of a switch statement
 RETURN <= BUMALIK          # used to exit a subroutine
 STOP <= HUMINTO            # command to stop execution

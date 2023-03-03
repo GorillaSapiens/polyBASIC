@@ -66,6 +66,7 @@ GOSUB <= GOSUB      # formed from GO and SUB if no direct translation exists
 GOTO <= 去           # formed from GO and TO if no direct translation exists
 TO <= 到             # part of for/to/step/next constructs
 IF <= 如果            # part of if/then constructs
+THEN <= 然后          # part of if/then constructs
 ON <= 在             # a sort of a switch statement
 RETURN <= 返回        # used to exit a subroutine
 STOP <= 停止          # command to stop execution

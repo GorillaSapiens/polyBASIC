@@ -45,6 +45,7 @@ STEP
 STOP
 STR
 TAN
+THEN
 TO
 
 [errors]

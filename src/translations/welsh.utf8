@@ -46,7 +46,7 @@ RND <= RND                  # generate random number
 SGN <= SGN                  # determine the sign
 SIN <= BECHODD              # the trigonomic sine function
 SQR <= SQR                  # the square root function
-TAN <= FARCIED              # the trigonomic tangent function
+TAN <= BARCIANT             # the trigonomic tangent function
 DBL <= DBL                  # convert to double
 STR <= STRYD                # convert to string
 RAT <= LLYGODEN             # convert to rational
@@ -57,15 +57,16 @@ DEF <= DEF                  # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= ADAWEN               # for variable assignment
+LET <= GADAWN               # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
 GOSUB <= GOSUB              # formed from GO and SUB if no direct translation exists
 GOTO <= MYNDI               # formed from GO and TO if no direct translation exists
-TO <= ATO                   # part of for/to/step/next constructs
+TO <= I                     # part of for/to/step/next constructs
 IF <= OS                    # part of if/then constructs
+THEN <= YNA                 # part of if/then constructs
 ON <= YMLAEN                # a sort of a switch statement
 RETURN <= DDYCHWELO         # used to exit a subroutine
 STOP <= ARHOSWCH            # command to stop execution
@@ -96,7 +97,7 @@ DATA <= DATA                # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= BYLANT               # dimension arrays
+DIM <= PYLER                # dimension arrays
 OPTION <= OPSIWN            # see ECMA-55 §18.1
 BASE <= SEILIANT            # see ECMA-55 §18.1
 
@@ -123,7 +124,7 @@ ARRAY INDEX OUTSIDE OF BOUNDS	MYNEGAI ARAE Y TU ALLAN I FFINIAU
 CANNOT ACCESS DIRECTORY	METHU CYRCHU CYFEIRIADUR
 DATA INPUT UNDERFLOW	TAN -LIF MEWNBWN DATA
 DATA READ UNDERFLOW	DATA DARLLEN TANLIF
-DEFINITION CYCLE DISCOVERED	CYLCH DIFFINIAD WEDI'I DDARGANFOD
+DEFINITION CYCLE DISCOVERED	CYLCH DIFFINIAD A DDARGANFUWYD
 ERROR	WALLAU
 FAILURE	METHIANNAU
 FOR VARIABLE MULTIPLY DEFINED	AR GYFER NEWIDYN LLUOSI WEDI'I DDIFFINIO
@@ -137,7 +138,7 @@ LEFT / RIGHT OPERATION MISMATCH	CAMGYMHARIAD OPERATION CHWITH / DDE
 NEGATIVE INDEX	MYNEGAI NEGYDDOL
 NEXT ON FOR LOOP WITH STRING VARIABLE	NESAF YMLAEN AM DDOLEN GYDA NEWIDYN LLINYN
 OPERAND MISMATCH	CAMGYMHARIAD OPERAND
-OPTION REQUIRES A LANGUAGE	MAE ANGEN IAITH AR OPSIWN
+OPTION REQUIRES A LANGUAGE	OPSIWN YN GOFYN AM IAITH
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	GWIRIWCH GOSODIADAU IAITH NEU AMGYLCHEDD AMGYLCHEDD
 STRING MATH LOGIC ERROR	GWALL RHESYMEG MATHEMATEG LLINYN
 SYNTAX ERROR	GWALL CYSTRAWEN

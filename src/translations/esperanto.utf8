@@ -66,6 +66,7 @@ GOSUB <= GOSUB           # formed from GO and SUB if no direct translation exist
 GOTO <= IRUAL            # formed from GO and TO if no direct translation exists
 TO <= AL                 # part of for/to/step/next constructs
 IF <= SE                 # part of if/then constructs
+THEN <= TIAM             # part of if/then constructs
 ON <= ON                 # a sort of a switch statement
 RETURN <= REVENU         # used to exit a subroutine
 STOP <= ĈESU             # command to stop execution
@@ -157,7 +158,7 @@ UNRECOGNIZED MATH TYPE	NE REKONITA MATEMATIKA TIPO
 UNRECOGNIZED NEXT VARIABLE	NE REKONITA SEKVA VARIABLO
 UNRECOGNIZED OP IN PRINT	NE REKONITA OP EN PRESAĴO
 UNRECOGNIZED RATIONAL MATH OPERATION	NE REKONITA RACIA MATEMATIKA OPERACIO
-UNRECOGNIZED VARIABLE TYPE	NE REKONITA VARIABLA TIPO
+UNRECOGNIZED VARIABLE TYPE	NE REKONITA VARIA TIPO
 UNSET ENVIRONMENT VARIABLE	MALŜALTITA MEDIA VARIABLO
 VARIABLE / ARRAY DEFINITION MISMATCH	VARIABLA / ARRAY -DIFINO MALSUKCESA
 VARIABLE DEFINED AS ARRAY	VARIAĴO DIFINITA KIEL TABELO

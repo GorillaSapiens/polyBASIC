@@ -66,6 +66,7 @@ GOSUB <= GOSUB      # formed from GO and SUB if no direct translation exists
 GOTO <= GOTO        # formed from GO and TO if no direct translation exists
 TO <= TO            # part of for/to/step/next constructs
 IF <= IF            # part of if/then constructs
+THEN <= THEN        # part of if/then constructs
 ON <= ON            # a sort of a switch statement
 RETURN <= RETURN    # used to exit a subroutine
 STOP <= STOP        # command to stop execution

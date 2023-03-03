@@ -66,6 +66,7 @@ GOSUB <= GOSUB                         # formed from GO and SUB if no direct tra
 GOTO <= IRA                            # formed from GO and TO if no direct translation exists
 TO <= A                                # part of for/to/step/next constructs
 IF <= SI                               # part of if/then constructs
+THEN <= ENTONCES                       # part of if/then constructs
 ON <= EN                               # a sort of a switch statement
 RETURN <= DEVOLVER                     # used to exit a subroutine
 STOP <= DETENER                        # command to stop execution
@@ -128,9 +129,9 @@ ERROR	ERROR
 FAILURE	FALLA
 FOR VARIABLE MULTIPLY DEFINED	PARA VARIABLE MULTIPLICAR DEFINIDA
 FUNCTION DEFINITION MULTIPLY DEFINED	DEFINICIÓN DE FUNCIÓN MULTIPLICAR DEFINIDA
-FUNCTION DEFINITION PARAMETER MISMATCH	DESAJUSTE DE PARÁMETROS DE DEFINICIÓN DE FUNCIÓN
+FUNCTION DEFINITION PARAMETER MISMATCH	INCENTUADOR DE PARÁMETROS DE DEFINICIÓN DE FUNCIÓN
 GOSUB STACK OVERFLOW	DESBORDAMIENTO DE LA PILA GOSUB
-GOSUB STACK UNDERFLOW	GOSUB STACK SUBSFLOW
+GOSUB STACK UNDERFLOW	GOSUB STACK SUBFLOW
 INDEX OUT OF RANGE	ÍNDICE FUERA DE RANGO
 LABEL ALREADY DEFINED	ETIQUETA YA DEFINIDA
 LEFT / RIGHT OPERATION MISMATCH	OPERACIÓN IZQUIERDA / DERECHA DESAJUSTE

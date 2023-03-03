@@ -40,7 +40,7 @@ ABS <= অযবস            # the absolute value function
 ATN <= ATN             # the trigonomic arctangent function
 COS <= কস              # the trigonomic cosine function
 EXP <= একসপরস          # the exponential / power function
-INT <= INT             # the integer / floor function
+INT <= ইনট             # the integer / floor function
 LOG <= লগ              # the natural log function
 RND <= RND             # generate random number
 SGN <= এসজএন           # determine the sign
@@ -66,6 +66,7 @@ GOSUB <= গসব           # formed from GO and SUB if no direct translation e
 GOTO <= যও             # formed from GO and TO if no direct translation exists
 TO <= পরত              # part of for/to/step/next constructs
 IF <= যদ               # part of if/then constructs
+THEN <= তরপর           # part of if/then constructs
 ON <= চল               # a sort of a switch statement
 RETURN <= পরতযবরতন     # used to exit a subroutine
 STOP <= থমন            # command to stop execution
@@ -126,7 +127,7 @@ DATA READ UNDERFLOW	ডেটা আন্ডারফ্লো রিড
 DEFINITION CYCLE DISCOVERED	সংজ্ঞা চক্র আবিষ্কার
 ERROR	ত্রুটি
 FAILURE	ব্যর্থতা
-FOR VARIABLE MULTIPLY DEFINED	ভেরিয়েবল গুণিত জন্য সংজ্ঞায়িত
+FOR VARIABLE MULTIPLY DEFINED	ভেরিয়েবলের জন্য গুণিত সংজ্ঞায়িত
 FUNCTION DEFINITION MULTIPLY DEFINED	ফাংশন সংজ্ঞা গুণিত সংজ্ঞায়িত
 FUNCTION DEFINITION PARAMETER MISMATCH	ফাংশন সংজ্ঞা প্যারামিটার অমিল
 GOSUB STACK OVERFLOW	গোসব স্ট্যাক ওভারফ্লো

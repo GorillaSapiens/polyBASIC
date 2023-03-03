@@ -66,6 +66,7 @@ GOSUB <= गसब               # formed from GO and SUB if no direct translati
 GOTO <= कलएजओ              # formed from GO and TO if no direct translation exists
 TO <= क                    # part of for/to/step/next constructs
 IF <= अगर                  # part of if/then constructs
+THEN <= तब                 # part of if/then constructs
 ON <= पर                   # a sort of a switch statement
 RETURN <= वपसकरन           # used to exit a subroutine
 STOP <= रकन                # command to stop execution

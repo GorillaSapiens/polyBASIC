@@ -66,6 +66,7 @@ GOSUB <= جوسوب              # formed from GO and SUB if no direct translati
 GOTO <= اذهبإلى             # formed from GO and TO if no direct translation exists
 TO <= ل                     # part of for/to/step/next constructs
 IF <= لو                    # part of if/then constructs
+THEN <= ثم                  # part of if/then constructs
 ON <= على                   # a sort of a switch statement
 RETURN <= يعود              # used to exit a subroutine
 STOP <= قف                  # command to stop execution
