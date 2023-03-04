@@ -399,6 +399,9 @@ int main(int argc, char **argv) {
             yydebug = true;
             break;
          case 't':
+            if (!argv[1]) {
+               usage(arg0); // calls exit, never returns
+            }
             treedebug = atoi(argv[1]);
             argc--; argv++;
             break;
