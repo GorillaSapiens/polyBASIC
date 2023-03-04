@@ -24,6 +24,7 @@ typedef struct Tree {
    struct Tree *right;
 
    struct Tree *next;
+   struct Tree *slink;
 } Tree;
 
 #endif

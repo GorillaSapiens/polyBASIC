@@ -71,7 +71,7 @@ ASSIGN ":="
 
 /* any single character passed straight up to bison */
 /* ECMA-116 uses & for string concatenation */
-SINGLE [&-+*/^()]
+SINGLE [:&-+*/^()]
 
 IPSEP [,;]
 

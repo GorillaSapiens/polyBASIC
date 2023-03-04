@@ -157,6 +157,7 @@ Tree *programtree;
 %left '*'
 %left '/'
 %left '^'
+%right UPLUSMINUS
 
 %%
 
@@ -706,7 +707,7 @@ signedconstant : constant
                   }
                ;
 
-expression     : '+' expression
+expression     : '+' expression %prec UPLUSMINUS
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
@@ -714,7 +715,7 @@ expression     : '+' expression
                      $$.left = NULL;
                      $$.right = copytree(&$2);
                   }
-               | '-' expression
+               | '-' expression %prec UPLUSMINUS
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
