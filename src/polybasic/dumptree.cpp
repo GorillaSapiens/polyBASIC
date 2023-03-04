@@ -63,7 +63,6 @@ static void dumpthing(Tree *root, bool andnext) {
    printf("   left =%p\n", root->left);
    printf(" middle =%p\n", root->middle);
    printf("  right =%p\n", root->right);
-   //printf("   prev =%p\n", root->prev);
    printf("   next =%p\n", root->next);
    printf("=====\n");
 

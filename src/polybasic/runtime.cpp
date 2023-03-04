@@ -83,25 +83,6 @@ static void register_arrays(Tree *root) {
    }
 }
 
-static void register_for(Tree *root) {
-   while (root) {
-      if (root->op == YYFOR && root->sval) {
-         if (is_for_defined(root->sval)) {
-            Tree *prev = get_for(root->sval);
-            GURU;
-            // test case multiple_for
-            eprintf("{ERROR}: @%0:%1, {FOR VARIABLE MULTIPLY DEFINED} ❮%2❯ @%3:%4%n",
-               root->line, root->col, root->sval, prev->line, prev->col);
-            exit(-1);
-         }
-         else {
-            set_for(root);
-         }
-      }
-      root = root->next;
-   }
-}
-
 static void register_def(Tree *root) {
    while (root) {
       if (root->op == YYDEF && root->sval) {
@@ -1304,13 +1285,15 @@ void run(Tree *p) {
             break;
          case YYFOR:
             {
+               set_for(p);
                Tree *result = evaluate(deep_copy(p->left));
                set_value(p->sval, result);
             }
             break;
          case YYNEXT:
             {
-               Tree *fore = get_for(p->sval);
+               Tree *onp = np;
+               Tree *fore = get_for(p->sval, false);
                if (!fore) {
                   GURU;
                   // test case unrecognext
@@ -1396,6 +1379,9 @@ void run(Tree *p) {
                      }
                      break;
                }
+               if (np == onp) {
+                  get_for(p->sval, true);
+               }
             }
             break;
          case YYSTOP: // why are there two of these???
@@ -1451,10 +1437,11 @@ void run(Tree *p) {
             break;
          case YYIFGOTO:
          case YYIFGOSUB:
+         case YYIFSTMTLIST:
             {
                Tree *left = evaluate(deep_copy(p->left));
                Tree *right = evaluate(deep_copy(p->right));
-               Tree *target = get_label(p->middle->sval);
+               Tree *target = (p->op == YYIFSTMTLIST) ? p->middle : get_label(p->middle->sval);
                if (!target) {
                   GURU;
                   // test case badiflabel
@@ -1688,7 +1675,6 @@ void runtree(Tree *root) {
    register_labels(root);
    register_option_base(root);
    register_arrays(root);
-   register_for(root);
    register_def(root);
    register_data(root);
    run(root);

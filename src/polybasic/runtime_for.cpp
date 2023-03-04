@@ -5,18 +5,6 @@
 #define HASH_SIZE 65536
 static Tree *fors[HASH_SIZE];
 
-int is_for_defined(const char *p) {
-   unsigned long h = hash(p);
-
-   for (unsigned long i = 0; i < HASH_SIZE; i++) {
-      unsigned long j = (i + h) % HASH_SIZE;
-      if (fors[j] != NULL && !strcmp(p, fors[j]->sval)) {
-         return 1;
-      }
-   }
-   return 0;
-}
-
 int set_for(Tree *n) {
    unsigned long h = hash(n->sval);
 
@@ -33,12 +21,15 @@ int set_for(Tree *n) {
    return 0;
 }
 
-Tree *get_for(const char *p) {
+Tree *get_for(const char *p, bool remove) {
    unsigned long h = hash(p);
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {
       unsigned long j = (i + h) % HASH_SIZE;
       if (fors[j] != NULL && !strcmp(p, fors[j]->sval)) {
+         if (remove) {
+            fors[j] = NULL;
+         }
          return fors[j];
       }
    }

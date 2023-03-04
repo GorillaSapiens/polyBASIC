@@ -29,6 +29,9 @@ Tree *emptytree(void) {
 #define DEBUG
 
 Tree *programtree;
+
+void fixup_nested_if(Tree *t, Tree *n = NULL);
+
 %}
 
 %union {
@@ -173,6 +176,8 @@ program        : linelist
                      // mischief managed!
                      $$ = $1;
                      programtree = copytree(&$$);
+
+                     fixup_nested_if(&$$);
                   }
                ;
 
@@ -234,7 +239,7 @@ remstmt        : YYREM
 stmtlist       : cstmt ':' stmtlist
                   {
                      $$ = $1;
-                     $$.slink = copytree(&$3);
+                     $$.next = copytree(&$3);
                   }
                | cstmt
                   {
@@ -919,7 +924,13 @@ exprlist       : expression YYIPSEP exprlist
 printlist      : expression YYIPSEP printlist
                   {
                      $$ = $1;
-                     $$.middle = copytree(&$3);
+printf("################################## %d %d\n", $3.op, YYEOF);
+                     if ($3.op == YYEOF) {
+                        $$.middle = NULL;
+                     }
+                     else {
+                        $$.middle = copytree(&$3);
+                     }
                   }
                | expression
                   {
@@ -1038,6 +1049,24 @@ sconst         : YYSTRING
                   }
                ;
 %%
+
+void fixup_nested_if(Tree *t, Tree *n) {
+printf("FIXUP %p %p\n", t, n);
+   while (t) {
+      if (t->op == YYIFSTMTLIST) {
+         fixup_nested_if(t->middle, t->next ? t->next : n);
+      }
+      if (t->next) {
+         t = t->next;
+      }
+      else {
+         if (n != NULL) {
+            t->next = n;
+         }
+         t = NULL;
+      }
+   }
+}
 
 void yyerror(const char *s) {
    if (!remsleep) {
