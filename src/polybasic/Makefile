@@ -44,9 +44,7 @@ errs.txt: *.cpp *.ypp *.l
 polybasic: polybasic.tab.hpp $(OBJECTS)
 	$(CPP) $(OBJECTS) $(LIBDIRS) $(LIBS) -o polybasic
 
-polybasic.tab.hpp: polybasic.tab.cpp
-
-polybasic.tab.cpp: polybasic.ypp
+polybasic.%.cpp polybasic.%.hpp : polybasic.ypp
 	$(bison) -Wcounterexamples -H polybasic.ypp
 
 lex.yy.cpp: polybasic.l polybasic.tab.hpp
@@ -80,6 +78,10 @@ UnicodeData.txt:
 SpecialCasing.txt:
 	wget $(ucd)SpecialCasing.txt
 
+.PHONY: depend
+depend:
+	makedepend $(INCDIRS) -Y *.cpp
+
 .PHONY: clean
 clean:
 	rm -f lex.yy.cpp lex.yy.hpp
@@ -99,3 +101,23 @@ squeaky:
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $(INCDIRS) $<
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+dumptree.o: eprintf.hpp tree.hpp rational.hpp
+eprintf.o: eprintf.hpp tree.hpp rational.hpp
+flexdebug.o: tree.hpp rational.hpp flexdebug.hpp
+hash.o: hash.hpp
+main.o: eprintf.hpp tree.hpp rational.hpp dumptree.hpp runtime.hpp
+main.o: flexdebug.hpp utf8casecmp.hpp
+rational.o: rational.hpp
+runtime.o: eprintf.hpp tree.hpp rational.hpp dumptree.hpp runtime_lbls.hpp
+runtime.o: runtime_for.hpp runtime_def.hpp runtime_vars.hpp runtime_data.hpp
+runtime.o: runtime.hpp
+runtime_data.o: runtime_data.hpp rational.hpp
+runtime_def.o: eprintf.hpp tree.hpp rational.hpp runtime_def.hpp dumptree.hpp
+runtime_def.o: hash.hpp
+runtime_for.o: runtime_for.hpp tree.hpp rational.hpp dumptree.hpp hash.hpp
+runtime_lbls.o: runtime_lbls.hpp tree.hpp rational.hpp dumptree.hpp hash.hpp
+runtime_vars.o: eprintf.hpp tree.hpp rational.hpp runtime_vars.hpp hash.hpp
+utf8casecmp.o: utf8casecmp.hpp
