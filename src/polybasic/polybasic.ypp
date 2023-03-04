@@ -63,7 +63,7 @@ Tree *programtree;
 %type <u> label
 %type <u> labellist
 
-%type <u> statement
+%type <u> stmt
 
 %type <u> inputstmt
 %type <u> readstmt
@@ -76,13 +76,13 @@ Tree *programtree;
 %type <u> optionbase
 %type <u> dimstmt
 %type <u> randomize
-%type <u> remstatement
+%type <u> remstmt
 
 %type <u> assignstmt
 
 %type <u> relation
 
-%type <u> defstatement
+%type <u> defstmt
 %type <u> paramlist
 
 %locations
@@ -186,33 +186,33 @@ line           : YYEOL
                      $$.col = yyloc.first_column;
                      $$.op = YYREM;
                   }
-               | statement ':'
+               | stmt ':'
                   {
                      $$ = $1;
                      $$.label = NULL;
                   }
-               | label statement ':'
+               | label stmt ':'
                   {
                      $$ = $2;
                      $$.label = strdup($1.sval);
                   }
-               | statement YYEOL
+               | stmt YYEOL
                   {
                      $$ = $1;
                      $$.label = NULL;
                   }
-               | label statement YYEOL
+               | label stmt YYEOL
                   {
                      $$ = $2;
                      $$.label = strdup($1.sval);
                   }
-               | remstatement error YYEOL
+               | remstmt error YYEOL
                   {
                      $$ = $1;
                      yyerrok;
                      remsleep = 0;
                   }
-               | label remstatement error YYEOL
+               | label remstmt error YYEOL
                   {
                      $$ = $2;
                      $$.label = strdup($1.sval);
@@ -221,7 +221,7 @@ line           : YYEOL
                   }
                ;
 
-remstatement   : YYREM
+remstmt        : YYREM
                   {
                      remsleep = 1;
                      $$.line = yylineno;
@@ -230,7 +230,7 @@ remstatement   : YYREM
                   }
                ;
 
-statement      : assignstmt
+stmt           : assignstmt
                   {
                      $$ = $1;
                   }
@@ -274,13 +274,13 @@ statement      : assignstmt
                   {
                      $$ = $1;
                   }
-               | defstatement
+               | defstmt
                   {
                      $$ = $1;
                   }
                ;
 
-defstatement   : YYDEF varname '[' paramlist ']' expression
+defstmt        : YYDEF varname '[' paramlist ']' expression
                   {
                      $$.line = yylineno;
                      $$.col = $2.col;
