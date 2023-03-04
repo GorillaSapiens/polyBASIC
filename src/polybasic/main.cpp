@@ -16,6 +16,7 @@
 
 extern FILE *yyin;
 extern Tree *programtree;
+extern int yydebug;
 
 bool void_enabled = false;
 
@@ -344,6 +345,7 @@ const char *shortname(const char *arg0) {
    printf("      -g     : enable 'guru mode' with additional debug output\n");
    printf("      -0     : enable the VOID keyword\n");
    printf("      -f     : debug flex parser output, and then run program\n");
+   printf("      -b     : debug bison parser output, and then run program\n");
    printf("      -t <n> : dump parse tree for line <n>, do not run program\n");
    printf("               n=0 will dump the entire tree\n");
    exit(0);
@@ -392,6 +394,9 @@ int main(int argc, char **argv) {
             break;
          case 'f':
             flexdebug_enabled = true;
+            break;
+         case 'b':
+            yydebug = true;
             break;
          case 't':
             treedebug = atoi(argv[1]);

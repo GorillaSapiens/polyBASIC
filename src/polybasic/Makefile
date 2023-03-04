@@ -45,7 +45,7 @@ polybasic: polybasic.tab.hpp $(OBJECTS)
 	$(CPP) $(OBJECTS) $(LIBDIRS) $(LIBS) -o polybasic
 
 polybasic.tab.cpp polybasic.tab.hpp : polybasic.ypp
-	$(bison) -Wcounterexamples -H polybasic.ypp
+	$(bison) -r all --debug -Wcounterexamples -H polybasic.ypp
 
 lex.yy.cpp lex.yy.hpp: polybasic.l polybasic.tab.hpp
 	$(reflex) -yy --unicode --header-file=lex.yy.hpp polybasic.l

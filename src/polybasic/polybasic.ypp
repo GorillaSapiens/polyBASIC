@@ -63,7 +63,9 @@ Tree *programtree;
 %type <u> label
 %type <u> labellist
 
-%type <u> stmt
+%type <u> cstmt
+%type <u> istmt
+%type <u> stmtlist
 
 %type <u> inputstmt
 %type <u> readstmt
@@ -73,6 +75,7 @@ Tree *programtree;
 %type <u> printstmt
 %type <u> repeatstmt
 %type <u> controlstmt
+%type <u> ifstmtlist
 %type <u> optionbase
 %type <u> dimstmt
 %type <u> randomize
@@ -101,6 +104,7 @@ Tree *programtree;
 %token YYTHEN
 %token YYIFGOTO
 %token YYIFGOSUB
+%token YYIFSTMTLIST
 %token YYINPUT
 %token YYLET
 %token YYNEXT
@@ -173,10 +177,14 @@ linelist       : line
                   {
                      $$ = $1;
                   }
-               | line linelist
+               | linelist line
                   {
                      $$ = $1;
-                     $$.next = copytree(&$2);
+                     Tree *node = &$$;
+                     while (node->next) {
+                        node = node->next;
+                     }
+                     node->next = copytree(&$2);
                   }
                ;
 
@@ -186,22 +194,12 @@ line           : YYEOL
                      $$.col = yyloc.first_column;
                      $$.op = YYREM;
                   }
-               | stmt ':'
+               | stmtlist YYEOL
                   {
                      $$ = $1;
                      $$.label = NULL;
                   }
-               | label stmt ':'
-                  {
-                     $$ = $2;
-                     $$.label = strdup($1.sval);
-                  }
-               | stmt YYEOL
-                  {
-                     $$ = $1;
-                     $$.label = NULL;
-                  }
-               | label stmt YYEOL
+               | label stmtlist YYEOL
                   {
                      $$ = $2;
                      $$.label = strdup($1.sval);
@@ -230,7 +228,28 @@ remstmt        : YYREM
                   }
                ;
 
-stmt           : assignstmt
+stmtlist       : cstmt ':' stmtlist
+                  {
+                     $$ = $1;
+                     $$.slink = copytree(&$3);
+                  }
+               | cstmt
+                  {
+                     $$ = $1;
+                  }
+               | istmt
+                  {
+                     $$ = $1;
+                  }
+               ;
+
+istmt          : ifstmtlist
+                  {
+                     $$=$1;
+                  }
+               ;
+
+cstmt          : assignstmt
                   {
                      $$ = $1;
                   }
@@ -390,6 +409,18 @@ printstmt      : YYPRINT exprlist
                   }
                ;
 
+ifstmtlist     : YYIF expression relation expression YYTHEN stmtlist
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYIFSTMTLIST;
+                     $$.sval = strdup($3.sval);
+                     $$.left = copytree(&$2);
+                     $$.middle = copytree(&$6);
+                     $$.right = copytree(&$4);
+                  }
+               ;
+
 controlstmt    : YYGOTO label
                   {
                      $$.line = yylineno;
@@ -422,36 +453,6 @@ controlstmt    : YYGOTO label
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.middle = copytree(&$6);
-                     $$.right = copytree(&$4);
-                  }
-               | YYIF expression relation expression YYTHEN YYGOTO label
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYIFGOTO;
-                     $$.sval = strdup($3.sval);
-                     $$.left = copytree(&$2);
-                     $$.middle = copytree(&$7);
-                     $$.right = copytree(&$4);
-                  }
-               | YYIF expression relation expression YYGOSUB label
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYIFGOSUB;
-                     $$.sval = strdup($3.sval);
-                     $$.left = copytree(&$2);
-                     $$.middle = copytree(&$6);
-                     $$.right = copytree(&$4);
-                  }
-               | YYIF expression relation expression YYTHEN YYGOSUB label
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYIFGOSUB;
-                     $$.sval = strdup($3.sval);
-                     $$.left = copytree(&$2);
-                     $$.middle = copytree(&$7);
                      $$.right = copytree(&$4);
                   }
                | YYON expression YYGOTO labellist
