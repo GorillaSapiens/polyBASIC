@@ -342,49 +342,49 @@ randomize      : YYRANDOMIZE
                      $$.col = yyloc.first_column;
                      $$.op = YYRANDOMIZE;
                   }
-              ;
+               ;
 
-datastmt    : YYDATA constlist
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYDATA;
-                  $$.right = copytree(&$2);
-               }
-            ;
+datastmt       : YYDATA constlist
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDATA;
+                     $$.right = copytree(&$2);
+                  }
+               ;
 
-restorestmt : YYRESTORE
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYRESTORE;
-               }
-            ;
+restorestmt    : YYRESTORE
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYRESTORE;
+                  }
+               ;
 
-readstmt    : YYREAD varlist
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYREAD;
-                  $$.right = copytree(&$2);
-               }
-            ;
+readstmt       : YYREAD varlist
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYREAD;
+                     $$.right = copytree(&$2);
+                  }
+               ;
 
-printstmt   : YYPRINT exprlist
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYPRINT;
-                  $$.middle = copytree(&$2);
-               }
-            | YYPRINT
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYPRINT;
-                  $$.middle = NULL;
-               }
-            ;
+printstmt      : YYPRINT exprlist
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYPRINT;
+                     $$.middle = copytree(&$2);
+                  }
+               | YYPRINT
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYPRINT;
+                     $$.middle = NULL;
+                  }
+               ;
 
 controlstmt    : YYGOTO label
                   {
@@ -848,104 +848,104 @@ inputstmt      : YYINPUT varlist
                   }
                ;
 
-assign      : YYASSIGN
-               {
-               }
-            | '='
-               {
-               }
-            ;
-
-assignstmt  : varname assign expression
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYASSIGN;
-                  $$.left = copytree(&$1);
-                  $$.right = copytree(&$3);
-               }
-            | YYLET varname assign expression
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYASSIGN;
-                  $$.sval = $2.sval;
-                  $$.left = copytree(&$2);
-                  $$.right = copytree(&$4);
-               }
-            | arrayref assign expression
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYASSIGNARRAYREF;
-                  $$.left = copytree(&$1);
-                  $$.right = copytree(&$3);
-               }
-            | YYLET arrayref assign expression
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYASSIGNARRAYREF;
-                  $$.sval = $2.sval;
-                  $$.left = copytree(&$2);
-                  $$.right = copytree(&$4);
-               }
-            ;
-
-dconst      : YYDOUBLE
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYDOUBLE;
-                  $$.dval = atof(yytext);
-               }
-            ;
-
-vconst      : YYVOID
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYVOID;
-                  $$.ival = 0;
-               }
-            ;
-
-iconst      : YYINTEGER
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYINTEGER;
-                  $$.ival = atoll(yytext);
-               }
-            ;
-
-rconst      : YYRATIONAL
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYRATIONAL;
-                  $$.rval = new Rational(yytext);
-               }
-            ;
-
-sconst      : YYSTRING
-               {
-                  $$.line = yylineno;
-                  $$.col = yyloc.first_column;
-                  $$.op = YYSTRING;
-                  char *buffer = (char *)alloca(strlen(yytext + 1));
-                  char *q = buffer;
-                  char *s = yytext + 1;
-                  while(*s) {
-                     if (*s == '\\') {
-                        s++;
-                     }
-                     *q++ = *s++;
+assign         : YYASSIGN
+                  {
                   }
-                  q[-1] = 0;
-                  $$.sval = strdup(buffer);
-               }
-            ;
+               | '='
+                  {
+                  }
+               ;
+
+assignstmt     : varname assign expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYASSIGN;
+                     $$.left = copytree(&$1);
+                     $$.right = copytree(&$3);
+                  }
+               | YYLET varname assign expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYASSIGN;
+                     $$.sval = $2.sval;
+                     $$.left = copytree(&$2);
+                     $$.right = copytree(&$4);
+                  }
+               | arrayref assign expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYASSIGNARRAYREF;
+                     $$.left = copytree(&$1);
+                     $$.right = copytree(&$3);
+                  }
+               | YYLET arrayref assign expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYASSIGNARRAYREF;
+                     $$.sval = $2.sval;
+                     $$.left = copytree(&$2);
+                     $$.right = copytree(&$4);
+                  }
+               ;
+
+dconst         : YYDOUBLE
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDOUBLE;
+                     $$.dval = atof(yytext);
+                  }
+               ;
+
+vconst         : YYVOID
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYVOID;
+                     $$.ival = 0;
+                  }
+               ;
+
+iconst         : YYINTEGER
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYINTEGER;
+                     $$.ival = atoll(yytext);
+                  }
+               ;
+
+rconst         : YYRATIONAL
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYRATIONAL;
+                     $$.rval = new Rational(yytext);
+                  }
+               ;
+
+sconst         : YYSTRING
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYSTRING;
+                     char *buffer = (char *)alloca(strlen(yytext + 1));
+                     char *q = buffer;
+                     char *s = yytext + 1;
+                     while(*s) {
+                        if (*s == '\\') {
+                           s++;
+                        }
+                        *q++ = *s++;
+                     }
+                     q[-1] = 0;
+                     $$.sval = strdup(buffer);
+                  }
+               ;
 %%
 
 void yyerror(const char *s) {
