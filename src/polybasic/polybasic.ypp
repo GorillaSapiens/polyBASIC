@@ -72,7 +72,10 @@ Tree *programtree;
 %type <u> restorestmt
 %type <u> datastmt
 %type <u> datalist
+
 %type <u> printstmt
+%type <u> printlist
+
 %type <u> repeatstmt
 %type <u> controlstmt
 %type <u> ifstmtlist
@@ -393,19 +396,12 @@ readstmt       : YYREAD varlist
                   }
                ;
 
-printstmt      : YYPRINT exprlist
+printstmt      : YYPRINT printlist
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYPRINT;
                      $$.middle = copytree(&$2);
-                  }
-               | YYPRINT
-                  {
-                     $$.line = yylineno;
-                     $$.col = yyloc.first_column;
-                     $$.op = YYPRINT;
-                     $$.middle = NULL;
                   }
                ;
 
@@ -614,6 +610,11 @@ arraydim       : varname '(' iconst ')'
                ;
 
 varlist        : varname YYIPSEP varlist
+                  {
+                     $$ = $1;
+                     $$.middle = copytree(&$3);
+                  }
+               | arrayref YYIPSEP varlist
                   {
                      $$ = $1;
                      $$.middle = copytree(&$3);
@@ -912,6 +913,20 @@ exprlist       : expression YYIPSEP exprlist
                | expression
                   {
                      $$ = $1;
+                  }
+               ;
+
+printlist      : expression YYIPSEP printlist
+                  {
+                     $$ = $1;
+                     $$.middle = copytree(&$3);
+                  }
+               | expression
+                  {
+                     $$ = $1;
+                  }
+               | %empty
+                  {
                   }
                ;
 
