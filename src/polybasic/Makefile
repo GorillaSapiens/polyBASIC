@@ -36,10 +36,10 @@ LIBDIRS= \
 LIBS= \
    -l reflex
 
-all: polybasic errs.txt
+all: polybasic errs.utf8
 
-errs.txt: *.cpp *.ypp *.l
-	./eprintf.pl $^ | sort -u > errs.txt
+errs.utf8: *.cpp *.ypp *.l
+	./eprintf.pl $^ | sort -u > errs.utf8
 
 polybasic: polybasic.tab.hpp $(OBJECTS)
 	$(CPP) $(OBJECTS) $(LIBDIRS) $(LIBS) -o polybasic
