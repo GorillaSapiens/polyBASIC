@@ -357,6 +357,15 @@ const char *shortname(const char *arg0) {
    exit(0);
 }
 
+int contains_nonnumeric(const char *p) {
+   while (*p) {
+      if (*p < '0' || *p > '9') {
+         return 1;
+      }
+   }
+   return 0;
+}
+
 int main(int argc, char **argv) {
    int treedebug = -1;
    char *language = getenv("POLYBASICLANG");
@@ -402,8 +411,13 @@ int main(int argc, char **argv) {
             if (!argv[1]) {
                usage(arg0); // calls exit, never returns
             }
-            treedebug = atoi(argv[1]);
-            argc--; argv++;
+            if (contains_nonnumeric(argv[1])) {
+               treedebug = 0;
+            }
+            else {
+               treedebug = atoi(argv[1]);
+               argc--; argv++;
+            }
             break;
          case 'v':
             version(arg0); // calls exit, never returns
