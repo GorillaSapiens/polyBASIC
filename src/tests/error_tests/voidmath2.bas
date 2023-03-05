@@ -1,1 +1,1 @@
-a := "void" + "void"
+a = "void" + "void"

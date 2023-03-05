@@ -1,2 +1,2 @@
-10 DEF a[x] 1
-20 DEF a[x] 2
+10 DEF a(x) 1
+20 DEF a(x) 2

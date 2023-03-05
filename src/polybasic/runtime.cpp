@@ -503,6 +503,55 @@ Builtin *get_builtin(const char *name) {
 }
 
 char *get_var_array_name(Tree *p) {
+   Varbound *vb = (Varbound *) get_varbound(p->sval);
+   int count = paramcount(p->right);
+
+   if (!vb) {
+      set_bound(p->sval, p->line, count, 10, 10);
+      vb = (Varbound *) get_varbound(p->sval);
+   }
+
+   if (vb) {
+      if (vb->dimensions == 0 && count > 0) {
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {VARIABLE USED AS ARRAY} ❮%2❯ @%3%n",
+               p->line, p->col, p->sval, vb->line);
+         exit(-1);
+      }
+      if (count == 0 && vb->dimensions > 0) {
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {ARRAY USED AS VARIABLE} ❮%2❯ @%3%n",
+               p->line, p->col, p->sval, vb->line);
+         exit(-1);
+      }
+      if (count != vb->dimensions) {
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX SIZE MISMATCH} ❮%2❯ DIM%3 @%4%n",
+               p->line, p->col, p->sval, vb->dimensions, vb->line);
+         exit(-1);
+      }
+      if (vb->dimensions == 1 && (p->right->ival < option_base || p->right->ival > vb->upper1)) {
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%5) ❮%2❯(%3..%4) @%6%n",
+               p->line, p->col, p->sval, option_base, vb->upper1, p->right->ival, vb->line);
+         exit(-1);
+      }
+      if (vb->dimensions == 2 &&
+            (p->right->ival < option_base || p->right->ival > vb->upper1 ||
+             p->right->middle->ival < option_base || p->right->middle->ival > vb->upper2)) {
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%6,%7) ❮%2❯(%3..%4,%3..%5) @%8%n",
+               p->line, p->col, p->sval, option_base, vb->upper1, vb->upper2,
+               p->right->ival, p->right->middle->ival, vb->line);
+         exit(-1);
+      }
+   }
+
    if (p->right) { // an array
       int n = 0;
       char buf[4096];
@@ -719,16 +768,13 @@ GURU;
             p->line, p->col, p->sval);
          exit(-1);
       }
-      else if (p->right) { // has params, must be array
+      else { // variable or array
          char *s = get_var_array_name(p);
 
          p->valt = 's';
          p->sval = s;
          // TODO FIX // free p->right?!?!?
          p->right = NULL;
-      }
-      else { // nothing else, must be a variable.
-         // there's actually nothing to do here! =)
       }
    }
 
@@ -1303,11 +1349,10 @@ GURU;
 
 bool is_double_relation_true(Tree *left, const char *op, Tree *right) {
    switch(OP2NUM(op)) {
-      case OP2NUM("=="):
+      case OP2NUM("="):
          return left->dval == right->dval;
          break;
       case OP2NUM("<>"):
-      case OP2NUM("!="): // let's be kind to C programmers...
          return left->dval != right->dval;
          break;
       case OP2NUM(">="):
@@ -1328,11 +1373,10 @@ bool is_double_relation_true(Tree *left, const char *op, Tree *right) {
 
 bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
    switch(OP2NUM(op)) {
-      case OP2NUM("=="):
+      case OP2NUM("="):
          return left->ival == right->ival;
          break;
       case OP2NUM("<>"):
-      case OP2NUM("!="): // let's be kind to C programmers...
          return left->ival != right->ival;
          break;
       case OP2NUM(">="):
@@ -1353,11 +1397,10 @@ bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
 
 bool is_rational_relation_true(Tree *left, const char *op, Tree *right) {
    switch(OP2NUM(op)) {
-      case OP2NUM("=="):
+      case OP2NUM("="):
          return *(left->rval) == *(right->rval);
          break;
       case OP2NUM("<>"):
-      case OP2NUM("!="): // let's be kind to C programmers...
          return *(left->rval) != *(right->rval);
          break;
       case OP2NUM(">="):
@@ -1379,11 +1422,10 @@ bool is_rational_relation_true(Tree *left, const char *op, Tree *right) {
 bool is_string_relation_true(Tree *left, const char *op, Tree *right) {
    int result = strcmp(left->sval, right->sval);
    switch(OP2NUM(op)) {
-      case OP2NUM("=="):
+      case OP2NUM("="):
          return result == 0;
          break;
       case OP2NUM("<>"):
-      case OP2NUM("!="): // let's be kind to C programmers...
          return result != 0;
          break;
       case OP2NUM(">="):
@@ -1472,117 +1514,14 @@ void run(Tree *p) {
       Tree *np = p->next;
       switch (p->op) {
          case YYASSIGN:
-#if 0
-         case YYASSIGNARRAYREF:
-#endif
             {
-               char varname[1024];
-               if (p->op == YYASSIGN) {
-
-                  if (!is_bound_defined(p->left->sval)) {
-                     set_bound(p->left->sval, p->line, 0, 0, 0);
-                  }
-
-                  const Varbound *vb = get_varbound(p->left->sval);
-                  if (!vb || vb->dimensions != 0) {
-                     if (vb->dimensions == 1) {
-                        GURU;
-                        // test case vardim1
-                        eprintf("{ERROR}: @%0:%1, {VARIABLE / ARRAY DEFINITION MISMATCH} ❮%2❯ DIM%3(%4..%5) @%6%n",
-                           p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
-                     }
-                     else {
-                        GURU;
-                        // test case vardim2
-                        eprintf("{ERROR}: @%0:%1, {VARIABLE / ARRAY DEFINITION MISMATCH} ❮%2❯ DIM%3(%4..%5, %6..%7) @%8%n",
-                           p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, option_base, vb->upper2, vb->line);
-                     }
-                     exit(-1);
-                  }
-
-                  sprintf(varname, "%s", p->left->sval);
-               }
-               else {
-                  if (p->left->right) {
-                     Tree *left = evaluate(deep_copy(p->left->left));
-                     Tree *right = evaluate(deep_copy(p->left->right));
-
-                     if (!is_bound_defined(p->left->sval)) {
-                        set_bound(p->left->sval, p->line, 2, option_upper, option_upper);
-                     }
-
-                     const Varbound *vb = get_varbound(p->left->sval);
-                     if (!vb || vb->dimensions != 2) {
-                        if (vb->dimensions == 0) {
-                           GURU;
-                           // testcase vardim3
-                           eprintf("{ERROR}: @%0:%1, {VARIABLE IS NOT AN ARRAY} ❮%2❯ @%3%n",
-                                 p->line, p->col, p->sval, vb->line);
-                           exit(-1);
-                        }
-                        else {
-                           GURU;
-                           // testcase vardim4
-                           eprintf("{ERROR}: @%0:%1, {VARIABLE / ARRAY DEFINITION MISMATCH} ❮%2❯ DIM%3(%4..%5) @%6%n",
-                              p->line, p->col, p->sval, vb->dimensions, option_base, vb->upper1, vb->line);
-                           exit(-1);
-                        }
-                        exit(-1);
-                     }
-                     if (left->ival < option_base || left->ival > vb->upper1) {
-                        GURU;
-                        // test case varbounds1
-                        eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUTSIDE OF BOUNDS} ❮%2❯(%3) DIM1(%4..%5) @%6%n",
-                              p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
-                        exit(-1);
-                     }
-                     if (right->ival < option_base || right->ival > vb->upper2) {
-                        GURU;
-                        // test case varbounds2
-                        eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUTSIDE OF BOUNDS} ❮%2❯(%3) DIM2(%4..%5) @%6%n",
-                              p->line, p->col, p->sval, right->ival, option_base, vb->upper2, vb->line);
-                        exit(-1);
-                     }
-
-                     sprintf(varname, "%s(%ld,%ld)", p->left->sval, left->ival, right->ival);
-                  }
-                  else {
-                     Tree *left = evaluate(deep_copy(p->left->left));
-
-                     if (!is_bound_defined(p->left->sval)) {
-                        set_bound(p->left->sval, p->line, 1, option_upper, 0);
-                     }
-
-                     const Varbound *vb = get_varbound(p->left->sval);
-                     if (!vb || vb->dimensions != 1) {
-                        if (vb->dimensions == 0) {
-                           GURU;
-                           // test case varbounds3
-                           eprintf("{ERROR}: @%0:%1, {VARIABLE DEFINED AS NONARRAY} ❮%2❯ @%3%n",
-                                 p->line, p->col, p->sval, vb->line);
-                           exit(-1);
-                        }
-                        else {
-                           GURU;
-                           // test case varbounds4
-                           eprintf("{ERROR}: @%0:%1, {VARIABLE DEFINED AS ARRAY} ❮%2❯ DIM%3 @%4%n",
-                                 p->line, p->col, p->sval, vb->dimensions, vb->line);
-                           exit(-1);
-                        }
-                        exit(-1);
-                     }
-                     if (left->ival < option_base || left->ival > vb->upper1) {
-                        GURU;
-                        // test case varbounds
-                        eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUTSIDE OF BOUNDS} ❮%2❯(%3) DIM1(%4..%5) @%6%n",
-                              p->line, p->col, p->sval, left->ival, option_base, vb->upper1, vb->line);
-                        exit(-1);
-                     }
-                     sprintf(varname, "%s(%ld)", p->left->sval, left->ival);
-                  }
-               }
+               Tree *lvalue = evaluate(deep_copy(p->left));
                Tree *result = evaluate(deep_copy(p->right));
+
+               const char *varname = lvalue->sval;
                set_value(varname, result);
+
+               free((void *)lvalue);
                free((void *)result);
             }
             break;

@@ -1,1 +1,1 @@
-10 IF 5 == 5 GOSUB 10
+10 IF 5 = 5 GOSUB 10

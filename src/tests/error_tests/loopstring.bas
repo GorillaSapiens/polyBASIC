@@ -1,2 +1,2 @@
-for i := "here" to "there" step "lightly"
+for i = "here" to "there" step "lightly"
 next i

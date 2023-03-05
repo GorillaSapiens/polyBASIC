@@ -1,2 +1,2 @@
-fred a := 12
-fred b := 5
+fred a = 12
+fred b = 5

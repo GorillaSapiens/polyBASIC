@@ -805,6 +805,11 @@ efad           : name
                      $$ = $1;
                      $$.op = YYEFAD;
                   }
+               | name '(' ')'
+                  {
+                     $$ = $1;
+                     $$.op = YYEFAD;
+                  }
                | name '(' exprlist ')'
                   {
                      $$.line = yylineno;

@@ -1,1 +1,1 @@
-a := void
+a = void
