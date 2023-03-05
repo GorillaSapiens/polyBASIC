@@ -14,8 +14,13 @@ int remsleep = 0;
 void yyerror(const char *s);
 
 Tree *copytree(Tree *tree) {
-   Tree *ret = (Tree *)malloc(sizeof(Tree));
-   memcpy(ret, tree, sizeof(Tree));
+   Tree *ret = NULL;
+
+   if (tree) {
+      ret = (Tree *)malloc(sizeof(Tree));
+      memcpy(ret, tree, sizeof(Tree));
+   }
+
    return ret;
 }
 
@@ -406,7 +411,9 @@ printstmt      : YYPRINT printlist
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYPRINT;
-                     $$.middle = copytree(&$2);
+                     if ($2.op != YYEOF) {
+                        $$.middle = copytree(&$2);
+                     }
                   }
                ;
 

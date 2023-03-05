@@ -412,13 +412,10 @@ int main(int argc, char **argv) {
             if (!argv[1]) {
                usage(arg0); // calls exit, never returns
             }
-GURU;
             if (contains_nonnumeric(argv[1])) {
-GURU;
                treedebug = 0;
             }
             else {
-GURU;
                treedebug = atoi(argv[1]);
                argc--; argv++;
             }
