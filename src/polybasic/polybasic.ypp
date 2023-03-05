@@ -131,8 +131,9 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %token YYVOID // for testing
 
 %token YYRELATION
-%token YYASSIGNEFAD
+%token YYASSIGN
 %token YYEFAD
+%token YYLVAL
 
 %token YYIPSEP
 
@@ -863,20 +864,22 @@ assignstmt     : efad '=' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYASSIGNEFAD;
+                     $$.op = YYASSIGN;
                      $$.valt = 's';
                      $$.sval = $1.sval;
                      $$.left = copytree(&$1);
+                     $$.left->op = YYLVAL;
                      $$.right = copytree(&$3);
                   }
                | YYLET efad '=' expression
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
-                     $$.op = YYASSIGNEFAD;
+                     $$.op = YYASSIGN;
                      $$.valt = 's';
                      $$.sval = $2.sval;
                      $$.left = copytree(&$2);
+                     $$.left->op = YYLVAL;
                      $$.right = copytree(&$4);
                   }
                ;

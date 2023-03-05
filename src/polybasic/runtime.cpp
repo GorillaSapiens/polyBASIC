@@ -13,10 +13,7 @@
 #include "runtime_vars.hpp"
 #include "runtime_data.hpp"
 #include "runtime.hpp"
-
-extern const char *eop2string(int op);
-
-extern bool void_enabled;
+#include "main.hpp"
 
 static int64_t option_base = 0;
 static int64_t option_upper = 10; // default upper array bound per ECMA-55
@@ -345,19 +342,22 @@ void upgrade_to_number(Tree *p) {
       const char *s = p->sval;
       if (void_enabled && !strcasecmp(s, "void")) {
          p->op = YYVOID;
+         p->valt = 'v';
          p->ival = 0;
       }
       else if (strchr((char *)s, '#') == s) {
          p->op = YYRATIONAL;
+         p->valt = 'r';
          p->rval = new Rational(s);
       }
       else if (strchr((char *)s, '.') || strchr((char *)s, 'E')) {
          p->op = YYDOUBLE;
-         // TODO FIX does this work????
+         p->valt = 'd';
          p->dval = atof(s);
       }
       else {
          p->op = YYINTEGER;
+         p->valt = 'i';
          p->ival = atoll(s);
       }
       free((void *)s);
@@ -373,7 +373,13 @@ void upgrade_to_rational(Tree *p) {
          ival = -ival;
       }
       p->op = YYRATIONAL;
+      p->valt = 'r';
       p->rval = new Rational(sign, ival, 0, 1);
+   }
+   else if (p->op == YYDOUBLE) {
+      p->op = YYRATIONAL;
+      p->valt = 'r';
+      p->rval = new Rational(p->dval);
    }
 }
 
@@ -381,13 +387,31 @@ void upgrade_to_double(Tree *p) {
    if (p->op == YYINTEGER) {
       int64_t ival = p->ival;
       p->op = YYDOUBLE;
+      p->valt = 'd';
       p->dval = (double) ival;
    }
    else if (p->op == YYRATIONAL) {
       Rational *deleteme = p->rval;
       double dval = (double)(*(p->rval));
       p->op = YYDOUBLE;
+      p->valt = 'd';
       p->dval = dval;
+      delete deleteme;
+   }
+}
+
+void upgrade_to_integer(Tree *p) {
+   if (p->op == YYDOUBLE) {
+      p->op = YYINTEGER;
+      p->valt = 'i';
+      p->ival = (int64_t) p->dval;
+   }
+   else if (p->op == YYRATIONAL) {
+      Rational *deleteme = p->rval;
+      double dval = (double)(*(p->rval));
+      p->op = YYINTEGER;
+      p->valt = 'i';
+      p->ival = (int64_t) dval;
       delete deleteme;
    }
 }
@@ -462,6 +486,66 @@ BUILTINFUNC(TAN, 1) {
    return NULL;
 }
 
+typedef Tree *(*BFptr)(Tree *);
+typedef struct Builtin {
+   const char *name;
+   int args;
+   BFptr fptr;
+} Builtin;
+
+Builtin builtins[] = {
+#include "builtins.hpp"
+   { NULL, 0, NULL }
+};
+
+Builtin *get_builtin(const char *name) {
+   const char *translation = has_tuple(name);
+
+   if (!translation) {
+      return NULL;
+   }
+
+   for (int i = 0; builtins[i].name; i++) {
+      if (!strcmp(builtins[i].name, translation)) {
+         builtins + i;
+      }
+   }
+
+   return NULL; // shouldn't happen?  but could?
+}
+
+char *get_var_array_name(Tree *p) {
+   if (p->right) { // an array
+      int n = 0;
+      char buf[4096];
+      sprintf(buf, "%s(", p->sval);
+
+      for (Tree *tree = p->right; tree; tree = tree->middle) {
+         upgrade_to_number(tree);
+         upgrade_to_integer(tree);
+         if (tree->op != YYINTEGER) {
+            GURU;
+            // no test case
+            eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
+                  p->line, p->col, p->sval, n, eop2string(tree->op));
+            exit(-1);
+         }
+         if (tree->middle) {
+            sprintf(buf + strlen(buf), "%ld,", tree->ival);
+         }
+         else {
+            sprintf(buf + strlen(buf), "%ld)", tree->ival);
+         }
+         n++;
+      }
+
+      return strdup(buf);
+   }
+   else { // a variable
+      return strdup(p->sval);
+   }
+}
+
 Tree *evaluate(Tree *p) {
    if (p->left) {
       p->left = evaluate(p->left);
@@ -484,6 +568,96 @@ Tree *evaluate(Tree *p) {
    }
    if (p->op == YYSTRING) {
       return p;
+   }
+
+   if (p->op == YYEFAD) {
+      Builtin *builtin = get_builtin(p->sval);
+      if (builtin) { // it's a builtin function
+         int count = 0;
+         for (Tree *tree = p->right; tree; tree = tree->middle) {
+            count++;
+         }
+         if (count != builtin->args) {
+            GURU;
+            // no test case
+            eprintf("{ERROR}: @%0:%1, {INCORRECT NUMBER OF PARAMETERS} ❮%2❯ %3<>%4%n",
+               p->line, p->col, has_tuple(p->sval), count, builtin->args);
+            exit(-1);
+         }
+GURU;
+      }
+      else if (is_def_defined(p->sval)) {
+GURU;
+      }
+      else { // array or variable
+GURU;
+         char *s = get_var_array_name(p);
+         const Val *val = get_value(s);
+         if (val) {
+            // TODO FIX // free p->right?!?!?
+            p->right = NULL;
+
+            switch (val->typ) {
+               case 'd':
+                  p->op = YYDOUBLE;
+                  p->valt = 'd';
+                  p->dval = val->dval;
+                  break;
+               case 'i':
+                  p->op = YYINTEGER;
+                  p->valt = 'i';
+                  p->ival = val->ival;
+                  break;
+               case 'r':
+                  p->op = YYRATIONAL;
+                  p->valt = 'r';
+                  p->rval = new Rational(*(val->rval));
+                  break;
+               case 's':
+                  p->op = YYSTRING;
+                  p->valt = 's';
+                  p->sval = strdup(val->sval);
+                  break;
+            }
+         }
+         else {
+            GURU;
+            // no test case
+            eprintf("{ERROR}: @%0:%1, {VARIABLE OR ARRAY HAS NO VALUE} ❮%2❯%n",
+               p->line, p->col, s);
+            exit(-1);
+         }
+         free(s);
+      }
+   }
+
+   if (p->op == YYLVAL) {
+      Builtin *builtin = get_builtin(p->sval);
+      if (builtin) { // it's a builtin function
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO FUNCTION} ❮%2❯%n",
+            p->line, p->col, has_tuple(p->sval));
+         exit(-1);
+      }
+      else if (is_def_defined(p->sval)) {
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO DEFINITION} ❮%2❯%n",
+            p->line, p->col, p->sval);
+         exit(-1);
+      }
+      else if (p->right) { // has params, must be array
+         char *s = get_var_array_name(p);
+
+         p->valt = 's';
+         p->sval = s;
+         // TODO FIX // free p->right?!?!?
+         p->right = NULL;
+      }
+      else { // nothing else, must be a variable.
+         // there's actually nothing to do here! =)
+      }
    }
 
 #if 0
@@ -951,6 +1125,7 @@ Tree *evaluate(Tree *p) {
                case YYSTRING:
                   switch(p->op) {
                      case '&':
+                        p->valt = 's';
                         p->sval = (char *) malloc(strlen(p->left->sval) + strlen(p->right->sval) + 1);
                         sprintf((char *) p->sval, "%s%s", p->left->sval, p->right->sval);
                         p->op = YYSTRING;
@@ -1224,13 +1399,13 @@ void run(Tree *p) {
    while (p) {
       Tree *np = p->next;
       switch (p->op) {
-         case YYASSIGNEFAD:
+         case YYASSIGN:
 #if 0
          case YYASSIGNARRAYREF:
 #endif
             {
                char varname[1024];
-               if (p->op == YYASSIGNEFAD) {
+               if (p->op == YYASSIGN) {
 
                   if (!is_bound_defined(p->left->sval)) {
                      set_bound(p->left->sval, p->line, 0, 0, 0);

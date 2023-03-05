@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <errno.h>
 
+#include "main.hpp"
 #include "eprintf.hpp"
 #include "tree.hpp"
 #include "dumptree.hpp"
