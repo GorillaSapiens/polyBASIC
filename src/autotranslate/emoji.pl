@@ -3,32 +3,36 @@
 use utf8;
 binmode(STDOUT, ":utf8");
 
-$language = "🍆🍑🍒🍌🍓🍄🍎🥥🍉🍇";
-@alphabet = split //, "$language";
+$en_freq = "ETAINOSHRDLUCMFWYGPBVKQJXZ";
+$em_letters = "🍆🍑🍒🍌🍓🍄🍎🥥🍉🍇✨🔥🍔🍟🍕🌭🥪🌮🦍💥💫💦💨🐻🐨🐼";
+
+@en_freq = split //, $en_freq;
+@em_letters = split //, $em_letters;
+
+while ($#en_freq >= 0) {
+   $english = shift @en_freq;
+   $emoji = shift @em_letters;
+   $translate{$english} = $emoji;
+}
 
 sub toemoji($) {
    my $arg = shift @_;
-
-   my $value = 5381;
    my @chars = split //, $arg;
+   my $ret = "";
 
    foreach my $char (@chars) {
-      $value = (($value << 5) + $value) ^ ord($char);
-   }
-
-   # 1297 was chosen arbitrarily.  it's a prime number
-   # that produces tokens that do not collide in the
-   # verification step
-   $value %= 1297;
-
-   my $ret = "";
-   while ($value > 0) {
-      $ret .= $alphabet[$value % length($language)];
-      $value = int($value / length($language));
+      if (defined($translate{$char})) {
+         $ret .= $translate{$char};
+      }
+      else {
+         $ret .= $char;
+      }
    }
 
    return $ret;
 }
+
+$language = toemoji("EMOJI");
 
 open FILE, "template.utf8";
 binmode(FILE, ":utf8");
