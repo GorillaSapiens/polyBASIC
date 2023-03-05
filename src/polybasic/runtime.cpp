@@ -124,9 +124,87 @@ static void register_data(Tree *root) {
    }
 }
 
+void upgrade_to_number(Tree *p) {
+   if (p->op == YYSTRING) {
+      const char *s = p->sval;
+      if (void_enabled && !strcasecmp(s, "void")) {
+         p->op = YYVOID;
+         p->valt = 'v';
+         p->ival = 0;
+      }
+      else if (strchr((char *)s, '#') == s) {
+         p->op = YYRATIONAL;
+         p->valt = 'r';
+         p->rval = new Rational(s);
+      }
+      else if (strchr((char *)s, '.') || strchr((char *)s, 'E')) {
+         p->op = YYDOUBLE;
+         p->valt = 'd';
+         p->dval = atof(s);
+      }
+      else {
+         p->op = YYINTEGER;
+         p->valt = 'i';
+         p->ival = atoll(s);
+      }
+      free((void *)s);
+   }
+}
+
+void upgrade_to_rational(Tree *p) {
+   if (p->op == YYINTEGER) {
+      int64_t ival = p->ival;
+      int8_t sign = 1;
+      if (ival < 0) {
+         sign = -1;
+         ival = -ival;
+      }
+      p->op = YYRATIONAL;
+      p->valt = 'r';
+      p->rval = new Rational(sign, ival, 0, 1);
+   }
+   else if (p->op == YYDOUBLE) {
+      p->op = YYRATIONAL;
+      p->valt = 'r';
+      p->rval = new Rational(p->dval);
+   }
+}
+
+void upgrade_to_double(Tree *p) {
+   if (p->op == YYINTEGER) {
+      int64_t ival = p->ival;
+      p->op = YYDOUBLE;
+      p->valt = 'd';
+      p->dval = (double) ival;
+   }
+   else if (p->op == YYRATIONAL) {
+      Rational *deleteme = p->rval;
+      double dval = (double)(*(p->rval));
+      p->op = YYDOUBLE;
+      p->valt = 'd';
+      p->dval = dval;
+      delete deleteme;
+   }
+}
+
+void upgrade_to_integer(Tree *p) {
+   if (p->op == YYDOUBLE) {
+      p->op = YYINTEGER;
+      p->valt = 'i';
+      p->ival = (int64_t) p->dval;
+   }
+   else if (p->op == YYRATIONAL) {
+      Rational *deleteme = p->rval;
+      double dval = (double)(*(p->rval));
+      p->op = YYINTEGER;
+      p->valt = 'i';
+      p->ival = (int64_t) dval;
+      delete deleteme;
+   }
+}
+
 // fwd decls
 Tree *evaluate(Tree *p);
-void upgrade_to_number(Tree *p);
 Tree *deep_copy(Tree *subtree, Tree *params = NULL, Tree *values = NULL);
 
 int paramcount(Tree *tree) {
@@ -335,85 +413,6 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    copy->next = NULL;
 
    return copy;
-}
-
-void upgrade_to_number(Tree *p) {
-   if (p->op == YYSTRING) {
-      const char *s = p->sval;
-      if (void_enabled && !strcasecmp(s, "void")) {
-         p->op = YYVOID;
-         p->valt = 'v';
-         p->ival = 0;
-      }
-      else if (strchr((char *)s, '#') == s) {
-         p->op = YYRATIONAL;
-         p->valt = 'r';
-         p->rval = new Rational(s);
-      }
-      else if (strchr((char *)s, '.') || strchr((char *)s, 'E')) {
-         p->op = YYDOUBLE;
-         p->valt = 'd';
-         p->dval = atof(s);
-      }
-      else {
-         p->op = YYINTEGER;
-         p->valt = 'i';
-         p->ival = atoll(s);
-      }
-      free((void *)s);
-   }
-}
-
-void upgrade_to_rational(Tree *p) {
-   if (p->op == YYINTEGER) {
-      int64_t ival = p->ival;
-      int8_t sign = 1;
-      if (ival < 0) {
-         sign = -1;
-         ival = -ival;
-      }
-      p->op = YYRATIONAL;
-      p->valt = 'r';
-      p->rval = new Rational(sign, ival, 0, 1);
-   }
-   else if (p->op == YYDOUBLE) {
-      p->op = YYRATIONAL;
-      p->valt = 'r';
-      p->rval = new Rational(p->dval);
-   }
-}
-
-void upgrade_to_double(Tree *p) {
-   if (p->op == YYINTEGER) {
-      int64_t ival = p->ival;
-      p->op = YYDOUBLE;
-      p->valt = 'd';
-      p->dval = (double) ival;
-   }
-   else if (p->op == YYRATIONAL) {
-      Rational *deleteme = p->rval;
-      double dval = (double)(*(p->rval));
-      p->op = YYDOUBLE;
-      p->valt = 'd';
-      p->dval = dval;
-      delete deleteme;
-   }
-}
-
-void upgrade_to_integer(Tree *p) {
-   if (p->op == YYDOUBLE) {
-      p->op = YYINTEGER;
-      p->valt = 'i';
-      p->ival = (int64_t) p->dval;
-   }
-   else if (p->op == YYRATIONAL) {
-      Rational *deleteme = p->rval;
-      double dval = (double)(*(p->rval));
-      p->op = YYINTEGER;
-      p->valt = 'i';
-      p->ival = (int64_t) dval;
-      delete deleteme;
-   }
 }
 
 #define BUILTINFUNC(name, args) Tree *builtin_ ## name(Tree *p)
