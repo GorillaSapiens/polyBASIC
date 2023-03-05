@@ -68,6 +68,9 @@ DOUBLE      {D_ZERO}|({D_NONZERO}{D_FRAC}?{D_EXP}?)|([.]{D_FRAC}{D_EXP}?)
 /* ECMA-116 uses & for string concatenation */
 SINGLE [=<>:&-+*/^()]
 
+/* multi character comparison operators */
+RELATION (<>)|(>=)|(<=)
+
 IPSEP [,;]
 
 /* any valid multicharacter thing */
@@ -109,6 +112,11 @@ EOL      [\r\n]{1,2}
 {DOUBLE}    {
                flexdebug(yytext, (int) YYDOUBLE, yylineno, yylloc.first_column);
                return YYDOUBLE;
+            }
+
+{RELATION}  {
+               flexdebug(yytext, (int) YYRELATION, yylineno, yylloc.first_column);
+               return YYRELATION;
             }
 
 {SINGLE}    {

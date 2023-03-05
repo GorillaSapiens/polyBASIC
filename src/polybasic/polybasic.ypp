@@ -499,13 +499,29 @@ relation       : YYRELATION
                      $$.valt = 's';
                      $$.sval = strdup(yytext);
                   }
+               | '<'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYRELATION;
+                     $$.valt = 's';
+                     $$.sval = strdup("<");
+                  }
+               | '>'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYRELATION;
+                     $$.valt = 's';
+                     $$.sval = strdup(">");
+                  }
                | '='
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRELATION;
                      $$.valt = 's';
-                     $$.sval = strdup("==");
+                     $$.sval = strdup("=");
                   }
                ;
 
