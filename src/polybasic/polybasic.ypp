@@ -924,7 +924,6 @@ exprlist       : expression YYIPSEP exprlist
 printlist      : expression YYIPSEP printlist
                   {
                      $$ = $1;
-printf("################################## %d %d\n", $3.op, YYEOF);
                      if ($3.op == YYEOF) {
                         $$.middle = NULL;
                      }
@@ -1051,7 +1050,6 @@ sconst         : YYSTRING
 %%
 
 void fixup_nested_if(Tree *t, Tree *n) {
-printf("FIXUP %p %p\n", t, n);
    while (t) {
       if (t->op == YYIFSTMTLIST) {
          fixup_nested_if(t->middle, t->next ? t->next : n);
