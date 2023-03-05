@@ -48,7 +48,12 @@ const char *eop2string(int op) {
          for (Tuple *t = tuple_head; t; t = t->next) {
             if (!strcmp(t->english, reserved[i].name) ||
                 !strcmp(t->translation, reserved[i].name)) {
-               sprintf(buffer, "%s/%s", t->english, t->translation);
+               if (!strcmp(t->english, t->translation)) {
+                  sprintf(buffer, "%s", t->english);
+               }
+               else {
+                  sprintf(buffer, "%s/%s", t->english, t->translation);
+               }
                return strdup(buffer);
             }
          }

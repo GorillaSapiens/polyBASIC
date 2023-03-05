@@ -690,6 +690,28 @@ Tree *evaluate(Tree *p) {
       memcpy(p, p->left, sizeof(Tree));
       free(freeme);
    }
+   else if (p->op == YYTAB) {
+      Tree *freeme = p->left;
+      if (p->left->op == YYSTRING) {
+         upgrade_to_number(p->left);
+      }
+      if (p->left->op == YYDOUBLE) {
+         p->left->op = YYINTEGER;
+         p->left->ival = (int64_t) p->left->dval;
+      }
+      else if (p->left->op == YYRATIONAL) {
+         Rational *deleteme = p->left->rval;
+         p->left->op = YYINTEGER;
+         p->left->ival = (int64_t) ((double)*(p->left->rval));
+         delete deleteme;
+      }
+      char buffer[128];
+      sprintf(buffer, "\x1b[;%ldH", p->left->ival);
+      p->left->op = YYSTRING;
+      p->left->sval = strdup(buffer);
+      memcpy(p, p->left, sizeof(Tree));
+      free(freeme);
+   }
    else if (p->op == YYTAN) {
       Tree *freeme = p->left;
       if (p->left->op == YYSTRING) {
@@ -1271,7 +1293,7 @@ void run(Tree *p) {
                      default:
                         GURU;
                         // test case voidprint
-                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED OP IN PRINT} ❮%2%❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED OP IN PRINT} ❮%2❯%n",
                            p->line, p->col, eop2string(mid->op));
                         exit(-1);
                         break;

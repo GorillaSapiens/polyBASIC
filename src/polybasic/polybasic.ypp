@@ -133,6 +133,7 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 /* function names, not many, so make 'em tokens */
 %token YYABS
 %token YYATN
+%token YYCHR
 %token YYCOS
 %token YYDBL
 %token YYEXP
@@ -144,6 +145,7 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %token YYSIN
 %token YYSQR
 %token YYSTR
+%token YYTAB
 %token YYTAN
 /* and other stuff */
 
@@ -813,6 +815,13 @@ expression     : '+' expression %prec UPLUSMINUS
                      $$.op = YYATN;
                      $$.left = copytree(&$3);
                   }
+               | YYCHR '(' expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYCHR;
+                     $$.left = copytree(&$3);
+                  }
                | YYCOS '(' expression ')'
                   {
                      $$.line = yylineno;
@@ -860,6 +869,13 @@ expression     : '+' expression %prec UPLUSMINUS
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYSQR;
+                     $$.left = copytree(&$3);
+                  }
+               | YYTAB '(' expression ')'
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYTAB;
                      $$.left = copytree(&$3);
                   }
                | YYTAN '(' expression ')'
