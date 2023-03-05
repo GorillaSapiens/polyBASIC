@@ -203,10 +203,6 @@ void upgrade_to_integer(Tree *p) {
    }
 }
 
-// fwd decls
-Tree *evaluate(Tree *p);
-Tree *deep_copy(Tree *subtree, Tree *params = NULL, Tree *values = NULL);
-
 int paramcount(Tree *tree) {
    int ret = 0;
    while (tree != NULL) {
@@ -216,6 +212,7 @@ int paramcount(Tree *tree) {
    return ret;
 }
 
+#if 0
 Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    Tree *def = get_def(defcall->sval);
    if (!def) {
@@ -255,26 +252,18 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    if (defcall->middle) { ret->middle = deep_copy(defcall->middle); }
    return ret;
 }
+#endif
 
 // make a deep copy
-Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
+Tree *deep_copy(Tree *subtree) {
    Tree *copy = (Tree *) malloc(sizeof(Tree));
    memcpy(copy, subtree, sizeof(Tree));
 
-#if 0
-   if (subtree->op == YYDEFCALL) {
-      return deep_copy_defcall(subtree, params, values);
-   }
-#endif
+   // don't copy labels, we'd just have to free them later
 
-// don't copy labels, we'd just have to free them later
-//   if (subtree->label) {
-//      copy->label = strdup(subtree->label);
-//   }
-
-   if (subtree->left) { copy->left = deep_copy(subtree->left, params, values); }
-   if (subtree->middle) { copy->middle = deep_copy(subtree->middle, params, values); }
-   if (subtree->right) { copy->right = deep_copy(subtree->right, params, values); }
+   if (subtree->left) { copy->left = deep_copy(subtree->left); }
+   if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
+   if (subtree->right) { copy->right = deep_copy(subtree->right); }
 
    if (copy->valt == 's') {
       copy->sval = strdup(subtree->sval);
@@ -282,6 +271,11 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    else if (copy->valt == 'r') {
       copy->rval = new Rational(*(subtree->rval));
    }
+
+   copy->next = NULL;
+
+   return copy;
+}
 
 #if 0
    else if (copy->op == YYARRAYREF) {
@@ -409,11 +403,6 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
       }
    }
 #endif
-
-   copy->next = NULL;
-
-   return copy;
-}
 
 #define BUILTINFUNC(name, args) Tree *builtin_ ## name(Tree *p)
 
@@ -545,15 +534,28 @@ char *get_var_array_name(Tree *p) {
    }
 }
 
-Tree *evaluate(Tree *p) {
+Tree *get_param(const char *s, Tree *params, Tree *vals) {
+   while (params && vals) {
+      if (!strcmp(s, params->sval)) {
+         return vals;
+      }
+      params = params->middle;
+      vals = vals->middle;
+   }
+   return NULL;
+}
+
+Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
+   Tree *tmp;
+
    if (p->left) {
-      p->left = evaluate(p->left);
+      p->left = evaluate(p->left, params, vals);
    }
    if (p->middle) {
-      p->middle = evaluate(p->middle);
+      p->middle = evaluate(p->middle, params, vals);
    }
    if (p->right) {
-      p->right = evaluate(p->right);
+      p->right = evaluate(p->right, params, vals);
    }
 
    if (p->op == YYDOUBLE) {
@@ -587,6 +589,76 @@ GURU;
       }
       else if (is_def_defined(p->sval)) {
 GURU;
+         Tree *deftree = get_def(p->sval);
+
+         int defcount = paramcount(deftree->left);
+         int callcount = paramcount(p->right);
+
+         if (defcount != callcount) {
+            GURU;
+            // test case param_mismatch1 param_mismatch2
+            eprintf("{ERROR}: @%0:%1, {FUNCTION DEFINITION PARAMETER MISMATCH} ❮%2❯ %3<>%4%n",
+               p->line, p->col, p->sval, defcount, callcount);
+            exit(-1);
+         }
+
+         Tree *expression = deep_copy(deftree->right);
+         Tree *val = evaluate(expression, deftree->left, p->right);
+         // TODO FIX do we need to free anything up???
+         p->op = val->op;
+         p->valt = val->valt;
+         switch (val->op) {
+            case YYDOUBLE:
+               p->dval = val->dval;
+               break;
+            case YYINTEGER:
+               p->ival = val->ival;
+               break;
+            case YYRATIONAL:
+               p->rval = new Rational(*(val->rval));
+               break;
+            case YYSTRING:
+               p->sval = strdup(val->sval);
+               break;
+            default:
+               GURU;
+               // no test case
+               eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❮%2❯%n",
+                  p->line, p->col, eop2string(val->op));
+               exit(-1);
+               break;
+         }
+         // TODO FIX: do we need to null or free p->left or p->right???
+      }
+      else if (params && (tmp = /*assignment */ get_param(p->sval, params, vals))) {
+         // parameter substitution from a defcall
+GURU;
+         Tree *val = tmp;
+         // TODO FIX do we need to free anything up???
+         p->op = val->op;
+         p->valt = val->valt;
+         switch (val->op) {
+            case YYDOUBLE:
+               p->dval = val->dval;
+               break;
+            case YYINTEGER:
+               p->ival = val->ival;
+               break;
+            case YYRATIONAL:
+               p->rval = new Rational(*(val->rval));
+               break;
+            case YYSTRING:
+               p->sval = strdup(val->sval);
+               break;
+            default:
+               GURU;
+               // no test case
+               eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❮%2❯%n",
+                  p->line, p->col, eop2string(val->op));
+               exit(-1);
+               break;
+         }
+         // TODO FIX: do we need to null or free p->left or p->right???
       }
       else { // array or variable
          char *s = get_var_array_name(p);

@@ -51,6 +51,7 @@ static void dumpthing(Tree *root, bool andnext) {
 
    if (opname) {
       printf("%p :: line %d col %d, op=%s(%d)\n", root, root->line, root->col, opname ? opname : "<nil>", root->op);
+      printf("   valt :'%c'\n", root->valt ? root->valt : '?');
       if (reserved[index].valprint) {
          dumpval(root, reserved[index].valprint);
       }
