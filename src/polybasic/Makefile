@@ -59,10 +59,6 @@ flexdebug.o: mapping.hpp
 
 utf8casecmp.o: lowercase.hpp
 
-.PHONY: todo
-todo:
-	./missing.pl | grep yes
-
 lowercase.hpp: lowercase.pl UnicodeData.txt SpecialCasing.txt
 	./lowercase.pl > lowercase.hpp
 
