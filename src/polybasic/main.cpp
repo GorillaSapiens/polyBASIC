@@ -289,7 +289,7 @@ void load_translations(const char *language) {
    }
    else {
       GURU;
-      eprintf("{ERROR}: {UNABLE TO OPEN TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
+      eprintf("{ERROR}: {UNABLE TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
       eprintf("{PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE} 'POLYBASICPATH'%n");
       exit(-1);
    }
@@ -316,7 +316,7 @@ void load_errors(const char *language) {
    }
    else {
       GURU;
-      eprintf("{ERROR}: {UNABLE TO OPEN TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
+      eprintf("{ERROR}: {UNABLE TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
       eprintf("{PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE} 'POLYBASICPATH'%n");
       exit(-1);
    }

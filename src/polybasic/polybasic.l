@@ -7,6 +7,7 @@
 
 #include "tree.hpp"
 #include "flexdebug.hpp"
+#include "main.hpp"
 
 #undef YY_USER_ACTION
 #define YY_USER_ACTION                                       \
@@ -90,6 +91,11 @@ EOL      [\r\n]{1,2}
                enum yytokentype ret =
                   is_reserved_word(yytext);
                ret = ret ? ret : YYNAME;
+
+               if (void_enabled && !strcasecmp(yytext, "void")) {
+                  ret = YYVOID;
+               }
+
                flexdebug(yytext, (int) ret, yylineno, yylloc.first_column);
                return ret;
             }
