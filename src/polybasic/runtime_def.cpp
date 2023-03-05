@@ -48,6 +48,7 @@ Tree *get_def(const char *p) {
    return NULL;
 }
 
+#if 0
 // lots of helper functions to detect cycles
 
 static int paths_yet = 0;
@@ -129,8 +130,10 @@ int Path::add(int id) {
    treedive(defs[id]);
    return 0; // no cycle
 }
+#endif
 
 void def_check_cycle(void) {
+#if 0
    paths_yet = 0;
    for (int i = 0; i < HASH_SIZE; i++) {
       if (defs[i]) {
@@ -141,4 +144,5 @@ void def_check_cycle(void) {
    if (paths_yet) {
       exit(-1);
    }
+#endif
 }

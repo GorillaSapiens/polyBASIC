@@ -64,19 +64,14 @@ DOUBLE      {D_ZERO}|({D_NONZERO}{D_FRAC}?{D_EXP}?)|([.]{D_FRAC}{D_EXP}?)
 /* this gets a little odd, because we've had to eliminate the notion */
 /* of an "unquoted string" to allow, well, everything unicode */
 
-/* relations given by ECMA-55 §12.2, modified */
-RELATION (==|!=|<>|<|>|>=|<=)
-
-ASSIGN ":="
-
 /* any single character passed straight up to bison */
 /* ECMA-116 uses & for string concatenation */
-SINGLE [:&-+*/^()]
+SINGLE [=<>:&-+*/^()]
 
 IPSEP [,;]
 
 /* any valid multicharacter thing */
-VARNAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*[\$]?
+NAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*[\$]?
 
 // unused
 // /* any single character appearing by iteslf */
@@ -88,10 +83,9 @@ EOL      [\r\n]{1,2}
 
 {WHITESPACE} { /* ignore */ }
 
-{VARNAME}   {
-               enum yytokentype ret = is_reserved_varname('\0', yytext, YYVARNAME);
-               flexdebug(yytext, (int) ret, yylineno, yylloc.first_column);
-               return ret;
+{NAME}      {
+               flexdebug(yytext, (int) YYNAME, yylineno, yylloc.first_column);
+               return YYNAME;
             }
 
 {RATIONAL}  {
@@ -112,16 +106,6 @@ EOL      [\r\n]{1,2}
 {DOUBLE}    {
                flexdebug(yytext, (int) YYDOUBLE, yylineno, yylloc.first_column);
                return YYDOUBLE;
-            }
-
-{ASSIGN}    {
-               flexdebug(yytext, (int) YYASSIGN, yylineno, yylloc.first_column);
-               return YYASSIGN;
-            }
-
-{RELATION}  {
-               flexdebug(yytext, (int) YYRELATION, yylineno, yylloc.first_column);
-               return YYRELATION;
             }
 
 {SINGLE}    {

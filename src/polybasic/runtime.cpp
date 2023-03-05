@@ -186,9 +186,11 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    Tree *copy = (Tree *) malloc(sizeof(Tree));
    memcpy(copy, subtree, sizeof(Tree));
 
+#if 0
    if (subtree->op == YYDEFCALL) {
       return deep_copy_defcall(subtree, params, values);
    }
+#endif
 
 // don't copy labels, we'd just have to free them later
 //   if (subtree->label) {
@@ -205,6 +207,10 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    else if (copy->op == YYRATIONAL) {
       copy->rval = new Rational(*(subtree->rval));
    }
+   else if (copy->op == YYEFAD) {
+#warning "TODO FIX evaluate EFAD"
+   }
+#if 0
    else if (copy->op == YYARRAYREF) {
       if (copy->left) {
          copy->left = evaluate(copy->left);
@@ -245,7 +251,9 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
          }
       }
    }
+#endif
 
+#if 0
    if (copy->op == YYVARNAME || copy->op == YYARRAYREF) {
       char varname[1024];
       if (copy->op == YYVARNAME) {
@@ -327,6 +335,7 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
          }
       }
    }
+#endif
 
    copy->next = NULL;
 
@@ -385,6 +394,68 @@ void upgrade_to_double(Tree *p) {
    }
 }
 
+#define BUILTINFUNC(name, args) Tree *builtin_ ## name(Tree *p)
+
+BUILTINFUNC(ABS, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(ATN, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(COS, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(DBL, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(EXP, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(INT, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(RAT, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(STR, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(LOG, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(RND, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(RANDOMIZE, 0) {
+   return NULL;
+}
+
+BUILTINFUNC(SGN, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(SIN, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(SQR, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(TAN, 1) {
+   return NULL;
+}
+
 Tree *evaluate(Tree *p) {
    if (p->left) {
       p->left = evaluate(p->left);
@@ -409,6 +480,7 @@ Tree *evaluate(Tree *p) {
       return p;
    }
 
+#if 0
    if (p->op == YYABS) {
       Tree *freeme = p->left;
       if (p->left->op == YYSTRING) {
@@ -733,7 +805,9 @@ Tree *evaluate(Tree *p) {
       memcpy(p, p->left, sizeof(Tree));
       free(freeme);
    }
-   else if (strchr("+-*/^&", p->op)) {
+   else
+#endif
+   if (strchr("+-*/^&", p->op)) {
       if (p->left && p->right ) {
          if ((p->left->op != p->right->op) ||
                (p->left->op == YYSTRING && p->op != '&')) {
@@ -1144,11 +1218,13 @@ void run(Tree *p) {
    while (p) {
       Tree *np = p->next;
       switch (p->op) {
-         case YYASSIGN:
+         case YYASSIGNEFAD:
+#if 0
          case YYASSIGNARRAYREF:
+#endif
             {
                char varname[1024];
-               if (p->op == YYASSIGN) {
+               if (p->op == YYASSIGNEFAD) {
 
                   if (!is_bound_defined(p->left->sval)) {
                      set_bound(p->left->sval, p->line, 0, 0, 0);
