@@ -1,5 +1,7 @@
 #include "hash.hpp"
 
+// DJBX33A (Daniel J. Bernstein, Times 33 with Addition)
+
 unsigned long hash(const char *sstr) {
    const unsigned char *str = (const unsigned char *)sstr;
    unsigned long hash = 5381;
