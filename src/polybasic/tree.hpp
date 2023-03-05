@@ -11,12 +11,12 @@ typedef struct Tree {
    int op;
    const char *label;
 
+   char valt;
    union {
       double dval;
       int64_t ival;
       Rational *rval;
       const char *sval;
-      char cval;
    };
 
    struct Tree *left;

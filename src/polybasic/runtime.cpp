@@ -181,7 +181,7 @@ Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
    return ret;
 }
 
-// make a deep copy, substituting variables along the way
+// make a deep copy
 Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    Tree *copy = (Tree *) malloc(sizeof(Tree));
    memcpy(copy, subtree, sizeof(Tree));
@@ -201,15 +201,13 @@ Tree *deep_copy(Tree *subtree, Tree *params, Tree *values) {
    if (subtree->middle) { copy->middle = deep_copy(subtree->middle, params, values); }
    if (subtree->right) { copy->right = deep_copy(subtree->right, params, values); }
 
-   if (copy->op == YYSTRING) {
+   if (copy->valt == 's') {
       copy->sval = strdup(subtree->sval);
    }
-   else if (copy->op == YYRATIONAL) {
+   else if (copy->valt == 'r') {
       copy->rval = new Rational(*(subtree->rval));
    }
-   else if (copy->op == YYEFAD) {
-#warning "TODO FIX evaluate EFAD"
-   }
+
 #if 0
    else if (copy->op == YYARRAYREF) {
       if (copy->left) {

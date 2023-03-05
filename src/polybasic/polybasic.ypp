@@ -286,6 +286,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                      $$.line = yylineno;
                      $$.col = $2.col;
                      $$.op = YYDEF;
+                     $$.valt = 's';
                      $$.sval = strdup($2.sval);
                      $$.left = copytree(&$4);
                      $$.right = copytree(&$6);
@@ -295,6 +296,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYDEF;
+                     $$.valt = 's';
                      $$.sval = strdup($2.sval);
                      $$.left = NULL;
                      $$.right = copytree(&$5);
@@ -321,6 +323,7 @@ optionbase     : YYOPTION YYBASE iconst
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYBASE;
+                     $$.valt = 'i';
                      $$.ival = $3.ival;
                   }
                ;
@@ -391,6 +394,7 @@ ifstmtlist     : YYIF expression relation expression YYTHEN stmtlist
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYIFSTMTLIST;
+                     $$.valt = 's';
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.middle = copytree(&$6);
@@ -403,6 +407,7 @@ controlstmt    : YYGOTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOTO;
+                     $$.valt = 's';
                      $$.sval = strdup($2.sval);
                   }
                | YYGOSUB label
@@ -410,6 +415,7 @@ controlstmt    : YYGOTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYGOSUB;
+                     $$.valt = 's';
                      $$.sval = strdup($2.sval);
                   }
                | YYIF expression relation expression YYTHEN label
@@ -417,6 +423,7 @@ controlstmt    : YYGOTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYIFGOTO;
+                     $$.valt = 's';
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.middle = copytree(&$6);
@@ -427,6 +434,7 @@ controlstmt    : YYGOTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYIFGOTO;
+                     $$.valt = 's';
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.middle = copytree(&$6);
@@ -437,6 +445,7 @@ controlstmt    : YYGOTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYIFGOSUB;
+                     $$.valt = 's';
                      $$.sval = strdup($3.sval);
                      $$.left = copytree(&$2);
                      $$.middle = copytree(&$6);
@@ -447,6 +456,7 @@ controlstmt    : YYGOTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYON;
+                     $$.valt = 'i';
                      $$.ival = 0;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
@@ -456,6 +466,7 @@ controlstmt    : YYGOTO label
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYON;
+                     $$.valt = 'i';
                      $$.ival = 1;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
@@ -485,6 +496,7 @@ relation       : YYRELATION
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRELATION;
+                     $$.valt = 's';
                      $$.sval = strdup(yytext);
                   }
                | '='
@@ -492,6 +504,7 @@ relation       : YYRELATION
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRELATION;
+                     $$.valt = 's';
                      $$.sval = strdup("==");
                   }
                ;
@@ -501,6 +514,7 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYFOR;
+                     $$.valt = 's';
                      $$.sval = strdup($2.sval);
                      $$.left = copytree(&$4);
                      $$.right = copytree(&$6);
@@ -511,6 +525,7 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYFOR;
+                     $$.valt = 's';
                      $$.sval = strdup($2.sval);
                      $$.left = copytree(&$4);
                      $$.right = copytree(&$6);
@@ -521,6 +536,7 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYNEXT;
+                     $$.valt = 's';
                      $$.sval = strdup($2.sval);
                   }
                ;
@@ -530,6 +546,7 @@ label          : name
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYLABEL;
+                     $$.valt = 's';
                      $$.sval = strdup($1.sval);
                   }
                | YYINTEGER
@@ -537,6 +554,7 @@ label          : name
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYLABEL;
+                     $$.valt = 's';
                      $$.sval = strdup(yytext);
                   }
                ;
@@ -557,6 +575,7 @@ name           : YYNAME
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYNAME;
+                     $$.valt = 's';
                      $$.sval = strdup(yytext);
                   }
                ;
@@ -566,6 +585,7 @@ arraydim       : name '(' iconst ')'
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYDIM;
+                     $$.valt = 's';
                      $$.sval = strdup($1.sval);
                      $$.left = copytree(&$3);
                      $$.right = NULL;
@@ -575,6 +595,7 @@ arraydim       : name '(' iconst ')'
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYDIM;
+                     $$.valt = 's';
                      $$.sval = strdup($1.sval);
                      $$.left = copytree(&$3);
                      $$.right = copytree(&$5);
@@ -606,17 +627,20 @@ constant       : dconst
 negconstant    : '-' dconst
                   {
                      $$ = $2;
+                     $$.valt = 'd';
                      $$.dval = - $$.dval;
                   }
                | '-' iconst
                   {
                      $$ = $2;
+                     $$.valt = 'i';
                      $$.ival = - $$.ival;
                   }
                | '-' rconst
                   {
                      $$ = $2;
                      Rational *deleteme = $$.rval;
+                     $$.valt = 'r';
                      $$.rval = new Rational(- *($$.rval));
                      delete deleteme;
                   }
@@ -742,14 +766,16 @@ expression     : '+' expression %prec UPLUSMINUS
 efad           : name
                   {
                      $$ = $1;
+                     $$.op = YYEFAD;
                   }
                | name '(' exprlist ')'
                   {
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYEFAD;
+                     $$.valt = 's';
                      $$.sval = strdup($1.sval);
-                     $$.left = copytree(&$1);
+                     // unnecessary // $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
                   }
                ;
@@ -802,6 +828,7 @@ assignstmt     : efad '=' expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYASSIGNEFAD;
+                     $$.valt = 's';
                      $$.sval = $1.sval;
                      $$.left = copytree(&$1);
                      $$.right = copytree(&$3);
@@ -811,6 +838,7 @@ assignstmt     : efad '=' expression
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYASSIGNEFAD;
+                     $$.valt = 's';
                      $$.sval = $2.sval;
                      $$.left = copytree(&$2);
                      $$.right = copytree(&$4);
@@ -822,6 +850,7 @@ dconst         : YYDOUBLE
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYDOUBLE;
+                     $$.valt = 'd';
                      $$.dval = atof(yytext);
                   }
                ;
@@ -831,6 +860,7 @@ vconst         : YYVOID
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYVOID;
+                     $$.valt = 'v';
                      $$.ival = 0;
                   }
                ;
@@ -840,6 +870,7 @@ iconst         : YYINTEGER
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYINTEGER;
+                     $$.valt = 'i';
                      $$.ival = atoll(yytext);
                   }
                ;
@@ -849,6 +880,7 @@ rconst         : YYRATIONAL
                      $$.line = yylineno;
                      $$.col = yyloc.first_column;
                      $$.op = YYRATIONAL;
+                     $$.valt = 'r';
                      $$.rval = new Rational(yytext);
                   }
                ;
@@ -868,6 +900,7 @@ sconst         : YYSTRING
                         *q++ = *s++;
                      }
                      q[-1] = 0;
+                     $$.valt = 's';
                      $$.sval = strdup(buffer);
                   }
                ;
