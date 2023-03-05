@@ -590,12 +590,13 @@ GURU;
 GURU;
       }
       else { // array or variable
-GURU;
          char *s = get_var_array_name(p);
          const Val *val = get_value(s);
          if (val) {
-            // TODO FIX // free p->right?!?!?
-            p->right = NULL;
+            if (p->right) {
+               // TODO FIX // free p->right?!?!?
+               p->right = NULL;
+            }
 
             switch (val->typ) {
                case 'd':
