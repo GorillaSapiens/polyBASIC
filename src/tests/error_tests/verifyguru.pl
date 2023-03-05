@@ -22,9 +22,11 @@ foreach $file (`ls *guru.txt`) {
                @out = `$cmd`;
                foreach my $out (@out) {
                   $out =~ s/^[ ]+//g;
+                  $out =~ s/[\x0a\x0d]//g;
                }
                $actual = pop @out;
-               print $actual;
+               print "$actual\n";
+               print "$stub\n";
                if ($actual =~ / $stub / || $actual =~ / $stub$/) {
                   print "MATCH\n";
                }

@@ -463,6 +463,16 @@ controlstmt    : YYGOTO label
                      $$.middle = copytree(&$6);
                      $$.right = copytree(&$4);
                   }
+               | YYIF expression relation expression YYGOSUB label
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYIFGOSUB;
+                     $$.sval = strdup($3.sval);
+                     $$.left = copytree(&$2);
+                     $$.middle = copytree(&$6);
+                     $$.right = copytree(&$4);
+                  }
                | YYON expression YYGOTO labellist
                   {
                      $$.line = yylineno;
