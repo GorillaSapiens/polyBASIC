@@ -32,78 +32,81 @@
 
 # from ECMA-55 §5.2
 
-END <= UKUGCINA               # the end statement
+END <= UKUGCINA                  # the end statement
 
 # from ECMA-55 §9
 
-ABS <= VALEKE                 # the absolute value function
-ATN <= AT                     # the trigonomic arctangent function
-COS <= ICONSI                 # the trigonomic cosine function
-EXP <= EKHOKHA                # the exponential / power function
-INT <= INT                    # the integer / floor function
-LOG <= UGODO                  # the natural log function
-RND <= RND                    # generate random number
-SGN <= ISGN                   # determine the sign
-SIN <= ONA                    # the trigonomic sine function
-SQR <= ISQR                   # the square root function
-TAN <= UMBALAONSUNDU          # the trigonomic tangent function
-DBL <= DLB                    # convert to double
-STR <= NTRLD                  # convert to string
-RAT <= IGUNDANE               # convert to rational
+ABS <= VALEKE                    # the absolute value function
+ATN <= AT                        # the trigonomic arctangent function
+COS <= ICONSI                    # the trigonomic cosine function
+EXP <= EKHOKHA                   # the exponential / power function
+INT <= INT                       # the integer / floor function
+LOG <= UGODO                     # the natural log function
+RND <= RND                       # generate random number
+SGN <= ISGN                      # determine the sign
+SIN <= ONA                       # the trigonomic sine function
+SQR <= ISQR                      # the square root function
+TAN <= UMBALAONSUNDU             # the trigonomic tangent function
+DBL <= DLB                       # convert to double
+STR <= NTRLD                     # convert to string
+RAT <= IGUNDANE                  # convert to rational
+
+TAB <= ITHEBHUKAFUSHANE          # C-64ism
+CHR <= CHR                       # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= UKUKHANISA             # for user defined functions
+DEF <= UKUKHANISA                # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= VUMELA                 # for variable assignment
+LET <= VUMELA                    # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= INGQINAPHE           # formed from GO and SUB if no direct translation exists
-GOTO <= IYAKU                 # formed from GO and TO if no direct translation exists
-TO <= KWA                     # part of for/to/step/next constructs
-IF <= NXA                     # part of if/then constructs
-THEN <= KHONA                 # part of if/then constructs
-ON <= PHEZUKWA                # a sort of a switch statement
-RETURN <= BUYISELAEMUVA       # used to exit a subroutine
-STOP <= IMA                   # command to stop execution
+GOSUB <= INGQINAPHE              # formed from GO and SUB if no direct translation exists
+GOTO <= IYAKU                    # formed from GO and TO if no direct translation exists
+TO <= KWA                        # part of for/to/step/next constructs
+IF <= NXA                        # part of if/then constructs
+THEN <= KHONA                    # part of if/then constructs
+ON <= PHEZUKWA                   # a sort of a switch statement
+RETURN <= BUYISELAEMUVA          # used to exit a subroutine
+STOP <= IMA                      # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= INGOMANE               # part of for/to/step/next constructs
-STEP <= GXATHA                # part of for/to/step/next constructs
-NEXT <= OLANDELAYO            # part of for/to/step/next constructs
+FOR <= INGOMANE                  # part of for/to/step/next constructs
+STEP <= GXATHA                   # part of for/to/step/next constructs
+NEXT <= OLANDELAYO               # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= CINDEZELA            # to print things out
+PRINT <= CINDEZELA               # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= FAKA                 # the input statement
+INPUT <= FAKA                    # the input statement
 
 # from ECMA-55 §16
 
-READ <= FUNDA                 # part of read / restore
-RESTORE <= KHUZA              # part of read / restore
+READ <= FUNDA                    # part of read / restore
+RESTORE <= KHUZA                 # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= UMBHALO               # to embed data in the program
+DATA <= UMBHALO                  # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= FUSHANE                # dimension arrays
-OPTION <= UKUKHETHA           # see ECMA-55 §18.1
-BASE <= ISIZINDA              # see ECMA-55 §18.1
+DIM <= FUSHANE                   # dimension arrays
+OPTION <= UKUKHETHA              # see ECMA-55 §18.1
+BASE <= ISIZINDA                 # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= THUMA                  # see ECMA-55 §18.1
+REM <= THUMA                     # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	IDATHA IFUNDWE NGAPHANSI
 DEFINITION CYCLE DISCOVERED	UKUCHAZWA KOMJIKELEZO KUTHOLAKELE
 ERROR	UKUPHAMBEKA
 FAILURE	PHAPHALAZA
-FOR VARIABLE MULTIPLY DEFINED	NGOKUCHAZWA OKUCHAZIWE OKUHLUKAHLUKENE
 FUNCTION DEFINITION MULTIPLY DEFINED	UKUCHAZWA KOMSEBENZI OKUCHAZWE KANINGI
 FUNCTION DEFINITION PARAMETER MISMATCH	UMSEBENZI WOKUCHAZA UPHARAMITHA MISMATCH
 GOSUB STACK OVERFLOW	I-GOSUB STACK IYACHICHIMA

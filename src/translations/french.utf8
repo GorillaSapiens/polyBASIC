@@ -36,20 +36,23 @@ END <= FIN                  # the end statement
 
 # from ECMA-55 §9
 
-ABS <= TAILLE               # the absolute value function
+ABS <= ABDOS                # the absolute value function
 ATN <= ATN                  # the trigonomic arctangent function
 COS <= COS                  # the trigonomic cosine function
 EXP <= EXP                  # the exponential / power function
 INT <= INT                  # the integer / floor function
-LOG <= LOGARITHME           # the natural log function
+LOG <= ENREGISTRER          # the natural log function
 RND <= RND                  # generate random number
 SGN <= SGN                  # determine the sign
-SIN <= SINUS                # the trigonomic sine function
+SIN <= PÉCHÉ                # the trigonomic sine function
 SQR <= SQR                  # the square root function
-TAN <= TANGENTE             # the trigonomic tangent function
+TAN <= BRONZER              # the trigonomic tangent function
 DBL <= DBL                  # convert to double
 STR <= STR                  # convert to string
-RAT <= FRACTION             # convert to rational
+RAT <= RAT                  # convert to rational
+
+TAB <= LANGUETTE            # C-64ism
+CHR <= CHROUSSER            # C-64ism
 
 # from ECMA-55 §10
 
@@ -62,13 +65,13 @@ LET <= LAISSER              # for variable assignment
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= APPEL              # formed from GO and SUB if no direct translation exists
-GOTO <= SAUT                # formed from GO and TO if no direct translation exists
+GOSUB <= GOSUB              # formed from GO and SUB if no direct translation exists
+GOTO <= ALLERÀ              # formed from GO and TO if no direct translation exists
 TO <= JUSQUÀ                # part of for/to/step/next constructs
 IF <= SI                    # part of if/then constructs
 THEN <= ALORS               # part of if/then constructs
 ON <= SUR                   # a sort of a switch statement
-RETURN <= PARTIR            # used to exit a subroutine
+RETURN <= RETOUR            # used to exit a subroutine
 STOP <= ARRÊT               # command to stop execution
 
 # from ECMA-55 §13
@@ -97,13 +100,13 @@ DATA <= DONNÉES             # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIMENSION            # dimension arrays
+DIM <= FAIBLE               # dimension arrays
 OPTION <= OPTION            # see ECMA-55 §18.1
 BASE <= BASE                # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= COMMENTAIRE          # see ECMA-55 §18.1
+REM <= REMORQUEUR           # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	DONNÉES LUS SOUS-REFOULEMENT
 DEFINITION CYCLE DISCOVERED	CYCLE DE DÉFINITION DÉCOUVERT
 ERROR	ERREUR
 FAILURE	ÉCHEC
-FOR VARIABLE MULTIPLY DEFINED	POUR UNE MULTIPLICATION VARIABLE DÉFINIE
 FUNCTION DEFINITION MULTIPLY DEFINED	DÉFINITION DE FONCTION MULTIPLISE DÉFINIE
 FUNCTION DEFINITION PARAMETER MISMATCH	DÉFINITION DE DÉFINITION DE LA FONCTION DÉLIACHANCE
 GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
@@ -157,7 +159,7 @@ UNRECOGNIZED INTEGER MATH OPERATION	OPÉRATION MATHÉMATIQUE ENTIER NON RECONNUE
 UNRECOGNIZED MATH TYPE	TYPE MATHÉMATIQUE NON RECONNU
 UNRECOGNIZED NEXT VARIABLE	VARIABLE SUIVANTE NON RECONNUE
 UNRECOGNIZED OP IN PRINT	OP NON RECONNU SUR PAPIER
-UNRECOGNIZED RATIONAL MATH OPERATION	OPÉRATION DE MATHÉMATIQUES RATIONNELLES NON RECONNUE
+UNRECOGNIZED RATIONAL MATH OPERATION	OPÉRATION DE MATHÉMATIQUES RATIONNELLES NON RECONNUS
 UNRECOGNIZED VARIABLE TYPE	TYPE VARIABLE NON RECONNU
 UNSET ENVIRONMENT VARIABLE	VARIABLE D'ENVIRONNEMENT NON.
 VARIABLE / ARRAY DEFINITION MISMATCH	DÉLIATÉ DE DÉFINITION VARIABLE / TABLEAU

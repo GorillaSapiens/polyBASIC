@@ -6,6 +6,15 @@
 use utf8;
 use Data::Dumper;
 
+open FILE, "../polybasic/errs.utf8";
+binmode(FILE, ":utf8");
+@errors = <FILE>;
+close FILE;
+
+foreach my $err (@errors) {
+   $err =~ s/[\x0a\x0d]//g;
+}
+
 open FILE, "polybasic.tsv";
 binmode(FILE, ":utf8");
 
@@ -55,16 +64,14 @@ while(<FILE>) {
    }
    else { # this section has all the error messages
       @pieces = split /\t/;
-      push @errors, $pieces[1];
 
       for ($i = 0; $i <= $#all; $i++) {
-       print "$all[$i]-$errnum = $pieces[$i]\n";
+         print "$all[$i]-$errnum = $pieces[$i]\n";
          $errr{"$all[$i]-$errnum"} = $pieces[$i];
       }
       $errnum++;
    }
 }
-
 close FILE;
 
 #print Dumper(\%all);

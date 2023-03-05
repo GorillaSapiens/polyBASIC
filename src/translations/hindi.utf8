@@ -51,6 +51,9 @@ DBL <= ऋणतमक               # convert to double
 STR <= एसटआर               # convert to string
 RAT <= चह                  # convert to rational
 
+TAB <= टब                  # C-64ism
+CHR <= सएचआर               # C-64ism
+
 # from ECMA-55 §10
 
 DEF <= डईएफ                # for user defined functions
@@ -127,14 +130,13 @@ DATA READ UNDERFLOW	डेटा पढ़ें अंडरफ्लो
 DEFINITION CYCLE DISCOVERED	परिभाषा चक्र की खोज की गई
 ERROR	गलती
 FAILURE	असफलता
-FOR VARIABLE MULTIPLY DEFINED	चर के लिए परिभाषित गुणा
 FUNCTION DEFINITION MULTIPLY DEFINED	फ़ंक्शन परिभाषा गुणा परिभाषित
 FUNCTION DEFINITION PARAMETER MISMATCH	समारोह परिभाषा पैरामीटर बेमेल
 GOSUB STACK OVERFLOW	गोसुब स्टैक ओवरफ्लो
 GOSUB STACK UNDERFLOW	गोसुब स्टैक अंडरफ्लो
 INDEX OUT OF RANGE	सीमा से बाहर
 LABEL ALREADY DEFINED	पहले से परिभाषित लेबल
-LEFT / RIGHT OPERATION MISMATCH	बाएं / दाएं ऑपरेशन बेमेल
+LEFT / RIGHT OPERATION MISMATCH	लेफ्ट / राइट ऑपरेशन बेमेल
 NEGATIVE INDEX	ऋणात्मक सूचकांक
 NEXT ON FOR LOOP WITH STRING VARIABLE	स्ट्रिंग चर के साथ लूप के लिए अगला
 OPERAND MISMATCH	संचालक बेमेल

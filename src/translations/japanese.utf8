@@ -51,6 +51,9 @@ DBL <= DBL           # convert to double
 STR <= STR           # convert to string
 RAT <= ねずみ           # convert to rational
 
+TAB <= タブ            # C-64ism
+CHR <= CHR           # C-64ism
+
 # from ECMA-55 §10
 
 DEF <= DEF           # for user defined functions
@@ -123,11 +126,10 @@ ARRAY ALREADY DEFINED	すでに定義されている配列
 ARRAY INDEX OUTSIDE OF BOUNDS	境界外の配列インデックス
 CANNOT ACCESS DIRECTORY	ディレクトリにアクセスできません
 DATA INPUT UNDERFLOW	データ入力アンダーフロー
-DATA READ UNDERFLOW	データはアンダーフローを読みます
+DATA READ UNDERFLOW	データはアンダーフローを読み取ります
 DEFINITION CYCLE DISCOVERED	定義サイクルが発見されました
 ERROR	エラー
 FAILURE	失敗
-FOR VARIABLE MULTIPLY DEFINED	可変乗算定義の場合
 FUNCTION DEFINITION MULTIPLY DEFINED	関数定義が定義されているのを掛けています
 FUNCTION DEFINITION PARAMETER MISMATCH	関数定義パラメーターの不一致
 GOSUB STACK OVERFLOW	GOSUBスタックオーバーフロー
@@ -137,7 +139,7 @@ LABEL ALREADY DEFINED	すでに定義されているラベル
 LEFT / RIGHT OPERATION MISMATCH	左 /右操作の不一致
 NEGATIVE INDEX	負のインデックス
 NEXT ON FOR LOOP WITH STRING VARIABLE	次に、文字列変数を使用してループを使用します
-OPERAND MISMATCH	オペランドの不一致
+OPERAND MISMATCH	オペランドのミスマッチ
 OPTION REQUIRES A LANGUAGE	オプションには言語が必要です
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	言語設定または環境変数を確認してください
 STRING MATH LOGIC ERROR	文字列数学ロジックエラー

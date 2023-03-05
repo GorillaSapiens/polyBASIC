@@ -38,7 +38,7 @@ END <= КОНЕЦ                     # the end statement
 
 ABS <= АБС                       # the absolute value function
 ATN <= АТ                        # the trigonomic arctangent function
-COS <= ЗАСЕЛЕНИЕ                 # the trigonomic cosine function
+COS <= ПОСАДКА                   # the trigonomic cosine function
 EXP <= ЭКСПЛУАТ                  # the exponential / power function
 INT <= ИНТ                       # the integer / floor function
 LOG <= БРЕВНО                    # the natural log function
@@ -50,6 +50,9 @@ TAN <= ЗАГАР                     # the trigonomic tangent function
 DBL <= DBL                       # convert to double
 STR <= СТР                       # convert to string
 RAT <= КРЫСА                     # convert to rational
+
+TAB <= ВКЛАДКА                   # C-64ism
+CHR <= ХР                        # C-64ism
 
 # from ECMA-55 §10
 
@@ -120,15 +123,14 @@ RANDOMIZE <= РАНДОМИЗИРОВАТЬ
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	И НЕТ ЯЗЫКА, НЕ УКАЗАННОГО В КОМАНДНОЙ СТРОКЕ. ВЫХОД.
 ARRAY ALREADY DEFINED	МАССИВ УЖЕ ОПРЕДЕЛЕН
-ARRAY INDEX OUTSIDE OF BOUNDS	МАССИВ ИНДЕКС ЗА ПРЕДЕЛАМИ ГРАНИЦ
+ARRAY INDEX OUTSIDE OF BOUNDS	МАССИВ ИНДЕКС ЗА ПРЕДЕЛАМИ
 CANNOT ACCESS DIRECTORY	НЕ МОЖЕТ ПОЛУЧИТЬ ДОСТУП К КАТАЛОГУ
 DATA INPUT UNDERFLOW	ВХОД ДАННЫХ В РАЗДЕЛЕ
 DATA READ UNDERFLOW	ДАННЫЕ ЧИТАЮТ НЕДОСТАТОЧНЫЙ ПОТОК
 DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
 FAILURE	ОТКАЗ
-FOR VARIABLE MULTIPLY DEFINED	ДЛЯ ПЕРЕМЕННОЙ УМНОЖЕННОЙ ОПРЕДЕЛЕНИЯ
-FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖЕННОЕ ОПРЕДЕЛЕНО
+FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖАЕТСЯ
 FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
 GOSUB STACK OVERFLOW	ГОСУБ СТЕК ПЕРЕПОЛНЕН
 GOSUB STACK UNDERFLOW	GOSUB STACK HOONFLOW

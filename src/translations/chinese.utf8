@@ -51,6 +51,9 @@ DBL <= DBL          # convert to double
 STR <= STR          # convert to string
 RAT <= 鼠            # convert to rational
 
+TAB <= 标签           # C-64ism
+CHR <= CHR          # C-64ism
+
 # from ECMA-55 §10
 
 DEF <= 防御           # for user defined functions
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	数据读取底流
 DEFINITION CYCLE DISCOVERED	发现定义周期
 ERROR	错误
 FAILURE	失败
-FOR VARIABLE MULTIPLY DEFINED	对于可变倍数定义
 FUNCTION DEFINITION MULTIPLY DEFINED	功能定义乘以定义
 FUNCTION DEFINITION PARAMETER MISMATCH	功能定义参数不匹配
 GOSUB STACK OVERFLOW	GOSUB堆栈溢出
@@ -148,7 +150,7 @@ UNDEFINED LABEL	未定义的标签
 UNHANDLED OPERATION	未经处理的操作
 UNHANDLED OPERATION CODE	未经处理的操作代码
 UNKNOWN IF LABEL	未知是否标签
-UNRECOGNIZED DOUBLE MATH OPERATION	未识别的双重数学操作
+UNRECOGNIZED DOUBLE MATH OPERATION	未识别的双数学操作
 UNRECOGNIZED FUNCTION DEFINITION	无法识别的函数定义
 UNRECOGNIZED GOSUB LABEL	无法识别的GOSUB标签
 UNRECOGNIZED GOTO LABEL	无法识别的GOTO标签

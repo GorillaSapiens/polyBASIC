@@ -32,78 +32,81 @@
 
 # from ECMA-55 §5.2
 
-END <= نهاية                # the end statement
+END <= نهاية                    # the end statement
 
 # from ECMA-55 §9
 
-ABS <= عضلاتالمعدة          # the absolute value function
-ATN <= ATN                  # the trigonomic arctangent function
-COS <= كوس                  # the trigonomic cosine function
-EXP <= إكسب                 # the exponential / power function
-INT <= INT                  # the integer / floor function
-LOG <= سجل                  # the natural log function
-RND <= RND                  # generate random number
-SGN <= SGN                  # determine the sign
-SIN <= الخطيئة              # the trigonomic sine function
-SQR <= SQR                  # the square root function
-TAN <= تان                  # the trigonomic tangent function
-DBL <= DBL                  # convert to double
-STR <= شارع                 # convert to string
-RAT <= فأر                  # convert to rational
+ABS <= عضلاتالمعدة              # the absolute value function
+ATN <= ATN                      # the trigonomic arctangent function
+COS <= كوس                      # the trigonomic cosine function
+EXP <= إكسب                     # the exponential / power function
+INT <= INT                      # the integer / floor function
+LOG <= سجل                      # the natural log function
+RND <= RND                      # generate random number
+SGN <= SGN                      # determine the sign
+SIN <= الخطيئة                  # the trigonomic sine function
+SQR <= SQR                      # the square root function
+TAN <= تان                      # the trigonomic tangent function
+DBL <= DBL                      # convert to double
+STR <= شارع                     # convert to string
+RAT <= فأر                      # convert to rational
+
+TAB <= فاتورةغيرمدفوعة          # C-64ism
+CHR <= CHR                      # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= ديف                  # for user defined functions
+DEF <= ديف                      # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= يترك                 # for variable assignment
+LET <= يترك                     # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= جوسوب              # formed from GO and SUB if no direct translation exists
-GOTO <= اذهبإلى             # formed from GO and TO if no direct translation exists
-TO <= ل                     # part of for/to/step/next constructs
-IF <= لو                    # part of if/then constructs
-THEN <= ثم                  # part of if/then constructs
-ON <= على                   # a sort of a switch statement
-RETURN <= يعود              # used to exit a subroutine
-STOP <= قف                  # command to stop execution
+GOSUB <= جوسوب                  # formed from GO and SUB if no direct translation exists
+GOTO <= اذهبإلى                 # formed from GO and TO if no direct translation exists
+TO <= ل                         # part of for/to/step/next constructs
+IF <= لو                        # part of if/then constructs
+THEN <= ثم                      # part of if/then constructs
+ON <= على                       # a sort of a switch statement
+RETURN <= يعود                  # used to exit a subroutine
+STOP <= قف                      # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= من                   # part of for/to/step/next constructs
-STEP <= خطوة                # part of for/to/step/next constructs
-NEXT <= التالي              # part of for/to/step/next constructs
+FOR <= من                       # part of for/to/step/next constructs
+STEP <= خطوة                    # part of for/to/step/next constructs
+NEXT <= التالي                  # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= مطبعة              # to print things out
+PRINT <= مطبعة                  # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= مدخل               # the input statement
+INPUT <= مدخل                   # the input statement
 
 # from ECMA-55 §16
 
-READ <= يقرأ                # part of read / restore
-RESTORE <= يعيد             # part of read / restore
+READ <= يقرأ                    # part of read / restore
+RESTORE <= يعيد                 # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= بيانات              # to embed data in the program
+DATA <= بيانات                  # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= خافت                 # dimension arrays
-OPTION <= خيار              # see ECMA-55 §18.1
-BASE <= قاعدة               # see ECMA-55 §18.1
+DIM <= خافت                     # dimension arrays
+OPTION <= خيار                  # see ECMA-55 §18.1
+BASE <= قاعدة                   # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= ريم                  # see ECMA-55 §18.1
+REM <= ريم                      # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	قراءة البيانات UNDERFLOW
 DEFINITION CYCLE DISCOVERED	دورة التعريف التي تم اكتشافها
 ERROR	خطأ
 FAILURE	فشل
-FOR VARIABLE MULTIPLY DEFINED	للمتغير الضاعف المحدد
 FUNCTION DEFINITION MULTIPLY DEFINED	تعريف الوظيفة المحددة محددة
 FUNCTION DEFINITION PARAMETER MISMATCH	تعريف وظيفة عدم تطابق المعلمة
 GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW

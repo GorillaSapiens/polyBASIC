@@ -16,10 +16,10 @@ sub toemoji($) {
       $value = (($value << 5) + $value) ^ ord($char);
    }
 
-   # 991 was chosen arbitrarily.  it's a prime number
+   # 1297 was chosen arbitrarily.  it's a prime number
    # that produces tokens that do not collide in the
    # verification step
-   $value %= 991;
+   $value %= 1297;
 
    my $ret = "";
    while ($value > 0) {
@@ -35,7 +35,7 @@ binmode(FILE, ":utf8");
 @template = <FILE>;
 close FILE;
 
-open FILE, "../polybasic/errs.txt";
+open FILE, "../polybasic/errs.utf8";
 binmode(FILE, ":utf8");
 @errors = <FILE>;
 close FILE;

@@ -8,7 +8,7 @@ binmode(FILE, ":utf8");
 @template = <FILE>;
 close FILE;
 
-open FILE, "../polybasic/errs.txt";
+open FILE, "../polybasic/errs.utf8";
 binmode(FILE, ":utf8");
 @errors = <FILE>;
 close FILE;

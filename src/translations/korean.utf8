@@ -32,78 +32,81 @@
 
 # from ECMA-55 §5.2
 
-END <= 끝              # the end statement
+END <= 끝             # the end statement
 
 # from ECMA-55 §9
 
-ABS <= 양수             # the absolute value function
-ATN <= 아크탕이트          # the trigonomic arctangent function
-COS <= 코사인            # the trigonomic cosine function
-EXP <= 멱지수            # the exponential / power function
-INT <= 바닥             # the integer / floor function
-LOG <= 통나무            # the natural log function
-RND <= 무작위의           # generate random number
-SGN <= 시그널            # determine the sign
-SIN <= 사인             # the trigonomic sine function
-SQR <= 제곱근            # the square root function
-TAN <= 접선             # the trigonomic tangent function
-DBL <= 수              # convert to double
-STR <= 텍스트            # convert to string
-RAT <= 비율             # convert to rational
+ABS <= ABS           # the absolute value function
+ATN <= ATN           # the trigonomic arctangent function
+COS <= 코사인           # the trigonomic cosine function
+EXP <= EXP           # the exponential / power function
+INT <= INT           # the integer / floor function
+LOG <= 통나무           # the natural log function
+RND <= RND           # generate random number
+SGN <= SGN           # determine the sign
+SIN <= 죄             # the trigonomic sine function
+SQR <= SQR           # the square root function
+TAN <= 탠껍질           # the trigonomic tangent function
+DBL <= DBL           # convert to double
+STR <= 스트리트          # convert to string
+RAT <= 쥐             # convert to rational
+
+TAB <= 탭             # C-64ism
+CHR <= CHR           # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= 정의하다           # for user defined functions
+DEF <= 수비            # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= 허락하다           # for variable assignment
+LET <= 허락하다          # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= 부르다          # formed from GO and SUB if no direct translation exists
-GOTO <= 도약            # formed from GO and TO if no direct translation exists
-TO <= 에게              # part of for/to/step/next constructs
-IF <= 만약              # part of if/then constructs
-THEN <= 그다음에          # part of if/then constructs
-ON <= 까지              # a sort of a switch statement
-RETURN <= 반품          # used to exit a subroutine
-STOP <= 멈추다           # command to stop execution
+GOSUB <= 부르다         # formed from GO and SUB if no direct translation exists
+GOTO <= 도약           # formed from GO and TO if no direct translation exists
+TO <= 에게             # part of for/to/step/next constructs
+IF <= 만약에            # part of if/then constructs
+THEN <= 그다음에         # part of if/then constructs
+ON <= 에              # a sort of a switch statement
+RETURN <= 반품         # used to exit a subroutine
+STOP <= 멈추다          # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= 각각             # part of for/to/step/next constructs
-STEP <= 단계            # part of for/to/step/next constructs
-NEXT <= 다음            # part of for/to/step/next constructs
+FOR <= 을위한           # part of for/to/step/next constructs
+STEP <= 단계           # part of for/to/step/next constructs
+NEXT <= 다음           # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= 인쇄           # to print things out
+PRINT <= 인쇄          # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= 입력           # the input statement
+INPUT <= 입력          # the input statement
 
 # from ECMA-55 §16
 
-READ <= 읽다            # part of read / restore
-RESTORE <= 복원하다       # part of read / restore
+READ <= 읽다           # part of read / restore
+RESTORE <= 복원하다      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= 데이터           # to embed data in the program
+DATA <= 데이터          # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= 어둑한            # dimension arrays
-OPTION <= 옵션          # see ECMA-55 §18.1
-BASE <= 베이스           # see ECMA-55 §18.1
+DIM <= 어둑한           # dimension arrays
+OPTION <= 옵션         # see ECMA-55 §18.1
+BASE <= 베이스          # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= 주목             # see ECMA-55 §18.1
+REM <= REM           # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -127,10 +130,9 @@ DATA READ UNDERFLOW	데이터를 읽습니다
 DEFINITION CYCLE DISCOVERED	정의주기가 발견되었습니다
 ERROR	오류
 FAILURE	실패
-FOR VARIABLE MULTIPLY DEFINED	변수 곱하기의 경우
 FUNCTION DEFINITION MULTIPLY DEFINED	함수 정의 곱하기 정의
-FUNCTION DEFINITION PARAMETER MISMATCH	통화 스택 오버플로
-GOSUB STACK OVERFLOW	스택 언더 플로우를 호출하십시오
+FUNCTION DEFINITION PARAMETER MISMATCH	함수 정의 매개 변수 불일치
+GOSUB STACK OVERFLOW	GOSUB 스택 오버플로
 GOSUB STACK UNDERFLOW	GOSUB 스택 언더 플로
 INDEX OUT OF RANGE	범위를 벗어난 색인
 LABEL ALREADY DEFINED	이미 정의 된 레이블
@@ -147,7 +149,7 @@ UNABLE TO OPEN TO OPEN FILE FOR READING	읽기를 위해 파일을 열 수 없�
 UNDEFINED LABEL	정의되지 않은 레이블
 UNHANDLED OPERATION	처리되지 않은 작동
 UNHANDLED OPERATION CODE	처리되지 않은 작동 코드
-UNKNOWN IF LABEL	라벨이 알려지지 않았습니다
+UNKNOWN IF LABEL	레이블이 알려지지 않았습니다
 UNRECOGNIZED DOUBLE MATH OPERATION	인식되지 않은 이중 수학 작동
 UNRECOGNIZED FUNCTION DEFINITION	인식되지 않은 기능 정의
 UNRECOGNIZED GOSUB LABEL	인식되지 않은 GOSUB 레이블

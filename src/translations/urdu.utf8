@@ -51,6 +51,9 @@ DBL <= ڈیبیایل          # convert to double
 STR <= STR              # convert to string
 RAT <= چوہا             # convert to rational
 
+TAB <= ٹیب              # C-64ism
+CHR <= CHR              # C-64ism
+
 # from ECMA-55 §10
 
 DEF <= ڈیف              # for user defined functions
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	ڈیٹا انڈر فلو پڑھتا ہے
 DEFINITION CYCLE DISCOVERED	تعریف سائیکل دریافت ہوا
 ERROR	غلطی
 FAILURE	ناکامی
-FOR VARIABLE MULTIPLY DEFINED	متغیر ضرب کے لئے
 FUNCTION DEFINITION MULTIPLY DEFINED	فنکشن کی تعریف ضرب کی وضاحت
 FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامیٹر مماثل
 GOSUB STACK OVERFLOW	گوسب اسٹیک اوور فلو
@@ -136,7 +138,7 @@ INDEX OUT OF RANGE	رینج سے باہر انڈیکس
 LABEL ALREADY DEFINED	لیبل پہلے ہی بیان کیا گیا ہے
 LEFT / RIGHT OPERATION MISMATCH	بائیں / دائیں آپریشن مماثلت
 NEGATIVE INDEX	منفی انڈیکس
-NEXT ON FOR LOOP WITH STRING VARIABLE	اگلا اسٹرنگ متغیر کے ساتھ لوپ کے لئے
+NEXT ON FOR LOOP WITH STRING VARIABLE	سٹرنگ متغیر کے ساتھ لوپ کے لئے اگلا
 OPERAND MISMATCH	اوپیرینڈ مماثل
 OPTION REQUIRES A LANGUAGE	آپشن کے لئے زبان کی ضرورت ہوتی ہے
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	براہ کرم زبان کی ترتیبات یا ماحولیاتی متغیر کو چیک کریں

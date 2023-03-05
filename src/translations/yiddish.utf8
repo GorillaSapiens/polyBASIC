@@ -51,6 +51,9 @@ DBL <= דבל               # convert to double
 STR <= STR               # convert to string
 RAT <= שטשור             # convert to rational
 
+TAB <= קוויטל            # C-64ism
+CHR <= טשר               # C-64ism
+
 # from ECMA-55 §10
 
 DEF <= DEATH             # for user defined functions
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	דאַטן לייענען אַנדערפלאָו
 DEFINITION CYCLE DISCOVERED	דעפֿיניציע ציקל דיסקאַווערד
 ERROR	גרייַז
 FAILURE	דורכפאַל
-FOR VARIABLE MULTIPLY DEFINED	פֿאַר בייַטעוודיק מערן דיפיינד
 FUNCTION DEFINITION MULTIPLY DEFINED	פונקציע דעפֿיניציע מערן דיפיינד
 FUNCTION DEFINITION PARAMETER MISMATCH	פונקציע דעפֿיניציע פּאַראַמעטער מיסמאַטש
 GOSUB STACK OVERFLOW	גאָסוב אָנלייגן אָוווערפלאָו

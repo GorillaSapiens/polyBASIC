@@ -51,6 +51,9 @@ DBL <= DBL                  # convert to double
 STR <= STRYD                # convert to string
 RAT <= LLYGODEN             # convert to rational
 
+TAB <= TAB                  # C-64ism
+CHR <= GR                   # C-64ism
+
 # from ECMA-55 §10
 
 DEF <= DEF                  # for user defined functions
@@ -88,7 +91,7 @@ INPUT <= MEWNBYNNER         # the input statement
 
 # from ECMA-55 §16
 
-READ <= DARLLENEST          # part of read / restore
+READ <= DARLLENASIT         # part of read / restore
 RESTORE <= HATGYWEIRIFF     # part of read / restore
 
 # from ECMA-55 §17
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	DATA DARLLEN TANLIF
 DEFINITION CYCLE DISCOVERED	CYLCH DIFFINIAD A DDARGANFUWYD
 ERROR	WALLAU
 FAILURE	METHIANNAU
-FOR VARIABLE MULTIPLY DEFINED	AR GYFER NEWIDYN LLUOSI WEDI'I DDIFFINIO
 FUNCTION DEFINITION MULTIPLY DEFINED	DIFFINIAD SWYDDOGAETH LLUOSI WEDI'I DDIFFINIO
 FUNCTION DEFINITION PARAMETER MISMATCH	CAMGYMHARIAD PARAMEDR DIFFINIAD SWYDDOGAETH
 GOSUB STACK OVERFLOW	GORLIF PENTWR GOSUB

@@ -6,8 +6,8 @@ binmode STDOUT, ':utf8';
 $problems = 0;
 
 $translation_file = $ARGV[0];
-$template_file = "template.txt";
-$errors_file = "../polybasic/errs.txt";
+$template_file = "template.utf8";
+$errors_file = "../polybasic/errs.utf8";
 
 my %template_keyword_line;
 my @template_error;

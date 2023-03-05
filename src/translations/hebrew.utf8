@@ -51,6 +51,9 @@ DBL <= DBL               # convert to double
 STR <= STR               # convert to string
 RAT <= עכברוש            # convert to rational
 
+TAB <= כרטיסייה          # C-64ism
+CHR <= CHR               # C-64ism
+
 # from ECMA-55 §10
 
 DEF <= DEF               # for user defined functions
@@ -127,7 +130,6 @@ DATA READ UNDERFLOW	נתונים קראו את הזרימה
 DEFINITION CYCLE DISCOVERED	מחזור ההגדרה התגלה
 ERROR	שְׁגִיאָה
 FAILURE	כישלון
-FOR VARIABLE MULTIPLY DEFINED	עבור כפול משתנה מוגדר
 FUNCTION DEFINITION MULTIPLY DEFINED	הגדרת פונקציה כפול מוגדרת
 FUNCTION DEFINITION PARAMETER MISMATCH	הגדרת פונקציה חוסר התאמה של פרמטר
 GOSUB STACK OVERFLOW	הצפת ערימה של GOSUB
@@ -137,7 +139,7 @@ LABEL ALREADY DEFINED	תווית כבר מוגדרת
 LEFT / RIGHT OPERATION MISMATCH	חוסר התאמה בין מבצע שמאל / ימין
 NEGATIVE INDEX	אינדקס שלילי
 NEXT ON FOR LOOP WITH STRING VARIABLE	הבא לולאה עם משתנה מחרוזת
-OPERAND MISMATCH	אי התאמה אופרנד
+OPERAND MISMATCH	חוסר התאמה אופרנד
 OPTION REQUIRES A LANGUAGE	אפשרות דורשת שפה
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	אנא בדוק את הגדרות השפה או משתנה הסביבה
 STRING MATH LOGIC ERROR	שגיאת היגיון במתמטיקה של מחרוזת
@@ -160,7 +162,7 @@ UNRECOGNIZED OP IN PRINT	OP לא מוכר בהדפס
 UNRECOGNIZED RATIONAL MATH OPERATION	פעולת מתמטיקה רציונלית לא מוכרת
 UNRECOGNIZED VARIABLE TYPE	סוג משתנה לא מוכר
 UNSET ENVIRONMENT VARIABLE	ביטול סביבת הסביבה
-VARIABLE / ARRAY DEFINITION MISMATCH	חוסר התאמה בין הגדרת משתנה / מערך
+VARIABLE / ARRAY DEFINITION MISMATCH	משתנה / מערך הגדרת חוסר התאמה
 VARIABLE DEFINED AS ARRAY	משתנה המוגדר כמערך
 VARIABLE DEFINED AS NONARRAY	משתנה המוגדר כלא מערך
 VARIABLE HAS NO VALUE	למשתנה אין שום ערך
