@@ -84,8 +84,11 @@ EOL      [\r\n]{1,2}
 {WHITESPACE} { /* ignore */ }
 
 {NAME}      {
-               flexdebug(yytext, (int) YYNAME, yylineno, yylloc.first_column);
-               return YYNAME;
+               enum yytokentype ret =
+                  is_reserved_word(yytext);
+               ret = ret ? ret : YYNAME;
+               flexdebug(yytext, (int) ret, yylineno, yylloc.first_column);
+               return ret;
             }
 
 {RATIONAL}  {

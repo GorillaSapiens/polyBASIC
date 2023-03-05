@@ -404,6 +404,10 @@ BUILTINFUNC(ATN, 1) {
    return NULL;
 }
 
+BUILTINFUNC(CHR, 1) {
+   return NULL;
+}
+
 BUILTINFUNC(COS, 1) {
    return NULL;
 }
@@ -449,6 +453,10 @@ BUILTINFUNC(SIN, 1) {
 }
 
 BUILTINFUNC(SQR, 1) {
+   return NULL;
+}
+
+BUILTINFUNC(TAB, 1) {
    return NULL;
 }
 
