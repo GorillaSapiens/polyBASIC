@@ -347,7 +347,7 @@ const char *shortname(const char *arg0) {
    printf("      -f     : debug flex parser output, and then run program\n");
    printf("      -b     : debug bison parser output, and then run program\n");
    printf("      -t <n> : dump parse tree for line <n>, do not run program\n");
-   printf("               n=0 will dump the entire tree\n");
+   printf("               omitting n, or setting n=0, will dump the entire tree\n");
    exit(0);
 }
 
