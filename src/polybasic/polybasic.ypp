@@ -284,12 +284,22 @@ cstmt          : assignstmt
 defstmt        : YYDEF name '(' paramlist ')' expression
                   {
                      $$.line = yylineno;
-                     $$.col = $2.col;
+                     $$.col = yyloc.first_column;
                      $$.op = YYDEF;
                      $$.valt = 's';
                      $$.sval = strdup($2.sval);
                      $$.left = copytree(&$4);
                      $$.right = copytree(&$6);
+                  }
+               | YYDEF name '(' paramlist ')' '=' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDEF;
+                     $$.valt = 's';
+                     $$.sval = strdup($2.sval);
+                     $$.left = copytree(&$4);
+                     $$.right = copytree(&$7);
                   }
                | YYDEF name '(' ')' expression
                   {
@@ -300,6 +310,16 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                      $$.sval = strdup($2.sval);
                      $$.left = NULL;
                      $$.right = copytree(&$5);
+                  }
+               | YYDEF name '(' ')' '=' expression
+                  {
+                     $$.line = yylineno;
+                     $$.col = yyloc.first_column;
+                     $$.op = YYDEF;
+                     $$.valt = 's';
+                     $$.sval = strdup($2.sval);
+                     $$.left = NULL;
+                     $$.right = copytree(&$6);
                   }
                ;
 
