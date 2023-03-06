@@ -222,8 +222,7 @@ int paramcount(Tree *tree) {
 
 // make a deep copy
 Tree *deep_copy(Tree *subtree) {
-   Tree *copy = (Tree *) malloc(sizeof(Tree));
-   memcpy(copy, subtree, sizeof(Tree));
+   Tree *copy = new Tree(*subtree);
 
    // don't copy labels, we'd just have to free them later
 

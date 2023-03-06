@@ -3,6 +3,7 @@
 
 #include <variant>
 
+#include "safe_strdup.hpp"
 #include "rational.hpp"
 
 using std::variant;

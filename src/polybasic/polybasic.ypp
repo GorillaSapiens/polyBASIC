@@ -17,8 +17,7 @@ Tree *copytree(Tree *tree) {
    Tree *ret = NULL;
 
    if (tree) {
-      ret = (Tree *)malloc(sizeof(Tree));
-      memcpy(ret, tree, sizeof(Tree));
+      ret = new Tree(*tree);
    }
 
    return ret;
@@ -176,6 +175,7 @@ linelist       : line
 
 line           : YYEOL
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYREM;
@@ -207,6 +207,7 @@ line           : YYEOL
 
 remstmt        : YYREM
                   {
+                     $$ = new Tree();
                      remsleep = 1;
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
@@ -283,6 +284,7 @@ cstmt          : assignstmt
 
 defstmt        : YYDEF name '(' paramlist ')' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDEF;
@@ -292,6 +294,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                   }
                | YYDEF name '(' paramlist ')' '=' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDEF;
@@ -301,6 +304,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                   }
                | YYDEF name '(' ')' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDEF;
@@ -310,6 +314,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                   }
                | YYDEF name '(' ')' '=' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDEF;
@@ -336,6 +341,7 @@ paramlist      : paramlist YYIPSEP name
 
 optionbase     : YYOPTION YYBASE iconst
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYBASE;
@@ -345,6 +351,7 @@ optionbase     : YYOPTION YYBASE iconst
 
 dimstmt        : YYDIM arraydimlist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDIM;
@@ -369,6 +376,7 @@ arraydimlist   : arraydimlist YYIPSEP arraydim
 
 datastmt       : YYDATA datalist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDATA;
@@ -378,6 +386,7 @@ datastmt       : YYDATA datalist
 
 restorestmt    : YYRESTORE
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRESTORE;
@@ -386,6 +395,7 @@ restorestmt    : YYRESTORE
 
 readstmt       : YYREAD exprlist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYREAD;
@@ -395,6 +405,7 @@ readstmt       : YYREAD exprlist
 
 printstmt      : YYPRINT printlist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYPRINT;
@@ -406,6 +417,7 @@ printstmt      : YYPRINT printlist
 
 ifstmtlist     : YYIF expression relation expression YYTHEN stmtlist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFSTMTLIST;
@@ -418,6 +430,7 @@ ifstmtlist     : YYIF expression relation expression YYTHEN stmtlist
 
 controlstmt    : YYGOTO label
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYGOTO;
@@ -425,6 +438,7 @@ controlstmt    : YYGOTO label
                   }
                | YYGOSUB label
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYGOSUB;
@@ -432,6 +446,7 @@ controlstmt    : YYGOTO label
                   }
                | YYIF expression relation expression YYTHEN label
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOTO;
@@ -442,6 +457,7 @@ controlstmt    : YYGOTO label
                   }
                | YYIF expression relation expression YYGOTO label
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOTO;
@@ -452,6 +468,7 @@ controlstmt    : YYGOTO label
                   }
                | YYIF expression relation expression YYGOSUB label
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOSUB;
@@ -462,6 +479,7 @@ controlstmt    : YYGOTO label
                   }
                | YYON expression YYGOTO labellist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYON;
@@ -471,6 +489,7 @@ controlstmt    : YYGOTO label
                   }
                | YYON expression YYGOSUB labellist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYON;
@@ -480,18 +499,21 @@ controlstmt    : YYGOTO label
                   }
                | YYRETURN
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRETURN;
                   }
                | YYSTOP
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYSTOP;
                   }
                | YYEND
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYEND;
@@ -500,6 +522,7 @@ controlstmt    : YYGOTO label
 
 relation       : YYRELATION
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRELATION;
@@ -507,6 +530,7 @@ relation       : YYRELATION
                   }
                | '<'
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRELATION;
@@ -514,6 +538,7 @@ relation       : YYRELATION
                   }
                | '>'
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRELATION;
@@ -521,6 +546,7 @@ relation       : YYRELATION
                   }
                | '='
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRELATION;
@@ -530,6 +556,7 @@ relation       : YYRELATION
 
 repeatstmt     : YYFOR name '=' expression YYTO expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYFOR;
@@ -540,6 +567,7 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
                   }
                | YYFOR name '=' expression YYTO expression YYSTEP expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYFOR;
@@ -550,6 +578,7 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
                   }
                | YYNEXT name
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYNEXT;
@@ -566,6 +595,7 @@ label          : name
                   }
                | YYINTEGER
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYLABEL;
@@ -586,6 +616,7 @@ labellist      : label
 
 name           : YYNAME
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYNAME;
@@ -828,6 +859,7 @@ printlist      : expression YYIPSEP printlist
 
 inputstmt      : YYINPUT exprlist
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYINPUT;
@@ -847,6 +879,7 @@ assignstmt     : efad '=' expression
                   }
                | YYLET efad '=' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYASSIGN;
@@ -859,6 +892,7 @@ assignstmt     : efad '=' expression
 
 dconst         : YYDOUBLE
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDOUBLE;
@@ -868,6 +902,7 @@ dconst         : YYDOUBLE
 
 vconst         : YYVOID
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYVOID;
@@ -877,6 +912,7 @@ vconst         : YYVOID
 
 iconst         : YYINTEGER
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYINTEGER;
@@ -886,6 +922,7 @@ iconst         : YYINTEGER
 
 rconst         : YYRATIONAL
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRATIONAL;
@@ -895,6 +932,7 @@ rconst         : YYRATIONAL
 
 sconst         : YYSTRING
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYSTRING;
