@@ -75,10 +75,10 @@ void add_tuple(const char *english, const char *translation) {
 
 const char *has_tuple(const char *token) {
    for (Tuple *p = tuple_head; p; p = p->next) {
-      if (!strcmp(token, p->english)) {
+      if (!utf8casecmp(token, p->english)) {
          return p->translation;
       }
-      if (!strcmp(token, p->translation)) {
+      if (!utf8casecmp(token, p->translation)) {
          return p->english;
       }
    }

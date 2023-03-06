@@ -32,6 +32,7 @@ foreach $file (`ls *guru.txt`) {
                }
                else {
                   print "FAIL\n";
+                  exit 1;
                }
             }
          }

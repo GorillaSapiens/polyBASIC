@@ -14,6 +14,7 @@
 #include "runtime_data.hpp"
 #include "runtime.hpp"
 #include "main.hpp"
+#include "utf8casecmp.hpp"
 
 static int64_t option_base = 0;
 static int64_t option_upper = 10; // default upper array bound per ECMA-55
@@ -494,8 +495,8 @@ Builtin *get_builtin(const char *name) {
    }
 
    for (int i = 0; builtins[i].name; i++) {
-      if (!strcmp(builtins[i].name, translation)) {
-         builtins + i;
+      if (!utf8casecmp(builtins[i].name, translation)) {
+         return (builtins + i);
       }
    }
 
@@ -562,7 +563,7 @@ char *get_var_array_name(Tree *p) {
          upgrade_to_integer(tree);
          if (tree->op != YYINTEGER) {
             GURU;
-            // no test case
+            // test case voidarraysubscript
             eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
                   p->line, p->col, p->sval, n, eop2string(tree->op));
             exit(-1);
@@ -629,7 +630,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          }
          if (count != builtin->args) {
             GURU;
-            // no test case
+            // test case builtinparamcount
             eprintf("{ERROR}: @%0:%1, {INCORRECT NUMBER OF PARAMETERS} ❮%2❯ %3<>%4%n",
                p->line, p->col, has_tuple(p->sval), count, builtin->args);
             exit(-1);
