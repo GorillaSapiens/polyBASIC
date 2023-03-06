@@ -13,7 +13,7 @@ int is_def_defined(const char *p) {
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {
       unsigned long j = (i + h) % HASH_SIZE;
-      if (defs[j] != NULL && !strcmp(p, defs[j]->sval)) {
+      if (defs[j] != NULL && !strcmp(p, V_AS_S(defs[j]->value))) {
          return 1;
       }
    }
@@ -21,11 +21,11 @@ int is_def_defined(const char *p) {
 }
 
 int set_def(Tree *n) {
-   unsigned long h = hash(n->sval);
+   unsigned long h = hash(V_AS_S(n->value));
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {
       unsigned long j = (i + h) % HASH_SIZE;
-      if (defs[j] != NULL && !strcmp(n->sval, defs[j]->sval)) {
+      if (defs[j] != NULL && !strcmp(V_AS_S(n->value), V_AS_S(defs[j]->value))) {
          return 0;
       }
       if (defs[j] == NULL) {
@@ -41,7 +41,7 @@ Tree *get_def(const char *p) {
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {
       unsigned long j = (i + h) % HASH_SIZE;
-      if (defs[j] != NULL && !strcmp(p, defs[j]->sval)) {
+      if (defs[j] != NULL && !strcmp(p, V_AS_S(defs[j]->value))) {
          return defs[j];
       }
    }
@@ -84,19 +84,21 @@ void Path::dump(void) {
       GURU;
       // test case cycle_def
       eprintf("❮%0❯ @%1:%2 ->%b",
-         defs[path[i]]->sval, defs[path[i]]->line, defs[path[i]]->col);
+         V_AS_S(defs[path[i]]->value),
+         defs[path[i]]->line, defs[path[i]]->col);
    }
    GURU;
    // test case cycle_def
    eprintf("❮%0❯ @%1:%2%n",
-      defs[path[0]]->sval, defs[path[0]]->line, defs[path[0]]->col);
+      V_AS_S(defs[path[0]]->value),
+      defs[path[0]]->line, defs[path[0]]->col);
 }
 
 void Path::treedive(Tree *t) {
    if (t) {
       if (t->op == YYEFAD) {
          for (int i = 0; i < HASH_SIZE; i++) {
-            if (defs[i] && !strcmp(defs[i]->sval, t->sval)) {
+            if (defs[i] && !strcmp(V_AS_S(defs[i]->value), V_AS_S(t->value))) {
                Path copy(*this);
                copy.add(i);
             }

@@ -43,7 +43,7 @@ static void register_option_base(Tree *root) {
       if (root->op == YYBASE) {
          // ECMA-55 allows only 0 or 1
          // if it ain't 0, it's a 1
-         if (root->ival != 0) {
+         if (V_AS_I(root->value) != 0) {
             option_base = 1;
             // and the first one wins,
             // subsequent ones lose
@@ -58,20 +58,24 @@ static void register_arrays(Tree *root) {
    while (root) {
       if (root->op == YYDIM) {
          for (Tree *list = root->right; list; list = list->middle) {
-            if (is_bound_defined(list->sval)) {
-               const Varbound *vb = get_varbound(list->sval);
+            if (is_bound_defined(V_AS_S(list->value))) {
+               const Varbound *vb = get_varbound(V_AS_S(list->value));
                GURU;
                // test case multiple_dim
                eprintf("{ERROR}: @%0:%1, {ARRAY ALREADY DEFINED} ❮%2❯ @%3%n",
-                  list->line, list->col, list->sval, vb->line);
+                  list->line, list->col, V_AS_S(list->value), vb->line);
                exit(-1);
             }
             else {
                if (list->right) {
-                  set_bound(list->sval, list->line, 2, list->left->ival, list->right->ival);
+                  set_bound(V_AS_S(list->value), list->line, 2,
+                     V_AS_I(list->left->value),
+                     V_AS_I(list->right->value));
                }
                else {
-                  set_bound(list->sval, list->line, 1, list->left->ival, 0);
+                  set_bound(V_AS_S(list->value), list->line, 1,
+                     V_AS_I(list->left->value),
+                     0);
                }
             }
          }
@@ -83,13 +87,13 @@ static void register_arrays(Tree *root) {
 
 static void register_def(Tree *root) {
    while (root) {
-      if (root->op == YYDEF && root->sval) {
-         if (is_def_defined(root->sval)) {
-            Tree *prev = get_def(root->sval);
+      if (root->op == YYDEF && V_AS_S(root->value)) {
+         if (is_def_defined(V_AS_S(root->value))) {
+            Tree *prev = get_def(V_AS_S(root->value));
             GURU;
             // test case multiple_def
             eprintf("{ERROR}: @%0:%1 {FUNCTION DEFINITION MULTIPLY DEFINED} ❮%2❯ @%3:%4%n",
-               root->line, root->col, root->sval, prev->line, prev->col);
+               root->line, root->col, V_AS_S(root->value), prev->line, prev->col);
             exit(-1);
          }
          else {
@@ -105,20 +109,7 @@ static void register_data(Tree *root) {
    while (root) {
       if (root->op == YYDATA) {
          for (Tree *data = root->right; data; data = data->middle) {
-            switch (data->op) {
-               case YYDOUBLE:
-                  add_data(data->dval);
-                  break;
-               case YYINTEGER:
-                  add_data(data->ival);
-                  break;
-               case YYRATIONAL:
-                  add_data(data->rval);
-                  break;
-               case YYSTRING:
-                  add_data(data->sval);
-                  break;
-            }
+            add_data(data->value);
          }
       }
       root = root->next;
@@ -127,80 +118,71 @@ static void register_data(Tree *root) {
 
 void upgrade_to_number(Tree *p) {
    if (p->op == YYSTRING) {
-      const char *s = p->sval;
+      const char *s = strdup(V_AS_S(p->value));
+      p->value.vacate();
+
       if (void_enabled && !strcasecmp(s, "void")) {
          p->op = YYVOID;
-         p->valt = 'v';
-         p->ival = 0;
+         // vacate() call above makes value void
       }
       else if (strchr((char *)s, '#') == s) {
          p->op = YYRATIONAL;
-         p->valt = 'r';
-         p->rval = new Rational(s);
+         p->value.base() = new Rational(s);
       }
       else if (strchr((char *)s, '.') || strchr((char *)s, 'E')) {
          p->op = YYDOUBLE;
-         p->valt = 'd';
-         p->dval = atof(s);
+         p->value.base() = atof(s);
       }
       else {
          p->op = YYINTEGER;
-         p->valt = 'i';
-         p->ival = atoll(s);
+         p->value.base() = atoll(s);
       }
+
       free((void *)s);
    }
 }
 
 void upgrade_to_rational(Tree *p) {
    if (p->op == YYINTEGER) {
-      int64_t ival = p->ival;
+      int64_t ival = V_AS_I(p->value);
       int8_t sign = 1;
       if (ival < 0) {
          sign = -1;
          ival = -ival;
       }
       p->op = YYRATIONAL;
-      p->valt = 'r';
-      p->rval = new Rational(sign, ival, 0, 1);
+      p->value.base() = new Rational(sign, ival, 0, 1);
    }
    else if (p->op == YYDOUBLE) {
       p->op = YYRATIONAL;
-      p->valt = 'r';
-      p->rval = new Rational(p->dval);
+      p->value.base() = new Rational(V_AS_D(p->value));
    }
 }
 
 void upgrade_to_double(Tree *p) {
    if (p->op == YYINTEGER) {
-      int64_t ival = p->ival;
+      int64_t ival = V_AS_I(p->value);
       p->op = YYDOUBLE;
-      p->valt = 'd';
-      p->dval = (double) ival;
+      p->value.base() = (double) ival;
    }
    else if (p->op == YYRATIONAL) {
-      Rational *deleteme = p->rval;
-      double dval = (double)(*(p->rval));
+      double dval = (double)(*(V_AS_R(p->value)));
+      p->value.vacate();
       p->op = YYDOUBLE;
-      p->valt = 'd';
-      p->dval = dval;
-      delete deleteme;
+      p->value.base() = dval;
    }
 }
 
 void upgrade_to_integer(Tree *p) {
    if (p->op == YYDOUBLE) {
       p->op = YYINTEGER;
-      p->valt = 'i';
-      p->ival = (int64_t) floor(p->dval);
+      p->value.base() = (int64_t) floor(V_AS_D(p->value));
    }
    else if (p->op == YYRATIONAL) {
-      Rational *deleteme = p->rval;
-      double dval = (double)(*(p->rval));
+      double dval = (double)(*(V_AS_R(p->value)));
+      p->value.vacate();
       p->op = YYINTEGER;
-      p->valt = 'i';
-      p->ival = (int64_t) floor(dval);
-      delete deleteme;
+      p->value.base() = (int64_t) floor(dval);
    }
 }
 
@@ -208,24 +190,23 @@ void upgrade_to_string(Tree *p) {
    if (p->op != YYSTRING) {
       char buf[1024];
       if (p->op == YYDOUBLE) {
-         snprintf(buf, sizeof(buf), "%g", p->dval);
+         snprintf(buf, sizeof(buf), "%g", V_AS_D(p->value));
          if (!strchr(buf, '.')) {
             strcat(buf, ".0");
          }
          p->op = YYSTRING;
-         p->sval = strdup(buf);
+         p->value.base() = strdup(buf);
       }
       else if (p->op == YYINTEGER) {
-         snprintf(buf, sizeof(buf), "%ld", p->ival);
+         snprintf(buf, sizeof(buf), "%ld", V_AS_I(p->value));
          p->op = YYSTRING;
-         p->sval = strdup(buf);
+         p->value.base() = strdup(buf);
       }
       else if (p->op == YYRATIONAL) {
-         Rational *deleteme = p->rval;
-         deleteme->shortprint(buf, sizeof(buf));
+         V_AS_R(p->value)->shortprint(buf, sizeof(buf));
+         p->value.vacate();
          p->op = YYSTRING;
-         p->sval = strdup(buf);
-         delete deleteme;
+         p->value.base() = strdup(buf);
       }
    }
 }
@@ -239,48 +220,6 @@ int paramcount(Tree *tree) {
    return ret;
 }
 
-#if 0
-Tree *deep_copy_defcall(Tree *defcall, Tree *params, Tree *values) {
-   Tree *def = get_def(defcall->sval);
-   if (!def) {
-      GURU;
-      // test case unrecognized_defcall
-      eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED FUNCTION DEFINITION} ❮%2❯%n",
-         defcall->line, defcall->col, defcall->sval);
-      exit(-1);
-   }
-   int defcount = paramcount(def->left);
-   int callcount = paramcount(defcall->left);
-   if (defcount != callcount) {
-      GURU;
-      // test case param_mismatch1 param_mismatch2
-      eprintf("{ERROR}: @%0:%1, {FUNCTION DEFINITION PARAMETER MISMATCH} ❮%2❯ %3<>%4%n",
-         defcall->line, defcall->col, defcall->sval, defcount, callcount);
-      exit(-1);
-   }
-
-   // TODO FIX so much leaky memory here...
-
-   // evaluate parameters
-   Tree *head = NULL;
-   Tree *tail = NULL;
-   for (Tree *mid = defcall->left; mid; mid = mid->middle) {
-      Tree *tmp = evaluate(deep_copy(mid, params, values));
-      if (!head) {
-         head = tail = tmp;
-      }
-      else {
-         tail->middle = tmp;
-         tail = tmp;
-      }
-   }
-
-   Tree *ret = evaluate(deep_copy(def->right, def->left, head));
-   if (defcall->middle) { ret->middle = deep_copy(defcall->middle); }
-   return ret;
-}
-#endif
-
 // make a deep copy
 Tree *deep_copy(Tree *subtree) {
    Tree *copy = (Tree *) malloc(sizeof(Tree));
@@ -292,144 +231,12 @@ Tree *deep_copy(Tree *subtree) {
    if (subtree->middle) { copy->middle = deep_copy(subtree->middle); }
    if (subtree->right) { copy->right = deep_copy(subtree->right); }
 
-   if (copy->valt == 's') {
-      copy->sval = strdup(subtree->sval);
-   }
-   else if (copy->valt == 'r') {
-      copy->rval = new Rational(*(subtree->rval));
-   }
+   copy->value = subtree->value;
 
    copy->next = NULL;
 
    return copy;
 }
-
-#if 0
-   else if (copy->op == YYARRAYREF) {
-      if (copy->left) {
-         copy->left = evaluate(copy->left);
-         if (copy->left->op == YYSTRING) {
-            upgrade_to_number(copy->left);
-         }
-         if (copy->left->op == YYDOUBLE) {
-            copy->left->ival = (int64_t)floor(copy->left->dval);
-            copy->left->op = YYINTEGER;
-         }
-         else if (copy->left->op == YYINTEGER) {
-            copy->left->ival = (int64_t)floor((double)copy->left->ival);
-         }
-         else if (copy->left->op == YYRATIONAL) {
-            Rational *deleteme = copy->left->rval;
-            copy->left->ival = (int64_t) copy->left->rval->floor();
-            copy->left->op = YYINTEGER;
-            delete deleteme;
-         }
-      }
-      if (copy->right) {
-         copy->right = evaluate(copy->right);
-         if (copy->right->op == YYSTRING) {
-            upgrade_to_number(copy->right);
-         }
-         if (copy->right->op == YYDOUBLE) {
-            copy->right->ival = (int64_t)floor(copy->right->dval);
-            copy->right->op = YYINTEGER;
-         }
-         else if (copy->right->op == YYINTEGER) {
-            copy->right->ival = (int64_t)floor((double)copy->right->ival);
-         }
-         else if (copy->right->op == YYRATIONAL) {
-            Rational *deleteme = copy->right->rval;
-            copy->right->ival = (int64_t) copy->right->rval->floor();
-            copy->right->op = YYINTEGER;
-            delete deleteme;
-         }
-      }
-   }
-#endif
-
-#if 0
-   if (copy->op == YYVARNAME || copy->op == YYARRAYREF) {
-      char varname[1024];
-      if (copy->op == YYVARNAME) {
-         sprintf(varname, "%s", subtree->sval);
-      }
-      else { // YYARRAYREF
-         if (copy->right) {
-            // TODO FIX bounds check these based on DIM?
-            sprintf(varname, "%s(%ld,%ld)", subtree->sval, copy->left->ival, copy->right->ival);
-            free(copy->left);
-            copy->left = NULL;
-            free(copy->right);
-            copy->right = NULL;
-         }
-         else {
-            // TODO FIX bounds check these based on DIM?
-            sprintf(varname, "%s(%ld)", subtree->sval, copy->left->ival);
-            free(copy->left);
-            copy->left = NULL;
-         }
-      }
-
-      int found = 0;
-      if (params != NULL && values != NULL) {
-         Tree *p = params;
-         Tree *v = values;
-
-         while (p) {
-            if (!strcmp(p->sval, varname)) {
-               found = 1;
-               if (v->op == YYDOUBLE) {
-                  copy->op = YYDOUBLE;
-                  copy->dval = v->dval;
-               }
-               else if (v->op == YYINTEGER) {
-                  copy->op = YYINTEGER;
-                  copy->ival = v->ival;
-               }
-               else if (v->op == YYRATIONAL) {
-                  copy->op = YYRATIONAL;
-                  copy->rval = new Rational(*(v->rval));
-               }
-               else if (v->op == YYSTRING) {
-                  copy->op = YYSTRING;
-                  copy->sval = strdup(v->sval);
-               }
-               break;
-            }
-            p = p->middle;
-            v = v->middle;
-         }
-      }
-      if (!found) {
-         const Val *val = get_value(varname);
-         if (!val) {
-            GURU;
-            // no test case
-            eprintf("{ERROR}: @%0:%1, {VARIABLE HAS NO VALUE} ❮%2❯%n",
-                  copy->line, copy->col, varname);
-            exit(-1);
-         }
-         else {
-            if (val->typ == 'd') {
-               copy->op = YYDOUBLE;
-               copy->dval = val->dval;
-            }
-            else if (val->typ == 'i') {
-               copy->op = YYINTEGER;
-               copy->ival = val->ival;
-            }
-            else if (val->typ == 'r') {
-               copy->op = YYRATIONAL;
-               copy->rval = new Rational(*(val->rval));
-            }
-            else if (val->typ == 's') {
-               copy->op = YYSTRING;
-               copy->sval = strdup(val->sval);
-            }
-         }
-      }
-   }
-#endif
 
 #define BUILTINFUNC(name, args) void builtin_ ## name(Tree *p)
 
@@ -439,13 +246,13 @@ BUILTINFUNC(ABS, 1) {
    upgrade_to_number(p->right);
 
    if (p->right->op == YYDOUBLE) {
-      p->right->dval = fabs(p->right->dval);
+      V_AS_D(p->right->value) = fabs(V_AS_D(p->right->value));
    }
    else if (p->right->op == YYINTEGER) {
-      p->right->ival = llabs(p->right->ival);
+      V_AS_I(p->right->value) = llabs(V_AS_I(p->right->value));
    }
    else if (p->right->op == YYRATIONAL) {
-      *(p->right->rval) = p->right->rval->abs();
+      *(V_AS_R(p->right->value)) = V_AS_R(p->right->value)->abs();
    }
 
    Tree *middle = p->middle;
@@ -459,7 +266,7 @@ BUILTINFUNC(ATN, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = atan(p->right->dval);
+   V_AS_D(p->right->value) = atan(V_AS_D(p->right->value));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -474,7 +281,7 @@ BUILTINFUNC(CHR, 1) {
    upgrade_to_integer(p->right);
 
    p->right->op = YYSTRING;
-   p->right->sval = strdup(int2utf8(p->right->ival));
+   p->right->value.base() = strdup(int2utf8(V_AS_I(p->right->value)));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -487,7 +294,7 @@ BUILTINFUNC(COS, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = cos(p->right->dval);
+   V_AS_D(p->right->value) = cos(V_AS_D(p->right->value));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -512,7 +319,7 @@ BUILTINFUNC(EXP, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = pow(M_E,p->right->dval);
+   V_AS_D(p->right->value) = pow(M_E,V_AS_D(p->right->value));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -560,7 +367,7 @@ BUILTINFUNC(LOG, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = log(p->right->dval);
+   V_AS_D(p->right->value) = log(V_AS_D(p->right->value));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -569,11 +376,20 @@ BUILTINFUNC(LOG, 1) {
    free(freeme);
 }
 
+double RandomReal(double low, double high)
+{
+  double d;
+
+  d = (double) rand() / ((double) RAND_MAX + 1);
+  return (d * high);
+}
+
 BUILTINFUNC(RND, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = (double)rand()/(double)(RAND_MAX/(p->right->dval));
+   p->right->value.base() = V_AS_D(p->right->value) *
+      ((double) rand() / ((double) RAND_MAX + 1));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -586,21 +402,21 @@ BUILTINFUNC(RANDOMIZE, 0) {
    time_t t = time(NULL);
    srand(t);
    p->op = YYINTEGER;
-   p->ival = t;
+   p->value.base() = t;
 }
 
 BUILTINFUNC(SGN, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
-   if (p->right->ival < 0) {
-      p->right->ival = -1;
+   if (V_AS_I(p->right->value) < 0) {
+      p->right->value.base() = -1;
    }
-   else if (p->right->ival > 0) {
-      p->right->ival = 1;
+   else if (V_AS_I(p->right->value) > 0) {
+      p->right->value.base() = 1;
    }
    else {
-      p->right->ival = 0;
+      p->right->value.base() = 0;
    }
 
    Tree *middle = p->middle;
@@ -614,7 +430,7 @@ BUILTINFUNC(SIN, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = sin(p->right->dval);
+   V_AS_D(p->right->value) = sin(V_AS_D(p->right->value));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -627,7 +443,7 @@ BUILTINFUNC(SQR, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = sqrt(p->right->dval);
+   V_AS_D(p->right->value) = sqrt(V_AS_D(p->right->value));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -642,9 +458,9 @@ BUILTINFUNC(TAB, 1) {
    upgrade_to_integer(p->right);
 
    char buffer[128];
-   sprintf(buffer, "\x1b[%ldG", p->right->ival);
+   sprintf(buffer, "\x1b[%ldG", V_AS_I(p->right->value));
    p->right->op = YYSTRING;
-   p->right->sval = strdup(buffer);
+   p->right->value.base() = strdup(buffer);
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -657,7 +473,7 @@ BUILTINFUNC(TAN, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
-   p->right->dval = tan(p->right->dval);
+   V_AS_D(p->right->value) = tan(V_AS_D(p->right->value));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
@@ -694,13 +510,14 @@ Builtin *get_builtin(const char *name) {
    return NULL; // shouldn't happen?  but could?
 }
 
+// caution, returns strdup'd memory
 char *get_var_array_name(Tree *p) {
-   Varbound *vb = (Varbound *) get_varbound(p->sval);
+   Varbound *vb = (Varbound *) get_varbound(V_AS_S(p->value));
    int count = paramcount(p->right);
 
    if (!vb) {
-      set_bound(p->sval, p->line, count, 10, 10);
-      vb = (Varbound *) get_varbound(p->sval);
+      set_bound(V_AS_S(p->value), p->line, count, 10, 10);
+      vb = (Varbound *) get_varbound(V_AS_S(p->value));
    }
 
    if (vb) {
@@ -708,38 +525,41 @@ char *get_var_array_name(Tree *p) {
          GURU;
          // test case varbounds3 vardim3
          eprintf("{ERROR}: @%0:%1, {VARIABLE USED AS ARRAY} ❮%2❯ @%3%n",
-               p->line, p->col, p->sval, vb->line);
+               p->line, p->col, V_AS_S(p->value), vb->line);
          exit(-1);
       }
       if (count == 0 && vb->dimensions > 0) {
          GURU;
          // test case vardim1 vardim2
          eprintf("{ERROR}: @%0:%1, {ARRAY USED AS VARIABLE} ❮%2❯ @%3%n",
-               p->line, p->col, p->sval, vb->line);
+               p->line, p->col, V_AS_S(p->value), vb->line);
          exit(-1);
       }
       if (count != vb->dimensions) {
          GURU;
          // test case varbounds4 vardim4
          eprintf("{ERROR}: @%0:%1, {ARRAY INDEX SIZE MISMATCH} ❮%2❯ DIM%3 @%4%n",
-               p->line, p->col, p->sval, vb->dimensions, vb->line);
+               p->line, p->col, V_AS_S(p->value), vb->dimensions, vb->line);
          exit(-1);
       }
-      if (vb->dimensions == 1 && (p->right->ival < option_base || p->right->ival > vb->upper1)) {
+      if (vb->dimensions == 1 && (V_AS_I(p->right->value) < option_base ||
+                                  V_AS_I(p->right->value) > vb->upper1)) {
          GURU;
          // test case varbounds
          eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%5) ❮%2❯(%3..%4) @%6%n",
-               p->line, p->col, p->sval, option_base, vb->upper1, p->right->ival, vb->line);
+               p->line, p->col,
+               V_AS_S(p->value), option_base, vb->upper1,
+               V_AS_I(p->right->value), vb->line);
          exit(-1);
       }
       if (vb->dimensions == 2 &&
-            (p->right->ival < option_base || p->right->ival > vb->upper1 ||
-             p->right->middle->ival < option_base || p->right->middle->ival > vb->upper2)) {
+            (V_AS_I(p->right->value) < option_base || V_AS_I(p->right->value) > vb->upper1 ||
+             V_AS_I(p->right->middle->value) < option_base || V_AS_I(p->right->middle->value) > vb->upper2)) {
          GURU;
          // test case varbounds1 varbounds2
          eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%6,%7) ❮%2❯(%3..%4,%3..%5) @%8%n",
-               p->line, p->col, p->sval, option_base, vb->upper1, vb->upper2,
-               p->right->ival, p->right->middle->ival, vb->line);
+               p->line, p->col, V_AS_S(p->value), option_base, vb->upper1, vb->upper2,
+               V_AS_I(p->right->value), V_AS_I(p->right->middle->value), vb->line);
          exit(-1);
       }
    }
@@ -747,7 +567,7 @@ char *get_var_array_name(Tree *p) {
    if (p->right) { // an array
       int n = 0;
       char buf[4096];
-      sprintf(buf, "%s(", p->sval);
+      sprintf(buf, "%s(", V_AS_S(p->value));
 
       for (Tree *tree = p->right; tree; tree = tree->middle) {
          upgrade_to_number(tree);
@@ -756,14 +576,14 @@ char *get_var_array_name(Tree *p) {
             GURU;
             // test case voidarraysubscript
             eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
-                  p->line, p->col, p->sval, n, eop2string(tree->op));
+                  p->line, p->col, V_AS_S(p->value), n, eop2string(tree->op));
             exit(-1);
          }
          if (tree->middle) {
-            sprintf(buf + strlen(buf), "%ld,", tree->ival);
+            sprintf(buf + strlen(buf), "%ld,", V_AS_I(tree->value));
          }
          else {
-            sprintf(buf + strlen(buf), "%ld)", tree->ival);
+            sprintf(buf + strlen(buf), "%ld)", V_AS_I(tree->value));
          }
          n++;
       }
@@ -771,13 +591,13 @@ char *get_var_array_name(Tree *p) {
       return strdup(buf);
    }
    else { // a variable
-      return strdup(p->sval);
+      return strdup(V_AS_S(p->value));
    }
 }
 
 Tree *get_param(const char *s, Tree *params, Tree *vals) {
    while (params && vals) {
-      if (!strcmp(s, params->sval)) {
+      if (!strcmp(s, V_AS_S(params->value))) {
          return vals;
       }
       params = params->middle;
@@ -813,7 +633,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
    }
 
    if (p->op == YYEFAD) {
-      Builtin *builtin = get_builtin(p->sval);
+      Builtin *builtin = get_builtin(V_AS_S(p->value));
       if (builtin) { // it's a builtin function
          int count = 0;
          for (Tree *tree = p->right; tree; tree = tree->middle) {
@@ -823,13 +643,13 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             GURU;
             // test case builtinparamcount
             eprintf("{ERROR}: @%0:%1, {INCORRECT NUMBER OF PARAMETERS} ❮%2❯ %3<>%4%n",
-               p->line, p->col, has_tuple(p->sval), count, builtin->args);
+               p->line, p->col, has_tuple(V_AS_S(p->value)), count, builtin->args);
             exit(-1);
          }
          builtin->fptr(p);
       }
-      else if (is_def_defined(p->sval)) {
-         Tree *deftree = get_def(p->sval);
+      else if (is_def_defined(V_AS_S(p->value))) {
+         Tree *deftree = get_def(V_AS_S(p->value));
 
          int defcount = paramcount(deftree->left);
          int callcount = paramcount(p->right);
@@ -838,7 +658,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             GURU;
             // test case param_mismatch1 param_mismatch2
             eprintf("{ERROR}: @%0:%1, {FUNCTION DEFINITION PARAMETER MISMATCH} ❮%2❯ %3<>%4%n",
-               p->line, p->col, p->sval, defcount, callcount);
+               p->line, p->col, V_AS_S(p->value), defcount, callcount);
             exit(-1);
          }
 
@@ -846,19 +666,12 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          Tree *val = evaluate(expression, deftree->left, p->right);
          // TODO FIX do we need to free anything up???
          p->op = val->op;
-         p->valt = val->valt;
          switch (val->op) {
             case YYDOUBLE:
-               p->dval = val->dval;
-               break;
             case YYINTEGER:
-               p->ival = val->ival;
-               break;
             case YYRATIONAL:
-               p->rval = new Rational(*(val->rval));
-               break;
             case YYSTRING:
-               p->sval = strdup(val->sval);
+               p->value = val->value;
                break;
             default:
                GURU;
@@ -870,24 +683,17 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          }
          // TODO FIX: do we need to null or free p->left or p->right???
       }
-      else if (params && (tmp = /*assignment */ get_param(p->sval, params, vals))) {
+      else if (params && (tmp = /*assignment */ get_param(V_AS_S(p->value), params, vals))) {
          // parameter substitution from a defcall
          Tree *val = tmp;
          // TODO FIX do we need to free anything up???
          p->op = val->op;
-         p->valt = val->valt;
          switch (val->op) {
             case YYDOUBLE:
-               p->dval = val->dval;
-               break;
             case YYINTEGER:
-               p->ival = val->ival;
-               break;
             case YYRATIONAL:
-               p->rval = new Rational(*(val->rval));
-               break;
             case YYSTRING:
-               p->sval = strdup(val->sval);
+               p->value = val->value;
                break;
             default:
                GURU;
@@ -901,35 +707,28 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
       }
       else { // array or variable
          char *s = get_var_array_name(p);
-         const Val *val = get_value(s);
+         const Value *val = get_value(s);
          if (val) {
             if (p->right) {
                // TODO FIX // free p->right?!?!?
                p->right = NULL;
             }
 
-            switch (val->typ) {
-               case 'd':
+            switch (val->index()) {
+               case V_D:
                   p->op = YYDOUBLE;
-                  p->valt = 'd';
-                  p->dval = val->dval;
                   break;
-               case 'i':
+               case V_I:
                   p->op = YYINTEGER;
-                  p->valt = 'i';
-                  p->ival = val->ival;
                   break;
-               case 'r':
+               case V_R:
                   p->op = YYRATIONAL;
-                  p->valt = 'r';
-                  p->rval = new Rational(*(val->rval));
                   break;
-               case 's':
+               case V_S:
                   p->op = YYSTRING;
-                  p->valt = 's';
-                  p->sval = strdup(val->sval);
                   break;
             }
+            p->value = *val;
          }
          else {
             GURU;
@@ -943,36 +742,31 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
    }
 
    if (p->op == YYLVAL) {
-      Builtin *builtin = get_builtin(p->sval);
+      Builtin *builtin = get_builtin(V_AS_S(p->value));
       if (builtin) { // it's a builtin function
          GURU;
          // test case assigntobuiltin
          eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO FUNCTION} ❮%2❯%n",
-            p->line, p->col, has_tuple(p->sval));
+            p->line, p->col, has_tuple(V_AS_S(p->value)));
          exit(-1);
       }
-      else if (is_def_defined(p->sval)) {
+      else if (is_def_defined(V_AS_S(p->value))) {
          GURU;
          // test case assigntodef
          eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO DEFINITION} ❮%2❯%n",
-            p->line, p->col, p->sval);
+            p->line, p->col, V_AS_S(p->value));
          exit(-1);
       }
       else { // variable or array
          char *s = get_var_array_name(p);
 
-         p->valt = 's';
-         p->sval = s;
+         p->value.vacate();
+         p->value.base() = s;
          // TODO FIX // free p->right?!?!?
          p->right = NULL;
       }
    }
 
-#if 0
-FNORD
-   else if (p->op == YYTAB) {
-   }
-#endif
    if (strchr("+-*/^&", p->op)) {
       if (p->left && p->right ) {
          if ((p->left->op != p->right->op) ||
@@ -1012,19 +806,19 @@ FNORD
                case YYDOUBLE:
                   switch(p->op) {
                      case '+':
-                        p->dval = p->left->dval + p->right->dval;
+                        p->value.base() = V_AS_D(p->left->value) + V_AS_D(p->right->value);
                         break;
                      case '-':
-                        p->dval = p->left->dval - p->right->dval;
+                        p->value.base() = V_AS_D(p->left->value) - V_AS_D(p->right->value);
                         break;
                      case '*':
-                        p->dval = p->left->dval * p->right->dval;
+                        p->value.base() = V_AS_D(p->left->value) * V_AS_D(p->right->value);
                         break;
                      case '/':
-                        p->dval = p->left->dval / p->right->dval;
+                        p->value.base() = V_AS_D(p->left->value) / V_AS_D(p->right->value);
                         break;
                      case '^':
-                        p->dval = pow(p->left->dval,p->right->dval);
+                        p->value.base() = pow(V_AS_D(p->left->value),V_AS_D(p->right->value));
                         break;
                      default:
                         GURU;
@@ -1043,19 +837,19 @@ FNORD
                case YYINTEGER:
                   switch(p->op) {
                      case '+':
-                        p->ival = p->left->ival + p->right->ival;
+                        p->value.base() = V_AS_I(p->left->value) + V_AS_I(p->right->value);
                         break;
                      case '-':
-                        p->ival = p->left->ival - p->right->ival;
+                        p->value.base() = V_AS_I(p->left->value) - V_AS_I(p->right->value);
                         break;
                      case '*':
-                        p->ival = p->left->ival * p->right->ival;
+                        p->value.base() = V_AS_I(p->left->value) * V_AS_I(p->right->value);
                         break;
                      case '/':
-                        p->ival = p->left->ival / p->right->ival;
+                        p->value.base() = V_AS_I(p->left->value) / V_AS_I(p->right->value);
                         break;
                      case '^':
-                        p->ival = (int64_t) pow(p->left->ival,p->right->ival);
+                        p->value.base() = (int64_t) pow(V_AS_I(p->left->value),V_AS_I(p->right->value));
                         break;
                      default:
                         GURU;
@@ -1074,25 +868,46 @@ FNORD
                case YYRATIONAL:
                   switch(p->op) {
                      case '+':
-                        p->rval = new Rational (*(p->left->rval) + *(p->right->rval));
-                        p->op = YYRATIONAL;
-                        break;
+                        {
+                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) + *(V_AS_R(p->right->value)));
+                           p->value.vacate();
+                           p->value.base() = rval;
+                           p->op = YYRATIONAL;
+                           break;
+                        }
                      case '-':
-                        p->rval = new Rational (*(p->left->rval) - *(p->right->rval));
-                        p->op = YYRATIONAL;
-                        break;
+                        {
+                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) - *(V_AS_R(p->right->value)));
+                           p->value.vacate();
+                           p->value.base() = rval;
+                           p->op = YYRATIONAL;
+                           break;
+                        }
                      case '*':
-                        p->rval = new Rational (*(p->left->rval) * *(p->right->rval));
-                        p->op = YYRATIONAL;
-                        break;
+                        {
+                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) * *(V_AS_R(p->right->value)));
+                           p->value.vacate();
+                           p->value.base() = rval;
+                           p->op = YYRATIONAL;
+                           break;
+                        }
                      case '/':
-                        p->rval = new Rational (*(p->left->rval) / *(p->right->rval));
-                        p->op = YYRATIONAL;
-                        break;
+                        {
+                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) / *(V_AS_R(p->right->value)));
+                           p->value.vacate();
+                           p->value.base() = rval;
+                           p->op = YYRATIONAL;
+                           break;
+                        }
                      case '^':
-                        p->dval = pow((double)(*(p->left->rval)), (double) (*(p->right->rval)));
-                        p->op = YYDOUBLE;
-                        break;
+                        {
+                           double dval =
+                              pow((double)(*(V_AS_R(p->left->value))), (double) (*(V_AS_R(p->right->value))));
+                           p->value.vacate();
+                           p->value.base() = dval;
+                           p->op = YYDOUBLE;
+                           break;
+                        }
                      default:
                         GURU;
                         // test case rational_amp
@@ -1101,20 +916,24 @@ FNORD
                         exit(-1);
                         break;
                   }
-                  delete p->left->rval;
+                  //delete p->left->rval;
                   free(p->left);
                   p->left = NULL;
-                  delete p->right->rval;
+                  //delete p->right->rval;
                   free(p->right);
                   p->right = NULL;
                   break;
                case YYSTRING:
                   switch(p->op) {
                      case '&':
-                        p->valt = 's';
-                        p->sval = (char *) malloc(strlen(p->left->sval) + strlen(p->right->sval) + 1);
-                        sprintf((char *) p->sval, "%s%s", p->left->sval, p->right->sval);
-                        p->op = YYSTRING;
+                        {
+                           char *sval = (char *) malloc(strlen(V_AS_S(p->left->value)) +
+                                                        strlen(V_AS_S(p->right->value)) + 1);
+                           sprintf(sval, "%s%s", V_AS_S(p->left->value), V_AS_S(p->right->value));
+                           p->value.vacate();
+                           p->value.base() = (const char *) sval;
+                           p->op = YYSTRING;
+                        }
                         break;
                      default:
                         GURU;
@@ -1123,10 +942,10 @@ FNORD
                         exit(-1);
                         break;
                   }
-                  free((void *)p->left->sval);
+                  //free((void *)p->left->sval);
                   free((void *)p->left);
                   p->left = NULL;
-                  free((void *)p->right->sval);
+                  //free((void *)p->right->sval);
                   free((void *)p->right);
                   p->right = NULL;
                   break;
@@ -1152,23 +971,23 @@ FNORD
       else if (!p->left && p->right && p->op == '-') {
          switch (p->right->op) {
             case YYDOUBLE:
-               p->dval = -(p->right->dval);
+               p->value.base() = -(V_AS_D(p->right->value));
                p->op = YYDOUBLE;
                free(p->right);
                p->right = NULL;
                break;
             case YYINTEGER:
-               p->ival = -(p->right->ival);
+               p->value.base() = -(V_AS_I(p->right->value));
                p->op = YYINTEGER;
                free(p->right);
                p->right = NULL;
                break;
             case YYRATIONAL:
                {
-                  Rational *deleteme = p->right->rval;
-                  p->rval = new Rational(-(*p->right->rval));
+                  Rational *rval = new Rational(-(*V_AS_R(p->right->value)));
+                  p->value.vacate();
+                  p->value.base() = rval;
                   p->op = YYRATIONAL;
-                  delete deleteme;
                   free(p->right);
                   p->right = NULL;
                }
@@ -1218,22 +1037,22 @@ FNORD
 bool is_double_relation_true(Tree *left, const char *op, Tree *right) {
    switch(OP2NUM(op)) {
       case OP2NUM("="):
-         return left->dval == right->dval;
+         return V_AS_D(left->value) == V_AS_D(right->value);
          break;
       case OP2NUM("<>"):
-         return left->dval != right->dval;
+         return V_AS_D(left->value) != V_AS_D(right->value);
          break;
       case OP2NUM(">="):
-         return left->dval >= right->dval;
+         return V_AS_D(left->value) >= V_AS_D(right->value);
          break;
       case OP2NUM("<="):
-         return left->dval <= right->dval;
+         return V_AS_D(left->value) <= V_AS_D(right->value);
          break;
       case OP2NUM(">"):
-         return left->dval > right->dval;
+         return V_AS_D(left->value) > V_AS_D(right->value);
          break;
       case OP2NUM("<"):
-         return left->dval < right->dval;
+         return V_AS_D(left->value) < V_AS_D(right->value);
          break;
    }
    return false;
@@ -1242,22 +1061,22 @@ bool is_double_relation_true(Tree *left, const char *op, Tree *right) {
 bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
    switch(OP2NUM(op)) {
       case OP2NUM("="):
-         return left->ival == right->ival;
+         return V_AS_I(left->value) == V_AS_I(right->value);
          break;
       case OP2NUM("<>"):
-         return left->ival != right->ival;
+         return V_AS_I(left->value) != V_AS_I(right->value);
          break;
       case OP2NUM(">="):
-         return left->ival >= right->ival;
+         return V_AS_I(left->value) >= V_AS_I(right->value);
          break;
       case OP2NUM("<="):
-         return left->ival <= right->ival;
+         return V_AS_I(left->value) <= V_AS_I(right->value);
          break;
       case OP2NUM(">"):
-         return left->ival > right->ival;
+         return V_AS_I(left->value) > V_AS_I(right->value);
          break;
       case OP2NUM("<"):
-         return left->ival < right->ival;
+         return V_AS_I(left->value) < V_AS_I(right->value);
          break;
    }
    return false;
@@ -1266,29 +1085,29 @@ bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
 bool is_rational_relation_true(Tree *left, const char *op, Tree *right) {
    switch(OP2NUM(op)) {
       case OP2NUM("="):
-         return *(left->rval) == *(right->rval);
+         return *(V_AS_R(left->value)) == *(V_AS_R(right->value));
          break;
       case OP2NUM("<>"):
-         return *(left->rval) != *(right->rval);
+         return *(V_AS_R(left->value)) != *(V_AS_R(right->value));
          break;
       case OP2NUM(">="):
-         return *(left->rval) >= *(right->rval);
+         return *(V_AS_R(left->value)) >= *(V_AS_R(right->value));
          break;
       case OP2NUM("<="):
-         return *(left->rval) <= *(right->rval);
+         return *(V_AS_R(left->value)) <= *(V_AS_R(right->value));
          break;
       case OP2NUM(">"):
-         return *(left->rval) > *(right->rval);
+         return *(V_AS_R(left->value)) > *(V_AS_R(right->value));
          break;
       case OP2NUM("<"):
-         return *(left->rval) < *(right->rval);
+         return *(V_AS_R(left->value)) < *(V_AS_R(right->value));
          break;
    }
    return false;
 }
 
 bool is_string_relation_true(Tree *left, const char *op, Tree *right) {
-   int result = strcmp(left->sval, right->sval);
+   int result = strcmp(V_AS_S(left->value), V_AS_S(right->value));
    switch(OP2NUM(op)) {
       case OP2NUM("="):
          return result == 0;
@@ -1331,8 +1150,8 @@ bool is_relation_true(Tree *left, const char *op, Tree *right) {
    return false;
 }
 
-Val convert_to_value(const char *s) {
-   Val value;
+Value convert_to_value(const char *s) {
+   Value value;
    int has_noninteger = 0;
    int has_nonrational = 0;
    int has_nondouble = 0;
@@ -1349,20 +1168,16 @@ Val convert_to_value(const char *s) {
       }
    }
    if (has_noninteger && has_nonrational && has_nondouble) {
-      value.typ = 's';
-      value.sval = strdup(s);
+      value.base() = strdup(s);
    }
    else if (!has_noninteger) {
-      value.typ = 'i';
-      value.ival = atol(s);
+      value.base() = atol(s);
    }
    else if (!has_nondouble) {
-      value.typ = 'd';
-      value.dval = atof(s);
+      value.base() = atof(s);
    }
    else if (!has_nonrational) {
-      value.typ = 'r';
-      value.rval = new Rational(s);
+      value.base() = new Rational(s);
    }
    else {
       GURU;
@@ -1386,7 +1201,7 @@ void run(Tree *p) {
                Tree *lvalue = evaluate(deep_copy(p->left));
                Tree *result = evaluate(deep_copy(p->right));
 
-               const char *varname = lvalue->sval;
+               const char *varname = V_AS_S(lvalue->value);
                set_value(varname, result);
 
                free((void *)lvalue);
@@ -1401,7 +1216,7 @@ void run(Tree *p) {
                      case YYDOUBLE:
                         {
                            char buf[1024];
-                           sprintf(buf, "%g", mid->dval);
+                           sprintf(buf, "%g", V_AS_D(mid->value));
                            if (!strchr(buf, '.')) {
                               strcat(buf, ".0");
                            }
@@ -1414,17 +1229,17 @@ void run(Tree *p) {
                         }
                         break;
                      case YYINTEGER:
-                        printf("%li", mid->ival);
+                        printf("%li", V_AS_I(mid->value));
                         break;
                      case YYRATIONAL:
                         {
                            char buf[1024];
-                           mid->rval->shortprint(buf, sizeof(buf));
+                           V_AS_R(mid->value)->shortprint(buf, sizeof(buf));
                            printf("%s", buf);
                         }
                         break;
                      case YYSTRING:
-                        printf("%s", mid->sval);
+                        printf("%s", V_AS_S(mid->value));
                         break;
                      default:
                         GURU;
@@ -1445,88 +1260,88 @@ void run(Tree *p) {
             {
                set_for(p);
                Tree *result = evaluate(deep_copy(p->left));
-               set_value(p->sval, result);
+               set_value(V_AS_S(p->value), result);
             }
             break;
          case YYNEXT:
             {
                Tree *onp = np;
-               Tree *fore = get_for(p->sval, false);
+               Tree *fore = get_for(V_AS_S(p->value), false);
                if (!fore) {
                   GURU;
                   // test case unrecognext
                   eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED NEXT VARIABLE} ❮%2❯%n",
-                     p->line, p->col, p->sval);
+                     p->line, p->col, V_AS_S(p->value));
                   exit(-1);
                }
                Tree *start = evaluate(deep_copy(fore->left));
                Tree *fini = evaluate(deep_copy(fore->right));
-               const Val *valuep = get_value(fore->sval);
-               Val value = *valuep;
-               switch(value.typ) {
-                  case 'd':
+               const Value *valuep = get_value(V_AS_S(fore->value));
+               Value value = *valuep;
+               switch(value.index()) {
+                  case V_D:
                      {
                         double step = 1.0;
-                        if (fini->dval < start->dval) {
+                        if (V_AS_D(fini->value) < V_AS_D(start->value)) {
                            step = -1.0;
                         }
                         if (fore->middle) {
                            Tree *middle = evaluate(deep_copy(fore->middle));
-                           step = middle->dval;
+                           step = V_AS_D(middle->value);
                         }
-                        value.dval += step;
-                        set_value(fore->sval, value);
-                        if (step > 0.0 && value.dval <= fini->dval) {
+                        V_AS_D(value) += step;
+                        set_value(V_AS_S(fore->value), value);
+                        if (step > 0.0 && V_AS_D(value) <= V_AS_D(fini->value)) {
                            np = fore->next;
                         }
-                        else if (step < 0.0 && value.dval >= fini->dval) {
+                        else if (step < 0.0 && V_AS_D(value) >= V_AS_D(fini->value)) {
                            np = fore->next;
                         }
                      }
                      break;
-                  case 'i':
+                  case V_I:
                      {
                         int64_t step = 1;
-                        if (fini->ival < start->ival) {
+                        if (V_AS_I(fini->value) < V_AS_I(start->value)) {
                            step = -1.0;
                         }
                         if (fore->middle) {
                            Tree *middle = evaluate(deep_copy(fore->middle));
-                           step = middle->ival;
+                           step = V_AS_I(middle->value);
                         }
-                        value.ival += step;
-                        set_value(fore->sval, value);
-                        if (step > 0 && value.ival <= fini->ival) {
+                        V_AS_I(value) += step;
+                        set_value(V_AS_S(fore->value), value);
+                        if (step > 0 && V_AS_I(value) <= V_AS_I(fini->value)) {
                            np = fore->next;
                         }
-                        else if (step < 0 && value.ival >= fini->ival) {
+                        else if (step < 0 && V_AS_I(value) >= V_AS_I(fini->value)) {
                            np = fore->next;
                         }
                      }
                      break;
-                  case 'r':
+                  case V_R:
                      {
-                        Rational value_rval = *(value.rval);
+                        Rational value_rval = *(V_AS_R(value));
                         Rational step = Rational(1,1,0,1);
-                        if (fini->rval < start->rval) {
+                        if (V_AS_R(fini->value) < V_AS_R(start->value)) {
                            step = Rational(-1,1,0,1);
                         }
                         if (fore->middle) {
                            Tree *middle = evaluate(deep_copy(fore->middle));
-                           step = *(middle->rval);
+                           step = *(V_AS_R(middle->value));
                         }
                         value_rval = value_rval + step;
-                        value.rval = new Rational(value_rval);
-                        set_value(fore->sval, value);
-                        if (step.sgn() > 0 && value_rval <= *(fini->rval)) {
+                        value.base() = new Rational(value_rval);
+                        set_value(V_AS_S(fore->value), value);
+                        if (step.sgn() > 0 && value_rval <= *(V_AS_R(fini->value))) {
                            np = fore->next;
                         }
-                        else if (step.sgn() < 0 && value_rval >= *(fini->rval)) {
+                        else if (step.sgn() < 0 && value_rval >= *(V_AS_R(fini->value))) {
                            np = fore->next;
                         }
                      }
                      break;
-                  case 's':
+                  case V_S:
                      {
                         // punt, this is just stupid
                         GURU;
@@ -1538,7 +1353,7 @@ void run(Tree *p) {
                      break;
                }
                if (np == onp) {
-                  get_for(p->sval, true);
+                  get_for(V_AS_S(p->value), true);
                }
             }
             break;
@@ -1548,12 +1363,12 @@ void run(Tree *p) {
             break;
          case YYGOTO:
             {
-               Tree *t = get_label(p->sval);
+               Tree *t = get_label(V_AS_S(p->value));
                if (!t) {
                   GURU;
                   // test case badgoto
                   eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOTO LABEL} ❮%2❯%n",
-                     p->line, p->col, p->sval);
+                     p->line, p->col, V_AS_S(p->value));
                   exit(-1);
                }
                np = t;
@@ -1561,12 +1376,12 @@ void run(Tree *p) {
             break;
          case YYGOSUB:
             {
-               Tree *t = get_label(p->sval);
+               Tree *t = get_label(V_AS_S(p->value));
                if (!t) {
                   GURU;
                   // test case badgosub
                   eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOSUB LABEL} ❮%2❯%n",
-                     p->line, p->col, p->sval);
+                     p->line, p->col, V_AS_S(p->value));
                   exit(-1);
                }
 
@@ -1743,31 +1558,15 @@ void run(Tree *p) {
          case YYREAD:
             {
                for (Tree *varname = p->right; varname; varname = varname->middle) {
-                  Val value;
-                  value.typ = next_data_type();
-                  switch(value.typ) {
-                     case 'd':
-                        get_data(value.dval);
-                        set_value(varname->sval, value);
-                        break;
-                     case 'i':
-                        get_data(value.ival);
-                        set_value(varname->sval, value);
-                        break;
-                     case 'r':
-                        get_data(value.rval);
-                        set_value(varname->sval, value);
-                        break;
-                     case 's':
-                        get_data(value.sval);
-                        set_value(varname->sval, value);
-                        break;
-                     default:
-                        GURU;
-                        // test case readunderflow
-                        eprintf("{ERROR}: @%0:%1, {DATA READ UNDERFLOW}%n", p->line, p->col);
-                        exit(-1);
-                        break;
+                  Value value;
+                  if (get_data(value)) {
+                     set_value(V_AS_S(varname->value), value);
+                  }
+                  else {
+                     GURU;
+                     // test case readunderflow
+                     eprintf("{ERROR}: @%0:%1, {DATA READ UNDERFLOW}%n", p->line, p->col);
+                     exit(-1);
                   }
                }
             }
@@ -1787,7 +1586,7 @@ void run(Tree *p) {
                         }
                      }
                      // now do the conversion
-                     Val value = convert_to_value(s);
+                     Value value = convert_to_value(s);
                      set_value(varname->sval, value);
                   }
                   else {

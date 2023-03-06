@@ -6,11 +6,11 @@
 static Tree *fors[HASH_SIZE];
 
 int set_for(Tree *n) {
-   unsigned long h = hash(n->sval);
+   unsigned long h = hash(V_AS_S(n->value));
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {
       unsigned long j = (i + h) % HASH_SIZE;
-      if (fors[j] != NULL && !strcmp(n->sval, fors[j]->sval)) {
+      if (fors[j] != NULL && !strcmp(V_AS_S(n->value), V_AS_S(fors[j]->value))) {
          return 0;
       }
       if (fors[j] == NULL) {
@@ -26,7 +26,7 @@ Tree *get_for(const char *p, bool remove) {
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {
       unsigned long j = (i + h) % HASH_SIZE;
-      if (fors[j] != NULL && !strcmp(p, fors[j]->sval)) {
+      if (fors[j] != NULL && !strcmp(p, V_AS_S(fors[j]->value))) {
          if (remove) {
             fors[j] = NULL;
          }

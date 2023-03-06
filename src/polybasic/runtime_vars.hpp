@@ -7,16 +7,6 @@
 #include "rational.hpp"
 #include "polybasic.tab.hpp"
 
-typedef struct Val {
-   char typ;
-   union {
-      double dval;
-      int64_t ival;
-      Rational *rval;
-      const char *sval;
-   };
-} Val;
-
 typedef struct Varbound {
    const char *name;
    int line;
@@ -27,16 +17,25 @@ typedef struct Varbound {
 
 typedef struct Var {
    const char *name;
-   Val value;
+   Value value;
+
+   Var(const char *n, const Value &v) : value(v) {
+      name = n ? strdup(n) : NULL;
+   }
+   ~Var() {
+      if (name) {
+         free((void *)name);
+      }
+   }
 } Var;
 
 int is_var_defined(const char *p);
 
-int set_value(const char *p, Val value);
+int set_value(const char *p, Value value);
 
 int set_value(const char *p, Tree *result);
 
-const Val *get_value(const char *p);
+const Value *get_value(const char *p);
 
 int is_bound_defined(const char *p);
 

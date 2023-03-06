@@ -4,30 +4,38 @@
 #include "rational.hpp"
 #include "mapping.hpp"
 
-static void dumpval(Tree *root, char valtype) {
-   switch(valtype) {
-      case 'd':
+static void dumpvalue(Tree *root) {
+   switch(root->value.index()) {
+      case V_V:
+         {
+            printf("   value:[void]\n");
+         }
+         break;
+      case V_D:
          {
             char buf[1024];
-            sprintf(buf, "%g", root->dval);
+            sprintf(buf, "%g", V_AS_D(root->value));
             if (!strchr(buf, '.')) {
                strcat(buf, ".0");
             }
-            printf("%s", buf);
+            printf("   value:[double] %s\n", buf);
          }
          break;
-      case 'i':
-         printf("ival=%li\n", root->ival);
+      case V_I:
+         printf("   value:[int] %li\n", V_AS_I(root->value));
          break;
-      case 'r':
+      case V_R:
          {
             char buf[1024];
-            root->rval->shortprint(buf, sizeof(buf));
-            printf("rval=\"%s\"\n", buf);
+            V_AS_R(root->value)->shortprint(buf, sizeof(buf));
+            printf("   value:[rational] %s\n", buf);
          }
          break;
-      case 's':
-         printf("sval='%s'\n", root->sval ? root->sval : "<null>");
+      case V_S:
+         {
+            const char *p = V_AS_S(root->value);
+            printf("   value:[string] %s\n", p ? p : "<null>");
+         }
          break;
    }
 }
@@ -51,17 +59,12 @@ static void dumpthing(Tree *root, bool andnext) {
 
    if (opname) {
       printf("%p :: line %d col %d, op=%s(%d)\n", root, root->line, root->col, opname ? opname : "<nil>", root->op);
-      printf("   valt :'%c'\n", root->valt ? root->valt : '?');
-      if (reserved[index].valprint) {
-         dumpval(root, reserved[index].valprint);
-      }
-      else if (strchr("dirs", root->valt)) {
-         dumpval(root, root->valt);
-      }
    }
    else {
       printf("%p :: line %d col %d, op=%c(%d)\n", root, root->line, root->col, root->op, root->op);
    }
+   dumpvalue(root);
+
    printf("   label:'%s'\n", root->label ? root->label : "<nil>");
 
    printf("   left =%p\n", root->left);
