@@ -1414,11 +1414,11 @@ void run(Tree *p) {
             {
                Tree *left = evaluate(deep_copy(p->left));
                Tree *right = evaluate(deep_copy(p->right));
-               Tree *target = (p->op == YYIFSTMTLIST) ? p->middle : get_label(p->middle->sval);
+               Tree *target = (p->op == YYIFSTMTLIST) ? p->middle : get_label(V_AS_S(p->middle->value));
                if (!target) {
                   GURU;
                   // test case badiflabel
-                  eprintf("{ERROR}: @%0:%1, {UNKNOWN IF LABEL} ❮%2❯%n", p->line, p->col, p->middle->sval);
+                  eprintf("{ERROR}: @%0:%1, {UNKNOWN IF LABEL} ❮%2❯%n", p->line, p->col, V_AS_S(p->middle->value));
                   exit(-1);
                }
 
@@ -1454,7 +1454,7 @@ void run(Tree *p) {
                }
 
                if (left->op == right->op) {
-                  if (is_relation_true(left, p->sval, right)) {
+                  if (is_relation_true(left, V_AS_S(p->value), right)) {
                      if (p->op == YYIFGOSUB) {
                         gosub_stack[gosub_spot++] = np;
                         if (gosub_spot == GOSUB_STACKSIZE) {
@@ -1482,16 +1482,16 @@ void run(Tree *p) {
                int i = -1;
                switch (result->op) {
                   case YYDOUBLE:
-                     i = (int) result->dval;
+                     i = (int) V_AS_D(result->value);
                      break;
                   case YYINTEGER:
-                     i = (int) result->ival;
+                     i = (int) V_AS_I(result->value);
                      break;
                   case YYRATIONAL:
-                     i = (int) ((double)(*result->rval));
+                     i = (int) ((double)(*V_AS_R(result->value)));
                      break;
                   case YYSTRING:
-                     i = atoi(result->sval);
+                     i = atoi(V_AS_S(result->value));
                      break;
                   default:
                      GURU;
@@ -1519,14 +1519,14 @@ void run(Tree *p) {
                   eprintf("{ERROR}: @%0:%1, {INDEX OUT OF RANGE} ❮%2❯%n", p->line, p->left->col, oi);
                   exit(-1);
                }
-               Tree *target = get_label(label->sval);
+               Tree *target = get_label(V_AS_S(label->value));
                if (!target) {
                   GURU;
                   // test case badonlabel
-                  eprintf("{ERROR}: @%0:%1, {UNDEFINED LABEL} ❮%2❯%n", p->line, label->col, label->sval);
+                  eprintf("{ERROR}: @%0:%1, {UNDEFINED LABEL} ❮%2❯%n", p->line, label->col, V_AS_S(label->value));
                   exit(-1);
                }
-               if (p->ival) { // GOSUB
+               if (V_AS_I(p->value)) { // GOSUB
                   gosub_stack[gosub_spot++] = np;
                   if (gosub_spot == GOSUB_STACKSIZE) {
                      GURU;
@@ -1575,7 +1575,7 @@ void run(Tree *p) {
             {
                for (Tree *varname = p->right; varname; varname = varname->middle) {
                   char buf[1024];
-                  printf("%s? ",varname->sval);
+                  printf("%s? ",V_AS_S(varname->value));
                   fflush(stdout);
                   char *s = fgets(buf, sizeof(buf), stdin); // TODO FIX is this unicode/utf8 safe?
                   if (s) {
@@ -1587,7 +1587,7 @@ void run(Tree *p) {
                      }
                      // now do the conversion
                      Value value = convert_to_value(s);
-                     set_value(varname->sval, value);
+                     set_value(V_AS_S(varname->value), value);
                   }
                   else {
                      GURU;
