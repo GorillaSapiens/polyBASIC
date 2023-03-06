@@ -14,7 +14,7 @@ do
    base=`basename -s .bas $file`
    echo ===== $base
 
-   if ! polybasic -t 0 -l english $base.bas > $base\_actual.txt 2>&1 < /dev/null
+   if ! polybasic -l english $base.bas > $base\_actual.txt 2>&1 < /dev/null
    then
       cat $base\_actual.txt
       exit 1
