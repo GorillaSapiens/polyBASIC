@@ -754,14 +754,14 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
       Builtin *builtin = get_builtin(p->sval);
       if (builtin) { // it's a builtin function
          GURU;
-         // no test case
+         // test case assigntobuiltin
          eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO FUNCTION} ❮%2❯%n",
             p->line, p->col, has_tuple(p->sval));
          exit(-1);
       }
       else if (is_def_defined(p->sval)) {
          GURU;
-         // no test case
+         // test case assigntodef
          eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO DEFINITION} ❮%2❯%n",
             p->line, p->col, p->sval);
          exit(-1);
