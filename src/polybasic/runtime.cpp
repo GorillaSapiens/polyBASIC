@@ -377,7 +377,7 @@ Tree *deep_copy(Tree *subtree) {
          const Val *val = get_value(varname);
          if (!val) {
             GURU;
-            // test case no_value
+            // no test case
             eprintf("{ERROR}: @%0:%1, {VARIABLE HAS NO VALUE} ❮%2❯%n",
                   copy->line, copy->col, varname);
             exit(-1);
@@ -514,28 +514,28 @@ char *get_var_array_name(Tree *p) {
    if (vb) {
       if (vb->dimensions == 0 && count > 0) {
          GURU;
-         // no test case
+         // test case varbounds3 vardim3
          eprintf("{ERROR}: @%0:%1, {VARIABLE USED AS ARRAY} ❮%2❯ @%3%n",
                p->line, p->col, p->sval, vb->line);
          exit(-1);
       }
       if (count == 0 && vb->dimensions > 0) {
          GURU;
-         // no test case
+         // test case vardim1 vardim2
          eprintf("{ERROR}: @%0:%1, {ARRAY USED AS VARIABLE} ❮%2❯ @%3%n",
                p->line, p->col, p->sval, vb->line);
          exit(-1);
       }
       if (count != vb->dimensions) {
          GURU;
-         // no test case
+         // test case varbounds4 vardim4
          eprintf("{ERROR}: @%0:%1, {ARRAY INDEX SIZE MISMATCH} ❮%2❯ DIM%3 @%4%n",
                p->line, p->col, p->sval, vb->dimensions, vb->line);
          exit(-1);
       }
       if (vb->dimensions == 1 && (p->right->ival < option_base || p->right->ival > vb->upper1)) {
          GURU;
-         // no test case
+         // test case varbounds
          eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%5) ❮%2❯(%3..%4) @%6%n",
                p->line, p->col, p->sval, option_base, vb->upper1, p->right->ival, vb->line);
          exit(-1);
@@ -544,7 +544,7 @@ char *get_var_array_name(Tree *p) {
             (p->right->ival < option_base || p->right->ival > vb->upper1 ||
              p->right->middle->ival < option_base || p->right->middle->ival > vb->upper2)) {
          GURU;
-         // no test case
+         // test case varbounds1 varbounds2
          eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%6,%7) ❮%2❯(%3..%4,%3..%5) @%8%n",
                p->line, p->col, p->sval, option_base, vb->upper1, vb->upper2,
                p->right->ival, p->right->middle->ival, vb->line);
@@ -634,10 +634,8 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                p->line, p->col, has_tuple(p->sval), count, builtin->args);
             exit(-1);
          }
-GURU;
       }
       else if (is_def_defined(p->sval)) {
-GURU;
          Tree *deftree = get_def(p->sval);
 
          int defcount = paramcount(deftree->left);
@@ -681,7 +679,6 @@ GURU;
       }
       else if (params && (tmp = /*assignment */ get_param(p->sval, params, vals))) {
          // parameter substitution from a defcall
-GURU;
          Tree *val = tmp;
          // TODO FIX do we need to free anything up???
          p->op = val->op;
@@ -743,7 +740,7 @@ GURU;
          }
          else {
             GURU;
-            // no test case
+            // test case no_value
             eprintf("{ERROR}: @%0:%1, {VARIABLE OR ARRAY HAS NO VALUE} ❮%2❯%n",
                p->line, p->col, s);
             exit(-1);
