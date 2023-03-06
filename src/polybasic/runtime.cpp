@@ -495,6 +495,23 @@ char *get_var_array_name(Tree *p) {
       vb = (Varbound *) get_varbound(V_AS_S(p->value));
    }
 
+   if (p->right) {
+      if (p->right->op != YYINTEGER) {
+         GURU;
+         // test case voidarraysubscript
+         eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
+               p->line, p->col, V_AS_S(p->value), 0, eop2string(p->right->op));
+         exit(-1);
+      }
+      if (p->right->middle && p->right->middle->op != YYINTEGER) {
+         GURU;
+         // no test case
+         eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
+               p->line, p->col, V_AS_S(p->value), 1, eop2string(p->right->middle->op));
+         exit(-1);
+      }
+   }
+
    if (vb) {
       if (vb->dimensions == 0 && count > 0) {
          GURU;
@@ -547,13 +564,6 @@ char *get_var_array_name(Tree *p) {
       for (Tree *tree = p->right; tree; tree = tree->middle) {
          upgrade_to_number(tree);
          upgrade_to_integer(tree);
-         if (tree->op != YYINTEGER) {
-            GURU;
-            // test case voidarraysubscript
-            eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
-                  p->line, p->col, V_AS_S(p->value), n, eop2string(tree->op));
-            exit(-1);
-         }
          if (tree->middle) {
             sprintf(buf + strlen(buf), "%ld,", V_AS_I(tree->value));
          }
