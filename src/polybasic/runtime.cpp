@@ -670,7 +670,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                break;
             default:
                GURU;
-               // no test case
+               // test case defreturnsvoid
                eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❮%2❯%n",
                   p->line, p->col, eop2string(val->op));
                exit(-1);
@@ -699,7 +699,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                break;
             default:
                GURU;
-               // no test case
+               // test case defgivenvoid
                eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❮%2❯%n",
                   p->line, p->col, eop2string(val->op));
                exit(-1);
