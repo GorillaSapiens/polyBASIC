@@ -399,7 +399,7 @@ printstmt      : YYPRINT printlist
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYPRINT;
-                     if ($2->op != YYEOF) {
+                     if ($2 && $2->op != YYEOF) {
                         $$->middle = ($2);
                      }
                   }
