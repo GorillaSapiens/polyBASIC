@@ -691,7 +691,6 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          // TODO FIX: do we need to null or free p->left or p->right???
       }
       else { // array or variable
-GURU;
          char *s = get_var_array_name(p);
          const Value *val = get_value(s);
          if (val) {
@@ -1181,6 +1180,22 @@ void run(Tree *p) {
             {
                Tree *lvalue = evaluate(deep_copy(p->left));
                Tree *result = evaluate(deep_copy(p->right));
+
+               switch (result->op) {
+                  case YYDOUBLE:
+                  case YYINTEGER:
+                  case YYRATIONAL:
+                  case YYSTRING:
+                     // do nothing
+                     break;
+                  default:
+                     GURU;
+                     // test case voidsetvalue
+                     eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED VARIABLE TYPE} ❮%2❯%n",
+                        p->line, p->col, eop2string(result->op));
+                     exit(-1);
+                     break;
+               }
 
                const char *varname = V_AS_S(lvalue->value);
                set_value(varname, result->value);
