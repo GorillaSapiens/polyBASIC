@@ -42,6 +42,7 @@ class Rational {
       Rational(int8_t s, uREG_t w, uREG_t n, uREG_t d);
       Rational(const char *p);
       Rational(double d);
+      Rational(int64_t d);
 
       Rational operator + (Rational const & obj) const;
       Rational operator - (Rational const & obj) const;

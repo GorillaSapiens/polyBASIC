@@ -20,6 +20,7 @@ extern Tree *programtree;
 extern int yydebug;
 
 bool void_enabled = false;
+bool ignore_diu = false;
 
 // a simple linked list of tuples
 // because i'm lazy,
@@ -352,6 +353,7 @@ const char *shortname(const char *arg0) {
    printf("      -0     : enable the VOID keyword\n");
    printf("      -f     : debug flex parser output, and then run program\n");
    printf("      -b     : debug bison parser output, and then run program\n");
+   printf("      -u     : give ok return result on DATA INPUT UNDERFLOW\n");
    printf("      -t <n> : dump parse tree for line <n>, do not run program\n");
    printf("               omitting n, or setting n=0, will dump the entire tree\n");
    exit(0);
@@ -425,6 +427,9 @@ int main(int argc, char **argv) {
                treedebug = atoi(argv[1]);
                argc--; argv++;
             }
+            break;
+         case 'u':
+            ignore_diu = true;
             break;
          case 'v':
             version(arg0); // calls exit, never returns

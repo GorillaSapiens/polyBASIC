@@ -830,7 +830,7 @@ exprlist       : exprlist YYIPSEP expression
 printlist      : expression YYIPSEP printlist
                   {
                      $$ = $1;
-                     if ($3->op == YYEOF) {
+                     if ($3 && $3->op == YYEOF) {
                         $$->middle = NULL;
                      }
                      else {
@@ -843,6 +843,7 @@ printlist      : expression YYIPSEP printlist
                   }
                | %empty
                   {
+                     $$ = NULL;
                   }
                ;
 

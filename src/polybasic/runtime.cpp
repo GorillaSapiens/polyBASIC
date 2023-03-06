@@ -1151,6 +1151,82 @@ Value convert_to_value(const char *s) {
    return value;
 }
 
+void switch_to_desired_index(Value &value, int desired_index) {
+   if (value.index() == desired_index) {
+      return;
+   }
+
+   switch (desired_index) {
+      case V_D:
+         {
+            switch(value.index()) {
+               case V_R:
+                  {
+                     double dval = (double) *V_AS_R(value);
+                     value.vacate();
+                     value.base() = dval;
+                  }
+                  break;
+               case V_I:
+                  value.base() = (double) V_AS_I(value);
+                  break;
+            }
+         }
+         break;
+      case V_R:
+         {
+            switch(value.index()) {
+               case V_D:
+                  {
+                     Rational *rval = new Rational(V_AS_D(value));
+                     value.base() = rval;
+                  }
+                  break;
+               case V_I:
+                  {
+                     Rational *rval = new Rational(V_AS_I(value));
+                     value.base() = rval;
+                  }
+                  break;
+            }
+         }
+         break;
+      case V_I:
+         {
+            switch(value.index()) {
+               case V_D:
+                  {
+                     value.base() = (int64_t) floor(V_AS_D(value));
+                  }
+                  break;
+               case V_R:
+                  {
+                     double dval = floor((double) *V_AS_R(value));
+                     value.vacate();
+                     value.base() = (int64_t) dval;
+                  }
+                  break;
+            }
+         }
+         break;
+   }
+}
+
+int is_inverted(Value &left, Value &right) {
+   switch(left.index()) {
+      case V_D:
+         return V_AS_D(right) < V_AS_D(left);
+         break;
+      case V_R:
+         return *V_AS_R(right) < *V_AS_R(left);
+         break;
+      case V_I:
+         return V_AS_I(right) < V_AS_I(left);
+         break;
+   }
+   return 0;
+}
+
 #define GOSUB_STACKSIZE 1024
 void run(Tree *p) {
    Tree *gosub_stack[GOSUB_STACKSIZE];
@@ -1253,69 +1329,101 @@ void run(Tree *p) {
                      p->line, p->col, V_AS_S(p->value));
                   exit(-1);
                }
+
                Tree *start = evaluate(deep_copy(fore->left));
+               Tree *increment = fore->middle ? evaluate(deep_copy(fore->middle)) : NULL;
                Tree *fini = evaluate(deep_copy(fore->right));
                const Value *valuep = get_value(V_AS_S(fore->value));
-               Value value = *valuep;
-               switch(value.index()) {
+
+               Value svalue = start->value;
+               Value cvalue = *valuep;
+               Value fvalue = fini->value;
+               Value ivalue;
+
+               if (increment) {
+                  ivalue = increment->value;
+               }
+
+               // this is the biggest mixup i've ever seen...
+               // nothing prevents these things from having different types...
+               // some things can be missing...
+               // and we want everything to behave "reasonably" for the user...
+
+               int desired_index = 0;
+
+               if (svalue.index() == V_D ||
+                   cvalue.index() == V_D ||
+                   fvalue.index() == V_D ||
+                   ivalue.index() == V_D) {
+                  desired_index = V_D;
+               }
+               else if (svalue.index() == V_R ||
+                        cvalue.index() == V_R ||
+                        fvalue.index() == V_R ||
+                        ivalue.index() == V_R) {
+                  desired_index = V_R;
+               }
+               else {
+                  desired_index = V_I;
+               }
+
+               switch_to_desired_index(svalue, desired_index);
+               switch_to_desired_index(cvalue, desired_index);
+               switch_to_desired_index(fvalue, desired_index);
+
+               if (ivalue.index() == V_V) {
+                  if (is_inverted(svalue, fvalue)) {
+                     ivalue.base() = -1L;
+                  }
+                  else {
+                     ivalue.base() = 1L;
+                  }
+               }
+               switch_to_desired_index(ivalue, desired_index);
+
+               // EVERYTHING should be the same now...
+
+               switch(cvalue.index()) {
                   case V_D:
                      {
-                        double step = 1.0;
-                        if (V_AS_D(fini->value) < V_AS_D(start->value)) {
-                           step = -1.0;
-                        }
-                        if (fore->middle) {
-                           Tree *middle = evaluate(deep_copy(fore->middle));
-                           step = V_AS_D(middle->value);
-                        }
-                        V_AS_D(value) += step;
-                        set_value(V_AS_S(fore->value), value);
-                        if (step > 0.0 && V_AS_D(value) <= V_AS_D(fini->value)) {
+                        V_AS_D(cvalue) += V_AS_D(ivalue);
+                        set_value(V_AS_S(fore->value), cvalue);
+                        if (V_AS_D(ivalue) > 0.0 && V_AS_D(cvalue) <= V_AS_D(fvalue)) {
                            np = fore->next;
                         }
-                        else if (step < 0.0 && V_AS_D(value) >= V_AS_D(fini->value)) {
+                        else if (V_AS_D(ivalue) < 0.0 && V_AS_D(cvalue) >= V_AS_D(fvalue)) {
                            np = fore->next;
                         }
                      }
                      break;
                   case V_I:
                      {
-                        int64_t step = 1;
-                        if (V_AS_I(fini->value) < V_AS_I(start->value)) {
-                           step = -1.0;
-                        }
-                        if (fore->middle) {
-                           Tree *middle = evaluate(deep_copy(fore->middle));
-                           step = V_AS_I(middle->value);
-                        }
-                        V_AS_I(value) += step;
-                        set_value(V_AS_S(fore->value), value);
-                        if (step > 0 && V_AS_I(value) <= V_AS_I(fini->value)) {
+                        V_AS_I(cvalue) += V_AS_I(ivalue);
+                        set_value(V_AS_S(fore->value), cvalue);
+                        if (V_AS_I(ivalue) > 0 && V_AS_I(cvalue) <= V_AS_I(fvalue)) {
                            np = fore->next;
                         }
-                        else if (step < 0 && V_AS_I(value) >= V_AS_I(fini->value)) {
+                        else if (V_AS_I(ivalue) < 0 && V_AS_I(cvalue) >= V_AS_I(fvalue)) {
                            np = fore->next;
                         }
                      }
                      break;
                   case V_R:
                      {
-                        Rational value_rval = *(V_AS_R(value));
-                        Rational step = Rational(1,1,0,1);
-                        if (V_AS_R(fini->value) < V_AS_R(start->value)) {
-                           step = Rational(-1,1,0,1);
-                        }
-                        if (fore->middle) {
-                           Tree *middle = evaluate(deep_copy(fore->middle));
-                           step = *(V_AS_R(middle->value));
-                        }
-                        value_rval = value_rval + step;
-                        value.base() = new Rational(value_rval);
-                        set_value(V_AS_S(fore->value), value);
-                        if (step.sgn() > 0 && value_rval <= *(V_AS_R(fini->value))) {
+                        Rational i_rval(*V_AS_R(ivalue));
+                        Rational c_rval(*V_AS_R(cvalue));
+                        Rational f_rval(*V_AS_R(fvalue));
+
+                        c_rval = c_rval + i_rval;
+                        cvalue.vacate();
+                        cvalue.base() = new Rational(c_rval);
+
+                        set_value(V_AS_S(fore->value), cvalue);
+
+                        if (i_rval.sgn() > 0 && c_rval <= f_rval) {
                            np = fore->next;
                         }
-                        else if (step.sgn() < 0 && value_rval >= *(V_AS_R(fini->value))) {
+                        else if (i_rval.sgn() < 0 && c_rval >= f_rval) {
                            np = fore->next;
                         }
                      }
@@ -1572,6 +1680,9 @@ void run(Tree *p) {
                      GURU;
                      // test case inputunderflow
                      eprintf("{ERROR}: @%0:%1, {DATA INPUT UNDERFLOW}%n", p->line, p->col);
+                     if (ignore_diu) {
+                        exit(0);
+                     }
                      exit(-1);
                   }
                }

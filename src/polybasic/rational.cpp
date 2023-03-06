@@ -145,15 +145,6 @@ Rational::Rational(double d) {
       }
    }
 
-#if 0
-   printf("==\n");
-   for (int i = 0; i < spot; i++) {
-      printf("%d ", dens[i]);
-   }
-   printf("\n");
-   printf("==\n");
-#endif
-
    // a + b / c
    sREG_t a, b, c, nb, nc;
    b = 0;
@@ -169,6 +160,17 @@ Rational::Rational(double d) {
 
    num = b;
    den = c;
+}
+
+Rational::Rational(int64_t i) {
+   sign = 1;
+   if (i < 0) {
+      sign = -1;
+      i = -i;
+   }
+   whl = i;
+   num = 0;
+   den = 1;
 }
 
 Rational Rational::operator + (Rational const & obj) const {

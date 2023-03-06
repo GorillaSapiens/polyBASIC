@@ -4,5 +4,6 @@
 extern const char *has_tuple(const char *token);
 extern const char *eop2string(int op);
 extern bool void_enabled;
+extern bool ignore_diu;
 
 #endif
