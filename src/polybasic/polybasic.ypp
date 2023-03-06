@@ -13,16 +13,6 @@
 int remsleep = 0;
 void yyerror(const char *s);
 
-Tree *copytree(Tree *tree) {
-   Tree *ret = NULL;
-
-   if (tree) {
-      ret = new Tree(*tree);
-   }
-
-   return ret;
-}
-
 #define DEBUG
 
 Tree *programtree;
@@ -152,7 +142,7 @@ program        : linelist
                   {
                      // mischief managed!
                      $$ = $1;
-                     programtree = copytree($$);
+                     programtree = $$;
 
                      fixup_nested_if($$);
                   }
@@ -169,7 +159,7 @@ linelist       : line
                      while (node->next) {
                         node = node->next;
                      }
-                     node->next = copytree($2);
+                     node->next = $2;
                   }
                ;
 
@@ -208,17 +198,17 @@ line           : YYEOL
 remstmt        : YYREM
                   {
                      $$ = new Tree();
-                     remsleep = 1;
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYREM;
+                     remsleep = 1;
                   }
                ;
 
 stmtlist       : cstmt ':' stmtlist
                   {
                      $$ = $1;
-                     $$->next = copytree($3);
+                     $$->next = ($3);
                   }
                | cstmt
                   {
@@ -289,8 +279,8 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                      $$->col = yyloc.first_column;
                      $$->op = YYDEF;
                      $$->value.base() = strdup(V_AS_S($2->value));
-                     $$->left = copytree($4);
-                     $$->right = copytree($6);
+                     $$->left = ($4);
+                     $$->right = ($6);
                   }
                | YYDEF name '(' paramlist ')' '=' expression
                   {
@@ -299,8 +289,8 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                      $$->col = yyloc.first_column;
                      $$->op = YYDEF;
                      $$->value.base() = strdup(V_AS_S($2->value));
-                     $$->left = copytree($4);
-                     $$->right = copytree($7);
+                     $$->left = ($4);
+                     $$->right = ($7);
                   }
                | YYDEF name '(' ')' expression
                   {
@@ -310,7 +300,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                      $$->op = YYDEF;
                      $$->value.base() = strdup(V_AS_S($2->value));
                      $$->left = NULL;
-                     $$->right = copytree($5);
+                     $$->right = ($5);
                   }
                | YYDEF name '(' ')' '=' expression
                   {
@@ -320,7 +310,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                      $$->op = YYDEF;
                      $$->value.base() = strdup(V_AS_S($2->value));
                      $$->left = NULL;
-                     $$->right = copytree($6);
+                     $$->right = ($6);
                   }
                ;
 
@@ -331,7 +321,7 @@ paramlist      : paramlist YYIPSEP name
                      while (node->middle) {
                         node = node->middle;
                      }
-                     node->middle = copytree($3);
+                     node->middle = ($3);
                   }
                | name
                   {
@@ -355,7 +345,7 @@ dimstmt        : YYDIM arraydimlist
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDIM;
-                     $$->right = copytree($2);
+                     $$->right = ($2);
                   }
                ;
 
@@ -366,7 +356,7 @@ arraydimlist   : arraydimlist YYIPSEP arraydim
                      while (node->middle) {
                         node = node->middle;
                      }
-                     node->middle = copytree($3);
+                     node->middle = ($3);
                   }
                | arraydim
                   {
@@ -380,7 +370,7 @@ datastmt       : YYDATA datalist
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYDATA;
-                     $$->right = copytree($2);
+                     $$->right = ($2);
                   }
                ;
 
@@ -399,7 +389,7 @@ readstmt       : YYREAD exprlist
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYREAD;
-                     $$->right = copytree($2);
+                     $$->right = ($2);
                   }
                ;
 
@@ -410,7 +400,7 @@ printstmt      : YYPRINT printlist
                      $$->col = yyloc.first_column;
                      $$->op = YYPRINT;
                      if ($2->op != YYEOF) {
-                        $$->middle = copytree($2);
+                        $$->middle = ($2);
                      }
                   }
                ;
@@ -422,9 +412,9 @@ ifstmtlist     : YYIF expression relation expression YYTHEN stmtlist
                      $$->col = yyloc.first_column;
                      $$->op = YYIFSTMTLIST;
                      $$->value.base() = strdup(V_AS_S($3->value));
-                     $$->left = copytree($2);
-                     $$->middle = copytree($6);
-                     $$->right = copytree($4);
+                     $$->left = ($2);
+                     $$->middle = ($6);
+                     $$->right = ($4);
                   }
                ;
 
@@ -451,9 +441,9 @@ controlstmt    : YYGOTO label
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOTO;
                      $$->value.base() = strdup(V_AS_S($3->value));
-                     $$->left = copytree($2);
-                     $$->middle = copytree($6);
-                     $$->right = copytree($4);
+                     $$->left = ($2);
+                     $$->middle = ($6);
+                     $$->right = ($4);
                   }
                | YYIF expression relation expression YYGOTO label
                   {
@@ -462,9 +452,9 @@ controlstmt    : YYGOTO label
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOTO;
                      $$->value.base() = strdup(V_AS_S($3->value));
-                     $$->left = copytree($2);
-                     $$->middle = copytree($6);
-                     $$->right = copytree($4);
+                     $$->left = ($2);
+                     $$->middle = ($6);
+                     $$->right = ($4);
                   }
                | YYIF expression relation expression YYGOSUB label
                   {
@@ -473,9 +463,9 @@ controlstmt    : YYGOTO label
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOSUB;
                      $$->value.base() = strdup(V_AS_S($3->value));
-                     $$->left = copytree($2);
-                     $$->middle = copytree($6);
-                     $$->right = copytree($4);
+                     $$->left = ($2);
+                     $$->middle = ($6);
+                     $$->right = ($4);
                   }
                | YYON expression YYGOTO labellist
                   {
@@ -484,8 +474,8 @@ controlstmt    : YYGOTO label
                      $$->col = yyloc.first_column;
                      $$->op = YYON;
                      $$->value.base() = 0;
-                     $$->left = copytree($2);
-                     $$->right = copytree($4);
+                     $$->left = ($2);
+                     $$->right = ($4);
                   }
                | YYON expression YYGOSUB labellist
                   {
@@ -494,8 +484,8 @@ controlstmt    : YYGOTO label
                      $$->col = yyloc.first_column;
                      $$->op = YYON;
                      $$->value.base() = 1;
-                     $$->left = copytree($2);
-                     $$->right = copytree($4);
+                     $$->left = ($2);
+                     $$->right = ($4);
                   }
                | YYRETURN
                   {
@@ -561,8 +551,8 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
                      $$->col = yyloc.first_column;
                      $$->op = YYFOR;
                      $$->value.base() = strdup(V_AS_S($2->value));
-                     $$->left = copytree($4);
-                     $$->right = copytree($6);
+                     $$->left = ($4);
+                     $$->right = ($6);
                      $$->middle = NULL;
                   }
                | YYFOR name '=' expression YYTO expression YYSTEP expression
@@ -572,9 +562,9 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
                      $$->col = yyloc.first_column;
                      $$->op = YYFOR;
                      $$->value.base() = strdup(V_AS_S($2->value));
-                     $$->left = copytree($4);
-                     $$->right = copytree($6);
-                     $$->middle = copytree($8);
+                     $$->left = ($4);
+                     $$->right = ($6);
+                     $$->middle = ($8);
                   }
                | YYNEXT name
                   {
@@ -588,10 +578,8 @@ repeatstmt     : YYFOR name '=' expression YYTO expression
 
 label          : name
                   {
-                     $$->line = yylineno;
-                     $$->col = yyloc.first_column;
+                     $$ = $1;
                      $$->op = YYLABEL;
-                     $$->value.base() = strdup(V_AS_S($1->value));
                   }
                | YYINTEGER
                   {
@@ -610,7 +598,7 @@ labellist      : label
                | label YYIPSEP labellist
                   {
                      $$ = $1;
-                     $$->middle = copytree($3);
+                     $$->middle = ($3);
                   }
                ;
 
@@ -626,21 +614,17 @@ name           : YYNAME
 
 arraydim       : name '(' iconst ')'
                   {
-                     $$->line = yylineno;
-                     $$->col = yyloc.first_column;
+                     $$ = $1;
                      $$->op = YYDIM;
-                     $$->value.base() = strdup(V_AS_S($1->value));
-                     $$->left = copytree($3);
+                     $$->left = ($3);
                      $$->right = NULL;
                   }
                | name '(' iconst YYIPSEP iconst ')'
                   {
-                     $$->line = yylineno;
-                     $$->col = yyloc.first_column;
+                     $$ = $1;
                      $$->op = YYDIM;
-                     $$->value.base() = strdup(V_AS_S($1->value));
-                     $$->left = copytree($3);
-                     $$->right = copytree($5);
+                     $$->left = ($3);
+                     $$->right = ($5);
                   }
                ;
 
@@ -702,7 +686,7 @@ posconstant    : '+' dconst
 datalist       : signedconstant YYIPSEP datalist
                   {
                      $$ = $1;
-                     $$->middle = copytree($3);
+                     $$->middle = ($3);
                   }
                | signedconstant
                   {
@@ -726,67 +710,75 @@ signedconstant : constant
 
 expression     : '+' expression %prec UPLUSMINUS
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '+';
                      $$->left = NULL;
-                     $$->right = copytree($2);
+                     $$->right = ($2);
                   }
                | '-' expression %prec UPLUSMINUS
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '-';
                      $$->left = NULL;
-                     $$->right = copytree($2);
+                     $$->right = ($2);
                   }
                | expression '&' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '&';
-                     $$->left = copytree($1);
-                     $$->right = copytree($3);
+                     $$->left = ($1);
+                     $$->right = ($3);
                   }
                | expression '+' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '+';
-                     $$->left = copytree($1);
-                     $$->right = copytree($3);
+                     $$->left = ($1);
+                     $$->right = ($3);
                   }
                | expression '-' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '-';
-                     $$->left = copytree($1);
-                     $$->right = copytree($3);
+                     $$->left = ($1);
+                     $$->right = ($3);
                   }
                | expression '*' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '*';
-                     $$->left = copytree($1);
-                     $$->right = copytree($3);
+                     $$->left = ($1);
+                     $$->right = ($3);
                   }
                | expression '/' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '/';
-                     $$->left = copytree($1);
-                     $$->right = copytree($3);
+                     $$->left = ($1);
+                     $$->right = ($3);
                   }
                | expression '^' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = '^';
-                     $$->left = copytree($1);
-                     $$->right = copytree($3);
+                     $$->left = ($1);
+                     $$->right = ($3);
                   }
                | '(' expression ')'
                   {
@@ -814,12 +806,9 @@ efad           : name
                   }
                | name '(' exprlist ')'
                   {
-                     $$->line = yylineno;
-                     $$->col = yyloc.first_column;
+                     $$ = $1;
                      $$->op = YYEFAD;
-                     $$->value.base() = strdup(V_AS_S($1->value));
-                     // unnecessary // $$->left = copytree($1);
-                     $$->right = copytree($3);
+                     $$->right = ($3);
                   }
                ;
 
@@ -830,7 +819,7 @@ exprlist       : exprlist YYIPSEP expression
                      while (node->middle) {
                         node = node->middle;
                      }
-                     node->middle = copytree($3);
+                     node->middle = ($3);
                   }
                | expression
                   {
@@ -845,7 +834,7 @@ printlist      : expression YYIPSEP printlist
                         $$->middle = NULL;
                      }
                      else {
-                        $$->middle = copytree($3);
+                        $$->middle = ($3);
                      }
                   }
                | expression
@@ -863,19 +852,20 @@ inputstmt      : YYINPUT exprlist
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYINPUT;
-                     $$->right = copytree($2);
+                     $$->right = ($2);
                   }
                ;
 
 assignstmt     : efad '=' expression
                   {
+                     $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYASSIGN;
                      $$->value.base() = V_AS_S($1->value);
-                     $$->left = copytree($1);
+                     $$->left = ($1);
                      $$->left->op = YYLVAL;
-                     $$->right = copytree($3);
+                     $$->right = ($3);
                   }
                | YYLET efad '=' expression
                   {
@@ -884,9 +874,9 @@ assignstmt     : efad '=' expression
                      $$->col = yyloc.first_column;
                      $$->op = YYASSIGN;
                      $$->value.base() = V_AS_S($2->value);
-                     $$->left = copytree($2);
+                     $$->left = ($2);
                      $$->left->op = YYLVAL;
-                     $$->right = copytree($4);
+                     $$->right = ($4);
                   }
                ;
 
