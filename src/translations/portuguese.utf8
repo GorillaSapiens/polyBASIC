@@ -32,81 +32,81 @@
 
 # from ECMA-55 §5.2
 
-END <= FIM                # the end statement
+END <= FIM                 # the end statement
 
 # from ECMA-55 §9
 
-ABS <= ABDÔMEN            # the absolute value function
-ATN <= ATN                # the trigonomic arctangent function
-COS <= COS                # the trigonomic cosine function
-EXP <= EXP                # the exponential / power function
-INT <= INT                # the integer / floor function
-LOG <= REGISTRO           # the natural log function
-RND <= RND                # generate random number
-SGN <= SGN                # determine the sign
-SIN <= PECADO             # the trigonomic sine function
-SQR <= SQR                # the square root function
-TAN <= BRONZEADO          # the trigonomic tangent function
-DBL <= DBL                # convert to double
-STR <= STR                # convert to string
-RAT <= RATO               # convert to rational
+ABS <= ABDÔMEN             # the absolute value function
+ATN <= ATN                 # the trigonomic arctangent function
+COS <= COS                 # the trigonomic cosine function
+EXP <= EXP                 # the exponential / power function
+INT <= INT                 # the integer / floor function
+LOG <= REGISTRO            # the natural log function
+RND <= RND                 # generate random number
+SGN <= SGN                 # determine the sign
+SIN <= PECADO              # the trigonomic sine function
+SQR <= SQR                 # the square root function
+TAN <= BRONZEADO           # the trigonomic tangent function
+DBL <= DBL                 # convert to double
+STR <= STR                 # convert to string
+RAT <= RATO                # convert to rational
 
-TAB <= ABA                # C-64ism
-CHR <= CHR                # C-64ism
+TAB <= ABA                 # C-64ism
+CHR <= CHR                 # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= DEF                # for user defined functions
+DEF <= DEF                 # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= DEIXAR             # for variable assignment
+LET <= DEIXAR              # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= GOSUB            # formed from GO and SUB if no direct translation exists
-GOTO <= VÁPARA            # formed from GO and TO if no direct translation exists
-TO <= PARA                # part of for/to/step/next constructs
-IF <= SE                  # part of if/then constructs
-THEN <= ENTÃO             # part of if/then constructs
-ON <= SOBRE               # a sort of a switch statement
-RETURN <= RETORNAR        # used to exit a subroutine
-STOP <= PARAR             # command to stop execution
+GOSUB <= GOSUB             # formed from GO and SUB if no direct translation exists
+GOTO <= VÁPARA             # formed from GO and TO if no direct translation exists
+TO <= PARA                 # part of for/to/step/next constructs
+IF <= SE                   # part of if/then constructs
+THEN <= ENTÃO              # part of if/then constructs
+ON <= SOBRE                # a sort of a switch statement
+RETURN <= RETORNAR         # used to exit a subroutine
+STOP <= PARAR              # command to stop execution
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DE                 # part of for/to/step/next constructs
-STEP <= ETAPA             # part of for/to/step/next constructs
-NEXT <= PRÓXIMO           # part of for/to/step/next constructs
+FOR <= DE                  # part of for/to/step/next constructs
+STEP <= ETAPA              # part of for/to/step/next constructs
+NEXT <= PRÓXIMO            # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= IMPRIMIR         # to print things out
+PRINT <= IMPRIMIR          # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= ENTRADA          # the input statement
+INPUT <= ENTRADA           # the input statement
 
 # from ECMA-55 §16
 
-READ <= LER               # part of read / restore
-RESTORE <= RESTAURAR      # part of read / restore
+READ <= LER                # part of read / restore
+RESTORE <= RESTAURAR       # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= DADOS             # to embed data in the program
+DATA <= DADOS              # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= DIM                # dimension arrays
-OPTION <= OPÇÃO           # see ECMA-55 §18.1
-BASE <= BASE              # see ECMA-55 §18.1
+DIM <= ESCURECIDO          # dimension arrays
+OPTION <= OPÇÃO            # see ECMA-55 §18.1
+BASE <= BASE               # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= REM                # see ECMA-55 §18.1
+REM <= REM                 # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -123,8 +123,13 @@ RANDOMIZE <= ALEATÓRIA
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	E NENHUM IDIOMA DADO NA LINHA DE COMANDO. SAINDO.
 ARRAY ALREADY DEFINED	ARRAY JÁ DEFINIDO
-ARRAY INDEX OUTSIDE OF BOUNDS	ÍNDICE DE MATRIZ FORA DOS LIMITES
+ARRAY INDEX OUT OF BOUNDS	ÍNDICE DE MATRIZ FORA DOS LIMITES
+ARRAY INDEX SIZE MISMATCH	MISMITCH DE TAMANHO DE ÍNDICE DE MATRIZ
+ARRAY SUBSCRIPT NOT A NUMBER	SUBSCRITO DE ARRAY, NÃO UM NÚMERO
+ARRAY USED AS VARIABLE	ARRAY USADO COMO VARIÁVEL
 CANNOT ACCESS DIRECTORY	NÃO É POSSÍVEL ACESSAR O DIRETÓRIO
+CANNOT ASSIGN TO DEFINITION	NÃO PODE ATRIBUIR À DEFINIÇÃO
+CANNOT ASSIGN TO FUNCTION	NÃO É POSSÍVEL ATRIBUIR À FUNÇÃO
 DATA INPUT UNDERFLOW	ENTRADA DE DADOS SUBFLUENTE
 DATA READ UNDERFLOW	DADOS LEIA O SUBFLUXO
 DEFINITION CYCLE DISCOVERED	CICLO DE DEFINIÇÃO DESCOBERTO
@@ -134,6 +139,7 @@ FUNCTION DEFINITION MULTIPLY DEFINED	DEFINIÇÃO DE FUNÇÃO MULTIPLICADA
 FUNCTION DEFINITION PARAMETER MISMATCH	FUNÇÃO DEFINIÇÃO PARÂMETRO INDATCH
 GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
 GOSUB STACK UNDERFLOW	GOSUB STACK SUBFLOW
+INCORRECT NUMBER OF PARAMETERS	NÚMERO INCORRETO DE PARÂMETROS
 INDEX OUT OF RANGE	ÍNDICE FORA DE ALCANCE
 LABEL ALREADY DEFINED	RÓTULO JÁ DEFINIDO
 LEFT / RIGHT OPERATION MISMATCH	INDATIBILIDADE DE OPERAÇÃO ESQUERDA / DIREITA
@@ -145,11 +151,12 @@ PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	VERIFIQUE AS CONFIGURAÇ�
 STRING MATH LOGIC ERROR	ERRO DE LÓGICA MATEMÁTICA DA STRING
 SYNTAX ERROR	ERRO DE SINTAXE
 UNABLE TO OPEN FILE	IMPOSSÍVEL ABRIR O FICHEIRO
-UNABLE TO OPEN TO OPEN FILE FOR READING	INCAPAZ DE ABRIR PARA ABRIR O ARQUIVO PARA LEITURA
+UNABLE TO OPEN FILE FOR READING	INCAPAZ DE ABRIR O ARQUIVO PARA LEITURA
 UNDEFINED LABEL	ETIQUETA INDEFINIDA
-UNHANDLED OPERATION	OPERAÇÃO NÃO ATENDIDA
+UNHANDLED OPERATION	OPERAÇÃO NÃO COMBINADA
 UNHANDLED OPERATION CODE	CÓDIGO DE OPERAÇÃO NÃO ATRIBUÍDO
 UNKNOWN IF LABEL	DESCONHECIDO SE RÓTULO
+UNKNOWN OP IN PARAMETER SUBSTITUTION	OP DESCONHECIDO NA SUBSTITUIÇÃO DE PARÂMETROS
 UNRECOGNIZED DOUBLE MATH OPERATION	OPERAÇÃO DE MATEMÁTICA DUPLA NÃO RECONHECIDA
 UNRECOGNIZED FUNCTION DEFINITION	DEFINIÇÃO DE FUNÇÃO NÃO RECONHECIDA
 UNRECOGNIZED GOSUB LABEL	ETIQUETA GOSUB NÃO RECONHECIDA
@@ -161,9 +168,7 @@ UNRECOGNIZED NEXT VARIABLE	PRÓXIMA VARIÁVEL NÃO RECONHECIDA
 UNRECOGNIZED OP IN PRINT	OP NÃO RECONHECIDO NA IMPRESSÃO
 UNRECOGNIZED RATIONAL MATH OPERATION	OPERAÇÃO DE MATEMÁTICA RACIONAL NÃO RECONHECIDA
 UNRECOGNIZED VARIABLE TYPE	TIPO DE VARIÁVEL NÃO RECONHECIDO
-UNSET ENVIRONMENT VARIABLE	VARIÁVEL DE AMBIENTE NÃO DEFINIDO
-VARIABLE / ARRAY DEFINITION MISMATCH	VARIÁVEL / DEFINIÇÃO DE ARRAY INCOMPATIBILIDADE
-VARIABLE DEFINED AS ARRAY	VARIÁVEL DEFINIDA COMO MATRIZ
-VARIABLE DEFINED AS NONARRAY	VARIÁVEL DEFINIDA COMO NÃO -MARGE
+UNSET ENVIRONMENT VARIABLE	VARIÁVEL DE AMBIENTE UNSET
 VARIABLE HAS NO VALUE	A VARIÁVEL NÃO TEM VALOR
-VARIABLE IS NOT AN ARRAY	A VARIÁVEL NÃO É UMA MATRIZ
+VARIABLE OR ARRAY HAS NO VALUE	VARIÁVEL OU MATRIZ NÃO TEM VALOR
+VARIABLE USED AS ARRAY	VARIÁVEL USADA COMO MATRIZ

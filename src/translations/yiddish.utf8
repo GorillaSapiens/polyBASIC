@@ -123,8 +123,13 @@ RANDOMIZE <= ראנדאמייז
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	און קיין שפּראַך געגעבן אויף באַפֿעלן שורה. אַרויסגאַנג.
 ARRAY ALREADY DEFINED	מענגע שוין דיפיינד
-ARRAY INDEX OUTSIDE OF BOUNDS	מענגע ינדעקס אַרויס פון גווול
+ARRAY INDEX OUT OF BOUNDS	מענגע אינדעקס אויס פון גווול
+ARRAY INDEX SIZE MISMATCH	מענגע אינדעקס גרייס מיסמאַטש
+ARRAY SUBSCRIPT NOT A NUMBER	מענגע סאַבסקריפּט ניט אַ נומער
+ARRAY USED AS VARIABLE	מענגע געוויינט ווי בייַטעוודיק
 CANNOT ACCESS DIRECTORY	קען נישט צוטריט וועגווייַזער
+CANNOT ASSIGN TO DEFINITION	קענען ניט באַשטימען צו דעפֿיניציע
+CANNOT ASSIGN TO FUNCTION	קענען ניט באַשטימען צו פונקציע
 DATA INPUT UNDERFLOW	דאַטן אַרייַנשרייַב אַנדערפלאָו
 DATA READ UNDERFLOW	דאַטן לייענען אַנדערפלאָו
 DEFINITION CYCLE DISCOVERED	דעפֿיניציע ציקל דיסקאַווערד
@@ -134,6 +139,7 @@ FUNCTION DEFINITION MULTIPLY DEFINED	פונקציע דעפֿיניציע מער�
 FUNCTION DEFINITION PARAMETER MISMATCH	פונקציע דעפֿיניציע פּאַראַמעטער מיסמאַטש
 GOSUB STACK OVERFLOW	גאָסוב אָנלייגן אָוווערפלאָו
 GOSUB STACK UNDERFLOW	גאָסוב אָנלייגן אַנדערפלאָו
+INCORRECT NUMBER OF PARAMETERS	פאַלש נומער פון פּאַראַמעטערס
 INDEX OUT OF RANGE	אינדעקס אויס פון קייט
 LABEL ALREADY DEFINED	פירמע שוין דיפיינד
 LEFT / RIGHT OPERATION MISMATCH	לינקס / רעכט אָפּעראַציע מיסמאַטש
@@ -145,11 +151,12 @@ PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ביטע טשעק שפּ�
 STRING MATH LOGIC ERROR	שטריקל מאַט לאָגיק טעות
 SYNTAX ERROR	סינטאַקס טעות
 UNABLE TO OPEN FILE	ניט געקענט צו עפענען טעקע
-UNABLE TO OPEN TO OPEN FILE FOR READING	ניט געקענט צו עפֿענען די טעקע פֿאַר לייענען
+UNABLE TO OPEN FILE FOR READING	ניט געקענט צו עפענען טעקע פֿאַר לייענען
 UNDEFINED LABEL	UNDEFINED פירמע
 UNHANDLED OPERATION	ונהאַנדלעד אָפּעראַציע
 UNHANDLED OPERATION CODE	ונהאַנדלעד אָפּעראַציע קאָד
 UNKNOWN IF LABEL	אומבאַקאַנט אויב פירמע
+UNKNOWN OP IN PARAMETER SUBSTITUTION	אומבאַקאַנט אויף אין פּאַראַמעטער סאַבסטיטושאַן
 UNRECOGNIZED DOUBLE MATH OPERATION	אַנרעקאַגנייזד טאָפּל מאַט אָפּעראַציע
 UNRECOGNIZED FUNCTION DEFINITION	אַנרעקאַגנייזד פונקציע דעפֿיניציע
 UNRECOGNIZED GOSUB LABEL	אַנרעקאַגנייזד GOSUB לאַבעל
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	אַנרעקאַגנייזד אַפּ אין דרוקן
 UNRECOGNIZED RATIONAL MATH OPERATION	אַנרעקאַגנייזד באַרדאַסדיק מאַט אָפּעראַציע
 UNRECOGNIZED VARIABLE TYPE	אַנרעקאַגנייזד בייַטעוודיק טיפּ
 UNSET ENVIRONMENT VARIABLE	ונעט סוויווע בייַטעוודיק
-VARIABLE / ARRAY DEFINITION MISMATCH	וואַריאַנטע / מענגע דעפֿיניציע מיסמאַטש
-VARIABLE DEFINED AS ARRAY	וואַריאַבלע דיפיינד ווי מענגע
-VARIABLE DEFINED AS NONARRAY	וואַריאַבלע דיפיינד ווי ניט מער
 VARIABLE HAS NO VALUE	וואַריאַבלע האט קיין ווערט
-VARIABLE IS NOT AN ARRAY	וואַריאַבלע איז נישט אַ מענגע
+VARIABLE OR ARRAY HAS NO VALUE	בייַטעוודיק אָדער מענגע האט קיין ווערט
+VARIABLE USED AS ARRAY	בייַטעוודיק געוויינט ווי מענגע

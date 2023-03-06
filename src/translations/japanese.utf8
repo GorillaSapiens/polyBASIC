@@ -123,10 +123,15 @@ RANDOMIZE <= ランダム化
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	コマンドラインには言語が与えられていません。終了。
 ARRAY ALREADY DEFINED	すでに定義されている配列
-ARRAY INDEX OUTSIDE OF BOUNDS	境界外の配列インデックス
+ARRAY INDEX OUT OF BOUNDS	範囲外の配列インデックス
+ARRAY INDEX SIZE MISMATCH	配列インデックスサイズの不一致
+ARRAY SUBSCRIPT NOT A NUMBER	数字ではなく、SUBSCRIPT
+ARRAY USED AS VARIABLE	変数として使用される配列
 CANNOT ACCESS DIRECTORY	ディレクトリにアクセスできません
+CANNOT ASSIGN TO DEFINITION	定義に割り当てることはできません
+CANNOT ASSIGN TO FUNCTION	機能に割り当てることはできません
 DATA INPUT UNDERFLOW	データ入力アンダーフロー
-DATA READ UNDERFLOW	データはアンダーフローを読み取ります
+DATA READ UNDERFLOW	データはアンダーフローを読みます
 DEFINITION CYCLE DISCOVERED	定義サイクルが発見されました
 ERROR	エラー
 FAILURE	失敗
@@ -134,22 +139,24 @@ FUNCTION DEFINITION MULTIPLY DEFINED	関数定義が定義されているのを�
 FUNCTION DEFINITION PARAMETER MISMATCH	関数定義パラメーターの不一致
 GOSUB STACK OVERFLOW	GOSUBスタックオーバーフロー
 GOSUB STACK UNDERFLOW	GOSUBスタックアンダーフロー
+INCORRECT NUMBER OF PARAMETERS	パラメーターの数が間違っています
 INDEX OUT OF RANGE	範囲外のインデックス
 LABEL ALREADY DEFINED	すでに定義されているラベル
 LEFT / RIGHT OPERATION MISMATCH	左 /右操作の不一致
 NEGATIVE INDEX	負のインデックス
 NEXT ON FOR LOOP WITH STRING VARIABLE	次に、文字列変数を使用してループを使用します
-OPERAND MISMATCH	オペランドのミスマッチ
+OPERAND MISMATCH	オペランドの不一致
 OPTION REQUIRES A LANGUAGE	オプションには言語が必要です
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	言語設定または環境変数を確認してください
 STRING MATH LOGIC ERROR	文字列数学ロジックエラー
 SYNTAX ERROR	構文エラー
 UNABLE TO OPEN FILE	ファイルを開くことができません
-UNABLE TO OPEN TO OPEN FILE FOR READING	読み取りのためにファイルを開くことができません
+UNABLE TO OPEN FILE FOR READING	読み取りのためにファイルを開くことができません
 UNDEFINED LABEL	未定義のラベル
 UNHANDLED OPERATION	未処理の操作
 UNHANDLED OPERATION CODE	未処理の操作コード
 UNKNOWN IF LABEL	ラベルの場合は不明です
+UNKNOWN OP IN PARAMETER SUBSTITUTION	パラメーター置換の不明なOP
 UNRECOGNIZED DOUBLE MATH OPERATION	認識されていない二重数学操作
 UNRECOGNIZED FUNCTION DEFINITION	認識されていない関数定義
 UNRECOGNIZED GOSUB LABEL	認識されていないゴスブラベル
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	印刷されていない認識されていないOP
 UNRECOGNIZED RATIONAL MATH OPERATION	認識されていない合理的な数学操作
 UNRECOGNIZED VARIABLE TYPE	認識されていない変数タイプ
 UNSET ENVIRONMENT VARIABLE	設定されていない環境変数
-VARIABLE / ARRAY DEFINITION MISMATCH	変数 /配列定義の不一致
-VARIABLE DEFINED AS ARRAY	配列として定義された変数
-VARIABLE DEFINED AS NONARRAY	非アレイとして定義された変数
 VARIABLE HAS NO VALUE	変数には値がありません
-VARIABLE IS NOT AN ARRAY	変数は配列ではありません
+VARIABLE OR ARRAY HAS NO VALUE	変数または配列には値がありません
+VARIABLE USED AS ARRAY	配列として使用される変数

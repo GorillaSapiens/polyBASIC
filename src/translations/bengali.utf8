@@ -40,7 +40,7 @@ ABS <= অযবস            # the absolute value function
 ATN <= ATN             # the trigonomic arctangent function
 COS <= কস              # the trigonomic cosine function
 EXP <= একসপরস          # the exponential / power function
-INT <= INT             # the integer / floor function
+INT <= ইনট             # the integer / floor function
 LOG <= লগ              # the natural log function
 RND <= RND             # generate random number
 SGN <= এসজএন           # determine the sign
@@ -123,8 +123,13 @@ RANDOMIZE <= এলমলভব
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	এবং কমান্ড লাইনে কোনও ভাষা দেওয়া হয়নি। প্রস্থান করা।
 ARRAY ALREADY DEFINED	অ্যারে ইতিমধ্যে সংজ্ঞায়িত
-ARRAY INDEX OUTSIDE OF BOUNDS	সীমানার বাইরে অ্যারে সূচক
+ARRAY INDEX OUT OF BOUNDS	সীমা ছাড়িয়ে সূচক অ্যারে
+ARRAY INDEX SIZE MISMATCH	অ্যারে সূচক আকার অমিল
+ARRAY SUBSCRIPT NOT A NUMBER	অ্যারে সাবস্ক্রিপ্ট একটি সংখ্যা নয়
+ARRAY USED AS VARIABLE	ভেরিয়েবল হিসাবে ব্যবহৃত অ্যারে
 CANNOT ACCESS DIRECTORY	ডিরেক্টরি অ্যাক্সেস করতে পারে না
+CANNOT ASSIGN TO DEFINITION	সংজ্ঞা নির্ধারণ করতে পারে না
+CANNOT ASSIGN TO FUNCTION	ফাংশন বরাদ্দ করতে পারে না
 DATA INPUT UNDERFLOW	ডেটা ইনপুট আন্ডারফ্লো
 DATA READ UNDERFLOW	ডেটা আন্ডারফ্লো রিড
 DEFINITION CYCLE DISCOVERED	সংজ্ঞা চক্র আবিষ্কার
@@ -134,6 +139,7 @@ FUNCTION DEFINITION MULTIPLY DEFINED	ফাংশন সংজ্ঞা গু�
 FUNCTION DEFINITION PARAMETER MISMATCH	ফাংশন সংজ্ঞা প্যারামিটার অমিল
 GOSUB STACK OVERFLOW	গোসব স্ট্যাক ওভারফ্লো
 GOSUB STACK UNDERFLOW	গোসব স্ট্যাক আন্ডারফ্লো
+INCORRECT NUMBER OF PARAMETERS	প্যারামিটারগুলির ভুল সংখ্যা
 INDEX OUT OF RANGE	সীমা ছাড়িয়ে সূচক
 LABEL ALREADY DEFINED	ইতিমধ্যে সংজ্ঞায়িত লেবেল
 LEFT / RIGHT OPERATION MISMATCH	বাম / ডান অপারেশন অমিল
@@ -145,11 +151,12 @@ PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ভাষা সেটি
 STRING MATH LOGIC ERROR	স্ট্রিং ম্যাথ লজিক ত্রুটি
 SYNTAX ERROR	বাক্যগঠন ত্রুটি
 UNABLE TO OPEN FILE	নথি খুলতে অক্ষম
-UNABLE TO OPEN TO OPEN FILE FOR READING	পড়ার জন্য ফাইল খুলতে খুলতে অক্ষম
+UNABLE TO OPEN FILE FOR READING	পড়ার জন্য ফাইল খুলতে অক্ষম
 UNDEFINED LABEL	অপরিবর্তিত লেবেল
 UNHANDLED OPERATION	UNHANDED অপারেশন
 UNHANDLED OPERATION CODE	UNHANDLED অপারেশন কোড
 UNKNOWN IF LABEL	অজানা যদি লেবেল
+UNKNOWN OP IN PARAMETER SUBSTITUTION	প্যারামিটার প্রতিস্থাপনে অজানা ওপি
 UNRECOGNIZED DOUBLE MATH OPERATION	অচেনা ডাবল গণিত অপারেশন
 UNRECOGNIZED FUNCTION DEFINITION	অচেনা ফাংশন সংজ্ঞা
 UNRECOGNIZED GOSUB LABEL	অচেনা গোসব লেবেল
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	মুদ্রণে অচেনা ওপি
 UNRECOGNIZED RATIONAL MATH OPERATION	অচেনা যুক্তিযুক্ত গণিত অপারেশন
 UNRECOGNIZED VARIABLE TYPE	অচেনা পরিবর্তনশীল প্রকার
 UNSET ENVIRONMENT VARIABLE	আনসেট পরিবেশ পরিবর্তনশীল
-VARIABLE / ARRAY DEFINITION MISMATCH	পরিবর্তনশীল / অ্যারে সংজ্ঞা অমিল
-VARIABLE DEFINED AS ARRAY	পরিবর্তনশীল অ্যারে হিসাবে সংজ্ঞায়িত
-VARIABLE DEFINED AS NONARRAY	পরিবর্তনশীল ননআরে হিসাবে সংজ্ঞায়িত
 VARIABLE HAS NO VALUE	ভেরিয়েবলের কোনও মান নেই
-VARIABLE IS NOT AN ARRAY	পরিবর্তনশীল একটি অ্যারে নয়
+VARIABLE OR ARRAY HAS NO VALUE	পরিবর্তনশীল বা অ্যারের কোনও মান নেই
+VARIABLE USED AS ARRAY	ভেরিয়েবল অ্যারে হিসাবে ব্যবহৃত

@@ -123,20 +123,26 @@ RANDOMIZE <= عشوائي
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ولا توجد لغة ممنوحة على سطر الأوامر. الخروج.
 ARRAY ALREADY DEFINED	صفيف محدد بالفعل
-ARRAY INDEX OUTSIDE OF BOUNDS	فهرس الصفيف خارج الحدود
+ARRAY INDEX OUT OF BOUNDS	مؤشر مجموعة خارج الحدود
+ARRAY INDEX SIZE MISMATCH	عدم تطابق حجم مؤشر الصفيف
+ARRAY SUBSCRIPT NOT A NUMBER	مجموعة مجموعة الصفيف ليست رقمًا
+ARRAY USED AS VARIABLE	ARRAY المستخدمة كمتغير
 CANNOT ACCESS DIRECTORY	لا يمكن الوصول إلى الدليل
+CANNOT ASSIGN TO DEFINITION	لا يمكن تعيين التعريف
+CANNOT ASSIGN TO FUNCTION	لا يمكن تعيين الوظيفة
 DATA INPUT UNDERFLOW	إدخال البيانات UNDERFLOW
 DATA READ UNDERFLOW	قراءة البيانات UNDERFLOW
-DEFINITION CYCLE DISCOVERED	دورة التعريف التي تم اكتشافها
+DEFINITION CYCLE DISCOVERED	تم اكتشاف دورة التعريف
 ERROR	خطأ
 FAILURE	فشل
 FUNCTION DEFINITION MULTIPLY DEFINED	تعريف الوظيفة المحددة محددة
 FUNCTION DEFINITION PARAMETER MISMATCH	تعريف وظيفة عدم تطابق المعلمة
 GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
 GOSUB STACK UNDERFLOW	GOSUB STACK UNDERFLOW
+INCORRECT NUMBER OF PARAMETERS	عدد غير صحيح من المعلمات
 INDEX OUT OF RANGE	فهرس خارج النطاق
 LABEL ALREADY DEFINED	تسمية محددة بالفعل
-LEFT / RIGHT OPERATION MISMATCH	عدم تطابق العملية اليمنى / اليمنى
+LEFT / RIGHT OPERATION MISMATCH	عدم تطابق العملية اليسرى / اليمنى
 NEGATIVE INDEX	الفهرس السلبي
 NEXT ON FOR LOOP WITH STRING VARIABLE	التالي على حلقة مع متغير السلسلة
 OPERAND MISMATCH	عدم تطابق المعامل
@@ -145,11 +151,12 @@ PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	يرجى التحقق م�
 STRING MATH LOGIC ERROR	خطأ في منطق الرياضيات
 SYNTAX ERROR	خطأ في بناء الجملة
 UNABLE TO OPEN FILE	غير قادر على فتح ملف
-UNABLE TO OPEN TO OPEN FILE FOR READING	غير قادر على فتح ملف للقراءة
+UNABLE TO OPEN FILE FOR READING	غير قادر على فتح ملف للقراءة
 UNDEFINED LABEL	تسمية غير محددة
 UNHANDLED OPERATION	عملية غير معطلة
 UNHANDLED OPERATION CODE	رمز التشغيل غير المعقول
 UNKNOWN IF LABEL	غير معروف إذا كانت العلامة
+UNKNOWN OP IN PARAMETER SUBSTITUTION	غير معروف OP في استبدال المعلمات
 UNRECOGNIZED DOUBLE MATH OPERATION	عملية رياضيات مزدوجة غير معترف بها
 UNRECOGNIZED FUNCTION DEFINITION	تعريف الوظيفة غير المعترف به
 UNRECOGNIZED GOSUB LABEL	تسمية GOSUB غير المعترف بها
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	OP غير المعترف به في الطباعة
 UNRECOGNIZED RATIONAL MATH OPERATION	عملية الرياضيات العقلانية غير المعترف بها
 UNRECOGNIZED VARIABLE TYPE	نوع متغير غير معترف به
 UNSET ENVIRONMENT VARIABLE	غير متغير البيئة
-VARIABLE / ARRAY DEFINITION MISMATCH	متغير / تعريف تعريف عدم تطابق
-VARIABLE DEFINED AS ARRAY	متغير محدد على أنه صفيف
-VARIABLE DEFINED AS NONARRAY	متغير تعريف
 VARIABLE HAS NO VALUE	المتغير ليس له قيمة
-VARIABLE IS NOT AN ARRAY	المتغير ليس صفيفًا
+VARIABLE OR ARRAY HAS NO VALUE	المتغير أو الصفيف ليس له قيمة
+VARIABLE USED AS ARRAY	متغير يستخدم كصفيف

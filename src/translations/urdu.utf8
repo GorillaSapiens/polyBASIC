@@ -123,8 +123,13 @@ RANDOMIZE <= بےترتیب
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	اور کمانڈ لائن پر کوئی زبان نہیں دی گئی۔ باہر نکلنا۔
 ARRAY ALREADY DEFINED	سرنی پہلے ہی بیان کی گئی ہے
-ARRAY INDEX OUTSIDE OF BOUNDS	حد سے باہر سرنی انڈیکس
+ARRAY INDEX OUT OF BOUNDS	حد سے باہر سرنی انڈیکس
+ARRAY INDEX SIZE MISMATCH	سرنی انڈیکس سائز مماثل
+ARRAY SUBSCRIPT NOT A NUMBER	سرنی سبسکرپٹ ایک نمبر نہیں
+ARRAY USED AS VARIABLE	سرنی متغیر کے طور پر استعمال ہوتا ہے
 CANNOT ACCESS DIRECTORY	ڈائریکٹری تک رسائی حاصل نہیں کرسکتی ہے
+CANNOT ASSIGN TO DEFINITION	تعریف کو تفویض نہیں کرسکتے ہیں
+CANNOT ASSIGN TO FUNCTION	کام کرنے کے لئے تفویض نہیں کرسکتے ہیں
 DATA INPUT UNDERFLOW	ڈیٹا ان پٹ انڈر فلو
 DATA READ UNDERFLOW	ڈیٹا انڈر فلو پڑھتا ہے
 DEFINITION CYCLE DISCOVERED	تعریف سائیکل دریافت ہوا
@@ -133,23 +138,25 @@ FAILURE	ناکامی
 FUNCTION DEFINITION MULTIPLY DEFINED	فنکشن کی تعریف ضرب کی وضاحت
 FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامیٹر مماثل
 GOSUB STACK OVERFLOW	گوسب اسٹیک اوور فلو
-GOSUB STACK UNDERFLOW	گوسب اسٹیک انڈر فلو
+GOSUB STACK UNDERFLOW	گوسوب اسٹیک انڈر فلو
+INCORRECT NUMBER OF PARAMETERS	پیرامیٹرز کی غلط تعداد
 INDEX OUT OF RANGE	رینج سے باہر انڈیکس
 LABEL ALREADY DEFINED	لیبل پہلے ہی بیان کیا گیا ہے
 LEFT / RIGHT OPERATION MISMATCH	بائیں / دائیں آپریشن مماثلت
 NEGATIVE INDEX	منفی انڈیکس
 NEXT ON FOR LOOP WITH STRING VARIABLE	سٹرنگ متغیر کے ساتھ لوپ کے لئے اگلا
-OPERAND MISMATCH	اوپیرینڈ مماثل
+OPERAND MISMATCH	آپٹینڈ مماثل
 OPTION REQUIRES A LANGUAGE	آپشن کے لئے زبان کی ضرورت ہوتی ہے
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	براہ کرم زبان کی ترتیبات یا ماحولیاتی متغیر کو چیک کریں
 STRING MATH LOGIC ERROR	سٹرنگ ریاضی کی منطق کی خرابی
 SYNTAX ERROR	نحو کی خرابی
 UNABLE TO OPEN FILE	فائل کھولنے سے قاصر ہے
-UNABLE TO OPEN TO OPEN FILE FOR READING	پڑھنے کے لئے فائل کھولنے کے لئے کھولنے سے قاصر ہے
+UNABLE TO OPEN FILE FOR READING	پڑھنے کے لئے فائل کھولنے سے قاصر ہے
 UNDEFINED LABEL	غیر متعینہ لیبل
 UNHANDLED OPERATION	غیر منقولہ آپریشن
 UNHANDLED OPERATION CODE	غیر منقولہ آپریشن کوڈ
 UNKNOWN IF LABEL	نامعلوم اگر لیبل ہے
+UNKNOWN OP IN PARAMETER SUBSTITUTION	پیرامیٹر متبادل میں نامعلوم او پی
 UNRECOGNIZED DOUBLE MATH OPERATION	غیر تسلیم شدہ ڈبل ریاضی کا آپریشن
 UNRECOGNIZED FUNCTION DEFINITION	غیر تسلیم شدہ فنکشن تعریف
 UNRECOGNIZED GOSUB LABEL	غیر تسلیم شدہ گوسب لیبل
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	پرنٹ میں غیر تسلیم شدہ او پی
 UNRECOGNIZED RATIONAL MATH OPERATION	غیر تسلیم شدہ عقلی ریاضی کا آپریشن
 UNRECOGNIZED VARIABLE TYPE	غیر تسلیم شدہ متغیر قسم
 UNSET ENVIRONMENT VARIABLE	غیر سیٹ ماحول متغیر
-VARIABLE / ARRAY DEFINITION MISMATCH	متغیر / سرنی تعریف مماثل
-VARIABLE DEFINED AS ARRAY	متغیر کی وضاحت سرنی کے طور پر کی گئی ہے
-VARIABLE DEFINED AS NONARRAY	متغیر کی وضاحت نانری کے طور پر کی گئی ہے
 VARIABLE HAS NO VALUE	متغیر کی کوئی قیمت نہیں ہے
-VARIABLE IS NOT AN ARRAY	متغیر کوئی صف نہیں ہے
+VARIABLE OR ARRAY HAS NO VALUE	متغیر یا صف کی کوئی قیمت نہیں ہے
+VARIABLE USED AS ARRAY	متغیر کو سرنی کے طور پر استعمال کیا جاتا ہے

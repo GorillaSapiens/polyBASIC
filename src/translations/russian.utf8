@@ -56,7 +56,7 @@ CHR <= ХР                        # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= ДЕФ                       # for user defined functions
+DEF <= ДЕФЕКТ                    # for user defined functions
 
 # from ECMA-55 §11
 
@@ -123,10 +123,15 @@ RANDOMIZE <= РАНДОМИЗИРОВАТЬ
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	И НЕТ ЯЗЫКА, НЕ УКАЗАННОГО В КОМАНДНОЙ СТРОКЕ. ВЫХОД.
 ARRAY ALREADY DEFINED	МАССИВ УЖЕ ОПРЕДЕЛЕН
-ARRAY INDEX OUTSIDE OF BOUNDS	МАССИВ ИНДЕКС ЗА ПРЕДЕЛАМИ
+ARRAY INDEX OUT OF BOUNDS	МАССИВ ИНДЕКС ВНЕ ГРАНИЦ
+ARRAY INDEX SIZE MISMATCH	НЕСООТВЕТСТВИЕ РАЗМЕРА МАССИВА
+ARRAY SUBSCRIPT NOT A NUMBER	МАССИВСКИЙ ИНДЕКС, А НЕ ЧИСЛО
+ARRAY USED AS VARIABLE	МАССИВ, ИСПОЛЬЗУЕМЫЙ В КАЧЕСТВЕ ПЕРЕМЕННОЙ
 CANNOT ACCESS DIRECTORY	НЕ МОЖЕТ ПОЛУЧИТЬ ДОСТУП К КАТАЛОГУ
-DATA INPUT UNDERFLOW	ВХОД ДАННЫХ В РАЗДЕЛЕ
-DATA READ UNDERFLOW	ДАННЫЕ ЧИТАЮТ НЕДОСТАТОЧНЫЙ ПОТОК
+CANNOT ASSIGN TO DEFINITION	НЕ МОЖЕТ ПРИСВОИТЬ ОПРЕДЕЛЕНИЮ
+CANNOT ASSIGN TO FUNCTION	НЕ МОЖЕТ НАЗНАЧИТЬ ФУНКЦИЮ
+DATA INPUT UNDERFLOW	ВВОД ДАННЫХ В НИЖНЕМ ПОТОКЕ
+DATA READ UNDERFLOW	ДАННЫЕ ПРОЧИТАЛИ НЕДОСТАТОК
 DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
 FAILURE	ОТКАЗ
@@ -134,23 +139,25 @@ FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМ�
 FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
 GOSUB STACK OVERFLOW	ГОСУБ СТЕК ПЕРЕПОЛНЕН
 GOSUB STACK UNDERFLOW	GOSUB STACK HOONFLOW
+INCORRECT NUMBER OF PARAMETERS	НЕПРАВИЛЬНОЕ КОЛИЧЕСТВО ПАРАМЕТРОВ
 INDEX OUT OF RANGE	УКАЗАТЕЛЬ
 LABEL ALREADY DEFINED	МЕТКА УЖЕ ОПРЕДЕЛЕН
 LEFT / RIGHT OPERATION MISMATCH	НЕСООТВЕТСТВИЕ ЛЕВОЙ / ПРАВОЙ ОПЕРАЦИИ
 NEGATIVE INDEX	ОТРИЦАТЕЛЬНЫЙ ИНДЕКС
-NEXT ON FOR LOOP WITH STRING VARIABLE	ДАЛЕЕ ДЛЯ ПЕТЛИ С ПЕРЕМЕННОЙ СТРОКИ
+NEXT ON FOR LOOP WITH STRING VARIABLE	ДАЛЕЕ ДЛЯ ПЕТЛИ СО СТРОКОВОЙ ПЕРЕМЕННОЙ
 OPERAND MISMATCH	ОПЕРАНД НЕСООТВЕТСТВИЕ
 OPTION REQUIRES A LANGUAGE	ВАРИАНТ ТРЕБУЕТ ЯЗЫКА
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ПОЖАЛУЙСТА, ПРОВЕРЬТЕ НАСТРОЙКИ ЯЗЫКА ИЛИ ПЕРЕМЕННУЮ СРЕДЫ
 STRING MATH LOGIC ERROR	ОШИБКА МАТЕМАТИЧЕСКОЙ ЛОГИКИ СТРОКИ
 SYNTAX ERROR	ОШИБКА СИНТАКСИСА
 UNABLE TO OPEN FILE	НЕВОЗМОЖНО ОТКРЫТЬ ФАЙЛ
-UNABLE TO OPEN TO OPEN FILE FOR READING	НЕВОЗМОЖНО ОТКРЫТЬ ДЛЯ ОТКРЫТИЯ ФАЙЛА ДЛЯ ЧТЕНИЯ
+UNABLE TO OPEN FILE FOR READING	НЕВОЗМОЖНО ОТКРЫТЬ ФАЙЛ ДЛЯ ЧТЕНИЯ
 UNDEFINED LABEL	НЕОПРЕДЕЛЕННАЯ ЭТИКЕТКА
 UNHANDLED OPERATION	НЕУПОМЯНУТАЯ ОПЕРАЦИЯ
 UNHANDLED OPERATION CODE	КОД ОПЕРАЦИИ НЕЗДОРОВОЙ
 UNKNOWN IF LABEL	НЕИЗВЕСТНО, ЕСЛИ ЭТИКЕТКА
-UNRECOGNIZED DOUBLE MATH OPERATION	НЕРАСПОЗНАННАЯ ДВОЙНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
+UNKNOWN OP IN PARAMETER SUBSTITUTION	НЕИЗВЕСТНЫЙ OP В ЗАМЕНЕ ПАРАМЕТРОВ
+UNRECOGNIZED DOUBLE MATH OPERATION	НЕПОЗНАННАЯ ДВОЙНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
 UNRECOGNIZED FUNCTION DEFINITION	НЕПОЗНАННОЕ ОПРЕДЕЛЕНИЕ ФУНКЦИИ
 UNRECOGNIZED GOSUB LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ ГОСУБА
 UNRECOGNIZED GOTO LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ GOTO
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	НЕПОЗНАННЫЙ OP В ПЕЧАТИ
 UNRECOGNIZED RATIONAL MATH OPERATION	НЕРАСПОЗНАННАЯ РАЦИОНАЛЬНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
 UNRECOGNIZED VARIABLE TYPE	НЕПОЗНАННЫЙ ТИП ПЕРЕМЕННОЙ
 UNSET ENVIRONMENT VARIABLE	НЕОТКРЫТАЯ ПЕРЕМЕННАЯ СРЕДЫ
-VARIABLE / ARRAY DEFINITION MISMATCH	НЕСООТВЕТСТВИЕ ОПРЕДЕЛЕНИЯ ПЕРЕМЕННОЙ / МАССИВА
-VARIABLE DEFINED AS ARRAY	ПЕРЕМЕННАЯ, ОПРЕДЕЛЕННАЯ КАК МАССИВ
-VARIABLE DEFINED AS NONARRAY	ПЕРЕМЕННАЯ, ОПРЕДЕЛЯЕМАЯ КАК NONARRAY
 VARIABLE HAS NO VALUE	ПЕРЕМЕННАЯ НЕ ИМЕЕТ ЗНАЧЕНИЯ
-VARIABLE IS NOT AN ARRAY	ПЕРЕМЕННАЯ НЕ МАССИВА
+VARIABLE OR ARRAY HAS NO VALUE	ПЕРЕМЕННАЯ ИЛИ МАССИВ НЕ ИМЕЕТ ЗНАЧЕНИЯ
+VARIABLE USED AS ARRAY	ПЕРЕМЕННАЯ, ИСПОЛЬЗУЕМАЯ В КАЧЕСТВЕ МАССИВА

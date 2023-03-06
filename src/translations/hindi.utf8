@@ -123,8 +123,13 @@ RANDOMIZE <= अनयमत
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	और कमांड लाइन पर कोई भाषा नहीं दी गई है। बाहर निकलना।
 ARRAY ALREADY DEFINED	सरणी पहले से ही परिभाषित है
-ARRAY INDEX OUTSIDE OF BOUNDS	सीमा के बाहर सरणी सूचकांक
+ARRAY INDEX OUT OF BOUNDS	सीमा से बाहर सरणी सूचकांक
+ARRAY INDEX SIZE MISMATCH	सरणी सूचकांक बेमेल
+ARRAY SUBSCRIPT NOT A NUMBER	सरणी सबस्क्रिप्ट एक संख्या नहीं है
+ARRAY USED AS VARIABLE	चर के रूप में उपयोग किया जाता है
 CANNOT ACCESS DIRECTORY	एक्सेस डायरेक्टरी नहीं कर सकते
+CANNOT ASSIGN TO DEFINITION	परिभाषा को असाइन नहीं कर सकते
+CANNOT ASSIGN TO FUNCTION	कार्य करने के लिए असाइन नहीं कर सकते
 DATA INPUT UNDERFLOW	आंकड़ा इनपुट अंडरफ्लो
 DATA READ UNDERFLOW	डेटा पढ़ें अंडरफ्लो
 DEFINITION CYCLE DISCOVERED	परिभाषा चक्र की खोज की गई
@@ -134,6 +139,7 @@ FUNCTION DEFINITION MULTIPLY DEFINED	फ़ंक्शन परिभाषा
 FUNCTION DEFINITION PARAMETER MISMATCH	समारोह परिभाषा पैरामीटर बेमेल
 GOSUB STACK OVERFLOW	गोसुब स्टैक ओवरफ्लो
 GOSUB STACK UNDERFLOW	गोसुब स्टैक अंडरफ्लो
+INCORRECT NUMBER OF PARAMETERS	मापदंडों की गलत संख्या
 INDEX OUT OF RANGE	सीमा से बाहर
 LABEL ALREADY DEFINED	पहले से परिभाषित लेबल
 LEFT / RIGHT OPERATION MISMATCH	लेफ्ट / राइट ऑपरेशन बेमेल
@@ -145,25 +151,24 @@ PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	कृपया भाष
 STRING MATH LOGIC ERROR	स्ट्रिंग गणित तर्क त्रुटि
 SYNTAX ERROR	वक्य रचना त्रुटि
 UNABLE TO OPEN FILE	फाइल खोलने में असमर्थ
-UNABLE TO OPEN TO OPEN FILE FOR READING	पढ़ने के लिए फ़ाइल खोलने के लिए खोलने में असमर्थ
+UNABLE TO OPEN FILE FOR READING	पढ़ने के लिए फ़ाइल खोलने में असमर्थ
 UNDEFINED LABEL	अपरिभाषित लेबल
 UNHANDLED OPERATION	अनहेल्दी संचालन
 UNHANDLED OPERATION CODE	अनियंत्रित ऑपरेशन कोड
 UNKNOWN IF LABEL	अज्ञात अगर लेबल
+UNKNOWN OP IN PARAMETER SUBSTITUTION	पैरामीटर प्रतिस्थापन में अज्ञात ओपी
 UNRECOGNIZED DOUBLE MATH OPERATION	अपरिचित दोहरे गणित संचालन
 UNRECOGNIZED FUNCTION DEFINITION	अपरिचित कार्य परिभाषा
 UNRECOGNIZED GOSUB LABEL	अपरिचित GOSUB लेबल
 UNRECOGNIZED GOTO LABEL	गैर -मान्यता प्राप्त गोटो लेबल
 UNRECOGNIZED INPUT	अपरिचित इनपुट
 UNRECOGNIZED INTEGER MATH OPERATION	निहित पूर्णांक गणित संचालन
-UNRECOGNIZED MATH TYPE	अपरिचित गणित प्रकार
+UNRECOGNIZED MATH TYPE	बिना मान्यता प्राप्त गणित प्रकार
 UNRECOGNIZED NEXT VARIABLE	अगला चर की पहचान की गई
 UNRECOGNIZED OP IN PRINT	प्रिंट में अपरिचित ओपी
-UNRECOGNIZED RATIONAL MATH OPERATION	बिना मान्यता प्राप्त तर्कसंगत गणित संचालन
+UNRECOGNIZED RATIONAL MATH OPERATION	अप्रकाशित तर्कसंगत गणित संचालन
 UNRECOGNIZED VARIABLE TYPE	गैर -मान्यता प्राप्त चर प्रकार
 UNSET ENVIRONMENT VARIABLE	अस्वाभाविक पर्यावरण चर
-VARIABLE / ARRAY DEFINITION MISMATCH	परिवर्तनीय / सरणी परिभाषा बेमेल
-VARIABLE DEFINED AS ARRAY	चर को सरणी के रूप में परिभाषित किया गया
-VARIABLE DEFINED AS NONARRAY	वैरिएबल को नॉनरे के रूप में परिभाषित किया गया
 VARIABLE HAS NO VALUE	चर का कोई मूल्य नहीं है
-VARIABLE IS NOT AN ARRAY	चर एक सरणी नहीं है
+VARIABLE OR ARRAY HAS NO VALUE	परिवर्तनीय या सरणी का कोई मूल्य नहीं है
+VARIABLE USED AS ARRAY	वैरिएबल का उपयोग सरणी के रूप में किया जाता है

@@ -123,8 +123,13 @@ RANDOMIZE <= אקראי
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ושום שפה ניתנת בשורת הפקודה. יציאה.
 ARRAY ALREADY DEFINED	מערך כבר מוגדר
-ARRAY INDEX OUTSIDE OF BOUNDS	אינדקס מערך מחוץ לגבולות
+ARRAY INDEX OUT OF BOUNDS	מערך אינדקס מחוץ לתחום
+ARRAY INDEX SIZE MISMATCH	מערך אינדקס חוסר התאמה בגודל
+ARRAY SUBSCRIPT NOT A NUMBER	מערך מערך לא מספר
+ARRAY USED AS VARIABLE	מערך המשמש כמשתנה
 CANNOT ACCESS DIRECTORY	לא ניתן לגשת לספריה
+CANNOT ASSIGN TO DEFINITION	לא ניתן להקצות להגדרה
+CANNOT ASSIGN TO FUNCTION	לא ניתן להקצות לפונקציה
 DATA INPUT UNDERFLOW	זרימת קלט נתונים
 DATA READ UNDERFLOW	נתונים קראו את הזרימה
 DEFINITION CYCLE DISCOVERED	מחזור ההגדרה התגלה
@@ -134,22 +139,24 @@ FUNCTION DEFINITION MULTIPLY DEFINED	הגדרת פונקציה כפול מוגד
 FUNCTION DEFINITION PARAMETER MISMATCH	הגדרת פונקציה חוסר התאמה של פרמטר
 GOSUB STACK OVERFLOW	הצפת ערימה של GOSUB
 GOSUB STACK UNDERFLOW	זרימת הערימה של GOSUB
+INCORRECT NUMBER OF PARAMETERS	מספר שגוי של פרמטרים
 INDEX OUT OF RANGE	אינדקס מחוץ לטווח
 LABEL ALREADY DEFINED	תווית כבר מוגדרת
 LEFT / RIGHT OPERATION MISMATCH	חוסר התאמה בין מבצע שמאל / ימין
 NEGATIVE INDEX	אינדקס שלילי
 NEXT ON FOR LOOP WITH STRING VARIABLE	הבא לולאה עם משתנה מחרוזת
-OPERAND MISMATCH	חוסר התאמה אופרנד
+OPERAND MISMATCH	אי התאמה אופרנד
 OPTION REQUIRES A LANGUAGE	אפשרות דורשת שפה
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	אנא בדוק את הגדרות השפה או משתנה הסביבה
 STRING MATH LOGIC ERROR	שגיאת היגיון במתמטיקה של מחרוזת
 SYNTAX ERROR	שגיאת תחביר
 UNABLE TO OPEN FILE	לא ניתן לפתוח קובץ
-UNABLE TO OPEN TO OPEN FILE FOR READING	לא ניתן לפתוח לקובץ פתוח לקריאה
+UNABLE TO OPEN FILE FOR READING	לא ניתן לפתוח קובץ לקריאה
 UNDEFINED LABEL	תווית לא מוגדרת
 UNHANDLED OPERATION	פעולה לא מטופלת
-UNHANDLED OPERATION CODE	קוד פעולה לא מטופל
+UNHANDLED OPERATION CODE	קוד פעולה שלא מטופל
 UNKNOWN IF LABEL	לא ידוע אם תווית
+UNKNOWN OP IN PARAMETER SUBSTITUTION	לא ידוע על החלפת פרמטרים
 UNRECOGNIZED DOUBLE MATH OPERATION	פעולת מתמטיקה כפולה לא מוכרת
 UNRECOGNIZED FUNCTION DEFINITION	הגדרת פונקציה לא מוכרת
 UNRECOGNIZED GOSUB LABEL	תווית GOSUB לא מוכרת
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	OP לא מוכר בהדפס
 UNRECOGNIZED RATIONAL MATH OPERATION	פעולת מתמטיקה רציונלית לא מוכרת
 UNRECOGNIZED VARIABLE TYPE	סוג משתנה לא מוכר
 UNSET ENVIRONMENT VARIABLE	ביטול סביבת הסביבה
-VARIABLE / ARRAY DEFINITION MISMATCH	משתנה / מערך הגדרת חוסר התאמה
-VARIABLE DEFINED AS ARRAY	משתנה המוגדר כמערך
-VARIABLE DEFINED AS NONARRAY	משתנה המוגדר כלא מערך
 VARIABLE HAS NO VALUE	למשתנה אין שום ערך
-VARIABLE IS NOT AN ARRAY	משתנה אינו מערך
+VARIABLE OR ARRAY HAS NO VALUE	למשתנה או למערך אין ערך
+VARIABLE USED AS ARRAY	משתנה המשמש כמערך

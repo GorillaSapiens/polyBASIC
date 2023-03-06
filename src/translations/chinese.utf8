@@ -123,8 +123,13 @@ RANDOMIZE <= 随机化
 [errors]
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	并且没有命令行上给出的语言。退出。
 ARRAY ALREADY DEFINED	数组已经定义
-ARRAY INDEX OUTSIDE OF BOUNDS	数组索引范围之外
+ARRAY INDEX OUT OF BOUNDS	阵列索引范围
+ARRAY INDEX SIZE MISMATCH	阵列索引尺寸不匹配
+ARRAY SUBSCRIPT NOT A NUMBER	阵列下标不是数字
+ARRAY USED AS VARIABLE	数组用作变量
 CANNOT ACCESS DIRECTORY	无法访问目录
+CANNOT ASSIGN TO DEFINITION	无法分配给定义
+CANNOT ASSIGN TO FUNCTION	无法分配功能
 DATA INPUT UNDERFLOW	数据输入下流
 DATA READ UNDERFLOW	数据读取底流
 DEFINITION CYCLE DISCOVERED	发现定义周期
@@ -134,6 +139,7 @@ FUNCTION DEFINITION MULTIPLY DEFINED	功能定义乘以定义
 FUNCTION DEFINITION PARAMETER MISMATCH	功能定义参数不匹配
 GOSUB STACK OVERFLOW	GOSUB堆栈溢出
 GOSUB STACK UNDERFLOW	GOSUB堆栈下流
+INCORRECT NUMBER OF PARAMETERS	不正确的参数数
 INDEX OUT OF RANGE	索引超出范围
 LABEL ALREADY DEFINED	标签已经定义
 LEFT / RIGHT OPERATION MISMATCH	左 /右操作不匹配
@@ -145,12 +151,13 @@ PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	请检查语言设置或�
 STRING MATH LOGIC ERROR	字符串数学逻辑错误
 SYNTAX ERROR	语法错误
 UNABLE TO OPEN FILE	无法打开文件
-UNABLE TO OPEN TO OPEN FILE FOR READING	无法打开以读取的文件
+UNABLE TO OPEN FILE FOR READING	无法打开文件以阅读
 UNDEFINED LABEL	未定义的标签
 UNHANDLED OPERATION	未经处理的操作
 UNHANDLED OPERATION CODE	未经处理的操作代码
 UNKNOWN IF LABEL	未知是否标签
-UNRECOGNIZED DOUBLE MATH OPERATION	未识别的双数学操作
+UNKNOWN OP IN PARAMETER SUBSTITUTION	参数替代中未知的OP
+UNRECOGNIZED DOUBLE MATH OPERATION	未识别的双重数学操作
 UNRECOGNIZED FUNCTION DEFINITION	无法识别的函数定义
 UNRECOGNIZED GOSUB LABEL	无法识别的GOSUB标签
 UNRECOGNIZED GOTO LABEL	无法识别的GOTO标签
@@ -162,8 +169,6 @@ UNRECOGNIZED OP IN PRINT	未识别的OP印刷
 UNRECOGNIZED RATIONAL MATH OPERATION	未被认可的理性数学操作
 UNRECOGNIZED VARIABLE TYPE	无法识别的变量类型
 UNSET ENVIRONMENT VARIABLE	未设置的环境变量
-VARIABLE / ARRAY DEFINITION MISMATCH	变量 /数组定义不匹配
-VARIABLE DEFINED AS ARRAY	定义为数组的变量
-VARIABLE DEFINED AS NONARRAY	定义为非阵列的变量
 VARIABLE HAS NO VALUE	变量没有值
-VARIABLE IS NOT AN ARRAY	变量不是数组
+VARIABLE OR ARRAY HAS NO VALUE	变量或数组没有价值
+VARIABLE USED AS ARRAY	变量用作数组
