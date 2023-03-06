@@ -473,13 +473,8 @@ BUILTINFUNC(CHR, 1) {
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
 
-// TODO FIX utf8 me up baby!
-   int64_t n = p->right->ival;
-   char buf[64];
-   sprintf(buf, "%ld", n);
-
    p->right->op = YYSTRING;
-   p->right->sval = strdup(buf);
+   p->right->sval = strdup(int2utf8(p->right->ival));
 
    Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
