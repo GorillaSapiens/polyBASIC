@@ -447,7 +447,11 @@ BUILTINFUNC(ABS, 1) {
    else if (p->right->op == YYRATIONAL) {
       *(p->right->rval) = p->right->rval->abs();
    }
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -456,7 +460,11 @@ BUILTINFUNC(ATN, 1) {
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    p->right->dval = atan(p->right->dval);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -473,7 +481,10 @@ BUILTINFUNC(CHR, 1) {
    p->right->op = YYSTRING;
    p->right->sval = strdup(buf);
 
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -482,7 +493,11 @@ BUILTINFUNC(COS, 1) {
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    p->right->dval = cos(p->right->dval);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -490,7 +505,11 @@ BUILTINFUNC(DBL, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -499,7 +518,11 @@ BUILTINFUNC(EXP, 1) {
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    p->right->dval = pow(M_E,p->right->dval);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -507,7 +530,11 @@ BUILTINFUNC(INT, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -515,14 +542,22 @@ BUILTINFUNC(RAT, 1) {
    Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_rational(p->right);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
 BUILTINFUNC(STR, 1) {
    Tree *freeme = p->right;
    upgrade_to_string(p->right);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -531,7 +566,11 @@ BUILTINFUNC(LOG, 1) {
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    p->right->dval = log(p->right->dval);
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
@@ -540,28 +579,96 @@ BUILTINFUNC(RND, 1) {
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    p->right->dval = (double)rand()/(double)(RAND_MAX/(p->right->dval));
+
+   Tree *middle = p->middle;
    memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
    free(freeme);
 }
 
 BUILTINFUNC(RANDOMIZE, 0) {
    time_t t = time(NULL);
    srand(t);
+   p->op = YYINTEGER;
+   p->ival = t;
 }
 
 BUILTINFUNC(SGN, 1) {
+   Tree *freeme = p->right;
+   upgrade_to_number(p->right);
+   upgrade_to_integer(p->right);
+   if (p->right->ival < 0) {
+      p->right->ival = -1;
+   }
+   else if (p->right->ival > 0) {
+      p->right->ival = 1;
+   }
+   else {
+      p->right->ival = 0;
+   }
+
+   Tree *middle = p->middle;
+   memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
+   free(freeme);
 }
 
 BUILTINFUNC(SIN, 1) {
+   Tree *freeme = p->right;
+   upgrade_to_number(p->right);
+   upgrade_to_double(p->right);
+   p->right->dval = sin(p->right->dval);
+
+   Tree *middle = p->middle;
+   memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
+   free(freeme);
 }
 
 BUILTINFUNC(SQR, 1) {
+   Tree *freeme = p->right;
+   upgrade_to_number(p->right);
+   upgrade_to_double(p->right);
+   p->right->dval = sqrt(p->right->dval);
+
+   Tree *middle = p->middle;
+   memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
+   free(freeme);
 }
 
 BUILTINFUNC(TAB, 1) {
+   Tree *freeme = p->right;
+   upgrade_to_number(p->right);
+   upgrade_to_integer(p->right);
+
+   char buffer[128];
+   sprintf(buffer, "\x1b[%ldG", p->right->ival);
+   p->right->op = YYSTRING;
+   p->right->sval = strdup(buffer);
+
+   Tree *middle = p->middle;
+   memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
+   free(freeme);
 }
 
 BUILTINFUNC(TAN, 1) {
+   Tree *freeme = p->right;
+   upgrade_to_number(p->right);
+   upgrade_to_double(p->right);
+   p->right->dval = tan(p->right->dval);
+
+   Tree *middle = p->middle;
+   memcpy(p, p->right, sizeof(Tree));
+   p->middle = middle;
+
+   free(freeme);
 }
 
 typedef void (*BFptr)(Tree *);
@@ -868,148 +975,8 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
 
 #if 0
 FNORD
-   else if (p->op == YYSTR) {
-   }
-   else if (p->op == YYLOG) {
-      Tree *freeme = p->left;
-      if (p->left->op == YYSTRING) {
-         upgrade_to_number(p->left);
-      }
-      if (p->left->op == YYDOUBLE) {
-         p->left->dval = log(p->left->dval);
-      }
-      else if (p->left->op == YYINTEGER) {
-         p->left->op = YYDOUBLE;
-         p->left->dval = log((double)p->left->ival);
-      }
-      else if (p->left->op == YYRATIONAL) {
-         p->left->op = YYDOUBLE;
-         Rational *deleteme = p->left->rval;
-         p->left->dval = log((double)*(p->left->rval));
-         delete deleteme;
-      }
-      memcpy(p, p->left, sizeof(Tree));
-      free(freeme);
-   }
-   else if (p->op == YYRND) {
-   }
-   else if (p->op == YYRANDOMIZE) {
-      time_t t = time(NULL);
-      p->op = YYINTEGER;
-      p->ival = t;
-   }
-   else if (p->op == YYSGN) {
-      Tree *freeme = p->left;
-      int sign = 0;
-      if (p->left->op == YYSTRING) {
-         upgrade_to_number(p->left);
-      }
-      if (p->left->op == YYDOUBLE) {
-         if (p->left->dval > 0) { sign = 1; }
-         if (p->left->dval < 0) { sign = -1; }
-         p->left->op = YYINTEGER;
-         p->left->ival = sign;
-      }
-      else if (p->left->op == YYINTEGER) {
-         if (p->left->ival > 0) { sign = 1; }
-         if (p->left->ival < 0) { sign = -1; }
-         p->left->ival = sign;
-      }
-      else if (p->left->op == YYRATIONAL) {
-         Rational *deleteme = p->left->rval;
-         p->left->op = YYINTEGER;
-         p->left->ival = p->left->rval->sgn();
-         delete deleteme;
-      }
-      memcpy(p, p->left, sizeof(Tree));
-      free(freeme);
-   }
-   else if (p->op == YYSIN) {
-      Tree *freeme = p->left;
-      if (p->left->op == YYSTRING) {
-         upgrade_to_number(p->left);
-      }
-      if (p->left->op == YYDOUBLE) {
-         p->left->dval = sin(p->left->dval);
-      }
-      else if (p->left->op == YYINTEGER) {
-         p->left->op = YYDOUBLE;
-         p->left->dval = sin((double)p->left->ival);
-      }
-      else if (p->left->op == YYRATIONAL) {
-         p->left->op = YYDOUBLE;
-         Rational *deleteme = p->left->rval;
-         p->left->dval = sin((double)*(p->left->rval));
-         delete deleteme;
-      }
-      memcpy(p, p->left, sizeof(Tree));
-      free(freeme);
-   }
-   else if (p->op == YYSQR) {
-      Tree *freeme = p->left;
-      if (p->left->op == YYSTRING) {
-         upgrade_to_number(p->left);
-      }
-      if (p->left->op == YYDOUBLE) {
-         p->left->dval = sqrt(p->left->dval);
-      }
-      else if (p->left->op == YYINTEGER) {
-         p->left->op = YYDOUBLE;
-         p->left->dval = sqrt((double)p->left->ival);
-      }
-      else if (p->left->op == YYRATIONAL) {
-         p->left->op = YYDOUBLE;
-         Rational *deleteme = p->left->rval;
-         p->left->dval = sqrt((double)*(p->left->rval));
-         delete deleteme;
-      }
-      memcpy(p, p->left, sizeof(Tree));
-      free(freeme);
-   }
    else if (p->op == YYTAB) {
-      Tree *freeme = p->left;
-      if (p->left->op == YYSTRING) {
-         upgrade_to_number(p->left);
-      }
-      if (p->left->op == YYDOUBLE) {
-         p->left->op = YYINTEGER;
-         p->left->ival = (int64_t) p->left->dval;
-      }
-      else if (p->left->op == YYRATIONAL) {
-         Rational *deleteme = p->left->rval;
-         p->left->op = YYINTEGER;
-         p->left->ival = (int64_t) ((double)*(p->left->rval));
-         delete deleteme;
-      }
-      char buffer[128];
-      sprintf(buffer, "\x1b[;%ldH", p->left->ival);
-      p->left->op = YYSTRING;
-      p->left->sval = strdup(buffer);
-      memcpy(p, p->left, sizeof(Tree));
-      free(freeme);
    }
-   else if (p->op == YYTAN) {
-      Tree *freeme = p->left;
-      if (p->left->op == YYSTRING) {
-         upgrade_to_number(p->left);
-      }
-      if (p->left->op == YYDOUBLE) {
-         p->left->dval = tan(p->left->dval);
-      }
-      else if (p->left->op == YYINTEGER) {
-         p->left->op = YYDOUBLE;
-         p->left->dval = tan((double)p->left->ival);
-      }
-      else if (p->left->op == YYRATIONAL) {
-         p->left->op = YYDOUBLE;
-         Rational *deleteme = p->left->rval;
-         p->left->dval = tan((double)*(p->left->rval));
-         delete deleteme;
-      }
-      memcpy(p, p->left, sizeof(Tree));
-      free(freeme);
-   }
-   else
 #endif
    if (strchr("+-*/^&", p->op)) {
       if (p->left && p->right ) {
