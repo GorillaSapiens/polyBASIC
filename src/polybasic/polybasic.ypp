@@ -115,7 +115,6 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %token YYON
 %token YYOPTION
 %token YYPRINT
-%token YYRANDOMIZE
 %token YYREAD
 %token YYREM
 %token YYRESTORE
