@@ -24,7 +24,7 @@ int is_var_defined(const char *p) {
    return 0;
 }
 
-int set_value(const char *p, Value value) {
+int set_value(const char *p, const Value &value) {
    unsigned long h = hash(p);
 
    for (unsigned long i = 0; i < HASH_SIZE; i++) {
@@ -39,27 +39,6 @@ int set_value(const char *p, Value value) {
       }
    }
    return 0;
-}
-
-int set_value(const char *p, Tree *result) {
-   int ret = 0;
-
-   switch (result->op) {
-      case YYDOUBLE:
-      case YYINTEGER:
-      case YYRATIONAL:
-      case YYSTRING:
-         ret = set_value(p, result->value);
-         break;
-      default:
-         GURU;
-         // test case voidsetvalue
-         eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED VARIABLE TYPE} ❮%2❯%n",
-            result->line, result->col, eop2string(result->op));
-         exit(-1);
-         break;
-   }
-   return ret;
 }
 
 const Value *get_value(const char *p) {

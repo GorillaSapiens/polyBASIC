@@ -20,8 +20,8 @@ using std::variant;
 #define V_AS_S(x) (std::get<const char *>(x))
 
 typedef variant<char,
-                int64_t,
                 double,
+                int64_t,
                 Rational *,
                 const char *> ValueBase;
 
@@ -30,6 +30,10 @@ class Value : public ValueBase
    public:
 
    ValueBase &base(void) {
+      return *this;
+   }
+
+   const ValueBase &cbase(void) const {
       return *this;
    }
 
@@ -54,7 +58,7 @@ class Value : public ValueBase
    }
 
    Value(const Value &value) { // copy constructor
-      if (index() == V_R) {
+      if (value.index() == V_R) {
          Rational *r = V_AS_R(value);
          if (r) {
             base() = new Rational(*r);
@@ -63,7 +67,7 @@ class Value : public ValueBase
             base() = (Rational *) NULL;
          }
       }
-      else if (index() == V_S) {
+      else if (value.index() == V_S) {
          const char *p = V_AS_S(value);
          if (p) {
             base() = (const char *) strdup(p);
@@ -72,6 +76,9 @@ class Value : public ValueBase
             base() = (const char *) NULL;
          }
       }
+      else {
+         base() = value.cbase();
+      }
    }
 
    Value& operator=(const Value& other) { // assignment operator
@@ -79,13 +86,16 @@ class Value : public ValueBase
 
       base() = ((Value &)other).base();
 
-      if (index() == V_R) {
+      if (other.index() == V_R) {
          Rational *r = new Rational(*V_AS_R(other));
          base() = r;
       }
-      else if (index() == V_S) {
+      else if (other.index() == V_S) {
          const char *p = strdup(V_AS_S(other));
          base() = p;
+      }
+      else {
+         base() = other.cbase();
       }
 
       return *this;

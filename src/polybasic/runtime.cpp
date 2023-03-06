@@ -254,11 +254,10 @@ BUILTINFUNC(ABS, 1) {
       *(V_AS_R(p->right->value)) = V_AS_R(p->right->value)->abs();
    }
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(ATN, 1) {
@@ -267,11 +266,10 @@ BUILTINFUNC(ATN, 1) {
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = atan(V_AS_D(p->right->value));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(CHR, 1) {
@@ -282,11 +280,10 @@ BUILTINFUNC(CHR, 1) {
    p->right->op = YYSTRING;
    p->right->value.base() = strdup(int2utf8(V_AS_I(p->right->value)));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(COS, 1) {
@@ -295,11 +292,10 @@ BUILTINFUNC(COS, 1) {
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = cos(V_AS_D(p->right->value));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(DBL, 1) {
@@ -307,11 +303,10 @@ BUILTINFUNC(DBL, 1) {
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(EXP, 1) {
@@ -320,11 +315,10 @@ BUILTINFUNC(EXP, 1) {
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = pow(M_E,V_AS_D(p->right->value));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(INT, 1) {
@@ -332,11 +326,10 @@ BUILTINFUNC(INT, 1) {
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(RAT, 1) {
@@ -344,22 +337,20 @@ BUILTINFUNC(RAT, 1) {
    upgrade_to_number(p->right);
    upgrade_to_rational(p->right);
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(STR, 1) {
    Tree *freeme = p->right;
    upgrade_to_string(p->right);
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(LOG, 1) {
@@ -368,19 +359,10 @@ BUILTINFUNC(LOG, 1) {
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = log(V_AS_D(p->right->value));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
-}
-
-double RandomReal(double low, double high)
-{
-  double d;
-
-  d = (double) rand() / ((double) RAND_MAX + 1);
-  return (d * high);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(RND, 1) {
@@ -390,11 +372,10 @@ BUILTINFUNC(RND, 1) {
    p->right->value.base() = V_AS_D(p->right->value) *
       ((double) rand() / ((double) RAND_MAX + 1));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(RANDOMIZE, 0) {
@@ -418,11 +399,10 @@ BUILTINFUNC(SGN, 1) {
       p->right->value.base() = 0;
    }
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(SIN, 1) {
@@ -431,11 +411,10 @@ BUILTINFUNC(SIN, 1) {
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = sin(V_AS_D(p->right->value));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(SQR, 1) {
@@ -444,11 +423,10 @@ BUILTINFUNC(SQR, 1) {
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = sqrt(V_AS_D(p->right->value));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(TAB, 1) {
@@ -461,11 +439,10 @@ BUILTINFUNC(TAB, 1) {
    p->right->op = YYSTRING;
    p->right->value.base() = strdup(buffer);
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 BUILTINFUNC(TAN, 1) {
@@ -474,11 +451,10 @@ BUILTINFUNC(TAN, 1) {
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = tan(V_AS_D(p->right->value));
 
-   Tree *middle = p->middle;
-   memcpy(p, p->right, sizeof(Tree));
-   p->middle = middle;
-
-   free(freeme);
+   p->op = p->right->op;
+   p->value = p->right->value;
+   delete(p->right);
+   p->right = NULL;
 }
 
 typedef void (*BFptr)(Tree *);
@@ -705,6 +681,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          // TODO FIX: do we need to null or free p->left or p->right???
       }
       else { // array or variable
+GURU;
          char *s = get_var_array_name(p);
          const Value *val = get_value(s);
          if (val) {
@@ -712,7 +689,6 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                // TODO FIX // free p->right?!?!?
                p->right = NULL;
             }
-
             switch (val->index()) {
                case V_D:
                   p->op = YYDOUBLE;
@@ -828,9 +804,9 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                         break;
                   }
                   p->op = YYDOUBLE;
-                  free(p->left);
+                  delete(p->left);
                   p->left = NULL;
-                  free(p->right);
+                  delete(p->right);
                   p->right = NULL;
                   break;
                case YYINTEGER:
@@ -859,9 +835,9 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                         break;
                   }
                   p->op = YYINTEGER;
-                  free(p->left);
+                  delete(p->left);
                   p->left = NULL;
-                  free(p->right);
+                  delete(p->right);
                   p->right = NULL;
                   break;
                case YYRATIONAL:
@@ -915,11 +891,9 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                         exit(-1);
                         break;
                   }
-                  //delete p->left->rval;
-                  free(p->left);
+                  delete(p->left);
                   p->left = NULL;
-                  //delete p->right->rval;
-                  free(p->right);
+                  delete(p->right);
                   p->right = NULL;
                   break;
                case YYSTRING:
@@ -941,11 +915,9 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                         exit(-1);
                         break;
                   }
-                  //free((void *)p->left->sval);
-                  free((void *)p->left);
+                  delete(p->left);
                   p->left = NULL;
-                  //free((void *)p->right->sval);
-                  free((void *)p->right);
+                  delete(p->right);
                   p->right = NULL;
                   break;
                default:
@@ -1201,7 +1173,7 @@ void run(Tree *p) {
                Tree *result = evaluate(deep_copy(p->right));
 
                const char *varname = V_AS_S(lvalue->value);
-               set_value(varname, result);
+               set_value(varname, result->value);
 
                free((void *)lvalue);
                free((void *)result);
@@ -1259,7 +1231,7 @@ void run(Tree *p) {
             {
                set_for(p);
                Tree *result = evaluate(deep_copy(p->left));
-               set_value(V_AS_S(p->value), result);
+               set_value(V_AS_S(p->value), result->value);
             }
             break;
          case YYNEXT:

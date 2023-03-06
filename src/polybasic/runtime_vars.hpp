@@ -31,9 +31,7 @@ typedef struct Var {
 
 int is_var_defined(const char *p);
 
-int set_value(const char *p, Value value);
-
-int set_value(const char *p, Tree *result);
+int set_value(const char *p, const Value &value);
 
 const Value *get_value(const char *p);
 
