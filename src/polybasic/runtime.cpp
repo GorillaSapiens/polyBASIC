@@ -14,7 +14,7 @@
 #include "runtime_data.hpp"
 #include "runtime.hpp"
 #include "main.hpp"
-#include "utf8casecmp.hpp"
+#include "utf8utils.hpp"
 
 static int64_t option_base = 0;
 static int64_t option_upper = 10; // default upper array bound per ECMA-55

@@ -13,7 +13,7 @@
 #include "mapping.hpp"
 #include "runtime.hpp"
 #include "flexdebug.hpp"
-#include "utf8casecmp.hpp"
+#include "utf8utils.hpp"
 
 extern FILE *yyin;
 extern Tree *programtree;

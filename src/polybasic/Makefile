@@ -23,7 +23,7 @@ OBJECTS= \
    runtime_data.o \
    runtime.o \
    flexdebug.o \
-   utf8casecmp.o \
+   utf8utils.o \
    hash.o \
    polybasic.tab.o
 
@@ -57,7 +57,7 @@ main.o: mapping.hpp version.hpp
 
 flexdebug.o: mapping.hpp
 
-utf8casecmp.o: lowercase.hpp
+utf8utils.o: lowercase.hpp
 
 lowercase.hpp: lowercase.pl UnicodeData.txt SpecialCasing.txt
 	./lowercase.pl > lowercase.hpp
@@ -128,14 +128,14 @@ lex.yy.o: ../reflex/RE-flex/include/reflex/flexlexer.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/abslexer.h tree.hpp rational.hpp
 lex.yy.o: flexdebug.hpp main.hpp polybasic.tab.hpp
 main.o: main.hpp eprintf.hpp tree.hpp rational.hpp dumptree.hpp
-main.o: polybasic.tab.hpp mapping.hpp runtime.hpp flexdebug.hpp
-main.o: utf8casecmp.hpp version.hpp
+main.o: polybasic.tab.hpp mapping.hpp runtime.hpp flexdebug.hpp utf8utils.hpp
+main.o: version.hpp
 polybasic.tab.o: eprintf.hpp tree.hpp rational.hpp dumptree.hpp lex.yy.hpp
 polybasic.tab.o: safe_strdup.hpp polybasic.tab.hpp
 rational.o: rational.hpp
 runtime.o: eprintf.hpp tree.hpp rational.hpp polybasic.tab.hpp dumptree.hpp
 runtime.o: runtime_lbls.hpp runtime_for.hpp runtime_def.hpp runtime_vars.hpp
-runtime.o: runtime_data.hpp runtime.hpp main.hpp utf8casecmp.hpp builtins.hpp
+runtime.o: runtime_data.hpp runtime.hpp main.hpp utf8utils.hpp builtins.hpp
 runtime_data.o: runtime_data.hpp rational.hpp
 runtime_def.o: eprintf.hpp tree.hpp rational.hpp polybasic.tab.hpp
 runtime_def.o: runtime_def.hpp dumptree.hpp hash.hpp
@@ -143,4 +143,4 @@ runtime_for.o: runtime_for.hpp tree.hpp rational.hpp dumptree.hpp hash.hpp
 runtime_lbls.o: runtime_lbls.hpp tree.hpp rational.hpp dumptree.hpp hash.hpp
 runtime_vars.o: eprintf.hpp tree.hpp rational.hpp runtime_vars.hpp
 runtime_vars.o: polybasic.tab.hpp hash.hpp
-utf8casecmp.o: utf8casecmp.hpp lowercase.hpp
+utf8utils.o: utf8utils.hpp lowercase.hpp
