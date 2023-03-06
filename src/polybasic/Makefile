@@ -88,6 +88,7 @@ clean:
 	rm -f polybasic
 	rm -f mapping.hpp
 	rm -f lowercase.hpp
+	rm -f builtins.hpp
 	rm -f version.hpp
 	rm -f Makefile.bak
 	rm -f polybasic.output
@@ -125,7 +126,7 @@ lex.yy.o: ../reflex/RE-flex/include/reflex/ranges.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/setop.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/flexlexer.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/abslexer.h tree.hpp rational.hpp
-lex.yy.o: flexdebug.hpp polybasic.tab.hpp
+lex.yy.o: flexdebug.hpp main.hpp polybasic.tab.hpp
 main.o: main.hpp eprintf.hpp tree.hpp rational.hpp dumptree.hpp
 main.o: polybasic.tab.hpp mapping.hpp runtime.hpp flexdebug.hpp
 main.o: utf8casecmp.hpp version.hpp
@@ -134,7 +135,7 @@ polybasic.tab.o: safe_strdup.hpp polybasic.tab.hpp
 rational.o: rational.hpp
 runtime.o: eprintf.hpp tree.hpp rational.hpp polybasic.tab.hpp dumptree.hpp
 runtime.o: runtime_lbls.hpp runtime_for.hpp runtime_def.hpp runtime_vars.hpp
-runtime.o: runtime_data.hpp runtime.hpp main.hpp builtins.hpp
+runtime.o: runtime_data.hpp runtime.hpp main.hpp utf8casecmp.hpp builtins.hpp
 runtime_data.o: runtime_data.hpp rational.hpp
 runtime_def.o: eprintf.hpp tree.hpp rational.hpp polybasic.tab.hpp
 runtime_def.o: runtime_def.hpp dumptree.hpp hash.hpp
