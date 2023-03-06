@@ -1262,7 +1262,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                   break;
                default:
                   GURU;
-                  // test case voidmath2
+                  // test case voidmath2 badstringmath
                   eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED MATH TYPE} ❮%2❯%n",
                         p->line, p->col, eop2string(p->left->op));
                   exit(-1);
