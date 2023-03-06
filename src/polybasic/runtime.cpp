@@ -240,8 +240,6 @@ Tree *deep_copy(Tree *subtree) {
 #define BUILTINFUNC(name, args) void builtin_ ## name(Tree *p)
 
 BUILTINFUNC(ABS, 1) {
-   Tree *freeme = p->right;
-
    upgrade_to_number(p->right);
 
    if (p->right->op == YYDOUBLE) {
@@ -261,7 +259,6 @@ BUILTINFUNC(ABS, 1) {
 }
 
 BUILTINFUNC(ATN, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = atan(V_AS_D(p->right->value));
@@ -273,7 +270,6 @@ BUILTINFUNC(ATN, 1) {
 }
 
 BUILTINFUNC(CHR, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
 
@@ -287,7 +283,6 @@ BUILTINFUNC(CHR, 1) {
 }
 
 BUILTINFUNC(COS, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = cos(V_AS_D(p->right->value));
@@ -299,7 +294,6 @@ BUILTINFUNC(COS, 1) {
 }
 
 BUILTINFUNC(DBL, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
 
@@ -310,7 +304,6 @@ BUILTINFUNC(DBL, 1) {
 }
 
 BUILTINFUNC(EXP, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = pow(M_E,V_AS_D(p->right->value));
@@ -322,7 +315,6 @@ BUILTINFUNC(EXP, 1) {
 }
 
 BUILTINFUNC(INT, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
 
@@ -333,7 +325,6 @@ BUILTINFUNC(INT, 1) {
 }
 
 BUILTINFUNC(RAT, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_rational(p->right);
 
@@ -344,7 +335,6 @@ BUILTINFUNC(RAT, 1) {
 }
 
 BUILTINFUNC(STR, 1) {
-   Tree *freeme = p->right;
    upgrade_to_string(p->right);
 
    p->op = p->right->op;
@@ -354,7 +344,6 @@ BUILTINFUNC(STR, 1) {
 }
 
 BUILTINFUNC(LOG, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = log(V_AS_D(p->right->value));
@@ -366,7 +355,6 @@ BUILTINFUNC(LOG, 1) {
 }
 
 BUILTINFUNC(RND, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    p->right->value.base() = V_AS_D(p->right->value) *
@@ -386,7 +374,6 @@ BUILTINFUNC(RANDOMIZE, 0) {
 }
 
 BUILTINFUNC(SGN, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
    if (V_AS_I(p->right->value) < 0) {
@@ -406,7 +393,6 @@ BUILTINFUNC(SGN, 1) {
 }
 
 BUILTINFUNC(SIN, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = sin(V_AS_D(p->right->value));
@@ -418,7 +404,6 @@ BUILTINFUNC(SIN, 1) {
 }
 
 BUILTINFUNC(SQR, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = sqrt(V_AS_D(p->right->value));
@@ -430,7 +415,6 @@ BUILTINFUNC(SQR, 1) {
 }
 
 BUILTINFUNC(TAB, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_integer(p->right);
 
@@ -446,7 +430,6 @@ BUILTINFUNC(TAB, 1) {
 }
 
 BUILTINFUNC(TAN, 1) {
-   Tree *freeme = p->right;
    upgrade_to_number(p->right);
    upgrade_to_double(p->right);
    V_AS_D(p->right->value) = tan(V_AS_D(p->right->value));
