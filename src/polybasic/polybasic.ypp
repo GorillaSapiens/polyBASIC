@@ -192,29 +192,6 @@ line           : YYEOL
                      $$ = $2;
                      $$->label = strdup(V_AS_S($1->value));
                   }
-               | remstmt error YYEOL
-                  {
-                     $$ = $1;
-                     yyerrok;
-                     remsleep = 0;
-                  }
-               | label remstmt error YYEOL
-                  {
-                     $$ = $2;
-                     $$->label = strdup(V_AS_S($1->value));
-                     yyerrok;
-                     remsleep = 0;
-                  }
-               ;
-
-remstmt        : YYREM
-                  {
-                     $$ = new Tree();
-                     $$->line = yylineno;
-                     $$->col = yyloc.first_column;
-                     $$->op = YYREM;
-                     remsleep = 1;
-                  }
                ;
 
 stmtlist       : cstmt ':' stmtlist
@@ -281,6 +258,13 @@ cstmt          : assignstmt
                | defstmt
                   {
                      $$ = $1;
+                  }
+               | YYREM
+                  {
+                     $$ = new Tree();
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->op = YYREM;
                   }
                ;
 

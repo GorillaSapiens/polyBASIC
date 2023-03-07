@@ -83,66 +83,80 @@ NAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbo
 
 EOL      [\r\n]{1,2}
 
+// an exclusive state for gobbling remarks
+%x REMGOBBLE
+
 %%
 
-{WHITESPACE} { /* ignore */ }
-
-{NAME}      {
-               enum yytokentype ret =
-                  is_reserved_word(yytext);
-               ret = ret ? ret : YYNAME;
-
-               if (void_enabled && !strcasecmp(yytext, "void")) {
-                  ret = YYVOID;
+<REMGOBBLE>.*  {
+                  // toss it, and return to the initial state
+                  start(INITIAL);
                }
 
-               flexdebug(yytext, (int) ret, yylineno, yylloc.first_column);
-               return ret;
-            }
+{WHITESPACE}   {
+                  /* ignore */
+               }
 
-{RATIONAL}  {
-               flexdebug(yytext, (int) YYRATIONAL, yylineno, yylloc.first_column);
-               return YYRATIONAL;
-            }
+{NAME}         {
+                  enum yytokentype ret =
+                     is_reserved_word(yytext);
+                  ret = ret ? ret : YYNAME;
 
-{STRING}    {
-               flexdebug(yytext, (int) YYSTRING, yylineno, yylloc.first_column);
-               return YYSTRING;
-            }
+                  if (void_enabled && !strcasecmp(yytext, "void")) {
+                     ret = YYVOID;
+                  }
 
-{INTEGER}   {
-               flexdebug(yytext, (int) YYINTEGER, yylineno, yylloc.first_column);
-               return YYINTEGER;
-            }
+                  if (ret == YYREM) {
+                     start(REMGOBBLE);
+                  }
 
-{DOUBLE}    {
-               flexdebug(yytext, (int) YYDOUBLE, yylineno, yylloc.first_column);
-               return YYDOUBLE;
-            }
+                  flexdebug(yytext, (int) ret, yylineno, yylloc.first_column);
+                  return ret;
+               }
 
-{RELATION}  {
-               flexdebug(yytext, (int) YYRELATION, yylineno, yylloc.first_column);
-               return YYRELATION;
-            }
+{RATIONAL}     {
+                  flexdebug(yytext, (int) YYRATIONAL, yylineno, yylloc.first_column);
+                  return YYRATIONAL;
+               }
 
-{SINGLE}    {
-               flexdebug(yytext, (int) yytext[0], yylineno, yylloc.first_column);
-               return yytext[0];
-            }
+{STRING}       {
+                  flexdebug(yytext, (int) YYSTRING, yylineno, yylloc.first_column);
+                  return YYSTRING;
+               }
 
-{IPSEP}     {
-               flexdebug(yytext, (int) YYIPSEP, yylineno, yylloc.first_column);
-               return YYIPSEP;
-            }
+{INTEGER}      {
+                  flexdebug(yytext, (int) YYINTEGER, yylineno, yylloc.first_column);
+                  return YYINTEGER;
+               }
 
-{EOL}       {
-               flexdebug(yytext, (int) YYEOL, yylineno, yylloc.first_column);
-               return YYEOL;
-            }
+{DOUBLE}       {
+                  flexdebug(yytext, (int) YYDOUBLE, yylineno, yylloc.first_column);
+                  return YYDOUBLE;
+               }
 
-.           {
-               flexdebug(yytext, (int) yytext[0], yylineno, yylloc.first_column);
-               return yytext[0];
-            }
+{RELATION}     {
+                  flexdebug(yytext, (int) YYRELATION, yylineno, yylloc.first_column);
+                  return YYRELATION;
+               }
+
+{SINGLE}       {
+                  flexdebug(yytext, (int) yytext[0], yylineno, yylloc.first_column);
+                  return yytext[0];
+               }
+
+{IPSEP}        {
+                  flexdebug(yytext, (int) YYIPSEP, yylineno, yylloc.first_column);
+                  return YYIPSEP;
+               }
+
+{EOL}          {
+                  flexdebug(yytext, (int) YYEOL, yylineno, yylloc.first_column);
+                  return YYEOL;
+               }
+
+.              {
+                  flexdebug(yytext, (int) yytext[0], yylineno, yylloc.first_column);
+                  return yytext[0];
+               }
 %%
 
