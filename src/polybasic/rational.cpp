@@ -138,15 +138,13 @@ Rational::Rational(double d) {
    }
 
    // and now the repeated fraction magic
+   // https://en.wikipedia.org/wiki/Euler%27s_continued_fraction_formula
    double i = 1.0/d;
    sREG_t n = 1;
    sREG_t dens[1024];
    int spot = 0;
    while(isfinite(i) && i != 0 && n > 0 && n < (BIGPOWEROF2 >> spot)) {
       n = (sREG_t) i;
-#if 0
-      printf("%f -> %d\n", i, (int)i);
-#endif
       i = i - (double)((sREG_t)i);
       i = 1.0 / i;
       if (n > 0 && n < (BIGPOWEROF2 >> spot)) {
