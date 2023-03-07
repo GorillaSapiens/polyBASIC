@@ -73,7 +73,6 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %type <u> ifstmtlist
 %type <u> optionbase
 %type <u> dimstmt
-%type <u> remstmt
 
 %type <u> assignstmt
 
