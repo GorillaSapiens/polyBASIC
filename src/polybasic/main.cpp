@@ -297,7 +297,7 @@ void load_translations(const char *language) {
    }
    if (!path || !directory_exists(path)) {
       GURU;
-      eprintf("{ERROR}: {CANNOT ACCESS DIRECTORY} ❮%0❯%n", path);
+      eprintf("{ERROR}: {CANNOT ACCESS DIRECTORY} ❰%0❱%n", path);
       exit(-1);
    }
 
@@ -311,7 +311,7 @@ void load_translations(const char *language) {
    }
    else {
       GURU;
-      eprintf("{ERROR}: {UNABLE TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
+      eprintf("{ERROR}: {UNABLE TO OPEN FILE FOR READING} ❰%0❱%n", full_path);
       eprintf("{PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE} 'POLYBASICPATH'%n");
       exit(-1);
    }
@@ -324,7 +324,7 @@ void load_errors(const char *language) {
    }
    if (!path || !directory_exists(path)) {
       GURU;
-      eprintf("{ERROR}: {CANNOT ACCESS DIRECTORY} ❮%0❯%n", path);
+      eprintf("{ERROR}: {CANNOT ACCESS DIRECTORY} ❰%0❱%n", path);
       exit(-1);
    }
 
@@ -338,7 +338,7 @@ void load_errors(const char *language) {
    }
    else {
       GURU;
-      eprintf("{ERROR}: {UNABLE TO OPEN FILE FOR READING} ❮%0❯%n", full_path);
+      eprintf("{ERROR}: {UNABLE TO OPEN FILE FOR READING} ❰%0❱%n", full_path);
       eprintf("{PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE} 'POLYBASICPATH'%n");
       exit(-1);
    }
@@ -488,7 +488,7 @@ int main(int argc, char **argv) {
 
       if (in == NULL) {
          GURU;
-         eprintf("{ERROR}: {UNABLE TO OPEN FILE} ❮%0❯%n", argv[0]);
+         eprintf("{ERROR}: {UNABLE TO OPEN FILE} ❰%0❱%n", argv[0]);
          exit(-1);
       }
    }
@@ -506,7 +506,7 @@ int main(int argc, char **argv) {
    }
 
    if (parser_result) {
-      eprintf("{FAILURE} ❮%0❯%n", parser_result);
+      eprintf("{FAILURE} ❰%0❱%n", parser_result);
       exit(-1);
    }
    else if (treedebug != -1) {

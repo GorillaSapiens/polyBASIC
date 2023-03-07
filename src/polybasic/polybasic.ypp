@@ -1025,11 +1025,11 @@ void fixup_nested_if(Tree *t, Tree *n) {
 void yyerror(const char *s) {
    if (!remsleep) {
       if (!strcmp(s, "syntax error")) {
-         eprintf("{SYNTAX ERROR} @%0:%1 ❮%2❯%n",
+         eprintf("{SYNTAX ERROR} @%0:%1 ❰%2❱%n",
             yylineno, yylloc.first_column, (yytext[0] < ' ') ? "EOL" : yytext);
       }
       else {
-         eprintf("{ERROR} @%0:%1 ❮%2❯ ❮%3❯%n",
+         eprintf("{ERROR} @%0:%1 ❰%2❱ ❰%3❱%n",
             yylineno, yylloc.first_column, s, yytext);
       }
    }

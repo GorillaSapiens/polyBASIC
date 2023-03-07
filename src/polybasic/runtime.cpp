@@ -26,7 +26,7 @@ static void register_labels(Tree *root) {
             Tree *prev = get_label(root->label);
             GURU;
             // test case multiple_integer_label multiple_string_label
-            eprintf("{ERROR}: @%0:%1, {LABEL ALREADY DEFINED}, ❮%2❯ @%3:%4%n",
+            eprintf("{ERROR}: @%0:%1, {LABEL ALREADY DEFINED}, ❰%2❱ @%3:%4%n",
                root->line, root->col, root->label, prev->line, prev->col);
             exit(-1);
          }
@@ -62,7 +62,7 @@ static void register_arrays(Tree *root) {
                const Varbound *vb = get_varbound(V_AS_S(list->value));
                GURU;
                // test case multiple_dim
-               eprintf("{ERROR}: @%0:%1, {ARRAY ALREADY DEFINED} ❮%2❯ @%3%n",
+               eprintf("{ERROR}: @%0:%1, {ARRAY ALREADY DEFINED} ❰%2❱ @%3%n",
                   list->line, list->col, V_AS_S(list->value), vb->line);
                exit(-1);
             }
@@ -92,7 +92,7 @@ static void register_def(Tree *root) {
             Tree *prev = get_def(V_AS_S(root->value));
             GURU;
             // test case multiple_def
-            eprintf("{ERROR}: @%0:%1 {FUNCTION DEFINITION MULTIPLY DEFINED} ❮%2❯ @%3:%4%n",
+            eprintf("{ERROR}: @%0:%1 {FUNCTION DEFINITION MULTIPLY DEFINED} ❰%2❱ @%3:%4%n",
                root->line, root->col, V_AS_S(root->value), prev->line, prev->col);
             exit(-1);
          }
@@ -445,7 +445,7 @@ BUILTINFUNC(VAL, 1) {
    if (p->right->op != YYSTRING) {
       GURU;
       // no test case
-      eprintf("{ERROR}: @%0:%1, {VAL ARGUMENT MUST BE STRING} ❮%2❯%n",
+      eprintf("{ERROR}: @%0:%1, {VAL ARGUMENT MUST BE STRING} ❰%2❱%n",
             p->line, p->col, eop2string(p->right->op));
       exit(-1);
    }
@@ -573,14 +573,14 @@ char *get_var_array_name(Tree *p) {
       if (p->right->op != YYINTEGER) {
          GURU;
          // test case voidarraysubscript
-         eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
+         eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❰%2❱(%3) ❰%4❱%n",
                p->line, p->col, V_AS_S(p->value), 0, eop2string(p->right->op));
          exit(-1);
       }
       if (p->right->middle && p->right->middle->op != YYINTEGER) {
          GURU;
          // no test case
-         eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❮%2❯(%3) ❮%4❯%n",
+         eprintf("{ERROR}: @%0:%1, {ARRAY SUBSCRIPT NOT A NUMBER} ❰%2❱(%3) ❰%4❱%n",
                p->line, p->col, V_AS_S(p->value), 1, eop2string(p->right->middle->op));
          exit(-1);
       }
@@ -590,21 +590,21 @@ char *get_var_array_name(Tree *p) {
       if (vb->dimensions == 0 && count > 0) {
          GURU;
          // test case varbounds3 vardim3
-         eprintf("{ERROR}: @%0:%1, {VARIABLE USED AS ARRAY} ❮%2❯ @%3%n",
+         eprintf("{ERROR}: @%0:%1, {VARIABLE USED AS ARRAY} ❰%2❱ @%3%n",
                p->line, p->col, V_AS_S(p->value), vb->line);
          exit(-1);
       }
       if (count == 0 && vb->dimensions > 0) {
          GURU;
          // test case vardim1 vardim2
-         eprintf("{ERROR}: @%0:%1, {ARRAY USED AS VARIABLE} ❮%2❯ @%3%n",
+         eprintf("{ERROR}: @%0:%1, {ARRAY USED AS VARIABLE} ❰%2❱ @%3%n",
                p->line, p->col, V_AS_S(p->value), vb->line);
          exit(-1);
       }
       if (count != vb->dimensions) {
          GURU;
          // test case varbounds4 vardim4
-         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX SIZE MISMATCH} ❮%2❯ DIM%3 @%4%n",
+         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX SIZE MISMATCH} ❰%2❱ DIM%3 @%4%n",
                p->line, p->col, V_AS_S(p->value), vb->dimensions, vb->line);
          exit(-1);
       }
@@ -612,7 +612,7 @@ char *get_var_array_name(Tree *p) {
                                   V_AS_I(p->right->value) > vb->upper1)) {
          GURU;
          // test case varbounds
-         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%5) ❮%2❯(%3..%4) @%6%n",
+         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❰%2❱(%5) ❰%2❱(%3..%4) @%6%n",
                p->line, p->col,
                V_AS_S(p->value), option_base, vb->upper1,
                V_AS_I(p->right->value), vb->line);
@@ -623,7 +623,7 @@ char *get_var_array_name(Tree *p) {
              V_AS_I(p->right->middle->value) < option_base || V_AS_I(p->right->middle->value) > vb->upper2)) {
          GURU;
          // test case varbounds1 varbounds2
-         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❮%2❯(%6,%7) ❮%2❯(%3..%4,%3..%5) @%8%n",
+         eprintf("{ERROR}: @%0:%1, {ARRAY INDEX OUT OF BOUNDS} ❰%2❱(%6,%7) ❰%2❱(%3..%4,%3..%5) @%8%n",
                p->line, p->col, V_AS_S(p->value), option_base, vb->upper1, vb->upper2,
                V_AS_I(p->right->value), V_AS_I(p->right->middle->value), vb->line);
          exit(-1);
@@ -819,7 +819,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          if (count != builtin->args) {
             GURU;
             // test case builtinparamcount
-            eprintf("{ERROR}: @%0:%1, {INCORRECT NUMBER OF PARAMETERS} ❮%2❯ %3<>%4%n",
+            eprintf("{ERROR}: @%0:%1, {INCORRECT NUMBER OF PARAMETERS} ❰%2❱ %3<>%4%n",
                p->line, p->col, has_tuple(V_AS_S(p->value)), count, builtin->args);
             exit(-1);
          }
@@ -834,7 +834,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          if (defcount != callcount) {
             GURU;
             // test case param_mismatch1 param_mismatch2
-            eprintf("{ERROR}: @%0:%1, {FUNCTION DEFINITION PARAMETER MISMATCH} ❮%2❯ %3<>%4%n",
+            eprintf("{ERROR}: @%0:%1, {FUNCTION DEFINITION PARAMETER MISMATCH} ❰%2❱ %3<>%4%n",
                p->line, p->col, V_AS_S(p->value), defcount, callcount);
             exit(-1);
          }
@@ -853,7 +853,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             default:
                GURU;
                // test case defreturnsvoid
-               eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❮%2❯%n",
+               eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❰%2❱%n",
                   p->line, p->col, eop2string(val->op));
                exit(-1);
                break;
@@ -875,7 +875,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             default:
                GURU;
                // test case defgivenvoid
-               eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❮%2❯%n",
+               eprintf("{ERROR}: @%0:%1, {UNKNOWN OP IN PARAMETER SUBSTITUTION} ❰%2❱%n",
                   p->line, p->col, eop2string(val->op));
                exit(-1);
                break;
@@ -909,7 +909,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          else {
             GURU;
             // test case no_value
-            eprintf("{ERROR}: @%0:%1, {VARIABLE OR ARRAY HAS NO VALUE} ❮%2❯%n",
+            eprintf("{ERROR}: @%0:%1, {VARIABLE OR ARRAY HAS NO VALUE} ❰%2❱%n",
                p->line, p->col, s);
             exit(-1);
          }
@@ -922,14 +922,14 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
       if (builtin) { // it's a builtin function
          GURU;
          // test case assigntobuiltin
-         eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO FUNCTION} ❮%2❯%n",
+         eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO FUNCTION} ❰%2❱%n",
             p->line, p->col, has_tuple(V_AS_S(p->value)));
          exit(-1);
       }
       else if (is_def_defined(V_AS_S(p->value))) {
          GURU;
          // test case assigntodef
-         eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO DEFINITION} ❮%2❯%n",
+         eprintf("{ERROR}: @%0:%1, {CANNOT ASSIGN TO DEFINITION} ❰%2❱%n",
             p->line, p->col, V_AS_S(p->value));
          exit(-1);
       }
@@ -999,7 +999,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                      default:
                         GURU;
                         // test case double_amp
-                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED DOUBLE MATH OPERATION} ❮%2❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED DOUBLE MATH OPERATION} ❰%2❱%n",
                               p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
@@ -1030,7 +1030,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                      default:
                         GURU;
                         // test case integer_amp
-                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED INTEGER MATH OPERATION} ❮%2❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED INTEGER MATH OPERATION} ❰%2❱%n",
                               p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
@@ -1082,7 +1082,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                      default:
                         GURU;
                         // test case rational_amp
-                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED RATIONAL MATH OPERATION} ❮%2❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED RATIONAL MATH OPERATION} ❰%2❱%n",
                               p->line, p->col, eop2string(p->op));
                         exit(-1);
                         break;
@@ -1119,7 +1119,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                default:
                   GURU;
                   // test case voidmath2 badstringmath
-                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED MATH TYPE} ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED MATH TYPE} ❰%2❱%n",
                         p->line, p->col, eop2string(p->left->op));
                   exit(-1);
                   break;
@@ -1128,7 +1128,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
          else {
             GURU;
             // test case voidmath
-            eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❮%2❯ ❮%3❯%n",
+            eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❰%2❱ ❰%3❱%n",
                p->line, p->col,
                eop2string(p->left ? p->left->op : -1),
                eop2string(p->right ? p->right->op : -1));
@@ -1162,7 +1162,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             default:
                GURU;
                // test case voidnegation stringnegation
-               eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❮%2❯ ❮%3❯%n",
+               eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❰%2❱ ❰%3❱%n",
                   p->line, p->col,
                   eop2string(p->op),
                   eop2string(p->right ? p->right->op : -1));
@@ -1186,7 +1186,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             default:
                GURU;
                // test case voidpositive stringpositive
-               eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❮%2❯ ❮%3❯%n",
+               eprintf("{ERROR}: @%0:%1, {OPERAND MISMATCH} ❰%2❱ ❰%3❱%n",
                   p->line, p->col,
                   eop2string(p->op),
                   eop2string(p->right ? p->right->op : -1));
@@ -1278,7 +1278,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
       if (left->op != right->op) {
          GURU;
          // test case voidif
-         eprintf("{ERROR}: @%0:%1, {LEFT / RIGHT OPERATION MISMATCH} ❮%2❯ ❮%3❯%n",
+         eprintf("{ERROR}: @%0:%1, {LEFT / RIGHT OPERATION MISMATCH} ❰%2❱ ❰%3❱%n",
                p->line, p->col, eop2string(left->op), eop2string(right->op));
          exit(-1);
       }
@@ -1333,7 +1333,7 @@ Value convert_to_value(const char *s) {
    else {
       GURU;
       // no test case, conversion always yeilds something
-      eprintf("{ERROR}: {UNRECOGNIZED INPUT} ❮%0❯%n", s);
+      eprintf("{ERROR}: {UNRECOGNIZED INPUT} ❰%0❱%n", s);
       exit(-1);
    }
    return value;
@@ -1438,7 +1438,7 @@ void run(Tree *p) {
                   default:
                      GURU;
                      // test case voidsetvalue
-                     eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED VARIABLE TYPE} ❮%2❯%n",
+                     eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED VARIABLE TYPE} ❰%2❱%n",
                         p->line, p->col, eop2string(result->op));
                      exit(-1);
                      break;
@@ -1505,7 +1505,7 @@ void run(Tree *p) {
                      default:
                         GURU;
                         // test case voidprint
-                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED OP IN PRINT} ❮%2❯%n",
+                        eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED OP IN PRINT} ❰%2❱%n",
                            p->line, p->col, eop2string(mid->op));
                         exit(-1);
                         break;
@@ -1530,7 +1530,7 @@ void run(Tree *p) {
                if (!fore) {
                   GURU;
                   // test case unrecognext
-                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED NEXT VARIABLE} ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED NEXT VARIABLE} ❰%2❱%n",
                      p->line, p->col, V_AS_S(p->value));
                   exit(-1);
                }
@@ -1659,7 +1659,7 @@ void run(Tree *p) {
                if (!t) {
                   GURU;
                   // test case badgoto
-                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOTO LABEL} ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOTO LABEL} ❰%2❱%n",
                      p->line, p->col, V_AS_S(p->value));
                   exit(-1);
                }
@@ -1672,7 +1672,7 @@ void run(Tree *p) {
                if (!t) {
                   GURU;
                   // test case badgosub
-                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOSUB LABEL} ❮%2❯%n",
+                  eprintf("{ERROR}: @%0:%1, {UNRECOGNIZED GOSUB LABEL} ❰%2❱%n",
                      p->line, p->col, V_AS_S(p->value));
                   exit(-1);
                }
@@ -1710,7 +1710,7 @@ void run(Tree *p) {
                if (!target) {
                   GURU;
                   // test case badiflabel
-                  eprintf("{ERROR}: @%0:%1, {UNKNOWN IF LABEL} ❮%2❯%n", p->line, p->col, V_AS_S(p->middle->value));
+                  eprintf("{ERROR}: @%0:%1, {UNKNOWN IF LABEL} ❰%2❱%n", p->line, p->col, V_AS_S(p->middle->value));
                   exit(-1);
                }
 
@@ -1748,7 +1748,7 @@ void run(Tree *p) {
                   default:
                      GURU;
                      // test case voidon
-                     eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION} ❮%2❯%n",
+                     eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION} ❰%2❱%n",
                         p->line, p->left->col, eop2string(result->op));
                      exit(-1);
                      break;
@@ -1756,7 +1756,7 @@ void run(Tree *p) {
                if (i <= 0) {
                   GURU;
                   // test case negativeon
-                  eprintf("{ERROR}: @%0:%1, {INDEX LESS THAN 1} ❮%2❯%n", p->line, p->left->col, i);
+                  eprintf("{ERROR}: @%0:%1, {INDEX LESS THAN 1} ❰%2❱%n", p->line, p->left->col, i);
                   exit(-1);
                }
                int oi = i;
@@ -1769,14 +1769,14 @@ void run(Tree *p) {
                if (i || label == NULL) {
                   GURU;
                   // test case bigon
-                  eprintf("{ERROR}: @%0:%1, {INDEX OUT OF RANGE} ❮%2❯%n", p->line, p->left->col, oi);
+                  eprintf("{ERROR}: @%0:%1, {INDEX OUT OF RANGE} ❰%2❱%n", p->line, p->left->col, oi);
                   exit(-1);
                }
                Tree *target = get_label(V_AS_S(label->value));
                if (!target) {
                   GURU;
                   // test case badonlabel
-                  eprintf("{ERROR}: @%0:%1, {UNDEFINED LABEL} ❮%2❯%n", p->line, label->col, V_AS_S(label->value));
+                  eprintf("{ERROR}: @%0:%1, {UNDEFINED LABEL} ❰%2❱%n", p->line, label->col, V_AS_S(label->value));
                   exit(-1);
                }
                if (V_AS_I(p->value)) { // GOSUB
@@ -1887,7 +1887,7 @@ void run(Tree *p) {
          default:
             GURU;
             // no test case
-            eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION CODE} ❮%2❯%n",
+            eprintf("{ERROR}: @%0:%1, {UNHANDLED OPERATION CODE} ❰%2❱%n",
                p->line, p->col, eop2string(p->op));
             exit(-1);
             break;

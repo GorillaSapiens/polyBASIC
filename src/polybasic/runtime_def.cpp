@@ -83,13 +83,13 @@ void Path::dump(void) {
    for (int i = 0; i < spot; i++) {
       GURU;
       // test case cycle_def
-      eprintf("❮%0❯ @%1:%2 ->%b",
+      eprintf("❰%0❱ @%1:%2 ->%b",
          V_AS_S(defs[path[i]]->value),
          defs[path[i]]->line, defs[path[i]]->col);
    }
    GURU;
    // test case cycle_def
-   eprintf("❮%0❯ @%1:%2%n",
+   eprintf("❰%0❱ @%1:%2%n",
       V_AS_S(defs[path[0]]->value),
       defs[path[0]]->line, defs[path[0]]->col);
 }
