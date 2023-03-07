@@ -456,6 +456,15 @@ Builtin *get_builtin(const char *name) {
    const char *translation = has_tuple(name);
 
    if (!translation) {
+      char *nc = strdup(name);
+      if (nc[strlen(nc)-1] == '$') {
+         nc[strlen(nc)-1] = 0;
+         translation = has_tuple(nc);
+      }
+      free(nc);
+   }
+
+   if (!translation) {
       return NULL;
    }
 
