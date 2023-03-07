@@ -1,2 +1,8 @@
+# remove me later
+*.bas
+
+# remove me later
+*_expected.txt
+
 *_actual.txt
 *_guru.txt
