@@ -1703,7 +1703,8 @@ void run(Tree *p) {
             break;
          case YYREAD:
             {
-               for (Tree *varname = p->right; varname; varname = varname->middle) {
+               Tree *varname = evaluate(deep_copy(p->right));
+               while (varname) { 
                   Value value;
                   if (get_data(value)) {
                      set_value(V_AS_S(varname->value), value);
@@ -1714,12 +1715,16 @@ void run(Tree *p) {
                      eprintf("{ERROR}: @%0:%1, {DATA READ UNDERFLOW}%n", p->line, p->col);
                      exit(-1);
                   }
+                  Tree *tmp = varname;
+                  varname = varname->middle;
+                  delete tmp;
                }
             }
             break;
          case YYINPUT:
             {
-               for (Tree *varname = p->right; varname; varname = varname->middle) {
+               Tree *varname = evaluate(deep_copy(p->right));
+               while (varname) {
                   char buf[1024];
                   printf("%s? ",V_AS_S(varname->value));
                   fflush(stdout);
@@ -1744,6 +1749,9 @@ void run(Tree *p) {
                      }
                      exit(-1);
                   }
+                  Tree *tmp = varname;
+                  varname = varname->middle;
+                  delete tmp;
                }
             }
             break;

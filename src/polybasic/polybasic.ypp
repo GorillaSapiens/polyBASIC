@@ -48,6 +48,7 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 
 %type <u> expression
 %type <u> exprlist
+%type <u> lvalist
 
 %type <u> rexpr
 
@@ -394,7 +395,7 @@ restorestmt    : YYRESTORE
                   }
                ;
 
-readstmt       : YYREAD exprlist
+readstmt       : YYREAD lvalist
                   {
                      $$ = new Tree();
                      $$->line = yylineno;
@@ -838,6 +839,19 @@ expression     : '+' expression %prec UPLUSMINUS
                   }
                ;
 
+lvalist        : efad YYIPSEP lvalist
+                  {
+                     $$ = $1;
+                     $$->op = YYLVAL;
+                     $$->middle = $3;
+                  }
+               | efad
+                  {
+                     $$ = $1;
+                     $$->op = YYLVAL;
+                  }
+               ;
+
 efad           : name
                   {
                      $$ = $1;
@@ -891,7 +905,7 @@ printlist      : expression YYIPSEP printlist
                   }
                ;
 
-inputstmt      : YYINPUT exprlist
+inputstmt      : YYINPUT lvalist
                   {
                      $$ = new Tree();
                      $$->line = yylineno;
