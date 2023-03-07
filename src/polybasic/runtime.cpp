@@ -1159,7 +1159,6 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
    }
 
    if (p->op == YYCOMPARE) {
-GURU;
       Tree *left = evaluate(deep_copy(p->left));
       Tree *right = evaluate(deep_copy(p->right));
 
@@ -1192,6 +1191,14 @@ GURU;
          else if (left->op == YYDOUBLE && right->op == YYINTEGER) {
             upgrade_to_double(right);
          }
+      }
+
+      if (left->op != right->op) {
+         GURU;
+         // test case voidif
+         eprintf("{ERROR}: @%0:%1, {LEFT / RIGHT OPERATION MISMATCH} ❮%2❯ ❮%3❯%n",
+               p->line, p->col, eop2string(left->op), eop2string(right->op));
+         exit(-1);
       }
 
       if (left->op == right->op &&

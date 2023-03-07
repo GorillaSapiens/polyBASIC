@@ -97,14 +97,35 @@ enum yytokentype is_reserved_word(const char *a) {
       }
    }
 
+   // special case matching for REM
+   static const char *remstart = NULL;
+   if (remstart == NULL) {
+      for (int i = 0; i < (sizeof(reserved)/sizeof(reserved[0])); i++) {
+         if (reserved[i].name && reserved[i].token == YYREM) {
+            for (Tuple *p = tuple_head; p; p = p->next) {
+               if (!strcmp(p->english, "REM")) {
+                  remstart = p->translation;
+                  break;
+               }
+            }
+         }
+      }
+   }
+   if (utf8casestartswith(a, remstart)) {
+      return YYREM;
+   }
+
+   // no english translation, no token
    if (!english) {
       return (enum yytokentype) 0;
    }
 
    // now see if there are any matches
    for (int i = 0; i < (sizeof(reserved)/sizeof(reserved[0])); i++) {
-      if (reserved[i].name && !strcmp(reserved[i].name, english)) {
-         return reserved[i].token;
+      if (reserved[i].name) {
+         if (!strcmp(reserved[i].name, english)) {
+            return reserved[i].token;
+         }
       }
    }
 

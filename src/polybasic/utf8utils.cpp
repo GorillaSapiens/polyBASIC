@@ -36,6 +36,21 @@ int utf8casecmp(const char *l, const char *r) {
    return strcmp(nleft, nright);
 }
 
+// this is gonna be.... slow...
+int utf8casestartswith(const char *haystack, const char *needle) {
+   int i = 0;
+
+   char nleft[1024];
+   lc(haystack, nleft);
+
+   char nright[1024];
+   lc(needle, nright);
+
+   char *s = strstr(nleft, nright);
+
+   return (s == nleft);
+}
+
 // caution, returns pointer to static buffer
 const char *int2utf8(int64_t ord) {
    static unsigned char buffer[8];
