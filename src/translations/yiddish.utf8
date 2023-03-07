@@ -74,6 +74,10 @@ ON <= אף                 # a sort of a switch statement
 RETURN <= ומקערן         # used to exit a subroutine
 STOP <= אפשטעל           # command to stop execution
 
+AND <= און               # C-64ism
+OR <= אדער               # C-64ism
+NOT <= נישט              # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	ונהאַנדלעד אָפּעראַציע קאָד
 UNKNOWN IF LABEL	אומבאַקאַנט אויב פירמע
 UNKNOWN OP IN PARAMETER SUBSTITUTION	אומבאַקאַנט אויף אין פּאַראַמעטער סאַבסטיטושאַן
 UNRECOGNIZED DOUBLE MATH OPERATION	אַנרעקאַגנייזד טאָפּל מאַט אָפּעראַציע
-UNRECOGNIZED FUNCTION DEFINITION	אַנרעקאַגנייזד פונקציע דעפֿיניציע
 UNRECOGNIZED GOSUB LABEL	אַנרעקאַגנייזד GOSUB לאַבעל
 UNRECOGNIZED GOTO LABEL	אַנרעקאַגנייזד גאָטאָ פירמע
 UNRECOGNIZED INPUT	אַנרעקאַגנייזד אַרייַנשרייַב
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	אַנרעקאַגנייזד אַפּ אין דרוקן
 UNRECOGNIZED RATIONAL MATH OPERATION	אַנרעקאַגנייזד באַרדאַסדיק מאַט אָפּעראַציע
 UNRECOGNIZED VARIABLE TYPE	אַנרעקאַגנייזד בייַטעוודיק טיפּ
 UNSET ENVIRONMENT VARIABLE	ונעט סוויווע בייַטעוודיק
-VARIABLE HAS NO VALUE	וואַריאַבלע האט קיין ווערט
 VARIABLE OR ARRAY HAS NO VALUE	בייַטעוודיק אָדער מענגע האט קיין ווערט
 VARIABLE USED AS ARRAY	בייַטעוודיק געוויינט ווי מענגע

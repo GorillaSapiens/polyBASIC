@@ -74,6 +74,10 @@ ON <= НА                         # a sort of a switch statement
 RETURN <= ВОЗВРАЩАТЬСЯ           # used to exit a subroutine
 STOP <= ОСТАНАВЛИВАТЬСЯ          # command to stop execution
 
+AND <= И                         # C-64ism
+OR <= ИЛИ                        # C-64ism
+NOT <= НЕТ                       # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -106,7 +110,7 @@ BASE <= БАЗА                     # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= ПЕРЕОБОРУДОВАНИЕ          # see ECMA-55 §18.1
+REM <= РЕМ                       # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -128,14 +132,14 @@ ARRAY INDEX SIZE MISMATCH	НЕСООТВЕТСТВИЕ РАЗМЕРА МАССИ
 ARRAY SUBSCRIPT NOT A NUMBER	МАССИВСКИЙ ИНДЕКС, А НЕ ЧИСЛО
 ARRAY USED AS VARIABLE	МАССИВ, ИСПОЛЬЗУЕМЫЙ В КАЧЕСТВЕ ПЕРЕМЕННОЙ
 CANNOT ACCESS DIRECTORY	НЕ МОЖЕТ ПОЛУЧИТЬ ДОСТУП К КАТАЛОГУ
-CANNOT ASSIGN TO DEFINITION	НЕ МОЖЕТ ПРИСВОИТЬ ОПРЕДЕЛЕНИЮ
+CANNOT ASSIGN TO DEFINITION	НЕ МОЖЕТ НАЗНАЧИТЬ ОПРЕДЕЛЕНИЕ
 CANNOT ASSIGN TO FUNCTION	НЕ МОЖЕТ НАЗНАЧИТЬ ФУНКЦИЮ
 DATA INPUT UNDERFLOW	ВВОД ДАННЫХ В НИЖНЕМ ПОТОКЕ
 DATA READ UNDERFLOW	ДАННЫЕ ПРОЧИТАЛИ НЕДОСТАТОК
 DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
 FAILURE	ОТКАЗ
-FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖАЕТСЯ
+FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖЕННОЕ ОПРЕДЕЛЕНО
 FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
 GOSUB STACK OVERFLOW	ГОСУБ СТЕК ПЕРЕПОЛНЕН
 GOSUB STACK UNDERFLOW	GOSUB STACK HOONFLOW
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	КОД ОПЕРАЦИИ НЕЗДОРОВОЙ
 UNKNOWN IF LABEL	НЕИЗВЕСТНО, ЕСЛИ ЭТИКЕТКА
 UNKNOWN OP IN PARAMETER SUBSTITUTION	НЕИЗВЕСТНЫЙ OP В ЗАМЕНЕ ПАРАМЕТРОВ
 UNRECOGNIZED DOUBLE MATH OPERATION	НЕПОЗНАННАЯ ДВОЙНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
-UNRECOGNIZED FUNCTION DEFINITION	НЕПОЗНАННОЕ ОПРЕДЕЛЕНИЕ ФУНКЦИИ
 UNRECOGNIZED GOSUB LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ ГОСУБА
 UNRECOGNIZED GOTO LABEL	НЕПОЗНАННЫЙ ЛЕЙБЛ GOTO
 UNRECOGNIZED INPUT	НЕПОЗНАННЫЙ ВХОД
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	НЕПОЗНАННЫЙ OP В ПЕЧАТИ
 UNRECOGNIZED RATIONAL MATH OPERATION	НЕРАСПОЗНАННАЯ РАЦИОНАЛЬНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
 UNRECOGNIZED VARIABLE TYPE	НЕПОЗНАННЫЙ ТИП ПЕРЕМЕННОЙ
 UNSET ENVIRONMENT VARIABLE	НЕОТКРЫТАЯ ПЕРЕМЕННАЯ СРЕДЫ
-VARIABLE HAS NO VALUE	ПЕРЕМЕННАЯ НЕ ИМЕЕТ ЗНАЧЕНИЯ
 VARIABLE OR ARRAY HAS NO VALUE	ПЕРЕМЕННАЯ ИЛИ МАССИВ НЕ ИМЕЕТ ЗНАЧЕНИЯ
 VARIABLE USED AS ARRAY	ПЕРЕМЕННАЯ, ИСПОЛЬЗУЕМАЯ В КАЧЕСТВЕ МАССИВА

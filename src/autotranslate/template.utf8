@@ -74,6 +74,10 @@ ON <= ON            # a sort of a switch statement
 RETURN <= RETURN    # used to exit a subroutine
 STOP <= STOP        # command to stop execution
 
+AND <= AND          # C-64ism
+OR <= OR            # C-64ism
+NOT <= NOT          # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 

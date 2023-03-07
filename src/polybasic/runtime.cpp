@@ -574,6 +574,124 @@ Tree *get_param(const char *s, Tree *params, Tree *vals) {
    return NULL;
 }
 
+#define OP2NUM(x) ((((x)[0]) << 8) | ((x)[1]))
+
+bool is_double_relation_true(Tree *left, const char *op, Tree *right) {
+   switch(OP2NUM(op)) {
+      case OP2NUM("="):
+         return V_AS_D(left->value) == V_AS_D(right->value);
+         break;
+      case OP2NUM("<>"):
+         return V_AS_D(left->value) != V_AS_D(right->value);
+         break;
+      case OP2NUM(">="):
+         return V_AS_D(left->value) >= V_AS_D(right->value);
+         break;
+      case OP2NUM("<="):
+         return V_AS_D(left->value) <= V_AS_D(right->value);
+         break;
+      case OP2NUM(">"):
+         return V_AS_D(left->value) > V_AS_D(right->value);
+         break;
+      case OP2NUM("<"):
+         return V_AS_D(left->value) < V_AS_D(right->value);
+         break;
+   }
+   return false;
+}
+
+bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
+   switch(OP2NUM(op)) {
+      case OP2NUM("="):
+         return V_AS_I(left->value) == V_AS_I(right->value);
+         break;
+      case OP2NUM("<>"):
+         return V_AS_I(left->value) != V_AS_I(right->value);
+         break;
+      case OP2NUM(">="):
+         return V_AS_I(left->value) >= V_AS_I(right->value);
+         break;
+      case OP2NUM("<="):
+         return V_AS_I(left->value) <= V_AS_I(right->value);
+         break;
+      case OP2NUM(">"):
+         return V_AS_I(left->value) > V_AS_I(right->value);
+         break;
+      case OP2NUM("<"):
+         return V_AS_I(left->value) < V_AS_I(right->value);
+         break;
+   }
+   return false;
+}
+
+bool is_rational_relation_true(Tree *left, const char *op, Tree *right) {
+   switch(OP2NUM(op)) {
+      case OP2NUM("="):
+         return V_AS_R(left->value) == V_AS_R(right->value);
+         break;
+      case OP2NUM("<>"):
+         return V_AS_R(left->value) != V_AS_R(right->value);
+         break;
+      case OP2NUM(">="):
+         return V_AS_R(left->value) >= V_AS_R(right->value);
+         break;
+      case OP2NUM("<="):
+         return V_AS_R(left->value) <= V_AS_R(right->value);
+         break;
+      case OP2NUM(">"):
+         return V_AS_R(left->value) > V_AS_R(right->value);
+         break;
+      case OP2NUM("<"):
+         return V_AS_R(left->value) < V_AS_R(right->value);
+         break;
+   }
+   return false;
+}
+
+bool is_string_relation_true(Tree *left, const char *op, Tree *right) {
+   int result = strcmp(V_AS_S(left->value), V_AS_S(right->value));
+   switch(OP2NUM(op)) {
+      case OP2NUM("="):
+         return result == 0;
+         break;
+      case OP2NUM("<>"):
+         return result != 0;
+         break;
+      case OP2NUM(">="):
+         return result >= 0;
+         break;
+      case OP2NUM("<="):
+         return result <= 0;
+         break;
+      case OP2NUM(">"):
+         return result > 0;
+         break;
+      case OP2NUM("<"):
+         return result < 0;
+         break;
+   }
+   return false;
+}
+
+bool is_relation_true(Tree *left, const char *op, Tree *right) {
+   // assumes left and right are the same type!
+   switch (left->op) {
+      case YYDOUBLE:
+         return is_double_relation_true(left, op, right);
+         break;
+      case YYINTEGER:
+         return is_integer_relation_true(left, op, right);
+         break;
+      case YYRATIONAL:
+         return is_rational_relation_true(left, op, right);
+         break;
+      case YYSTRING:
+         return is_string_relation_true(left, op, right);
+         break;
+   }
+   return false;
+}
+
 Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
    Tree *tmp;
 
@@ -987,125 +1105,102 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
       }
    }
 
+   if (p->op == YYAND) {
+      if (p->left->op == p->right->op &&
+            p->left->op == YYINTEGER &&
+            (V_AS_I(p->left->value) && V_AS_I(p->right->value))) {
+         p->op = YYINTEGER;
+         p->value.base() = 1;
+      }
+      else {
+         p->op = YYINTEGER;
+         p->value.vacate();
+         p->value.base() = 0;
+      }
+
+      delete(p->left);
+      delete(p->right);
+   }
+
+   if (p->op == YYOR) {
+      if (p->left->op == p->right->op &&
+            p->left->op == YYINTEGER &&
+            (V_AS_I(p->left->value) || V_AS_I(p->right->value))) {
+         p->op = YYINTEGER;
+         p->value.base() = 1;
+      }
+      else {
+         p->op = YYINTEGER;
+         p->value.vacate();
+         p->value.base() = 0;
+      }
+
+      delete(p->left);
+      delete(p->right);
+   }
+
+   if (p->op == YYNOT) {
+      if (p->right->op == YYINTEGER) {
+         p->op = YYINTEGER;
+         p->value.vacate();
+         p->value.base() = V_AS_I(p->right->value) == 0 ? 1 : 0;
+      }
+
+      delete(p->right);
+   }
+
+   if (p->op == YYCOMPARE) {
+GURU;
+      Tree *left = evaluate(deep_copy(p->left));
+      Tree *right = evaluate(deep_copy(p->right));
+
+      if (left->op != right->op) {
+         // in a mismatch, try to make strings into numbers
+         if (left->op == YYSTRING) {
+            upgrade_to_number(left);
+         }
+         if (right->op == YYSTRING) {
+            upgrade_to_number(right);
+         }
+
+         if (left->op == YYRATIONAL && right->op == YYINTEGER) {
+            upgrade_to_rational(right);
+         }
+         else if (left->op == YYINTEGER && right->op == YYRATIONAL) {
+            upgrade_to_rational(left);
+         }
+
+         if (left->op == YYRATIONAL && right->op == YYDOUBLE) {
+            upgrade_to_double(left);
+         }
+         else if (left->op == YYDOUBLE && right->op == YYRATIONAL) {
+            upgrade_to_double(right);
+         }
+
+         if (left->op == YYINTEGER && right->op == YYDOUBLE) {
+            upgrade_to_double(left);
+         }
+         else if (left->op == YYDOUBLE && right->op == YYINTEGER) {
+            upgrade_to_double(right);
+         }
+      }
+
+      if (left->op == right->op &&
+            is_relation_true(left, V_AS_S(p->value), right)) {
+         p->op = YYINTEGER;
+         p->value.vacate();
+         p->value.base() = 1;
+      }
+      else {
+         p->op = YYINTEGER;
+         p->value.vacate();
+         p->value.base() = 0;
+      }
+      delete(p->left);
+      delete(p->right);
+   }
+
    return p;
-}
-
-#define OP2NUM(x) ((((x)[0]) << 8) | ((x)[1]))
-
-bool is_double_relation_true(Tree *left, const char *op, Tree *right) {
-   switch(OP2NUM(op)) {
-      case OP2NUM("="):
-         return V_AS_D(left->value) == V_AS_D(right->value);
-         break;
-      case OP2NUM("<>"):
-         return V_AS_D(left->value) != V_AS_D(right->value);
-         break;
-      case OP2NUM(">="):
-         return V_AS_D(left->value) >= V_AS_D(right->value);
-         break;
-      case OP2NUM("<="):
-         return V_AS_D(left->value) <= V_AS_D(right->value);
-         break;
-      case OP2NUM(">"):
-         return V_AS_D(left->value) > V_AS_D(right->value);
-         break;
-      case OP2NUM("<"):
-         return V_AS_D(left->value) < V_AS_D(right->value);
-         break;
-   }
-   return false;
-}
-
-bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
-   switch(OP2NUM(op)) {
-      case OP2NUM("="):
-         return V_AS_I(left->value) == V_AS_I(right->value);
-         break;
-      case OP2NUM("<>"):
-         return V_AS_I(left->value) != V_AS_I(right->value);
-         break;
-      case OP2NUM(">="):
-         return V_AS_I(left->value) >= V_AS_I(right->value);
-         break;
-      case OP2NUM("<="):
-         return V_AS_I(left->value) <= V_AS_I(right->value);
-         break;
-      case OP2NUM(">"):
-         return V_AS_I(left->value) > V_AS_I(right->value);
-         break;
-      case OP2NUM("<"):
-         return V_AS_I(left->value) < V_AS_I(right->value);
-         break;
-   }
-   return false;
-}
-
-bool is_rational_relation_true(Tree *left, const char *op, Tree *right) {
-   switch(OP2NUM(op)) {
-      case OP2NUM("="):
-         return V_AS_R(left->value) == V_AS_R(right->value);
-         break;
-      case OP2NUM("<>"):
-         return V_AS_R(left->value) != V_AS_R(right->value);
-         break;
-      case OP2NUM(">="):
-         return V_AS_R(left->value) >= V_AS_R(right->value);
-         break;
-      case OP2NUM("<="):
-         return V_AS_R(left->value) <= V_AS_R(right->value);
-         break;
-      case OP2NUM(">"):
-         return V_AS_R(left->value) > V_AS_R(right->value);
-         break;
-      case OP2NUM("<"):
-         return V_AS_R(left->value) < V_AS_R(right->value);
-         break;
-   }
-   return false;
-}
-
-bool is_string_relation_true(Tree *left, const char *op, Tree *right) {
-   int result = strcmp(V_AS_S(left->value), V_AS_S(right->value));
-   switch(OP2NUM(op)) {
-      case OP2NUM("="):
-         return result == 0;
-         break;
-      case OP2NUM("<>"):
-         return result != 0;
-         break;
-      case OP2NUM(">="):
-         return result >= 0;
-         break;
-      case OP2NUM("<="):
-         return result <= 0;
-         break;
-      case OP2NUM(">"):
-         return result > 0;
-         break;
-      case OP2NUM("<"):
-         return result < 0;
-         break;
-   }
-   return false;
-}
-
-bool is_relation_true(Tree *left, const char *op, Tree *right) {
-   // assumes left and right are the same type!
-   switch (left->op) {
-      case YYDOUBLE:
-         return is_double_relation_true(left, op, right);
-         break;
-      case YYINTEGER:
-         return is_integer_relation_true(left, op, right);
-         break;
-      case YYRATIONAL:
-         return is_rational_relation_true(left, op, right);
-         break;
-      case YYSTRING:
-         return is_string_relation_true(left, op, right);
-         break;
-   }
-   return false;
 }
 
 Value convert_to_value(const char *s) {
@@ -1495,7 +1590,7 @@ void run(Tree *p) {
          case YYIFSTMTLIST:
             {
                Tree *left = evaluate(deep_copy(p->left));
-               Tree *right = evaluate(deep_copy(p->right));
+
                Tree *target = (p->op == YYIFSTMTLIST) ? p->middle : get_label(V_AS_S(p->middle->value));
                if (!target) {
                   GURU;
@@ -1504,57 +1599,17 @@ void run(Tree *p) {
                   exit(-1);
                }
 
-               if (left->op != right->op) {
-                  // in a mismatch, try to make strings into numbers
-                  if (left->op == YYSTRING) {
-                     upgrade_to_number(left);
-                  }
-                  if (right->op == YYSTRING) {
-                     upgrade_to_number(right);
-                  }
-
-                  if (left->op == YYRATIONAL && right->op == YYINTEGER) {
-                     upgrade_to_rational(right);
-                  }
-                  else if (left->op == YYINTEGER && right->op == YYRATIONAL) {
-                     upgrade_to_rational(left);
-                  }
-
-                  if (left->op == YYRATIONAL && right->op == YYDOUBLE) {
-                     upgrade_to_double(left);
-                  }
-                  else if (left->op == YYDOUBLE && right->op == YYRATIONAL) {
-                     upgrade_to_double(right);
-                  }
-
-                  if (left->op == YYINTEGER && right->op == YYDOUBLE) {
-                     upgrade_to_double(left);
-                  }
-                  else if (left->op == YYDOUBLE && right->op == YYINTEGER) {
-                     upgrade_to_double(right);
-                  }
-               }
-
-               if (left->op == right->op) {
-                  if (is_relation_true(left, V_AS_S(p->value), right)) {
-                     if (p->op == YYIFGOSUB) {
-                        gosub_stack[gosub_spot++] = np;
-                        if (gosub_spot == GOSUB_STACKSIZE) {
-                           GURU;
-                           // test case ifgosuboverflow
-                           eprintf("{ERROR}: @%0:%1, {GOSUB STACK OVERFLOW}%n", p->line, p->col);
-                           exit(-1);
-                        }
+               if (left->op == YYINTEGER && V_AS_I(left->value)) {
+                  if (p->op == YYIFGOSUB) {
+                     gosub_stack[gosub_spot++] = np;
+                     if (gosub_spot == GOSUB_STACKSIZE) {
+                        GURU;
+                        // test case ifgosuboverflow
+                        eprintf("{ERROR}: @%0:%1, {GOSUB STACK OVERFLOW}%n", p->line, p->col);
+                        exit(-1);
                      }
-                     np = target;
                   }
-               }
-               else {
-                  GURU;
-                  // test case voidif
-                  eprintf("{ERROR}: @%0:%1, {LEFT / RIGHT OPERATION MISMATCH} ❮%2❯ ❮%3❯%n",
-                     p->line, p->col, eop2string(left->op), eop2string(right->op));
-                  exit(-1);
+                  np = target;
                }
             }
             break;

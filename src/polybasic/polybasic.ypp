@@ -49,6 +49,8 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %type <u> expression
 %type <u> exprlist
 
+%type <u> rexpr
+
 %type <u> label
 %type <u> labellist
 
@@ -88,6 +90,11 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %token YYDIM
 
 %token YYNAME
+
+%token YYAND
+%token YYOR
+%token YYNOT
+%token YYCOMPARE
 
 %token YYEND
 %token YYFOR
@@ -134,6 +141,10 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %left '*'
 %left '/'
 %left '^'
+
+%left YYOR
+%left YYAND
+
 %right UPLUSMINUS
 
 %%
@@ -405,16 +416,57 @@ printstmt      : YYPRINT printlist
                   }
                ;
 
-ifstmtlist     : YYIF expression relation expression YYTHEN stmtlist
+rexpr          : rexpr YYOR rexpr
+                  {
+                     $$ = new Tree();
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->op = YYAND;
+                     $$->left = $1;
+                     $$->right = $3;
+                  }
+               | rexpr YYAND rexpr
+                  {
+                     $$ = new Tree();
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->op = YYAND;
+                     $$->left = $1;
+                     $$->right = $3;
+                  }
+               | YYNOT rexpr %prec UPLUSMINUS
+                  {
+                     $$ = new Tree();
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->op = YYNOT;
+                     $$->left = NULL;
+                     $$->right = $2;
+                  }
+               | expression relation expression
+                  {
+                     $$ = new Tree();
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->value.base() = strdup(V_AS_S($2->value));
+                     $$->op = YYCOMPARE;
+                     $$->left = $1;
+                     $$->right = $3;
+                  }
+               | '(' rexpr ')'
+                  {
+                     $$ = $2;
+                  }
+               ;
+
+ifstmtlist     : YYIF rexpr YYTHEN stmtlist
                   {
                      $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFSTMTLIST;
-                     $$->value.base() = strdup(V_AS_S($3->value));
                      $$->left = $2;
-                     $$->middle = $6;
-                     $$->right = $4;
+                     $$->middle = $4;
                   }
                ;
 
@@ -434,38 +486,32 @@ controlstmt    : YYGOTO label
                      $$->op = YYGOSUB;
                      $$->value.base() = strdup(V_AS_S($2->value));
                   }
-               | YYIF expression relation expression YYTHEN label
+               | YYIF rexpr YYTHEN label
                   {
                      $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOTO;
-                     $$->value.base() = strdup(V_AS_S($3->value));
                      $$->left = $2;
-                     $$->middle = $6;
-                     $$->right = $4;
+                     $$->middle = $4;
                   }
-               | YYIF expression relation expression YYGOTO label
+               | YYIF rexpr YYGOTO label
                   {
                      $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOTO;
-                     $$->value.base() = strdup(V_AS_S($3->value));
                      $$->left = $2;
-                     $$->middle = $6;
-                     $$->right = $4;
+                     $$->middle = $4;
                   }
-               | YYIF expression relation expression YYGOSUB label
+               | YYIF rexpr YYGOSUB label
                   {
                      $$ = new Tree();
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYIFGOSUB;
-                     $$->value.base() = strdup(V_AS_S($3->value));
                      $$->left = $2;
-                     $$->middle = $6;
-                     $$->right = $4;
+                     $$->middle = $4;
                   }
                | YYON expression YYGOTO labellist
                   {

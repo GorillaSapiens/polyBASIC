@@ -74,6 +74,10 @@ ON <= 在             # a sort of a switch statement
 RETURN <= 返回        # used to exit a subroutine
 STOP <= 停止          # command to stop execution
 
+AND <= 和            # C-64ism
+OR <= 或者            # C-64ism
+NOT <= 不是           # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	未经处理的操作代码
 UNKNOWN IF LABEL	未知是否标签
 UNKNOWN OP IN PARAMETER SUBSTITUTION	参数替代中未知的OP
 UNRECOGNIZED DOUBLE MATH OPERATION	未识别的双重数学操作
-UNRECOGNIZED FUNCTION DEFINITION	无法识别的函数定义
 UNRECOGNIZED GOSUB LABEL	无法识别的GOSUB标签
 UNRECOGNIZED GOTO LABEL	无法识别的GOTO标签
 UNRECOGNIZED INPUT	未识别的输入
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	未识别的OP印刷
 UNRECOGNIZED RATIONAL MATH OPERATION	未被认可的理性数学操作
 UNRECOGNIZED VARIABLE TYPE	无法识别的变量类型
 UNSET ENVIRONMENT VARIABLE	未设置的环境变量
-VARIABLE HAS NO VALUE	变量没有值
 VARIABLE OR ARRAY HAS NO VALUE	变量或数组没有价值
 VARIABLE USED AS ARRAY	变量用作数组

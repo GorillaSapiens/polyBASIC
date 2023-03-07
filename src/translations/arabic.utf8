@@ -74,6 +74,10 @@ ON <= على                       # a sort of a switch statement
 RETURN <= يعود                  # used to exit a subroutine
 STOP <= قف                      # command to stop execution
 
+AND <= و                        # C-64ism
+OR <= أو                        # C-64ism
+NOT <= لا                       # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -125,7 +129,7 @@ AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ولا توجد لغة ممنو
 ARRAY ALREADY DEFINED	صفيف محدد بالفعل
 ARRAY INDEX OUT OF BOUNDS	مؤشر مجموعة خارج الحدود
 ARRAY INDEX SIZE MISMATCH	عدم تطابق حجم مؤشر الصفيف
-ARRAY SUBSCRIPT NOT A NUMBER	مجموعة مجموعة الصفيف ليست رقمًا
+ARRAY SUBSCRIPT NOT A NUMBER	مجموعة مجموعة الصفيف ليست رقم
 ARRAY USED AS VARIABLE	ARRAY المستخدمة كمتغير
 CANNOT ACCESS DIRECTORY	لا يمكن الوصول إلى الدليل
 CANNOT ASSIGN TO DEFINITION	لا يمكن تعيين التعريف
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	رمز التشغيل غير المعقول
 UNKNOWN IF LABEL	غير معروف إذا كانت العلامة
 UNKNOWN OP IN PARAMETER SUBSTITUTION	غير معروف OP في استبدال المعلمات
 UNRECOGNIZED DOUBLE MATH OPERATION	عملية رياضيات مزدوجة غير معترف بها
-UNRECOGNIZED FUNCTION DEFINITION	تعريف الوظيفة غير المعترف به
 UNRECOGNIZED GOSUB LABEL	تسمية GOSUB غير المعترف بها
 UNRECOGNIZED GOTO LABEL	تسمية GOTO غير المعترف بها
 UNRECOGNIZED INPUT	المدخلات غير المعترف بها
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	OP غير المعترف به في الطباعة
 UNRECOGNIZED RATIONAL MATH OPERATION	عملية الرياضيات العقلانية غير المعترف بها
 UNRECOGNIZED VARIABLE TYPE	نوع متغير غير معترف به
 UNSET ENVIRONMENT VARIABLE	غير متغير البيئة
-VARIABLE HAS NO VALUE	المتغير ليس له قيمة
 VARIABLE OR ARRAY HAS NO VALUE	المتغير أو الصفيف ليس له قيمة
 VARIABLE USED AS ARRAY	متغير يستخدم كصفيف

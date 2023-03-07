@@ -74,6 +74,10 @@ ON <= پر                # a sort of a switch statement
 RETURN <= واپس          # used to exit a subroutine
 STOP <= بندکرو          # command to stop execution
 
+AND <= اور              # C-64ism
+OR <= یا                # C-64ism
+NOT <= نہیں             # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -138,7 +142,7 @@ FAILURE	ناکامی
 FUNCTION DEFINITION MULTIPLY DEFINED	فنکشن کی تعریف ضرب کی وضاحت
 FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامیٹر مماثل
 GOSUB STACK OVERFLOW	گوسب اسٹیک اوور فلو
-GOSUB STACK UNDERFLOW	گوسوب اسٹیک انڈر فلو
+GOSUB STACK UNDERFLOW	گوسب اسٹیک انڈر فلو
 INCORRECT NUMBER OF PARAMETERS	پیرامیٹرز کی غلط تعداد
 INDEX OUT OF RANGE	رینج سے باہر انڈیکس
 LABEL ALREADY DEFINED	لیبل پہلے ہی بیان کیا گیا ہے
@@ -158,17 +162,15 @@ UNHANDLED OPERATION CODE	غیر منقولہ آپریشن کوڈ
 UNKNOWN IF LABEL	نامعلوم اگر لیبل ہے
 UNKNOWN OP IN PARAMETER SUBSTITUTION	پیرامیٹر متبادل میں نامعلوم او پی
 UNRECOGNIZED DOUBLE MATH OPERATION	غیر تسلیم شدہ ڈبل ریاضی کا آپریشن
-UNRECOGNIZED FUNCTION DEFINITION	غیر تسلیم شدہ فنکشن تعریف
 UNRECOGNIZED GOSUB LABEL	غیر تسلیم شدہ گوسب لیبل
 UNRECOGNIZED GOTO LABEL	غیر تسلیم شدہ گوٹو لیبل
 UNRECOGNIZED INPUT	غیر تسلیم شدہ ان پٹ
-UNRECOGNIZED INTEGER MATH OPERATION	غیر تسلیم شدہ انٹیجر ریاضی آپریشن
+UNRECOGNIZED INTEGER MATH OPERATION	غیر تسلیم شدہ عددی ریاضی کا آپریشن
 UNRECOGNIZED MATH TYPE	غیر تسلیم شدہ ریاضی کی قسم
 UNRECOGNIZED NEXT VARIABLE	غیر تسلیم شدہ اگلا متغیر
 UNRECOGNIZED OP IN PRINT	پرنٹ میں غیر تسلیم شدہ او پی
 UNRECOGNIZED RATIONAL MATH OPERATION	غیر تسلیم شدہ عقلی ریاضی کا آپریشن
 UNRECOGNIZED VARIABLE TYPE	غیر تسلیم شدہ متغیر قسم
 UNSET ENVIRONMENT VARIABLE	غیر سیٹ ماحول متغیر
-VARIABLE HAS NO VALUE	متغیر کی کوئی قیمت نہیں ہے
 VARIABLE OR ARRAY HAS NO VALUE	متغیر یا صف کی کوئی قیمت نہیں ہے
 VARIABLE USED AS ARRAY	متغیر کو سرنی کے طور پر استعمال کیا جاتا ہے

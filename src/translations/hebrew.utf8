@@ -74,6 +74,10 @@ ON <= על                 # a sort of a switch statement
 RETURN <= לחזור          # used to exit a subroutine
 STOP <= תפסיק            # command to stop execution
 
+AND <= וכן               # C-64ism
+OR <= או                 # C-64ism
+NOT <= לא                # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -125,7 +129,7 @@ AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ושום שפה ניתנת בש
 ARRAY ALREADY DEFINED	מערך כבר מוגדר
 ARRAY INDEX OUT OF BOUNDS	מערך אינדקס מחוץ לתחום
 ARRAY INDEX SIZE MISMATCH	מערך אינדקס חוסר התאמה בגודל
-ARRAY SUBSCRIPT NOT A NUMBER	מערך מערך לא מספר
+ARRAY SUBSCRIPT NOT A NUMBER	מערך מנוי לא מספר
 ARRAY USED AS VARIABLE	מערך המשמש כמשתנה
 CANNOT ACCESS DIRECTORY	לא ניתן לגשת לספריה
 CANNOT ASSIGN TO DEFINITION	לא ניתן להקצות להגדרה
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	קוד פעולה שלא מטופל
 UNKNOWN IF LABEL	לא ידוע אם תווית
 UNKNOWN OP IN PARAMETER SUBSTITUTION	לא ידוע על החלפת פרמטרים
 UNRECOGNIZED DOUBLE MATH OPERATION	פעולת מתמטיקה כפולה לא מוכרת
-UNRECOGNIZED FUNCTION DEFINITION	הגדרת פונקציה לא מוכרת
 UNRECOGNIZED GOSUB LABEL	תווית GOSUB לא מוכרת
 UNRECOGNIZED GOTO LABEL	תווית GOTO לא מוכרת
 UNRECOGNIZED INPUT	קלט לא מוכר
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	OP לא מוכר בהדפס
 UNRECOGNIZED RATIONAL MATH OPERATION	פעולת מתמטיקה רציונלית לא מוכרת
 UNRECOGNIZED VARIABLE TYPE	סוג משתנה לא מוכר
 UNSET ENVIRONMENT VARIABLE	ביטול סביבת הסביבה
-VARIABLE HAS NO VALUE	למשתנה אין שום ערך
 VARIABLE OR ARRAY HAS NO VALUE	למשתנה או למערך אין ערך
 VARIABLE USED AS ARRAY	משתנה המשמש כמערך

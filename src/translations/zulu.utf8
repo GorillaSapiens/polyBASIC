@@ -44,7 +44,7 @@ INT <= INT                       # the integer / floor function
 LOG <= UGODO                     # the natural log function
 RND <= RND                       # generate random number
 SGN <= ISGN                      # determine the sign
-SIN <= ONA                       # the trigonomic sine function
+SIN <= UKONA                     # the trigonomic sine function
 SQR <= ISQR                      # the square root function
 TAN <= UMBALAONSUNDU             # the trigonomic tangent function
 DBL <= DLB                       # convert to double
@@ -73,6 +73,10 @@ THEN <= KHONA                    # part of if/then constructs
 ON <= PHEZUKWA                   # a sort of a switch statement
 RETURN <= BUYISELAEMUVA          # used to exit a subroutine
 STOP <= IMA                      # command to stop execution
+
+AND <= NA                        # C-64ism
+OR <= NOMA                       # C-64ism
+NOT <= I                         # C-64ism
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	IKHODI YOKUSEBENZA ENGATHANDEKI
 UNKNOWN IF LABEL	AKWAZIWA UMA ILEBULA
 UNKNOWN OP IN PARAMETER SUBSTITUTION	I-OP ENGAZIWA EKUSETSHENZISWENI KWEPHARAMITHA
 UNRECOGNIZED DOUBLE MATH OPERATION	UKUSEBENZA OKUNGAZIWA OKUPHINDWE KABILI KWEZIBALO
-UNRECOGNIZED FUNCTION DEFINITION	UKUCHAZWA OKUNGAZIWA UMSEBENZI
 UNRECOGNIZED GOSUB LABEL	ILEBULA YE-GOSUB ENGAZIWA
 UNRECOGNIZED GOTO LABEL	ILEBULA YE-GOTO ENGAZIWA
 UNRECOGNIZED INPUT	OKOKUFAKA OKUNGAZIWA
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	I-OP ENGAZIWA
 UNRECOGNIZED RATIONAL MATH OPERATION	UKUSEBENZA OKUNGAZIWA OKUNGAZIWA KWEZIBALO
 UNRECOGNIZED VARIABLE TYPE	UHLOBO OLUNGENAKUQHATHANISWA
 UNSET ENVIRONMENT VARIABLE	UKUHLUKAHLUKA KWEMVELO YE-UNESET
-VARIABLE HAS NO VALUE	OKUGUQUKAYO AKUNANZUZO
 VARIABLE OR ARRAY HAS NO VALUE	OKUHLUKILE NOMA I-ARRAY AYINANZUZO
 VARIABLE USED AS ARRAY	OKUGUQUGUQUKAYO OKUSETSHENZISIWE NJENGOHLU

@@ -74,6 +74,10 @@ ON <= の上             # a sort of a switch statement
 RETURN <= 戻る         # used to exit a subroutine
 STOP <= ストップ         # command to stop execution
 
+AND <= と             # C-64ism
+OR <= また             # C-64ism
+NOT <= いいえ           # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	未処理の操作コード
 UNKNOWN IF LABEL	ラベルの場合は不明です
 UNKNOWN OP IN PARAMETER SUBSTITUTION	パラメーター置換の不明なOP
 UNRECOGNIZED DOUBLE MATH OPERATION	認識されていない二重数学操作
-UNRECOGNIZED FUNCTION DEFINITION	認識されていない関数定義
 UNRECOGNIZED GOSUB LABEL	認識されていないゴスブラベル
 UNRECOGNIZED GOTO LABEL	認識されていないGOTOラベル
 UNRECOGNIZED INPUT	認識されていない入力
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	印刷されていない認識されていないOP
 UNRECOGNIZED RATIONAL MATH OPERATION	認識されていない合理的な数学操作
 UNRECOGNIZED VARIABLE TYPE	認識されていない変数タイプ
 UNSET ENVIRONMENT VARIABLE	設定されていない環境変数
-VARIABLE HAS NO VALUE	変数には値がありません
 VARIABLE OR ARRAY HAS NO VALUE	変数または配列には値がありません
 VARIABLE USED AS ARRAY	配列として使用される変数

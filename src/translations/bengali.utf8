@@ -74,6 +74,10 @@ ON <= চল               # a sort of a switch statement
 RETURN <= পরতযবরতন     # used to exit a subroutine
 STOP <= থমন            # command to stop execution
 
+AND <= এব              # C-64ism
+OR <= ব                # C-64ism
+NOT <= ন               # C-64ism
+
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
@@ -124,7 +128,7 @@ RANDOMIZE <= এলমলভব
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	এবং কমান্ড লাইনে কোনও ভাষা দেওয়া হয়নি। প্রস্থান করা।
 ARRAY ALREADY DEFINED	অ্যারে ইতিমধ্যে সংজ্ঞায়িত
 ARRAY INDEX OUT OF BOUNDS	সীমা ছাড়িয়ে সূচক অ্যারে
-ARRAY INDEX SIZE MISMATCH	অ্যারে সূচক আকার অমিল
+ARRAY INDEX SIZE MISMATCH	অ্যারে সূচক আকারের অমিল
 ARRAY SUBSCRIPT NOT A NUMBER	অ্যারে সাবস্ক্রিপ্ট একটি সংখ্যা নয়
 ARRAY USED AS VARIABLE	ভেরিয়েবল হিসাবে ব্যবহৃত অ্যারে
 CANNOT ACCESS DIRECTORY	ডিরেক্টরি অ্যাক্সেস করতে পারে না
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	UNHANDLED অপারেশন কোড
 UNKNOWN IF LABEL	অজানা যদি লেবেল
 UNKNOWN OP IN PARAMETER SUBSTITUTION	প্যারামিটার প্রতিস্থাপনে অজানা ওপি
 UNRECOGNIZED DOUBLE MATH OPERATION	অচেনা ডাবল গণিত অপারেশন
-UNRECOGNIZED FUNCTION DEFINITION	অচেনা ফাংশন সংজ্ঞা
 UNRECOGNIZED GOSUB LABEL	অচেনা গোসব লেবেল
 UNRECOGNIZED GOTO LABEL	অজ্ঞাত গোটো লেবেল
 UNRECOGNIZED INPUT	অচেনা ইনপুট
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	মুদ্রণে অচেনা ওপি
 UNRECOGNIZED RATIONAL MATH OPERATION	অচেনা যুক্তিযুক্ত গণিত অপারেশন
 UNRECOGNIZED VARIABLE TYPE	অচেনা পরিবর্তনশীল প্রকার
 UNSET ENVIRONMENT VARIABLE	আনসেট পরিবেশ পরিবর্তনশীল
-VARIABLE HAS NO VALUE	ভেরিয়েবলের কোনও মান নেই
 VARIABLE OR ARRAY HAS NO VALUE	পরিবর্তনশীল বা অ্যারের কোনও মান নেই
 VARIABLE USED AS ARRAY	ভেরিয়েবল অ্যারে হিসাবে ব্যবহৃত

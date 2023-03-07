@@ -69,8 +69,6 @@ class Value : public ValueBase
    Value& operator=(const Value& other) { // assignment operator
       vacate();
 
-      base() = ((Value &)other).base();
-
       if (other.index() == V_S) {
          const char *p = strdup(V_AS_S(other));
          base() = p;

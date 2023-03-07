@@ -56,7 +56,7 @@ CHR <= CHR           # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= 수비            # for user defined functions
+DEF <= 데프            # for user defined functions
 
 # from ECMA-55 §11
 
@@ -73,6 +73,10 @@ THEN <= 그다음에         # part of if/then constructs
 ON <= 에              # a sort of a switch statement
 RETURN <= 반품         # used to exit a subroutine
 STOP <= 멈추다          # command to stop execution
+
+AND <= 그리고           # C-64ism
+OR <= 또는             # C-64ism
+NOT <= 아니다           # C-64ism
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
@@ -158,7 +162,6 @@ UNHANDLED OPERATION CODE	처리되지 않은 작동 코드
 UNKNOWN IF LABEL	라벨이 알려지지 않았습니다
 UNKNOWN OP IN PARAMETER SUBSTITUTION	매개 변수 대체에서 알려지지 않은 OP
 UNRECOGNIZED DOUBLE MATH OPERATION	인식되지 않은 이중 수학 작동
-UNRECOGNIZED FUNCTION DEFINITION	인식되지 않은 기능 정의
 UNRECOGNIZED GOSUB LABEL	인식되지 않은 GOSUB 레이블
 UNRECOGNIZED GOTO LABEL	인식되지 않은 GOTO 레이블
 UNRECOGNIZED INPUT	인식되지 않은 입력
@@ -169,6 +172,5 @@ UNRECOGNIZED OP IN PRINT	인식되지 않은 OP 인쇄
 UNRECOGNIZED RATIONAL MATH OPERATION	인식되지 않은 합리적 수학 운영
 UNRECOGNIZED VARIABLE TYPE	인식되지 않은 변수 유형
 UNSET ENVIRONMENT VARIABLE	미세한 환경 변수
-VARIABLE HAS NO VALUE	변수는 값이 없습니다
 VARIABLE OR ARRAY HAS NO VALUE	변수 또는 배열의 값이 없습니다
 VARIABLE USED AS ARRAY	배열로 사용되는 변수
