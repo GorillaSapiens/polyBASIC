@@ -1,0 +1,16 @@
+*.o
+*.bas
+*.obas
+lex.yy.cpp
+lex.yy.hpp
+polybasic.tab.cpp
+polybasic.tab.hpp
+polybasic
+mapping.hpp
+lowercase.hpp
+builtins.hpp
+version.hpp
+Makefile.bak
+polybasic.output
+SpecialCasing.txt
+UnicodeData.txt
