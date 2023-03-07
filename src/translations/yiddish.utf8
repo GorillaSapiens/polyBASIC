@@ -53,6 +53,7 @@ RAT <= שטשור             # convert to rational
 
 TAB <= קוויטל            # C-64ism
 CHR <= טשר               # C-64ism
+VAL <= וואל              # C-64ism
 
 # from ECMA-55 §10
 
@@ -172,5 +173,6 @@ UNRECOGNIZED OP IN PRINT	אַנרעקאַגנייזד אַפּ אין דרוקן
 UNRECOGNIZED RATIONAL MATH OPERATION	אַנרעקאַגנייזד באַרדאַסדיק מאַט אָפּעראַציע
 UNRECOGNIZED VARIABLE TYPE	אַנרעקאַגנייזד בייַטעוודיק טיפּ
 UNSET ENVIRONMENT VARIABLE	ונעט סוויווע בייַטעוודיק
+VAL ARGUMENT MUST BE STRING	וואַל אַרגומענט מוזן זיין שטריקל
 VARIABLE OR ARRAY HAS NO VALUE	בייַטעוודיק אָדער מענגע האט קיין ווערט
 VARIABLE USED AS ARRAY	בייַטעוודיק געוויינט ווי מענגע

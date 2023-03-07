@@ -45,7 +45,7 @@ LOG <= LOG                  # the natural log function
 RND <= RND                  # generate random number
 SGN <= SGN                  # determine the sign
 SIN <= BECHODD              # the trigonomic sine function
-SQR <= SQR                  # the square root function
+SQR <= SGWÂR                # the square root function
 TAN <= BARCIANT             # the trigonomic tangent function
 DBL <= DBL                  # convert to double
 STR <= STRYD                # convert to string
@@ -53,6 +53,7 @@ RAT <= LLYGODEN             # convert to rational
 
 TAB <= TAB                  # C-64ism
 CHR <= GR                   # C-64ism
+VAL <= VAL                  # C-64ism
 
 # from ECMA-55 §10
 
@@ -87,7 +88,7 @@ NEXT <= NESAF               # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= BRINTIWYD          # to print things out
+PRINT <= PRINTIWYD          # to print things out
 
 # from ECMA-55 §15
 
@@ -172,5 +173,6 @@ UNRECOGNIZED OP IN PRINT	OP HEB EI GYDNABOD MEWN PRINT
 UNRECOGNIZED RATIONAL MATH OPERATION	GWEITHREDIAD MATHEMATEG RHESYMEGOL HEB EI GYDNABOD
 UNRECOGNIZED VARIABLE TYPE	MATH AMRYWIOL HEB EI GYDNABOD
 UNSET ENVIRONMENT VARIABLE	NEWIDYN AMGYLCHEDD DADOSOD
+VAL ARGUMENT MUST BE STRING	RHAID I DDADL VAL FOD YN LLINYN
 VARIABLE OR ARRAY HAS NO VALUE	NID OES GWERTH I NEWIDYN NEU ARAE
 VARIABLE USED AS ARRAY	NEWIDYN A DDEFNYDDIR FEL ARAE

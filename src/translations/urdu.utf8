@@ -53,6 +53,7 @@ RAT <= چوہا             # convert to rational
 
 TAB <= ٹیب              # C-64ism
 CHR <= CHR              # C-64ism
+VAL <= ویل              # C-64ism
 
 # from ECMA-55 §10
 
@@ -142,9 +143,9 @@ FAILURE	ناکامی
 FUNCTION DEFINITION MULTIPLY DEFINED	فنکشن کی تعریف ضرب کی وضاحت
 FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامیٹر مماثل
 GOSUB STACK OVERFLOW	گوسب اسٹیک اوور فلو
-GOSUB STACK UNDERFLOW	گوسب اسٹیک انڈر فلو
+GOSUB STACK UNDERFLOW	گوسوب اسٹیک انڈر فلو
 INCORRECT NUMBER OF PARAMETERS	پیرامیٹرز کی غلط تعداد
-INDEX LESS THAN 1	انڈیکس 1 سے کم
+INDEX LESS THAN 1	1 سے کم انڈیکس
 INDEX OUT OF RANGE	رینج سے باہر انڈیکس
 LABEL ALREADY DEFINED	لیبل پہلے ہی بیان کیا گیا ہے
 LEFT / RIGHT OPERATION MISMATCH	بائیں / دائیں آپریشن مماثلت
@@ -172,5 +173,6 @@ UNRECOGNIZED OP IN PRINT	پرنٹ میں غیر تسلیم شدہ او پی
 UNRECOGNIZED RATIONAL MATH OPERATION	غیر تسلیم شدہ عقلی ریاضی کا آپریشن
 UNRECOGNIZED VARIABLE TYPE	غیر تسلیم شدہ متغیر قسم
 UNSET ENVIRONMENT VARIABLE	غیر سیٹ ماحول متغیر
+VAL ARGUMENT MUST BE STRING	ویل کی دلیل تار ہونی چاہئے
 VARIABLE OR ARRAY HAS NO VALUE	متغیر یا صف کی کوئی قیمت نہیں ہے
 VARIABLE USED AS ARRAY	متغیر کو سرنی کے طور پر استعمال کیا جاتا ہے

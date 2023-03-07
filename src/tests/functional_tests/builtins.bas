@@ -67,3 +67,10 @@ a = sqr(#2)
 print "sqr(#2)=",a
 
 print "tab(20)",tab(20),"hello!"
+
+PRINT VAL("A1"):REM Screen: 0
+PRINT VAL("- 1 2 3 . 2 3 4 e + 23"):REM Screen: -1.23234e+25
+PRINT VAL("1051 E-3 -1.051 C") :REM Screen: 1.051
+
+a = rat(12.077007956766618999456941283075070802675777989896810511198410528)
+print "rat(whatever)=",a

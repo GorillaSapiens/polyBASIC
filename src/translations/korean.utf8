@@ -48,11 +48,12 @@ SIN <= 죄             # the trigonomic sine function
 SQR <= SQR           # the square root function
 TAN <= 탠껍질           # the trigonomic tangent function
 DBL <= DBL           # convert to double
-STR <= 스트리트          # convert to string
+STR <= STR           # convert to string
 RAT <= 쥐             # convert to rational
 
 TAB <= 탭             # C-64ism
 CHR <= CHR           # C-64ism
+VAL <= 발             # C-64ism
 
 # from ECMA-55 §10
 
@@ -130,7 +131,7 @@ ARRAY ALREADY DEFINED	배열은 이미 정의되었습니다
 ARRAY INDEX OUT OF BOUNDS	배열 인덱스 외부
 ARRAY INDEX SIZE MISMATCH	배열 인덱스 크기 불일치
 ARRAY SUBSCRIPT NOT A NUMBER	배열 첨자 숫자가 아닙니다
-ARRAY USED AS VARIABLE	변수로 사용되는 배열
+ARRAY USED AS VARIABLE	배열은 변수로 사용됩니다
 CANNOT ACCESS DIRECTORY	디렉토리에 액세스 할 수 없습니다
 CANNOT ASSIGN TO DEFINITION	정의에 할당 할 수 없습니다
 CANNOT ASSIGN TO FUNCTION	기능에 할당 할 수 없습니다
@@ -172,5 +173,6 @@ UNRECOGNIZED OP IN PRINT	인식되지 않은 OP 인쇄
 UNRECOGNIZED RATIONAL MATH OPERATION	인식되지 않은 합리적 수학 운영
 UNRECOGNIZED VARIABLE TYPE	인식되지 않은 변수 유형
 UNSET ENVIRONMENT VARIABLE	미세한 환경 변수
+VAL ARGUMENT MUST BE STRING	발수는 문자열이어야합니다
 VARIABLE OR ARRAY HAS NO VALUE	변수 또는 배열의 값이 없습니다
 VARIABLE USED AS ARRAY	배열로 사용되는 변수

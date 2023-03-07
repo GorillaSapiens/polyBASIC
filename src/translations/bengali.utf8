@@ -53,6 +53,7 @@ RAT <= ইদর             # convert to rational
 
 TAB <= টযব             # C-64ism
 CHR <= CHR             # C-64ism
+VAL <= ভল              # C-64ism
 
 # from ECMA-55 §10
 
@@ -128,7 +129,7 @@ RANDOMIZE <= এলমলভব
 AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	এবং কমান্ড লাইনে কোনও ভাষা দেওয়া হয়নি। প্রস্থান করা।
 ARRAY ALREADY DEFINED	অ্যারে ইতিমধ্যে সংজ্ঞায়িত
 ARRAY INDEX OUT OF BOUNDS	সীমা ছাড়িয়ে সূচক অ্যারে
-ARRAY INDEX SIZE MISMATCH	অ্যারে সূচক আকারের অমিল
+ARRAY INDEX SIZE MISMATCH	অ্যারে সূচক আকার অমিল
 ARRAY SUBSCRIPT NOT A NUMBER	অ্যারে সাবস্ক্রিপ্ট একটি সংখ্যা নয়
 ARRAY USED AS VARIABLE	অ্যারে ভেরিয়েবল হিসাবে ব্যবহৃত
 CANNOT ACCESS DIRECTORY	ডিরেক্টরি অ্যাক্সেস করতে পারে না
@@ -172,5 +173,6 @@ UNRECOGNIZED OP IN PRINT	মুদ্রণে অচেনা ওপি
 UNRECOGNIZED RATIONAL MATH OPERATION	অচেনা যুক্তিযুক্ত গণিত অপারেশন
 UNRECOGNIZED VARIABLE TYPE	অচেনা পরিবর্তনশীল প্রকার
 UNSET ENVIRONMENT VARIABLE	আনসেট পরিবেশ পরিবর্তনশীল
+VAL ARGUMENT MUST BE STRING	ভাল আর্গুমেন্ট অবশ্যই স্ট্রিং হতে হবে
 VARIABLE OR ARRAY HAS NO VALUE	পরিবর্তনশীল বা অ্যারের কোনও মান নেই
 VARIABLE USED AS ARRAY	ভেরিয়েবল অ্যারে হিসাবে ব্যবহৃত

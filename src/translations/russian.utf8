@@ -53,10 +53,11 @@ RAT <= КРЫСА                     # convert to rational
 
 TAB <= ВКЛАДКА                   # C-64ism
 CHR <= ХР                        # C-64ism
+VAL <= ДОЛЬДО                    # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= ДЕФ                       # for user defined functions
+DEF <= ДЕФЕКТ                    # for user defined functions
 
 # from ECMA-55 §11
 
@@ -135,11 +136,11 @@ CANNOT ACCESS DIRECTORY	НЕ МОЖЕТ ПОЛУЧИТЬ ДОСТУП К КАТ�
 CANNOT ASSIGN TO DEFINITION	НЕ МОЖЕТ НАЗНАЧИТЬ ОПРЕДЕЛЕНИЕ
 CANNOT ASSIGN TO FUNCTION	НЕ МОЖЕТ НАЗНАЧИТЬ ФУНКЦИЮ
 DATA INPUT UNDERFLOW	ВХОД ДАННЫХ В РАЗДЕЛЕ
-DATA READ UNDERFLOW	ДАННЫЕ ЧИТАЮТ НЕДОСТАТОЧНЫЙ ПОТОК
+DATA READ UNDERFLOW	ДАННЫЕ ПРОЧИТАЛИ НЕДОСТАТОК
 DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
 FAILURE	ОТКАЗ
-FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖАЕТСЯ
+FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖЕННОЕ ОПРЕДЕЛЕНО
 FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
 GOSUB STACK OVERFLOW	ГОСУБ СТЕК ПЕРЕПОЛНЕН
 GOSUB STACK UNDERFLOW	GOSUB STACK HOONFLOW
@@ -172,5 +173,6 @@ UNRECOGNIZED OP IN PRINT	НЕПОЗНАННЫЙ OP В ПЕЧАТИ
 UNRECOGNIZED RATIONAL MATH OPERATION	НЕРАСПОЗНАННАЯ РАЦИОНАЛЬНАЯ МАТЕМАТИЧЕСКАЯ ОПЕРАЦИЯ
 UNRECOGNIZED VARIABLE TYPE	НЕПОЗНАННЫЙ ТИП ПЕРЕМЕННОЙ
 UNSET ENVIRONMENT VARIABLE	НЕОТКРЫТАЯ ПЕРЕМЕННАЯ СРЕДЫ
+VAL ARGUMENT MUST BE STRING	VAL АРГУМЕНТ ДОЛЖЕН БЫТЬ СТРОКОЙ
 VARIABLE OR ARRAY HAS NO VALUE	ПЕРЕМЕННАЯ ИЛИ МАССИВ НЕ ИМЕЕТ ЗНАЧЕНИЯ
 VARIABLE USED AS ARRAY	ПЕРЕМЕННАЯ, ИСПОЛЬЗУЕМАЯ В КАЧЕСТВЕ МАССИВА

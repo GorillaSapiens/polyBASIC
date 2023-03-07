@@ -53,6 +53,7 @@ RAT <= فأر                      # convert to rational
 
 TAB <= فاتورةغيرمدفوعة          # C-64ism
 CHR <= CHR                      # C-64ism
+VAL <= فال                      # C-64ism
 
 # from ECMA-55 §10
 
@@ -129,14 +130,14 @@ AND NO LANGUAGE GIVEN ON COMMAND LINE.  EXITING.	ولا توجد لغة ممنو
 ARRAY ALREADY DEFINED	صفيف محدد بالفعل
 ARRAY INDEX OUT OF BOUNDS	مؤشر مجموعة خارج الحدود
 ARRAY INDEX SIZE MISMATCH	عدم تطابق حجم مؤشر الصفيف
-ARRAY SUBSCRIPT NOT A NUMBER	مجموعة مجموعة الصفيف ليست رقم
+ARRAY SUBSCRIPT NOT A NUMBER	مجموعة مجموعة الصفيف ليست رقمًا
 ARRAY USED AS VARIABLE	ARRAY المستخدمة كمتغير
 CANNOT ACCESS DIRECTORY	لا يمكن الوصول إلى الدليل
 CANNOT ASSIGN TO DEFINITION	لا يمكن تعيين التعريف
 CANNOT ASSIGN TO FUNCTION	لا يمكن التخصيص للوظيفة
 DATA INPUT UNDERFLOW	إدخال البيانات UNDERFLOW
 DATA READ UNDERFLOW	قراءة البيانات UNDERFLOW
-DEFINITION CYCLE DISCOVERED	تم اكتشاف دورة التعريف
+DEFINITION CYCLE DISCOVERED	دورة التعريف التي تم اكتشافها
 ERROR	خطأ
 FAILURE	فشل
 FUNCTION DEFINITION MULTIPLY DEFINED	تعريف الوظيفة المحددة محددة
@@ -172,5 +173,6 @@ UNRECOGNIZED OP IN PRINT	OP غير المعترف به في الطباعة
 UNRECOGNIZED RATIONAL MATH OPERATION	عملية الرياضيات العقلانية غير المعترف بها
 UNRECOGNIZED VARIABLE TYPE	نوع متغير غير معترف به
 UNSET ENVIRONMENT VARIABLE	غير متغير البيئة
+VAL ARGUMENT MUST BE STRING	يجب أن تكون حجة VAL سلسلة
 VARIABLE OR ARRAY HAS NO VALUE	المتغير أو الصفيف ليس له قيمة
 VARIABLE USED AS ARRAY	متغير يستخدم كصفيف

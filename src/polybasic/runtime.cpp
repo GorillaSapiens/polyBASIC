@@ -440,6 +440,88 @@ BUILTINFUNC(TAN, 1) {
    p->right = NULL;
 }
 
+// talk about arcane!
+BUILTINFUNC(VAL, 1) {
+   if (p->right->op != YYSTRING) {
+      GURU;
+      // no test case
+      eprintf("{ERROR}: @%0:%1, {VAL ARGUMENT MUST BE STRING} ❮%2❯%n",
+            p->line, p->col, eop2string(p->right->op));
+      exit(-1);
+   }
+
+   char buf[1024];
+   const char *in = V_AS_S(p->right->value);
+   char *out = buf;
+   bool allow_plusminus = true;
+   bool allow_dot = true;
+   bool allow_e = true;
+   bool done = false;
+
+   while(*in && !done) {
+      switch (*in) {
+         case '+':
+         case '-':
+            if (!allow_plusminus) {
+               done = true;
+            }
+            else {
+               allow_plusminus = false;
+               *out++ = *in;
+            }
+            break;
+         case '.':
+            if (!allow_dot) {
+               done = true;
+            }
+            else {
+               allow_dot = false;
+               *out++ = *in;
+            }
+            break;
+         case 'e':
+         case 'E':
+            if (!allow_e) {
+               done = true;
+            }
+            else {
+               allow_e = false;
+               allow_plusminus = true;
+               *out++ = *in;
+            }
+            break;
+         case '0':
+         case '1':
+         case '2':
+         case '3':
+         case '4':
+         case '5':
+         case '6':
+         case '7':
+         case '8':
+         case '9':
+            if (!allow_e) {
+               allow_plusminus = false;
+            }
+            *out++ = *in;
+            break;
+         case ' ':
+            // ignored
+            break;
+         default:
+            done = true;
+            break;
+      }
+      in++;
+   }
+   *out = 0;
+
+   p->op = YYDOUBLE;
+   p->value.base() = atof(buf);
+   delete(p->right);
+   p->right = NULL;
+}
+
 typedef void (*BFptr)(Tree *);
 typedef struct Builtin {
    const char *name;

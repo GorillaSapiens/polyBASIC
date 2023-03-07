@@ -53,6 +53,7 @@ RAT <= ねずみ           # convert to rational
 
 TAB <= タブ            # C-64ism
 CHR <= CHR           # C-64ism
+VAL <= ヴァル           # C-64ism
 
 # from ECMA-55 §10
 
@@ -143,13 +144,13 @@ FUNCTION DEFINITION MULTIPLY DEFINED	関数定義が定義されているのを�
 FUNCTION DEFINITION PARAMETER MISMATCH	関数定義パラメーターの不一致
 GOSUB STACK OVERFLOW	GOSUBスタックオーバーフロー
 GOSUB STACK UNDERFLOW	GOSUBスタックアンダーフロー
-INCORRECT NUMBER OF PARAMETERS	パラメーターの数が間違っています
+INCORRECT NUMBER OF PARAMETERS	パラメーターの数が誤っていません
 INDEX LESS THAN 1	1未満のインデックス
 INDEX OUT OF RANGE	範囲外のインデックス
 LABEL ALREADY DEFINED	すでに定義されているラベル
 LEFT / RIGHT OPERATION MISMATCH	左 /右操作の不一致
 NEXT ON FOR LOOP WITH STRING VARIABLE	次に、文字列変数を使用してループを使用します
-OPERAND MISMATCH	オペランドの不一致
+OPERAND MISMATCH	オペランドのミスマッチ
 OPTION REQUIRES A LANGUAGE	オプションには言語が必要です
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	言語設定または環境変数を確認してください
 STRING MATH LOGIC ERROR	文字列数学ロジックエラー
@@ -171,6 +172,7 @@ UNRECOGNIZED NEXT VARIABLE	認識されていない次の変数
 UNRECOGNIZED OP IN PRINT	印刷されていない認識されていないOP
 UNRECOGNIZED RATIONAL MATH OPERATION	認識されていない合理的な数学操作
 UNRECOGNIZED VARIABLE TYPE	認識されていない変数タイプ
-UNSET ENVIRONMENT VARIABLE	設定されていない環境変数
+UNSET ENVIRONMENT VARIABLE	未解決の環境変数
+VAL ARGUMENT MUST BE STRING	VAL引数は文字列でなければなりません
 VARIABLE OR ARRAY HAS NO VALUE	変数または配列には値がありません
 VARIABLE USED AS ARRAY	配列として使用される変数
