@@ -1,1 +1,1 @@
-on 0 goto fred
+on 1 goto fred

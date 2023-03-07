@@ -1657,7 +1657,7 @@ void run(Tree *p) {
                if (i <= 0) {
                   GURU;
                   // test case negativeon
-                  eprintf("{ERROR}: @%0:%1, {INDEX LESS THAN 1} ❮%d❯%n", p->line, p->left->col, i);
+                  eprintf("{ERROR}: @%0:%1, {INDEX LESS THAN 1} ❮%2❯%n", p->line, p->left->col, i);
                   exit(-1);
                }
                int oi = i;
