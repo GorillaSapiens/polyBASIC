@@ -44,6 +44,8 @@ class Rational {
       Rational(double d);
       Rational(int64_t d);
 
+      Rational& operator=(const Rational& other); // assignment operator
+
       Rational operator + (Rational const & obj) const;
       Rational operator - (Rational const & obj) const;
       Rational operator - () const;

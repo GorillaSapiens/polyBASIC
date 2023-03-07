@@ -16,13 +16,13 @@ using std::variant;
 
 #define V_AS_D(x) (std::get<double>(x))
 #define V_AS_I(x) (std::get<int64_t>(x))
-#define V_AS_R(x) (std::get<Rational *>(x))
+#define V_AS_R(x) (std::get<Rational>(x))
 #define V_AS_S(x) (std::get<const char *>(x))
 
 typedef variant<char,
                 double,
                 int64_t,
-                Rational *,
+                Rational,
                 const char *> ValueBase;
 
 class Value : public ValueBase
@@ -38,13 +38,7 @@ class Value : public ValueBase
    }
 
    void vacate(void) {
-      if (index() == V_R) {
-         Rational *r = V_AS_R(*this);
-         if (r) {
-            delete r;
-         }
-      }
-      else if (index() == V_S) {
+      if (index() == V_S) {
          const char *p = V_AS_S(*this);
          if (p) {
             free((void *)p);
@@ -58,16 +52,7 @@ class Value : public ValueBase
    }
 
    Value(const Value &value) { // copy constructor
-      if (value.index() == V_R) {
-         Rational *r = V_AS_R(value);
-         if (r) {
-            base() = new Rational(*r);
-         }
-         else {
-            base() = (Rational *) NULL;
-         }
-      }
-      else if (value.index() == V_S) {
+      if (value.index() == V_S) {
          const char *p = V_AS_S(value);
          if (p) {
             base() = (const char *) strdup(p);
@@ -86,11 +71,7 @@ class Value : public ValueBase
 
       base() = ((Value &)other).base();
 
-      if (other.index() == V_R) {
-         Rational *r = new Rational(*V_AS_R(other));
-         base() = r;
-      }
-      else if (other.index() == V_S) {
+      if (other.index() == V_S) {
          const char *p = strdup(V_AS_S(other));
          base() = p;
       }

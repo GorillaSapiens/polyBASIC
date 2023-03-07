@@ -27,7 +27,7 @@ static void dumpvalue(Tree *root) {
       case V_R:
          {
             char buf[1024];
-            V_AS_R(root->value)->shortprint(buf, sizeof(buf));
+            V_AS_R(root->value).shortprint(buf, sizeof(buf));
             printf("   value:[rational] %s\n", buf);
          }
          break;

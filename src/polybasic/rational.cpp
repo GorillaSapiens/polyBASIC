@@ -70,6 +70,15 @@ Rational::Rational(const Rational &orig) {
    den = orig.den;
 }
 
+Rational& Rational::operator=(const Rational& other) {
+   sign = other.sign;
+   whl = other.whl;
+   num = other.num;
+   den = other.den;
+
+   return *this;
+}
+
 Rational::Rational(int8_t s, uREG_t w, uREG_t n, uREG_t d) {
    assert(d != 0);
    assert(s == -1 || s == 1);

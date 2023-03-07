@@ -663,9 +663,7 @@ negconstant    : '-' dconst
                | '-' rconst
                   {
                      $$ = $2;
-                     Rational *rval = new Rational(- *(V_AS_R($$->value)));
-                     $$->value.vacate();
-                     $$->value.base() = rval;
+                     $$->value.base() = -V_AS_R($$->value);
                   }
                ;
 
@@ -917,7 +915,7 @@ rconst         : YYRATIONAL
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYRATIONAL;
-                     $$->value.base() = new Rational(yytext);
+                     $$->value.base() = Rational(yytext);
                   }
                ;
 

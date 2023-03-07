@@ -127,7 +127,7 @@ void upgrade_to_number(Tree *p) {
       }
       else if (strchr((char *)s, '#') == s) {
          p->op = YYRATIONAL;
-         p->value.base() = new Rational(s);
+         p->value.base() = Rational(s);
       }
       else if (strchr((char *)s, '.') || strchr((char *)s, 'E')) {
          p->op = YYDOUBLE;
@@ -151,11 +151,11 @@ void upgrade_to_rational(Tree *p) {
          ival = -ival;
       }
       p->op = YYRATIONAL;
-      p->value.base() = new Rational(sign, ival, 0, 1);
+      p->value.base() = Rational(sign, ival, 0, 1);
    }
    else if (p->op == YYDOUBLE) {
       p->op = YYRATIONAL;
-      p->value.base() = new Rational(V_AS_D(p->value));
+      p->value.base() = Rational(V_AS_D(p->value));
    }
 }
 
@@ -166,7 +166,7 @@ void upgrade_to_double(Tree *p) {
       p->value.base() = (double) ival;
    }
    else if (p->op == YYRATIONAL) {
-      double dval = (double)(*(V_AS_R(p->value)));
+      double dval = (double)(V_AS_R(p->value));
       p->value.vacate();
       p->op = YYDOUBLE;
       p->value.base() = dval;
@@ -179,7 +179,7 @@ void upgrade_to_integer(Tree *p) {
       p->value.base() = (int64_t) floor(V_AS_D(p->value));
    }
    else if (p->op == YYRATIONAL) {
-      double dval = (double)(*(V_AS_R(p->value)));
+      double dval = (double)(V_AS_R(p->value));
       p->value.vacate();
       p->op = YYINTEGER;
       p->value.base() = (int64_t) floor(dval);
@@ -203,7 +203,7 @@ void upgrade_to_string(Tree *p) {
          p->value.base() = strdup(buf);
       }
       else if (p->op == YYRATIONAL) {
-         V_AS_R(p->value)->shortprint(buf, sizeof(buf));
+         V_AS_R(p->value).shortprint(buf, sizeof(buf));
          p->value.vacate();
          p->op = YYSTRING;
          p->value.base() = strdup(buf);
@@ -249,7 +249,7 @@ BUILTINFUNC(ABS, 1) {
       V_AS_I(p->right->value) = llabs(V_AS_I(p->right->value));
    }
    else if (p->right->op == YYRATIONAL) {
-      *(V_AS_R(p->right->value)) = V_AS_R(p->right->value)->abs();
+      V_AS_R(p->right->value) = V_AS_R(p->right->value).abs();
    }
 
    p->op = p->right->op;
@@ -729,7 +729,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
 
          p->value.vacate();
          p->value.base() = s;
-         // TODO FIX // free p->right?!?!?
+         delete(p->right);
          p->right = NULL;
       }
    }
@@ -836,32 +836,28 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                   switch(p->op) {
                      case '+':
                         {
-                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) + *(V_AS_R(p->right->value)));
-                           p->value.vacate();
+                           Rational rval = V_AS_R(p->left->value) + V_AS_R(p->right->value);
                            p->value.base() = rval;
                            p->op = YYRATIONAL;
                            break;
                         }
                      case '-':
                         {
-                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) - *(V_AS_R(p->right->value)));
-                           p->value.vacate();
+                           Rational rval = V_AS_R(p->left->value) - V_AS_R(p->right->value);
                            p->value.base() = rval;
                            p->op = YYRATIONAL;
                            break;
                         }
                      case '*':
                         {
-                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) * *(V_AS_R(p->right->value)));
-                           p->value.vacate();
+                           Rational rval = V_AS_R(p->left->value) * V_AS_R(p->right->value);
                            p->value.base() = rval;
                            p->op = YYRATIONAL;
                            break;
                         }
                      case '/':
                         {
-                           Rational *rval = new Rational (*(V_AS_R(p->left->value)) / *(V_AS_R(p->right->value)));
-                           p->value.vacate();
+                           Rational rval = V_AS_R(p->left->value) / V_AS_R(p->right->value);
                            p->value.base() = rval;
                            p->op = YYRATIONAL;
                            break;
@@ -869,8 +865,7 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
                      case '^':
                         {
                            double dval =
-                              pow((double)(*(V_AS_R(p->left->value))), (double) (*(V_AS_R(p->right->value))));
-                           p->value.vacate();
+                              pow((double)V_AS_R(p->left->value), (double)V_AS_R(p->right->value));
                            p->value.base() = dval;
                            p->op = YYDOUBLE;
                            break;
@@ -936,22 +931,21 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             case YYDOUBLE:
                p->value.base() = -(V_AS_D(p->right->value));
                p->op = YYDOUBLE;
-               free(p->right);
+               delete(p->right);
                p->right = NULL;
                break;
             case YYINTEGER:
                p->value.base() = -(V_AS_I(p->right->value));
                p->op = YYINTEGER;
-               free(p->right);
+               delete(p->right);
                p->right = NULL;
                break;
             case YYRATIONAL:
                {
-                  Rational *rval = new Rational(-(*V_AS_R(p->right->value)));
-                  p->value.vacate();
+                  Rational rval = -V_AS_R(p->right->value);
                   p->value.base() = rval;
                   p->op = YYRATIONAL;
-                  free(p->right);
+                  delete(p->right);
                   p->right = NULL;
                }
                break;
@@ -973,9 +967,10 @@ Tree *evaluate(Tree *p, Tree *params = NULL, Tree *vals = NULL) {
             case YYINTEGER:
             case YYRATIONAL:
                {
-                  Tree *right = p->right;
-                  memcpy(p, p->right, sizeof(Tree));
-                  free(right);
+                  p->op = p->right->op;
+                  p->value = p->right->value;
+                  delete(p->right);
+                  p->right = NULL;
                }
                break;
             case YYSTRING:
@@ -1048,22 +1043,22 @@ bool is_integer_relation_true(Tree *left, const char *op, Tree *right) {
 bool is_rational_relation_true(Tree *left, const char *op, Tree *right) {
    switch(OP2NUM(op)) {
       case OP2NUM("="):
-         return *(V_AS_R(left->value)) == *(V_AS_R(right->value));
+         return V_AS_R(left->value) == V_AS_R(right->value);
          break;
       case OP2NUM("<>"):
-         return *(V_AS_R(left->value)) != *(V_AS_R(right->value));
+         return V_AS_R(left->value) != V_AS_R(right->value);
          break;
       case OP2NUM(">="):
-         return *(V_AS_R(left->value)) >= *(V_AS_R(right->value));
+         return V_AS_R(left->value) >= V_AS_R(right->value);
          break;
       case OP2NUM("<="):
-         return *(V_AS_R(left->value)) <= *(V_AS_R(right->value));
+         return V_AS_R(left->value) <= V_AS_R(right->value);
          break;
       case OP2NUM(">"):
-         return *(V_AS_R(left->value)) > *(V_AS_R(right->value));
+         return V_AS_R(left->value) > V_AS_R(right->value);
          break;
       case OP2NUM("<"):
-         return *(V_AS_R(left->value)) < *(V_AS_R(right->value));
+         return V_AS_R(left->value) < V_AS_R(right->value);
          break;
    }
    return false;
@@ -1140,7 +1135,7 @@ Value convert_to_value(const char *s) {
       value.base() = atof(s);
    }
    else if (!has_nonrational) {
-      value.base() = new Rational(s);
+      value.base() = Rational(s);
    }
    else {
       GURU;
@@ -1162,7 +1157,7 @@ void switch_to_desired_index(Value &value, int desired_index) {
             switch(value.index()) {
                case V_R:
                   {
-                     double dval = (double) *V_AS_R(value);
+                     double dval = (double) V_AS_R(value);
                      value.vacate();
                      value.base() = dval;
                   }
@@ -1178,13 +1173,13 @@ void switch_to_desired_index(Value &value, int desired_index) {
             switch(value.index()) {
                case V_D:
                   {
-                     Rational *rval = new Rational(V_AS_D(value));
+                     Rational rval = Rational(V_AS_D(value));
                      value.base() = rval;
                   }
                   break;
                case V_I:
                   {
-                     Rational *rval = new Rational(V_AS_I(value));
+                     Rational rval = Rational(V_AS_I(value));
                      value.base() = rval;
                   }
                   break;
@@ -1201,7 +1196,7 @@ void switch_to_desired_index(Value &value, int desired_index) {
                   break;
                case V_R:
                   {
-                     double dval = floor((double) *V_AS_R(value));
+                     double dval = floor((double) V_AS_R(value));
                      value.vacate();
                      value.base() = (int64_t) dval;
                   }
@@ -1218,7 +1213,7 @@ int is_inverted(Value &left, Value &right) {
          return V_AS_D(right) < V_AS_D(left);
          break;
       case V_R:
-         return *V_AS_R(right) < *V_AS_R(left);
+         return V_AS_R(right) < V_AS_R(left);
          break;
       case V_I:
          return V_AS_I(right) < V_AS_I(left);
@@ -1259,8 +1254,8 @@ void run(Tree *p) {
                const char *varname = V_AS_S(lvalue->value);
                set_value(varname, result->value);
 
-               free((void *)lvalue);
-               free((void *)result);
+               delete(lvalue);
+               delete(result);
             }
             break;
          case YYPRINT:
@@ -1289,7 +1284,7 @@ void run(Tree *p) {
                      case YYRATIONAL:
                         {
                            char buf[1024];
-                           V_AS_R(mid->value)->shortprint(buf, sizeof(buf));
+                           V_AS_R(mid->value).shortprint(buf, sizeof(buf));
                            printf("%s", buf);
                         }
                         break;
@@ -1410,13 +1405,13 @@ void run(Tree *p) {
                      break;
                   case V_R:
                      {
-                        Rational i_rval(*V_AS_R(ivalue));
-                        Rational c_rval(*V_AS_R(cvalue));
-                        Rational f_rval(*V_AS_R(fvalue));
+                        Rational i_rval(V_AS_R(ivalue));
+                        Rational c_rval(V_AS_R(cvalue));
+                        Rational f_rval(V_AS_R(fvalue));
 
                         c_rval = c_rval + i_rval;
                         cvalue.vacate();
-                        cvalue.base() = new Rational(c_rval);
+                        cvalue.base() = Rational(c_rval);
 
                         set_value(V_AS_S(fore->value), cvalue);
 
@@ -1575,7 +1570,7 @@ void run(Tree *p) {
                      i = (int) V_AS_I(result->value);
                      break;
                   case YYRATIONAL:
-                     i = (int) ((double)(*V_AS_R(result->value)));
+                     i = (int) ((double)V_AS_R(result->value));
                      break;
                   case YYSTRING:
                      i = atoi(V_AS_S(result->value));

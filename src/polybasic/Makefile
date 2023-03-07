@@ -106,10 +106,11 @@ squeaky:
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 
-dumptree.o: eprintf.hpp tree.hpp rational.hpp polybasic.tab.hpp mapping.hpp
-eprintf.o: eprintf.hpp tree.hpp rational.hpp
-flexdebug.o: tree.hpp rational.hpp polybasic.tab.hpp flexdebug.hpp
-flexdebug.o: mapping.hpp
+dumptree.o: eprintf.hpp tree.hpp safe_strdup.hpp rational.hpp
+dumptree.o: polybasic.tab.hpp mapping.hpp
+eprintf.o: eprintf.hpp tree.hpp safe_strdup.hpp rational.hpp
+flexdebug.o: tree.hpp safe_strdup.hpp rational.hpp polybasic.tab.hpp
+flexdebug.o: flexdebug.hpp mapping.hpp
 hash.o: hash.hpp
 lex.yy.o: ../reflex/RE-flex/include/reflex/matcher.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/absmatcher.h
@@ -125,22 +126,26 @@ lex.yy.o: ../reflex/RE-flex/include/reflex/bits.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/ranges.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/setop.h
 lex.yy.o: ../reflex/RE-flex/include/reflex/flexlexer.h
-lex.yy.o: ../reflex/RE-flex/include/reflex/abslexer.h tree.hpp rational.hpp
-lex.yy.o: flexdebug.hpp main.hpp polybasic.tab.hpp
-main.o: main.hpp eprintf.hpp tree.hpp rational.hpp dumptree.hpp
-main.o: polybasic.tab.hpp mapping.hpp runtime.hpp flexdebug.hpp utf8utils.hpp
-main.o: version.hpp
-polybasic.tab.o: eprintf.hpp tree.hpp rational.hpp dumptree.hpp lex.yy.hpp
-polybasic.tab.o: safe_strdup.hpp polybasic.tab.hpp
+lex.yy.o: ../reflex/RE-flex/include/reflex/abslexer.h tree.hpp
+lex.yy.o: safe_strdup.hpp rational.hpp flexdebug.hpp main.hpp
+lex.yy.o: polybasic.tab.hpp
+main.o: main.hpp eprintf.hpp tree.hpp safe_strdup.hpp rational.hpp
+main.o: dumptree.hpp polybasic.tab.hpp mapping.hpp runtime.hpp flexdebug.hpp
+main.o: utf8utils.hpp version.hpp
+polybasic.tab.o: eprintf.hpp tree.hpp safe_strdup.hpp rational.hpp
+polybasic.tab.o: dumptree.hpp lex.yy.hpp polybasic.tab.hpp
 rational.o: rational.hpp
-runtime.o: eprintf.hpp tree.hpp rational.hpp polybasic.tab.hpp dumptree.hpp
-runtime.o: runtime_lbls.hpp runtime_for.hpp runtime_def.hpp runtime_vars.hpp
-runtime.o: runtime_data.hpp runtime.hpp main.hpp utf8utils.hpp builtins.hpp
-runtime_data.o: runtime_data.hpp rational.hpp
-runtime_def.o: eprintf.hpp tree.hpp rational.hpp polybasic.tab.hpp
-runtime_def.o: runtime_def.hpp dumptree.hpp hash.hpp
-runtime_for.o: runtime_for.hpp tree.hpp rational.hpp dumptree.hpp hash.hpp
-runtime_lbls.o: runtime_lbls.hpp tree.hpp rational.hpp dumptree.hpp hash.hpp
-runtime_vars.o: eprintf.hpp tree.hpp rational.hpp runtime_vars.hpp
-runtime_vars.o: polybasic.tab.hpp hash.hpp
+runtime.o: eprintf.hpp tree.hpp safe_strdup.hpp rational.hpp
+runtime.o: polybasic.tab.hpp dumptree.hpp runtime_lbls.hpp runtime_for.hpp
+runtime.o: runtime_def.hpp runtime_vars.hpp runtime_data.hpp runtime.hpp
+runtime.o: main.hpp utf8utils.hpp builtins.hpp
+runtime_data.o: runtime_data.hpp tree.hpp safe_strdup.hpp rational.hpp
+runtime_def.o: eprintf.hpp tree.hpp safe_strdup.hpp rational.hpp
+runtime_def.o: polybasic.tab.hpp runtime_def.hpp dumptree.hpp hash.hpp
+runtime_for.o: runtime_for.hpp tree.hpp safe_strdup.hpp rational.hpp
+runtime_for.o: dumptree.hpp hash.hpp
+runtime_lbls.o: runtime_lbls.hpp tree.hpp safe_strdup.hpp rational.hpp
+runtime_lbls.o: dumptree.hpp hash.hpp
+runtime_vars.o: eprintf.hpp tree.hpp safe_strdup.hpp rational.hpp
+runtime_vars.o: runtime_vars.hpp polybasic.tab.hpp hash.hpp
 utf8utils.o: utf8utils.hpp lowercase.hpp
