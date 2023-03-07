@@ -388,7 +388,14 @@ readstmt       : YYREAD lvalist
                   }
                ;
 
-printstmt      : YYPRINT printlist
+printstmt      : YYPRINT
+                  {
+                     $$ = new Tree();
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->op = YYPRINT;
+                  }
+               | YYPRINT printlist
                   {
                      $$ = new Tree();
                      $$->line = yylineno;
@@ -881,10 +888,6 @@ printlist      : expression YYIPSEP printlist
                | expression
                   {
                      $$ = $1;
-                  }
-               | %empty
-                  {
-                     $$ = NULL;
                   }
                ;
 
