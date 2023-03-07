@@ -41,7 +41,7 @@ WHITESPACE  [ \t]+
 /* ECMA-55 §6 */
 /* definition of "constant" from page 7 of the ECMA-55 document */
 /* NB: we have deviated by allowing escaped characters in strings */
-STRING   \"(\\.|[^"\\])*\"
+STRING   \"[^"]*\"
 
 R_ZERO      [#][0]
 R_INT       [#][+-]?[1-9][0-9]*
@@ -67,12 +67,10 @@ DOUBLE      {D_ZERO}|({D_NONZERO}{D_FRAC}?{D_EXP}?)|([.]{D_FRAC}{D_EXP}?)
 
 /* any single character passed straight up to bison */
 /* ECMA-116 uses & for string concatenation */
-SINGLE [=<>:&-+*/^()]
+SINGLE [,;=<>:&-+*/^()]
 
 /* multi character comparison operators */
 RELATION (<>)|(>=)|(<=)
-
-IPSEP [,;]
 
 /* any valid multicharacter thing */
 NAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}]([\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbols}\p{IsEmoticons}\p{IsSupplementalSymbolsandPictographs}\p{Number}_])*[\$]?
@@ -143,11 +141,6 @@ EOL2     [ \t]*[:][ \t]*[\r\n]{1,2}
 {SINGLE}       {
                   flexdebug(yytext, (int) yytext[0], yylineno, yylloc.first_column);
                   return yytext[0];
-               }
-
-{IPSEP}        {
-                  flexdebug(yytext, (int) YYIPSEP, yylineno, yylloc.first_column);
-                  return YYIPSEP;
                }
 
 {EOL2}         {

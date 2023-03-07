@@ -1413,7 +1413,11 @@ void run(Tree *p) {
                      case YYSTRING:
                         printf("%s", V_AS_S(mid->value));
                         break;
-                     case YYIPSEP:
+                     case ',':
+                        // TODO FIX
+                        // this should forward to the next tab stop,
+                        // and then fallthrough to the ';' case
+                     case ';':
                         want_newline = false;
                         break;
                      default:
@@ -1744,6 +1748,10 @@ void run(Tree *p) {
             break;
          case YYINPUT:
             {
+               if (p->left) {
+                  printf("%s?", V_AS_S(p->left->value));
+               }
+
                Tree *varname = evaluate(deep_copy(p->right));
                while (varname) {
                   char buf[1024];

@@ -28,6 +28,7 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %type <u> program
 %type <u> line
 %type <u> linelist
+%type <u> ipsep
 
 %type <u> name
 %type <u> efad
@@ -129,8 +130,6 @@ void fixup_nested_if(Tree *t, Tree *n = NULL);
 %token YYASSIGN
 %token YYEFAD
 %token YYLVAL
-
-%token YYIPSEP
 
 %token YYLABEL
 %token YYEOL
@@ -309,7 +308,7 @@ defstmt        : YYDEF name '(' paramlist ')' expression
                   }
                ;
 
-paramlist      : paramlist YYIPSEP name
+paramlist      : paramlist ipsep name
                   {
                      $$ = $1;
                      Tree *node = $$;
@@ -344,7 +343,7 @@ dimstmt        : YYDIM arraydimlist
                   }
                ;
 
-arraydimlist   : arraydimlist YYIPSEP arraydim
+arraydimlist   : arraydimlist ipsep arraydim
                   {
                      $$ = $1;
                      Tree *node = $$;
@@ -630,7 +629,7 @@ labellist      : label
                   {
                      $$ = $1;
                   }
-               | label YYIPSEP labellist
+               | label ipsep labellist
                   {
                      $$ = $1;
                      $$->middle = $3;
@@ -654,7 +653,7 @@ arraydim       : name '(' iconst ')'
                      $$->left = $3;
                      $$->right = NULL;
                   }
-               | name '(' iconst YYIPSEP iconst ')'
+               | name '(' iconst ipsep iconst ')'
                   {
                      $$ = $1;
                      $$->op = YYDIM;
@@ -716,7 +715,7 @@ posconstant    : '+' dconst
                   }
                ;
 
-datalist       : signedconstant YYIPSEP datalist
+datalist       : signedconstant ipsep datalist
                   {
                      $$ = $1;
                      $$->middle = $3;
@@ -827,7 +826,7 @@ expression     : '+' expression %prec UPLUSMINUS
                   }
                ;
 
-lvalist        : efad YYIPSEP lvalist
+lvalist        : efad ipsep lvalist
                   {
                      $$ = $1;
                      $$->op = YYLVAL;
@@ -858,7 +857,7 @@ efad           : name
                   }
                ;
 
-exprlist       : exprlist YYIPSEP expression
+exprlist       : exprlist ipsep expression
                   {
                      $$ = $1;
                      Tree *node = $$;
@@ -873,20 +872,32 @@ exprlist       : exprlist YYIPSEP expression
                   }
                ;
 
-printlist      : expression YYIPSEP printlist
+printlist      : expression ipsep printlist
                   {
                      $$ = $1;
                      $$->middle = $3;
                   }
-               | expression YYIPSEP
+               | expression ipsep
                   {
                      $$ = $1;
                      $$->middle = new Tree();
-                     $$->middle->op = YYIPSEP;
+                     $$->middle->op = $2->op;
                   }
                | expression
                   {
                      $$ = $1;
+                  }
+               ;
+
+ipsep          : ';'
+                  {
+                     $$ = new Tree();
+                     $$->op = ';';
+                  }
+               | ','
+                  {
+                     $$ = new Tree();
+                     $$->op = ',';
                   }
                ;
 
@@ -897,6 +908,15 @@ inputstmt      : YYINPUT lvalist
                      $$->col = yyloc.first_column;
                      $$->op = YYINPUT;
                      $$->right = $2;
+                  }
+               | YYINPUT sconst ';' lvalist
+                  {
+                     $$ = new Tree();
+                     $$->line = yylineno;
+                     $$->col = yyloc.first_column;
+                     $$->op = YYINPUT;
+                     $$->left = $2;
+                     $$->right = $4;
                   }
                ;
 
