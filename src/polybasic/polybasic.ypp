@@ -401,9 +401,7 @@ printstmt      : YYPRINT
                      $$->line = yylineno;
                      $$->col = yyloc.first_column;
                      $$->op = YYPRINT;
-                     if ($2 && $2->op != YYEOF) {
-                        $$->middle = $2;
-                     }
+                     $$->middle = $2;
                   }
                ;
 
@@ -878,12 +876,13 @@ exprlist       : exprlist YYIPSEP expression
 printlist      : expression YYIPSEP printlist
                   {
                      $$ = $1;
-                     if ($3 && $3->op == YYEOF) {
-                        $$->middle = NULL;
-                     }
-                     else {
-                        $$->middle = $3;
-                     }
+                     $$->middle = $3;
+                  }
+               | expression YYIPSEP
+                  {
+                     $$ = $1;
+                     $$->middle = new Tree();
+                     $$->middle->op = YYIPSEP;
                   }
                | expression
                   {

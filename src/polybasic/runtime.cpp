@@ -1371,6 +1371,7 @@ void run(Tree *p) {
             break;
          case YYPRINT:
             {
+               bool want_newline = true;
                Tree *result = evaluate(deep_copy(p));
                for (Tree *mid = result->middle; mid; mid = mid->middle) {
                   switch (mid->op) {
@@ -1381,7 +1382,12 @@ void run(Tree *p) {
                            if (!strchr(buf, '.')) {
                               strcat(buf, ".0");
                            }
-                           printf("%s", buf);
+                           if (V_AS_D(mid->value) < 0.0) {
+                              printf("%s", buf);
+                           }
+                           else {
+                              printf(" %s", buf);
+                           }
 
                            // other unsatisfactory answers:
                            //printf("%f", mid->dval);
@@ -1390,7 +1396,12 @@ void run(Tree *p) {
                         }
                         break;
                      case YYINTEGER:
-                        printf("%li", V_AS_I(mid->value));
+                        if (V_AS_I(mid->value) < 0) {
+                           printf("%li", V_AS_I(mid->value));
+                        }
+                        else {
+                           printf(" %li", V_AS_I(mid->value));
+                        }
                         break;
                      case YYRATIONAL:
                         {
@@ -1402,6 +1413,9 @@ void run(Tree *p) {
                      case YYSTRING:
                         printf("%s", V_AS_S(mid->value));
                         break;
+                     case YYIPSEP:
+                        want_newline = false;
+                        break;
                      default:
                         GURU;
                         // test case voidprint
@@ -1410,11 +1424,10 @@ void run(Tree *p) {
                         exit(-1);
                         break;
                   }
-                  if (mid->middle) {
-                     printf(" ");
-                  }
                }
-               printf("\n");
+               if (want_newline) {
+                  printf("\n");
+               }
             }
             break;
          case YYFOR:
