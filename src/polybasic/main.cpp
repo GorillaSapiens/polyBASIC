@@ -485,7 +485,7 @@ int main(int argc, char **argv) {
    }
 
    if (parser_result) {
-      eprintf("{FAILURE}%n");
+      eprintf("{FAILURE} ❮%0❯%n", parser_result);
       exit(-1);
    }
    else if (treedebug != -1) {
