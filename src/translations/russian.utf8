@@ -38,7 +38,7 @@ END <= КОНЕЦ                     # the end statement
 
 ABS <= АБС                       # the absolute value function
 ATN <= АТ                        # the trigonomic arctangent function
-COS <= ПОСАДКА                   # the trigonomic cosine function
+COS <= ЗАСЕЛЕНИЕ                 # the trigonomic cosine function
 EXP <= ЭКСПЛУАТ                  # the exponential / power function
 INT <= ИНТ                       # the integer / floor function
 LOG <= БРЕВНО                    # the natural log function
@@ -56,7 +56,7 @@ CHR <= ХР                        # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= ДЕФЕКТ                    # for user defined functions
+DEF <= ДЕФ                       # for user defined functions
 
 # from ECMA-55 §11
 
@@ -110,7 +110,7 @@ BASE <= БАЗА                     # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= РЕМ                       # see ECMA-55 §18.1
+REM <= ПЕРЕОБОРУДОВАНИЕ          # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -134,21 +134,21 @@ ARRAY USED AS VARIABLE	МАССИВ, ИСПОЛЬЗУЕМЫЙ В КАЧЕСТВ�
 CANNOT ACCESS DIRECTORY	НЕ МОЖЕТ ПОЛУЧИТЬ ДОСТУП К КАТАЛОГУ
 CANNOT ASSIGN TO DEFINITION	НЕ МОЖЕТ НАЗНАЧИТЬ ОПРЕДЕЛЕНИЕ
 CANNOT ASSIGN TO FUNCTION	НЕ МОЖЕТ НАЗНАЧИТЬ ФУНКЦИЮ
-DATA INPUT UNDERFLOW	ВВОД ДАННЫХ В НИЖНЕМ ПОТОКЕ
-DATA READ UNDERFLOW	ДАННЫЕ ПРОЧИТАЛИ НЕДОСТАТОК
+DATA INPUT UNDERFLOW	ВХОД ДАННЫХ В РАЗДЕЛЕ
+DATA READ UNDERFLOW	ДАННЫЕ ЧИТАЮТ НЕДОСТАТОЧНЫЙ ПОТОК
 DEFINITION CYCLE DISCOVERED	ЦИКЛ ОПРЕДЕЛЕНИЯ ОБНАРУЖЕНО
 ERROR	ОШИБКА
 FAILURE	ОТКАЗ
-FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖЕННОЕ ОПРЕДЕЛЕНО
+FUNCTION DEFINITION MULTIPLY DEFINED	ОПРЕДЕЛЕНИЕ ФУНКЦИИ УМНОЖАЕТСЯ
 FUNCTION DEFINITION PARAMETER MISMATCH	ОПРЕДЕЛЕНИЕ ФУНКЦИИ НЕСООТВЕТСТВИЕ ПАРАМЕТРОВ
 GOSUB STACK OVERFLOW	ГОСУБ СТЕК ПЕРЕПОЛНЕН
 GOSUB STACK UNDERFLOW	GOSUB STACK HOONFLOW
 INCORRECT NUMBER OF PARAMETERS	НЕПРАВИЛЬНОЕ КОЛИЧЕСТВО ПАРАМЕТРОВ
+INDEX LESS THAN 1	ИНДЕКС МЕНЕЕ 1
 INDEX OUT OF RANGE	УКАЗАТЕЛЬ
 LABEL ALREADY DEFINED	МЕТКА УЖЕ ОПРЕДЕЛЕН
 LEFT / RIGHT OPERATION MISMATCH	НЕСООТВЕТСТВИЕ ЛЕВОЙ / ПРАВОЙ ОПЕРАЦИИ
-NEGATIVE INDEX	ОТРИЦАТЕЛЬНЫЙ ИНДЕКС
-NEXT ON FOR LOOP WITH STRING VARIABLE	ДАЛЕЕ ДЛЯ ПЕТЛИ СО СТРОКОВОЙ ПЕРЕМЕННОЙ
+NEXT ON FOR LOOP WITH STRING VARIABLE	ДАЛЕЕ ДЛЯ ПЕТЛИ С ПЕРЕМЕННОЙ СТРОКИ
 OPERAND MISMATCH	ОПЕРАНД НЕСООТВЕТСТВИЕ
 OPTION REQUIRES A LANGUAGE	ВАРИАНТ ТРЕБУЕТ ЯЗЫКА
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	ПОЖАЛУЙСТА, ПРОВЕРЬТЕ НАСТРОЙКИ ЯЗЫКА ИЛИ ПЕРЕМЕННУЮ СРЕДЫ

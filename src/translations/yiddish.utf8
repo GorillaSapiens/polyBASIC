@@ -144,10 +144,10 @@ FUNCTION DEFINITION PARAMETER MISMATCH	פונקציע דעפֿיניציע פּ�
 GOSUB STACK OVERFLOW	גאָסוב אָנלייגן אָוווערפלאָו
 GOSUB STACK UNDERFLOW	גאָסוב אָנלייגן אַנדערפלאָו
 INCORRECT NUMBER OF PARAMETERS	פאַלש נומער פון פּאַראַמעטערס
+INDEX LESS THAN 1	אינדעקס ווייניקער ווי 1
 INDEX OUT OF RANGE	אינדעקס אויס פון קייט
 LABEL ALREADY DEFINED	פירמע שוין דיפיינד
 LEFT / RIGHT OPERATION MISMATCH	לינקס / רעכט אָפּעראַציע מיסמאַטש
-NEGATIVE INDEX	נעגאַטיוו אינדעקס
 NEXT ON FOR LOOP WITH STRING VARIABLE	ווייַטער פֿאַר שלייף מיט שטריקל בייַטעוודיק
 OPERAND MISMATCH	אָפּעראַנד מיסמאַטש
 OPTION REQUIRES A LANGUAGE	אָפּציע ריקווייערז אַ שפּראַך

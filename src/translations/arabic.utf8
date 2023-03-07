@@ -133,7 +133,7 @@ ARRAY SUBSCRIPT NOT A NUMBER	مجموعة مجموعة الصفيف ليست ر�
 ARRAY USED AS VARIABLE	ARRAY المستخدمة كمتغير
 CANNOT ACCESS DIRECTORY	لا يمكن الوصول إلى الدليل
 CANNOT ASSIGN TO DEFINITION	لا يمكن تعيين التعريف
-CANNOT ASSIGN TO FUNCTION	لا يمكن تعيين الوظيفة
+CANNOT ASSIGN TO FUNCTION	لا يمكن التخصيص للوظيفة
 DATA INPUT UNDERFLOW	إدخال البيانات UNDERFLOW
 DATA READ UNDERFLOW	قراءة البيانات UNDERFLOW
 DEFINITION CYCLE DISCOVERED	تم اكتشاف دورة التعريف
@@ -144,10 +144,10 @@ FUNCTION DEFINITION PARAMETER MISMATCH	تعريف وظيفة عدم تطابق �
 GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
 GOSUB STACK UNDERFLOW	GOSUB STACK UNDERFLOW
 INCORRECT NUMBER OF PARAMETERS	عدد غير صحيح من المعلمات
+INDEX LESS THAN 1	فهرس أقل من 1
 INDEX OUT OF RANGE	فهرس خارج النطاق
 LABEL ALREADY DEFINED	تسمية محددة بالفعل
-LEFT / RIGHT OPERATION MISMATCH	عدم تطابق العملية اليسرى / اليمنى
-NEGATIVE INDEX	الفهرس السلبي
+LEFT / RIGHT OPERATION MISMATCH	عدم تطابق العملية اليمنى / اليمنى
 NEXT ON FOR LOOP WITH STRING VARIABLE	التالي على حلقة مع متغير السلسلة
 OPERAND MISMATCH	عدم تطابق المعامل
 OPTION REQUIRES A LANGUAGE	الخيار يتطلب لغة

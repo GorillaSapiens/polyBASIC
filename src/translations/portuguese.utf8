@@ -32,85 +32,85 @@
 
 # from ECMA-55 §5.2
 
-END <= FIM                 # the end statement
+END <= FIM                # the end statement
 
 # from ECMA-55 §9
 
-ABS <= ABDÔMEN             # the absolute value function
-ATN <= ATN                 # the trigonomic arctangent function
-COS <= COS                 # the trigonomic cosine function
-EXP <= EXP                 # the exponential / power function
-INT <= INT                 # the integer / floor function
-LOG <= REGISTRO            # the natural log function
-RND <= RND                 # generate random number
-SGN <= SGN                 # determine the sign
-SIN <= PECADO              # the trigonomic sine function
-SQR <= SQR                 # the square root function
-TAN <= BRONZEADO           # the trigonomic tangent function
-DBL <= DBL                 # convert to double
-STR <= STR                 # convert to string
-RAT <= RATO                # convert to rational
+ABS <= ABDÔMEN            # the absolute value function
+ATN <= ATN                # the trigonomic arctangent function
+COS <= COS                # the trigonomic cosine function
+EXP <= EXP                # the exponential / power function
+INT <= INT                # the integer / floor function
+LOG <= REGISTRO           # the natural log function
+RND <= RND                # generate random number
+SGN <= SGN                # determine the sign
+SIN <= PECADO             # the trigonomic sine function
+SQR <= SQR                # the square root function
+TAN <= BRONZEADO          # the trigonomic tangent function
+DBL <= DBL                # convert to double
+STR <= STR                # convert to string
+RAT <= RATO               # convert to rational
 
-TAB <= ABA                 # C-64ism
-CHR <= CHR                 # C-64ism
+TAB <= ABA                # C-64ism
+CHR <= CHR                # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= DEF                 # for user defined functions
+DEF <= DEF                # for user defined functions
 
 # from ECMA-55 §11
 
-LET <= DEIXAR              # for variable assignment
+LET <= DEIXAR             # for variable assignment
 
 # from ECMA-55 §12
 # NB: ECMA-55 has no ELSE statement
 
-GOSUB <= GOSUB             # formed from GO and SUB if no direct translation exists
-GOTO <= VÁPARA             # formed from GO and TO if no direct translation exists
-TO <= PARA                 # part of for/to/step/next constructs
-IF <= SE                   # part of if/then constructs
-THEN <= ENTÃO              # part of if/then constructs
-ON <= SOBRE                # a sort of a switch statement
-RETURN <= RETORNAR         # used to exit a subroutine
-STOP <= PARAR              # command to stop execution
+GOSUB <= GOSUB            # formed from GO and SUB if no direct translation exists
+GOTO <= VÁPARA            # formed from GO and TO if no direct translation exists
+TO <= PARA                # part of for/to/step/next constructs
+IF <= SE                  # part of if/then constructs
+THEN <= ENTÃO             # part of if/then constructs
+ON <= SOBRE               # a sort of a switch statement
+RETURN <= RETORNAR        # used to exit a subroutine
+STOP <= PARAR             # command to stop execution
 
-AND <= E                   # C-64ism
-OR <= OU                   # C-64ism
-NOT <= NÃO                 # C-64ism
+AND <= E                  # C-64ism
+OR <= OU                  # C-64ism
+NOT <= NÃO                # C-64ism
 
 # from ECMA-55 §13
 # NB: translation for TO is in §12
 
-FOR <= DE                  # part of for/to/step/next constructs
-STEP <= ETAPA              # part of for/to/step/next constructs
-NEXT <= PRÓXIMO            # part of for/to/step/next constructs
+FOR <= DE                 # part of for/to/step/next constructs
+STEP <= ETAPA             # part of for/to/step/next constructs
+NEXT <= PRÓXIMO           # part of for/to/step/next constructs
 
 # from ECMA-55 §14
 
-PRINT <= IMPRIMIR          # to print things out
+PRINT <= IMPRIMIR         # to print things out
 
 # from ECMA-55 §15
 
-INPUT <= ENTRADA           # the input statement
+INPUT <= ENTRADA          # the input statement
 
 # from ECMA-55 §16
 
-READ <= LER                # part of read / restore
-RESTORE <= RESTAURAR       # part of read / restore
+READ <= LER               # part of read / restore
+RESTORE <= RESTAURAR      # part of read / restore
 
 # from ECMA-55 §17
 
-DATA <= DADOS              # to embed data in the program
+DATA <= DADOS             # to embed data in the program
 
 # from ECMA-55 §18
 
-DIM <= ESCURECIDO          # dimension arrays
-OPTION <= OPÇÃO            # see ECMA-55 §18.1
-BASE <= BASE               # see ECMA-55 §18.1
+DIM <= DIM                # dimension arrays
+OPTION <= OPÇÃO           # see ECMA-55 §18.1
+BASE <= BASE              # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
-REM <= REM                 # see ECMA-55 §18.1
+REM <= REM                # see ECMA-55 §18.1
 
 # from ECMA-55 §20
 
@@ -132,7 +132,7 @@ ARRAY INDEX SIZE MISMATCH	MISMITCH DE TAMANHO DE ÍNDICE DE MATRIZ
 ARRAY SUBSCRIPT NOT A NUMBER	SUBSCRITO DE ARRAY, NÃO UM NÚMERO
 ARRAY USED AS VARIABLE	ARRAY USADO COMO VARIÁVEL
 CANNOT ACCESS DIRECTORY	NÃO É POSSÍVEL ACESSAR O DIRETÓRIO
-CANNOT ASSIGN TO DEFINITION	NÃO PODE ATRIBUIR À DEFINIÇÃO
+CANNOT ASSIGN TO DEFINITION	NÃO É POSSÍVEL ATRIBUIR À DEFINIÇÃO
 CANNOT ASSIGN TO FUNCTION	NÃO É POSSÍVEL ATRIBUIR À FUNÇÃO
 DATA INPUT UNDERFLOW	ENTRADA DE DADOS SUBFLUENTE
 DATA READ UNDERFLOW	DADOS LEIA O SUBFLUXO
@@ -144,10 +144,10 @@ FUNCTION DEFINITION PARAMETER MISMATCH	FUNÇÃO DEFINIÇÃO PARÂMETRO INDATCH
 GOSUB STACK OVERFLOW	GOSUB STACK OVERFLOW
 GOSUB STACK UNDERFLOW	GOSUB STACK SUBFLOW
 INCORRECT NUMBER OF PARAMETERS	NÚMERO INCORRETO DE PARÂMETROS
+INDEX LESS THAN 1	ÍNDICE MENOR QUE 1
 INDEX OUT OF RANGE	ÍNDICE FORA DE ALCANCE
 LABEL ALREADY DEFINED	RÓTULO JÁ DEFINIDO
 LEFT / RIGHT OPERATION MISMATCH	INDATIBILIDADE DE OPERAÇÃO ESQUERDA / DIREITA
-NEGATIVE INDEX	ÍNDICE NEGATIVO
 NEXT ON FOR LOOP WITH STRING VARIABLE	EM SEGUIDA, PARA LOOP COM VARIÁVEL DE STRING
 OPERAND MISMATCH	INCOMPATIBILIDADE DO OPERANDO
 OPTION REQUIRES A LANGUAGE	A OPÇÃO REQUER UM IDIOMA

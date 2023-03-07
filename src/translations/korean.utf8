@@ -48,7 +48,7 @@ SIN <= 죄             # the trigonomic sine function
 SQR <= SQR           # the square root function
 TAN <= 탠껍질           # the trigonomic tangent function
 DBL <= DBL           # convert to double
-STR <= STR           # convert to string
+STR <= 스트리트          # convert to string
 RAT <= 쥐             # convert to rational
 
 TAB <= 탭             # C-64ism
@@ -56,7 +56,7 @@ CHR <= CHR           # C-64ism
 
 # from ECMA-55 §10
 
-DEF <= 데프            # for user defined functions
+DEF <= 수비            # for user defined functions
 
 # from ECMA-55 §11
 
@@ -144,11 +144,11 @@ FUNCTION DEFINITION PARAMETER MISMATCH	함수 정의 매개 변수 불일치
 GOSUB STACK OVERFLOW	GOSUB 스택 오버플로
 GOSUB STACK UNDERFLOW	GOSUB 스택 언더 플로
 INCORRECT NUMBER OF PARAMETERS	잘못된 수의 매개 변수
+INDEX LESS THAN 1	1 미만 인덱스
 INDEX OUT OF RANGE	범위를 벗어난 색인
 LABEL ALREADY DEFINED	이미 정의 된 레이블
 LEFT / RIGHT OPERATION MISMATCH	왼쪽 / 오른쪽 작동 불일치
-NEGATIVE INDEX	음수 지수
-NEXT ON FOR LOOP WITH STRING VARIABLE	다음은 문자열 변수로 루프를 사용합니다
+NEXT ON FOR LOOP WITH STRING VARIABLE	다음은 문자열 변수로 루프를 위해 켜집니다
 OPERAND MISMATCH	피연산자 불일치
 OPTION REQUIRES A LANGUAGE	옵션에는 언어가 필요합니다
 PLEASE CHECK LANGUAGE SETTINGS OR ENVIRONMENT VARIABLE	언어 설정 또는 환경 변수를 확인하십시오

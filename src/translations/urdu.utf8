@@ -144,10 +144,10 @@ FUNCTION DEFINITION PARAMETER MISMATCH	فنکشن ڈیفینیشن پیرامی�
 GOSUB STACK OVERFLOW	گوسب اسٹیک اوور فلو
 GOSUB STACK UNDERFLOW	گوسب اسٹیک انڈر فلو
 INCORRECT NUMBER OF PARAMETERS	پیرامیٹرز کی غلط تعداد
+INDEX LESS THAN 1	انڈیکس 1 سے کم
 INDEX OUT OF RANGE	رینج سے باہر انڈیکس
 LABEL ALREADY DEFINED	لیبل پہلے ہی بیان کیا گیا ہے
 LEFT / RIGHT OPERATION MISMATCH	بائیں / دائیں آپریشن مماثلت
-NEGATIVE INDEX	منفی انڈیکس
 NEXT ON FOR LOOP WITH STRING VARIABLE	سٹرنگ متغیر کے ساتھ لوپ کے لئے اگلا
 OPERAND MISMATCH	آپٹینڈ مماثل
 OPTION REQUIRES A LANGUAGE	آپشن کے لئے زبان کی ضرورت ہوتی ہے
@@ -165,7 +165,7 @@ UNRECOGNIZED DOUBLE MATH OPERATION	غیر تسلیم شدہ ڈبل ریاضی ک
 UNRECOGNIZED GOSUB LABEL	غیر تسلیم شدہ گوسب لیبل
 UNRECOGNIZED GOTO LABEL	غیر تسلیم شدہ گوٹو لیبل
 UNRECOGNIZED INPUT	غیر تسلیم شدہ ان پٹ
-UNRECOGNIZED INTEGER MATH OPERATION	غیر تسلیم شدہ عددی ریاضی کا آپریشن
+UNRECOGNIZED INTEGER MATH OPERATION	غیر تسلیم شدہ انٹیجر ریاضی آپریشن
 UNRECOGNIZED MATH TYPE	غیر تسلیم شدہ ریاضی کی قسم
 UNRECOGNIZED NEXT VARIABLE	غیر تسلیم شدہ اگلا متغیر
 UNRECOGNIZED OP IN PRINT	پرنٹ میں غیر تسلیم شدہ او پی

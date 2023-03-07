@@ -44,7 +44,7 @@ INT <= INT                       # the integer / floor function
 LOG <= UGODO                     # the natural log function
 RND <= RND                       # generate random number
 SGN <= ISGN                      # determine the sign
-SIN <= UKONA                     # the trigonomic sine function
+SIN <= ONA                       # the trigonomic sine function
 SQR <= ISQR                      # the square root function
 TAN <= UMBALAONSUNDU             # the trigonomic tangent function
 DBL <= DLB                       # convert to double
@@ -106,7 +106,7 @@ DATA <= UMBHALO                  # to embed data in the program
 
 DIM <= FUSHANE                   # dimension arrays
 OPTION <= UKUKHETHA              # see ECMA-55 §18.1
-BASE <= ISIZINDA                 # see ECMA-55 §18.1
+BASE <= ISISEKELA                # see ECMA-55 §18.1
 
 # from ECMA-55 §19
 
@@ -144,10 +144,10 @@ FUNCTION DEFINITION PARAMETER MISMATCH	UMSEBENZI WOKUCHAZA UPHARAMITHA MISMATCH
 GOSUB STACK OVERFLOW	I-GOSUB STACK IYACHICHIMA
 GOSUB STACK UNDERFLOW	I-GOSUB STACK UKUCHICHIMA
 INCORRECT NUMBER OF PARAMETERS	INOMBOLO ENGALUNGILE YAMAPHARAMITHA
+INDEX LESS THAN 1	INKOMBA ENGAPHANSI KWE-1
 INDEX OUT OF RANGE	INKOMBA NGAPHANDLE KWEBANGA
 LABEL ALREADY DEFINED	ILEBULA ECHAZIWE
 LEFT / RIGHT OPERATION MISMATCH	I-LEFT / RIGHT OPERATION MISMATCH
-NEGATIVE INDEX	INKOMBA ENGEMIHLE
 NEXT ON FOR LOOP WITH STRING VARIABLE	NGOKULANDELAYO KU-LOOP NGE-STRING EGUQUGUQUKAYO
 OPERAND MISMATCH	I-OPERAND MISMATCH
 OPTION REQUIRES A LANGUAGE	INKETHO IDINGA ULIMI
