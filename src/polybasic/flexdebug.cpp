@@ -5,50 +5,57 @@
 
 bool flexdebug_enabled = false;
 
-void flexdebug(const char *s, int yytt, int line, int col) {
+void flexdebug(const char *text, int token, int line, int col) {
    if (!flexdebug_enabled) {
       return;
    }
 
-   const char *display = s;
-   char displaybuf[128];
+   char textbuf[4096];
+   const char *in = text;
+   char *out = textbuf;
 
-   const char *name = NULL;
-   char charbuf[2];
-
-   if (s[0] < ' ') {
-      displaybuf[0] = 0;
-      for (const char *p = s; *p; p++) {
-         switch (*p) {
-            case 0x07: strcat(displaybuf, "\\a"); break;
-            case 0x08: strcat(displaybuf, "\\b"); break;
-            case 0x09: strcat(displaybuf, "\\t"); break;
-            case 0x0a: strcat(displaybuf, "\\n"); break;
-            case 0x0b: strcat(displaybuf, "\\v"); break;
-            case 0x0c: strcat(displaybuf, "\\f"); break;
-            case 0x0d: strcat(displaybuf, "\\r"); break;
-            case 0x1b: strcat(displaybuf, "\\e"); break;
+   while (*in) {
+      if (*in >= ' ' || *in < 0) {
+         *out++ = *in++;
+      }
+      else {
+         *out++ = '\\';
+         switch (*in) {
+            case 0x07: *out++ = 'a'; break;
+            case 0x08: *out++ = 'b'; break;
+            case 0x09: *out++ = 't'; break;
+            case 0x0a: *out++ = 'n'; break;
+            case 0x0b: *out++ = 'v'; break;
+            case 0x0c: *out++ = 'f'; break;
+            case 0x0d: *out++ = 'r'; break;
+            case 0x1b: *out++ = 'e'; break;
             default:
-               sprintf(displaybuf + strlen(displaybuf), "\\x%02x", *p);
+               *out++ = 'x';
+               *out++ = "0123456789abcdef"[(*in >> 4) & 0xF];
+               *out++ = "0123456789abcdef"[(*in >> 0) & 0xF];
                break;
          }
+         in++;
       }
-      display = displaybuf;
    }
+   *out = 0;
 
-   if (yytt >= ' ' && yytt <= '~') {
-      charbuf[0] = yytt;
+   char charbuf[2];
+   const char *name;
+
+   if (token >= ' ' && token <= '~') {
+      charbuf[0] = token;
       charbuf[1] = 0;
       name = charbuf;
    }
    else {
       for (int i = 0; reserved[i].name; i++) {
-         if ((int)reserved[i].token == yytt) {
+         if ((int)reserved[i].token == token) {
             name = reserved[i].name;
             break;
          }
       }
    }
 
-   printf("line %d col %d '%s' => %d %s\n", line, col, display, yytt, name ? name : "<nil>");
+   printf("@%d:%d '%s' => %d %s\n", line, col, textbuf, token, name ? name : "<nil>");
 }

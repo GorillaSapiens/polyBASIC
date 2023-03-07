@@ -82,6 +82,7 @@ NAME  [\p{Letter}\p{IsMiscellaneousSymbolsandPictographs}\p{IsMiscellaneousSymbo
 // RUNE     [$%|&'?^_.]
 
 EOL      [\r\n]{1,2}
+EOL2     [ \t]*[:][ \t]*[\r\n]{1,2}
 
 // an exclusive state for gobbling remarks
 %x REMGOBBLE
@@ -147,6 +148,11 @@ EOL      [\r\n]{1,2}
 {IPSEP}        {
                   flexdebug(yytext, (int) YYIPSEP, yylineno, yylloc.first_column);
                   return YYIPSEP;
+               }
+
+{EOL2}         {
+                  flexdebug(yytext, (int) YYEOL, yylineno, yylloc.first_column);
+                  return YYEOL;
                }
 
 {EOL}          {
