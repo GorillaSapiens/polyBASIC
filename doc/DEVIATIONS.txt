@@ -9,13 +9,6 @@ constants, so you can include " inside a string. apostrophies are no
 longer allowed as string delimeters, and "" is not a valid " escape.
 use backslashes for escapes.
 
-(*) := for assignment, == for comparison. "=" is no longer valid.
-this was done to eliminate a class of errors where people got "=" and
-"==" confused.  the "LET" keyword is completely optional.
-
-(*) both <> and != are accepted for "not equal" comparisons.  they are
-completely equivalent.
-
 (*) relational comparisons (<, <=, >, >=) between string values follow
 C strcmp semantics.
 
@@ -33,10 +26,8 @@ rational maths result in the lowest necessary denominator.
 
 (*) keywords are case insensitive
 
-(*) DEF function names are unrestricted, and may have any number of
-parameters, but you must use square braces "[" and "]" when defining and
-calling them.  parameters are not required, although square braces are
-still required when defining or calling, even if there are no parameters.
-Circular dependencies in DEF functions are not allowed.
-
 (*) both uppercase and lowercase "e" are allowed in numbers.
+
+(*) C-64ish ":" allows multiple statements per line
+
+(*) many other C-64isms
